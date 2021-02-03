@@ -2,82 +2,58 @@ import re
 import requests
 import httplib2
 from datetime import date
-from urllib.request import urlopen
 from bs4 import BeautifulSoup, SoupStrainer
 
-updatesPage = urlopen("https://support.apple.com/en-us/HT201222").read().decode('utf-8')
-currentDate = str(date.today().day) + " " + str(date.today().strftime('%B')[0:3] + " " + str(date.today().year))
-currentDat = str(1) + " " + str(date.today().strftime('%B')[0:3] + " " + str(date.today().year))
+
+updatesPage = requests.get("https://support.apple.com/en-us/HT201222").text
+# currentDate = str(date.today().day) + " " + str(date.today().strftime('%B')[0:3]) + " " + str(date.today().year)
+currentDate = str(1) + " " + "Feb" + " " + str(date.today().year)
 
 
-# stores if there was a new version added today or not
-if currentDat in updatesPage:
+# checks if there was a new version added today or not
+if currentDate in updatesPage:
     wasUpdated = True
 else:
     wasUpdated = False
 
 
-# scrape all links
-links = []
 if (wasUpdated == True):
+    # if there was an update scrape all the links
+    allLinks = []
     http = httplib2.Http()
     status, response = http.request('https://support.apple.com/en-us/HT201222')
 
     for link in BeautifulSoup(response, features="html.parser", parse_only=SoupStrainer('a')):
         if link.has_attr('href'):
-            links.append(link['href'])
+            allLinks.append(link['href'])
 
+    # get only the new links
+    searchResults = len(re.findall(currentDate, updatesPage)) + 22
+    newLinks = allLinks[22:searchResults]
 
-    # get new links
-    searchResults = len(re.findall(currentDat, updatesPage)) + 22
-    newVersion = links[22:searchResults]
+    # scrape new links and gather info from the links
+    newHeader = []
+    numberCVE = []
 
+    for x in newLinks:
+        newLink = requests.get(x)
+        soup = BeautifulSoup(newLink.content, 'html.parser')
 
-    # scrape new versions
-    newVersion1 = requests.get(newVersion[0])
-    soup = BeautifulSoup(newVersion1.content, 'html.parser')
-    # get the header of the new version
-    header = soup.find_all('h2')
-    header1 = re.sub("<[^>]*?>","", str(header[1]))
-    # search how many CVEs there are
-    numberCVE1 = len(re.findall("CVE", str(soup))) - 1
+        # get the header of the new version
+        allHeaders = soup.find_all('h2')
+        newHeader.append(re.sub("<[^>]*?>","", str(allHeaders[1])))
 
-    newVersion2 = requests.get(newVersion[1])
-    soup = BeautifulSoup(newVersion2.content, 'html.parser')
-    # get the header of the new version
-    header = soup.find_all('h2')
-    header2 = re.sub("<[^>]*?>","", str(header[1]))
-    # search how many CVEs there are
-    numberCVE2 = len(re.findall("CVE", str(soup))) - 1
+        # search how many CVEs there are
+        numberCVE.append(len(re.findall("CVE", str(soup))) - 1)
 
-    newVersion3 = requests.get("https://support.apple.com/en-us/HT212146")
-    soup = BeautifulSoup(newVersion3.content, 'html.parser')
-    # get the header of the new version
-    header = soup.find_all('h2')
-    header3 = re.sub("<[^>]*?>","", str(header[1]))
-    # search how many CVEs there are
-    numberCVE3 = len(re.findall("CVE", str(soup))) - 1
-
-    newVersion4 = requests.get("https://support.apple.com/en-us/HT212149")
-    soup = BeautifulSoup(newVersion4.content, 'html.parser')
-    # get the title of the new version
-    header = soup.find_all('h2')
-    header4 = re.sub("<[^>]*?>","", str(header[1]))
-    # search how many CVEs there are
-    numberCVE4 = len(re.findall("CVE", str(soup))) - 1
-
-    newVersion5 = requests.get("https://support.apple.com/en-us/HT212148")
-    soup = BeautifulSoup(newVersion5.content, 'html.parser')
-    # get the title of the new version
-    header = soup.find_all('h2')
-    header5 = re.sub("<[^>]*?>","", str(header[1]))
-    # search how many CVEs there are
-    numberCVE5 = len(re.findall("CVE", str(soup))) - 1
+    for x in newHeader:
+        # if there is macOS in the header take only the first part, not the full header
+        if "macOS" in x:
+            macosIsHere = newHeader.index(x)
+            newHeader[macosIsHere] = x.split(',', 1)[0]
 
     # print results
     print("PATCH TIME!")
-    print(header1 + " released with " + str(numberCVE1) + " security fixes")
-    print(header2[0:18] + " released with " + str(numberCVE2) + " security fixes")
-    print(header3 + " released with " + str(numberCVE3) + " security fixes")
-    print(header4 + " released with " + str(numberCVE4) + " security fixes")
-    print(header5 + " released with " + str(numberCVE5) + " security fixes")
+    for x in newHeader:
+        print(x + " released with " + str(numberCVE[0]) + " security fixes")
+        numberCVE.pop(0)
