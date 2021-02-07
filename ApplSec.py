@@ -4,6 +4,7 @@ import tweepy
 import requests
 from datetime import date
 from collections import Counter
+from collections import OrderedDict
 from bs4 import BeautifulSoup, SoupStrainer
 
 api_key = "x"
@@ -16,40 +17,33 @@ auth.set_access_token(access_token, access_secret_key)
 api = tweepy.API(auth)
 
 
-updatesPage = requests.get("https://support.apple.com/en-us/HT201222").text
-currentDateFormatOne = str(date.today().day) + " " + str(date.today().strftime("%B")[0:3]) + " " + str(date.today().year)
-currentDateFormatTwo = str(date.today().strftime("%B")) + " " + str(date.today().day) + ", " + str(date.today().year)
-
-newHeader = []
-newCVE = []
-countStrong = []
-newStrong = []
+headers = []
+emojis = []
+CVEs = []
+added = []
+updated = []
 entriesAdded = []
 entriesUpdated = []
-numberOfAdded = []
-numberOfUpdated = []
-emojis = []
-newAdded = []
-newUpdated = []
 
 def getData(link):
-    number0Days = 0
+    zeroDays = 0
+    results3 = ""
     for x in link:
-        newPage = requests.get(x)
-        soup = BeautifulSoup(newPage.content, "html.parser")
+        page = requests.get(x)
+        soup = BeautifulSoup(page.content, "html.parser")
 
-        # get the title of the new version
+        # get data about title of the new version
         allHeaders = soup.find_all("h2")
         currentHeader = re.sub("<[^>]*?>","", str(allHeaders[1]))
         if "macOS" in currentHeader:
-            # if macOS in the title take only the first part
+            # if macOS is in the title, take only the first part of the title
             currentHeader = currentHeader.split(",", 1)[0]
         if "iOS" in currentHeader:
-            # if iOS in the title take only the first part; without iPadOS
+            # if iOS is in the title, take only the first part; without iPadOS
             currentHeader = currentHeader.split("and", 1)[0].rstrip()
-        newHeader.append(currentHeader)
+        headers.append(currentHeader)
 
-        # set emojis
+        # set emojis specific to the title
         if "iOS" in currentHeader:
             emojis.append(":iphone: ")
         elif "watchOS" in currentHeader:
@@ -58,92 +52,122 @@ def getData(link):
             emojis.append(":tv: ")
         elif "macOS" in currentHeader:
             emojis.append(":computer: ")
+        elif "iCloud" in currentHeader:
+            emojis.append(":cloud: ")
         else:
             emojis.append(":hammer_and_wrench: ")
 
-        # get the number of CVEs on the page
+        # get data about the number of CVEs that were fixed
         numberCVE = (len(re.findall("CVE", str(soup))) - 1)
         if numberCVE == 1:
-            numberCVE = str(numberCVE) + " bug fixed"
+            text = str(numberCVE) + " bug fixed"
         else:
-            numberCVE = str(numberCVE) + " bugs fixed"
-        newCVE.append(numberCVE)
+            text = str(numberCVE) + " bugs fixed"
+        CVEs.append(text)
 
-        # get topics
-        allStrong = soup.find_all("strong")
-        countStrong.append(Counter(allStrong).most_common)
-        newStrong.append(re.sub("<[^>]*?>","", str(countStrong)))
-        countStrong.clear()
+        # get data about which parts got bug fixes
+        if "iOS" in currentHeader:
+            allStrong = soup.find_all("strong")
+            allStrong = re.sub("<[^>]*?>","", str(allStrong))
+            allStrong = allStrong.strip('][').split(', ')
+            global countStrong
+            countStrong = Counter(allStrong)
+            global partHeader
+            partHeader = currentHeader
 
-        # search for added entries
+        # get data if any entries were added
         if link == entriesAdded:
             search = "Entry added " + str(currentDateFormatTwo)
-            numberOfAdded = (len(re.findall(search, str(soup))))
-            if numberOfAdded == 1:
-                numberOfAdded = str(numberOfAdded) + " entry added"
+            number = (len(re.findall(search, str(soup))))
+            if number == 1:
+                text = str(number) + " entry added"
             else:
-                numberOfAdded = str(numberOfAdded) + " entries added"
-            newAdded.append(numberOfAdded)
+                text = str(number) + " entries added"
+            added.append(text)
 
-        # search for updated entries
+        # get data if any entries were updated
         if link == entriesUpdated:
             search = "Entry updated " + str(currentDateFormatTwo)
-            numberOfUpdated = (len(re.findall(search, str(soup))))
-            if numberOfUpdated == 1:
-                numberOfUpdated = str(numberOfUpdated) + " entry updated"
+            number = (len(re.findall(search, str(soup))))
+            if number == 1:
+                text = str(text) + " entry updated"
             else:
-                numberOfUpdated = str(numberOfUpdated) + " entries updated"
-            newUpdated.append(numberOfUpdated)
+                text = str(text) + " entries updated"
+            updated.append(text)
 
-        # search if there were any zero-day vulnerabilities fixed
+        # get data if there were any zero-day vulnerabilities fixed
         if link == newLinks:
+            if "iOS" in currentHeader:
+                global iosCVE
+                iosCVE = numberCVE
+
             if "in the wild" or "actively exploited" in soup:
-                number0Days = len(re.findall("in the wild", str(soup)))
-                number0Days += len(re.findall("actively exploited", str(soup)))
-                results0Days3 = ""
-                if number0Days == 1:
-                    results0Days3 += str(number0Days) + " zero-day vulnerability fixed in " + currentHeader
-                else:
-                    results0Days3 += str(number0Days) + " zero-day vulnerabilities fixed in " + currentHeader
+                zeroDays = len(re.findall("in the wild", str(soup)))
+                zeroDays += len(re.findall("actively exploited", str(soup)))
+                if zeroDays == 1:
+                    results3 += str(zeroDays) + " zero-day fixed in " + currentHeader + "\n"
+                elif zeroDays > 1:
+                    results3 += str(zeroDays) + " zero-days fixed in " + currentHeader + "\n"
 
-    if number0Days >= 1:
-        if len(re.findall("zero-day", results0Days3)) == 1:
-            results0Days2 = ":mega: EMERGENCY UPDATE :mega:\n\n"
+    if zeroDays >= 1:
+        if len(re.findall("zero-day", results3)) == 1:
+            results2 = ":mega: EMERGENCY UPDATE :mega:\n\n"
         else:
-            results0Days2 = ":mega: EMERGENCY UPDATES :mega:\n\n"
-        results0Days1 = results0Days2 + results0Days3
+            results2 = ":mega: EMERGENCY UPDATES :mega:\n\n"
+        results = results2 + results3
 
-        api.update_status(emoji.emojize("{}".format(results0Days1), use_aliases=True))
+        api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
 
 
+# get all the links from the page
 allLinks = []
+updatesPage = requests.get("https://support.apple.com/en-us/HT201222").text
 for link in BeautifulSoup(updatesPage, features="html.parser", parse_only=SoupStrainer("a")):
-    # get all the links from the page
     if link.has_attr("href"):
         allLinks.append(link["href"])
 
-
+# check and tweet results if there are were new updates released
+currentDateFormatOne = str(date.today().day) + " " + str(date.today().strftime("%B")[0:3]) + " " + str(date.today().year)
 if currentDateFormatOne in updatesPage:
     # get only the new links from the page
     newLinks = allLinks[22:len(re.findall(currentDateFormatOne, updatesPage)) + 22]
     getData(newLinks)
 
-    # api.update_status results
-    if len(newHeader) == 1:
+    if len(headers) == 1:
         results = ":collision: NEW UPDATE RELEASED :collision:\n\n"
     else:
         results = ":collision: NEW UPDATES RELEASED :collision:\n\n"
 
-    for x in newHeader:
-        results += emojis[0] + x + " - " + newCVE[0] + "\n"
-        newCVE.pop(0)
+    for x in headers:
+        results += emojis[0] + x + " - " + CVEs[0] + "\n"
+        CVEs.pop(0)
         emojis.pop(0)
 
     api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
 
 
+# tweet top 5 parts that got bug fixes in a new iOS update
+if partHeader != "":
+    numberParts = 0
+    results = ":hammer_and_pick: FIXED IN " + partHeader + " :hammer_and_pick:\n\n"
+
+    countStrong = OrderedDict(sorted(countStrong.items(), reverse=True, key=lambda t: t[1]))
+    for key, value in countStrong.items():
+        if len(re.findall("-", results)) <= 3:
+            numberParts += value
+            if value == 1:
+                results += "- " + str(value) + " bug in " + str(key) + "\n"
+            else:
+                results += "- " + str(value) + " bugs in " + str(key) + "\n"
+
+    numberParts = iosCVE - numberParts
+    results += "and " + str(numberParts) + " more bugs fixed!\n"
+    api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
+
+
+# check if there are any changes to the last 20 release pages and tweet the results
 for x in allLinks[22:42]:
-    # check if the last 20 update pages got any new bug fixes added today
+    currentDateFormatTwo = str(date.today().strftime("%B")) + " " + str(date.today().day) + ", " + str(date.today().year)
     page = requests.get(x).text
 
     search = "Entry added " + str(currentDateFormatTwo)
@@ -155,27 +179,23 @@ for x in allLinks[22:42]:
         entriesUpdated.append(x)
 
 if entriesAdded != [] or entriesUpdated != []:
-    # if any security notes were updated
-    newHeader.clear()
+    headers.clear()
     getData(entriesAdded)
     getData(entriesUpdated)
 
-    newEntries = entriesAdded + entriesUpdated
-
-    # api.update_status results
     results3 = ""
-    for x in newHeader:
-        if len(newAdded) == 0 and len(newUpdated) >= 1:
-            results3 += emojis[0] + x + " - " + str(newUpdated[0]) + "\n"
-        if len(newAdded) >= 1 and len(newUpdated) == 0:
-            results3 += emojis[0] + x + " - " + str(newAdded[0]) + "\n"
-        if len(newAdded) >= 1 and len(newUpdated) >= 1:
-            results3 += emojis[0] + x + " - " + str(newAdded[0]) + ", " + str(newUpdated[0]) + "\n"
+    for x in headers:
+        if len(added) == 0 and len(updated) >= 1:
+            results3 += emojis[0] + x + " - " + str(updated[0]) + "\n"
+        if len(added) >= 1 and len(updated) == 0:
+            results3 += emojis[0] + x + " - " + str(added[0]) + "\n"
+        if len(added) >= 1 and len(updated) >= 1:
+            results3 += emojis[0] + x + " - " + str(added[0]) + ", " + str(updated[0]) + "\n"
 
-        if len(newAdded) >= 1:
-            newAdded.pop(0)
-        if len(newUpdated) >= 1:
-            newUpdated.pop(0)
+        if len(added) >= 1:
+            added.pop(0)
+        if len(updated) >= 1:
+            updated.pop(0)
         emojis.pop(0)
 
     if len(re.findall("-", results3)) == 1:
@@ -183,6 +203,5 @@ if entriesAdded != [] or entriesUpdated != []:
     else:
         results2 = ":arrows_counterclockwise: " + str(len(re.findall("-", results3))) + " SECURITY NOTES UPDATED :arrows_counterclockwise:\n\n"
 
-    results1 = results2 + results3
-
-    api.update_status(emoji.emojize("{}".format(results1), use_aliases=True))
+    results = results2 + results3
+    api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
