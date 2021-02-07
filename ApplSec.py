@@ -21,11 +21,19 @@ currentDateFormatOne = str(date.today().day) + " " + str(date.today().strftime("
 currentDateFormatTwo = str(date.today().strftime("%B")) + " " + str(date.today().day) + ", " + str(date.today().year)
 
 newHeader = []
-numberCVE = []
+newCVE = []
 countStrong = []
 newStrong = []
+entriesAdded = []
+entriesUpdated = []
+numberOfAdded = []
+numberOfUpdated = []
+emojis = []
+newAdded = []
+newUpdated = []
 
 def getData(link):
+    number0Days = 0
     for x in link:
         newPage = requests.get(x)
         soup = BeautifulSoup(newPage.content, "html.parser")
@@ -41,11 +49,53 @@ def getData(link):
             currentHeader = currentHeader.split("and", 1)[0].rstrip()
         newHeader.append(currentHeader)
 
+        # set emojis
+        if "iOS" in currentHeader:
+            emojis.append(":iphone: ")
+        elif "watchOS" in currentHeader:
+            emojis.append(":watch: ")
+        elif "tvOS" in currentHeader:
+            emojis.append(":tv: ")
+        elif "macOS" in currentHeader:
+            emojis.append(":computer: ")
+        else:
+            emojis.append(":hammer_and_wrench: ")
+
         # get the number of CVEs on the page
-        numberCVE.append(len(re.findall("CVE", str(soup))) - 1)
+        numberCVE = (len(re.findall("CVE", str(soup))) - 1)
+        if numberCVE == 1:
+            numberCVE = str(numberCVE) + " bug fixed"
+        else:
+            numberCVE = str(numberCVE) + " bugs fixed"
+        newCVE.append(numberCVE)
+
+        # get topics
+        allStrong = soup.find_all("strong")
+        countStrong.append(Counter(allStrong).most_common)
+        newStrong.append(re.sub("<[^>]*?>","", str(countStrong)))
+        countStrong.clear()
+
+        # search for added entries
+        if link == entriesAdded:
+            search = "Entry added " + str(currentDateFormatTwo)
+            numberOfAdded = (len(re.findall(search, str(soup))))
+            if numberOfAdded == 1:
+                numberOfAdded = str(numberOfAdded) + " entry added"
+            else:
+                numberOfAdded = str(numberOfAdded) + " entries added"
+            newAdded.append(numberOfAdded)
+
+        # search for updated entries
+        if link == entriesUpdated:
+            search = "Entry updated " + str(currentDateFormatTwo)
+            numberOfUpdated = (len(re.findall(search, str(soup))))
+            if numberOfUpdated == 1:
+                numberOfUpdated = str(numberOfUpdated) + " entry updated"
+            else:
+                numberOfUpdated = str(numberOfUpdated) + " entries updated"
+            newUpdated.append(numberOfUpdated)
 
         # search if there were any zero-day vulnerabilities fixed
-        number0Days = 0
         if link == newLinks:
             if "in the wild" or "actively exploited" in soup:
                 number0Days = len(re.findall("in the wild", str(soup)))
@@ -85,52 +135,54 @@ if currentDateFormatOne in updatesPage:
         results = ":collision: NEW UPDATES RELEASED :collision:\n\n"
 
     for x in newHeader:
-        if "iOS" in x:
-            results += ":iphone: " + x + " - " + str(numberCVE[0]) + " bugs fixed\n"
-        elif "watchOS" in x:
-            results += ":watch: " + x + " - " + str(numberCVE[0]) + " bugs fixed\n"
-        elif "tvOS" in x:
-            results += ":tv: " + x + " - " + str(numberCVE[0]) + " bugs fixed\n"
-        elif "macOS" in x:
-            results += ":computer: " + x + " - " + str(numberCVE[0]) + " bugs fixed\n"
-        else:
-            results += ":hammer_and_wrench: " + x + " - " + str(numberCVE[0]) + " bugs fixed\n"
-        numberCVE.pop(0)
+        results += emojis[0] + x + " - " + newCVE[0] + "\n"
+        newCVE.pop(0)
+        emojis.pop(0)
 
     api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
 
 
-updatedLinks = []
 for x in allLinks[22:42]:
-    # check if the last 20 update pages got any changes today
+    # check if the last 20 update pages got any new bug fixes added today
     page = requests.get(x).text
+
     search = "Entry added " + str(currentDateFormatTwo)
-
     if search in page:
-        updatedLinks.append(x)
+        entriesAdded.append(x)
 
-if updatedLinks != []:
+    search = "Entry updated " + str(currentDateFormatTwo)
+    if search in page:
+        entriesUpdated.append(x)
+
+if entriesAdded != [] or entriesUpdated != []:
     # if any security notes were updated
     newHeader.clear()
-    getData(updatedLinks)
+    getData(entriesAdded)
+    getData(entriesUpdated)
+
+    newEntries = entriesAdded + entriesUpdated
 
     # api.update_status results
-    if len(newHeader) == 1:
-        results = ":arrows_counterclockwise: " + str(len(updatedLinks)) + " SECURITY NOTE UPDATED :arrows_counterclockwise:\n\n"
-    else:
-        results = ":arrows_counterclockwise: " + str(len(updatedLinks)) + " SECURITY NOTES UPDATED :arrows_counterclockwise:\n\n"
-
+    results3 = ""
     for x in newHeader:
-        if "iOS" in x:
-            results += ":iphone: " + x + " - " + str(numberCVE[0]) + " bugs fixed\n"
-        elif "watchOS" in x:
-            results += ":watch: " + x + " - " + str(numberCVE[0]) + " bugs fixed\n"
-        elif "tvOS" in x:
-            results += ":tv: " + x + " - " + str(numberCVE[0]) + " bugs fixed\n"
-        elif "macOS" in x:
-            results += ":computer: " + x + " - " + str(numberCVE[0]) + " bugs fixed\n"
-        else:
-            results += ":hammer_and_wrench: " + x + " - " + str(numberCVE[0]) + " bugs fixed\n"
-        numberCVE.pop(0)
+        if len(newAdded) == 0 and len(newUpdated) >= 1:
+            results3 += emojis[0] + x + " - " + str(newUpdated[0]) + "\n"
+        if len(newAdded) >= 1 and len(newUpdated) == 0:
+            results3 += emojis[0] + x + " - " + str(newAdded[0]) + "\n"
+        if len(newAdded) >= 1 and len(newUpdated) >= 1:
+            results3 += emojis[0] + x + " - " + str(newAdded[0]) + ", " + str(newUpdated[0]) + "\n"
 
-    api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
+        if len(newAdded) >= 1:
+            newAdded.pop(0)
+        if len(newUpdated) >= 1:
+            newUpdated.pop(0)
+        emojis.pop(0)
+
+    if len(re.findall("-", results3)) == 1:
+        results2 = ":arrows_counterclockwise: 1 SECURITY NOTE UPDATED :arrows_counterclockwise:\n\n"
+    else:
+        results2 = ":arrows_counterclockwise: " + str(len(re.findall("-", results3))) + " SECURITY NOTES UPDATED :arrows_counterclockwise:\n\n"
+
+    results1 = results2 + results3
+
+    api.update_status(emoji.emojize("{}".format(results1), use_aliases=True))
