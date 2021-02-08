@@ -4,7 +4,7 @@
 **Bot has been running on Twitter account @ApplSec since February 6, 2021.**
 
 ### What does the bot do?
-Bot checks Apple security update page for any new updates released to their operating systems. If it finds any new it will gather new links to the releases and gather information like the title, so it knows which update it is and it will count how many security vulnerabilities were fixed. Depending on the system that got the update, it will assign an emoji to the title. Bot can also detect if there are zero-days fixed and it will tweet where and how many zero-days were fixed. Each time it will also check last 20 updates if they got any new bug fixes added or updated.
+Bot checks Apple security update page for any new updates released to their operating systems. If it finds any new it will gather new links to the releases and gather information like the title, so it knows which update it is and it will count how many security vulnerabilities were fixed. If the update has no security updates, bot will also detect it and add it to the list of new updates. Depending on the system that got the update, it will assign an emoji to the title. Bot can also detect if there are zero-days fixed and it will tweet where and how many zero-days were fixed. Each time it will also check last 20 updates if they got any new bug fixes added or updated.
 
 <p align="center"><img src="images/image1.jpg" width=350><p>
 <p align="center"><img src="images/image2.jpg" width=350><p>
