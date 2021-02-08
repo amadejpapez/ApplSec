@@ -24,6 +24,7 @@ added = []
 updated = []
 entriesAdded = []
 entriesUpdated = []
+partHeader = ""
 
 def getData(link):
     zeroDays = 0
@@ -65,17 +66,18 @@ def getData(link):
             text = str(numberCVE) + " bugs fixed"
         CVEs.append(text)
 
-        # get data about which parts got bug fixes in the latest iOS update
+        # get data about which parts got bug fixes
         if "iOS 14" in currentHeader:
-            allStrong = soup.find_all("strong")
-            allStrong = re.sub("<[^>]*?>","", str(allStrong))
-            allStrong = allStrong.strip('][').split(', ')
-            global countStrong
-            countStrong = Counter(allStrong)
-            global partHeader
-            partHeader = currentHeader
-            global partLink
-            partLink = x
+            if numberCVE >= 1:
+                allStrong = soup.find_all("strong")
+                allStrong = re.sub("<[^>]*?>","", str(allStrong))
+                allStrong = allStrong.strip('][').split(', ')
+                global countStrong
+                countStrong = Counter(allStrong)
+                global partHeader
+                partHeader = currentHeader
+                global partLink
+                partLink = x
 
         # get data if any entries were added
         if link == entriesAdded:
@@ -118,7 +120,7 @@ def getData(link):
             results2 = ":mega: EMERGENCY UPDATES :mega:\n\n"
         results = results2 + results3
 
-        print(emoji.emojize("{}".format(results), use_aliases=True))
+        api.status_update(emoji.emojize("{}".format(results), use_aliases=True))
 
 
 # get all the links from the page
@@ -133,8 +135,38 @@ for link in BeautifulSoup(mainPage, features="html.parser", parse_only=SoupStrai
 currentDateFormatOne = str(date.today().day) + " " + str(date.today().strftime("%B")[0:3]) + " " + str(date.today().year)
 if currentDateFormatOne in mainPage:
     # get only the new links from the page
-    newLinks = allLinks[22:len(re.findall(currentDateFormatOne, mainPage)) + 22]
+    updates = len(re.findall(currentDateFormatOne, mainPage))
+    newLinks = allLinks[22:updates + 22]
     getData(newLinks)
+
+    # check for updates that got no security release notes
+    page = requests.get(mainLink)
+    soup = BeautifulSoup(page.content, "html.parser")
+    allTd = soup.find_all("td")[:updates*3]
+
+    emptyHeaders = []
+    emptyEmojis = []
+    if "This update has no published CVE entries." in str(allTd):
+        # regex for getting version out of html tags
+        emptyHeaders = re.findall(r'<td>([a-zA-Z]+.?[a-zA-Z]*?.?[0-9]+.?[0-9]*?.?[0-9]*?.?[a-z]*?.?[a-zA-Z]*?.[a-zA-Z]*?[0-9]*?.?[0-9]*?.?[0-9]*?.?)<br.>', str(allTd))
+
+        for x in emptyHeaders:
+            if "iOS" in x:
+                emptyEmojis.append(":iphone: ")
+                # if iOS is in the title, take only the first part; without iPadOS
+                emptyHeaders[emptyHeaders.index(x)] = x.split("and", 1)[0].rstrip()
+            elif "watchOS" in x:
+                emptyEmojis.append(":watch: ")
+            elif "tvOS" in x:
+                emptyEmojis.append(":tv: ")
+            elif "macOS" in x:
+                emptyEmojis.append(":computer: ")
+                # if macOS is in the title, take only the first part of the title
+                emptyHeaders[emptyHeaders.index(x)] = x.split(",", 1)[0]
+            elif "iCloud" in x:
+                emptyEmojis.append(":cloud: ")
+            else:
+                emptyEmojis.append(":hammer_and_wrench: ")
 
     if len(headers) == 1:
         results = ":collision: NEW UPDATE RELEASED :collision:\n\n"
@@ -146,8 +178,13 @@ if currentDateFormatOne in mainPage:
         CVEs.pop(0)
         emojis.pop(0)
 
+    if len(emptyHeaders) >= 1: 
+        for x in emptyHeaders:
+            results += emptyEmojis[0] + x + "- no bugs fixed\n"
+            emptyEmojis.pop(0)
+
     results += mainLink + "\n"
-    print(emoji.emojize("{}".format(results), use_aliases=True))
+    api.status_update(emoji.emojize("{}".format(results), use_aliases=True))
 
 
 # tweet top 5 parts that got bug fixes in a new iOS update
@@ -165,8 +202,8 @@ if partHeader != "":
                 results += "- " + str(value) + " bugs in " + str(key) + "\n"
 
     numberParts = iosCVE - numberParts
-    results += "and " + str(numberParts) + " other vulnerabilities patched!\n" + partLink + "\n"
-    print(emoji.emojize("{}".format(results), use_aliases=True))
+    results += "and " + str(numberParts) + " other vulnerabilities fixes\n" + partLink + "\n"
+    api.status_update(emoji.emojize("{}".format(results), use_aliases=True))
 
 
 # check if there are any changes to the last 20 release pages and tweet the results
@@ -208,4 +245,4 @@ if entriesAdded != [] or entriesUpdated != []:
         results2 = ":arrows_counterclockwise: " + str(len(re.findall("-", results3))) + " SECURITY NOTES UPDATED :arrows_counterclockwise:\n\n"
 
     results = results2 + results3
-    print(emoji.emojize("{}".format(results), use_aliases=True))
+    api.status_update(emoji.emojize("{}".format(results), use_aliases=True))
