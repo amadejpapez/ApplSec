@@ -65,8 +65,8 @@ def getData(link):
             text = str(numberCVE) + " bugs fixed"
         CVEs.append(text)
 
-        # get data about which parts got bug fixes
-        if "iOS" in currentHeader:
+        # get data about which parts got bug fixes in the latest iOS update
+        if "iOS 14" in currentHeader:
             allStrong = soup.find_all("strong")
             allStrong = re.sub("<[^>]*?>","", str(allStrong))
             allStrong = allStrong.strip('][').split(', ')
@@ -74,6 +74,8 @@ def getData(link):
             countStrong = Counter(allStrong)
             global partHeader
             partHeader = currentHeader
+            global partLink
+            partLink = x
 
         # get data if any entries were added
         if link == entriesAdded:
@@ -116,21 +118,22 @@ def getData(link):
             results2 = ":mega: EMERGENCY UPDATES :mega:\n\n"
         results = results2 + results3
 
-        api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
+        print(emoji.emojize("{}".format(results), use_aliases=True))
 
 
 # get all the links from the page
 allLinks = []
-updatesPage = requests.get("https://support.apple.com/en-us/HT201222").text
-for link in BeautifulSoup(updatesPage, features="html.parser", parse_only=SoupStrainer("a")):
+mainLink = "https://support.apple.com/en-us/HT201222"
+mainPage = requests.get(mainLink).text
+for link in BeautifulSoup(mainPage, features="html.parser", parse_only=SoupStrainer("a")):
     if link.has_attr("href"):
         allLinks.append(link["href"])
 
 # check and tweet results if there are were new updates released
 currentDateFormatOne = str(date.today().day) + " " + str(date.today().strftime("%B")[0:3]) + " " + str(date.today().year)
-if currentDateFormatOne in updatesPage:
+if currentDateFormatOne in mainPage:
     # get only the new links from the page
-    newLinks = allLinks[22:len(re.findall(currentDateFormatOne, updatesPage)) + 22]
+    newLinks = allLinks[22:len(re.findall(currentDateFormatOne, mainPage)) + 22]
     getData(newLinks)
 
     if len(headers) == 1:
@@ -143,7 +146,8 @@ if currentDateFormatOne in updatesPage:
         CVEs.pop(0)
         emojis.pop(0)
 
-    api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
+    results += mainLink + "\n"
+    print(emoji.emojize("{}".format(results), use_aliases=True))
 
 
 # tweet top 5 parts that got bug fixes in a new iOS update
@@ -161,8 +165,8 @@ if partHeader != "":
                 results += "- " + str(value) + " bugs in " + str(key) + "\n"
 
     numberParts = iosCVE - numberParts
-    results += "and " + str(numberParts) + " more bugs fixed!\n"
-    api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
+    results += "and " + str(numberParts) + " other vulnerabilities patched!\n" + partLink + "\n"
+    print(emoji.emojize("{}".format(results), use_aliases=True))
 
 
 # check if there are any changes to the last 20 release pages and tweet the results
@@ -204,4 +208,4 @@ if entriesAdded != [] or entriesUpdated != []:
         results2 = ":arrows_counterclockwise: " + str(len(re.findall("-", results3))) + " SECURITY NOTES UPDATED :arrows_counterclockwise:\n\n"
 
     results = results2 + results3
-    api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
+    print(emoji.emojize("{}".format(results), use_aliases=True))
