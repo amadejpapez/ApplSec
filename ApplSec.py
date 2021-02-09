@@ -5,10 +5,10 @@ import requests
 from datetime import date
 from collections import Counter, OrderedDict
 
-api_key = "NeqCGihR5p01SE2I35QppLYGP"
-api_secret_key = "24FtTcjPMN4fukNTZzDvnsajsYieYoiPd40XWOZwC8HY4GsiR8"
-access_token = "1357726978309259272-sgF1Ukjv7RNauDYak8GsoUl7pShAwz"
-access_secret_key = "RbQDmSrzkJc39JgrnVFxHuECo9cLqxNJbOdDbYfJagz9X"
+api_key = "x"
+api_secret_key = "x"
+access_token = "x"
+access_secret_key = "x"
 
 auth = tweepy.OAuthHandler(api_key, api_secret_key)
 auth.set_access_token(access_token, access_secret_key)
@@ -232,7 +232,7 @@ if zeroDays != []:
 
 
 # tweet if there are any changes to the last 20 release notes
-for x in allLinks[:27]:
+for x in allLinks[7:27]:
     currentDateFormatTwo = str(date.today().strftime("%B")) + " " + str(date.today().day) + ", " + str(date.today().year)
     entryAdded = "Entry added " + str(currentDateFormatTwo)
     entryUpdated = "Entry updated " + str(currentDateFormatTwo)
