@@ -26,9 +26,10 @@ iosLinks = []
 zeroDaysHeader = []
 zeroDays = []
 
-def getData(link):
-    for x in link:
-        page = requests.get(x).text
+def getData(listofLinks):
+    headers.clear()
+    for link in listofLinks:
+        page = requests.get(link).text
         # grab the second title from the page and add it to variable "headers"
         currentHeader = re.findall(r"<h2>(.*)<.h2>", page)[1]
         headers.append(currentHeader)
@@ -36,88 +37,102 @@ def getData(link):
         # count CVEs on the page and add the number to the variable "CVEs"
         currentCVE = (len(re.findall("CVE", page)) - 1)
         if currentCVE > 1:
-            CVEs.append(str(currentCVE) + " bugs fixed")
+            CVEs.append(f"{currentCVE} bugs fixed")
         elif currentCVE == 1:
-            CVEs.append(str(currentCVE) + " bug fixed")
+            CVEs.append(f"{currentCVE} bug fixed")
         else:
             CVEs.append("no bugs fixed")
 
         # search for any updated entries or any new added entries
-        if link == changedLinks:
-            search = "Entry added " + str(currentDateFormatTwo)
-            number = (len(re.findall(search, page)))
+        if listofLinks == changedLinks:
+            number = (len(re.findall(entryAdded, page)))
+            if number == 0:
+                added.append("none")
             if number == 1:
-                added.append(str(number) + " entry added")
+                added.append(f"{number} entry added")
             elif number > 1:
-                added.append(str(number) + " entries added")
+                added.append(f"{number} entries added")
 
-            search = "Entry updated " + str(currentDateFormatTwo)
-            number = (len(re.findall(search, page)))
+            number = (len(re.findall(entryUpdated, page)))
+            if number == 0:
+                updated.append("none")
             if number == 1:
-                updated.append(str(number) + " entry updated")
+                updated.append(f"{number} entry updated")
             elif number > 1:
-                updated.append(str(number) + " entries updated")
+                updated.append(f"{number} entries updated")
 
 
-        if link == newLinks:
-            # gather all iOS versions data so it can be used for tweeting which parts got the most fixes later
+        if listofLinks == newLinks:
+            # gather all iOS versions data so it can be used for tweeting which parts got the most fixes
             if "iOS" in currentHeader:
                 global iosCVEs
                 iosCVEs.append(currentCVE)
                 global iosHeaders
                 iosHeaders.append(currentHeader)
                 global iosLinks
-                iosLinks.append(x)
+                iosLinks.append(link)
 
             # search if there were any zero-day vulnerabilities fixed
             if "in the wild" in page or "actively exploited" in page:
                 zeroDaysHeader.append(currentHeader)
-                zeroDays.append(len(re.findall("in the wild", page)) + len(re.findall("actively exploited", page)))
+                number = len(re.findall("in the wild", page)) + len(re.findall("actively exploited", page))
+                if number == 1:
+                    number = f"{number} zero-day"
+                else:
+                    number = f"{number} zero-days"
+                zeroDays.append(number)
+
 
 
 # set emojis depending on the title and add it to the variable "emojis"
-emojis = []
-def setEmojis(names):
-    emojis.clear()
-    for x in names:
-        if "iOS" in x:
-            emojis.append(":iphone: ")
+def setEmojis(headers):
+    global emojis
+    emojis = []
+    for header in headers:
+        if "iOS" in header:
+            emojis.append(":iphone:")
             # if iOS is in the title, take only the first part; without iPadOS
-            names[names.index(x)] = x.split("and", 1)[0].rstrip()
-        elif "watchOS" in x:
-            emojis.append(":watch: ")
-        elif "tvOS" in x or "Apple TV" in x:
-            emojis.append(":tv: ")
-        elif "macOS" in x:
-            emojis.append(":computer: ")
+            headers[headers.index(header)] = header.split("and", 1)[0].rstrip()
+        elif "watchOS" in header:
+            emojis.append(":watch:")
+        elif "tvOS" in header or "Apple TV" in header:
+            emojis.append(":tv:")
+        elif "macOS" in header:
+            emojis.append(":computer:")
             # if macOS is in the title, take only the first part of the title
-            names[names.index(x)] = x.split(",", 1)[0]
-        elif "iCloud" in x:
-            emojis.append(":cloud: ")
-        elif "iTunes" in x:
-            emojis.append(":musical_note: ")
+            headers[headers.index(header)] = header.split(",", 1)[0]
+        elif "iCloud" in header:
+            emojis.append(":cloud:")
+        elif "iTunes" in header:
+            emojis.append(":musical_note:")
         else:
-            emojis.append(":hammer_and_wrench: ")
+            emojis.append(":hammer_and_wrench:")
+
+
+mainLink = "https://support.apple.com/en-us/HT201222"
+mainPage = requests.get(mainLink).text
+mainPage.replace("<br>", "</td>")
+allTd = re.findall(r"<td>(.*)</td>", mainPage)[:30*3]   #20*3]
+allLinks = re.findall(r'href="(https://support.apple.com/kb/[A-Z0-9]+)"', str(allTd))
+currentDateFormatOne = str(date.today().day) + " " + str(date.today().strftime("%B")[0:3]) + " " + str(date.today().year)
 
 
 # tweet if there were any new updates released
-mainLink = "https://support.apple.com/en-us/HT201222"
-mainPage = requests.get(mainLink).text
-allLinks = re.findall(r'href="(https://support.apple.com/kb/[A-Z0-9]+)"', mainPage)
-currentDateFormatOne = str(date.today().day) + " " + str(date.today().strftime("%B")[0:3]) + " " + str(date.today().year)
+def tweetNewUpdates():
+    global mainPage
+    global newLinks
+    global headers
+    numberOfUpdates = len(re.findall(currentDateFormatOne, mainPage))
+    newTd = allTd[:numberOfUpdates*3]
 
-if currentDateFormatOne in mainPage:
-    updates = len(re.findall(currentDateFormatOne, mainPage))
-    mainPage = mainPage.replace("<br>", "</td>")
-    allTd = re.findall(r"<td>(.*)</td>", mainPage)[:updates*3]
-    rows = [allTd[x:x+3] for x in range(0, len(allTd), 3)]
+    rows = [newTd[x:x+3] for x in range(0, len(newTd), 3)]
     emptyHeaders = []
 
-    for x in rows:
-        if "href" in str(x):
-            newLinks.append(re.findall(r'href="(.*)"', str(x)))
+    for row in rows:
+        if "href" in str(row):
+            newLinks.append(re.findall(r'href="(.*)"', str(row)))
         else:
-            emptyHeaders.append(re.findall(r"'([a-zA-Z]+.?[a-zA-Z]*?.?[0-9]+.?[0-9]*?.?[0-9]*?.?[a-z]*?.?[a-zA-Z]*?.[a-zA-Z]*?[0-9]*?.?[0-9]*?.?[0-9]*?.?)',", str(x)))
+            emptyHeaders.append(re.findall(r"'([a-zA-Z]+.?[a-zA-Z]*?.?[0-9]+.?[0-9]*?.?[0-9]*?.?[a-z]*?.?[a-zA-Z]*?.[a-zA-Z]*?[0-9]*?.?[0-9]*?.?[0-9]*?.?)',", str(row)))
 
     emptyHeaders = sum(emptyHeaders, [])
     newLinks = sum(newLinks, [])
@@ -125,164 +140,160 @@ if currentDateFormatOne in mainPage:
     headers += emptyHeaders
     setEmojis(headers)
 
-    results2 = ""
-    results3 = ""
-    resultsV2 = ""
-    for x in headers:
-        if len(re.findall("-", results2)) < 6:
-            if len(CVEs) >= 1:
-                results2 += emojis[0] + x + " - " + CVEs[0] + "\n"
-                CVEs.pop(0)
-            else:
-                results2 += emojis[0] + x + " - no bugs fixed\n"
-            emojis.pop(0)
-        else:
-            if len(CVEs) >= 1:
-                resultsV2 += emojis[0] + x + " - " + CVEs[0] + "\n"
-                CVEs.pop(0)
-            else:
-                resultsV2 += emojis[0] + x + " - no bugs fixed\n"
-            emojis.pop(0)
-
-    def setTitle(number):
+    def setTitleForNewUpdates(number):
         global results1
         if number == 1:
             results1 = ":collision: NEW UPDATE RELEASED :collision:\n\n"
         else:
             results1 = ":collision: NEW UPDATES RELEASED :collision:\n\n"
 
-    results3 += mainLink + "\n"
-    setTitle(len(re.findall("-", results2)))
-    results = results1 + results2 + results3
-    api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
+    results2 = ""
+    resultsT2 = ""
 
-    if resultsV2 != "":
-        setTitle(len(re.findall("-", resultsV2)))
-        results = results1 + resultsV2
-        api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
+    for header, cve, emoj in zip(headers, CVEs, emojis):
+        if len(re.findall("-", results2)) < 6:
+            if len(CVEs) >= 1:
+                results2 += f"{emoj} {header} - {cve}\n"
+            else:
+                results2 += f"{emoj} {header} - no bugs fixed\n"
+        else:
+            if len(CVEs) >= 1:
+                resultsT2 += f"{emoj} {header} - {cve}\n"
+            else:
+                resultsT2 += f"{emoj} {header} - no bugs fixed\n"
+
+    results2 += f"{mainLink}\n"
+    setTitleForNewUpdates(len(re.findall("-", results2)))
+    results = results1 + results2
+    api.update_status(emoji.emojize(f"{results}", use_aliases=True))
+
+    if resultsT2 != "":
+        setTitleForNewUpdates(len(re.findall("-", resultsT2)))
+        results = results1 + resultsT2
+        api.update_status(emoji.emojize(f"{results}", use_aliases=True))
+
+if currentDateFormatOne in allTd:
+    tweetNewUpdates()
+
 
 
 # tweet top five parts that got bug fixes in a new iOS update
-if iosHeaders != []:
-    iosHeaders = sorted(iosHeaders, reverse=True)
-    setEmojis(iosHeaders)
-    partHeader = iosHeaders[0]
+def tweetParts():
+    global iosHeaders
+    partHeader = sorted(iosHeaders, reverse=True)[0]
     partCVE = iosCVEs[iosHeaders.index(partHeader)]
-    iosLinks = iosLinks[iosHeaders.index(partHeader)]
+    partLink = iosLinks[iosHeaders.index(partHeader)]
 
-    page = requests.get(iosLinks).text
+    page = requests.get(partLink).text
     allStrong = Counter(re.findall(r"<strong>(.*)<.strong>", page))
     allStrong = OrderedDict(sorted(allStrong.items(), reverse=True, key=lambda t: t[1]))
 
-    results = ":hammer_and_pick: FIXED IN " + partHeader + " :hammer_and_pick:\n\n"
+    results = f":hammer_and_pick: FIXED IN {partHeader} :hammer_and_pick:\n\n"
+
     numberParts = 0
 
     for key, value in allStrong.items():
         if len(re.findall("-", results)) <= 3:
             numberParts += value
             if value == 1:
-                results += "- " + str(value) + " bug in " + str(key) + "\n"
+                results += f"- {value} bug in {key}\n"
             else:
-                results += "- " + str(value) + " bugs in " + str(key) + "\n"
+                results += f"- {value} bugs in {key}\n"
 
     numberParts = partCVE - numberParts
     if numberParts >= 1:
-        results += "and " + str(numberParts) + " other vulnerabilities fixed\n"
+        results += f"and {numberParts} other vulnerabilities fixed\n"
 
-    results += iosLinks + "\n"
-    api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
+    results += f"{partLink}\n"
+    api.update_status(emoji.emojize(f"{results}", use_aliases=True))
+
+if iosHeaders != []:
+    tweetParts()
+
 
 
 # tweet if there were any zero-day vulnerabilities fixed
-if zeroDays != []:
+def tweetZeroDays():
     setEmojis(zeroDaysHeader)
-    results2 = ""
-    results3 = ""
-    resultsV2 = ""
 
-    for x in zeroDays:
-        if len(re.findall("zero-day", results2)) < 4:
-            if x == 1:
-                results2 += str(x) + " zero-day fixed in " + zeroDaysHeader[0] + "\n"
-            else:
-                results2 += str(x) + " zero-days fixed in " + zeroDaysHeader[0] + "\n"
-            zeroDaysHeader.pop(0)
-        else:
-            if x == 1:
-                resultsV2 += str(x) + " zero-day fixed in " + zeroDaysHeader[0] + "\n"
-            else:
-                resultsV2 += str(x) + " zero-days fixed in " + zeroDaysHeader[0] + "\n"
-            zeroDaysHeader.pop(0)
-
-    def setTitle2(number):
-        global results1
+    global results
+    def setTitleForZeroDays(number):
+        global results
         if number == 1:
-            results1 = ":mega: EMERGENCY UPDATE :mega:\n\n"
+            results = ":mega: EMERGENCY UPDATE :mega:\n\n"
         else:
-            results1 = ":mega: EMERGENCY UPDATES :mega:\n\n"
+            results = ":mega: EMERGENCY UPDATES :mega:\n\n"
 
-    setTitle2(len(re.findall("zero-day", results2)))
-    results = results1 + results2
-    api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
+    setTitleForZeroDays(len(zeroDaysHeader))
 
-    if resultsV2 != "":
-        setTitle2(len(re.findall("zero-day", resultsV2)))
-        results = results1 + resultsV2
-        api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
+    resultsT2 = ""
+    for num, header in zip(zeroDays, zeroDaysHeader):
+        if len(re.findall("fixed", results)) <= 4:
+            results += f"{num} fixed in {header}\n"
+        else:
+            resultsT2 += f"{num} fixed in {header}\n"
+
+    api.update_status(emoji.emojize(f"{results}", use_aliases=True))
+
+    if resultsT2 != "":
+        setTitleForZeroDays(len(re.findall("fixed", resultsT2)))
+        results += resultsT2
+        api.update_status(emoji.emojize(f"{results}", use_aliases=True))
+
+if zeroDays != []:
+    tweetZeroDays()
+
 
 
 # tweet if there are any changes to the last 20 release notes
-for x in allLinks[7:27]:
-    currentDateFormatTwo = str(date.today().strftime("%B")) + " " + str(date.today().day) + ", " + str(date.today().year)
-    entryAdded = "Entry added " + str(currentDateFormatTwo)
-    entryUpdated = "Entry updated " + str(currentDateFormatTwo)
-    page = requests.get(x).text
-
-    if entryAdded in page or entryUpdated in page:
-        changedLinks.append(x)
-
-if changedLinks != []:
-    headers.clear()
+def printChanges(links):
     getData(changedLinks)
     setEmojis(headers)
-    results2 = ""
-    results3 = ""
-    resultsV2 = ""
 
-    for x in headers:
-        if len(re.findall("-", results2)) < 4:
-            if len(added) == 0 and len(updated) >= 1:
-                results2 += emojis[0] + x + " - " + str(updated[0]) + "\n"
-            if len(added) >= 1 and len(updated) == 0:
-                results2 += emojis[0] + x + " - " + str(added[0]) + "\n"
-            if len(added) >= 1 and len(updated) >= 1:
-                results2 += emojis[0] + x + " - " + str(added[0]) + ", " + str(updated[0]) + "\n"
-        else:
-            if len(added) == 0 and len(updated) >= 1:
-                resultsV2 += emojis[0] + x + " - " + str(updated[0]) + "\n"
-            if len(added) >= 1 and len(updated) == 0:
-                resultsV2 += emojis[0] + x + " - " + str(added[0]) + "\n"
-            if len(added) >= 1 and len(updated) >= 1:
-                resultsV2 += emojis[0] + x + " - " + str(added[0]) + ", " + str(updated[0]) + "\n"
-
-        if len(added) >= 1:
-            added.pop(0)
-        if len(updated) >= 1:
-            updated.pop(0)
-        emojis.pop(0)
-
-    def setTitle3(number):
+    def setTitleForChangedReleases(number):
         global results1
         if number == 1:
             results1 = ":arrows_counterclockwise: 1 SECURITY NOTE UPDATED :arrows_counterclockwise:\n\n"
         else:
-            results1 = ":arrows_counterclockwise: " + str(number) + " SECURITY NOTES UPDATED :arrows_counterclockwise:\n\n"
+            results1 = f":arrows_counterclockwise: {number} SECURITY NOTES UPDATED :arrows_counterclockwise:\n\n"
 
-    setTitle3(len(re.findall("-", results2)))
+    results2 = ""
+    resultsT2 = ""
+
+    for emoj, header, add, update in zip(emojis, headers, added, updated):
+        if len(re.findall("-", results2)) < 4:
+            if add == "none" and update != "none":
+                results2 += f"{emoj} {header} - {update}\n"
+            if add != "none" and update == "none":
+                results2 += f"{emoj} {header} - {add}\n"
+            if add != "none" and update != "none":
+                results2 += f"{emoj} {header} - {add}, {update}\n"
+        else:
+            if add == "none" and update != "none":
+                resultsT2 += f"{emoj} {header} - {update}\n"
+            if add != "none" and update == "none":
+                resultsT2 += f"{emoj} {header} - {add}\n"
+            if add != "none" and update != "none":
+                resultsT2 += f"{emoj} {header} - {add}, {update}\n"
+
+    setTitleForChangedReleases(len(re.findall("-", results2)))
     results = results1 + results2
-    api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
+    api.update_status(emoji.emojize(f"{results}", use_aliases=True))
 
-    if resultsV2 != "":
-        setTitle3(len(re.findall("-", resultsV2)))
-        results = results1 + resultsV2
-        api.update_status(emoji.emojize("{}".format(results), use_aliases=True))
+    if resultsT2 != "":
+        setTitleForChangedReleases(len(re.findall("-", resultsT2)))
+        results = results1 + resultsT2
+        api.update_status(emoji.emojize(f"{results}", use_aliases=True))
+
+
+for link in allLinks:
+    currentDateFormatTwo = str(date.today().strftime("%B")) + " " + str(date.today().day) + ", " + str(date.today().year)
+    entryAdded = f"Entry added {currentDateFormatTwo}"
+    entryUpdated = f"Entry updated {currentDateFormatTwo}"
+    page = requests.get(link).text
+
+    if entryAdded in page or entryUpdated in page:
+        changedLinks.append(link)
+
+if changedLinks != []:
+    printChanges(changedLinks)
