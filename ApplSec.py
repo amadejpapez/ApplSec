@@ -163,7 +163,6 @@ def tweetNewUpdates():
             else:
                 resultsT2 += f"{emoj} {header} - no bugs fixed\n"
 
-
     results2 += f"{mainLink}\n"
     setTitleForNewUpdates(len(re.findall("-", results2)))
     results = results1 + results2
@@ -248,7 +247,7 @@ if zeroDays != []:
 
 
 # tweet if there are any changes to the last 20 release notes
-def tweetChanges(links):
+def api.update_statusChanges(links):
     getData(changedLinks)
     setEmojis(headers)
 
@@ -298,4 +297,4 @@ for link in allLinks:
         changedLinks.append(link)
 
 if changedLinks != []:
-    tweetChanges(changedLinks)
+    api.update_statusChanges(changedLinks)
