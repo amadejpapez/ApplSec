@@ -6,12 +6,12 @@ from datetime import date
 from collections import Counter, OrderedDict
 
 api_key = "x"
-api_key_secret = "x"
+api_secret_key = "x"
 access_token = "x"
-access_token_secret = "x"
+access_secret_key = "x"
 
-auth = tweepy.OAuthHandler(api_key, api_key_secret)
-auth.set_access_token(access_token, access_token_secret)
+auth = tweepy.OAuthHandler(api_key, api_secret_key)
+auth.set_access_token(access_token, access_secret_key)
 api = tweepy.API(auth)
 
 headers = []
@@ -111,10 +111,11 @@ def setEmojis(headers):
 
 mainLink = "https://support.apple.com/en-us/HT201222"
 mainPage = requests.get(mainLink).text
-mainPage = mainPage.replace("<br>", "</td>")
-allTd = re.findall(r"<td>(.*)</td>", mainPage)[:20*3]
+mainPage.replace("<br>", "</td>")
+allTd = re.findall(r"<td>(.*)</td>", mainPage)[:30*3]   #20*3]
 allLinks = re.findall(r'href="(https://support.apple.com/kb/[A-Z0-9]+)"', str(allTd))
 currentDateFormatOne = str(date.today().day) + " " + str(date.today().strftime("%B")[0:3]) + " " + str(date.today().year)
+
 
 # tweet if there were any new updates released
 def tweetNewUpdates():
@@ -131,7 +132,7 @@ def tweetNewUpdates():
         if "href" in str(row):
             newLinks.append(re.findall(r'href="(.*)"', str(row)))
         else:
-            emptyHeaders.append(re.findall(r"'([a-zA-Z]+\s[a-zA-Z]*?\s?[a-zA-Z]*?\s?[0-9]+\.?[0-9]*?\.?[0-9]*?)'?,", str(row)))
+            emptyHeaders.append(re.findall(r"'([a-zA-Z]+.?[a-zA-Z]*?.?[0-9]+.?[0-9]*?.?[0-9]*?.?[a-z]*?.?[a-zA-Z]*?.[a-zA-Z]*?[0-9]*?.?[0-9]*?.?[0-9]*?.?)',", str(row)))
 
     emptyHeaders = sum(emptyHeaders, [])
     newLinks = sum(newLinks, [])
@@ -149,17 +150,15 @@ def tweetNewUpdates():
     results2 = ""
     resultsT2 = ""
 
-    for header, emoj in zip(headers, emojis):
+    for header, cve, emoj in zip(headers, CVEs, emojis):
         if len(re.findall("-", results2)) < 6:
             if len(CVEs) >= 1:
-                results2 += f"{emoj} {header} - {CVEs[0]}\n"
-                CVEs.pop(0)
+                results2 += f"{emoj} {header} - {cve}\n"
             else:
                 results2 += f"{emoj} {header} - no bugs fixed\n"
         else:
             if len(CVEs) >= 1:
-                resultsT2 += f"{emoj} {header} - {CVEs[0]}\n"
-                CVEs.pop(0)
+                resultsT2 += f"{emoj} {header} - {cve}\n"
             else:
                 resultsT2 += f"{emoj} {header} - no bugs fixed\n"
 
@@ -247,7 +246,7 @@ if zeroDays != []:
 
 
 # tweet if there are any changes to the last 20 release notes
-def api.update_statusChanges(links):
+def printChanges(links):
     getData(changedLinks)
     setEmojis(headers)
 
@@ -297,4 +296,4 @@ for link in allLinks:
         changedLinks.append(link)
 
 if changedLinks != []:
-    api.update_statusChanges(changedLinks)
+    printChanges(changedLinks)
