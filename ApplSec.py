@@ -247,7 +247,7 @@ if zeroDays != []:
 
 
 # tweet if there are any changes to the last 20 release notes
-def api.update_statusChanges(links):
+def printChanges(links):
     getData(changedLinks)
     setEmojis(headers)
 
@@ -297,4 +297,4 @@ for link in allLinks:
         changedLinks.append(link)
 
 if changedLinks != []:
-    api.update_statusChanges(changedLinks)
+    printChanges(changedLinks)
