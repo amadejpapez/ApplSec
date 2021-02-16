@@ -131,7 +131,7 @@ def tweetNewUpdates():
         if "href" in str(row):
             newLinks.append(re.findall(r'href="(.*)"', str(row)))
         else:
-            emptyHeaders.append(re.findall(r"'([a-zA-Z]+\s[a-zA-Z]*?\s?[a-zA-Z]*?\s?[0-9]+\.?[0-9]*?\.?[0-9]*?)'?,", str(row)))
+            emptyHeaders.append(re.findall(r"'([a-zA-Z]*\s[a-zA-Z]*?\s?[a-zA-Z]*?\s?[0-9]*\.?[0-9]*?\.?[0-9]*?\s?[a-zA-Z]*?\s?[a-zA-Z]*?\s?[0-9]*?\.?[0-9]*?\.?[0-9]*?)',\s'[a-zA-Z]", str(row)))
 
     emptyHeaders = sum(emptyHeaders, [])
     newLinks = sum(newLinks, [])
@@ -247,7 +247,7 @@ if zeroDays != []:
 
 
 # tweet if there are any changes to the last 20 release notes
-def printChanges(links):
+def tweetChanges(links):
     getData(changedLinks)
     setEmojis(headers)
 
@@ -297,4 +297,4 @@ for link in allLinks:
         changedLinks.append(link)
 
 if changedLinks != []:
-    printChanges(changedLinks)
+    tweetChanges(changedLinks)
