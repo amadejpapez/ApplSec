@@ -163,8 +163,8 @@ def tweetNewUpdates():
             else:
                 resultsT2 += f"{emoj} {header} - no bugs fixed\n"
 
-    results2 += f"{mainLink}\n"
     setTitleForNewUpdates(len(re.findall("-", results2)))
+    results2 += f"{mainLink}\n"
     results = results1 + results2
     api.update_status(emoji.emojize(f"{results}", use_aliases=True))
 
