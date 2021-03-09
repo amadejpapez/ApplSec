@@ -32,6 +32,7 @@ def getData(listofLinks):
         page = requests.get(link).text
         # grab the second title from the page and add it to variable "headers"
         currentHeader = re.findall(r"<h2>(.*)<.h2>", page)[1]
+        currentHeader = currentHeader.replace("*", "")
         headers.append(currentHeader)
 
         # count CVEs on the page and add the number to the variable "CVEs"
@@ -85,14 +86,17 @@ def getData(listofLinks):
 
 
 # set emojis depending on the title and add it to the variable "emojis"
-def setEmojis(headers):
+def setEmojis(x):
     global emojis
     emojis = []
-    for header in headers:
+    for header in x:
         if "iOS" in header:
             emojis.append(":iphone:")
             # if iOS is in the title, take only the first part; without iPadOS
-            headers[headers.index(header)] = header.split("and", 1)[0].rstrip()
+            if x == iosHeaders:
+                x[x.index(header)] = header.split("and", 1)[0].rstrip().replace("iOS", "iOS AND iPadOS")
+            else:
+                x[x.index(header)] = header.split("and", 1)[0].rstrip().replace("iOS", "iOS and iPadOS")
         elif "watchOS" in header:
             emojis.append(":watch:")
         elif "tvOS" in header or "Apple TV" in header:
@@ -100,7 +104,7 @@ def setEmojis(headers):
         elif "macOS" in header:
             emojis.append(":computer:")
             # if macOS is in the title, take only the first part of the title
-            headers[headers.index(header)] = header.split(",", 1)[0]
+            x[x.index(header)] = header.split(",", 1)[0]
         elif "iCloud" in header:
             emojis.append(":cloud:")
         elif "iTunes" in header:
@@ -114,7 +118,7 @@ mainPage = requests.get(mainLink).text
 mainPage = mainPage.replace("<br>", "</td>")
 allTd = re.findall(r"<td>(.*)</td>", mainPage)[:20*3]
 allLinks = re.findall(r'href="(https://support.apple.com/kb/[A-Z0-9]+)"', str(allTd))
-currentDateFormatOne = str(date.today().day) + " " + str(date.today().strftime("%B")[0:3]) + " " + str(date.today().year)
+currentDateFormatOne = f"{date.today().day} {date.today().strftime('%b')} {date.today().year}"
 
 # tweet if there were any new updates released
 def tweetNewUpdates():
@@ -181,6 +185,7 @@ if currentDateFormatOne in allTd:
 # tweet top five parts that got bug fixes in a new iOS update
 def tweetParts():
     global iosHeaders
+    setEmojis(iosHeaders)
     partHeader = sorted(iosHeaders, reverse=True)[0]
     partCVE = iosCVEs[iosHeaders.index(partHeader)]
     partLink = iosLinks[iosHeaders.index(partHeader)]
@@ -288,7 +293,7 @@ def tweetChanges(links):
 
 
 for link in allLinks:
-    currentDateFormatTwo = str(date.today().strftime("%B")) + " " + str(date.today().day) + ", " + str(date.today().year)
+    currentDateFormatTwo = f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}"
     entryAdded = f"Entry added {currentDateFormatTwo}"
     entryUpdated = f"Entry updated {currentDateFormatTwo}"
     page = requests.get(link).text
