@@ -11,6 +11,7 @@
 * ⚠️ if there were any zero-day vulnerabilities patched,
 * and if Apple updated or added any new entries to previous release notes!
 </b>
+<br>
 
 ## 🤖 How does the bot work?
 When executed, it checks the [Apple security updates](https://support.apple.com/en-us/HT201222) page if any new updates were released to their ecosystem that day. The bot creates a current day format and searches for it on the page. If it finds any new updates, it will save the number of the updates. If Apple released security release notes, it grabs the link to the release notes and gathers information like the title, so it knows which update it is and it counts how many security vulnerabilities were fixed. If the update has no security release notes, it will just grab the title and add it to the list of new updates. Depending on the system that got the update, it will assign an emoji to the title. It also checks if any zero-day vulnerabilities were patched and it will separately tweet where and how many were fixed. Each time the bot also checks last 20 security release notes, if Apple updated or added any new entries in previous release notes.
