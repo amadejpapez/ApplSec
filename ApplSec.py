@@ -318,7 +318,7 @@ if date.today().day == 1:
     webPage = requests.get(webLink).text
     numberOfFixes = len(re.findall(currentDateFormatThree, webPage))
 
-    results = f"In month of {nameLastMonth} Apple fixed {numberOfFixes} security issues in their web servers :globe_with_meridians:\n\n"
+    results = f"In month of {nameLastMonth} Apple fixed {numberOfFixes} security issues in their websites :globe_with_meridians:\n\n"
 
     allFixes = re.findall(rf"<em>{currentDateFormatThree}(.*)</em>", webPage)
     numberOfFixesOnAppleDotCom = len(re.findall(r"apple.com", str(allFixes)))
