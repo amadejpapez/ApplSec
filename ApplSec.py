@@ -303,3 +303,34 @@ for link in allLinks:
 
 if changedLinks != []:
     tweetChanges(changedLinks)
+
+
+# tweet how many security issues were fixed in Apple web servers in the previous month
+if date.today().day == 1:
+    lastMonth = int(date.today().strftime('%m')) - 1
+    if lastMonth < 10:
+        lastMonth = f"0{lastMonth}"
+    nameLastMonth = "January February March April May June July August September October November December".split()[int(lastMonth)-1]
+
+    currentDateFormatThree = f"{date.today().year}-{lastMonth}"
+
+    webLink = "https://support.apple.com/en-us/HT201536"
+    webPage = requests.get(webLink).text
+    numberOfFixes = len(re.findall(currentDateFormatThree, webPage))
+
+    results = f"In month of {nameLastMonth} Apple fixed {numberOfFixes} security issues in their web servers :globe_with_meridians:\n\n"
+
+    allFixes = re.findall(rf"<em>{currentDateFormatThree}(.*)</em>", webPage)
+    numberOfFixesOnAppleDotCom = len(re.findall(r"apple.com", str(allFixes)))
+    numberOfFixesOnIcloudDotCom = len(re.findall(r"icloud.com", str(allFixes)))
+    numberOfOthers = numberOfFixes - numberOfFixesOnAppleDotCom - numberOfFixesOnIcloudDotCom
+
+    if numberOfFixesOnAppleDotCom >= 1:
+        results += f":apple: {numberOfFixesOnAppleDotCom} of them on apple[.]com\n"
+    if numberOfFixesOnIcloudDotCom >= 1:
+        results += f":cloud: {numberOfFixesOnIcloudDotCom} of them on icloud[.]com\n"
+    if numberOfOthers >= 1:
+        results += f"and {numberOfOthers} on other domains\n"
+    results += f"{webLink}"
+
+    api.update_status(emoji.emojize(f"{results}", use_aliases=True))
