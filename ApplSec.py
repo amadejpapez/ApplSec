@@ -115,9 +115,10 @@ def setEmojis(x):
 
 mainLink = "https://support.apple.com/en-us/HT201222"
 mainPage = requests.get(mainLink).text
-mainPage = mainPage.replace("<br>", "</td>")
-allTd = re.findall(r"<td>(.*)</td>", mainPage)[:20*3]
-allLinks = re.findall(r'href="(https://support.apple.com/kb/[A-Z0-9]+)"', str(allTd))
+mainPage = mainPage.replace("\n", " ").replace("\r", "").replace("<td>", "W*").replace("</td>", "W$")
+allTd = re.findall(r"W\*([^(W|$)]+)", str(mainPage))
+latestTd = allTd[:20*3]
+allLinks = re.findall(r'href="(https://support.apple.com/kb/[A-Z0-9]+)"', str(latestTd))
 currentDateFormatOne = f"{date.today().day} {date.today().strftime('%b')} {date.today().year}"
 
 # tweet if there were any new updates released
@@ -126,7 +127,7 @@ def tweetNewUpdates():
     global newLinks
     global headers
     numberOfUpdates = len(re.findall(currentDateFormatOne, mainPage))
-    newTd = allTd[:numberOfUpdates*3]
+    newTd = latestTd[:numberOfUpdates*3]
 
     rows = [newTd[x:x+3] for x in range(0, len(newTd), 3)]
     emptyHeaders = []
@@ -177,7 +178,7 @@ def tweetNewUpdates():
         results = results1 + resultsT2
         api.update_status(emoji.emojize(f"{results}", use_aliases=True))
 
-if currentDateFormatOne in allTd:
+if currentDateFormatOne in latestTd:
     tweetNewUpdates()
 
 
@@ -334,3 +335,58 @@ if date.today().day == 1:
     results += f"{webLink}"
 
     api.update_status(emoji.emojize(f"{results}", use_aliases=True))
+
+
+
+# tweet how many vulnerabilities were fixed in the four latest series of iOS
+def iosTotalReport():
+    # find out the latest iOS version
+    latestiosVersion = re.findall(r"iOS\s([0-9]+)", str(allTd))
+    latestiosVersion = list(map(int, latestiosVersion))
+    latestiosVersion.sort(reverse = True)
+    latestiosVersion = int(latestiosVersion[0])
+
+    # calculate previous three iOS versions and add them all to iosVersions variable
+    iosVersions = []
+    iosVersions.append(latestiosVersion)
+    iosVersions.append(latestiosVersion - 1)
+    iosVersions.append(latestiosVersion - 2)
+    iosVersions.append(latestiosVersion - 3)
+
+    # get all the links of release notes, count CVEs and save the results to allCVEs variable
+    iosTd = {}
+    alliosLinks = {}
+    allCVEs = {}
+
+    for version in iosVersions:
+        regex = r"'[^']+iOS\s" + str(version) + "[^']+',"
+        iosTd[f"{version}"] = re.findall(regex, str(allTd))
+
+        alliosLinks[f"{version}"] = re.findall(r'href="([^"]+)', str(iosTd[f"{version}"]))
+
+        currentCVEs = 0
+        for link in alliosLinks[f"{version}"]:
+            page = requests.get(link).text
+            currentCVE = len(re.findall("CVE", page)) - 1
+            currentCVEs += currentCVE
+            allCVEs[f"{version}"] = currentCVEs
+
+    results = f"iOS {iosVersions[0] + 1} was released today. In iOS {list(allCVEs.keys())[0]} series Apple fixed in total of {list(allCVEs.values())[0]} security issues. :hammer_and_pick:\n\nCOMPARED TO:\n"
+
+    iosVersions.pop(0)
+
+    for version in iosVersions:
+        results += f"- {allCVEs[f'{version}']} of issues fixed in iOS {version} series\n"
+
+    api.update_status(emoji.emojize(f"{results}", use_aliases=True))
+
+
+# if there is new major iOS update run the iosTotalReport function
+
+regex1 = r"iOS\s\d+[^0-9a-z.]" # for example "iOS 14"
+regex2 = r"iOS\s\d+\.0[^0-9a-z.]" # for example "iOS 14.0"
+
+newMajoriosUpdate = re.compile("(%s|%s)" % (regex1, regex2)).findall(str(latestTd))
+
+if newMajoriosUpdate != []:
+    iosTotalReport()
