@@ -10,7 +10,7 @@
 * 💉 five parts of the system that got the most security fixes in the latest iOS update,
 * ⚠️ if there were any zero-day vulnerabilities fixed,
 * 🌐 how many security issues Apple fixed on their websites in the previous month,
-* 📊 when new iOS series starts in September, it tweets how many bugs Apple fixed in previous four iOS series,
+* 📊 when the new major iOS is released in September, it tweets how many bugs Apple fixed in previous four iOS series,
 * and if Apple updated or added any new entries to previous release notes!
 </b>
 <br>
@@ -18,7 +18,7 @@
 ## 🤖 How does the bot work?
 When executed, it creates a current day format and searches for it on the [Apple security updates](https://support.apple.com/en-us/HT201222) page. If a new update is released, it grabs that whole row from the page and saves it. All new rows are then sent to the function which grabs the release notes link if there is one and grabs all the data from that link. From release notes it grabs the title, counts how many security fixes there are, checks for any zero-day fixes and adds an emoji depending on the part that got the update. If the update has no release notes, it just grabs the title from the row and saves it. When all data is gathered it tweets that new updates were released today with the number of security fixes in them. If there is a new iOS update, it gathers all the parts and tweets five parts with the most security bugs fixed. Each time the bot also takes first 20 release notes, checks if Apple added any new entries or updated any previous ones and tweets all the changes.
 
-In version 8.0 the bot was extended to Apple's web server security. On the first day of the month bot checks the [Apple web server notifications](https://support.apple.com/en-us/HT201536) page, counts how many issues Apple fixed in the previous month, how many of those were on _apple.com_ and how many of those on _icloud.com_. In version 9.0 an interesting statistic function was added set to be tweeted in September when a new iOS series starts. At that time a function is ran which determines the versions of previous four major iOS versions and then goes again to Apple security update page to gather some data. For example it gathers all the updates that iOS 14 got and counts all the security fixes in each update. It does this for four previous major iOS updates and tweets it.
+In version 8.0 the bot was extended to Apple's web server security. On the first day of the month bot checks the [Apple web server notifications](https://support.apple.com/en-us/HT201536) page, counts how many issues Apple fixed in the previous month, how many of those were on _apple.com_ and how many of those on _icloud.com_. In version 9.0 an interesting statistic function was added set to be tweeted in September when a new iOS series starts. At that time a function is executed which determines the versions of previous four major iOS versions and then goes again to Apple security update page to gather some data. For example, it gathers all the updates that iOS 14 got and counts all the security fixes in each update. It does this for four previous major iOS updates and tweets it.
 
 <p align="center"><img src="images/image1.jpg" width=340></p>
 <p align="center"><img src="images/image2.jpg" width=340></p>
