@@ -25,6 +25,7 @@ In version 8.0 the bot was extended to Apple's web server security. On the first
 <p align="center"><img src="images/image3.jpg" width=340></p>
 <p align="center"><img src="images/image4.jpg" width=340></p>
 <p align="center"><img src="images/image5.jpg" width=340></p>
+<p align="center"><img src="images/image6.jpg" width=340></p>
 
 
 ### How does the bot interact with Twitter?
