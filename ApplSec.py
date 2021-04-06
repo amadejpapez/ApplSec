@@ -19,25 +19,26 @@ mainLink = "https://support.apple.com/en-us/HT201222"
 mainPage = requests.get(mainLink).text
 mainPage = mainPage.replace("\n", " ").replace("<td>", "$*").replace("</td>", "*$")
 allTd = re.findall(r"\$\*([^*$]+)\*\$", str(mainPage))
-latestRows = list(map(list, zip(*[iter(allTd)]*3)))[:20]
+allRows = list(map(list, zip(*[iter(allTd)]*3)))
+latestRows = allRows[:20]
+allTd = list(map(list, zip(*[iter(allTd)]*3)))
 currentDateFormatOne = f"{date.today().day} {date.today().strftime('%b')} {date.today().year}"
 
-latestiosVersion = re.findall(r"iOS\s([0-9]+)", str(allTd))
+latestiosVersion = re.findall(r"iOS\s([0-9]+)", str(latestRows))
 latestiosVersion = list(map(int, latestiosVersion))
 latestiosVersion.sort(reverse = True)
 latestiosVersion = int(latestiosVersion[0])
 
-releasesWithZeroDays = 0
+
 updatesInfo = {}
+releasesWithZeroDays = 0
 entriesChanged = 0
 
 def getData(rows):
     for row in rows:
         if "href" in str(row):
-            # if there are release notes
+            # if there are release notes grab the release notes page
             releaseNotes = re.findall(r'href="([^\']+)"', str(row))[0]
-
-            # grab the release notes page
             page = requests.get(releaseNotes).text
 
             # grab the header from the page
@@ -55,7 +56,7 @@ def getData(rows):
             updatesInfo[title]["releaseNotes"] = releaseNotes
 
 
-            # set emojis depending on the title and add it to the variable "emojis"
+            # set emojis depending on the title
             if "iOS" in title:
                 emojis = ":iphone:"
             elif "watchOS" in title:
@@ -103,8 +104,9 @@ def getData(rows):
 
             # check for any updated or added entries
             currentDateFormatTwo = f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}"
-
             num = (len(re.findall(f"Entry added {currentDateFormatTwo}", page)))
+            global entriesChanged
+
             if num == 0:
                 added = "none"
             elif num == 1:
@@ -139,6 +141,7 @@ def tweetOrCreateAThread(title, functionResults):
         for result in functionResults:
             results += result
         if functionResults == updateResults:
+            # attached only to new updates released tweet
             results += f"{mainLink}\n"
         api.update_status(emoji.emojize(f"{results}", use_aliases=True))
 
@@ -160,10 +163,10 @@ def tweetOrCreateAThread(title, functionResults):
 
 
 # tweet if there were any new updates released
-def tweetNewUpdates():
+if currentDateFormatOne in str(latestRows):
+    newRows = []
     global updateResults
     updateResults = []
-    newRows = []
 
     # grab all the new rows
     for row in latestRows:
@@ -182,15 +185,12 @@ def tweetNewUpdates():
     tweetOrCreateAThread(title, updateResults)
 
 
-if currentDateFormatOne in str(latestRows):
-    tweetNewUpdates()
-
-
 
 # tweet top five parts that got bug fixes in a new iOS update
-def tweetParts():
+if "iOS" in str(updatesInfo):
     partUpdate = {}
-    
+    numberParts = 0
+
     for key, value in updatesInfo.items():
         if "iOS" in key and str(latestiosVersion) in key:
             partUpdate = value
@@ -202,8 +202,6 @@ def tweetParts():
 
     results = f':hammer_and_pick: FIXED IN {partUpdate["title"]} :hammer_and_pick:\n\n'
 
-    numberParts = 0
-
     for key, value in allStrong.items():
         if len(re.findall("-", results)) <= 3:
             numberParts += value
@@ -212,8 +210,8 @@ def tweetParts():
             else:
                 results += f"- {value} bugs in {key}\n"
 
-    number = re.findall(r"(\d+)", partUpdate["CVEs"])[0]
-    numberParts = int(number) - numberParts
+    num = int(re.findall(r"(\d+)", partUpdate["CVEs"])[0])
+    numberParts = num - numberParts
 
     if numberParts >= 1:
         results += f"and {numberParts} other vulnerabilities fixed\n"
@@ -222,13 +220,9 @@ def tweetParts():
     api.update_status(emoji.emojize(f"{results}", use_aliases=True))
 
 
-if "iOS" in str(updatesInfo):
-    tweetParts()
-
-
 
 # tweet if there were any zero-day vulnerabilities fixed
-def tweetZeroDays():
+if releasesWithZeroDays > 0:
     zeroDayReleases = {}
     zeroDayResults = []
 
@@ -247,13 +241,9 @@ def tweetZeroDays():
     tweetOrCreateAThread(title, zeroDayResults)
 
 
-if releasesWithZeroDays > 0:
-    tweetZeroDays()
-
-
 
 # tweet if there are any changes to the last 20 release notes
-def tweetChanges():
+if entriesChanged > 0:
     getData(latestRows)
     changedResults = []
 
@@ -274,80 +264,64 @@ def tweetChanges():
     tweetOrCreateAThread(title, changedResults)
 
 
-if entriesChanged > 0:
-    tweetChanges()
-
-
 
 # tweet how many security issues were fixed in Apple web servers in the previous month
 if date.today().day == 1:
-    lastMonth = int(date.today().strftime('%m')) - 1
-    if lastMonth < 10:
-        lastMonth = f"0{lastMonth}"
-    nameLastMonth = "January February March April May June July August September October November December".split()[int(lastMonth)-1]
+    lastMonth = int(date.today().strftime("%m")) - 1
+    nameLastMonth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][lastMonth - 1]
+    lastMonth = f"0{lastMonth}"
 
     currentDateFormatThree = f"{date.today().year}-{lastMonth}"
 
-    webLink = "https://support.apple.com/en-us/HT201536"
-    webPage = requests.get(webLink).text
-    numberOfFixes = len(re.findall(currentDateFormatThree, webPage))
+    link = "https://support.apple.com/en-us/HT201536"
+    page = requests.get(link).text
+    numberOfFixes = len(re.findall(currentDateFormatThree, page))
 
     results = f"In {nameLastMonth}, Apple fixed {numberOfFixes} security issues in their websites :globe_with_meridians:\n\n"
 
-    allFixes = re.findall(rf"<em>{currentDateFormatThree}(.*)</em>", webPage)
+    allFixes = re.findall(rf"<em>{currentDateFormatThree}(.*)</em>", page)
     numberOfFixesOnAppleDotCom = len(re.findall(r"apple.com", str(allFixes)))
     numberOfFixesOnIcloudDotCom = len(re.findall(r"icloud.com", str(allFixes)))
-    numberOfOthers = numberOfFixes - numberOfFixesOnAppleDotCom - numberOfFixesOnIcloudDotCom
+    numberOfFixes = numberOfFixes - numberOfFixesOnAppleDotCom - numberOfFixesOnIcloudDotCom
 
     if numberOfFixesOnAppleDotCom >= 1:
         results += f":apple: {numberOfFixesOnAppleDotCom} of them on apple[.]com\n"
     if numberOfFixesOnIcloudDotCom >= 1:
         results += f":cloud: {numberOfFixesOnIcloudDotCom} of them on icloud[.]com\n"
-    if numberOfOthers >= 1:
-        results += f"and {numberOfOthers} on other domains\n"
-    results += f"{webLink}"
+    if numberOfFixes >= 1:
+        results += f"and {numberOfFixes} on other domains\n"
+    results += f"{link}"
 
     api.update_status(emoji.emojize(f"{results}", use_aliases=True))
 
 
+# tweet how many vulnerabilities were fixed in the four latest series of iOS if there is a new major iOS update
+if f"iOS {latestiosVersion} " in str(latestRows) or f"iOS {latestiosVersion}.0 " in str(latestRows):
+    iosInfo = {}
 
-# tweet how many vulnerabilities were fixed in the four latest series of iOS
-def iosTotalReport():
-    # calculate previous three iOS versions and add them all to iosVersions variable
-    iosVersions = []
-    iosVersions.append(latestiosVersion)
-    iosVersions.append(latestiosVersion - 1)
-    iosVersions.append(latestiosVersion - 2)
-    iosVersions.append(latestiosVersion - 3)
+    # save previous three iOS versions
+    iosVersions = [f"{latestiosVersion - 1}", f"{latestiosVersion - 2}", f"{latestiosVersion - 3}", f"{latestiosVersion - 4}"]
 
-    # get all the links of release notes, count CVEs and save the results to allCVEs variable
-    iosTd = {}
-    alliosLinks = {}
-    allCVEs = {}
-
+    # get all the links of release notes, count CVEs and save all the info to the nested directory
     for version in iosVersions:
-        regex = r"'[^']+iOS\s" + str(version) + "[^']+',"
-        iosTd[f"{version}"] = re.findall(regex, str(allTd))
-
-        alliosLinks[f"{version}"] = re.findall(r'href="([^"]+)', str(iosTd[f"{version}"]))
-
         currentCVEs = 0
-        for link in alliosLinks[f"{version}"]:
-            page = requests.get(link).text
-            currentCVE = len(re.findall("CVE", page)) - 1
-            currentCVEs += currentCVE
-            allCVEs[f"{version}"] = currentCVEs
+        iosInfo[version] = {}
 
-    results = f"iOS {iosVersions[0] + 1} was released today. In iOS {list(allCVEs.keys())[0]} series Apple fixed in total of {list(allCVEs.values())[0]} security issues. :hammer_and_pick:\n\nCOMPARED TO:\n"
+        for row in allRows:
+            if f"iOS {version}" in str(row[0]):
+                iosInfo[version]["releaseNotes"] = re.findall(r'href="([^"]+)"', str(row[0]))
 
-    iosVersions.pop(0)
+                for link in iosInfo[version]["releaseNotes"]:
+                    page = requests.get(link).text
+                    currentCVE = len(re.findall("CVE", page)) - 1
+                    currentCVEs += currentCVE
+                    iosInfo[version]["CVEs"] = currentCVEs
 
-    for version in iosVersions:
-        results += f"- {allCVEs[f'{version}']} of issues fixed in iOS {version} series\n"
+    secondiosVersion = list(iosInfo.keys())[0]
+    results = f'iOS {latestiosVersion} was released today. In iOS {secondiosVersion} series Apple fixed in total of {iosInfo[secondiosVersion]["CVEs"]} security issues.\n\n:bar_chart: COMPARED TO:\n'
+    iosInfo.pop(secondiosVersion)
+
+    for key, value in iosInfo.items():
+        results += f'- {value["CVEs"]} of issues fixed in iOS {key} series\n'
 
     api.update_status(emoji.emojize(f"{results}", use_aliases=True))
-
-
-# if there is new major iOS update run the iosTotalReport function
-if re.compile("(%s|%s)" % (r"iOS\s\d+[^0-9a-z.]", r"iOS\s\d+\.0[^0-9a-z.]")).findall(str(latestRows)) != []:
-    iosTotalReport()
