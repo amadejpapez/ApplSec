@@ -88,6 +88,8 @@ def getData(rows):
             CVEs = f"{CVEs} bugs fixed"
         elif CVEs == 1:
             CVEs = f"{CVEs} bug fixed"
+        elif "soon" in str(row):
+            CVEs = "no details yet"
         else:
             CVEs = "no bugs fixed"
 
