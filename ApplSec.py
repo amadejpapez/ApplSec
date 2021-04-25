@@ -285,7 +285,7 @@ if date.today().day == 1:
     page = requests.get(link).text
     numberOfFixes = len(re.findall(currentDateFormatThree, page))
 
-    results = f"In {nameLastMonth}, Apple fixed {numberOfFixes} security issues in their websites :globe_with_meridians:\n\n"
+    results = f"In {nameLastMonth}, Apple fixed {numberOfFixes} security issues in their web servers :globe_with_meridians:\n\n"
 
     allFixes = re.findall(rf"<em>{currentDateFormatThree}(.*)</em>", page)
     numberOfFixesOnAppleDotCom = len(re.findall(r"apple.com", str(allFixes)))
@@ -293,9 +293,9 @@ if date.today().day == 1:
     numberOfFixes = numberOfFixes - numberOfFixesOnAppleDotCom - numberOfFixesOnIcloudDotCom
 
     if numberOfFixesOnAppleDotCom >= 1:
-        results += f":apple: {numberOfFixesOnAppleDotCom} of them on apple[.]com\n"
+        results += f":apple: {numberOfFixesOnAppleDotCom} of those on apple[.]com\n"
     if numberOfFixesOnIcloudDotCom >= 1:
-        results += f":cloud: {numberOfFixesOnIcloudDotCom} of them on icloud[.]com\n"
+        results += f":cloud: {numberOfFixesOnIcloudDotCom} of those on icloud[.]com\n"
     if numberOfFixes >= 1:
         results += f"and {numberOfFixes} on other domains\n"
     results += f"{link}"
