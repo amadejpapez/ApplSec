@@ -1,4 +1,5 @@
 import re
+import copy
 import emoji
 import tweepy
 import requests
@@ -44,93 +45,98 @@ def getData(rows):
             # grab the header from the page
             title = re.findall(r"<h2>(.*)<.h2>", page)[1]
             title = title.replace("*", "") # remove * from the title which is sometimes added for additional info
+        else:
+            title = re.findall(r"(?i)\['([a-z0-9,\.\-\s]+)", str(row))[0]
+            title = title.rstrip()
+            page = ""
+            releaseNotes = ""
 
-            if "macOS" in title:
-                # if macOS is in the title, take only the first part of the title
-                title = title.split(",", 1)[0]
-            if "iOS" in title and "iPadOS" in title:
-                # if they are both in the title remove version number from iPadOS
-                title = title.split("and", 1)[0].rstrip().replace("iOS", "iOS and iPadOS")
+        if "macOS" in title:
+            # if macOS is in the title, take only the first part of the title
+            title = title.split(",", 1)[0]
+        if "iOS" in title and "iPadOS" in title:
+            # if they are both in the title remove version number from iPadOS
+            title = title.split("and", 1)[0].rstrip().replace("iOS", "iOS and iPadOS")
 
-            updatesInfo[title] = {}
-            updatesInfo[title]["releaseNotes"] = releaseNotes
+        updatesInfo[title] = {}
+        updatesInfo[title]["releaseNotes"] = releaseNotes
 
 
-            # set emojis depending on the title
-            if "iOS" in title:
-                emojis = ":iphone:"
-            elif "watchOS" in title:
-                emojis = ":watch:"
-            elif "tvOS" in title or "Apple TV" in title:
-                emojis = ":tv:"
-            elif "macOS" in title:
-                emojis = ":computer:"
-            elif "iCloud" in title:
-                emojis = ":cloud:"
-            elif "iTunes" in title:
-                emojis = ":musical_note:"
+        # set emojis depending on the title
+        if "iOS" in title:
+            emojis = ":iphone:"
+        elif "watchOS" in title:
+            emojis = ":watch:"
+        elif "tvOS" in title or "Apple TV" in title:
+            emojis = ":tv:"
+        elif "macOS" in title:
+            emojis = ":computer:"
+        elif "iCloud" in title:
+            emojis = ":cloud:"
+        elif "iTunes" in title:
+            emojis = ":musical_note:"
+        else:
+            emojis = ":hammer_and_wrench:"
+
+        updatesInfo[title]["emojis"] = emojis
+
+
+        # grab the number of CVEs from the page
+        CVEs = (len(re.findall("CVE", page)) - 1)
+
+        if CVEs > 1:
+            CVEs = f"{CVEs} bugs fixed"
+        elif CVEs == 1:
+            CVEs = f"{CVEs} bug fixed"
+        else:
+            CVEs = "no bugs fixed"
+
+        updatesInfo[title]["CVEs"] = CVEs
+
+
+        # search if there were any zero-day vulnerabilities fixed
+        if "in the wild" in page or "actively exploited" in page:
+            global releasesWithZeroDays
+            releasesWithZeroDays += 1
+
+            num = len(re.findall("in the wild", page)) + len(re.findall("actively exploited", page))
+            if num == 1:
+                zeroDays = f"{num} zero-day"
             else:
-                emojis = ":hammer_and_wrench:"
+                zeroDays = f"{num} zero-days"
 
-            updatesInfo[title]["emojis"] = emojis
-
-
-            # grab the number of CVEs from the page
-            CVEs = (len(re.findall("CVE", page)) - 1)
-
-            if CVEs > 1:
-                CVEs = f"{CVEs} bugs fixed"
-            elif CVEs == 1:
-                CVEs = f"{CVEs} bug fixed"
-            else:
-                CVEs = "no bugs fixed"
-
-            updatesInfo[title]["CVEs"] = CVEs
+            updatesInfo[title]["zeroDays"] = zeroDays
 
 
-            # search if there were any zero-day vulnerabilities fixed
-            if "in the wild" in page or "actively exploited" in page:
-                global releasesWithZeroDays
-                releasesWithZeroDays += 1
+        # check for any updated or added entries
+        currentDateFormatTwo = f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}"
+        num = (len(re.findall(f"Entry added {currentDateFormatTwo}", page)))
+        global entriesChanged
 
-                num = len(re.findall("in the wild", page)) + len(re.findall("actively exploited", page))
-                if num == 1:
-                    zeroDays = f"{num} zero-day"
-                else:
-                    zeroDays = f"{num} zero-days"
+        if num == 0:
+            added = "none"
+        elif num == 1:
+            added = f"{num} entry added"
+        elif num > 1:
+            added = f"{num} entries added"
 
-                updatesInfo[title]["zeroDays"] = zeroDays
+        if added != "none":
+            entriesChanged += 1
 
+        updatesInfo[title]["added"] = added
 
-            # check for any updated or added entries
-            currentDateFormatTwo = f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}"
-            num = (len(re.findall(f"Entry added {currentDateFormatTwo}", page)))
-            global entriesChanged
+        num = (len(re.findall(f"Entry updated {currentDateFormatTwo}", page)))
+        if num == 0:
+            updated = "none"
+        elif num == 1:
+            updated = f"{num} entry updated"
+        elif num > 1:
+            updated = f"{num} entries updated"
 
-            if num == 0:
-                added = "none"
-            elif num == 1:
-                added = f"{num} entry added"
-            elif num > 1:
-                added = f"{num} entries added"
+        if updated != "none":
+            entriesChanged += 1
 
-            if added != "none":
-                entriesChanged += 1
-
-            updatesInfo[title]["added"] = added
-
-            num = (len(re.findall(f"Entry updated {currentDateFormatTwo}", page)))
-            if num == 0:
-                updated = "none"
-            elif num == 1:
-                updated = f"{num} entry updated"
-            elif num > 1:
-                updated = f"{num} entries updated"
-
-            if updated != "none":
-                entriesChanged += 1
-
-            updatesInfo[title]["updated"] = updated
+        updatesInfo[title]["updated"] = updated
 
 
 
@@ -193,7 +199,7 @@ if "iOS" in str(updatesInfo):
 
     for key, value in updatesInfo.items():
         if "iOS" in key and str(latestiosVersion) in key:
-            partUpdate = value
+            partUpdate = copy.deepcopy(value)
             partUpdate["title"] = key
 
     page = requests.get(partUpdate["releaseNotes"]).text
