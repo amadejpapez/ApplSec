@@ -69,11 +69,13 @@ def getData(rows):
             emojis = ":watch:"
         elif "tvOS" in title or "Apple TV" in title:
             emojis = ":tv:"
-        elif "macOS" in title:
+        elif "macOS" in title or "Security Update" in title:
             emojis = ":computer:"
         elif "iCloud" in title:
             emojis = ":cloud:"
-        elif "iTunes" in title:
+        elif "Safari" in title:
+            emojis = ":globe_with_meridians:"
+        elif "iTunes" in title or "Shazam" in title or "GarageBand" in title or "Apple Music" in title:
             emojis = ":musical_note:"
         else:
             emojis = ":hammer_and_wrench:"
