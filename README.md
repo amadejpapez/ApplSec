@@ -1,5 +1,4 @@
-<h1 align="center">ApplSec</h1>
-<br>
+<p align="center"><img src="images/ApplSec.png" width=90></p>
 <p align="center"><b>Twitter bot written in Python 🐍</b></p>
 <p align="center"><b>Every day the bot checks for new security updates to Apple's ecosystem 🔐</b></p>
 <p align="center"><b>Running on Twitter account @ApplSec since February 6, 2021</b></p>
