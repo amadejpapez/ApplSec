@@ -16,21 +16,7 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 
-mainLink = "https://support.apple.com/en-us/HT201222"
-mainPage = requests.get(mainLink).text
-mainPage = mainPage.replace("\n", " ").replace("<td>", "$*").replace("</td>", "*$")
-allTd = re.findall(r"\$\*([^*$]+)\*\$", str(mainPage))
-allRows = list(map(list, zip(*[iter(allTd)]*3)))
-latestRows = allRows[:20]
-allTd = list(map(list, zip(*[iter(allTd)]*3)))
-currentDateFormatOne = f"{date.today().day} {date.today().strftime('%b')} {date.today().year}"
-
-latestiosVersion = re.findall(r"iOS\s([0-9]+)", str(latestRows))
-latestiosVersion = list(map(int, latestiosVersion))
-latestiosVersion.sort(reverse = True)
-latestiosVersion = int(latestiosVersion[0])
-
-
+# function to grab all the data from Apple's website
 updatesInfo = {}
 releasesWithZeroDays = 0
 entriesChanged = 0
@@ -41,7 +27,7 @@ zeroDayResults = []
 def getData(rows):
     for row in rows:
         if "href" in str(row):
-            # if there are release notes grab the release notes page
+            # if there are release notes, grab the whole page
             releaseNotes = re.findall(r'href="([^\']+)"', str(row))[0]
             page = requests.get(releaseNotes).text
 
@@ -49,6 +35,7 @@ def getData(rows):
             title = re.findall(r"<h2>(.*)<.h2>", page)[1]
             title = title.replace("*", "") # remove * from the title which is sometimes added for additional info
         else:
+            # if there is no release notes, grab the title from the mainPage
             title = re.findall(r"(?i)\['([a-z0-9,\.\-\s]+)", str(row))[0]
             title = title.rstrip()
             page = ""
@@ -89,12 +76,12 @@ def getData(rows):
         # grab the number of CVEs from the page
         CVEs = (len(re.findall("CVE", page)) - 1)
 
-        if CVEs > 1:
+        if "soon" in str(row):
+            CVEs = "no details yet"
+        elif CVEs > 1:
             CVEs = f"{CVEs} bugs fixed"
         elif CVEs == 1:
             CVEs = f"{CVEs} bug fixed"
-        elif "soon" in str(row):
-            CVEs = "no details yet"
         else:
             CVEs = "no bugs fixed"
 
@@ -119,8 +106,8 @@ def getData(rows):
             currentZeroDays = re.findall(r"▲[^▼]+▼([^▲◄]+actively exploited[^▲◄]+)", page)
             currentZeroDays = re.findall(r"CVE-[0-9]{4}-[0-9]{5}", str(currentZeroDays))
             global uniqueZeroDays
-            for x in currentZeroDays:
-                uniqueZeroDays["released"][x] = ""
+            for zeroDay in currentZeroDays:
+                uniqueZeroDays["released"][zeroDay] = ""
 
         # check for any updated or added entries
         currentDateFormatTwo = f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}"
@@ -203,25 +190,33 @@ def tweetOrCreateAThread(title, functionResults):
             title += f'Today Apple patched {lengthNew} new vulnerabilities that were already used to attack and released additional updates for {uniqueZeroDays["old"]}'
 
         if len(re.findall("-", results)) <= 2:
-            results = f"{title} :rotating_light:\n\nUPDATES RELEASED FOR:\n{results}"
+            results = f"{title} :rotating_light:\n\nRELEASED UPDATES:\n{results}"
         else:
             thirdResults = secondResults
             secondResults = results
-            results = f"{title} :rotating_light:\n\nUPDATES RELEASED FOR:"
+            results = f"{title} :rotating_light:\n\nRELEASED UPDATES:"
     else:
         results = str(title + results)
 
 
-    originalTweet = api.update_status(emoji.emojize(f"{results}", use_aliases=True))
+    originalTweet = api.update_status(emoji.emojize(results, use_aliases=True))
 
     if secondResults != "":
-        secondTweet = api.update_status(emoji.emojize(f"{secondResults}", use_aliases=True), in_reply_to_status_id=originalTweet.id, auto_populate_reply_metadata=True)
+        secondTweet = api.update_status(emoji.emojize(secondResults, use_aliases=True), in_reply_to_status_id=originalTweet.id, auto_populate_reply_metadata=True)
 
     if thirdResults != "":
-        api.update_status(emoji.emojize(f'{thirdResults}', use_aliases=True), in_reply_to_status_id=secondTweet.id, auto_populate_reply_metadata=True)
+        api.update_status(emoji.emojize(thirdResults, use_aliases=True), in_reply_to_status_id=secondTweet.id, auto_populate_reply_metadata=True)
+
 
 
 # tweet if there were any new updates released
+mainLink = "https://support.apple.com/en-us/HT201222"
+mainPage = requests.get(mainLink).text
+mainPage = mainPage.replace("\n", " ").replace("<td>", "▲").replace("</td>", "▼")
+allTd = re.findall(r"▲([^▼]+)▼", str(mainPage))
+latestRows = list(map(list, zip(*[iter(allTd)]*3)))[:20]
+currentDateFormatOne = f"{date.today().day} {date.today().strftime('%b')} {date.today().year}"
+
 if currentDateFormatOne in str(latestRows):
     newRows = []
     global updateResults
@@ -246,6 +241,11 @@ if currentDateFormatOne in str(latestRows):
 
 
 # tweet top five parts that got bug fixes in a new iOS update
+latestiosVersion = re.findall(r"iOS\s([0-9]+)", str(latestRows))
+latestiosVersion = list(map(int, latestiosVersion))
+latestiosVersion.sort(reverse = True)
+latestiosVersion = int(latestiosVersion[0])
+
 if "iOS" in str(updatesInfo):
     partUpdate = {}
     numberParts = 0
@@ -269,21 +269,19 @@ if "iOS" in str(updatesInfo):
             else:
                 results += f"- {value} bugs in {key}\n"
 
-    num = int(re.findall(r"(\d+)", partUpdate["CVEs"])[0])
-    numberParts = num - numberParts
+    numberParts -= int(re.findall(r"(\d+)", partUpdate["CVEs"])[0])
 
     if numberParts >= 1:
         results += f"and {numberParts} other vulnerabilities fixed\n"
 
     results += f'{partUpdate["releaseNotes"]}\n'
-    api.update_status(emoji.emojize(f"{results}", use_aliases=True))
+    api.update_status(emoji.emojize(results, use_aliases=True))
 
 
 
 # tweet if there were any zero-day vulnerabilities fixed
 if releasesWithZeroDays > 0:
     zeroDayReleases = {}
-    zeroDayResults = []
 
     for key, value in updatesInfo.items():
         if "zeroDays" in updatesInfo[key]:
@@ -343,8 +341,8 @@ if date.today().day == 1:
 
     currentDateFormatThree = f"{date.today().year}-{lastMonth}"
 
-    link = "https://support.apple.com/en-us/HT201536"
-    page = requests.get(link).text
+    mainPage = "https://support.apple.com/en-us/HT201536"
+    page = requests.get(mainPage).text
     numberOfFixes = len(re.findall(currentDateFormatThree, page))
 
     results = f"In {nameLastMonth}, Apple fixed {numberOfFixes} security issues in their web servers :globe_with_meridians:\n\n"
@@ -360,9 +358,9 @@ if date.today().day == 1:
         results += f":cloud: {numberOfFixesOnIcloudDotCom} of those on icloud[.]com\n"
     if numberOfFixes >= 1:
         results += f"and {numberOfFixes} on other domains\n"
-    results += f"{link}"
+    results += str(mainPage)
 
-    api.update_status(emoji.emojize(f"{results}", use_aliases=True))
+    api.update_status(emoji.emojize(results, use_aliases=True))
 
 
 # tweet how many vulnerabilities were fixed in the four latest series of iOS if there is a new major iOS update
@@ -394,4 +392,4 @@ if f"iOS {latestiosVersion} " in str(latestRows) or f"iOS {latestiosVersion}.0 "
     for key, value in iosInfo.items():
         results += f'- {value["CVEs"]} of issues fixed in iOS {key} series\n'
 
-    api.update_status(emoji.emojize(f"{results}", use_aliases=True))
+    api.update_status(emoji.emojize(results, use_aliases=True))
