@@ -18,11 +18,6 @@ api = tweepy.API(auth)
 
 # function to grab all the data from Apple's website
 updatesInfo = {}
-releasesWithZeroDays = 0
-entriesChanged = 0
-uniqueZeroDays = {}
-uniqueZeroDays["released"] = {}
-zeroDayResults = []
 
 def getData(rows):
     for row in rows:
@@ -38,8 +33,8 @@ def getData(rows):
             # if there is no release notes, grab the title from the mainPage
             title = re.findall(r"(?i)\['([a-z0-9,\.\-\s]+)", str(row))[0]
             title = title.rstrip()
-            page = ""
-            releaseNotes = ""
+            page = None
+            releaseNotes = None
 
         if "macOS" in title:
             # if macOS is in the title, take only the first part of the title
@@ -74,7 +69,7 @@ def getData(rows):
 
 
         # grab the number of CVEs from the page
-        CVEs = (len(re.findall("CVE", page)) - 1)
+        CVEs = (len(re.findall("CVE", str(page))) - 1)
 
         if "soon" in str(row):
             CVEs = "no details yet"
@@ -89,10 +84,7 @@ def getData(rows):
 
 
         # search if there were any zero-day vulnerabilities fixed
-        if "in the wild" in page or "actively exploited" in page:
-            global releasesWithZeroDays
-            releasesWithZeroDays += 1
-
+        if "in the wild" in str(page) or "actively exploited" in str(page):
             num = len(re.findall("in the wild", page)) + len(re.findall("actively exploited", page))
             if num == 1:
                 zeroDays = f"{num} zero-day"
@@ -104,42 +96,40 @@ def getData(rows):
             # save all CVE numbers
             page = page.replace("<strong>", "▲").replace("</strong>", "▼").replace("/div", "◄")
             currentZeroDays = re.findall(r"▲[^▼]+▼([^▲◄]+actively exploited[^▲◄]+)", page)
-            currentZeroDays = re.findall(r"CVE-[0-9]{4}-[0-9]{5}", str(currentZeroDays))
-            global uniqueZeroDays
-            for zeroDay in currentZeroDays:
-                uniqueZeroDays["released"][zeroDay] = ""
+            currentZeroDays = re.findall(r"CVE-[0-9]{4}-[0-9]{4,5}", str(currentZeroDays))
+            updatesInfo[title]["zeroDayCVEs"] = currentZeroDays
+        else:
+            updatesInfo[title]["zeroDays"] = None
+            updatesInfo[title]["zeroDayCVEs"] = None
+
+
 
         # check for any updated or added entries
         currentDateFormatTwo = f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}"
-        num = (len(re.findall(f"Entry added {currentDateFormatTwo}", page)))
-        global entriesChanged
+        num = (len(re.findall(f"Entry added {currentDateFormatTwo}", str(page))))
 
-        if num == 0:
-            added = "none"
-        elif num == 1:
+        if num == 1:
             added = f"{num} entry added"
         elif num > 1:
             added = f"{num} entries added"
-
-        if added != "none":
-            entriesChanged += 1
+        else:
+            added = None
 
         updatesInfo[title]["added"] = added
 
-        num = (len(re.findall(f"Entry updated {currentDateFormatTwo}", page)))
-        if num == 0:
-            updated = "none"
-        elif num == 1:
+        num = (len(re.findall(f"Entry updated {currentDateFormatTwo}", str(page))))
+        if num == 1:
             updated = f"{num} entry updated"
         elif num > 1:
             updated = f"{num} entries updated"
-
-        if updated != "none":
-            entriesChanged += 1
+        else:
+            updated = None
 
         updatesInfo[title]["updated"] = updated
 
 
+zeroDayResults = []
+changedResults = []
 
 def tweetOrCreateAThread(title, functionResults):
     global uniqueZeroDays
@@ -158,11 +148,19 @@ def tweetOrCreateAThread(title, functionResults):
 
     elif len(functionResults) > 4:
         # if there are more than four releases create a thread
-        for result in functionResults:
-            if len(re.findall("-", results)) <= 4:
-                results += result
-            else:
-                secondResults += result
+        if functionResults == changedResults:
+            for result in functionResults:
+                if int(len(re.findall(r":[^:]+:", results)) + 1) <= 4:
+                    results += result
+                else:
+                    secondResults += result
+        else:
+            for result in functionResults:
+                if int(len(re.findall(r"-", results)) + 1) <= 4:
+                    results += result
+                else:
+                    secondResults += result
+
 
         if functionResults == updateResults:
             # attached only to new updates released tweet
@@ -171,9 +169,9 @@ def tweetOrCreateAThread(title, functionResults):
     if functionResults == zeroDayResults:
         lengthNew = len(uniqueZeroDays["new"])
         lengthOld = len(uniqueZeroDays["old"])
-        if lengthNew > 1:
+        if lengthNew > 0:
             uniqueZeroDays["new"] = ", ".join(uniqueZeroDays["new"])
-        if lengthOld > 1:
+        if lengthOld > 0:
             uniqueZeroDays["old"] = ", ".join(uniqueZeroDays["old"])
 
         if lengthNew == 1 and lengthOld == 0:
@@ -189,7 +187,7 @@ def tweetOrCreateAThread(title, functionResults):
         elif lengthNew > 1 and lengthOld > 1:
             title += f'Today Apple patched {lengthNew} new vulnerabilities that were already used to attack and released additional updates for {uniqueZeroDays["old"]}'
 
-        if len(re.findall("-", results)) <= 2:
+        if len(re.findall("in", results)) <= 2:
             results = f"{title} :rotating_light:\n\nRELEASED UPDATES:\n{results}"
         else:
             thirdResults = secondResults
@@ -210,25 +208,8 @@ def tweetOrCreateAThread(title, functionResults):
 
 
 # tweet if there were any new updates released
-mainLink = "https://support.apple.com/en-us/HT201222"
-mainPage = requests.get(mainLink).text
-mainPage = mainPage.replace("\n", " ").replace("<td>", "▲").replace("</td>", "▼")
-allTd = re.findall(r"▲([^▼]+)▼", str(mainPage))
-latestRows = list(map(list, zip(*[iter(allTd)]*3)))[:20]
-currentDateFormatOne = f"{date.today().day} {date.today().strftime('%b')} {date.today().year}"
-
-if currentDateFormatOne in str(latestRows):
-    newRows = []
-    global updateResults
-    updateResults = []
-
-    # grab all the new rows
-    for row in latestRows:
-        if currentDateFormatOne in str(row):
-            newRows.append(row)
-    getData(newRows)
-
-    if len(updatesInfo) == 1:
+def tweetNewUpdates(numberOfNewUpdates):
+    if numberOfNewUpdates == 1:
         title = ":collision: NEW UPDATE RELEASED :collision:\n\n"
     else:
         title = ":collision: NEW UPDATES RELEASED :collision:\n\n"
@@ -239,91 +220,122 @@ if currentDateFormatOne in str(latestRows):
     tweetOrCreateAThread(title, updateResults)
 
 
+mainLink = "https://support.apple.com/en-us/HT201222"
+mainPage = requests.get(mainLink).text
+mainPage = mainPage.replace("\n", " ").replace("<td>", "▲").replace("</td>", "▼")
+allTd = re.findall(r"▲([^▼]+)▼", str(mainPage))
+latestRows = list(map(list, zip(*[iter(allTd)]*3)))[:20]
+currentDateFormatOne = f"{date.today().day} {date.today().strftime('%b')} {date.today().year}"
+updateResults = []
+newRows = []
+
+for row in latestRows:
+    if currentDateFormatOne in str(row):
+        newRows.append(row)
+
+if len(newRows) > 0:
+    getData(newRows)
+    tweetNewUpdates(len(newRows))
+
+
 
 # tweet top five parts that got bug fixes in a new iOS update
+def tweetiOSParts():
+    numberParts = 0
+    results = ""
+
+    for key, value in updatesInfo.items():
+        if "iOS" in key and str(latestiosVersion) in key:
+            page = requests.get(value["releaseNotes"]).text
+            page = page.replace("Additional recognition", "▲").split("▲", 1)[0]
+            allStrong = Counter(re.findall(r"<strong>(.*)</strong>", str(page)))
+            allStrong = OrderedDict(sorted(allStrong.items(), reverse=True, key=lambda t: t[1]))
+
+            results = f':hammer_and_pick: FIXED IN {key} :hammer_and_pick:\n\n'
+            CVEs = value["CVEs"]
+            releaseNotes = value["releaseNotes"]
+
+            for key, value in allStrong.items():
+                if len(re.findall("bug", results)) <= 3:
+                    numberParts += value
+                    if value == 1:
+                        results += f"- {value} bug in {key}\n"
+                    else:
+                        results += f"- {value} bugs in {key}\n"
+
+            numberParts = int(re.findall(r"(\d+)", CVEs)[0]) - numberParts
+
+            if numberParts > 0:
+                results += f"and {numberParts} other vulnerabilities fixed\n"
+
+            results += f"{releaseNotes}\n"
+
+    api.update_status(emoji.emojize(results, use_aliases=True))
+
+
 latestiosVersion = re.findall(r"iOS\s([0-9]+)", str(latestRows))
 latestiosVersion = list(map(int, latestiosVersion))
 latestiosVersion.sort(reverse = True)
 latestiosVersion = int(latestiosVersion[0])
 
 if "iOS" in str(updatesInfo):
-    partUpdate = {}
-    numberParts = 0
-
-    for key, value in updatesInfo.items():
-        if "iOS" in key and str(latestiosVersion) in key:
-            partUpdate = copy.deepcopy(value)
-            partUpdate["title"] = key
-
-    page = requests.get(partUpdate["releaseNotes"]).text
-    allStrong = Counter(re.findall(r"<strong>(.*)<.strong>", page))
-    allStrong = OrderedDict(sorted(allStrong.items(), reverse=True, key=lambda t: t[1]))
-
-    results = f':hammer_and_pick: FIXED IN {partUpdate["title"]} :hammer_and_pick:\n\n'
-
-    for key, value in allStrong.items():
-        if len(re.findall("-", results)) <= 3:
-            numberParts += value
-            if value == 1:
-                results += f"- {value} bug in {key}\n"
-            else:
-                results += f"- {value} bugs in {key}\n"
-
-    numberParts -= int(re.findall(r"(\d+)", partUpdate["CVEs"])[0])
-
-    if numberParts >= 1:
-        results += f"and {numberParts} other vulnerabilities fixed\n"
-
-    results += f'{partUpdate["releaseNotes"]}\n'
-    api.update_status(emoji.emojize(results, use_aliases=True))
+    tweetiOSParts()
 
 
 
 # tweet if there were any zero-day vulnerabilities fixed
-if releasesWithZeroDays > 0:
-    zeroDayReleases = {}
+def tweetZeroDays(numberOfZeroDayReleases):
+    global uniqueZeroDays
+    uniqueZeroDays = {}
+    uniqueZeroDays["old"] = []
+    uniqueZeroDays["new"] = []
 
-    for key, value in updatesInfo.items():
-        if "zeroDays" in updatesInfo[key]:
-            zeroDayReleases[key] = value
-
-    if releasesWithZeroDays == 1:
+    if numberOfZeroDayReleases == 1:
         title = ":mega: EMERGENCY UPDATE :mega:\n\n"
     else:
         title = ":mega: EMERGENCY UPDATES :mega:\n\n"
 
-    for key, value in zeroDayReleases.items():
-        zeroDayResults.append(f'{value["zeroDays"]} fixed in {key}\n')
+    for key, value in updatesInfo.items():
+        if value["zeroDays"] != None:
+            # if there were any zero-days fixed, add this to the results
+            zeroDayResults.append(f'{value["zeroDays"]} fixed in {key}\n')
 
-    uniqueZeroDays["old"] = []
-    uniqueZeroDays["new"] = []
-    for key, value in uniqueZeroDays["released"].items():
-        with open("zeroDays.txt", "r") as zeroDays:
-            if key in zeroDays.read():
-                uniqueZeroDays["old"].append(key)
-            else:
-                uniqueZeroDays["new"].append(key)
-                with open("zeroDays.txt", "a") as zeroDays:
-                    zeroDays.write(f"{key}\n")
+            for zeroDay in value["zeroDayCVEs"]:
+                with open("zeroDays.txt", "r") as zeroDays:
+                    zeroDayFile = zeroDays.read()
+                    if zeroDay in zeroDayFile:
+                        if zeroDay not in uniqueZeroDays["old"]:
+                            # if zero-day CVE is in the file, add it to the uniqueZeroDays if it is not already there
+                            uniqueZeroDays["old"].append(zeroDay)
+                    if zeroDay not in zeroDayFile:
+                        # if zero-day CVE is not in the file, add it
+                        if zeroDay not in uniqueZeroDays["new"]:
+                            uniqueZeroDays["new"].append(zeroDay)
+                        with open("zeroDays.txt", "a") as zeroDays:
+                            zeroDays.write(f"{zeroDay}\n")
 
     tweetOrCreateAThread(title, zeroDayResults)
+
+releasesWithZeroDays = 0
+for key, value in updatesInfo.items():
+    if value["zeroDays"] != None:
+        releasesWithZeroDays += 1
+if releasesWithZeroDays > 0:
+    tweetZeroDays(releasesWithZeroDays)
 
 
 
 # tweet if there are any changes to the last 20 release notes
-if entriesChanged > 0:
-    getData(latestRows)
-    changedResults = []
-
+def tweetEntryChanges():
     for key, value in updatesInfo.items():
-        if value["added"] == "none" and value["updated"] != "none":
+        if value["added"] == None and value["updated"] != None:
             changedResults.append(f'{value["emojis"]} {key} - {value["updated"]}\n')
-        if value["added"] != "none" and value["updated"] == "none":
+        if value["added"] != None and value["updated"] == None:
             changedResults.append(f'{value["emojis"]} {key} - {value["added"]}\n')
-        if value["added"] != "none" and value["updated"] != "none":
+        if value["added"] != None and value["updated"] != None:
             changedResults.append(f'{value["emojis"]} {key} - {value["added"]}, {value["updated"]}\n')
 
-    num = len(re.findall("-", str(changedResults)))
+    num = len(re.findall(r":[^:]+:", str(changedResults)))
     if num == 1:
         title = ":arrows_counterclockwise: 1 SECURITY NOTE UPDATED :arrows_counterclockwise:\n\n"
     else:
@@ -331,6 +343,13 @@ if entriesChanged > 0:
 
     tweetOrCreateAThread(title, changedResults)
 
+
+entriesChanged = 0
+for key, value in updatesInfo.items():
+    if value["added"] != None or value["updated"] != None:
+        entriesChanged += 1
+if entriesChanged > 0:
+    tweetEntryChanges()
 
 
 # tweet how many security issues were fixed in Apple web servers in the previous month
