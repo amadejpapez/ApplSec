@@ -34,6 +34,9 @@ latestiosVersion = int(latestiosVersion[0])
 updatesInfo = {}
 releasesWithZeroDays = 0
 entriesChanged = 0
+uniqueZeroDays = {}
+uniqueZeroDays["released"] = {}
+zeroDayResults = []
 
 def getData(rows):
     for row in rows:
@@ -111,6 +114,13 @@ def getData(rows):
 
             updatesInfo[title]["zeroDays"] = zeroDays
 
+            # save all CVE numbers
+            page = page.replace("<strong>", "▲").replace("</strong>", "▼").replace("/div", "◄")
+            currentZeroDays = re.findall(r"▲[^▼]+▼([^▲◄]+actively exploited[^▲◄]+)", page)
+            currentZeroDays = re.findall(r"CVE-[0-9]{4}-[0-9]{5}", str(currentZeroDays))
+            global uniqueZeroDays
+            for x in currentZeroDays:
+                uniqueZeroDays["released"][x] = ""
 
         # check for any updated or added entries
         currentDateFormatTwo = f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}"
@@ -145,31 +155,70 @@ def getData(rows):
 
 
 def tweetOrCreateAThread(title, functionResults):
-    results = title
+    global uniqueZeroDays
+    results = ""
+    secondResults = ""
+    thirdResults = ""
+
     if len(functionResults) <= 4:
         # if there are less than four releases put them all in one tweet
         for result in functionResults:
             results += result
+
         if functionResults == updateResults:
             # attached only to new updates released tweet
             results += f"{mainLink}\n"
-        api.update_status(emoji.emojize(f"{results}", use_aliases=True))
 
-    if len(functionResults) > 4:
+    elif len(functionResults) > 4:
         # if there are more than four releases create a thread
-        secondResults = ""
         for result in functionResults:
             if len(re.findall("-", results)) <= 4:
                 results += result
             else:
                 secondResults += result
+
         if functionResults == updateResults:
+            # attached only to new updates released tweet
             secondResults += f"{mainLink}\n"
 
-        originalTweet = api.update_status(emoji.emojize(f"{results}", use_aliases=True))
+    if functionResults == zeroDayResults:
+        lengthNew = len(uniqueZeroDays["new"])
+        lengthOld = len(uniqueZeroDays["old"])
+        if lengthNew > 1:
+            uniqueZeroDays["new"] = ", ".join(uniqueZeroDays["new"])
+        if lengthOld > 1:
+            uniqueZeroDays["old"] = ", ".join(uniqueZeroDays["old"])
 
-        api.update_status(emoji.emojize(f"{secondResults}", use_aliases=True), in_reply_to_status_id=originalTweet.id, auto_populate_reply_metadata=True)
+        if lengthNew == 1 and lengthOld == 0:
+            title += f'Today Apple patched one new vulnerability ({uniqueZeroDays["new"]}) that was already used to attack users'
+        elif lengthNew == 0 and lengthOld == 1:
+            title += f'Today Apple released additional updates for one vulnerability ({uniqueZeroDays["old"]}) that was already used to attack users'
+        elif lengthNew == 1 and lengthOld == 1:
+            title += f'Today Apple patched one new vulnerability ({uniqueZeroDays["new"]}) that was already used to attack users and released additional updates for {uniqueZeroDays["old"]}'
+        elif lengthNew > 1 and lengthOld == 0:
+            title += f'Today Apple patched {lengthNew} new vulnerabilities across their systems that were already used to attack users - {uniqueZeroDays["new"]}'
+        elif lengthNew == 0 and lengthOld > 1:
+            title += f'Today Apple released additional updates for {lengthOld} vulnerabilities that were already used to attack users - {uniqueZeroDays["old"]}'
+        elif lengthNew > 1 and lengthOld > 1:
+            title += f'Today Apple patched {lengthNew} new vulnerabilities that were already used to attack and released additional updates for {uniqueZeroDays["old"]}'
 
+        if len(re.findall("-", results)) <= 2:
+            results = f"{title} :rotating_light:\n\nUPDATES RELEASED FOR:\n{results}"
+        else:
+            thirdResults = secondResults
+            secondResults = results
+            results = f"{title} :rotating_light:\n\nUPDATES RELEASED FOR:"
+    else:
+        results = str(title + results)
+
+
+    originalTweet = api.update_status(emoji.emojize(f"{results}", use_aliases=True))
+
+    if secondResults != "":
+        secondTweet = api.update_status(emoji.emojize(f"{secondResults}", use_aliases=True), in_reply_to_status_id=originalTweet.id, auto_populate_reply_metadata=True)
+
+    if thirdResults != "":
+        api.update_status(emoji.emojize(f'{thirdResults}', use_aliases=True), in_reply_to_status_id=secondTweet.id, auto_populate_reply_metadata=True)
 
 
 # tweet if there were any new updates released
@@ -247,6 +296,17 @@ if releasesWithZeroDays > 0:
 
     for key, value in zeroDayReleases.items():
         zeroDayResults.append(f'{value["zeroDays"]} fixed in {key}\n')
+
+    uniqueZeroDays["old"] = []
+    uniqueZeroDays["new"] = []
+    for key, value in uniqueZeroDays["released"].items():
+        with open("zeroDays.txt", "r") as zeroDays:
+            if key in zeroDays.read():
+                uniqueZeroDays["old"].append(key)
+            else:
+                uniqueZeroDays["new"].append(key)
+                with open("zeroDays.txt", "a") as zeroDays:
+                    zeroDays.write(f"{key}\n")
 
     tweetOrCreateAThread(title, zeroDayResults)
 
