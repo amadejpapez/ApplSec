@@ -131,11 +131,8 @@ def getData(rows):
 zeroDayResults = []
 changedResults = []
 
-def tweetOrCreateAThread(title, functionResults):
+def tweetOrCreateAThread(title, functionResults, results, secondResults, thirdResults):
     global uniqueZeroDays
-    results = ""
-    secondResults = ""
-    thirdResults = ""
 
     if len(functionResults) <= 4:
         # if there are less than four releases put them all in one tweet
@@ -217,14 +214,15 @@ def tweetNewUpdates(numberOfNewUpdates):
     for key, value in updatesInfo.items():
         updateResults.append(f'{value["emojis"]} {key} - {value["CVEs"]}\n')
 
-    tweetOrCreateAThread(title, updateResults)
+    tweetOrCreateAThread(title, updateResults, "", "", "")
 
 
 mainLink = "https://support.apple.com/en-us/HT201222"
 mainPage = requests.get(mainLink).text
 mainPage = mainPage.replace("\n", " ").replace("<td>", "▲").replace("</td>", "▼")
 allTd = re.findall(r"▲([^▼]+)▼", str(mainPage))
-latestRows = list(map(list, zip(*[iter(allTd)]*3)))[:20]
+allRows = list(map(list, zip(*[iter(allTd)]*3)))
+latestRows = allRows[:20]
 currentDateFormatOne = f"{date.today().day} {date.today().strftime('%b')} {date.today().year}"
 updateResults = []
 newRows = []
@@ -245,7 +243,7 @@ def tweetiOSParts():
     results = ""
 
     for key, value in updatesInfo.items():
-        if "iOS" in key and str(latestiosVersion) in key:
+        if "iOS" in key and str(latestVersion["iOS"]) in key:
             page = requests.get(value["releaseNotes"]).text
             page = page.replace("Additional recognition", "▲").split("▲", 1)[0]
             allStrong = Counter(re.findall(r"<strong>(.*)</strong>", str(page)))
@@ -273,10 +271,18 @@ def tweetiOSParts():
     api.update_status(emoji.emojize(results, use_aliases=True))
 
 
-latestiosVersion = re.findall(r"iOS\s([0-9]+)", str(latestRows))
-latestiosVersion = list(map(int, latestiosVersion))
-latestiosVersion.sort(reverse = True)
-latestiosVersion = int(latestiosVersion[0])
+# find the latest version of operating systems
+latestVersion = {"iOS": 0, "tvOS": 0, "watchOS": 0, "macOS": ""}
+for key, value in latestVersion.items():
+    if key == "macOS":
+        version = re.findall(rf"{key}\s[a-zA-Z\s]+([0-9]+)", str(allRows))
+    else:
+        version = re.findall(rf"{key}\s([0-9]+)", str(allRows))
+    version = list(map(int, version))
+    version.sort(reverse = True)
+    version = int(version[0])
+    latestVersion[key] = version
+
 
 if "iOS" in str(updatesInfo):
     tweetiOSParts()
@@ -314,7 +320,7 @@ def tweetZeroDays(numberOfZeroDayReleases):
                         with open("zeroDays.txt", "a") as zeroDays:
                             zeroDays.write(f"{zeroDay}\n")
 
-    tweetOrCreateAThread(title, zeroDayResults)
+    tweetOrCreateAThread(title, zeroDayResults, "", "", "")
 
 releasesWithZeroDays = 0
 for key, value in updatesInfo.items():
@@ -341,7 +347,7 @@ def tweetEntryChanges():
     else:
         title = f":arrows_counterclockwise: {num} SECURITY NOTES UPDATED :arrows_counterclockwise:\n\n"
 
-    tweetOrCreateAThread(title, changedResults)
+    tweetOrCreateAThread(title, changedResults, "", "", "")
 
 
 entriesChanged = 0
@@ -350,6 +356,7 @@ for key, value in updatesInfo.items():
         entriesChanged += 1
 if entriesChanged > 0:
     tweetEntryChanges()
+
 
 
 # tweet how many security issues were fixed in Apple web servers in the previous month
@@ -382,33 +389,64 @@ if date.today().day == 1:
     api.update_status(emoji.emojize(results, use_aliases=True))
 
 
-# tweet how many vulnerabilities were fixed in the four latest series of iOS if there is a new major iOS update
-if f"iOS {latestiosVersion} " in str(latestRows) or f"iOS {latestiosVersion}.0 " in str(latestRows):
-    iosInfo = {}
 
-    # save previous three iOS versions
-    iosVersions = [f"{latestiosVersion - 1}", f"{latestiosVersion - 2}", f"{latestiosVersion - 3}", f"{latestiosVersion - 4}"]
+# tweet how many vulnerabilities were fixed in the four latest series of iOS/watchOS/tvOS/macOS if there is a new major update
+def yearlyTotalReport(system, latestSystemVersion):
+    info = {}
 
-    # get all the links of release notes, count CVEs and save all the info to the nested directory
-    for version in iosVersions:
-        currentCVEs = 0
-        iosInfo[version] = {}
+    # save previous three versions
+    versions = []
+    if system == "macOS":
+        # macOS names are hard coded for now
+        versions = ["11", "10.15", "10.14", "10.13"]
+    else:
+        num = latestSystemVersion
+        while len(versions) <= 3:
+            num -= 1
+            versions.append(num)
+
+    # get all the links of release notes, count CVEs and save all the info
+    for version in versions:
+        info[version] = {}
+        info[version]["releaseNotes"] = ""
+        info[version]["CVEs"] = 0
+        info[version]["releases"] = 0
+        info[version]["macosName"] = "None"
+
+        if system == "macOS" and re.findall(rf"{system}\s([a-zA-Z\s]+){version}", str(allRows)) != []:
+            # if system is macOS, take the name of the macOS version as Security Updates only contain names
+            info[version]["macosName"] = re.findall(rf"{system}\s([a-zA-Z\s]+)\s{version}", str(allRows))[0]
 
         for row in allRows:
-            if f"iOS {version}" in str(row[0]):
-                iosInfo[version]["releaseNotes"] = re.findall(r'href="([^"]+)"', str(row[0]))
+            row = str(row[0])
 
-                for link in iosInfo[version]["releaseNotes"]:
-                    page = requests.get(link).text
+            if f"{system} {version}" in row or info[version]["macosName"] in row:
+                if "href" in row:
+                    # if there are release notes, count all the CVEs
+                    info[version]["releaseNotes"] = re.findall(r'href="([^"]+)"', row)
+
+                    page = requests.get(info[version]["releaseNotes"][0]).text
                     currentCVE = len(re.findall("CVE", page)) - 1
-                    currentCVEs += currentCVE
-                    iosInfo[version]["CVEs"] = currentCVEs
+                    info[version]["CVEs"] += currentCVE
 
-    secondiosVersion = list(iosInfo.keys())[0]
-    results = f'iOS {latestiosVersion} was released today. In iOS {secondiosVersion} series Apple fixed in total of {iosInfo[secondiosVersion]["CVEs"]} security issues.\n\n:bar_chart: COMPARED TO:\n'
-    iosInfo.pop(secondiosVersion)
+                info[version]["releases"] += 1
 
-    for key, value in iosInfo.items():
-        results += f'- {value["CVEs"]} of issues fixed in iOS {key} series\n'
+    secondVersion = list(info.keys())[0]
+    results = f'{system} {latestSystemVersion} was released today. In {system} {secondVersion} series Apple fixed in total of {info[secondVersion]["CVEs"]} security issues over {info[secondVersion]["releases"]} releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n'
+    info.pop(secondVersion)
 
-    api.update_status(emoji.emojize(results, use_aliases=True))
+    for key, value in info.items():
+        results += f'- {value["CVEs"]} fixed in {system} {key} over {value["releases"]} releases\n'
+
+    if system == "macOS":
+        # for macOS create a thread with additional info in the second tweet
+        secondResults = "Numbers contain all Security and Supplemental Updates."
+        tweetOrCreateAThread("", "", results, secondResults, "")
+    else:
+        api.update_status(emoji.emojize(results, use_aliases=True))
+
+
+for key, value in latestVersion.items():
+    if f"{key} {value} " in str(latestRows) or f"{key} {value}.0 " in str(latestRows):
+        # when there is new major version released in September, run yearlyTotalReport for that version
+        yearlyTotalReport(key, value)
