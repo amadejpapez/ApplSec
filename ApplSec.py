@@ -1,5 +1,4 @@
 import re
-import copy
 import emoji
 import tweepy
 import requests
