@@ -1,18 +1,9 @@
 import re
-import emoji
-import tweepy
+import os
 import requests
 from datetime import date
 from collections import Counter, OrderedDict
-
-api_key = "x"
-api_key_secret = "x"
-access_token = "x"
-access_token_secret = "x"
-
-auth = tweepy.OAuthHandler(api_key, api_key_secret)
-auth.set_access_token(access_token, access_token_secret)
-api = tweepy.API(auth)
+from make_a_tweet import tweetOrCreateAThread
 
 
 # function to grab all the data from Apple's website
@@ -97,6 +88,7 @@ def getData(rows):
             currentZeroDays = re.findall(r"▲[^▼]+▼([^▲◄]+actively exploited[^▲◄]+)", page)
             currentZeroDays = re.findall(r"CVE-[0-9]{4}-[0-9]{4,5}", str(currentZeroDays))
             updatesInfo[title]["zeroDayCVEs"] = currentZeroDays
+
         else:
             updatesInfo[title]["zeroDays"] = None
             updatesInfo[title]["zeroDayCVEs"] = None
@@ -127,84 +119,11 @@ def getData(rows):
         updatesInfo[title]["updated"] = updated
 
 
-zeroDayResults = []
-changedResults = []
-
-def tweetOrCreateAThread(title, functionResults, results, secondResults, thirdResults):
-    global uniqueZeroDays
-
-    if len(functionResults) <= 4:
-        # if there are less than four releases put them all in one tweet
-        for result in functionResults:
-            results += result
-
-        if functionResults == updateResults:
-            # attached only to new updates released tweet
-            results += f"{mainLink}\n"
-
-    elif len(functionResults) > 4:
-        # if there are more than four releases create a thread
-        if functionResults == changedResults:
-            for result in functionResults:
-                if int(len(re.findall(r":[^:]+:", results)) + 1) <= 4:
-                    results += result
-                else:
-                    secondResults += result
-        else:
-            for result in functionResults:
-                if int(len(re.findall(r"-", results)) + 1) <= 4:
-                    results += result
-                else:
-                    secondResults += result
-
-
-        if functionResults == updateResults:
-            # attached only to new updates released tweet
-            secondResults += f"{mainLink}\n"
-
-    if functionResults == zeroDayResults:
-        lengthNew = len(uniqueZeroDays["new"])
-        lengthOld = len(uniqueZeroDays["old"])
-        if lengthNew > 0:
-            uniqueZeroDays["new"] = ", ".join(uniqueZeroDays["new"])
-        if lengthOld > 0:
-            uniqueZeroDays["old"] = ", ".join(uniqueZeroDays["old"])
-
-        if lengthNew == 1 and lengthOld == 0:
-            title += f'Today Apple patched one new vulnerability ({uniqueZeroDays["new"]}) that was already used to attack users'
-        elif lengthNew == 0 and lengthOld == 1:
-            title += f'Today Apple released additional updates for one vulnerability ({uniqueZeroDays["old"]}) that was already used to attack users'
-        elif lengthNew == 1 and lengthOld == 1:
-            title += f'Today Apple patched one new vulnerability ({uniqueZeroDays["new"]}) that was already used to attack users and released additional updates for {uniqueZeroDays["old"]}'
-        elif lengthNew > 1 and lengthOld == 0:
-            title += f'Today Apple patched {lengthNew} new vulnerabilities across their systems that were already used to attack users - {uniqueZeroDays["new"]}'
-        elif lengthNew == 0 and lengthOld > 1:
-            title += f'Today Apple released additional updates for {lengthOld} vulnerabilities that were already used to attack users - {uniqueZeroDays["old"]}'
-        elif lengthNew > 1 and lengthOld > 1:
-            title += f'Today Apple patched {lengthNew} new vulnerabilities that were already used to attack and released additional updates for {uniqueZeroDays["old"]}'
-
-        if len(re.findall("in", results)) <= 2:
-            results = f"{title} :rotating_light:\n\nRELEASED UPDATES:\n{results}"
-        else:
-            thirdResults = secondResults
-            secondResults = results
-            results = f"{title} :rotating_light:\n\nRELEASED UPDATES:"
-    else:
-        results = str(title + results)
-
-
-    originalTweet = api.update_status(emoji.emojize(results, use_aliases=True))
-
-    if secondResults != "":
-        secondTweet = api.update_status(emoji.emojize(secondResults, use_aliases=True), in_reply_to_status_id=originalTweet.id, auto_populate_reply_metadata=True)
-
-    if thirdResults != "":
-        api.update_status(emoji.emojize(thirdResults, use_aliases=True), in_reply_to_status_id=secondTweet.id, auto_populate_reply_metadata=True)
-
-
 
 # tweet if there were any new updates released
 def tweetNewUpdates(numberOfNewUpdates):
+    updateResults = []
+
     if numberOfNewUpdates == 1:
         title = ":collision: NEW UPDATE RELEASED :collision:\n\n"
     else:
@@ -213,17 +132,15 @@ def tweetNewUpdates(numberOfNewUpdates):
     for key, value in updatesInfo.items():
         updateResults.append(f'{value["emojis"]} {key} - {value["CVEs"]}\n')
 
-    tweetOrCreateAThread(title, updateResults, "", "", "")
+    tweetOrCreateAThread("tweetNewUpdates", title, updateResults, "", "", "", None)
 
 
-mainLink = "https://support.apple.com/en-us/HT201222"
-mainPage = requests.get(mainLink).text
+mainPage = requests.get("https://support.apple.com/en-us/HT201222").text
 mainPage = mainPage.replace("\n", " ").replace("<td>", "▲").replace("</td>", "▼")
 allTd = re.findall(r"▲([^▼]+)▼", str(mainPage))
 allRows = list(map(list, zip(*[iter(allTd)]*3)))
 latestRows = allRows[:20]
 currentDateFormatOne = f"{date.today().day} {date.today().strftime('%b')} {date.today().year}"
-updateResults = []
 newRows = []
 
 for row in latestRows:
@@ -267,21 +184,23 @@ def tweetiOSParts():
 
             results += f"{releaseNotes}\n"
 
-    api.update_status(emoji.emojize(results, use_aliases=True))
+    tweetOrCreateAThread("tweetiOSParts", None, "", results, "", "", None)
+
 
 
 # find the latest version of operating systems
 latestVersion = {"iOS": 0, "tvOS": 0, "watchOS": 0, "macOS": ""}
+
 for key, value in latestVersion.items():
     if key == "macOS":
         version = re.findall(rf"{key}\s[a-zA-Z\s]+([0-9]+)", str(allRows))
     else:
         version = re.findall(rf"{key}\s([0-9]+)", str(allRows))
+
     version = list(map(int, version))
     version.sort(reverse = True)
     version = int(version[0])
     latestVersion[key] = version
-
 
 if "iOS" in str(updatesInfo):
     tweetiOSParts()
@@ -290,7 +209,8 @@ if "iOS" in str(updatesInfo):
 
 # tweet if there were any zero-day vulnerabilities fixed
 def tweetZeroDays(numberOfZeroDayReleases):
-    global uniqueZeroDays
+    dirPath = os.path.dirname(os.path.realpath(__file__))
+    zeroDayResults = []
     uniqueZeroDays = {}
     uniqueZeroDays["old"] = []
     uniqueZeroDays["new"] = []
@@ -306,25 +226,28 @@ def tweetZeroDays(numberOfZeroDayReleases):
             zeroDayResults.append(f'{value["zeroDays"]} fixed in {key}\n')
 
             for zeroDay in value["zeroDayCVEs"]:
-                with open("zeroDays.txt", "r") as zeroDays:
+                with open(f"{dirPath}/zeroDays.txt", "r") as zeroDays:
                     zeroDayFile = zeroDays.read()
-                    if zeroDay in zeroDayFile:
-                        if zeroDay not in uniqueZeroDays["old"]:
-                            # if zero-day CVE is in the file, add it to the uniqueZeroDays if it is not already there
-                            uniqueZeroDays["old"].append(zeroDay)
+
+                    if zeroDay in zeroDayFile and zeroDay not in uniqueZeroDays["old"]:
+                        # if zero-day CVE is in the file, add it to the uniqueZeroDays if it is not already there
+                        uniqueZeroDays["old"].append(zeroDay)
+
                     if zeroDay not in zeroDayFile:
                         # if zero-day CVE is not in the file, add it
                         if zeroDay not in uniqueZeroDays["new"]:
                             uniqueZeroDays["new"].append(zeroDay)
-                        with open("zeroDays.txt", "a") as zeroDays:
+                        with open(f"{dirPath}/zeroDays.txt", "a") as zeroDays:
                             zeroDays.write(f"{zeroDay}\n")
 
-    tweetOrCreateAThread(title, zeroDayResults, "", "", "")
+    tweetOrCreateAThread("tweetZeroDays", title, zeroDayResults, "", "", "", uniqueZeroDays)
+
 
 releasesWithZeroDays = 0
 for key, value in updatesInfo.items():
     if value["zeroDays"] != None:
         releasesWithZeroDays += 1
+
 if releasesWithZeroDays > 0:
     tweetZeroDays(releasesWithZeroDays)
 
@@ -332,6 +255,8 @@ if releasesWithZeroDays > 0:
 
 # tweet if there are any changes to the last 20 release notes
 def tweetEntryChanges():
+    changedResults = []
+
     for key, value in updatesInfo.items():
         if value["added"] == None and value["updated"] != None:
             changedResults.append(f'{value["emojis"]} {key} - {value["updated"]}\n')
@@ -341,12 +266,13 @@ def tweetEntryChanges():
             changedResults.append(f'{value["emojis"]} {key} - {value["added"]}, {value["updated"]}\n')
 
     num = len(re.findall(r":[^:]+:", str(changedResults)))
+
     if num == 1:
         title = ":arrows_counterclockwise: 1 SECURITY NOTE UPDATED :arrows_counterclockwise:\n\n"
     else:
         title = f":arrows_counterclockwise: {num} SECURITY NOTES UPDATED :arrows_counterclockwise:\n\n"
 
-    tweetOrCreateAThread(title, changedResults, "", "", "")
+    tweetOrCreateAThread("tweetEntryChanges", title, changedResults, "", "", "", None)
 
 
 entriesChanged = 0
@@ -383,9 +309,10 @@ if date.today().day == 1:
         results += f":cloud: {numberOfFixesOnIcloudDotCom} of those on icloud[.]com\n"
     if numberOfFixes >= 1:
         results += f"and {numberOfFixes} on other domains\n"
-    results += str(mainPage)
 
-    api.update_status(emoji.emojize(results, use_aliases=True))
+    results += mainPage
+
+    tweetOrCreateAThread("webServerFixes", None, "", results, "", "", None)
 
 
 
@@ -431,6 +358,7 @@ def yearlyTotalReport(system, latestSystemVersion):
                 info[version]["releases"] += 1
 
     secondVersion = list(info.keys())[0]
+
     results = f'{system} {latestSystemVersion} was released today. In {system} {secondVersion} series Apple fixed in total of {info[secondVersion]["CVEs"]} security issues over {info[secondVersion]["releases"]} releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n'
     info.pop(secondVersion)
 
@@ -440,9 +368,9 @@ def yearlyTotalReport(system, latestSystemVersion):
     if system == "macOS":
         # for macOS create a thread with additional info in the second tweet
         secondResults = "Numbers contain all Security and Supplemental Updates."
-        tweetOrCreateAThread("", "", results, secondResults, "")
+        tweetOrCreateAThread("yearlyTotalReport", None, "", results, secondResults, "", None)
     else:
-        api.update_status(emoji.emojize(results, use_aliases=True))
+        tweetOrCreateAThread("yearlyTotalReport", None, "", results, "", "", None)
 
 
 for key, value in latestVersion.items():
