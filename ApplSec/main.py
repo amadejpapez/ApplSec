@@ -293,7 +293,7 @@ if entriesChanged > 0:
 if date.today().day == 1:
     lastMonth = int(date.today().strftime("%m")) - 1
     nameLastMonth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][lastMonth - 1]
-    lastMonth = f"0{lastMonth}"
+    lastMonth = f"<em>0{lastMonth}"
 
     currentDateFormatThree = f"{date.today().year}-{lastMonth}"
 
