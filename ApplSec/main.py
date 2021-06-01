@@ -223,24 +223,27 @@ def tweetZeroDays(numberOfZeroDayReleases):
         title = ":mega: EMERGENCY UPDATES :mega:\n\n"
 
     for key, value in updatesInfo.items():
-        if value["zeroDays"] != None:
+        if value["zeroDays"]:
             # if there were any zero-days fixed, add this to the results
             zeroDayResults.append(f'{value["zeroDays"]} fixed in {key}\n')
 
             for zeroDay in value["zeroDayCVEs"]:
-                with open(f"{dirPath}/zeroDays.txt", "r") as zeroDays:
+                if not os.path.exists(f"{dirPath}/zeroDays.txt"):
+                    with open(f"{dirPath}/zeroDays.txt", "w") as zeroDays:
+                        zeroDays.write("")
+
+                with open(f"{dirPath}/zeroDays.txt", "r+") as zeroDays:
                     zeroDayFile = zeroDays.read()
 
                     if zeroDay in zeroDayFile and zeroDay not in uniqueZeroDays["old"]:
-                        # if zero-day CVE is in the file, add it to the uniqueZeroDays if it is not already there
+                        # if zero-day CVE is in the file, save it if it is not already there
                         uniqueZeroDays["old"].append(zeroDay)
 
                     if zeroDay not in zeroDayFile:
-                        # if zero-day CVE is not in the file, add it
+                        # if zero-day CVE is not in the file, add it tot the file
                         if zeroDay not in uniqueZeroDays["new"]:
                             uniqueZeroDays["new"].append(zeroDay)
-                        with open(f"{dirPath}/zeroDays.txt", "a") as zeroDays:
-                            zeroDays.write(f"{zeroDay}\n")
+                        zeroDays.write(f"{zeroDay}\n")
 
     tweetOrCreateAThread("tweetZeroDays", title, zeroDayResults, "", "", "", uniqueZeroDays)
 
