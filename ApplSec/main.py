@@ -188,7 +188,7 @@ def tweetiOSParts():
 
             results += f"{releaseNotes}\n"
 
-    tweetOrCreateAThread("tweetiOSParts", None, "", results, "", "", None)
+            tweetOrCreateAThread("tweetiOSParts", None, "", results, "", "", None)
 
 
 
