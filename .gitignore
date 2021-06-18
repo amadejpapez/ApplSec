@@ -1,2 +1,4 @@
-zeroDays.txt
 __pycache__
+
+zeroDays.txt
+auth_secrets.py
