@@ -42,7 +42,7 @@ Currently I am using a website called __PythonAnywhere__. PythonAnywhere has a f
 <br>
 
 ## 😇 Got any ideas?
-The bot is often updated as new ideas appear - and new issues :) If you have any ideas, feel free to message me.
+The bot is often updated as new ideas appear - and new issues as it using regex to get information from Apple website, so the bot needs regular following and updating. If you have any ideas for the bot, feel free to message me.
 <br><br>
 
 *Apple, Apple logo, iCloud, watchOS, tvOS and macOS are trademarks of Apple Inc., registered in the U.S. and other countries and regions.*
