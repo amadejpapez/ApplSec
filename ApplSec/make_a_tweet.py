@@ -3,13 +3,13 @@ import re
 import emoji
 import tweepy
 
-from auth_secrets import auth
+from auth_secrets import keys
 
 
-api_key             = auth["ApplSec"]["api_key"]
-api_key_secret      = auth["ApplSec"]["api_key_secret"]
-access_token        = auth["ApplSec"]["access_token"]
-access_token_secret = auth["ApplSec"]["access_token_secret"]
+api_key             = keys["ApplSec"]["api_key"]
+api_key_secret      = keys["ApplSec"]["api_key_secret"]
+access_token        = keys["ApplSec"]["access_token"]
+access_token_secret = keys["ApplSec"]["access_token_secret"]
 
 auth = tweepy.OAuthHandler(api_key, api_key_secret)
 auth.set_access_token(access_token, access_token_secret)
