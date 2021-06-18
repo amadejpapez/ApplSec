@@ -1,8 +1,10 @@
-import re
 import os
-import requests
-from datetime import date
+import re
 from collections import Counter, OrderedDict
+from datetime import date
+
+import requests
+
 from make_a_tweet import tweetOrCreateAThread
 
 
