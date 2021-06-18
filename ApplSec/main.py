@@ -299,7 +299,7 @@ if date.today().day == 1:
     if lastMonth < 10:
         lastMonth = f"0{lastMonth}"
 
-    currentDateFormatThree = f"{date.today().year}-{lastMonth}"
+    currentDateFormatThree = f"<em>{date.today().year}-{lastMonth}"
 
     mainPage = "https://support.apple.com/en-us/HT201536"
     page = requests.get(mainPage).text
