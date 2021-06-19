@@ -52,17 +52,17 @@ def tweetOrCreateAThread(whatFunction, title, functionResults, results, secondRe
             uniqueZeroDays["old"] = ", ".join(uniqueZeroDays["old"])
 
         if lengthNew == 1 and lengthOld == 0:
-            title += f'Today Apple patched one new vulnerability ({uniqueZeroDays["new"]}) that was already used to attack users'
+            title += f'Today, Apple pushed updates for one new zero-day ({uniqueZeroDays["new"]}) that was already used to attack users'
         elif lengthNew == 0 and lengthOld == 1:
-            title += f'Today Apple released additional updates for one vulnerability ({uniqueZeroDays["old"]}) that was already used to attack users'
+            title += f'Today, Apple pushed additional updates for one zero-day ({uniqueZeroDays["old"]}) that was already used to attack users'
         elif lengthNew == 1 and lengthOld == 1:
-            title += f'Today Apple patched one new vulnerability ({uniqueZeroDays["new"]}) that was already used to attack users and released additional updates for {uniqueZeroDays["old"]}'
+            title += f'Today, Apple pushed updates for one new zero-day ({uniqueZeroDays["new"]}) that was already used to attack users and additional updates for {uniqueZeroDays["old"]} zero-day'
         elif lengthNew > 1 and lengthOld == 0:
-            title += f'Today Apple patched {lengthNew} new vulnerabilities across their systems that were already used to attack users - {uniqueZeroDays["new"]}'
+            title += f'Today, Apple pushed updates for {lengthNew} new zero-days that had already been used to attack users - {uniqueZeroDays["new"]}'
         elif lengthNew == 0 and lengthOld > 1:
-            title += f'Today Apple released additional updates for {lengthOld} vulnerabilities that were already used to attack users - {uniqueZeroDays["old"]}'
+            title += f'Today, Apple pushed additional updates for {lengthOld} zero-days that had already been used to attack users - {uniqueZeroDays["old"]}'
         elif lengthNew > 1 and lengthOld > 1:
-            title += f'Today Apple patched {lengthNew} new vulnerabilities that were already used to attack and released additional updates for {uniqueZeroDays["old"]}'
+            title += f'Today, Apple pushed updates for {lengthNew} new zero-days that had already been used to attack users and additional updates for {lengthNew} zero-days.'
 
         if len(re.findall("in", results)) <= 2:
             results = f"{title} :rotating_light:\n\nRELEASED UPDATES:\n{results}"
