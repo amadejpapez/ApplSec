@@ -35,8 +35,9 @@ for release in lastTwentyReleases:
     if f"<td>{currentDateFormatOne}</td>" in release:
         newReleases.append(release)
 
+updatesInfo = getData(newReleases)
+
 if len(newReleases) > 0:
-    updatesInfo = getData(newReleases)
     tweetNewUpdates(updatesInfo)
 
 # find the latest version of operating systems
@@ -66,6 +67,8 @@ for key, value in updatesInfo.items():
         break
 
 # if there are any changes to the last 20 release notes, run tweetEntryChanges()
+updatesInfo = getData(lastTwentyReleases)
+
 for key, value in updatesInfo.items():
     if value["added"] or value["updated"]:
         tweetEntryChanges(updatesInfo)
