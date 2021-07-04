@@ -35,4 +35,4 @@ def tweetiOSParts(updatesInfo, latestVersion):
 
             results += f'{value["releaseNotes"]}\n'
 
-            tweetOrCreateAThread("tweetiOSParts", firstTweet = results)
+            tweetOrCreateAThread("tweetiOSParts", firstTweet=results)

@@ -23,4 +23,4 @@ def tweetEntryChanges(updatesInfo):
     else:
         title = f":arrows_counterclockwise: {num} SECURITY NOTES UPDATED :arrows_counterclockwise:\n\n"
 
-    tweetOrCreateAThread("tweetEntryChanges", title = title, results = results)
+    tweetOrCreateAThread("tweetEntryChanges", title=title, results=results)

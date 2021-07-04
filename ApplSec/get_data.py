@@ -17,7 +17,8 @@ def getData(releases):
 
             # grab the header from the page
             title = re.findall(r"<h2>(.*)<.h2>", page)[1]
-            title = title.replace("*", "") # remove * from the title which is sometimes added for additional info
+            # remove * from the title which is sometimes added for additional info
+            title = title.replace("*", "")
         else:
             print(release)
             # if there is no release notes, grab the title from the mainPage
@@ -54,7 +55,7 @@ def getData(releases):
         updatesInfo[title] = {"releaseNotes": releaseNotes, "emojis": emojis}
 
         # grab the number of CVEs from the page
-        CVEs = (len(re.findall("CVE", str(page))) - 1)
+        CVEs = len(re.findall("CVE", str(page))) - 1
 
         if "soon" in str(release):
             updatesInfo[title]["CVEs"] = "no details yet"
@@ -88,7 +89,7 @@ def getData(releases):
 
         # check for any updated or added entries
         currentDateFormatTwo = f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}"
-        num = (len(re.findall(f"Entry added {currentDateFormatTwo}", str(page))))
+        num = len(re.findall(f"Entry added {currentDateFormatTwo}", str(page)))
 
         if num == 1:
             updatesInfo[title]["added"] = f"{num} entry added"
@@ -97,7 +98,7 @@ def getData(releases):
         else:
             updatesInfo[title]["added"] = None
 
-        num = (len(re.findall(f"Entry updated {currentDateFormatTwo}", str(page))))
+        num = len(re.findall(f"Entry updated {currentDateFormatTwo}", str(page)))
 
         if num == 1:
             updatesInfo[title]["updated"] = f"{num} entry updated"

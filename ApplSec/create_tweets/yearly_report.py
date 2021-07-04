@@ -54,6 +54,6 @@ def tweetYearlyReport(releases, system, latestSystemVersion):
     if system == "macOS":
         # for macOS create a thread with additional info in the second tweet
         secondResults = "Numbers also contain issues from Security and Supplemental Updates."
-        tweetOrCreateAThread("tweetYearlyReport", firstTweet = results, secondTweet = secondResults)
+        tweetOrCreateAThread("tweetYearlyReport", firstTweet=results, secondTweet=secondResults)
     else:
-        tweetOrCreateAThread("tweetYearlyReport", firstTweet = results)
+        tweetOrCreateAThread("tweetYearlyReport", firstTweet=results)

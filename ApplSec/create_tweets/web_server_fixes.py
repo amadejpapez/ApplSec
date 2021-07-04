@@ -9,7 +9,20 @@ from create_tweets.post_on_twitter import tweetOrCreateAThread
 
 def tweetWebServerFixes():
     lastMonth = int(date.today().strftime("%m")) - 1
-    nameLastMonth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][lastMonth - 1]
+    nameLastMonth = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ][lastMonth - 1]
 
     if lastMonth < 10:
         lastMonth = f"0{lastMonth}"
@@ -37,4 +50,4 @@ def tweetWebServerFixes():
 
     results += mainPage
 
-    tweetOrCreateAThread("webServerFixes", firstTweet = results)
+    tweetOrCreateAThread("webServerFixes", firstTweet=results)

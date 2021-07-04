@@ -57,6 +57,6 @@ def tweetZeroDays(updatesInfo):
     elif lengthNew == 0 and lengthOld > 1:
         title += f'Today, Apple pushed additional updates for {lengthOld} zero-days that had already been used to attack users - {uniqueZeroDays["old"]}.'
     elif lengthNew > 1 and lengthOld > 1:
-        title += f'Today, Apple pushed updates for {lengthNew} new zero-days that had already been used to attack users and additional updates for {lengthNew} zero-days.'
+        title += f"Today, Apple pushed updates for {lengthNew} new zero-days that had already been used to attack users and additional updates for {lengthNew} zero-days."
 
-    tweetOrCreateAThread("tweetZeroDays", title = title, results = results)
+    tweetOrCreateAThread("tweetZeroDays", title=title, results=results)

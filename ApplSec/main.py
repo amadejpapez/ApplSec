@@ -12,7 +12,7 @@ from get_data import getData
 
 mainPage = requests.get("https://support.apple.com/en-us/HT201222").text
 releases = re.findall(r"(?<=<tr>)(?:.|\n)*?(?=<\/tr>)", mainPage)
-releases.pop(0) # remove first row
+releases.pop(0)  # remove first row
 
 lastTwentyReleases = releases[:20]
 lastTwentyReleaseNames = []
@@ -46,7 +46,7 @@ for key, value in latestVersion.items():
     version = re.findall(rf"{key}\s(?:[a-z\s]+)?([0-9]+)", str(releases), re.IGNORECASE)
 
     version = list(map(int, version))
-    version.sort(reverse = True)
+    version.sort(reverse=True)
     version = int(version[0])
     latestVersion[key] = version
 

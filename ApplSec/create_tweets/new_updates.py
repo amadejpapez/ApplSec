@@ -16,4 +16,4 @@ def tweetNewUpdates(updatesInfo):
 
     results = list(reversed(results))
 
-    tweetOrCreateAThread("tweetNewUpdates", title = title, results = results)
+    tweetOrCreateAThread("tweetNewUpdates", title=title, results=results)
