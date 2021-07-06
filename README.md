@@ -9,7 +9,7 @@
 <b>The bot tweets:
 * 🔄 when new software updates are released,
 * 🔒 how many vulnerabilities were fixed in each update,
-* 💉 five parts of the iOS that got the most security fixes in the latest iOS update,
+* 💉 five parts of the iOS that got the most security fixes in the latest update,
 * ⚠️ if there were any new, or previous zero-day vulnerabilities fixed,
 * 🌐 how many security issues Apple fixed on their websites in the previous month,
 * 📊 when new major updates are released in September, it tweets how many security issues Apple fixed in previous four series, and how many releases each series had,
@@ -17,8 +17,8 @@
 </b>
 <br>
 
-## 🤖 How does the bot work?
-When executed, it creates a current day format and searches for it on the [Apple security updates](https://support.apple.com/en-us/HT201222) page. If a new update is released, it grabs that whole row from the page and saves it. All new rows are then sent to the function which grabs the release notes link if there is one, and grabs all the data from the link. From release notes page it grabs the title, counts how many security fixes there are, checks for any zero-day fixes, and adds an emoji depending on the part that got the update. If the update has no release notes, it just grabs the title from the row and saves it. When all data is gathered, it tweets that new updates were released today with the number of security fixes in them. If there is a new iOS update, it gathers all the parts and tweets five parts with the most security bugs fixed. Each time the bot also takes last 20 release notes, checks if Apple added any new entries, or updated any previous ones and tweets all the changes.
+## 🤖 What does the bot do?
+Firstly, it creates a current day format and searches for it on the [Apple security updates](https://support.apple.com/en-us/HT201222) page. If a new update is released, it grabs that whole row from the page and saves it. All new rows are then sent to the function which grabs the release notes link if there is one, and grabs all the data from that link. From release notes page it grabs the title, counts how many security fixes there are, checks for any zero-day fixes, and adds an emoji depending on the part that got the update. If the update has no release notes, it just grabs the title from the row and saves it. When all data is gathered, it tweets that new updates were released today with the number of security fixes in them. If there is a new iOS update, it gathers all the parts and tweets five parts with the most security bugs fixed. Each time the bot also takes last 20 release notes, checks if Apple added any new entries, or updated any previous ones and tweets all the changes.
 
 In version 8.0 the bot was extended to Apple's web server security. On the first day of the month bot checks the [Apple web server notifications](https://support.apple.com/en-us/HT201536) page, counts how many issues Apple fixed in the previous month, how many of those were on _apple.com_, and how many of those on _icloud.com_.
 
@@ -33,16 +33,15 @@ In version 9.0 an interesting statistic function was added, set to be tweeted in
 
 
 ### How does the bot interact with Twitter?
-The bot is using a Python library called __Tweepy__, which enables communication between Python code and Twitter API. You can find more about Tweepy on their [official page](https://www.tweepy.org/) or on their [GitHub repository](https://github.com/tweepy/tweepy).
+The bot is using a Python library called [Tweepy](https://www.tweepy.org/), which enables communication between the bot and Twitter.
 
 
 ### How does the bot run automatically every day?
-Currently I am using a website called __PythonAnywhere__. PythonAnywhere has a feature called Tasks which enables you to upload your Python code and set the time when you want it to be executed. You can find more about PythonAnywhere on their [official page](https://www.pythonanywhere.com/).
-
+I am using a website called [PythonAnywhere](https://www.pythonanywhere.com/). PythonAnywhere has a feature called Tasks, which enables you to upload your Python code and set the time when you want to run it.
 <br>
 
 ## 😇 Got any ideas?
-The bot is often updated as new ideas appear - and new issues as it using regex to get information from Apple website, so the bot needs regular following and updating. If you have any ideas for the bot, feel free to message me.
+The bot is often updated as new ideas appear - and new issues as the bot using regex to grab information, so the bot needs often updating. If you have any ideas for the bot, feel free to message me.
 <br><br>
 
 *Apple, Apple logo, iCloud, watchOS, tvOS and macOS are trademarks of Apple Inc., registered in the U.S. and other countries and regions.*
