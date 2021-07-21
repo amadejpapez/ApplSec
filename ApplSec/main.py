@@ -57,8 +57,10 @@ for key, value in latestVersion.items():
 
 
 # if there was an iOS release, run tweetiOSParts()
-if "iOS" in str(updatesInfo):
-    tweetiOSParts(updatesInfo, latestVersion)
+for key, value in updatesInfo.items():
+    if "iOS" in key and value["CVEs"] != "no details yet":
+        tweetiOSParts(updatesInfo, latestVersion)
+        break
 
 # if there was a zero-day fixed, run tweetZeroDays()
 for key, value in updatesInfo.items():

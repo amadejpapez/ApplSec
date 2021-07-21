@@ -20,9 +20,8 @@ def getData(releases):
             # remove * from the title which is sometimes added for additional info
             title = title.replace("*", "")
         else:
-            print(release)
             # if there is no release notes, grab the title from the mainPage
-            title = re.findall(r"\['([a-z0-9,\.\-\s]+)", str(release), re.IGNORECASE)[0]
+            title = re.findall(r"<td>([a-z0-9.\s\-\(\)]+)", str(release.split("\n")[0]), re.IGNORECASE)[0]
             title = title.rstrip()
             page = None
             releaseNotes = None
