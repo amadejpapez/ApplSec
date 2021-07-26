@@ -1,5 +1,3 @@
-import re
-
 import emoji
 import tweepy
 from auth_secrets import keys
@@ -15,51 +13,34 @@ api = tweepy.API(auth)
 
 
 def tweetOrCreateAThread(whatFunction, **kwargs):
-    # ACCEPTS: whatFunction, title, results, firstTweet, secondTweet, thirdTweet
-    mainLink = "https://support.apple.com/en-us/HT201222"
+    # ACCEPTS: whatFunction, title, results, firstTweet, secondTweet, thirdTweet, fourthTweet
 
-    if "results" in kwargs and whatFunction != "tweetZeroDays":
+    if "results" in kwargs:
+        maxLength = 250 if whatFunction == "tweetNewUpdates" else 275
         kwargs["firstTweet"] = ""
+        kwargs["secondTweet"] = ""
+        kwargs["thirdTweet"] = ""
 
-        if len(kwargs["results"]) <= 4:
-            # if there are less than four releases put them all in one tweet
-            for result in kwargs["results"]:
+        for result in kwargs["results"]:
+            if len(emoji.emojize(kwargs["firstTweet"], use_aliases=True) + result + kwargs["title"]) < maxLength:
                 kwargs["firstTweet"] += result
 
-        if len(kwargs["results"]) > 4:
-            # if there are more than four releases create a thread
-            kwargs["secondTweet"] = ""
+            elif len(emoji.emojize(kwargs["secondTweet"], use_aliases=True) + result) < maxLength:
+                kwargs["secondTweet"] += result
 
-            if whatFunction != "changedResults":
-                regex = "-"
-            else:
-                regex = ":[^:]+:"
+            elif len(emoji.emojize(kwargs["thirdTweet"], use_aliases=True) + result) < maxLength:
+                kwargs["thirdTweet"] += result
 
-            for result in kwargs["results"]:
-                if int(len(re.findall(regex, kwargs["firstTweet"])) + 1) <= 4:
-                    kwargs["firstTweet"] += result
-                else:
-                    kwargs["secondTweet"] += result
-
-        # attach a link to new updates released tweet
         if whatFunction == "tweetNewUpdates":
-            kwargs["firstTweet"] += f"{mainLink}\n"
+            kwargs["firstTweet"] += "https://support.apple.com/en-us/HT201222"
 
-    if whatFunction == "tweetZeroDays":
-        kwargs["firstTweet"] = f'{kwargs["title"]} :rotating_light:\n\nRELEASED UPDATES:\n'
+    if "title" in kwargs:
+        kwargs["firstTweet"] = str(kwargs["title"] + kwargs["firstTweet"])
 
-        if len(kwargs["results"]) >= 2:
-            kwargs["secondTweet"] = ""
+    for key, value in list(kwargs.items()):
+        if value == "":
+            del kwargs[key]
 
-        for zeroDay in kwargs["results"]:
-            if len(re.findall("in", kwargs["firstTweet"])) <= 2:
-                kwargs["firstTweet"] += zeroDay
-            else:
-                kwargs["secondTweet"] += zeroDay
-
-    else:
-        if "title" in kwargs:
-            kwargs["firstTweet"] = str(kwargs["title"] + kwargs["firstTweet"])
 
     firstTweet = api.update_status(emoji.emojize(kwargs["firstTweet"], use_aliases=True))
 
@@ -67,4 +48,7 @@ def tweetOrCreateAThread(whatFunction, **kwargs):
         secondTweet = api.update_status(emoji.emojize(kwargs["secondTweet"], use_aliases=True), in_reply_to_status_id=firstTweet.id, auto_populate_reply_metadata=True)
 
     if "thirdTweet" in kwargs:
-        api.update_status(emoji.emojize(kwargs["thirdTweet"], use_aliases=True), in_reply_to_status_id=secondTweet.id, auto_populate_reply_metadata=True)
+        thirdTweet = api.update_status(emoji.emojize(kwargs["thirdTweet"], use_aliases=True), in_reply_to_status_id=secondTweet.id, auto_populate_reply_metadata=True)
+
+    if "fourthTweet" in kwargs:
+        api.update_status(emoji.emojize(kwargs["fourthTweet"], use_aliases=True), in_reply_to_status_id=thirdTweet.id, auto_populate_reply_metadata=True)

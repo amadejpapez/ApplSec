@@ -62,21 +62,21 @@ def getData(releases):
             updatesInfo[title]["CVEs"] = "no bugs fixed"
 
         # search if there were any zero-day vulnerabilities fixed
-        if "in the wild" in str(releaseNotes) or "actively exploited" in str(releaseNotes):
-            num = len(re.findall("in the wild", releaseNotes)) + len(re.findall("actively exploited", releaseNotes))
-            if num == 1:
-                updatesInfo[title]["zeroDays"] = f"{num} zero-day"
+        numberOfZeroDays = len(re.findall("in the wild", releaseNotes)) + len(re.findall("actively exploited", releaseNotes))
+
+        if numberOfZeroDays > 0:
+            if numberOfZeroDays == 1:
+                updatesInfo[title]["zeroDays"] = f"{numberOfZeroDays} zero-day"
             else:
-                updatesInfo[title]["zeroDays"] = f"{num} zero-days"
+                updatesInfo[title]["zeroDays"] = f"{numberOfZeroDays} zero-days"
 
-            entries = re.findall(r"(?<=<strong>)(?:.|\n)*?(?=<strong>|<\/div)", releaseNotes)
-            zeroDayEntry = []
+            updatesInfo[title]["zeroDayCVEs"] = {}
 
-            for entry in entries:
+            for entry in re.findall(r"((?<=<strong>)(?:.|\n)*?(?=<strong>|<\/div))", releaseNotes):
                 if "in the wild" in entry or "actively exploited" in entry:
-                    zeroDayEntry.append(entry)
-
-            updatesInfo[title]["zeroDayCVEs"] = re.findall(r"CVE-[0-9]{4}-[0-9]{4,5}", str(zeroDayEntry))
+                    zeroDayCVE = re.findall(r"CVE-[0-9]{4}-[0-9]{4,5}", entry)[0]
+                    zeroDayLocation = re.findall(r"(.*)<\/strong>", entry)[0]
+                    updatesInfo[title]["zeroDayCVEs"][zeroDayCVE] = zeroDayLocation
 
         else:
             updatesInfo[title]["zeroDays"] = None
