@@ -10,20 +10,16 @@ def getData(releases):
     updatesInfo = {}
 
     for release in releases:
+        title = re.findall(r"(?:<td>|\">)([^<]+)(?:<br>|<\/a>)", str(release.split("\n")[0]), re.IGNORECASE)[0]
+        title = title.rstrip()
+
         if "href" in str(release):
             # if there are release notes, grab the whole page
-            releaseNotes = re.findall(r'href="([^\']+)"', str(release))[0]
-            page = requests.get(releaseNotes).text
-
-            # grab the header from the page
-            title = re.findall(r"<h2>(.*)<.h2>", page)[1]
-            # remove * from the title which is sometimes added for additional info
-            title = title.replace("*", "")
+            releaseNotesLink = re.findall(r'href="([^\']+)"', str(release))[0]
+            releaseNotes = requests.get(releaseNotesLink).text
         else:
-            # if there is no release notes, grab the title from the mainPage
-            title = re.findall(r"<td>([a-z0-9.\s\-\(\)]+)", str(release.split("\n")[0]), re.IGNORECASE)[0]
-            title = title.rstrip()
-            page = None
+            # if there is no release notes
+            releaseNotesLink = None
             releaseNotes = None
 
         if "macOS" in title:
@@ -51,10 +47,10 @@ def getData(releases):
         else:
             emojis = ":hammer_and_wrench:"
 
-        updatesInfo[title] = {"releaseNotes": releaseNotes, "emojis": emojis}
+        updatesInfo[title] = {"releaseNotes": releaseNotesLink, "emojis": emojis}
 
         # grab the number of CVEs from the page
-        CVEs = len(re.findall("CVE", str(page))) - 1
+        CVEs = len(re.findall("CVE", str(releaseNotes))) - 1
 
         if "soon" in str(release):
             updatesInfo[title]["CVEs"] = "no details yet"
@@ -66,14 +62,14 @@ def getData(releases):
             updatesInfo[title]["CVEs"] = "no bugs fixed"
 
         # search if there were any zero-day vulnerabilities fixed
-        if "in the wild" in str(page) or "actively exploited" in str(page):
-            num = len(re.findall("in the wild", page)) + len(re.findall("actively exploited", page))
+        if "in the wild" in str(releaseNotes) or "actively exploited" in str(releaseNotes):
+            num = len(re.findall("in the wild", releaseNotes)) + len(re.findall("actively exploited", releaseNotes))
             if num == 1:
                 updatesInfo[title]["zeroDays"] = f"{num} zero-day"
             else:
                 updatesInfo[title]["zeroDays"] = f"{num} zero-days"
 
-            entries = re.findall(r"(?<=<strong>)(?:.|\n)*?(?=<strong>|<\/div)", page)
+            entries = re.findall(r"(?<=<strong>)(?:.|\n)*?(?=<strong>|<\/div)", releaseNotes)
             zeroDayEntry = []
 
             for entry in entries:
@@ -88,7 +84,7 @@ def getData(releases):
 
         # check for any updated or added entries
         currentDateFormatTwo = f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}"
-        num = len(re.findall(f"Entry added {currentDateFormatTwo}", str(page)))
+        num = len(re.findall(f"Entry added {currentDateFormatTwo}", str(releaseNotes)))
 
         if num == 1:
             updatesInfo[title]["added"] = f"{num} entry added"
@@ -97,7 +93,7 @@ def getData(releases):
         else:
             updatesInfo[title]["added"] = None
 
-        num = len(re.findall(f"Entry updated {currentDateFormatTwo}", str(page)))
+        num = len(re.findall(f"Entry updated {currentDateFormatTwo}", str(releaseNotes)))
 
         if num == 1:
             updatesInfo[title]["updated"] = f"{num} entry updated"

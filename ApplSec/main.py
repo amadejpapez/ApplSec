@@ -2,9 +2,8 @@ import re
 from datetime import date
 
 import requests
-from create_tweets.entry_changes import tweetEntryChanges
-from create_tweets.ios_parts import tweetiOSParts
-from create_tweets.new_updates import tweetNewUpdates
+from create_tweets.new_updates import tweetiOSParts, tweetNewUpdates
+from create_tweets.release_notes_changes import tweetEntryChanges, tweetReleaseNotesAvailable
 from create_tweets.web_server_fixes import tweetWebServerFixes
 from create_tweets.yearly_report import tweetYearlyReport
 from create_tweets.zero_days import tweetZeroDays
@@ -29,6 +28,7 @@ else:
     day = date.today().day
 
 currentDateFormatOne = f'{day} {date.today().strftime("%b")} {date.today().year}'
+currentDateFormatOne = "14 Jun 2021"
 newReleases = []
 
 for release in lastTwentyReleases:
@@ -48,8 +48,7 @@ for key, value in latestVersion.items():
 
     version = list(map(int, version))
     version.sort(reverse=True)
-    version = int(version[0])
-    latestVersion[key] = version
+    latestVersion[key] = int(version[0])
 
     if key == "macOS":
         # alongside of the version also get the macOS name
@@ -75,6 +74,9 @@ for key, value in updatesInfo.items():
     if value["added"] or value["updated"]:
         tweetEntryChanges(updatesInfo)
         break
+
+if len(newReleases) > 0:
+    tweetReleaseNotesAvailable(updatesInfo)
 
 # if there was a new major release, run tweetYearlyReport()
 for key, value in latestVersion.items():
