@@ -45,11 +45,11 @@ def tweetYearlyReport(releases, system, latestSystemVersion):
 
     secondVersion = list(info.keys())[0]
 
-    results = f'{system} {latestSystemVersion} was released today. In {system} {secondVersion} series Apple fixed in total of {info[secondVersion]["CVEs"]} security issues over {info[secondVersion]["releases"]} releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n'
+    results = f"{system} {latestSystemVersion} was released today. In {system} {secondVersion} series Apple fixed in total of {info[secondVersion]['CVEs']} security issues over {info[secondVersion]['releases']} releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     info.pop(secondVersion)
 
     for key, value in info.items():
-        results += f'- {value["CVEs"]} fixed in {system} {key} over {value["releases"]} releases\n'
+        results += f"- {value['CVEs']} fixed in {system} {key} over {value['releases']} releases\n"
 
     if system == "macOS":
         # for macOS create a thread with additional info in the second tweet

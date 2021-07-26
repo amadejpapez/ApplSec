@@ -41,7 +41,6 @@ def tweetOrCreateAThread(whatFunction, **kwargs):
         if value == "":
             del kwargs[key]
 
-
     firstTweet = api.update_status(emoji.emojize(kwargs["firstTweet"], use_aliases=True))
 
     if "secondTweet" in kwargs:

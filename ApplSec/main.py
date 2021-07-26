@@ -58,7 +58,7 @@ for key, value in latestVersion.items():
 for key, value in updatesInfo.items():
     if "iOS" in key and value["CVEs"] != "no details yet":
         if int(re.findall(r"\d+", value["CVEs"])[0]) != len(value["zeroDayCVEs"]):
-            # if there is only one CVE fix and it is a zero day, do not run tweetiOSParts
+            # if all of the CVE fixes are zero days, do not run tweetiOSParts
             # as all of the info is in tweetZeroDay() tweet
             tweetiOSParts(updatesInfo, latestVersion)
             break

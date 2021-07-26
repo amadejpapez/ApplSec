@@ -15,7 +15,7 @@ def tweetNewUpdates(updatesInfo):
         title = ":collision: NEW UPDATES RELEASED :collision:\n\n"
 
     for key, value in updatesInfo.items():
-        results.append(f'{value["emojis"]} {key} - {value["CVEs"]}\n')
+        results.append(f"{value['emojis']} {key} - {value['CVEs']}\n")
 
     results = list(reversed(results))
 
@@ -49,6 +49,6 @@ def tweetiOSParts(updatesInfo, latestVersion):
             if numberParts > 0:
                 results += f"and {numberParts} other vulnerabilities fixed\n"
 
-            results += f'{value["releaseNotes"]}\n'
+            results += f"{value['releaseNotes']}\n"
 
             tweetOrCreateAThread("tweetiOSParts", firstTweet=results)

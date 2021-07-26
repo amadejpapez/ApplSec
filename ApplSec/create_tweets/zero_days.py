@@ -9,7 +9,7 @@ from create_tweets.post_on_twitter import tweetOrCreateAThread
 
 def tweetZeroDays(updatesInfo):
     allZeroDays = {}
-    dirPath = os.path.abspath(os.path.join(os.path.dirname( __file__ ), ".."))
+    dirPath = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     uniqueZeroDays = {"old": {}, "new": {}}
     secondTweet = ":bug: ZERO-DAY DETAILS:\n\n"
     thirdTweet = ":hammer_and_pick: RELEASED TODAY:\n\n"
@@ -27,22 +27,31 @@ def tweetZeroDays(updatesInfo):
     for zeroDay in allZeroDays:
         with open(f"{dirPath}/stored_data.json", "r+", encoding="utf-8") as myFile:
             try:
-                zeroDayStoredData = json.load(myFile)
+                storedDataFile = json.load(myFile)
             except json.decoder.JSONDecodeError:
-                json.dump({"zero_days":[], "details_available_soon":[]}, myFile, indent=4)
                 myFile.seek(0)
-                zeroDayStoredData = json.load(myFile)
+                json.dump(
+                    {"zero_days": [], "details_available_soon": []}, myFile, indent=4
+                )
+                myFile.truncate()
+                myFile.seek(0)
+                storedDataFile = json.load(myFile)
 
-            if zeroDay in zeroDayStoredData["zero_days"]:
+            if len(storedDataFile["zero_days"]) > 10:
+                # if there are more than 10 zero days in a file, remove the last 5
+                del storedDataFile["zero_days"][:-5]
+
+            if zeroDay in storedDataFile["zero_days"]:
                 # if zero day is already in the file, add it to "old"
                 uniqueZeroDays["old"][zeroDay] = allZeroDays[zeroDay]
             else:
                 # if zero day is not in the file, add it and add it to "new"
                 uniqueZeroDays["new"][zeroDay] = allZeroDays[zeroDay]
-                zeroDayStoredData["zero_days"].append(zeroDay)
+                storedDataFile["zero_days"].append(zeroDay)
 
             myFile.seek(0)
-            json.dump(zeroDayStoredData, myFile, indent=4)
+            json.dump(storedDataFile, myFile, indent=4)
+            myFile.truncate()
 
         secondTweet += f"- {zeroDay} in {allZeroDays[zeroDay]}\n"
 

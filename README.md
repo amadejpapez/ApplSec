@@ -36,12 +36,12 @@ In version 9.0 an interesting statistic function was added, set to be tweeted in
 The bot is using a Python library called [Tweepy](https://www.tweepy.org/), which enables communication between the bot and Twitter.
 
 
-### How does the bot run automatically every day?
-I am using a website called [PythonAnywhere](https://www.pythonanywhere.com/). PythonAnywhere has a feature called Tasks, which enables you to upload your Python code and set the time when you want to run it.
+### How does the bot run?
+I am using a website called [PythonAnywhere](https://www.pythonanywhere.com/). PythonAnywhere has a feature called Tasks, which enables you to upload your Python code and set the time when you want to run it. ApplSec bot is running every day at a set hour.
 <br>
 
 ## 😇 Got any ideas?
-The bot is often updated as new ideas appear - and new issues as the bot using regex to grab information, so the bot needs often updating. If you have any ideas for the bot, feel free to message me.
+The bot is often updated as new ideas appear - and new issues as the bot is using regex to grab information. If you have any ideas for the bot, feel free to message me.
 <br><br>
 
 *Apple, Apple logo, iCloud, watchOS, tvOS and macOS are trademarks of Apple Inc., registered in the U.S. and other countries and regions.*
