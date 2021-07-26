@@ -8,35 +8,36 @@ from create_tweets.post_on_twitter import tweetOrCreateAThread
 
 def tweetZeroDays(updatesInfo):
     results = []
+    allZeroDays = []
     uniqueZeroDays = {"old": [], "new": []}
     dirPath = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
 
     for key, value in updatesInfo.items():
         if value["zeroDays"]:
-            # if there were any zero-days fixed, add this to the results
             results.append(f'{value["zeroDays"]} fixed in {key}\n')
 
-            with open(f"{dirPath}/stored_data.json", "r+", encoding="utf-8") as myFile:
-                try:
-                    json.load(myFile)
-                except json.decoder.JSONDecodeError:
-                    json.dump({"zero_days":[], "details_available_soon":[]}, myFile, indent=4)
+            for zeroDay in value["zeroDayCVEs"]:
+                allZeroDays.append(zeroDay)
 
+    for zeroDay in set(allZeroDays):
+        with open(f"{dirPath}/stored_data.json", "r+", encoding="utf-8") as myFile:
+            try:
+                zeroDayStoredData = json.load(myFile)
+            except json.decoder.JSONDecodeError:
+                json.dump({"zero_days":[], "details_available_soon":[]}, myFile, indent=4)
                 myFile.seek(0)
                 zeroDayStoredData = json.load(myFile)
 
-                for zeroDay in value["zeroDayCVEs"]:
-                    if zeroDay in zeroDayStoredData["zero_days"] and zeroDay not in uniqueZeroDays["old"]:
-                        # if zero-day CVE is already in the file, add it to "old"
-                        uniqueZeroDays["old"].append(zeroDay)
+            if zeroDay in zeroDayStoredData["zero_days"]:
+                # if zero day is already in the file, add it to "old"
+                uniqueZeroDays["old"].append(zeroDay)
+            else:
+                # if zero day is not in the file, add it and add it to "new"
+                uniqueZeroDays["new"].append(zeroDay)
+                zeroDayStoredData["zero_days"].append(zeroDay)
 
-                    if zeroDay not in zeroDayStoredData["zero_days"] and zeroDay not in uniqueZeroDays["new"]:
-                        # if zero-day CVE is not in the file, add it to the file and to "new"
-                        uniqueZeroDays["new"].append(zeroDay)
-                        zeroDayStoredData["zero_days"].append(zeroDay)
-
-                myFile.seek(0)
-                json.dump(zeroDayStoredData, myFile, indent=4)
+            myFile.seek(0)
+            json.dump(zeroDayStoredData, myFile, indent=4)
 
     if len(results) == 1:
         title = ":mega: EMERGENCY UPDATE :mega:\n\n"

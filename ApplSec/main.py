@@ -28,7 +28,6 @@ else:
     day = date.today().day
 
 currentDateFormatOne = f'{day} {date.today().strftime("%b")} {date.today().year}'
-currentDateFormatOne = "14 Jun 2021"
 newReleases = []
 
 for release in lastTwentyReleases:
