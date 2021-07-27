@@ -1,3 +1,5 @@
+import json
+import os
 import re
 from datetime import date
 
@@ -27,7 +29,7 @@ if len(str(date.today().day)) == 1:
 else:
     day = date.today().day
 
-currentDateFormatOne = f'{day} {date.today().strftime("%b")} {date.today().year}'
+currentDateFormatOne = f"{day} {date.today().strftime('%b')} {date.today().year}"
 newReleases = []
 
 for release in lastTwentyReleases:
@@ -35,9 +37,37 @@ for release in lastTwentyReleases:
         newReleases.append(release)
 
 updatesInfo = getData(newReleases)
+dirPath = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 
-if len(newReleases) > 0:
+with open(f"{dirPath}/stored_data.json", "r+", encoding="utf-8") as myFile:
+    try:
+        storedDataFile = json.load(myFile)
+    except json.decoder.JSONDecodeError:
+        myFile.seek(0)
+        json.dump(
+            {"zero_days": [], "details_available_soon": [], "todays_releases": {"date": "", "releases": []}}, myFile, indent=4
+        )
+        myFile.truncate()
+        myFile.seek(0)
+        storedDataFile = json.load(myFile)
+
+    if storedDataFile["todays_releases"]["date"] != str(date.today()):
+        storedDataFile["todays_releases"]["date"] = str(date.today())
+        storedDataFile["todays_releases"]["releases"] = []
+
+    for key, value in list(updatesInfo.items()):
+        if key not in storedDataFile["todays_releases"]["releases"]:
+            storedDataFile["todays_releases"]["releases"].append(key)
+        else:
+            del updatesInfo[key]
+
+    myFile.seek(0)
+    json.dump(storedDataFile, myFile, indent=4)
+    myFile.truncate()
+
+if len(updatesInfo) > 0:
     tweetNewUpdates(updatesInfo)
+
 
 # find the latest version of operating systems
 latestVersion = {"iOS": 0, "tvOS": 0, "watchOS": 0, "macOS": ""}

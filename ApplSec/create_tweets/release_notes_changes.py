@@ -38,7 +38,7 @@ def tweetReleaseNotesAvailable(updatesInfo):
         except json.decoder.JSONDecodeError:
             myFile.seek(0)
             json.dump(
-                {"zero_days": [], "details_available_soon": []}, myFile, indent=4
+                {"zero_days": [], "details_available_soon": [], "todays_releases": {"date": "", "releases": []}}, myFile, indent=4
             )
             myFile.truncate()
             myFile.seek(0)
