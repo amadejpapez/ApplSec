@@ -32,7 +32,7 @@ def tweetReleaseNotesAvailable(updatesInfo):
     results = []
     dirPath = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
-    with open(f"{dirPath}/stored_data.json", "r+", encoding="utf-8") as myFile:
+    with open(f"{dirPath}/stored_data.json", "w+", encoding="utf-8") as myFile:
         try:
             storedDataFile = json.load(myFile)
         except json.decoder.JSONDecodeError:
