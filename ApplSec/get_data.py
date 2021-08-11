@@ -19,8 +19,8 @@ def getData(releases):
             releaseNotes = requests.get(releaseNotesLink).text
         else:
             # if there is no release notes
-            releaseNotesLink = None
-            releaseNotes = None
+            releaseNotesLink = "None"
+            releaseNotes = "None"
 
         if "macOS" in title:
             # if macOS is in the title, take only the first part of the title
@@ -50,7 +50,7 @@ def getData(releases):
         updatesInfo[title] = {"releaseNotes": releaseNotesLink, "emojis": emojis}
 
         # grab the number of CVEs from the page
-        CVEs = len(re.findall("CVE", str(releaseNotes))) - 1
+        CVEs = len(re.findall("CVE", releaseNotes)) - 1
 
         if "soon" in str(release):
             updatesInfo[title]["CVEs"] = "no details yet"
@@ -84,7 +84,7 @@ def getData(releases):
 
         # check for any updated or added entries
         currentDateFormatTwo = f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}"
-        num = len(re.findall(f"Entry added {currentDateFormatTwo}", str(releaseNotes)))
+        num = len(re.findall(f"Entry added {currentDateFormatTwo}", releaseNotes))
 
         if num == 1:
             updatesInfo[title]["added"] = f"{num} entry added"
@@ -93,7 +93,7 @@ def getData(releases):
         else:
             updatesInfo[title]["added"] = None
 
-        num = len(re.findall(f"Entry updated {currentDateFormatTwo}", str(releaseNotes)))
+        num = len(re.findall(f"Entry updated {currentDateFormatTwo}", releaseNotes))
 
         if num == 1:
             updatesInfo[title]["updated"] = f"{num} entry updated"
