@@ -1,10 +1,28 @@
-# grabs all data from Apple's website and saves it to updatesInfo
-
 import re
 from datetime import date
 
 import requests
 
+"""
+Grabs all data from Apple's website and saves it to 'updatesInfo'.
+
+Example:
+-----------------------------
+'iOS and iPadOS 14.7': {
+    'releaseNotes': 'https://support.apple.com/kb/HT212623',
+    'emojis': ':iphone:',
+    'CVEs': '37 bugs fixed',
+    'zeroDays': '3 zero-days',
+    'zeroDayCVEs': {
+        'CVE-2021-30761': 'WebKit',
+        'CVE-2021-30762': 'WebKit',
+        'CVE-2021-30713': 'TCC'
+    },
+    'added': '8 entries added',
+    'updated': '1 entry updated'
+}
+-----------------------------
+"""
 
 def getData(releases):
     updatesInfo = {}

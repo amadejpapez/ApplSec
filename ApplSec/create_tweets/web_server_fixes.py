@@ -1,11 +1,17 @@
-# tweet how many security issues were fixed in Apple web servers in the previous month
-
 import re
 from datetime import date
 
 import requests
 from create_tweets.post_on_twitter import tweetOrCreateAThread
 
+
+"""
+In month of March Apple fixed 42 security issues in their websites 🌐
+
+🍎 31 of them on apple[.]com
+☁️ 1 of them on icloud[.]com
+and 10 on other domains
+"""
 
 def tweetWebServerFixes():
     lastMonth = int(date.today().strftime("%m")) - 1

@@ -2,6 +2,25 @@ import emoji
 import tweepy
 from auth_secrets import keys
 
+"""
+Handles the tweeting part.
+
+tweetOrCreateAThread() accepts the following:
+whatFunction, title, results, firstTweet, secondTweet, thirdTweet, fourthTweet
+
+API keys are stored in a separate file 'auth_secrets.py' like this:
+-----------------------------
+keys = {
+    "ApplSec" : {
+        "api_key"             : "x",
+        "api_key_secret"      : "x",
+        "access_token"        : "x",
+        "access_token_secret" : "x"
+    }
+}
+-----------------------------
+"""
+
 api_key = keys["ApplSec"]["api_key"]
 api_key_secret = keys["ApplSec"]["api_key_secret"]
 access_token = keys["ApplSec"]["access_token"]
@@ -13,8 +32,6 @@ api = tweepy.API(auth)
 
 
 def tweetOrCreateAThread(whatFunction, **kwargs):
-    # ACCEPTS: whatFunction, title, results, firstTweet, secondTweet, thirdTweet, fourthTweet
-
     if "results" in kwargs:
         maxLength = 250 if whatFunction == "tweetNewUpdates" else 275
         kwargs["firstTweet"] = ""
@@ -38,10 +55,11 @@ def tweetOrCreateAThread(whatFunction, **kwargs):
         kwargs["firstTweet"] = str(kwargs["title"] + kwargs["firstTweet"])
 
     for key, value in list(kwargs.items()):
-        if value == "":
+        if not value:
             del kwargs[key]
 
-    firstTweet = api.update_status(emoji.emojize(kwargs["firstTweet"], use_aliases=True))
+    if "firstTweet" in kwargs:
+        firstTweet = api.update_status(emoji.emojize(kwargs["firstTweet"], use_aliases=True))
 
     if "secondTweet" in kwargs:
         secondTweet = api.update_status(emoji.emojize(kwargs["secondTweet"], use_aliases=True), in_reply_to_status_id=firstTweet.id, auto_populate_reply_metadata=True)
