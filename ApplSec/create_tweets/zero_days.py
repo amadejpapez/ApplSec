@@ -1,7 +1,7 @@
 import re
 
 from create_tweets.post_on_twitter import tweetOrCreateAThread
-from save_data import saveData, readFile
+from save_data import readFile, saveData
 
 """
 -----------------------------
@@ -17,6 +17,7 @@ Today, Apple pushed updates for one new zero-day (CVE-2021-30807) in IOMobileFra
 1 zero-day fixed in macOS Big Sur 11.5.1
 -----------------------------
 """
+
 
 def tweetZeroDays(updatesInfo):
     allZeroDays = {}
@@ -84,4 +85,10 @@ def tweetZeroDays(updatesInfo):
         thirdTweet = fourthTweet
 
     if updatesInfo != {}:
-        tweetOrCreateAThread("tweetZeroDays", firstTweet=firstTweet, secondTweet=secondTweet, thirdTweet=thirdTweet, fourthTweet=fourthTweet)
+        tweetOrCreateAThread(
+            "tweetZeroDays",
+            firstTweet=firstTweet,
+            secondTweet=secondTweet,
+            thirdTweet=thirdTweet,
+            fourthTweet=fourthTweet,
+        )

@@ -4,7 +4,6 @@ from collections import Counter, OrderedDict
 import requests
 from create_tweets.post_on_twitter import tweetOrCreateAThread
 
-
 """
 -----------------------------
 💥 NEW UPDATES RELEASED 💥
@@ -14,6 +13,7 @@ from create_tweets.post_on_twitter import tweetOrCreateAThread
 https://support.apple.com/en-us/HT201222
 -----------------------------
 """
+
 
 def tweetNewUpdates(updatesInfo):
     if len(updatesInfo) > 1:
@@ -41,6 +41,7 @@ and 25 other vulnerabilities fixed
 https://support.apple.com/kb/HT212601
 -----------------------------
 """
+
 
 def tweetiOSParts(updatesInfo):
     for key, value in updatesInfo.items():

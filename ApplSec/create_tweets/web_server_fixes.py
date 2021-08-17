@@ -4,7 +4,6 @@ from datetime import date
 import requests
 from create_tweets.post_on_twitter import tweetOrCreateAThread
 
-
 """
 In month of March Apple fixed 42 security issues in their websites 🌐
 
@@ -12,6 +11,7 @@ In month of March Apple fixed 42 security issues in their websites 🌐
 ☁️ 1 of them on icloud[.]com
 and 10 on other domains
 """
+
 
 def tweetWebServerFixes():
     lastMonth = int(date.today().strftime("%m")) - 1
@@ -43,14 +43,16 @@ def tweetWebServerFixes():
 
     allFixes = re.findall(rf"<em>{currentDateFormatThree}(.*)</em>", page)
     numberOfFixesOnAppleDotCom = len(re.findall(r"apple.com", str(allFixes)))
-    numberOfFixesOnIcloudDotCom = len(re.findall(r"icloud.com", str(allFixes)))
+    numberOfFixesOniCloudDotCom = len(re.findall(r"icloud.com", str(allFixes)))
 
-    numberOfFixes = numberOfFixes - numberOfFixesOnAppleDotCom - numberOfFixesOnIcloudDotCom
+    numberOfFixes = (
+        numberOfFixes - numberOfFixesOnAppleDotCom - numberOfFixesOniCloudDotCom
+    )
 
     if numberOfFixesOnAppleDotCom >= 1:
         results += f":apple: {numberOfFixesOnAppleDotCom} of those on apple[.]com\n"
-    if numberOfFixesOnIcloudDotCom >= 1:
-        results += f":cloud: {numberOfFixesOnIcloudDotCom} of those on icloud[.]com\n"
+    if numberOfFixesOniCloudDotCom >= 1:
+        results += f":cloud: {numberOfFixesOniCloudDotCom} of those on icloud[.]com\n"
     if numberOfFixes >= 1:
         results += f"and {numberOfFixes} on other domains\n"
 

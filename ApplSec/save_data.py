@@ -1,5 +1,5 @@
-import os
 import json
+import os
 from datetime import date
 
 """
@@ -9,19 +9,18 @@ the bot can use the data next time.
 
 dirPath = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 
-fileStructure = (
-    {
-        "zero_days": [],
-        "details_available_soon": [],
-        "todays_tweets": {
-            "date": "",
-            "tweetNewUpdates": [],
-            "tweetiOSParts": "",
-            "tweetEntryChanges": {},
-            "tweetZeroDays": {}
-        }
-    }
-)
+fileStructure = {
+    "zero_days": [],
+    "details_available_soon": [],
+    "todays_tweets": {
+        "date": "",
+        "tweetNewUpdates": [],
+        "tweetiOSParts": "",
+        "tweetEntryChanges": {},
+        "tweetZeroDays": {},
+    },
+}
+
 
 def readFile():
     try:
@@ -41,7 +40,7 @@ def readFile():
             "tweetNewUpdates": [],
             "tweetiOSParts": "",
             "tweetEntryChanges": {},
-            "tweetZeroDays": {}
+            "tweetZeroDays": {},
         }
 
     return storedDataFile

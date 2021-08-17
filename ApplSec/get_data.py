@@ -24,11 +24,16 @@ Example:
 -----------------------------
 """
 
+
 def getData(releases):
     updatesInfo = {}
 
     for release in releases:
-        title = re.findall(r"(?:<td>|\">)([^<]+)(?:<br>|<\/a>)", str(release.split("\n")[0]), re.IGNORECASE)[0]
+        title = re.findall(
+            r"(?:<td>|\">)([^<]+)(?:<br>|<\/a>)",
+            str(release.split("\n")[0]),
+            re.IGNORECASE,
+        )[0]
         title = title.rstrip()
 
         if "href" in str(release):
@@ -47,23 +52,29 @@ def getData(releases):
             # if they are both in the title remove version number from iPadOS
             title = title.split("and", 1)[0].rstrip().replace("iOS", "iOS and iPadOS")
 
-        # set emojis depending on the title
-        if "iOS" in title:
-            emojis = ":iphone:"
-        elif "watchOS" in title:
-            emojis = ":watch:"
-        elif "tvOS" in title or "Apple TV" in title:
-            emojis = ":tv:"
-        elif "macOS" in title or "Security Update" in title:
-            emojis = ":computer:"
-        elif "iCloud" in title:
-            emojis = ":cloud:"
-        elif "Safari" in title:
-            emojis = ":globe_with_meridians:"
-        elif "iTunes" in title or "Shazam" in title or "GarageBand" in title or "Apple Music" in title:
-            emojis = ":musical_note:"
-        else:
-            emojis = ":hammer_and_wrench:"
+        # set an emoji depending on the title
+        emojiDict = {
+            "iOS": ":iphone:",
+            "iPadOS": ":iphone:",
+            "watchOS": ":watch:",
+            "tvOS": ":tv:",
+            "Apple TV": ":tv:",
+            "macOS": ":computer:",
+            "Security Update": ":computer:",
+            "iCloud": ":cloud:",
+            "Safari": ":globe_with_meridians:",
+            "iTunes": ":musical_note:",
+            "Shazam": ":musical_note:",
+            "GarageBand": ":musical_note:",
+            "Apple Music": ":musical_note:"
+        }
+
+        for key, value in emojiDict.items():
+            if key in title:
+                emojis = value
+                break
+            else:
+                emojis = ":hammer_and_wrench:"
 
         updatesInfo[title] = {"releaseNotes": releaseNotesLink, "emojis": emojis}
 
@@ -80,7 +91,9 @@ def getData(releases):
             updatesInfo[title]["CVEs"] = "no bugs fixed"
 
         # search if there were any zero-day vulnerabilities fixed
-        numberOfZeroDays = len(re.findall("in the wild", releaseNotes)) + len(re.findall("actively exploited", releaseNotes))
+        numberOfZeroDays = len(re.findall("in the wild", releaseNotes)) + len(
+            re.findall("actively exploited", releaseNotes)
+        )
 
         if numberOfZeroDays > 0:
             if numberOfZeroDays == 1:
@@ -90,7 +103,9 @@ def getData(releases):
 
             updatesInfo[title]["zeroDayCVEs"] = {}
 
-            for entry in re.findall(r"((?<=<strong>)(?:.|\n)*?(?=<strong>|<\/div))", releaseNotes):
+            for entry in re.findall(
+                r"((?<=<strong>)(?:.|\n)*?(?=<strong>|<\/div))", releaseNotes
+            ):
                 if "in the wild" in entry or "actively exploited" in entry:
                     zeroDayCVE = re.findall(r"CVE-[0-9]{4}-[0-9]{4,5}", entry)[0]
                     zeroDayLocation = re.findall(r"(.*)<\/strong>", entry)[0]
@@ -101,7 +116,9 @@ def getData(releases):
             updatesInfo[title]["zeroDayCVEs"] = None
 
         # check for any updated or added entries
-        currentDateFormatTwo = f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}"
+        currentDateFormatTwo = (
+            f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}"
+        )
         num = len(re.findall(f"Entry added {currentDateFormatTwo}", releaseNotes))
 
         if num == 1:

@@ -1,5 +1,5 @@
-import re
 import copy
+import re
 from datetime import date
 
 import requests
@@ -9,7 +9,7 @@ from create_tweets.web_server_fixes import tweetWebServerFixes
 from create_tweets.yearly_report import tweetYearlyReport
 from create_tweets.zero_days import tweetZeroDays
 from get_data import getData
-from save_data import saveData, readFile
+from save_data import readFile, saveData
 
 mainPage = requests.get("https://support.apple.com/en-us/HT201222").text
 
@@ -19,7 +19,9 @@ lastTwentyReleases = releases[:20]
 
 lastTwentyReleaseNames = []
 for release in lastTwentyReleases:
-    lastTwentyReleaseNames.append(re.findall(r"(?<=<td>)(?:.|\n)*?(?=<\/td>)", release)[0])
+    lastTwentyReleaseNames.append(
+        re.findall(r"(?<=<td>)(?:.|\n)*?(?=<\/td>)", release)[0]
+    )
 
 storedDataFile = readFile()
 
@@ -62,14 +64,20 @@ for key, value in latestVersion.items():
 
     if key == "macOS":
         # alongside of the version also get the macOS name
-        latestVersion["macOS"] = re.findall(rf"{key}\s([a-z\s]+[0-9]+)", str(lastTwentyReleaseNames), re.IGNORECASE)[0]
+        latestVersion["macOS"] = re.findall(
+            rf"{key}\s([a-z\s]+[0-9]+)", str(lastTwentyReleaseNames), re.IGNORECASE
+        )[0]
 
 
 # if the latest iOS series got an update, run tweetiOSParts()
 iOSPartsInfo = {}
 
 for key, value in updatesInfo.items():
-    if "iOS" in key and str(latestVersion["iOS"]) in key and value["CVEs"] != "no details yet":
+    if (
+        "iOS" in key
+        and str(latestVersion["iOS"]) in key
+        and value["CVEs"] != "no details yet"
+    ):
         if value["zeroDays"]:
             if int(re.findall(r"\d+", value["CVEs"])[0]) != len(value["zeroDayCVEs"]):
                 iOSPartsInfo[key] = value
@@ -94,8 +102,10 @@ for key, value in updatesInfo.items():
         zeroDaysInfo[key] = value
 
 for key, value in list(zeroDaysInfo.items()):
-    if (key in storedDataFile["todays_tweets"]["tweetZeroDays"].keys()
-    and value["zeroDays"] == storedDataFile["todays_tweets"]["tweetZeroDays"][key]):
+    if (
+        key in storedDataFile["todays_tweets"]["tweetZeroDays"].keys()
+        and value["zeroDays"] == storedDataFile["todays_tweets"]["tweetZeroDays"][key]
+    ):
         del zeroDaysInfo[key]
     else:
         storedDataFile["todays_tweets"]["tweetZeroDays"][key] = value["zeroDays"]
@@ -113,12 +123,19 @@ for key, value in lastTwentyReleasesInfo.items():
         entryChangesInfo[key] = value
 
 for key, value in list(entryChangesInfo.items()):
-    if (key in storedDataFile["todays_tweets"]["tweetEntryChanges"].keys()
-    and value["added"] == storedDataFile["todays_tweets"]["tweetEntryChanges"][key][0]
-    and value["updated"] == storedDataFile["todays_tweets"]["tweetEntryChanges"][key][1]):
+    if (
+        key in storedDataFile["todays_tweets"]["tweetEntryChanges"].keys()
+        and value["added"]
+        == storedDataFile["todays_tweets"]["tweetEntryChanges"][key][0]
+        and value["updated"]
+        == storedDataFile["todays_tweets"]["tweetEntryChanges"][key][1]
+    ):
         del entryChangesInfo[key]
     else:
-        storedDataFile["todays_tweets"]["tweetEntryChanges"][key] = [value["added"], value["updated"]]
+        storedDataFile["todays_tweets"]["tweetEntryChanges"][key] = [
+            value["added"],
+            value["updated"],
+        ]
 
 if len(entryChangesInfo) > 0:
     tweetEntryChanges(entryChangesInfo)
@@ -128,10 +145,16 @@ if len(entryChangesInfo) > 0:
 releaseNotesAvailableInfo = {}
 
 for key, value in updatesInfo.items():
-    if key not in storedDataFile["details_available_soon"] and value["CVEs"] == "no details yet":
+    if (
+        key not in storedDataFile["details_available_soon"]
+        and value["CVEs"] == "no details yet"
+    ):
         storedDataFile["details_available_soon"].append(key)
 
-    if key in storedDataFile["details_available_soon"] and value["releaseNotes"] != None:
+    if (
+        key in storedDataFile["details_available_soon"]
+        and value["releaseNotes"] != None
+    ):
         storedDataFile["details_available_soon"].remove(key)
         releaseNotesAvailableInfo[key] = value
 
@@ -141,8 +164,9 @@ if len(releaseNotesAvailableInfo) > 0:
 
 # if there was a new major release, run tweetYearlyReport()
 for key, value in latestVersion.items():
-    if (f"{key} {value} " in str(lastTwentyReleaseNames)
-    or f"{key} {value}.0 " in str(lastTwentyReleaseNames)):
+    if f"{key} {value} " in str(lastTwentyReleaseNames) or f"{key} {value}.0 " in str(
+        lastTwentyReleaseNames
+    ):
         tweetYearlyReport(releases, key, value)
 
 

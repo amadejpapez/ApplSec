@@ -59,13 +59,27 @@ def tweetOrCreateAThread(whatFunction, **kwargs):
             del kwargs[key]
 
     if "firstTweet" in kwargs:
-        firstTweet = api.update_status(emoji.emojize(kwargs["firstTweet"], use_aliases=True))
+        firstTweet = api.update_status(
+            emoji.emojize(kwargs["firstTweet"], use_aliases=True)
+        )
 
     if "secondTweet" in kwargs:
-        secondTweet = api.update_status(emoji.emojize(kwargs["secondTweet"], use_aliases=True), in_reply_to_status_id=firstTweet.id, auto_populate_reply_metadata=True)
+        secondTweet = api.update_status(
+            emoji.emojize(kwargs["secondTweet"], use_aliases=True),
+            in_reply_to_status_id=firstTweet.id,
+            auto_populate_reply_metadata=True,
+        )
 
     if "thirdTweet" in kwargs:
-        thirdTweet = api.update_status(emoji.emojize(kwargs["thirdTweet"], use_aliases=True), in_reply_to_status_id=secondTweet.id, auto_populate_reply_metadata=True)
+        thirdTweet = api.update_status(
+            emoji.emojize(kwargs["thirdTweet"], use_aliases=True),
+            in_reply_to_status_id=secondTweet.id,
+            auto_populate_reply_metadata=True,
+        )
 
     if "fourthTweet" in kwargs:
-        api.update_status(emoji.emojize(kwargs["fourthTweet"], use_aliases=True), in_reply_to_status_id=thirdTweet.id, auto_populate_reply_metadata=True)
+        api.update_status(
+            emoji.emojize(kwargs["fourthTweet"], use_aliases=True),
+            in_reply_to_status_id=thirdTweet.id,
+            auto_populate_reply_metadata=True,
+        )

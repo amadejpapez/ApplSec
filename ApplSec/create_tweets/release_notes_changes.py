@@ -2,7 +2,6 @@ import re
 
 from create_tweets.post_on_twitter import tweetOrCreateAThread
 
-
 """
 -----------------------------
 🔄 4 SECURITY NOTES UPDATED 🔄
@@ -15,6 +14,7 @@ from create_tweets.post_on_twitter import tweetOrCreateAThread
 -----------------------------
 """
 
+
 def tweetEntryChanges(updatesInfo):
     results = []
     title = ""
@@ -26,7 +26,9 @@ def tweetEntryChanges(updatesInfo):
             elif value["added"] != None and value["updated"] == None:
                 results.append(f"{value['emojis']} {key} - {value['added']}\n")
             elif value["added"] != None and value["updated"] != None:
-                results.append(f"{value['emojis']} {key} - {value['added']}, {value['updated']}\n")
+                results.append(
+                    f"{value['emojis']} {key} - {value['added']}, {value['updated']}\n"
+                )
 
     num = len(re.findall(r":[^:]+:", str(results)))
 
