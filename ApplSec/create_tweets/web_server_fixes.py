@@ -58,4 +58,5 @@ def tweetWebServerFixes():
 
     results += mainPage
 
-    tweetOrCreateAThread("webServerFixes", firstTweet=results)
+    if allFixes != []:
+        tweetOrCreateAThread("webServerFixes", firstTweet=results)

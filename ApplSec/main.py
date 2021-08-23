@@ -171,10 +171,7 @@ for key, value in latestVersion.items():
 
 
 # if it is first day of the month, run tweetYearlyReport()
-# commented out as Apple has not updated the page since March 2021
-"""
 if date.today().day == 1:
     tweetWebServerFixes()
-"""
 
 saveData(storedDataFile)
