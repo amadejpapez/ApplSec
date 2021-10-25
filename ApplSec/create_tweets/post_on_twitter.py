@@ -39,13 +39,26 @@ def tweetOrCreateAThread(whatFunction, **kwargs):
         kwargs["thirdTweet"] = ""
 
         for result in kwargs["results"]:
-            if len(emoji.emojize(kwargs["firstTweet"], use_aliases=True) + result + kwargs["title"]) < maxLength:
+            if (
+                len(
+                    emoji.emojize(kwargs["firstTweet"], use_aliases=True)
+                    + result
+                    + kwargs["title"]
+                )
+                < maxLength
+            ):
                 kwargs["firstTweet"] += result
 
-            elif len(emoji.emojize(kwargs["secondTweet"], use_aliases=True) + result) < maxLength:
+            elif (
+                len(emoji.emojize(kwargs["secondTweet"], use_aliases=True) + result)
+                < maxLength
+            ):
                 kwargs["secondTweet"] += result
 
-            elif len(emoji.emojize(kwargs["thirdTweet"], use_aliases=True) + result) < maxLength:
+            elif (
+                len(emoji.emojize(kwargs["thirdTweet"], use_aliases=True) + result)
+                < maxLength
+            ):
                 kwargs["thirdTweet"] += result
 
         if whatFunction == "tweetNewUpdates":

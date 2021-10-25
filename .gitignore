@@ -1,4 +1,6 @@
 __pycache__
+.mypy_cache
+.vscode
 
 stored_data.json
 auth_secrets.py

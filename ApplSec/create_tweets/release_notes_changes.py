@@ -20,12 +20,12 @@ def tweetEntryChanges(updatesInfo):
     title = ""
 
     for key, value in updatesInfo.items():
-        if value["added"] != None or value["updated"] != None:
-            if value["added"] == None and value["updated"] != None:
+        if value["added"] is not None or value["updated"] is not None:
+            if value["added"] is None and value["updated"] is not None:
                 results.append(f"{value['emojis']} {key} - {value['updated']}\n")
-            elif value["added"] != None and value["updated"] == None:
+            elif value["added"] is not None and value["updated"] is None:
                 results.append(f"{value['emojis']} {key} - {value['added']}\n")
-            elif value["added"] != None and value["updated"] != None:
+            elif value["added"] is not None and value["updated"] is not None:
                 results.append(
                     f"{value['emojis']} {key} - {value['added']}, {value['updated']}\n"
                 )

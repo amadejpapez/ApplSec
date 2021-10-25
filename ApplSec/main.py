@@ -4,7 +4,8 @@ from datetime import date
 
 import requests
 from create_tweets.new_updates import tweetiOSParts, tweetNewUpdates
-from create_tweets.release_notes_changes import tweetEntryChanges, tweetReleaseNotesAvailable
+from create_tweets.release_notes_changes import (tweetEntryChanges,
+                                                 tweetReleaseNotesAvailable)
 from create_tweets.web_server_fixes import tweetWebServerFixes
 from create_tweets.yearly_report import tweetYearlyReport
 from create_tweets.zero_days import tweetZeroDays
@@ -153,7 +154,7 @@ for key, value in updatesInfo.items():
 
     if (
         key in storedDataFile["details_available_soon"]
-        and value["releaseNotes"] != None
+        and value["releaseNotes"] is not None
     ):
         storedDataFile["details_available_soon"].remove(key)
         releaseNotesAvailableInfo[key] = value

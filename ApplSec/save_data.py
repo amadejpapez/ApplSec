@@ -7,7 +7,7 @@ Saves and reads data from the 'stored_data.json' file, so
 the bot can use the data next time.
 """
 
-dirPath = os.path.abspath(os.path.join(os.path.dirname(__file__)))
+DIRPATH = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 
 fileStructure = {
     "zero_days": [],
@@ -24,10 +24,10 @@ fileStructure = {
 
 def readFile():
     try:
-        with open(f"{dirPath}/stored_data.json", "r+", encoding="utf-8") as myFile:
+        with open(f"{DIRPATH}/stored_data.json", "r+", encoding="utf-8") as myFile:
             storedDataFile = json.load(myFile)
     except FileNotFoundError:
-        with open(f"{dirPath}/stored_data.json", "w+", encoding="utf-8") as myFile2:
+        with open(f"{DIRPATH}/stored_data.json", "w+", encoding="utf-8") as myFile2:
             myFile2.seek(0)
             json.dump(fileStructure, myFile2, indent=4)
             myFile2.truncate()
@@ -47,7 +47,7 @@ def readFile():
 
 
 def saveData(storedDataModified):
-    with open(f"{dirPath}/stored_data.json", "w+", encoding="utf-8") as myFile:
+    with open(f"{DIRPATH}/stored_data.json", "w+", encoding="utf-8") as myFile:
         myFile.seek(0)
         json.dump(storedDataModified, myFile, indent=4)
         myFile.truncate()

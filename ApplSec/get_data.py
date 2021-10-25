@@ -66,7 +66,7 @@ def getData(releases):
             "iTunes": ":musical_note:",
             "Shazam": ":musical_note:",
             "GarageBand": ":musical_note:",
-            "Apple Music": ":musical_note:"
+            "Apple Music": ":musical_note:",
         }
 
         for key, value in emojiDict.items():
