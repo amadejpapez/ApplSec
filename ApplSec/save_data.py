@@ -18,6 +18,8 @@ fileStructure = {
         "tweetiOSParts": "",
         "tweetEntryChanges": {},
         "tweetZeroDays": {},
+        "tweetYearlyReport": [],
+        "tweetWebServerFixes": False
     },
 }
 
@@ -41,6 +43,8 @@ def readFile():
             "tweetiOSParts": "",
             "tweetEntryChanges": {},
             "tweetZeroDays": {},
+            "tweetYearlyReport": [],
+            "tweetWebServerFixes": False
         }
 
     return storedDataFile

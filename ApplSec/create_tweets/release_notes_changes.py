@@ -40,7 +40,20 @@ def tweetEntryChanges(updatesInfo):
     tweetOrCreateAThread("tweetEntryChanges", title=title, results=results)
 
 
+"""
+🗒 RELEASE NOTES AVAILABLE 🗒
+
+💻 macOS Monterey 12.0.1 - 40 bugs fixed
+💻 macOS Big Sur 11.6.1 - 24 bugs fixed
+💻 Security Update 2021-007 Catalina - 21 bugs fixed
+⌚ watchOS 8.1 - 16 bugs fixed
+📱 iOS and iPadOS 15.1 - 22 bugs fixed
+
+"""
+
+
 def tweetReleaseNotesAvailable(updatesInfo):
+    # TODO: add zero-day tweets to this
     title = ":spiral_notepad: RELEASE NOTES AVAILABLE :spiral_notepad:\n\n"
     results = []
 

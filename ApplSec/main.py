@@ -4,8 +4,7 @@ from datetime import date
 
 import requests
 from create_tweets.new_updates import tweetiOSParts, tweetNewUpdates
-from create_tweets.release_notes_changes import (tweetEntryChanges,
-                                                 tweetReleaseNotesAvailable)
+from create_tweets.release_notes_changes import tweetEntryChanges, tweetReleaseNotesAvailable
 from create_tweets.web_server_fixes import tweetWebServerFixes
 from create_tweets.yearly_report import tweetYearlyReport
 from create_tweets.zero_days import tweetZeroDays
@@ -111,8 +110,12 @@ for key, value in list(zeroDaysInfo.items()):
     else:
         storedDataFile["todays_tweets"]["tweetZeroDays"][key] = value["zeroDays"]
 
+saveData(storedDataFile)
+
 if len(zeroDaysInfo) > 0:
     tweetZeroDays(zeroDaysInfo)
+
+storedDataFile = readFile()
 
 
 # if there are any changes to the last 20 release notes, run tweetEntryChanges()
@@ -145,7 +148,7 @@ if len(entryChangesInfo) > 0:
 # if any releases got releases notes, run tweetReleaseNotesAvailable()
 releaseNotesAvailableInfo = {}
 
-for key, value in updatesInfo.items():
+for key, value in lastTwentyReleasesInfo.items():
     if (
         key not in storedDataFile["details_available_soon"]
         and value["CVEs"] == "no details yet"
@@ -165,14 +168,21 @@ if len(releaseNotesAvailableInfo) > 0:
 
 # if there was a new major release, run tweetYearlyReport()
 for key, value in latestVersion.items():
-    if f"{key} {value} " in str(lastTwentyReleaseNames) or f"{key} {value}.0 " in str(
-        lastTwentyReleaseNames
+    if (
+        (f"{key} {value} " in str(newReleases)
+        or f"{key} {value}.0 " in str(newReleases))
+        and key not in storedDataFile["todays_tweets"]["tweetYearlyReport"]
     ):
         tweetYearlyReport(releases, key, value)
+        storedDataFile["todays_tweets"]["tweetYearlyReport"].append(key)
 
 
 # if it is first day of the month, run tweetYearlyReport()
-if date.today().day == 1:
+if (
+    date.today().day == 1
+    and storedDataFile["todays_tweets"]["tweetWebServerFixes"] == False
+):
     tweetWebServerFixes()
+    storedDataFile["todays_tweets"]["tweetWebServerFixes"] = True
 
 saveData(storedDataFile)

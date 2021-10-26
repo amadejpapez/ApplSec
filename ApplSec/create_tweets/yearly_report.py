@@ -1,10 +1,16 @@
-# tweet how many vulnerabilities were fixed in the four latest series of iOS/watchOS/tvOS/macOS if there is a new major update
-# this is only ran in September
-
 import re
 
 import requests
 from create_tweets.post_on_twitter import tweetOrCreateAThread
+
+"""
+iOS 15 was released today. In iOS 14 series Apple fixed in total of 346 security issues over 16 releases. 🔐
+
+📊 COMPARED TO:
+- 301 fixed in iOS 13 over 18 releases
+- 339 fixed in iOS 12 over 33 releases
+- 310 fixed in iOS 11 over 17 releases
+"""
 
 
 def tweetYearlyReport(releases, system, latestSystemVersion):
@@ -14,7 +20,7 @@ def tweetYearlyReport(releases, system, latestSystemVersion):
     # save previous three versions
     if system == "macOS":
         # macOS names are hard coded for now
-        versions = ["11", "10.15", "10.14", "10.13"]
+        versions = ["12", "11", "10.15", "10.14"]
     else:
         num = latestSystemVersion
         while len(versions) <= 3:

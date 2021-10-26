@@ -30,7 +30,7 @@ def getData(releases):
 
     for release in releases:
         title = re.findall(
-            r"(?:<td>|\">)([^<]+)(?:<br>|<\/a>|<em>)",
+            r"(?:<td>|\">)([^<]+)(?:<br>|<\/a>|<em>|<\/td>)",
             str(release.split("\n")[0]),
             re.IGNORECASE,
         )[0]
