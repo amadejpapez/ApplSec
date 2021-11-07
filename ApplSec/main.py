@@ -15,11 +15,11 @@ mainPage = requests.get("https://support.apple.com/en-us/HT201222").text
 
 releases = re.findall(r"(?<=<tr>)(?:.|\n)*?(?=<\/tr>)", mainPage)
 releases.pop(0)  # remove first row
-lastTwentyReleases = releases[:20]
+lastFiftyReleases = releases[:50]
 
-lastTwentyReleaseNames = []
-for release in lastTwentyReleases:
-    lastTwentyReleaseNames.append(
+lastFiftyReleaseNames = []
+for release in lastFiftyReleases:
+    lastFiftyReleaseNames.append(
         re.findall(r"(?<=<td>)(?:.|\n)*?(?=<\/td>)", release)[0]
     )
 
@@ -28,14 +28,14 @@ storedDataFile = readFile()
 
 # if there are new releases, run tweetNewUpdates()
 if len(str(date.today().day)) > 1:
-    day = date.today().day
+    day = str(date.today().day)
 else:
     day = f"0{date.today().day}"
 
 currentDateFormatOne = f"{day} {date.today().strftime('%b')} {date.today().year}"
 
 newReleases = []
-for release in lastTwentyReleases:
+for release in lastFiftyReleases:
     if f"<td>{currentDateFormatOne}</td>" in release:
         newReleases.append(release)
 
@@ -65,7 +65,7 @@ for key, value in latestVersion.items():
     if key == "macOS":
         # alongside of the version also get the macOS name
         latestVersion["macOS"] = re.findall(
-            rf"{key}\s([a-z\s]+[0-9]+)", str(lastTwentyReleaseNames), re.IGNORECASE
+            rf"{key}\s([a-z\s]+[0-9]+)", str(lastFiftyReleaseNames), re.IGNORECASE
         )[0]
 
 
@@ -119,10 +119,10 @@ storedDataFile = readFile()
 
 
 # if there are any changes to the last 20 release notes, run tweetEntryChanges()
-lastTwentyReleasesInfo = getData(lastTwentyReleases)
+lastFiftyReleasesInfo = getData(lastFiftyReleases)
 entryChangesInfo = {}
 
-for key, value in lastTwentyReleasesInfo.items():
+for key, value in lastFiftyReleasesInfo.items():
     if value["added"] or value["updated"]:
         entryChangesInfo[key] = value
 
@@ -148,7 +148,7 @@ if len(entryChangesInfo) > 0:
 # if any releases got releases notes, run tweetReleaseNotesAvailable()
 releaseNotesAvailableInfo = {}
 
-for key, value in lastTwentyReleasesInfo.items():
+for key, value in lastFiftyReleasesInfo.items():
     if (
         key not in storedDataFile["details_available_soon"]
         and value["CVEs"] == "no details yet"
