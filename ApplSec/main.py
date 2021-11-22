@@ -65,6 +65,7 @@ for key, value in newReleasesInfo.items():
         "iOS" in key
         and str(latestVersion["iOS"]) in key
         and value["CVEs"] != "no details yet"
+        and value["releaseNotes"] != "None"
     ):
         if value["zeroDays"]:
             if int(re.findall(r"\d+", value["CVEs"])[0]) != len(value["zeroDayCVEs"]):
@@ -157,8 +158,8 @@ if len(releaseNotesAvailableInfo) > 0:
 # if there was a new major release, run tweetYearlyReport()
 for key, value in latestVersion.items():
     if (
-        (f"{key} {value} " in str(lastFiftyReleases)
-        or f"{key} {value}.0 " in str(lastFiftyReleases))
+        (f"{key} {value} " in str(newReleases)
+        or f"{key} {value}.0 " in str(newReleases))
         and key not in storedDataFile["todays_tweets"]["tweetYearlyReport"]
     ):
         tweetYearlyReport(releases, key, value)
