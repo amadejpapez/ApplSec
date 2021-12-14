@@ -24,7 +24,6 @@ def tweetNewUpdates(updatesInfo):
     results = []
     for key, value in updatesInfo.items():
         results.append(f"{value['emojis']} {key} - {value['CVEs']}\n")
-    results = list(reversed(results))
 
     tweetOrCreateAThread("tweetNewUpdates", title=title, results=results)
 
