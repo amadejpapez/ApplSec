@@ -1,7 +1,7 @@
 import re
 
 import requests
-from create_tweets.post_on_twitter import tweetOrCreateAThread
+from create_tweets.twitter import tweetOrCreateAThread
 
 """
 iOS 15 was released today. In iOS 14 series Apple fixed in total of 346 security issues over 16 releases. 🔐

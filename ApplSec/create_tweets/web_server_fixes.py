@@ -2,7 +2,7 @@ import re
 from datetime import date
 
 import requests
-from create_tweets.post_on_twitter import tweetOrCreateAThread
+from create_tweets.twitter import tweetOrCreateAThread
 
 """
 In month of March Apple fixed 42 security issues in their websites 🌐

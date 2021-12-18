@@ -12,10 +12,11 @@ API keys are stored in a separate file 'auth_secrets.py' like this:
 -----------------------------
 keys = {
     "ApplSec" : {
-        "api_key"             : "x",
-        "api_key_secret"      : "x",
-        "access_token"        : "x",
-        "access_token_secret" : "x"
+        "api_key"               : "x",
+        "api_key_secret"        : "x",
+        "access_token"          : "x",
+        "access_token_secret"   : "x",
+        "bearer_token"          : "x"
     }
 }
 -----------------------------
@@ -26,10 +27,7 @@ api_key_secret = keys["ApplSec"]["api_key_secret"]
 access_token = keys["ApplSec"]["access_token"]
 access_token_secret = keys["ApplSec"]["access_token_secret"]
 
-auth = tweepy.OAuthHandler(api_key, api_key_secret)
-auth.set_access_token(access_token, access_token_secret)
-api = tweepy.API(auth)
-
+api = tweepy.Client(consumer_key=api_key, consumer_secret=api_key_secret, access_token=access_token, access_token_secret=access_token_secret, return_type=dict)
 
 def tweetOrCreateAThread(whatFunction, **kwargs):
     if "results" in kwargs:
@@ -72,27 +70,24 @@ def tweetOrCreateAThread(whatFunction, **kwargs):
             del kwargs[key]
 
     if "firstTweet" in kwargs:
-        firstTweet = api.update_status(
-            emoji.emojize(kwargs["firstTweet"], use_aliases=True)
+        firstTweet = api.create_tweet(
+            text=emoji.emojize(kwargs["firstTweet"], use_aliases=True)
         )
 
     if "secondTweet" in kwargs:
-        secondTweet = api.update_status(
-            emoji.emojize(kwargs["secondTweet"], use_aliases=True),
-            in_reply_to_status_id=firstTweet.id,
-            auto_populate_reply_metadata=True,
+        secondTweet = api.create_tweet(
+            in_reply_to_tweet_id=firstTweet["data"]["id"],
+            text=emoji.emojize(kwargs["secondTweet"], use_aliases=True)
         )
 
     if "thirdTweet" in kwargs:
-        thirdTweet = api.update_status(
-            emoji.emojize(kwargs["thirdTweet"], use_aliases=True),
-            in_reply_to_status_id=secondTweet.id,
-            auto_populate_reply_metadata=True,
+        thirdTweet = api.create_tweet(
+            in_reply_to_tweet_id=secondTweet["data"]["id"],
+            text=emoji.emojize(kwargs["thirdTweet"], use_aliases=True)
         )
 
     if "fourthTweet" in kwargs:
-        api.update_status(
-            emoji.emojize(kwargs["fourthTweet"], use_aliases=True),
-            in_reply_to_status_id=thirdTweet.id,
-            auto_populate_reply_metadata=True,
+        api.create_tweet(
+            in_reply_to_tweet_id=thirdTweet["data"]["id"],
+            text=emoji.emojize(kwargs["fourthTweet"], use_aliases=True)
         )
