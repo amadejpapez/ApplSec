@@ -11,7 +11,6 @@ from create_tweets.zero_days import tweetZeroDays
 from get_data import getData
 from save_data import readFile, saveData
 
-
 storedDataFile = readFile()
 
 mainPage = requests.get("https://support.apple.com/en-us/HT201222").text
@@ -118,10 +117,8 @@ for key, value in lastFiftyReleasesInfo.items():
 for key, value in list(entryChangesInfo.items()):
     if (
         key in storedDataFile["todays_tweets"]["tweetEntryChanges"].keys()
-        and value["added"]
-        == storedDataFile["todays_tweets"]["tweetEntryChanges"][key][0]
-        and value["updated"]
-        == storedDataFile["todays_tweets"]["tweetEntryChanges"][key][1]
+        and value["added"] == storedDataFile["todays_tweets"]["tweetEntryChanges"][key][0]
+        and value["updated"] == storedDataFile["todays_tweets"]["tweetEntryChanges"][key][1]
     ):
         del entryChangesInfo[key]
     else:

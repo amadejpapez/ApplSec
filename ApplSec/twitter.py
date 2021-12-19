@@ -1,33 +1,41 @@
+import json
+import os
+
 import emoji
 import tweepy
-from auth_secrets import keys
 
 """
-Handles the tweeting part.
+Handle the tweeting part.
 
 tweetOrCreateAThread() accepts the following:
 whatFunction, title, results, firstTweet, secondTweet, thirdTweet, fourthTweet
 
-API keys are stored in a separate file 'auth_secrets.py' like this:
+API keys are stored in a separate 'auth_secrets.json' file.
+It is located outside of the ApplSec project folder.
+File structure:
 -----------------------------
-keys = {
+{
     "ApplSec" : {
         "api_key"               : "x",
         "api_key_secret"        : "x",
         "access_token"          : "x",
-        "access_token_secret"   : "x",
-        "bearer_token"          : "x"
+        "access_token_secret"   : "x"
     }
 }
 -----------------------------
 """
 
-api_key = keys["ApplSec"]["api_key"]
-api_key_secret = keys["ApplSec"]["api_key_secret"]
-access_token = keys["ApplSec"]["access_token"]
-access_token_secret = keys["ApplSec"]["access_token_secret"]
+location = os.path.abspath(os.path.join(__file__, "../../../auth_secrets.json"))
+with open(location, "r", encoding="utf-8") as myFile:
+    keys = json.load(myFile)
 
-api = tweepy.Client(consumer_key=api_key, consumer_secret=api_key_secret, access_token=access_token, access_token_secret=access_token_secret, return_type=dict)
+API = tweepy.Client(
+    consumer_key=keys["ApplSec"]["api_key"],
+    consumer_secret=keys["ApplSec"]["api_key_secret"],
+    access_token=keys["ApplSec"]["access_token"],
+    access_token_secret=keys["ApplSec"]["access_token_secret"],
+    return_type=dict
+)
 
 def tweetOrCreateAThread(whatFunction, **kwargs):
     if "results" in kwargs:
@@ -37,26 +45,13 @@ def tweetOrCreateAThread(whatFunction, **kwargs):
         kwargs["thirdTweet"] = ""
 
         for result in kwargs["results"]:
-            if (
-                len(
-                    emoji.emojize(kwargs["firstTweet"], use_aliases=True)
-                    + result
-                    + kwargs["title"]
-                )
-                < maxLength
-            ):
+            if len(kwargs["firstTweet"] + result+ kwargs["title"]) < maxLength:
                 kwargs["firstTweet"] += result
 
-            elif (
-                len(emoji.emojize(kwargs["secondTweet"], use_aliases=True) + result)
-                < maxLength
-            ):
+            elif len(kwargs["secondTweet"] + result) < maxLength:
                 kwargs["secondTweet"] += result
 
-            elif (
-                len(emoji.emojize(kwargs["thirdTweet"], use_aliases=True) + result)
-                < maxLength
-            ):
+            elif len(kwargs["thirdTweet"] + result) < maxLength:
                 kwargs["thirdTweet"] += result
 
         if whatFunction == "tweetNewUpdates":
@@ -70,24 +65,24 @@ def tweetOrCreateAThread(whatFunction, **kwargs):
             del kwargs[key]
 
     if "firstTweet" in kwargs:
-        firstTweet = api.create_tweet(
+        firstTweet = API.create_tweet(
             text=emoji.emojize(kwargs["firstTweet"], use_aliases=True)
         )
 
     if "secondTweet" in kwargs:
-        secondTweet = api.create_tweet(
+        secondTweet = API.create_tweet(
             in_reply_to_tweet_id=firstTweet["data"]["id"],
             text=emoji.emojize(kwargs["secondTweet"], use_aliases=True)
         )
 
     if "thirdTweet" in kwargs:
-        thirdTweet = api.create_tweet(
+        thirdTweet = API.create_tweet(
             in_reply_to_tweet_id=secondTweet["data"]["id"],
             text=emoji.emojize(kwargs["thirdTweet"], use_aliases=True)
         )
 
     if "fourthTweet" in kwargs:
-        api.create_tweet(
+        API.create_tweet(
             in_reply_to_tweet_id=thirdTweet["data"]["id"],
             text=emoji.emojize(kwargs["fourthTweet"], use_aliases=True)
         )

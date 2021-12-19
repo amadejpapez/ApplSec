@@ -1,7 +1,7 @@
 import re
 
 import requests
-from create_tweets.twitter import tweetOrCreateAThread
+from twitter import tweetOrCreateAThread
 
 """
 iOS 15 was released today. In iOS 14 series Apple fixed in total of 346 security issues over 16 releases. 🔐
@@ -33,9 +33,7 @@ def tweetYearlyReport(releases, system, latestSystemVersion):
 
         if system == "macOS":
             # if system is macOS, take the name of the macOS version as Security Updates only contain names
-            macOSName = re.findall(
-                rf"{system}\s([a-z\s]+){version}", str(releases), re.IGNORECASE
-            )[0]
+            macOSName = re.findall(rf"{system}\s([a-z\s]+){version}", str(releases), re.IGNORECASE)[0]
         else:
             macOSName = "None"
 
@@ -43,9 +41,7 @@ def tweetYearlyReport(releases, system, latestSystemVersion):
             if f"{system} {version}" in release or macOSName in release:
                 if "href" in release:
                     # if there are release notes, count all the CVEs
-                    info[version]["releaseNotes"] = re.findall(
-                        r'href="([^"]+)"', release
-                    )
+                    info[version]["releaseNotes"] = re.findall(r'href="([^"]+)"', release)
                     page = requests.get(info[version]["releaseNotes"][0]).text
 
                     currentCVE = len(re.findall("CVE", page)) - 1
@@ -63,11 +59,8 @@ def tweetYearlyReport(releases, system, latestSystemVersion):
 
     if system == "macOS":
         # for macOS create a thread with additional info in the second tweet
-        secondResults = (
-            "Numbers also contain issues from Security and Supplemental Updates."
-        )
-        tweetOrCreateAThread(
-            "tweetYearlyReport", firstTweet=results, secondTweet=secondResults
-        )
+        secondResults = "Numbers also contain issues from Security and Supplemental Updates."
+
+        tweetOrCreateAThread("tweetYearlyReport", firstTweet=results, secondTweet=secondResults)
     else:
         tweetOrCreateAThread("tweetYearlyReport", firstTweet=results)

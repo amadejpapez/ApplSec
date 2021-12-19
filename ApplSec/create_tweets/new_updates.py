@@ -2,7 +2,7 @@ import re
 from collections import Counter, OrderedDict
 
 import requests
-from create_tweets.twitter import tweetOrCreateAThread
+from twitter import tweetOrCreateAThread
 
 """
 -----------------------------

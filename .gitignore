@@ -3,4 +3,4 @@ __pycache__
 .vscode
 
 stored_data.json
-auth_secrets.py
+auth_secrets.json

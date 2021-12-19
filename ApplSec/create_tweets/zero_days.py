@@ -1,7 +1,7 @@
 import re
 
-from create_tweets.twitter import tweetOrCreateAThread
 from save_data import readFile, saveData
+from twitter import tweetOrCreateAThread
 
 """
 -----------------------------

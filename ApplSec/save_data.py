@@ -5,9 +5,15 @@ from datetime import date
 """
 Saves and reads data from the 'stored_data.json' file, so
 the bot can use the data next time.
+
+File stores:
+- last 10 zero-days, so the bot knows if a zero-day is new
+or if it is just an additional update.
+- releases that do not have release notes yet
+- all of the data tweeted that day to not tweet things twice
 """
 
-DIRPATH = os.path.abspath(os.path.join(os.path.dirname(__file__)))
+LOCATION = os.path.abspath(os.path.join(__file__, "../stored_data.json"))
 
 fileStructure = {
     "zero_days": [],
@@ -26,10 +32,10 @@ fileStructure = {
 
 def readFile():
     try:
-        with open(f"{DIRPATH}/stored_data.json", "r+", encoding="utf-8") as myFile:
+        with open(LOCATION, "r+", encoding="utf-8") as myFile:
             storedDataFile = json.load(myFile)
-    except FileNotFoundError:
-        with open(f"{DIRPATH}/stored_data.json", "w+", encoding="utf-8") as myFile2:
+    except:
+        with open(LOCATION, "w+", encoding="utf-8") as myFile2:
             myFile2.seek(0)
             json.dump(fileStructure, myFile2, indent=4)
             myFile2.truncate()
@@ -51,7 +57,7 @@ def readFile():
 
 
 def saveData(storedDataModified):
-    with open(f"{DIRPATH}/stored_data.json", "w+", encoding="utf-8") as myFile:
+    with open(LOCATION, "w+", encoding="utf-8") as myFile:
         myFile.seek(0)
         json.dump(storedDataModified, myFile, indent=4)
         myFile.truncate()

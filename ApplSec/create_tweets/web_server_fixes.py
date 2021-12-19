@@ -2,7 +2,7 @@ import re
 from datetime import date
 
 import requests
-from create_tweets.twitter import tweetOrCreateAThread
+from twitter import tweetOrCreateAThread
 
 """
 In month of March Apple fixed 42 security issues in their websites 🌐
@@ -45,9 +45,7 @@ def tweetWebServerFixes():
     numberOfFixesOnAppleDotCom = len(re.findall(r"apple.com", str(allFixes)))
     numberOfFixesOniCloudDotCom = len(re.findall(r"icloud.com", str(allFixes)))
 
-    numberOfFixes = (
-        numberOfFixes - numberOfFixesOnAppleDotCom - numberOfFixesOniCloudDotCom
-    )
+    numberOfFixes = numberOfFixes - numberOfFixesOnAppleDotCom - numberOfFixesOniCloudDotCom
 
     if numberOfFixesOnAppleDotCom >= 1:
         results += f":apple: {numberOfFixesOnAppleDotCom} of those on apple[.]com\n"
