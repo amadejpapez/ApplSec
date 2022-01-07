@@ -51,7 +51,6 @@ def tweetEntryChanges(updatesInfo):
 
 
 def tweetReleaseNotesAvailable(updatesInfo):
-    # TODO: add zero-day tweets to this
     title = ":spiral_notepad: RELEASE NOTES AVAILABLE :spiral_notepad:\n\n"
     results = []
 

@@ -1,6 +1,7 @@
 import re
 
 import requests
+
 from twitter import tweetOrCreateAThread
 
 """
@@ -41,7 +42,9 @@ def tweetYearlyReport(releases, system, latestSystemVersion):
             if f"{system} {version}" in release or macOSName in release:
                 if "href" in release:
                     # if there are release notes, count all the CVEs
-                    info[version]["releaseNotes"] = re.findall(r'href="([^"]+)"', release)
+                    info[version]["releaseNotes"] = re.findall(
+                        r'href="([^"]+)"', release
+                    )
                     page = requests.get(info[version]["releaseNotes"][0]).text
 
                     currentCVE = len(re.findall("CVE", page)) - 1

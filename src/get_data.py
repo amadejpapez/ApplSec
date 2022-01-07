@@ -73,8 +73,8 @@ def getData(releases):
             if key in title:
                 emojis = value
                 break
-            else:
-                emojis = ":hammer_and_wrench:"
+
+            emojis = ":hammer_and_wrench:"
 
         updatesInfo[title] = {"releaseNotes": releaseNotesLink, "emojis": emojis}
 

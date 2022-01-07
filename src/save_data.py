@@ -25,7 +25,7 @@ fileStructure = {
         "tweetEntryChanges": {},
         "tweetZeroDays": {},
         "tweetYearlyReport": [],
-        "tweetWebServerFixes": False
+        "tweetWebServerFixes": False,
     },
 }
 
@@ -34,7 +34,7 @@ def readFile():
     try:
         with open(LOCATION, "r+", encoding="utf-8") as myFile:
             storedDataFile = json.load(myFile)
-    except:
+    except Exception:
         with open(LOCATION, "w+", encoding="utf-8") as myFile2:
             myFile2.seek(0)
             json.dump(fileStructure, myFile2, indent=4)
@@ -50,7 +50,7 @@ def readFile():
             "tweetEntryChanges": {},
             "tweetZeroDays": {},
             "tweetYearlyReport": [],
-            "tweetWebServerFixes": False
+            "tweetWebServerFixes": False,
         }
 
     return storedDataFile

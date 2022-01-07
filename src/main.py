@@ -25,7 +25,7 @@ if len(str(date.today().day)) > 1:
 else:
     day = f"0{date.today().day}"
 
-currentDateFormatOne = f"{day} {date.today().strftime('%b')} {date.today().year}"  # 27 Oct 2021
+currentDateFormatOne = f"{day} {date.today().strftime('%b')} {date.today().year}"  # 08 Jan 2022
 
 newReleases = []
 for release in lastFiftyReleases:
@@ -59,10 +59,9 @@ for key, value in latestVersion.items():
 # check if the latest iOS series got a new release; tweetiOSParts()
 iOSPartsInfo = {}
 
-for key, value in newReleasesInfo.items():
+for key, value in newReleasesInfoCopy.items():
     if (
-        "iOS" in key
-        and str(latestVersion["iOS"]) in key
+        "iOS" in key and str(latestVersion["iOS"]) in key
         and value["CVEs"] != "no details yet"
         and value["releaseNotes"] != "None"
     ):
@@ -81,57 +80,8 @@ for key, value in list(iOSPartsInfo.items()):
 if len(iOSPartsInfo) > 0:
     tweetiOSParts(iOSPartsInfo)
 
-
-# if there was a zero-day fixed, run tweetZeroDays()
-zeroDaysInfo = {}
-
-for key, value in newReleasesInfo.items():
-    if value["zeroDays"]:
-        zeroDaysInfo[key] = value
-
-for key, value in list(zeroDaysInfo.items()):
-    if (
-        key in storedDataFile["todays_tweets"]["tweetZeroDays"].keys()
-        and value["zeroDays"] == storedDataFile["todays_tweets"]["tweetZeroDays"][key]
-    ):
-        del zeroDaysInfo[key]
-    else:
-        storedDataFile["todays_tweets"]["tweetZeroDays"][key] = value["zeroDays"]
-
-saveData(storedDataFile)
-
-if len(zeroDaysInfo) > 0:
-    tweetZeroDays(zeroDaysInfo)
-
-storedDataFile = readFile()
-
-
-# if there are any changes to the last 20 release notes, run tweetEntryChanges()
-lastFiftyReleasesInfo = getData(lastFiftyReleases)
-entryChangesInfo = {}
-
-for key, value in lastFiftyReleasesInfo.items():
-    if value["added"] or value["updated"]:
-        entryChangesInfo[key] = value
-
-for key, value in list(entryChangesInfo.items()):
-    if (
-        key in storedDataFile["todays_tweets"]["tweetEntryChanges"].keys()
-        and value["added"] == storedDataFile["todays_tweets"]["tweetEntryChanges"][key][0]
-        and value["updated"] == storedDataFile["todays_tweets"]["tweetEntryChanges"][key][1]
-    ):
-        del entryChangesInfo[key]
-    else:
-        storedDataFile["todays_tweets"]["tweetEntryChanges"][key] = [
-            value["added"],
-            value["updated"],
-        ]
-
-if len(entryChangesInfo) > 0:
-    tweetEntryChanges(entryChangesInfo)
-
-
 # if any releases got releases notes, run tweetReleaseNotesAvailable()
+lastFiftyReleasesInfo = getData(lastFiftyReleases)
 releaseNotesAvailableInfo = {}
 
 for key, value in lastFiftyReleasesInfo.items():
@@ -151,14 +101,57 @@ for key, value in lastFiftyReleasesInfo.items():
 if len(releaseNotesAvailableInfo) > 0:
     tweetReleaseNotesAvailable(releaseNotesAvailableInfo)
 
+newReleasesInfo.update(releaseNotesAvailableInfo)
+
+# if there was a zero-day fixed, run tweetZeroDays()
+zeroDaysInfo = {}
+
+for key, value in newReleasesInfo.items():
+    if value["zeroDays"]:
+        zeroDaysInfo[key] = value
+
+for key, value in list(zeroDaysInfo.items()):
+    if (
+        key in storedDataFile["todays_tweets"]["tweetZeroDays"].keys()
+    ) and value["zeroDays"] == storedDataFile["todays_tweets"]["tweetZeroDays"][key]:
+        del zeroDaysInfo[key]
+    else:
+        storedDataFile["todays_tweets"]["tweetZeroDays"][key] = value["zeroDays"]
+
+saveData(storedDataFile)
+
+if len(zeroDaysInfo) > 0:
+    tweetZeroDays(zeroDaysInfo)
+
+storedDataFile = readFile()
+
+
+# if there are any changes to the last 20 release notes, run tweetEntryChanges()
+entryChangesInfo = {}
+
+for key, value in lastFiftyReleasesInfo.items():
+    if value["added"] or value["updated"]:
+        entryChangesInfo[key] = value
+
+for key, value in list(entryChangesInfo.items()):
+    if (
+        key in storedDataFile["todays_tweets"]["tweetEntryChanges"].keys()
+        and value["added"] == storedDataFile["todays_tweets"]["tweetEntryChanges"][key][0]
+        and value["updated"] == storedDataFile["todays_tweets"]["tweetEntryChanges"][key][1]
+    ):
+        del entryChangesInfo[key]
+    else:
+        storedDataFile["todays_tweets"]["tweetEntryChanges"][key] = [value["added"], value["updated"]]
+
+if len(entryChangesInfo) > 0:
+    tweetEntryChanges(entryChangesInfo)
+
 
 # if there was a new major release, run tweetYearlyReport()
 for key, value in latestVersion.items():
     if (
-        (f"{key} {value} " in str(newReleases)
-        or f"{key} {value}.0 " in str(newReleases))
-        and key not in storedDataFile["todays_tweets"]["tweetYearlyReport"]
-    ):
+        f"{key} {value} " in str(newReleases) or f"{key} {value}.0 " in str(newReleases)
+    ) and key not in storedDataFile["todays_tweets"]["tweetYearlyReport"]:
         tweetYearlyReport(releases, key, value)
         storedDataFile["todays_tweets"]["tweetYearlyReport"].append(key)
 
@@ -166,8 +159,7 @@ for key, value in latestVersion.items():
 # if it is first day of the month, run tweetWebServerFixes()
 if (
     date.today().day == 1
-    and storedDataFile["todays_tweets"]["tweetWebServerFixes"] == False
-):
+) and storedDataFile["todays_tweets"]["tweetWebServerFixes"] is False:
     tweetWebServerFixes()
     storedDataFile["todays_tweets"]["tweetWebServerFixes"] = True
 

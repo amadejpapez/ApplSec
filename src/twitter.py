@@ -34,8 +34,9 @@ API = tweepy.Client(
     consumer_secret=keys["ApplSec"]["api_key_secret"],
     access_token=keys["ApplSec"]["access_token"],
     access_token_secret=keys["ApplSec"]["access_token_secret"],
-    return_type=dict
+    return_type=dict,
 )
+
 
 def tweetOrCreateAThread(whatFunction, **kwargs):
     if "results" in kwargs:
@@ -45,7 +46,7 @@ def tweetOrCreateAThread(whatFunction, **kwargs):
         kwargs["thirdTweet"] = ""
 
         for result in kwargs["results"]:
-            if len(kwargs["firstTweet"] + result+ kwargs["title"]) < maxLength:
+            if len(kwargs["firstTweet"] + result + kwargs["title"]) < maxLength:
                 kwargs["firstTweet"] += result
 
             elif len(kwargs["secondTweet"] + result) < maxLength:

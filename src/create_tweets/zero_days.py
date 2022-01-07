@@ -36,20 +36,20 @@ def tweetZeroDays(updatesInfo):
 
             allZeroDays.update(value["zeroDayCVEs"])
 
-    for zeroDay in allZeroDays:
+    for key, value in allZeroDays.items():
         if len(storedDataFile["zero_days"]) > 10:
             # if there are more than 10 zero days in a file, remove the last 5
             del storedDataFile["zero_days"][:-5]
 
-        if zeroDay in storedDataFile["zero_days"]:
+        if key in storedDataFile["zero_days"]:
             # if zero day is already in the file, add it to "old"
-            uniqueZeroDays["old"][zeroDay] = allZeroDays[zeroDay]
+            uniqueZeroDays["old"][key] = value
         else:
             # if zero day is not in the file, add it and add it to "new"
-            uniqueZeroDays["new"][zeroDay] = allZeroDays[zeroDay]
-            storedDataFile["zero_days"].append(zeroDay)
+            uniqueZeroDays["new"][key] = value
+            storedDataFile["zero_days"].append(key)
 
-        secondTweet += f"- {zeroDay} in {allZeroDays[zeroDay]}\n"
+        secondTweet += f"- {key} in {value}\n"
 
     saveData(storedDataFile)
 
