@@ -5,7 +5,6 @@ import requests
 
 from create_tweets.new_updates import tweet_ios_modules, tweet_new_updates
 from create_tweets.release_notes_changes import tweet_entry_changes, tweet_release_notes_available
-from create_tweets.web_server_fixes import tweet_webserver_fixes
 from create_tweets.yearly_report import tweet_yearly_report
 from create_tweets.zero_days import tweet_zerodays
 from gather_info import get_data
@@ -111,13 +110,5 @@ for key, value in latest_versions.items():
         tweet_yearly_report(releases, key, value)
         stored_data["tweeted_today"]["yearly_report"].append(key)
 
-
-# if it is first day of the month, run tweet_webserver_fixes()
-if (
-    date.today().day == 1
-    and stored_data["tweeted_today"]["webserver_fixes"] is False
-):
-    tweet_webserver_fixes()
-    stored_data["tweeted_today"]["webserver_fixes"] = True
 
 save_file(stored_data)

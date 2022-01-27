@@ -22,8 +22,7 @@ FILE_STRUCTURE = {
         "ios_parts": "",
         "entry_changes": {},
         "zero_days": {},
-        "yearly_report": [],
-        "webserver_fixes": False,
+        "yearly_report": []
     },
 }
 

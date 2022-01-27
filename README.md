@@ -7,11 +7,10 @@
 
 
 ## Keeps you up to date with the following info:
-* 💥 latest software updates,
+* 💥 new software releases,
 * 🔒 how many vulnerabilities Apple fixed in each update,
 * 💉 five iOS parts that got the most security fixes in the latest update,
 * ⚠️ fixes for any new, or previous zero-day vulnerabilities,
-* 🌐 how many security issues Apple fixed on their websites each month,
 * 🔄 if Apple updated or added any new entries to previous release notes,
 * and more!
 
@@ -19,9 +18,7 @@
 <p align="center"><img src="images/img2_dark.jpg" width=340></p>
 <p align="center"><img src="images/img3_dark.jpg" width=340></p>
 <p align="center"><img src="images/img4_dark.jpg" width=340></p>
-<p align="center"><img src="images/img5_dark.jpg" width=340></p>
 <p align="center"><img src="images/img6_dark.jpg" width=340></p>
-
 
 ## 🦾 How does it work?
 First, it creates a current day format and searches for it on the [Apple Security Updates](https://support.apple.com/en-us/HT201222) page. If a new update is available, it starts gathering data from the release notes. It counts how many security issues were fixed in each release, checks for zero-days and other needed data.
