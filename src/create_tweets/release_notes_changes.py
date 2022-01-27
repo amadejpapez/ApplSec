@@ -18,28 +18,29 @@ def tweet_entry_changes(releases_info, stored_data):
 
     for key, value in list(releases_info.items()):
         if (
-            key in stored_data["todays_tweets"]["tweetEntryChanges"].keys()
-            and value["added"] == stored_data["todays_tweets"]["tweetEntryChanges"][key][0]
-            and value["updated"] == stored_data["todays_tweets"]["tweetEntryChanges"][key][1]
+            key in stored_data["tweeted_today"]["entry_changes"].keys()
+            and value["entries_added"]
+            == stored_data["tweeted_today"]["entry_changes"][key][0]
+            and value["entries_updated"]
+            == stored_data["tweeted_today"]["entry_changes"][key][1]
         ):
             del releases_info[key]
         else:
-            stored_data["todays_tweets"]["tweetEntryChanges"][key] = [value["added"], value["updated"]]
+            stored_data["tweeted_today"]["entry_changes"][key] = [
+                value["entries_added"], value["entries_updated"]
+            ]
 
     results = []
-    title = ""
-
     for key, value in releases_info.items():
         added = value["entries_added"]
         updated = value["entries_updated"]
 
-        if added is not None or updated is not None:
-            if added is None and updated is not None:
-                results.append(f"{value['emoji']} {key} - {updated}\n")
-            elif added is not None and updated is None:
-                results.append(f"{value['emoji']} {key} - {added}\n")
-            elif added is not None and updated is not None:
-                results.append(f"{value['emoji']} {key} - {added}, {updated}\n")
+        if added is None and updated is not None:
+            results.append(f"{value['emoji']} {key} - {updated}\n")
+        elif added is not None and updated is None:
+            results.append(f"{value['emoji']} {key} - {added}\n")
+        elif added is not None and updated is not None:
+            results.append(f"{value['emoji']} {key} - {added}, {updated}\n")
 
     num = len(re.findall(r":[^:]+:", str(results)))
 
@@ -48,10 +49,10 @@ def tweet_entry_changes(releases_info, stored_data):
     else:
         title = ":arrows_counterclockwise: 1 SECURITY NOTE UPDATED :arrows_counterclockwise:\n\n"
 
-    tweet_or_make_a_thread("tweet_entry_changes", title=title, results=results)
+    tweet_or_make_a_thread(title, results)
 
 
-def tweet_release_notes_available(stored_data, releases_info):
+def tweet_release_notes_available(releases_info, stored_data):
     """
     🗒 RELEASE NOTES AVAILABLE 🗒
 
@@ -78,13 +79,13 @@ def tweet_release_notes_available(stored_data, releases_info):
             stored_data["details_available_soon"].remove(key)
             release_notes_available[key] = value
 
-    if release_notes_available == {}:
+    if not release_notes_available:
         return
 
     title = ":spiral_notepad: RELEASE NOTES AVAILABLE :spiral_notepad:\n\n"
-    results = []
 
+    results = []
     for key, value in release_notes_available.items():
         results.append(f"{value['emoji']} {key} - {value['num_of_bugs']}\n")
 
-    tweet_or_make_a_thread("tweet_release_notes_available", title=title, results=results)
+    tweet_or_make_a_thread(title, results)

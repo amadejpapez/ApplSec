@@ -15,8 +15,8 @@ def tweet_webserver_fixes():
     and 10 on other domains
     """
 
-    lastMonth = int(date.today().strftime("%m")) - 1
-    nameLastMonth = [
+    last_month = int(date.today().strftime("%m")) - 1
+    last_month_name = [
         "January",
         "February",
         "March",
@@ -29,33 +29,30 @@ def tweet_webserver_fixes():
         "October",
         "November",
         "December",
-    ][lastMonth - 1]
+    ][last_month - 1]
 
-    if lastMonth < 10:
-        lastMonth = f"0{lastMonth}"
+    date_format_three = f"<em>{date.today().year}-{last_month}"
 
-    currentDateFormatThree = f"<em>{date.today().year}-{lastMonth}"
+    main_page = "https://support.apple.com/en-us/HT201536"
+    page = requests.get(main_page).text
+    num_of_fixes = len(re.findall(date_format_three, page))
 
-    mainPage = "https://support.apple.com/en-us/HT201536"
-    page = requests.get(mainPage).text
-    numberOfFixes = len(re.findall(currentDateFormatThree, page))
+    results = f"In {last_month_name}, Apple fixed {num_of_fixes} security issues in their web servers. :globe_with_meridians:\n\n"
 
-    results = f"In {nameLastMonth}, Apple fixed {numberOfFixes} security issues in their web servers. :globe_with_meridians:\n\n"
+    all_fixes = re.findall(rf"<em>{date_format_three}(.*)</em>", page)
+    num_on_apple_com = len(re.findall(r"apple.com", str(all_fixes)))
+    num_on_icloud_com = len(re.findall(r"icloud.com", str(all_fixes)))
 
-    allFixes = re.findall(rf"<em>{currentDateFormatThree}(.*)</em>", page)
-    numberOfFixesOnAppleDotCom = len(re.findall(r"apple.com", str(allFixes)))
-    numberOfFixesOniCloudDotCom = len(re.findall(r"icloud.com", str(allFixes)))
+    num_of_fixes = num_of_fixes - num_on_apple_com - num_on_icloud_com
 
-    numberOfFixes = numberOfFixes - numberOfFixesOnAppleDotCom - numberOfFixesOniCloudDotCom
+    if num_on_apple_com >= 1:
+        results += f":apple: {num_on_apple_com} of those on apple[.]com\n"
+    if num_on_icloud_com >= 1:
+        results += f":cloud: {num_on_icloud_com} of those on icloud[.]com\n"
+    if num_of_fixes >= 1:
+        results += f"and {num_of_fixes} on other domains\n"
 
-    if numberOfFixesOnAppleDotCom >= 1:
-        results += f":apple: {numberOfFixesOnAppleDotCom} of those on apple[.]com\n"
-    if numberOfFixesOniCloudDotCom >= 1:
-        results += f":cloud: {numberOfFixesOniCloudDotCom} of those on icloud[.]com\n"
-    if numberOfFixes >= 1:
-        results += f"and {numberOfFixes} on other domains\n"
+    results += main_page
 
-    results += mainPage
-
-    if allFixes != []:
-        tweet_or_make_a_thread("tweet_webserver_fixes", first_tweet=results)
+    if all_fixes:
+        tweet_or_make_a_thread(first_tweet=results)

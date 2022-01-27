@@ -3,6 +3,36 @@ import re
 from twitter import tweet_or_make_a_thread
 
 
+def make_first_tweet(unique_zerodays, all_zerodays):
+    length_new = len(unique_zerodays["new"])
+    length_old = len(unique_zerodays["old"])
+
+    if length_new > 0:
+        text_new = ", ".join(unique_zerodays["new"])
+    if length_old > 0:
+        text_old = ", ".join(unique_zerodays["old"])
+
+    zero_day_module = all_zerodays[list(all_zerodays.keys())[0]]
+
+    if length_new == 1 and length_old == 0:
+        return f"Today, Apple pushed updates for one new zero-day ({text_new}) in {zero_day_module} that was already used to attack users."
+
+    if length_new == 0 and length_old == 1:
+        return f"Today, Apple pushed additional updates for {text_old} zero-day in {zero_day_module} that was already used to attack users."
+
+    if length_new == 1 and length_old == 1:
+        return f"Today, Apple pushed updates for one new zero-day ({text_new}) in {zero_day_module} that was already used to attack users and additional updates for {text_old} zero-day in {zero_day_module}."
+
+    if length_new > 1 and length_old == 0:
+        return f"Today, Apple pushed updates for {length_new} new zero-days that had already been used to attack users."
+
+    if length_new == 0 and length_old > 1:
+        return f"Today, Apple pushed additional updates for {length_old} zero-days that had already been used to attack users."
+
+    if length_new > 1 and length_old > 1:
+        return f"Today, Apple pushed updates for {length_new} new zero-days that had already been used to attack users and additional updates for {length_new} zero-days."
+
+
 def tweet_zerodays(releases_info, stored_data):
     """
     -----------------------------
@@ -12,36 +42,40 @@ def tweet_zerodays(releases_info, stored_data):
     -----------------------------
 
     -----------------------------
-    ⚒ RELEASED TODAY:
+    ⚠️ PATCHED TODAY:
 
     1 zero-day fixed in iOS and iPadOS 14.7.1
     1 zero-day fixed in macOS Big Sur 11.5.1
     -----------------------------
     """
 
-    all_zerodays = {}
-    unique_zerodays = {"old": {}, "new": {}}
-    second_tweet = ":bug: ZERO-DAY DETAILS:\n\n"
-    third_tweet = ":hammer_and_pick: RELEASED TODAY:\n\n"
-    fourth_tweet = ""
-
     for key, value in list(releases_info.items()):
         if (
             key in stored_data["tweeted_today"]["zero_days"].keys()
-        ) and value["num_of_zerodays"] == stored_data["tweeted_today"]["zero_days"][key]:
+            and value["num_of_zerodays"] == stored_data["tweeted_today"]["zero_days"][key]
+        ):
             del releases_info[key]
         else:
             stored_data["tweeted_today"]["zero_days"][key] = value["num_of_zerodays"]
 
+    if not releases_info:
+        return
+
+    second_tweet = ":bug: ZERO-DAY DETAILS:\n\n"
+    third_tweet = ":warning: PATCHED TODAY:\n\n"
+    fourth_tweet = ""
+    all_zerodays = {}
+
     for key, value in releases_info.items():
         if value["num_of_zerodays"]:
             if len(re.findall("fixed in", third_tweet)) <= 4:
-                third_tweet += f"{value['num_of_zerodays']} fixed in {key}\n"
+                third_tweet += f"{value['num_of_zerodays']} in {key}\n"
             else:
-                fourth_tweet += f"{value['num_of_zerodays']} fixed in {key}\n"
+                fourth_tweet += f"{value['num_of_zerodays']} in {key}\n"
 
             all_zerodays.update(value["list_of_zerodays"])
 
+    unique_zerodays = {"old": {}, "new": {}}
     for key, value in all_zerodays.items():
         if len(stored_data["zero_days"]) > 10:
             # if there are more than 10 zero days in a file, remove the last 5
@@ -62,37 +96,16 @@ def tweet_zerodays(releases_info, stored_data):
     else:
         first_tweet = ":mega: EMERGENCY UPDATES :mega:\n\n"
 
-    length_new = len(unique_zerodays["new"])
-    length_old = len(unique_zerodays["old"])
-
-    if length_new > 0:
-        text_new = ", ".join(unique_zerodays["new"])
-    if length_old > 0:
-        text_old = ", ".join(unique_zerodays["old"])
-
-    if length_new == 1 and length_old == 0:
-        first_tweet += f"Today, Apple pushed updates for one new zero-day ({text_new}) in {all_zerodays[list(all_zerodays.keys())[0]]} that was already used to attack users."
-    elif length_new == 0 and length_old == 1:
-        first_tweet += f"Today, Apple pushed additional updates for {text_old} zero-day in {all_zerodays[list(all_zerodays.keys())[0]]} that was already used to attack users."
-    elif length_new == 1 and length_old == 1:
-        first_tweet += f"Today, Apple pushed updates for one new zero-day ({text_new}) in {all_zerodays[list(all_zerodays.keys())[0]]} that was already used to attack users and additional updates for {text_old} zero-day in {all_zerodays[list(all_zerodays.keys())[0]]}."
-    elif length_new > 1 and length_old == 0:
-        first_tweet += f"Today, Apple pushed updates for {length_new} new zero-days that had already been used to attack users."
-    elif length_new == 0 and length_old > 1:
-        first_tweet += f"Today, Apple pushed additional updates for {length_old} zero-days that had already been used to attack users."
-    elif length_new > 1 and length_old > 1:
-        first_tweet += f"Today, Apple pushed updates for {length_new} new zero-days that had already been used to attack users and additional updates for {length_new} zero-days."
+    first_tweet += make_first_tweet(unique_zerodays, all_zerodays)
 
     if len(all_zerodays) == 1:
         # if there is only one zero day, do not print a separate tweet for zero days
         second_tweet = third_tweet
         third_tweet = fourth_tweet
 
-    if releases_info != {}:
-        tweet_or_make_a_thread(
-            "tweet_zerodays",
-            first_tweet=first_tweet,
-            second_tweet=second_tweet,
-            third_tweet=third_tweet,
-            fourth_tweet=fourth_tweet,
-        )
+    tweet_or_make_a_thread(
+        first_tweet=first_tweet,
+        second_tweet=second_tweet,
+        third_tweet=third_tweet,
+        fourth_tweet=fourth_tweet
+    )

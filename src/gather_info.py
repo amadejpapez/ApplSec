@@ -1,35 +1,3 @@
-"""
-Gather all data about given releases from Apple's website.
-
-Input example:
-----------------------------
-[
-    '<td><a href="https://support.apple.com/kb/HT213055">macOS Big Sur 11.6.3</a></td>',
-    '<td>macOS Big Sur</td>',
-    '<td>26 Jan 2022</td>'
-]
-----------------------------
-
-Return example:
-----------------------------
-{
-    'iOS and iPadOS 14.7': {
-        'release_notes': 'https://support.apple.com/kb/HT212623',
-        'emoji': ':iphone:',
-        'num_of_bugs': '37 bugs fixed',
-        'num_of_zerodays': '3 zero-days',
-        'list_of_zerodays': {
-            'CVE-2021-30761': 'WebKit',
-            'CVE-2021-30762': 'WebKit',
-            'CVE-2021-30713': 'TCC'
-        },
-        'entries_added': '8 entries added',
-        'entries_updated': '1 entry updated'
-    }
-}
------------------------------
-"""
-
 import re
 from datetime import date
 
@@ -102,22 +70,19 @@ def check_notes_updates(release_notes):
     date_format_two = (
         f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}"
     )
+    # Example: January 19, 2022
 
     num = len(re.findall(f"Entry added {date_format_two}", release_notes))
 
-    if num == 1:
-        added = f"{num} entry added"
-    elif num > 1:
-        added = f"{num} entries added"
+    if num >= 1:
+        added = f"{num} added"
     else:
         added = None
 
     num = len(re.findall(f"Entry updated {date_format_two}", release_notes))
 
-    if num == 1:
-        updated = f"{num} entry updated"
-    elif num > 1:
-        updated = f"{num} entries updated"
+    if num >= 1:
+        updated = f"{num} updated"
     else:
         updated = None
 
@@ -125,6 +90,38 @@ def check_notes_updates(release_notes):
 
 
 def get_data(releases):
+    """
+    Gather all data about given releases from Apple's website.
+
+    Input example:
+    ----------------------------
+    [
+        '<td><a href="https://support.apple.com/kb/HT213055">macOS Big Sur 11.6.3</a></td>',
+        '<td>macOS Big Sur</td>',
+        '<td>26 Jan 2022</td>'
+    ]
+    ----------------------------
+
+    Return example:
+    ----------------------------
+    {
+        'iOS and iPadOS 14.7': {
+            'release_notes': 'https://support.apple.com/kb/HT212623',
+            'emoji': ':iphone:',
+            'num_of_bugs': '37 bugs fixed',
+            'num_of_zerodays': '3 zero-days',
+            'list_of_zerodays': {
+                'CVE-2021-30761': 'WebKit',
+                'CVE-2021-30762': 'WebKit',
+                'CVE-2021-30713': 'TCC'
+            },
+            'entries_added': '8 entries added',
+            'entries_updated': '1 entry updated'
+        }
+    }
+    -----------------------------
+    """
+
     release_info = {}
 
     for release in releases:
@@ -134,9 +131,7 @@ def get_data(releases):
         )[0].rstrip()
 
         if "href" in release[0]:
-            release_notes_link = re.findall(
-                r'(?i)href="([^\']+)"', release[0]
-            )[0]
+            release_notes_link = re.findall(r'(?i)href="([^\']+)"', release[0])[0]
             release_notes = requests.get(release_notes_link).text
         else:
             release_notes_link = None

@@ -2,6 +2,7 @@ import re
 from collections import Counter, OrderedDict
 
 import requests
+
 from twitter import tweet_or_make_a_thread
 
 
@@ -22,19 +23,24 @@ def tweet_new_updates(new_releases_info, stored_data):
         else:
             del new_releases_info[key]
 
-    if len(new_releases_info) == 0:
+    if not new_releases_info:
         return
-
-    if len(new_releases_info) > 1:
-        title = ":collision: NEW UPDATES RELEASED :collision:\n\n"
-    else:
-        title = ":collision: NEW UPDATE RELEASED :collision:\n\n"
 
     results = []
     for key, value in new_releases_info.items():
         results.append(f"{value['emoji']} {key} - {value['num_of_bugs']}\n")
 
-    tweet_or_make_a_thread("tweet_new_updates", title=title, results=results)
+    if len(new_releases_info) > 1:
+        title = ":collision: NEW UPDATES RELEASED :collision:\n\n"
+        results.append("https://support.apple.com/en-us/HT201222")
+    else:
+        title = ":collision: NEW UPDATE RELEASED :collision:\n\n"
+        # if there was only one release, add its release notes link
+        results.append(
+            new_releases_info[list(new_releases_info)[0]]["release_notes"]
+        )
+
+    tweet_or_make_a_thread(title, results)
 
 
 def tweet_ios_modules(ios_info, stored_data):
@@ -57,7 +63,7 @@ def tweet_ios_modules(ios_info, stored_data):
         else:
             del ios_info[key]
 
-    if ios_info == {}:
+    if not ios_info:
         return
 
     for key, value in ios_info.items():
@@ -84,4 +90,4 @@ def tweet_ios_modules(ios_info, stored_data):
 
         results += f"{value['release_notes']}\n"
 
-        tweet_or_make_a_thread("tweet_ios_modules", first_tweet=results)
+    tweet_or_make_a_thread(first_tweet=results)
