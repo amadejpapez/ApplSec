@@ -1,166 +1,114 @@
-import copy
 import re
 from datetime import date
 
 import requests
-from create_tweets.new_updates import tweetiOSParts, tweetNewUpdates
-from create_tweets.release_notes_changes import tweetEntryChanges, tweetReleaseNotesAvailable
-from create_tweets.web_server_fixes import tweetWebServerFixes
-from create_tweets.yearly_report import tweetYearlyReport
-from create_tweets.zero_days import tweetZeroDays
-from get_data import getData
-from save_data import readFile, saveData
-
-storedDataFile = readFile()
-
-mainPage = requests.get("https://support.apple.com/en-us/HT201222").text
-releases = re.findall(r"(?<=<tr>)(?:.|\n)*?(?=<\/tr>)", mainPage)
-releases.pop(0)  # remove first row
-lastFiftyReleases = releases[:50]
+from create_tweets.new_updates import tweet_ios_modules, tweet_new_updates
+from create_tweets.release_notes_changes import tweet_entry_changes, tweet_release_notes_available
+from create_tweets.web_server_fixes import tweet_webserver_fixes
+from create_tweets.yearly_report import tweet_yearly_report
+from create_tweets.zero_days import tweet_zerodays
+from get_data import get_data
+from save_data import read_file, save_file
 
 
-# check if there are any new releases; tweetNewUpdates()
-if len(str(date.today().day)) > 1:
-    day = str(date.today().day)
-else:
-    day = f"0{date.today().day}"
+def determine_latest_versions(releases):
+    versions = {"iOS": 0, "tvOS": 0, "watchOS": 0, "macOS": 0}
 
-currentDateFormatOne = f"{day} {date.today().strftime('%b')} {date.today().year}"  # 08 Jan 2022
+    for key, _ in versions.items():
+        version = re.findall(rf"(?i){key}\s(?:[a-z\s]+)?([0-9]+)", str(releases))
 
-newReleases = []
-for release in lastFiftyReleases:
-    if f"<td>{currentDateFormatOne}</td>" in release:
-        newReleases.append(release)
+        version = list(map(int, version))
+        version.sort(reverse=True)
+        versions[key] = int(version[0])
 
-newReleasesInfo = getData(newReleases)
-newReleasesInfoCopy = copy.copy(newReleasesInfo)
-
-for key, value in list(newReleasesInfoCopy.items()):
-    if key not in storedDataFile["todays_tweets"]["tweetNewUpdates"]:
-        storedDataFile["todays_tweets"]["tweetNewUpdates"].append(key)
-    else:
-        del newReleasesInfoCopy[key]
-
-if len(newReleasesInfoCopy) > 0:
-    tweetNewUpdates(newReleasesInfoCopy)
+    return versions
 
 
-# find the latest version of each operating system
-latestVersion = {"iOS": 0, "tvOS": 0, "watchOS": 0, "macOS": 0}
+stored_data = read_file()
 
-for key, value in latestVersion.items():
-    version = re.findall(rf"{key}\s(?:[a-z\s]+)?([0-9]+)", str(releases), re.IGNORECASE)
+main_page = requests.get("https://support.apple.com/en-us/HT201222").text
+all_releases = re.findall(r"(?<=<tr>)(?:.|\n)*?(?=<\/tr>)", main_page)
+# var releases is storing only the previous fifty releases
+releases = all_releases[1:50]
 
-    version = list(map(int, version))
-    version.sort(reverse=True)
-    latestVersion[key] = int(version[0])
+date_format_one = f"{date.today().day:02d} {date.today().strftime('%b')} {date.today().year}"
+# 08 Jan 2022
 
+new_releases = []
+for i, _ in enumerate(releases):
+    releases[i] = releases[i].rstrip().split("\n")
+
+    if f"<td>{date_format_one}</td>" in releases[i]:
+        new_releases.append(releases[i])
+
+new_releases_info = get_data(new_releases)
+
+if new_releases != []:
+    tweet_new_updates(new_releases_info, stored_data)
+
+latest_versions = determine_latest_versions(releases)
 
 # check if the latest iOS series got a new release; tweetiOSParts()
-iOSPartsInfo = {}
-
-for key, value in newReleasesInfoCopy.items():
+ios_info = {}
+for key, value in new_releases_info.items():
     if (
-        "iOS" in key and str(latestVersion["iOS"]) in key
-        and value["CVEs"] != "no details yet"
-        and value["releaseNotes"] != "None"
+        "iOS" in key and str(latest_versions["iOS"]) in key
+        and value["num_of_bugs"] != "no details yet"
+        and value["release_notes"] != "None"
+        and int(re.findall(r"\d+", value["num_of_bugs"])[0]) != len(value["list_of_zerodays"])
     ):
-        if value["zeroDays"]:
-            if int(re.findall(r"\d+", value["CVEs"])[0]) != len(value["zeroDayCVEs"]):
-                iOSPartsInfo[key] = value
-        else:
-            iOSPartsInfo[key] = value
+        ios_info[key] = value
 
-for key, value in list(iOSPartsInfo.items()):
-    if key not in storedDataFile["todays_tweets"]["tweetiOSParts"]:
-        storedDataFile["todays_tweets"]["tweetiOSParts"] = key
-    else:
-        del iOSPartsInfo[key]
+if ios_info != {}:
+    tweet_ios_modules(ios_info, stored_data)
 
-if len(iOSPartsInfo) > 0:
-    tweetiOSParts(iOSPartsInfo)
 
 # if any releases got releases notes, run tweetReleaseNotesAvailable()
-lastFiftyReleasesInfo = getData(lastFiftyReleases)
-releaseNotesAvailableInfo = {}
+releases_info = get_data(releases)
 
-for key, value in lastFiftyReleasesInfo.items():
-    if (
-        key not in storedDataFile["details_available_soon"]
-        and value["CVEs"] == "no details yet"
-    ):
-        storedDataFile["details_available_soon"].append(key)
+if (
+    stored_data["details_available_soon"] != []
+    or str(releases_info) != "no details yet"
+):
+    tweet_release_notes_available(stored_data, releases_info)
 
-    if (
-        key in storedDataFile["details_available_soon"]
-        and value["releaseNotes"] is not None
-    ):
-        storedDataFile["details_available_soon"].remove(key)
-        releaseNotesAvailableInfo[key] = value
-
-if len(releaseNotesAvailableInfo) > 0:
-    tweetReleaseNotesAvailable(releaseNotesAvailableInfo)
-
-newReleasesInfo.update(releaseNotesAvailableInfo)
 
 # if there was a zero-day fixed, run tweetZeroDays()
-zeroDaysInfo = {}
+zeroday_releases_info = {}
 
-for key, value in newReleasesInfo.items():
-    if value["zeroDays"]:
-        zeroDaysInfo[key] = value
+for key, value in new_releases_info.items():
+    if value["num_of_zerodays"]:
+        zeroday_releases_info[key] = value
 
-for key, value in list(zeroDaysInfo.items()):
-    if (
-        key in storedDataFile["todays_tweets"]["tweetZeroDays"].keys()
-    ) and value["zeroDays"] == storedDataFile["todays_tweets"]["tweetZeroDays"][key]:
-        del zeroDaysInfo[key]
-    else:
-        storedDataFile["todays_tweets"]["tweetZeroDays"][key] = value["zeroDays"]
-
-saveData(storedDataFile)
-
-if len(zeroDaysInfo) > 0:
-    tweetZeroDays(zeroDaysInfo)
-
-storedDataFile = readFile()
+if len(zeroday_releases_info) > 0:
+    tweet_zerodays(zeroday_releases_info, stored_data)
 
 
 # if there are any changes to the last 20 release notes, run tweetEntryChanges()
-entryChangesInfo = {}
+changes_releases_info = {}
 
-for key, value in lastFiftyReleasesInfo.items():
-    if value["added"] or value["updated"]:
-        entryChangesInfo[key] = value
+for key, value in releases_info.items():
+    if value["entries_added"] or value["entries_updated"]:
+        changes_releases_info[key] = value
 
-for key, value in list(entryChangesInfo.items()):
-    if (
-        key in storedDataFile["todays_tweets"]["tweetEntryChanges"].keys()
-        and value["added"] == storedDataFile["todays_tweets"]["tweetEntryChanges"][key][0]
-        and value["updated"] == storedDataFile["todays_tweets"]["tweetEntryChanges"][key][1]
-    ):
-        del entryChangesInfo[key]
-    else:
-        storedDataFile["todays_tweets"]["tweetEntryChanges"][key] = [value["added"], value["updated"]]
-
-if len(entryChangesInfo) > 0:
-    tweetEntryChanges(entryChangesInfo)
+if len(changes_releases_info) > 0:
+    tweet_entry_changes(changes_releases_info, stored_data)
 
 
 # if there was a new major release, run tweetYearlyReport()
-for key, value in latestVersion.items():
+for key, value in latest_versions.items():
     if (
-        f"{key} {value} " in str(newReleases) or f"{key} {value}.0 " in str(newReleases)
-    ) and key not in storedDataFile["todays_tweets"]["tweetYearlyReport"]:
-        tweetYearlyReport(releases, key, value)
-        storedDataFile["todays_tweets"]["tweetYearlyReport"].append(key)
+        f"{key} {value} " in str(new_releases) or f"{key} {value}.0 " in str(new_releases)
+    ) and key not in stored_data["tweeted_today"]["yearly_report"]:
+        tweet_yearly_report(releases, key, value)
+        stored_data["tweeted_today"]["yearly_report"].append(key)
 
 
 # if it is first day of the month, run tweetWebServerFixes()
 if (
     date.today().day == 1
-) and storedDataFile["todays_tweets"]["tweetWebServerFixes"] is False:
-    tweetWebServerFixes()
-    storedDataFile["todays_tweets"]["tweetWebServerFixes"] = True
+) and stored_data["tweeted_today"]["webserver_fixes"] is False:
+    tweet_webserver_fixes()
+    stored_data["tweeted_today"]["webserver_fixes"] = True
 
-saveData(storedDataFile)
+save_file(stored_data)

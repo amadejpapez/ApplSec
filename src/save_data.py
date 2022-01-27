@@ -1,63 +1,49 @@
+"""
+Save and read data from the 'stored_data.json' file.
+
+File is storing:
+  - last 10 zero-days
+  - releases that do not have release notes yet
+  - data tweeted that day to not tweet things twice
+"""
+
 import json
 import os
 from datetime import date
 
-"""
-Saves and reads data from the 'stored_data.json' file, so
-the bot can use the data next time.
-
-File stores:
-- last 10 zero-days, so the bot knows if a zero-day is new
-or if it is just an additional update.
-- releases that do not have release notes yet
-- all of the data tweeted that day to not tweet things twice
-"""
-
 LOCATION = os.path.abspath(os.path.join(__file__, "../stored_data.json"))
 
-fileStructure = {
+FILE_STRUCTURE = {
     "zero_days": [],
     "details_available_soon": [],
-    "todays_tweets": {
-        "date": "",
-        "tweetNewUpdates": [],
-        "tweetiOSParts": "",
-        "tweetEntryChanges": {},
-        "tweetZeroDays": {},
-        "tweetYearlyReport": [],
-        "tweetWebServerFixes": False,
+    "today_date": "",
+    "tweeted_today": {
+        "new_updates": [],
+        "ios_parts": "",
+        "entry_changes": {},
+        "zero_days": {},
+        "yearly_report": [],
+        "webserver_fixes": False,
     },
 }
 
 
-def readFile():
+def read_file():
     try:
-        with open(LOCATION, "r+", encoding="utf-8") as myFile:
-            storedDataFile = json.load(myFile)
-    except Exception:
-        with open(LOCATION, "w+", encoding="utf-8") as myFile2:
-            myFile2.seek(0)
-            json.dump(fileStructure, myFile2, indent=4)
-            myFile2.truncate()
-            myFile2.seek(0)
-            storedDataFile = json.load(myFile2)
+        with open(LOCATION, "r", encoding="utf-8") as stored_file:
+            stored_data = json.load(stored_file)
 
-    if storedDataFile["todays_tweets"]["date"] != str(date.today()):
-        storedDataFile["todays_tweets"] = {
-            "date": str(date.today()),
-            "tweetNewUpdates": [],
-            "tweetiOSParts": "",
-            "tweetEntryChanges": {},
-            "tweetZeroDays": {},
-            "tweetYearlyReport": [],
-            "tweetWebServerFixes": False,
-        }
+    except (json.JSONDecodeError, FileNotFoundError):
+        save_file(FILE_STRUCTURE)
+        stored_data = read_file()
 
-    return storedDataFile
+    if stored_data["today_date"] != str(date.today()):
+        stored_data["tweeted_today"] = FILE_STRUCTURE["tweeted_today"]
+        stored_data["today_date"] = str(date.today())
+
+    return stored_data
 
 
-def saveData(storedDataModified):
-    with open(LOCATION, "w+", encoding="utf-8") as myFile:
-        myFile.seek(0)
-        json.dump(storedDataModified, myFile, indent=4)
-        myFile.truncate()
+def save_file(modified_data):
+    with open(LOCATION, "w", encoding="utf-8") as stored_file:
+        json.dump(modified_data, stored_file, indent=4)

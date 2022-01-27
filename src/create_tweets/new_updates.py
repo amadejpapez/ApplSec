@@ -2,69 +2,86 @@ import re
 from collections import Counter, OrderedDict
 
 import requests
-from twitter import tweetOrCreateAThread
-
-"""
------------------------------
-💥 NEW UPDATES RELEASED 💥
-
-💻 macOS Big Sur 11.5.1 - 1 bug fixed
-📱 iOS and iPadOS 14.7.1 - 1 bug fixed
-https://support.apple.com/en-us/HT201222
------------------------------
-"""
+from twitter import tweet_or_make_a_thread
 
 
-def tweetNewUpdates(updatesInfo):
-    if len(updatesInfo) > 1:
+def tweet_new_updates(new_releases_info, stored_data):
+    """
+    -----------------------------
+    💥 NEW UPDATES RELEASED 💥
+
+    💻 macOS Big Sur 11.5.1 - 1 bug fixed
+    📱 iOS and iPadOS 14.7.1 - 1 bug fixed
+    https://support.apple.com/en-us/HT201222
+    -----------------------------
+    """
+
+    for key, value in list(new_releases_info.items()):
+        if key not in stored_data["tweeted_today"]["new_updates"]:
+            stored_data["tweeted_today"]["new_updates"].append(key)
+        else:
+            del new_releases_info[key]
+
+    if len(new_releases_info) == 0:
+        return
+
+    if len(new_releases_info) > 1:
         title = ":collision: NEW UPDATES RELEASED :collision:\n\n"
     else:
         title = ":collision: NEW UPDATE RELEASED :collision:\n\n"
 
     results = []
-    for key, value in updatesInfo.items():
-        results.append(f"{value['emojis']} {key} - {value['CVEs']}\n")
+    for key, value in new_releases_info.items():
+        results.append(f"{value['emoji']} {key} - {value['num_of_bugs']}\n")
 
-    tweetOrCreateAThread("tweetNewUpdates", title=title, results=results)
-
-
-"""
------------------------------
-⚒ FIXED IN iOS 14.7 ⚒
-
-- 4 bugs in WebKit
-- 3 bugs in FontParser
-- 3 bugs in Model I/O
-- 2 bugs in CoreAudio
-and 25 other vulnerabilities fixed
-https://support.apple.com/kb/HT212601
------------------------------
-"""
+    tweet_or_make_a_thread("tweet_new_updates", title=title, results=results)
 
 
-def tweetiOSParts(updatesInfo):
-    for key, value in updatesInfo.items():
-        page = requests.get(value["releaseNotes"]).text
-        page = page.split("Additional recognition", 1)[0]
-        parts = Counter(re.findall(r"<strong>(.*)<\/strong>", page))
-        parts = OrderedDict(sorted(parts.items(), reverse=True, key=lambda t: t[1]))
+def tweet_ios_modules(ios_info, stored_data):
+    """
+    -----------------------------
+    ⚒ FIXED IN iOS 14.7 ⚒
+
+    - 4 bugs in WebKit
+    - 3 bugs in FontParser
+    - 3 bugs in Model I/O
+    - 2 bugs in CoreAudio
+    and 25 other vulnerabilities fixed
+    https://support.apple.com/kb/HT212601
+    -----------------------------
+    """
+
+    for key, _ in list(ios_info.items()):
+        if key not in stored_data["tweeted_today"]["ios_parts"]:
+            stored_data["tweeted_today"]["ios_parts"] = key
+        else:
+            del ios_info[key]
+
+    if ios_info == {}:
+        return
+
+    for key, value in ios_info.items():
+        ios_release = requests.get(value["release_notes"]).text
+        ios_release = ios_release.split("Additional recognition", 1)[0]
+        modules = Counter(re.findall(r"(?i)<strong>(.*)<\/strong>", ios_release))
+        modules = OrderedDict(sorted(modules.items(), reverse=True, key=lambda t: t[1]))
 
         results = f":hammer_and_pick: FIXED IN {key} :hammer_and_pick:\n\n"
-        numberParts = 0
+        num_modules = 0
 
-        for key2, value2 in parts.items():
+        for key2, value2 in modules.items():
             if len(re.findall("bug", results)) <= 3:
-                numberParts += value2
+                num_modules += value2
                 if value2 > 1:
                     results += f"- {value2} bugs in {key2}\n"
                 else:
                     results += f"- {value2} bug in {key2}\n"
 
-        numberParts = int(re.findall(r"(\d+)", value["CVEs"])[0]) - numberParts
+        num_modules = int(re.findall(r"(\d+)", value["num_of_bugs"])[0]) - num_modules
 
-        if numberParts > 0:
-            results += f"and {numberParts} other vulnerabilities fixed\n"
+        if num_modules > 0:
+            results += f"and {num_modules} other vulnerabilities fixed\n"
 
-        results += f"{value['releaseNotes']}\n"
+        results += f"{value['release_notes']}\n"
 
-        tweetOrCreateAThread("tweetiOSParts", firstTweet=results)
+        tweet_or_make_a_thread("tweet_ios_modules", first_tweet=results)

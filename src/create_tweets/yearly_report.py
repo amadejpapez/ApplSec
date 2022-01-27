@@ -2,19 +2,19 @@ import re
 
 import requests
 
-from twitter import tweetOrCreateAThread
-
-"""
-iOS 15 was released today. In iOS 14 series Apple fixed in total of 346 security issues over 16 releases. 🔐
-
-📊 COMPARED TO:
-- 301 fixed in iOS 13 over 18 releases
-- 339 fixed in iOS 12 over 33 releases
-- 310 fixed in iOS 11 over 17 releases
-"""
+from twitter import tweet_or_make_a_thread
 
 
-def tweetYearlyReport(releases, system, latestSystemVersion):
+def tweet_yearly_report(releases, system, latestSystemVersion):
+    """
+    iOS 15 was released today. In iOS 14 series Apple fixed in total of 346 security issues over 16 releases. 🔐
+
+    📊 COMPARED TO:
+    - 301 fixed in iOS 13 over 18 releases
+    - 339 fixed in iOS 12 over 33 releases
+    - 310 fixed in iOS 11 over 17 releases
+    """
+
     info = {}
     versions = []
 
@@ -64,6 +64,6 @@ def tweetYearlyReport(releases, system, latestSystemVersion):
         # for macOS create a thread with additional info in the second tweet
         secondResults = "Numbers also contain issues from Security and Supplemental Updates."
 
-        tweetOrCreateAThread("tweetYearlyReport", firstTweet=results, secondTweet=secondResults)
+        tweet_or_make_a_thread("tweet_yearly_report", first_tweet=results, second_tweet=secondResults)
     else:
-        tweetOrCreateAThread("tweetYearlyReport", firstTweet=results)
+        tweet_or_make_a_thread("tweet_yearly_report", first_tweet=results)

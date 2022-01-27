@@ -3,18 +3,18 @@ from datetime import date
 
 import requests
 
-from twitter import tweetOrCreateAThread
-
-"""
-In month of March Apple fixed 42 security issues in their websites 🌐
-
-🍎 31 of them on apple[.]com
-☁️ 1 of them on icloud[.]com
-and 10 on other domains
-"""
+from twitter import tweet_or_make_a_thread
 
 
-def tweetWebServerFixes():
+def tweet_webserver_fixes():
+    """
+    In month of March Apple fixed 42 security issues in their websites 🌐
+
+    🍎 31 of them on apple[.]com
+    ☁️ 1 of them on icloud[.]com
+    and 10 on other domains
+    """
+
     lastMonth = int(date.today().strftime("%m")) - 1
     nameLastMonth = [
         "January",
@@ -58,4 +58,4 @@ def tweetWebServerFixes():
     results += mainPage
 
     if allFixes != []:
-        tweetOrCreateAThread("webServerFixes", firstTweet=results)
+        tweet_or_make_a_thread("tweet_webserver_fixes", first_tweet=results)
