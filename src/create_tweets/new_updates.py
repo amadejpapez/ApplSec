@@ -6,41 +6,48 @@ import requests
 from twitter import tweet_or_make_a_thread
 
 
-def tweet_new_updates(new_releases_info, stored_data):
+def tweet_new_updates(releases_info, stored_data):
     """
     -----------------------------
     💥 NEW UPDATES RELEASED 💥
 
-    💻 macOS Big Sur 11.5.1 - 1 bug fixed
-    📱 iOS and iPadOS 14.7.1 - 1 bug fixed
+    🌐 Safari 15.3 - 4 bugs fixed
+    💻 Security Update 2022-001 Catalina - 5 bugs fixed
+    💻 macOS Big Sur 11.6.3 - 7 bugs fixed
+    💻 macOS Monterey 12.2 - 13 bugs fixed
+    -----------------------------
+    📱 iOS and iPadOS 15.3 - 10 bugs fixed
+    ⌚ watchOS 8.4 - 8 bugs fixed
     https://support.apple.com/en-us/HT201222
     -----------------------------
     """
 
-    for key, value in list(new_releases_info.items()):
+    for key, value in list(releases_info.items()):
         if key not in stored_data["tweeted_today"]["new_updates"]:
             stored_data["tweeted_today"]["new_updates"].append(key)
         else:
-            del new_releases_info[key]
+            del releases_info[key]
 
-    if not new_releases_info:
+    if not releases_info:
         return
 
     results = []
-    for key, value in new_releases_info.items():
+    for key, value in releases_info.items():
         results.append(f"{value['emoji']} {key} - {value['num_of_bugs']}\n")
 
-    if len(new_releases_info) > 1:
-        title = ":collision: NEW UPDATES RELEASED :collision:\n\n"
-        results.append("https://support.apple.com/en-us/HT201222")
-    else:
-        title = ":collision: NEW UPDATE RELEASED :collision:\n\n"
-        # if there was only one release, add its release notes link
-        results.append(
-            new_releases_info[list(new_releases_info)[0]]["release_notes"]
-        )
+    if len(releases_info) == 1:
+        results.insert(0, ":collision: NEW UPDATE RELEASED :collision:\n\n")
 
-    tweet_or_make_a_thread(title, results)
+        if releases_info[list(releases_info)[0]]["release_notes"]:
+            # if there is only one release, add its notes as a link
+            results.append(
+                releases_info[list(releases_info)[0]]["release_notes"]
+            )
+    else:
+        results.insert(0, ":collision: NEW UPDATES RELEASED :collision:\n\n")
+        results.append("https://support.apple.com/en-us/HT201222")
+
+    tweet_or_make_a_thread(results=results)
 
 
 def tweet_ios_modules(ios_info, stored_data):

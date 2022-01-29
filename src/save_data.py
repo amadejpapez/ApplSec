@@ -11,7 +11,7 @@ import json
 import os
 from datetime import date
 
-LOCATION = os.path.abspath(os.path.join(__file__, "../stored_data.json"))
+LOC = os.path.abspath(os.path.join(__file__, "../stored_data.json"))
 
 FILE_STRUCTURE = {
     "zero_days": [],
@@ -22,14 +22,14 @@ FILE_STRUCTURE = {
         "ios_parts": "",
         "entry_changes": {},
         "zero_days": {},
-        "yearly_report": []
+        "yearly_report": [],
     },
 }
 
 
 def read_file():
     try:
-        with open(LOCATION, "r", encoding="utf-8") as stored_file:
+        with open(LOC, "r", encoding="utf-8") as stored_file:
             stored_data = json.load(stored_file)
 
     except (json.JSONDecodeError, FileNotFoundError):
@@ -44,5 +44,5 @@ def read_file():
 
 
 def save_file(modified_data):
-    with open(LOCATION, "w", encoding="utf-8") as stored_file:
+    with open(LOC, "w", encoding="utf-8") as stored_file:
         json.dump(modified_data, stored_file, indent=4)

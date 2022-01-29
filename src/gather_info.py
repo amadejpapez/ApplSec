@@ -50,7 +50,7 @@ def check_zerodays(release_notes):
 
         return num_zerodays, list_zerodays
 
-    return None, None
+    return None, ""
 
 
 def count_bugs(release, release_notes):
@@ -70,16 +70,16 @@ def check_notes_updates(release_notes):
     date_format_two = (
         f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}"
     )
-    # Example: January 19, 2022
+    # Format: January 2, 2022
 
-    num = len(re.findall(f"Entry added {date_format_two}", release_notes))
+    num = len(re.findall(f"added {date_format_two}", release_notes))
 
     if num >= 1:
         added = f"{num} added"
     else:
         added = None
 
-    num = len(re.findall(f"Entry updated {date_format_two}", release_notes))
+    num = len(re.findall(f"updated {date_format_two}", release_notes))
 
     if num >= 1:
         updated = f"{num} updated"
@@ -89,16 +89,18 @@ def check_notes_updates(release_notes):
     return added, updated
 
 
-def get_data(releases):
+def get_info(releases):
     """
     Gather all data about given releases from Apple's website.
 
     Input example:
     ----------------------------
     [
-        '<td><a href="https://support.apple.com/kb/HT213055">macOS Big Sur 11.6.3</a></td>',
-        '<td>macOS Big Sur</td>',
-        '<td>26 Jan 2022</td>'
+        [
+            '<td><a href="https://support.apple.com/kb/HT213055">macOS Big Sur 11.6.3</a></td>',
+            '<td>macOS Big Sur</td>',
+            '<td>26 Jan 2022</td>'
+        ]
     ]
     ----------------------------
 
@@ -107,6 +109,7 @@ def get_data(releases):
     {
         'iOS and iPadOS 14.7': {
             'release_notes': 'https://support.apple.com/kb/HT212623',
+            'release_date': '26 Jan 2022',
             'emoji': ':iphone:',
             'num_of_bugs': '37 bugs fixed',
             'num_of_zerodays': '3 zero-days',
@@ -125,13 +128,17 @@ def get_data(releases):
     release_info = {}
 
     for release in releases:
-        title = re.findall(
-            r"(?i)(?:<td>|\">)([^<]+)(?:<br>|<\/a>|<em>|<\/td>)",
-            release[0],
-        )[0].rstrip()
+        if release[2] != "Preinstalled":
+            title = re.findall(
+                r"(?i)(?<=\">)[^<]+|(?<=<p>)[^<]+|^.+?(?=<br>)", release[0]
+            )[0]
+            release_date = re.findall(r"(?:<.*?>)?([^<]+)(?:<.*?>)?", release[2])[0]
+        else:
+            title = release[0]
+            release_date = ""
 
         if "href" in release[0]:
-            release_notes_link = re.findall(r'(?i)href="([^\']+)"', release[0])[0]
+            release_notes_link = re.findall(r'(?i)href="(.+?)"', release[0])[0]
             release_notes = requests.get(release_notes_link).text
         else:
             release_notes_link = None
@@ -147,8 +154,16 @@ def get_data(releases):
         num_zerodays, list_zerodays = check_zerodays(release_notes)
         added, updated = check_notes_updates(release_notes)
 
+        if title in list(release_info):
+            # if title is already in, add * at the end
+            # reason being Apple sometime re-releases updated (Safari 14.1)
+            # which breaks checking on the second release
+            # because there is already info with the same title
+            title += "*"
+
         release_info[title] = {
             "release_notes": release_notes_link,
+            "release_date": release_date,
             "emoji": set_emoji(title),
             "num_of_bugs": count_bugs(release, release_notes),
             "num_of_zerodays": num_zerodays,

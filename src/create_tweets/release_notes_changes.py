@@ -8,11 +8,10 @@ def tweet_entry_changes(releases_info, stored_data):
     -----------------------------
     🔄 4 SECURITY NOTES UPDATED 🔄
 
-    🌐 Safari 14.1.1 - 1 entry updated
-    💻 Security Update 2021-003 Catalina - 8 entries added
-    💻 Security Update 2021-004 Mojave - 6 entries added
-
-    💻 macOS Big Sur 11.4 - 8 entries added, 1 entry updated
+    🌐 Safari 14.1.1 - 1 updated
+    💻 Security Update 2021-003 Catalina - 8 added
+    💻 Security Update 2021-004 Mojave - 6 added
+    💻 macOS Big Sur 11.4 - 8 added, 1 updated
     -----------------------------
     """
 
@@ -27,8 +26,12 @@ def tweet_entry_changes(releases_info, stored_data):
             del releases_info[key]
         else:
             stored_data["tweeted_today"]["entry_changes"][key] = [
-                value["entries_added"], value["entries_updated"]
+                value["entries_added"],
+                value["entries_updated"],
             ]
+
+    if not releases_info:
+        return
 
     results = []
     for key, value in releases_info.items():
@@ -76,7 +79,7 @@ def tweet_release_notes_available(releases_info, stored_data):
             key in stored_data["details_available_soon"]
             and value["release_notes"] is not None
         ):
-            stored_data["details_available_soon"].remove(key)
+            del stored_data["details_available_soon"][key]
             release_notes_available[key] = value
 
     if not release_notes_available:

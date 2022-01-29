@@ -38,21 +38,26 @@ def tweet_zerodays(releases_info, stored_data):
     -----------------------------
     📣 EMERGENCY UPDATE 📣
 
-    Today, Apple pushed updates for one new zero-day (CVE-2021-30807) in IOMobileFrameBuffer that was already used to attack users.
+    Today, Apple pushed updates for 3 new zero-days that had already been used to attack users.
     -----------------------------
+    🐛 ZERO-DAY DETAILS:
 
+    - CVE-2021-30869 in XNU
+    - CVE-2021-30860 in CoreGraphics
+    - CVE-2021-30858 in WebKit
     -----------------------------
-    ⚠️ PATCHED TODAY:
+    ⚠️ PATCHES:
 
-    1 zero-day fixed in iOS and iPadOS 14.7.1
-    1 zero-day fixed in macOS Big Sur 11.5.1
+    1 zero-day in Security Update 2021-006 Catalina
+    3 zero-days in iOS 12.5.5
     -----------------------------
     """
 
     for key, value in list(releases_info.items()):
         if (
             key in stored_data["tweeted_today"]["zero_days"].keys()
-            and value["num_of_zerodays"] == stored_data["tweeted_today"]["zero_days"][key]
+            and value["num_of_zerodays"]
+            == stored_data["tweeted_today"]["zero_days"][key]
         ):
             del releases_info[key]
         else:
@@ -62,7 +67,7 @@ def tweet_zerodays(releases_info, stored_data):
         return
 
     second_tweet = ":bug: ZERO-DAY DETAILS:\n\n"
-    third_tweet = ":warning: PATCHED TODAY:\n\n"
+    third_tweet = ":warning: PATCHES:\n\n"
     fourth_tweet = ""
     all_zerodays = {}
 
@@ -107,5 +112,5 @@ def tweet_zerodays(releases_info, stored_data):
         first_tweet=first_tweet,
         second_tweet=second_tweet,
         third_tweet=third_tweet,
-        fourth_tweet=fourth_tweet
+        fourth_tweet=fourth_tweet,
     )
