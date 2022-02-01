@@ -1,21 +1,3 @@
-"""
-Handles the tweeting part.
-
-API keys are stored in a separate 'auth_secrets.json' file.
-It is located outside of the ApplSec project folder.
-File structure:
------------------------------
-{
-    "ApplSec" : {
-        "api_key"               : "x",
-        "api_key_secret"        : "x",
-        "access_token"          : "x",
-        "access_token_secret"   : "x"
-    }
-}
------------------------------
-"""
-
 import json
 import os
 
@@ -35,49 +17,67 @@ API = tweepy.Client(
 )
 
 
-def tweet_or_make_a_thread(
-    title="",
-    results="",
-    first_tweet="",
-    second_tweet="",
-    third_tweet="",
-    fourth_tweet="",
-):
-    if results != "":
-        max_length = 275
+def arrange_elements(tweet_text, item):
+    """
+    Arranges elements so that each element in tweet_text is under 240
+    characters. Each tweet_text element presents each tweet in a thread.
+    """
 
-        for result in results:
-            if len(first_tweet + result + title) < max_length:
-                first_tweet += result
+    if len(emoji.emojize(tweet_text[-1] + item, use_aliases=True)) < 240:
+        tweet_text[-1] += item
+    else:
+        tweet_text.append(item)
 
-            elif len(second_tweet + result) < max_length:
-                second_tweet += result
 
-            elif len(third_tweet + result) < max_length:
-                third_tweet += result
+def tweet(results):
+    """
+    Accepts a Python list of text that has to be tweeted. It
+    arranges the list into one tweet or a thread, as appropriate
+    and sends it to Twitter.
 
-    if title != "":
-        first_tweet = str(title + first_tweet)
+    ["1", "2", "3", "4", "5", "6", "7"]
 
-    if first_tweet != "":
-        first_tweet = API.create_tweet(
-            text=emoji.emojize(first_tweet, use_aliases=True),
-        )
+    Arrange elements into a tweet as they fit or extend to a thread.
 
-    if second_tweet != "":
-        second_tweet = API.create_tweet(
-            in_reply_to_tweet_id=first_tweet["data"]["id"],
-            text=emoji.emojize(second_tweet, use_aliases=True),
-        )
+    If input list contains a list, it is sorted separately, so each
+    list strictly starts in a new thread tweet.
 
-    if third_tweet != "":
-        third_tweet = API.create_tweet(
-            in_reply_to_tweet_id=second_tweet["data"]["id"],
-            text=emoji.emojize(third_tweet, use_aliases=True),
-        )
+    ["1", "2", "3", ["4", "5"], ["6", "7"]]
 
-    if fourth_tweet != "":
-        API.create_tweet(
-            in_reply_to_tweet_id=third_tweet["data"]["id"],
-            text=emoji.emojize(fourth_tweet, use_aliases=True),
-        )
+    Arrange first three elements. Add new tweet and arrange the list.
+    Add another tweet and arrange the second list.
+    """
+
+    if not results:
+        return
+
+    tweet_text = [""]
+    for group in results:
+        if isinstance(group, list):
+            tweet_text.append("")
+
+            for element in group:
+                arrange_elements(tweet_text, element)
+
+        else:
+            arrange_elements(tweet_text, group)
+
+    tweet_text = list(filter(None, tweet_text))
+    tweet_id = []
+
+    for text in tweet_text:
+        if tweet_text.index(text) == 0:
+            # first tweet
+            tweet_id.append(
+                API.create_tweet(
+                    text=emoji.emojize(text, use_aliases=True),
+                )
+            )
+        else:
+            # others in the thread
+            tweet_id.append(
+                API.create_tweet(
+                    in_reply_to_tweet_id=tweet_id[-1]["data"]["id"],
+                    text=emoji.emojize(text, use_aliases=True),
+                )
+            )
