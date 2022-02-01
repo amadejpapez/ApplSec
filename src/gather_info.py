@@ -1,5 +1,5 @@
+import datetime
 import re
-from datetime import date
 
 import requests
 
@@ -71,9 +71,11 @@ def count_bugs(release, release_notes):
 def check_notes_updates(release_notes):
     """Return if any entries were added or updated today."""
 
+    previous_day = datetime.date.today() - datetime.timedelta(1)
     date_format_two = (
-        f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}"
+        f"{previous_day.strftime('%B')} {previous_day.day}, {previous_day.year}"
     )
+    # tweet is made next day for any changes made on the previous day
     # Format: January 2, 2022
 
     num = len(re.findall(f"added {date_format_two}", release_notes))
@@ -97,33 +99,33 @@ def get_info(releases):
     """
     Gather all data about given releases from Apple's website.
 
-    Input example:
+    Input format:
     -----
     [
         [
-            '<td><a href="https://support.apple.com/kb/HT213055">macOS Big Sur 11.6.3</a></td>',
-            '<td>macOS Big Sur</td>',
-            '<td>26 Jan 2022</td>'
+            "<td><a href="https://support.apple.com/kb/HT213055">macOS Big Sur 11.6.3</a></td>",
+            "<td>macOS Big Sur</td>",
+            "<td>26 Jan 2022</td>"
         ]
     ]
     -----
 
-    Return example:
+    Return format:
     -----
     {
-        'iOS and iPadOS 14.7': {
-            'release_notes': 'https://support.apple.com/kb/HT212623',
-            'release_date': '26 Jan 2022',
-            'emoji': ':iphone:',
-            'num_of_bugs': '37 bugs fixed',
-            'num_of_zero_days': '3 zero-days',
-            'list_of_zero_days': {
-                'CVE-2021-30761': 'WebKit',
-                'CVE-2021-30762': 'WebKit',
-                'CVE-2021-30713': 'TCC'
+        "iOS and iPadOS 14.7": {
+            "release_notes": "https://support.apple.com/kb/HT212623",
+            "release_date": "26 Jan 2022",
+            "emoji": ":iphone:",
+            "num_of_bugs": "37 bugs fixed",
+            "num_of_zero_days": "3 zero-days",
+            "list_of_zero_days": {
+                "CVE-2021-30761": "WebKit",
+                "CVE-2021-30762": "WebKit",
+                "CVE-2021-30713": "TCC"
             },
-            'entries_added': '8 entries added',
-            'entries_updated': '1 entry updated'
+            "entries_added": "8 entries added",
+            "entries_updated": "1 entry updated"
         }
     }
     -----
@@ -182,7 +184,7 @@ def get_info(releases):
 def determine_latest_versions(ver_releases):
     """
     Return the latest major version number for each system.
-    For macOS also return its name.
+    For macOS return its name alongside.
     """
 
     versions = {"iOS": [0], "tvOS": [0], "watchOS": [0], "macOS": [0, ""]}

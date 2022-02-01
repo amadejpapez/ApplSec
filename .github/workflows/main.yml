@@ -5,6 +5,7 @@ on: [push, pull_request]
 jobs:
   tests:
     name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
+
     runs-on: ${{ matrix.os }}
 
     strategy:

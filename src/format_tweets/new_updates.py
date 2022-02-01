@@ -1,5 +1,5 @@
+import collections
 import re
-from collections import Counter, OrderedDict
 
 import requests
 
@@ -72,8 +72,12 @@ def format_ios_modules(ios_info, stored_data):
     for key, value in ios_info.items():
         ios_release = requests.get(value["release_notes"]).text
         ios_release = ios_release.split("Additional recognition", 1)[0]
-        modules = Counter(re.findall(r"(?i)<strong>(.*)<\/strong>", ios_release))
-        modules = OrderedDict(sorted(modules.items(), reverse=True, key=lambda t: t[1]))
+        modules = collections.Counter(
+            re.findall(r"(?i)<strong>(.*)<\/strong>", ios_release)
+        )
+        modules = collections.OrderedDict(
+            sorted(modules.items(), reverse=True, key=lambda t: t[1])
+        )
 
         tweet_text = [f":hammer_and_pick: FIXED IN {key} :hammer_and_pick:\n\n"]
         num_modules = 0

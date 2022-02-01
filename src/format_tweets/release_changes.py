@@ -1,7 +1,7 @@
 import re
 
 
-def format_entry_changes(changes_info, stored_data):
+def format_entry_changes(changes_info):
     """
     -----
     🔄 4 SECURITY NOTES UPDATED 🔄
@@ -12,24 +12,6 @@ def format_entry_changes(changes_info, stored_data):
     💻 macOS Big Sur 11.4 - 8 added, 1 updated
     -----
     """
-
-    for key, value in list(changes_info.items()):
-        if (
-            key in stored_data["tweeted_today"]["entry_changes"].keys()
-            and value["entries_added"]
-            == stored_data["tweeted_today"]["entry_changes"][key][0]
-            and value["entries_updated"]
-            == stored_data["tweeted_today"]["entry_changes"][key][1]
-        ):
-            del changes_info[key]
-        else:
-            stored_data["tweeted_today"]["entry_changes"][key] = [
-                value["entries_added"],
-                value["entries_updated"],
-            ]
-
-    if not changes_info:
-        return None
 
     tweet_text = []
     for key, value in changes_info.items():

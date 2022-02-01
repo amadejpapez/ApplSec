@@ -1,8 +1,8 @@
+import copy
 import json
 import os
 import re
 import sys
-from copy import deepcopy
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
@@ -17,7 +17,7 @@ LOC = os.path.abspath(os.path.join(__file__, "../examples.json"))
 with open(LOC, "r", encoding="utf-8") as my_file:
     example_file = json.load(my_file)
 
-stored_data = deepcopy(example_file["stored_data"])
+stored_data = copy.deepcopy(example_file["stored_data"])
 
 
 def test_get_info():
@@ -68,7 +68,7 @@ def test_get_info_results():
     releases_info = get_info(example_file["get_info_results"])
 
     formatted = format_new_updates(
-        dict(releases_info), deepcopy(example_file["stored_data"])
+        dict(releases_info), copy.deepcopy(example_file["stored_data"])
     )
 
     assert formatted == example_file["new_releases_expected"]
@@ -88,7 +88,7 @@ def test_ios_modules():
 def test_entry_changes():
     releases_info = example_file["entry_changes"]
 
-    formatted = format_entry_changes(dict(releases_info), stored_data)
+    formatted = format_entry_changes(dict(releases_info))
 
     assert formatted == example_file["entry_changes_expected"]
 
@@ -140,7 +140,7 @@ def test_zero_day_get_info():
     releases_info = get_info(example_file["zero_day_get_info"])
 
     formatted = format_zero_days(
-        dict(releases_info), deepcopy(example_file["stored_data"])
+        dict(releases_info), copy.deepcopy(example_file["stored_data"])
     )
 
     assert formatted == example_file["zero_day_get_info_expected"]

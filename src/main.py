@@ -1,5 +1,5 @@
+import datetime
 import re
-from datetime import date
 
 import requests
 
@@ -17,14 +17,13 @@ all_releases = re.findall(r"<tr>(.*?)<\/tr>", main_page.replace("\n", ""))[1:]
 for i, _ in enumerate(all_releases):
     all_releases[i] = re.findall(r"<td>(.*?)<\/td>", all_releases[i])
 
-# var releases is storing only the last hundred releases
-releases = all_releases[:100]
+# for most functions last 20 releases is enough
+releases = all_releases[:20]
 releases_info = get_info(releases)
 
-# get all new releases
-date_format_one = (
-    f"{date.today().day:02d} {date.today().strftime('%b')} {date.today().year}"
-)
+# get new releases
+today = datetime.date.today()
+date_format_one = f"{today.day:02d} {today.strftime('%b')} {today.year}"
 # Format: 08 Jan 2022
 
 new_releases_info = {}
@@ -32,7 +31,7 @@ for key, value in releases_info.items():
     if value["release_date"] == date_format_one:
         new_releases_info[key] = value
 
-stored_data = read_file()
+stored_data, new_day = read_file()
 
 
 # if the latest iOS series got a new release
@@ -54,6 +53,7 @@ if ios_releases_info:
 
 
 # if any releases that said "soon" got releases notes
+# or if any new releases say "no details yet"
 notes_releases_info = {}
 
 for key, value in releases_info.items():
@@ -78,19 +78,23 @@ for key, value in check_zero_days_info.items():
     if value["num_of_zero_days"]:
         zero_day_releases_info[key] = value
 
-if len(zero_day_releases_info) > 0:
+if len(zero_day_releases_info):
     tweet(format_zero_days(dict(zero_day_releases_info), stored_data))
 
 
 # if there were any changes in the release notes
-changes_releases_info = {}
+# at the start of the day check for changes made on the previous day
+# running only once per day, as it is checking last 300 release notes
+if new_day:
+    check_changes_info = releases_info | get_info(all_releases[20:300])
 
-for key, value in releases_info.items():
-    if value["entries_added"] or value["entries_updated"]:
-        changes_releases_info[key] = value
+    changes_releases_info = {}
+    for key, value in check_changes_info.items():
+        if value["entries_added"] or value["entries_updated"]:
+            changes_releases_info[key] = value
 
-if len(changes_releases_info) > 0:
-    tweet(format_entry_changes(changes_releases_info, stored_data))
+    if len(changes_releases_info):
+        tweet(format_entry_changes(changes_releases_info))
 
 
 # new updates should be tweeted last, after all of the above

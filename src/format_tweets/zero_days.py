@@ -2,9 +2,7 @@ import re
 
 
 def format_first_tweet(unique_zero_days, all_zero_days):
-    """
-    Returns text for the start of the zero day tweet.
-    """
+    """Return text for the start of the zero day tweet."""
 
     length_new = len(unique_zero_days["new"])
     length_old = len(unique_zero_days["old"])

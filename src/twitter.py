@@ -19,7 +19,7 @@ API = tweepy.Client(
 
 def arrange_elements(tweet_text, item):
     """
-    Arranges elements so that each element in tweet_text is under 240
+    Arrange elements so that each element in tweet_text is under 240
     characters. Each tweet_text element presents each tweet in a thread.
     """
 
