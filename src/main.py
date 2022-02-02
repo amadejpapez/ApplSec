@@ -21,17 +21,24 @@ for i, _ in enumerate(all_releases):
 releases = all_releases[:20]
 releases_info = get_info(releases)
 
+
 # get new releases
-today = datetime.date.today()
-date_format_one = f"{today.day:02d} {today.strftime('%b')} {today.year}"
+stored_data, midnight = read_file()
+
+if midnight:
+    # on midnight do checks with the previous date to not miss any
+    # changes made between 11pm and 12pm
+    check_date = datetime.date.today() - datetime.timedelta(1)
+else:
+    check_date = datetime.date.today()
+
+date_format_one = f"{check_date.day:02d} {check_date.strftime('%b')} {check_date.year}"
 # Format: 08 Jan 2022
 
 new_releases_info = {}
 for key, value in releases_info.items():
     if value["release_date"] == date_format_one:
         new_releases_info[key] = value
-
-stored_data, new_day = read_file()
 
 
 # if the latest iOS series got a new release
@@ -82,10 +89,9 @@ if len(zero_day_releases_info):
     tweet(format_zero_days(dict(zero_day_releases_info), stored_data))
 
 
-# if there were any changes in the release notes
-# at the start of the day check for changes made on the previous day
+# in midnight check for release note changes made on the previous day
 # running only once per day, as it is checking last 300 release notes
-if new_day:
+if midnight:
     check_changes_info = releases_info | get_info(all_releases[20:300])
 
     changes_releases_info = {}
@@ -115,4 +121,4 @@ for key, value in latest_versions.items():
             ):
                 tweet(format_yearly_report(all_releases, key, value[0], stored_data))
 
-save_file(stored_data)
+save_file(stored_data, midnight)
