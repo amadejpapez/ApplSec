@@ -12,22 +12,22 @@ def format_first_tweet(unique_zero_days, all_zero_days):
     zero_day_module = all_zero_days[list(all_zero_days.keys())[0]]
 
     if length_new == 1 and length_old == 0:
-        return f"Today, Apple pushed updates for one new zero-day ({text_new}) in {zero_day_module} that has already been used to attack users."
+        return f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that is being actively exploited."
 
     if length_new == 0 and length_old == 1:
-        return f"Today, Apple pushed additional updates for {text_old} zero-day in {zero_day_module} that has already been used to attack users."
+        return f"Apple pushed additional updates for a {zero_day_module} zero-day ({text_old}) that is being actively exploited."
 
     if length_new == 1 and length_old == 1:
-        return f"Today, Apple pushed updates for one new zero-day ({text_new}) in {zero_day_module} that has already been used to attack users and additional updates for {text_old} zero-day in {zero_day_module}."
+        return f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that is being actively exploited and additional updates for a {text_old} zero-day."
 
     if length_new > 1 and length_old == 0:
-        return f"Today, Apple pushed updates for {length_new} new zero-days that have already been used to attack users."
+        return f"Apple pushed updates for {length_new} new zero-days that are being actively exploited."
 
     if length_new == 0 and length_old > 1:
-        return f"Today, Apple pushed additional updates for {length_old} zero-days that have already been used to attack users."
+        return f"Apple pushed additional updates for {length_old} zero-days that are being actively exploited."
 
     if length_new > 1 and length_old > 1:
-        return f"Today, Apple pushed updates for {length_new} new zero-days that have already been used to attack users and additional updates for {length_new} zero-days."
+        return f"Apple pushed updates for {length_new} new zero-days that are being actively exploited and additional updates for {length_new} zero-days."
 
 
 def format_zero_days(zero_day_releases_info, stored_data):
@@ -35,7 +35,7 @@ def format_zero_days(zero_day_releases_info, stored_data):
     -----
     📣 EMERGENCY UPDATE 📣
 
-    Today, Apple pushed updates for 3 new zero-days that had already been used to attack users.
+    Apple pushed updates for 3 new zero-days that are being actively exploited.
     -----
     🐛 ZERO-DAY DETAILS:
 
@@ -59,7 +59,7 @@ def format_zero_days(zero_day_releases_info, stored_data):
             and value["num_of_zero_days"]
             == stored_data["tweeted_today"]["zero_days"][key]
         ):
-            # if release was already tweeted with the same number of zero-day
+            # if release was tweeted with the same number of zero-days
             del zero_day_releases_info[key]
             continue
 
@@ -74,7 +74,7 @@ def format_zero_days(zero_day_releases_info, stored_data):
     unique_zero_days = {"old": {}, "new": {}}
     for key, value in all_zero_days.items():
         if key in stored_data["zero_days"]:
-            # if zero day is already in the file, add it to "old"
+            # if zero day is in the file, add it to "old"
             unique_zero_days["old"][key] = value
         else:
             # if zero day is not in the file, add it and add it to "new"

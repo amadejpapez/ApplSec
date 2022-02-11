@@ -1129,7 +1129,7 @@
     "zero_day_releases_expected": [
         [
             ":mega: EMERGENCY UPDATES :mega:\n\n",
-            "Today, Apple pushed updates for 3 new zero-days that have already been used to attack users."
+            "Apple pushed updates for 3 new zero-days that are being actively exploited."
         ],
         [
             ":bug: ZERO-DAY DETAILS:\n\n",
@@ -1159,7 +1159,7 @@
     "zero_day_get_info_expected": [
         [
             ":mega: EMERGENCY UPDATES :mega:\n\n",
-            "Today, Apple pushed updates for 3 new zero-days that have already been used to attack users."
+            "Apple pushed updates for 3 new zero-days that are being actively exploited."
         ],
         [
             ":bug: ZERO-DAY DETAILS:\n\n",
