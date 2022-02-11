@@ -6,7 +6,7 @@ import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from format_tweets.new_updates import format_new_updates, format_ios_modules
+from format_tweets.new_updates import format_ios_modules, format_new_updates
 from format_tweets.release_changes import format_entry_changes, format_release_notes_available
 from format_tweets.yearly_report import format_yearly_report
 from format_tweets.zero_days import format_zero_days
@@ -36,17 +36,10 @@ def test_get_info():
     # useful for seeing which ones are missing if the above assert fails
     titles = []
     for i, value in enumerate(releases):
-        if value[2] != "Preinstalled":
-            title = re.findall(
-                r"(?i)(?<=\">)[^<]+|(?<=<p>)[^<]+|^.+?(?=<br>)", value[0]
-            )[0]
-        else:
-            title = value[0]
+        title = re.findall(r"(?i)(?<=[>])[^<]+|^[^<]+", value[0])[0]
 
-        if "macOS" in title:
-            title = title.split(",", 1)[0]
-        elif "iOS" in title and "iPad" in title:
-            title = title.split("and", 1)[0].rstrip().replace("iOS", "iOS and iPadOS")
+        if "iOS" in title and "iPad" in title:
+            title = title.split("and", 1)[0].strip().replace("iOS", "iOS and iPadOS")
 
         if title in titles:
             title += "*"
@@ -64,17 +57,17 @@ def test_new_updates():
     assert formatted == example_file["new_releases_expected"]
 
 
-def test_get_info_results():
+def test_get_info_2():
     releases_info = get_info(example_file["get_info_results"])
 
     formatted = format_new_updates(
         dict(releases_info), copy.deepcopy(example_file["stored_data"])
     )
 
-    assert formatted == example_file["new_releases_expected"]
+    assert formatted == example_file["get_info_expected"]
 
     # check if get_info() results match to the pre-existing info
-    assert releases_info == example_file["new_releases"]
+    assert releases_info == example_file["get_info_output"]
 
 
 def test_ios_modules():

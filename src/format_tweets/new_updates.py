@@ -73,7 +73,7 @@ def format_ios_modules(ios_info, stored_data):
         ios_release = requests.get(value["release_notes"]).text
         ios_release = ios_release.split("Additional recognition", 1)[0]
         modules = collections.Counter(
-            re.findall(r"(?i)<strong>(.*)<\/strong>", ios_release)
+            re.findall(r"(?<=<strong>).*?(?=<\/strong>)", ios_release)
         )
         modules = collections.OrderedDict(
             sorted(modules.items(), reverse=True, key=lambda t: t[1])
@@ -90,7 +90,7 @@ def format_ios_modules(ios_info, stored_data):
                 else:
                     tweet_text.append(f"- {value2} bug in {key2}\n")
 
-        num_modules = int(re.findall(r"(\d+)", value["num_of_bugs"])[0]) - num_modules
+        num_modules = int(re.findall(r"\d+", value["num_of_bugs"])[0]) - num_modules
 
         if num_modules > 0:
             tweet_text.append(f"and {num_modules} other vulnerabilities fixed\n")

@@ -33,15 +33,13 @@ def set_emoji(title):
 def check_zero_days(release_notes):
     """Check for specific keywords to find any fixed zero-days."""
 
-    entries = re.findall(
-        r"(?i)((?<=<strong>)(?:.|\n)*?(?=<strong>|<\/div))", release_notes
-    )
+    entries = re.findall(r"(?i)(?<=<strong>).*?(?=<strong>|<\/div)", release_notes)
     list_zero_days = {}
 
     for entry in entries:
         if "in the wild" in entry or "actively exploited" in entry:
             cve = re.findall(r"(?i)CVE-[0-9]{4}-[0-9]{4,5}", entry)[0]
-            list_zero_days[cve] = re.findall(r"(?i)(.*)<\/strong>", entry)[0]
+            list_zero_days[cve] = re.findall(r"(?i).+?(?=<\/strong>)", entry)[0]
 
     count = len(list_zero_days)
 
@@ -75,7 +73,7 @@ def check_notes_updates(release_notes):
     date_format_two = (
         f"{previous_day.strftime('%B')} {previous_day.day}, {previous_day.year}"
     )
-    # tweet is made next day for any changes made on the previous day
+    # tweet is made on the next day for any changes made on the previous day
     # Format: January 2, 2022
 
     num = len(re.findall(f"added {date_format_two}", release_notes))
@@ -103,9 +101,9 @@ def get_info(releases):
     -----
     [
         [
-            "<td><a href="https://support.apple.com/kb/HT213055">macOS Big Sur 11.6.3</a></td>",
-            "<td>macOS Big Sur</td>",
-            "<td>26 Jan 2022</td>"
+            "<a href="https://support.apple.com/kb/HT213055">macOS Big Sur 11.6.3</a>",
+            "macOS Big Sur",
+            "26 Jan 2022"
         ]
     ]
     -----
@@ -134,28 +132,21 @@ def get_info(releases):
     release_info = {}
 
     for release in releases:
-        if release[2] != "Preinstalled":
-            title = re.findall(
-                r"(?i)(?<=\">)[^<]+|(?<=<p>)[^<]+|^.+?(?=<br>)", release[0]
-            )[0]
-            release_date = re.findall(r"(?:<.*?>)?([^<]+)(?:<.*?>)?", release[2])[0]
-        else:
-            title = release[0]
-            release_date = ""
+        title = re.findall(r"(?i)(?<=[>])[^<]+|^[^<]+", release[0])[0]
+        release_date = re.findall(r"(?i)(?<=[>])[^<]+|^[^<]+", release[2])[0]
 
         if "href" in release[0]:
             release_notes_link = re.findall(r'(?i)href="(.+?)"', release[0])[0]
             release_notes = requests.get(release_notes_link).text
+            release_notes = release_notes.replace("\n", "").replace("&nbsp;", " ")
         else:
             release_notes_link = None
             release_notes = ""
 
-        if "macOS" in title:
-            # if macOS is in the title, take only the first part of the title
-            title = title.split(",", 1)[0]
-        elif "iOS" in title and "iPad" in title:
+        if "iOS" in title and "iPad" in title:
             # if they are both in the title remove version number from iPadOS
-            title = title.split("and", 1)[0].rstrip().replace("iOS", "iOS and iPadOS")
+            # turn "iOS 15.3 and iPadOS 15.3" into shorter "iOS and iPadOS 15.3"
+            title = title.split("and", 1)[0].strip().replace("iOS", "iOS and iPadOS")
 
         num_zero_days, list_zero_days = check_zero_days(release_notes)
         added, updated = check_notes_updates(release_notes)
@@ -190,7 +181,7 @@ def determine_latest_versions(ver_releases):
     versions = {"iOS": [0], "tvOS": [0], "watchOS": [0], "macOS": [0, ""]}
 
     for system, ver in versions.items():
-        version = re.findall(rf"(?i){system}\s(?:[a-z\s]+)?([0-9]+)", str(ver_releases))
+        version = re.findall(rf"(?i){system}[a-z\s]*\s([0-9]+)", str(ver_releases))
 
         version = list(map(int, version))
         version.sort(reverse=True)
@@ -198,8 +189,8 @@ def determine_latest_versions(ver_releases):
         ver[0] = int(version[0])
 
     versions["macOS"][1] = re.findall(
-        rf"(?i)macOS\s([a-z\s]+){versions['macOS'][0]}", str(ver_releases)
-    )[0].rstrip()
+        rf"(?i)(?<=macOS)[a-z\s]+(?={versions['macOS'][0]})", str(ver_releases)
+    )[0].strip()
 
     versions["iOS and iPadOS"] = versions.pop("iOS")
 

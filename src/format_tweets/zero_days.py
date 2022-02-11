@@ -1,6 +1,3 @@
-import re
-
-
 def format_first_tweet(unique_zero_days, all_zero_days):
     """Return text for the start of the zero day tweet."""
 
@@ -86,7 +83,7 @@ def format_zero_days(zero_day_releases_info, stored_data):
 
         tweet_text[1].append(f"- {key} in {value}\n")
 
-    if len(re.findall("fixed in", str(tweet_text[2]))) == 1:
+    if len(tweet_text[2]) == 2:
         tweet_text[0].append(":mega: EMERGENCY UPDATE :mega:\n\n")
     else:
         tweet_text[0].append(":mega: EMERGENCY UPDATES :mega:\n\n")

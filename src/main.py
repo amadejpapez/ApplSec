@@ -3,7 +3,7 @@ import re
 
 import requests
 
-from format_tweets.new_updates import format_new_updates, format_ios_modules
+from format_tweets.new_updates import format_ios_modules, format_new_updates
 from format_tweets.release_changes import format_entry_changes, format_release_notes_available
 from format_tweets.yearly_report import format_yearly_report
 from format_tweets.zero_days import format_zero_days
@@ -12,10 +12,12 @@ from save_data import read_file, save_file
 from twitter import tweet
 
 main_page = requests.get("https://support.apple.com/en-us/HT201222").text
-all_releases = re.findall(r"<tr>(.*?)<\/tr>", main_page.replace("\n", ""))[1:]
+all_releases = re.findall(
+    r"(?<=<tr>).*?(?=<\/tr>)", main_page.replace("\n", "").replace("&nbsp;", " ")
+)[1:]
 
 for i, _ in enumerate(all_releases):
-    all_releases[i] = re.findall(r"<td>(.*?)<\/td>", all_releases[i])
+    all_releases[i] = re.findall(r"(?<=<td>).*?(?=<\/td>)", all_releases[i])
 
 # for most functions last 20 releases is enough
 releases = all_releases[:20]

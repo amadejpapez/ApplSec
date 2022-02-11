@@ -1,6 +1,3 @@
-import re
-
-
 def format_entry_changes(changes_info):
     """
     -----
@@ -25,7 +22,7 @@ def format_entry_changes(changes_info):
         elif added is not None and updated is not None:
             tweet_text.append(f"{value['emoji']} {key} - {added}, {updated}\n")
 
-    num_updates = len(re.findall(r":[^:]+:", str(tweet_text)))
+    num_updates = len(tweet_text)
 
     if num_updates == 1:
         tweet_text.insert(

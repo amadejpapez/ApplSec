@@ -407,7 +407,7 @@
             "26 Apr 2021"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212327\">Security Update 2021-003 Mojave&nbsp;</a>",
+            "<a href=\"https://support.apple.com/kb/HT212327\">Security Update 2021-003 Mojave</a>",
             "macOS Mojave",
             "26 Apr 2021"
         ],
@@ -457,7 +457,7 @@
             "08 Mar 2021"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212220\">macOS Big Sur 11.2.3&nbsp;</a>",
+            "<a href=\"https://support.apple.com/kb/HT212220\">macOS Big Sur 11.2.3</a>",
             "macOS Big Sur",
             "08 Mar 2021"
         ],
@@ -483,7 +483,7 @@
         ],
         [
             "<a href=\"https://support.apple.com/kb/HT212177\">macOS Big Sur 11.2.1, macOS Catalina 10.15.7 Supplemental Update, macOS Mojave 10.14.6 Security Update 2021-002</a>",
-            "macOS Big Sur 11.2, macOS Catalina 10.15.7, and macOS Mojave 10.14.6&nbsp;",
+            "macOS Big Sur 11.2, macOS Catalina 10.15.7, and macOS Mojave 10.14.6",
             "09 Feb 2021"
         ],
         [
@@ -536,7 +536,7 @@
         [
             "<a href=\"https://support.apple.com/kb/HT213057\">tvOS 15.3</a>",
             "Apple TV 4K and Apple TV HD",
-            "26 Jan 2022"
+            "<p>26 Jan 2022<p>"
         ],
         [
             "<a href=\"https://support.apple.com/kb/HT213053\">iOS 15.3 and iPad OS 15.3</a>",
@@ -547,7 +547,128 @@
             "<a href=\"https://support.apple.com/kb/HT213059\">watchOS 8.4</a>",
             "Apple Watch Series 3 and later",
             "26 Jan 2022"
+        ],
+        [
+            "macOS Big Sur 11.5.2<br><span class=\"note\">This update has no published CVE entries.</span>",
+            "macOS Big Sur",
+            "11 Aug 2021"
+        ],
+        [
+            "macOS Big Sur 11.0",
+            "Preinstalled only on certain Mac models; please update to macOS Big Sur 11.0.1",
+            "Preinstalled"
         ]
+    ],
+    "get_info_output": {
+        "Safari 15.3": {
+            "release_notes": "https://support.apple.com/kb/HT213058",
+            "release_date": "26 Jan 2022",
+            "emoji": ":globe_with_meridians:",
+            "num_of_bugs": "4 bugs fixed",
+            "num_of_zero_days": null,
+            "list_of_zero_days": "",
+            "entries_added": null,
+            "entries_updated": null
+        },
+        "Security Update 2022-001 Catalina": {
+            "release_notes": "https://support.apple.com/kb/HT213056",
+            "release_date": "26 Jan 2022",
+            "emoji": ":computer:",
+            "num_of_bugs": "5 bugs fixed",
+            "num_of_zero_days": null,
+            "list_of_zero_days": "",
+            "entries_added": null,
+            "entries_updated": null
+        },
+        "macOS Big Sur 11.6.3": {
+            "release_notes": "https://support.apple.com/kb/HT213055",
+            "release_date": "26 Jan 2022",
+            "emoji": ":computer:",
+            "num_of_bugs": "7 bugs fixed",
+            "num_of_zero_days": "1 zero-day",
+            "list_of_zero_days": {
+                "CVE-2022-22587": "IOMobileFrameBuffer"
+            },
+            "entries_added": null,
+            "entries_updated": null
+        },
+        "macOS Monterey 12.2": {
+            "release_notes": "https://support.apple.com/kb/HT213054",
+            "release_date": "26 Jan 2022",
+            "emoji": ":computer:",
+            "num_of_bugs": "13 bugs fixed",
+            "num_of_zero_days": "1 zero-day",
+            "list_of_zero_days": {
+                "CVE-2022-22587": "IOMobileFrameBuffer"
+            },
+            "entries_added": null,
+            "entries_updated": null
+        },
+        "tvOS 15.3": {
+            "release_notes": "https://support.apple.com/kb/HT213057",
+            "release_date": "26 Jan 2022",
+            "emoji": ":tv:",
+            "num_of_bugs": "9 bugs fixed",
+            "num_of_zero_days": null,
+            "list_of_zero_days": "",
+            "entries_added": null,
+            "entries_updated": null
+        },
+        "iOS and iPadOS 15.3": {
+            "release_notes": "https://support.apple.com/kb/HT213053",
+            "release_date": "26 Jan 2022", 
+            "emoji": ":iphone:",
+            "num_of_bugs": "10 bugs fixed",
+            "num_of_zero_days": "1 zero-day", 
+            "list_of_zero_days": {
+                "CVE-2022-22587": "IOMobileFrameBuffer"
+            },
+            "entries_added": null, 
+            "entries_updated": null
+        },
+        "watchOS 8.4": {
+            "release_notes": "https://support.apple.com/kb/HT213059",
+            "release_date": "26 Jan 2022",
+            "emoji": ":watch:",
+            "num_of_bugs": "8 bugs fixed", 
+            "num_of_zero_days": null,
+            "list_of_zero_days": "",
+            "entries_added": null,
+            "entries_updated": null
+        },
+        "macOS Big Sur 11.5.2": {
+            "release_notes": null,
+            "release_date": "11 Aug 2021",
+            "emoji": ":computer:",
+            "num_of_bugs": "no bugs fixed", 
+            "num_of_zero_days": null,
+            "list_of_zero_days": "",
+            "entries_added": null,
+            "entries_updated": null
+        },
+        "macOS Big Sur 11.0": {
+            "release_notes": null,
+            "release_date": "Preinstalled",
+            "emoji": ":computer:",
+            "num_of_bugs": "no bugs fixed", 
+            "num_of_zero_days": null,
+            "list_of_zero_days": "",
+            "entries_added": null,
+            "entries_updated": null
+        }
+    },
+    "get_info_expected": [
+        ":collision: NEW UPDATES RELEASED :collision:\n\n",
+        ":globe_with_meridians: Safari 15.3 - 4 bugs fixed\n",
+        ":computer: Security Update 2022-001 Catalina - 5 bugs fixed\n",
+        ":computer: macOS Big Sur 11.6.3 - 7 bugs fixed\n",
+        ":computer: macOS Monterey 12.2 - 13 bugs fixed\n",
+        ":tv: tvOS 15.3 - 9 bugs fixed\n",
+        ":iphone: iOS and iPadOS 15.3 - 10 bugs fixed\n",
+        ":watch: watchOS 8.4 - 8 bugs fixed\n",
+        ":computer: macOS Big Sur 11.5.2 - no bugs fixed\n",
+        ":computer: macOS Big Sur 11.0 - no bugs fixed\n",
+        "https://support.apple.com/en-us/HT201222"
     ],
     "new_releases": {
         "Safari 15.3": {

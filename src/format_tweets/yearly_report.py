@@ -16,7 +16,7 @@ def get_versions(system, version, releases):
         # get macOS name as Security Updates only contain names
         for x in ["12", "11", "10.15", "10.14"]:
             versions.append(
-                re.findall(rf"(?i)macOS\s([a-z\s]+){x}", str(releases))[0].rstrip()
+                re.findall(rf"(?i)(?<=macOS)[a-z\s]+(?={x})", str(releases))[0].strip()
             )
     else:
         num = version
