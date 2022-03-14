@@ -23,7 +23,7 @@ def arrange_elements(tweet_text, item):
     characters. Each tweet_text element presents each tweet in a thread.
     """
 
-    if len(emoji.emojize(tweet_text[-1] + item, use_aliases=True)) < 240:
+    if len(emoji.emojize(tweet_text[-1] + item, language="alias")) < 240:
         tweet_text[-1] += item
     else:
         tweet_text.append(item)
@@ -70,7 +70,7 @@ def tweet(results):
             # first tweet
             tweet_id.append(
                 API.create_tweet(
-                    text=emoji.emojize(text, use_aliases=True),
+                    text=emoji.emojize(text, language="alias"),
                 )
             )
         else:
@@ -78,6 +78,6 @@ def tweet(results):
             tweet_id.append(
                 API.create_tweet(
                     in_reply_to_tweet_id=tweet_id[-1]["data"]["id"],
-                    text=emoji.emojize(text, use_aliases=True),
+                    text=emoji.emojize(text, language="alias"),
                 )
             )
