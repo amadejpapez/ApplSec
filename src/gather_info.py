@@ -48,7 +48,7 @@ def check_zero_days(release_notes):
     if count == 1:
         return f"{count} zero-day", list_zero_days
 
-    return None, ""
+    return None, {}
 
 
 def count_bugs(release, release_notes):
@@ -78,15 +78,19 @@ def check_notes_updates(release_notes):
 
     num = len(re.findall(f"added {date_format_two}", release_notes))
 
-    if num >= 1:
-        added = f"{num} added"
+    if num == 1:
+        added = "1 entry added"
+    elif num >= 1:
+        added = f"{num} entries added"
     else:
         added = None
 
     num = len(re.findall(f"updated {date_format_two}", release_notes))
 
-    if num >= 1:
-        updated = f"{num} updated"
+    if num == 1:
+        updated = "1 entry updated"
+    elif num >= 1:
+        updated = f"{num} entries updated"
     else:
         updated = None
 

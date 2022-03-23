@@ -15,10 +15,10 @@ def format_first_tweet(unique_zero_days, all_zero_days):
         return f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that is being actively exploited."
 
     if length_new == 0 and length_old == 1:
-        return f"Apple pushed additional updates for a {zero_day_module} zero-day ({text_old}) that is being actively exploited."
+        return f"Apple pushed additional updates for {zero_day_module} zero-day ({text_old}) that is being actively exploited."
 
     if length_new == 1 and length_old == 1:
-        return f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that is being actively exploited and additional updates for a {text_old} zero-day."
+        return f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that is being actively exploited and additional updates for {text_old}."
 
     if length_new > 1 and length_old == 0:
         return f"Apple pushed updates for {length_new} new zero-days that are being actively exploited."
@@ -26,8 +26,14 @@ def format_first_tweet(unique_zero_days, all_zero_days):
     if length_new == 0 and length_old > 1:
         return f"Apple pushed additional updates for {length_old} zero-days that are being actively exploited."
 
+    if length_new == 1 and length_old > 1:
+        return f"Apple pushed updates for {length_new} new zero-day that are being actively exploited and additional updates for {length_old} zero-days."
+
+    if length_new > 1 and length_old == 1:
+        return f"Apple pushed updates for {length_new} new zero-days that are being actively exploited and additional updates for {length_old} zero-day."
+
     if length_new > 1 and length_old > 1:
-        return f"Apple pushed updates for {length_new} new zero-days that are being actively exploited and additional updates for {length_new} zero-days."
+        return f"Apple pushed updates for {length_new} new zero-days that are being actively exploited and additional updates for {length_old} zero-days."
 
 
 def format_zero_days(zero_day_releases_info, stored_data):
@@ -90,8 +96,8 @@ def format_zero_days(zero_day_releases_info, stored_data):
 
     tweet_text[0].append(format_first_tweet(unique_zero_days, all_zero_days))
 
-    if len(all_zero_days) == 1:
-        # if there is only one zero day, do not print a separate tweet for zero days
+    if len(unique_zero_days["new"]) in (0, 1) and len(unique_zero_days["old"]) in (0, 1):
+        # if CVEs are already in the first tweet, do not do a separate DETAILS tweet
         tweet_text[1] = tweet_text[2]
         tweet_text[2] = tweet_text[3]
 

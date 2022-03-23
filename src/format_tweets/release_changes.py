@@ -3,10 +3,10 @@ def format_entry_changes(changes_info):
     -----
     🔄 4 SECURITY NOTES UPDATED 🔄
 
-    🌐 Safari 14.1.1 - 1 updated
-    💻 Security Update 2021-003 Catalina - 8 added
-    💻 Security Update 2021-004 Mojave - 6 added
-    💻 macOS Big Sur 11.4 - 8 added, 1 updated
+    🌐 Safari 14.1.1 - 1 entry updated
+    💻 Security Update 2021-003 Catalina - 8 entries added
+    💻 Security Update 2021-004 Mojave - 6 entries added
+    💻 macOS Big Sur 11.4 - 8 entries added, 1 entry updated
     -----
     """
 

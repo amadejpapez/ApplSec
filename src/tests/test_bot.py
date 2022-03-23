@@ -26,7 +26,7 @@ def test_get_info():
     Checks number of returned releases and if titles match.
     """
 
-    releases = example_file["all_releases"]
+    releases = example_file["last_one_year_table"]
     releases_info = get_info(releases)
 
     # check if get_info() returned the correct number of releases
@@ -49,91 +49,122 @@ def test_get_info():
         assert title == list(releases_info)[i]
 
 
-def test_new_updates():
-    releases_info = example_file["new_releases"]
-
-    formatted = format_new_updates(dict(releases_info), stored_data)
-
-    assert formatted == example_file["new_releases_expected"]
-
-
 def test_get_info_2():
-    releases_info = get_info(example_file["get_info_results"])
+    releases_info = get_info(example_file["get_info_table"])
 
-    formatted = format_new_updates(
+    assert releases_info == example_file["get_info_info"]
+
+    tweet_format = format_new_updates(
         dict(releases_info), copy.deepcopy(example_file["stored_data"])
     )
 
-    assert formatted == example_file["get_info_expected"]
+    assert tweet_format == example_file["get_info_tweet"]
 
-    # check if get_info() results match to the pre-existing info
-    assert releases_info == example_file["get_info_output"]
+
+def test_new_updates():
+    releases_info = get_info(example_file["new_releases_table"])
+
+    assert releases_info == example_file["new_releases_info"]
+
+    tweet_format = format_new_updates(dict(releases_info), copy.deepcopy(stored_data))
+
+    assert tweet_format == example_file["new_releases_tweet"]
+
+
+def test_new_updates_only_one():
+    releases_info = example_file["new_releases_one_info"]
+
+    tweet_format = format_new_updates(dict(releases_info), copy.deepcopy(stored_data))
+
+    assert tweet_format == example_file["new_releases_one_tweet"]
 
 
 def test_ios_modules():
-    releases_info = example_file["ios_modules"]
+    releases_info = get_info(example_file["ios_modules_table"])
 
-    formatted = format_ios_modules(dict(releases_info), stored_data)
+    assert releases_info == example_file["ios_modules_info"]
 
-    assert formatted == example_file["ios_modules_expected"]
+    tweet_format = format_ios_modules(dict(releases_info), copy.deepcopy(stored_data))
+
+    assert tweet_format == example_file["ios_modules_tweet"]
 
 
 def test_entry_changes():
-    releases_info = example_file["entry_changes"]
+    releases_info = example_file["entry_changes_info"]
 
-    formatted = format_entry_changes(dict(releases_info))
+    tweet_format = format_entry_changes(dict(releases_info))
 
-    assert formatted == example_file["entry_changes_expected"]
+    assert tweet_format == example_file["entry_changes_tweet"]
 
 
 def test_release_notes_soon():
-    releases_info = example_file["release_notes_soon"]
+    releases_info = example_file["release_notes_soon_info"]
 
-    formatted = format_release_notes_available(dict(releases_info), stored_data)
+    tweet_format = format_release_notes_available(dict(releases_info), stored_data)
 
-    assert formatted is None
+    assert tweet_format is None
     assert (
-        stored_data["details_available_soon"]
-        == example_file["release_notes_soon_expected"]
+        stored_data["details_available_soon"] == example_file["release_notes_soon_file"]
     )
 
 
 def test_release_notes_available():
-    releases_info = example_file["release_notes_available"]
+    releases_info = example_file["release_notes_available_info"]
 
-    formatted = format_release_notes_available(dict(releases_info), stored_data)
+    tweet_format = format_release_notes_available(dict(releases_info), stored_data)
 
-    assert formatted == example_file["release_notes_available_expected"]
+    assert tweet_format == example_file["release_notes_available_tweet"]
     assert stored_data["details_available_soon"] == []
 
 
 def test_yearly_report():
-    latest_versions = determine_latest_versions(example_file["all_releases"][:50])
+    latest_versions = determine_latest_versions(
+        example_file["last_one_year_table"][:50]
+    )
 
     for system, version in latest_versions.items():
-        formatted = format_yearly_report(
-            example_file["all_releases"], system, version[0], stored_data
+        tweet_format = format_yearly_report(
+            example_file["last_one_year_table"],
+            system,
+            version[0],
+            copy.deepcopy(stored_data)
         )
 
         if system == "iOS and iPadOS":
             system = "iOS"
 
-        assert formatted[0] == example_file["yearly_report_expected_" + system][0]
+        assert tweet_format[0] == example_file["yearly_report_" + system + "_tweet"][0]
 
 
 def test_zero_day():
-    releases_info = example_file["zero_day_releases"]
+    releases_info = get_info(example_file["zero_day_releases_table"])
 
-    formatted = format_zero_days(dict(releases_info), stored_data)
+    assert releases_info == example_file["zero_day_releases_info"]
 
-    assert formatted == example_file["zero_day_releases_expected"]
+    tweet_format = format_zero_days(dict(releases_info), copy.deepcopy(stored_data))
+
+    assert tweet_format == example_file["zero_day_releases_tweet"]
 
 
-def test_zero_day_get_info():
-    releases_info = get_info(example_file["zero_day_get_info"])
+def test_zero_day_1_1():
+    releases_info = example_file["zero_day_releases_1_1_info"]
 
-    formatted = format_zero_days(
-        dict(releases_info), copy.deepcopy(example_file["stored_data"])
-    )
+    tweet_format = format_zero_days(dict(releases_info), copy.deepcopy(stored_data))
 
-    assert formatted == example_file["zero_day_get_info_expected"]
+    assert tweet_format == example_file["zero_day_releases_1_1_tweet"]
+
+
+def test_zero_day_0_1():
+    releases_info = example_file["zero_day_releases_0_1_info"]
+
+    tweet_format = format_zero_days(dict(releases_info), copy.deepcopy(stored_data))
+
+    assert tweet_format == example_file["zero_day_releases_0_1_tweet"]
+
+
+def test_zero_day_1_0():
+    releases_info = example_file["zero_day_releases_1_0_info"]
+
+    tweet_format = format_zero_days(dict(releases_info), copy.deepcopy(stored_data))
+
+    assert tweet_format == example_file["zero_day_releases_1_0_tweet"]

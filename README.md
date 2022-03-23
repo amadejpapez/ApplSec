@@ -5,7 +5,6 @@
 <p align="center"><b>Running on <a href="https://twitter.com/applsec">@ApplSec</a> since February 6, 2021</b></p>
 <p align="center"><img src="images/ApplSec.png" width=100></p>
 
-
 ## Keeps you up to date with the following info:
 * 💥 new software releases,
 * 🔒 how many vulnerabilities Apple fixed in each update,
@@ -37,4 +36,4 @@ The bot is often updated as new ideas appear and to keep with changes to Apple's
 
 <br>
 
-*Apple, Apple logo, iCloud, watchOS, tvOS and macOS are trademarks of Apple Inc., registered in the U.S. and other countries and regions.*
+_Apple, Apple logo, iCloud, watchOS, tvOS and macOS are trademarks of Apple Inc., registered in the U.S. and other countries and regions._
