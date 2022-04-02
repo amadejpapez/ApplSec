@@ -12,28 +12,28 @@ def format_first_tweet(unique_zero_days, all_zero_days):
     zero_day_module = all_zero_days[list(all_zero_days.keys())[0]]
 
     if length_new == 1 and length_old == 0:
-        return f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that is being actively exploited."
+        return f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that may have been actively exploited."
 
     if length_new == 0 and length_old == 1:
-        return f"Apple pushed additional updates for {zero_day_module} zero-day ({text_old}) that is being actively exploited."
+        return f"Apple pushed additional updates for {zero_day_module} zero-day ({text_old}) that may have been actively exploited."
 
     if length_new == 1 and length_old == 1:
-        return f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that is being actively exploited and additional updates for {text_old}."
+        return f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that may have been actively exploited and additional updates for {text_old}."
 
     if length_new > 1 and length_old == 0:
-        return f"Apple pushed updates for {length_new} new zero-days that are being actively exploited."
+        return f"Apple pushed updates for {length_new} new zero-days that may have been actively exploited."
 
     if length_new == 0 and length_old > 1:
-        return f"Apple pushed additional updates for {length_old} zero-days that are being actively exploited."
+        return f"Apple pushed additional updates for {length_old} zero-days that may have been actively exploited."
 
     if length_new == 1 and length_old > 1:
-        return f"Apple pushed updates for {length_new} new zero-day that are being actively exploited and additional updates for {length_old} zero-days."
+        return f"Apple pushed updates for {length_new} new zero-day that may have been actively exploited and additional updates for {length_old} zero-days."
 
     if length_new > 1 and length_old == 1:
-        return f"Apple pushed updates for {length_new} new zero-days that are being actively exploited and additional updates for {length_old} zero-day."
+        return f"Apple pushed updates for {length_new} new zero-days that may have been actively exploited and additional updates for {length_old} zero-day."
 
     if length_new > 1 and length_old > 1:
-        return f"Apple pushed updates for {length_new} new zero-days that are being actively exploited and additional updates for {length_old} zero-days."
+        return f"Apple pushed updates for {length_new} new zero-days that may have been actively exploited and additional updates for {length_old} zero-days."
 
 
 def format_zero_days(zero_day_releases_info, stored_data):
@@ -41,7 +41,7 @@ def format_zero_days(zero_day_releases_info, stored_data):
     -----
     📣 EMERGENCY UPDATE 📣
 
-    Apple pushed updates for 3 new zero-days that are being actively exploited.
+    Apple pushed updates for 3 new zero-days that may have been actively exploited.
     -----
     🐛 ZERO-DAY DETAILS:
 

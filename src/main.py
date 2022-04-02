@@ -94,7 +94,7 @@ if len(zero_day_releases_info):
 # in midnight check for release note changes made on the previous day
 # running only once per day, as it is checking last 300 release notes
 if midnight:
-    check_changes_info = releases_info | get_info(all_releases[20:300])
+    check_changes_info = releases_info | get_info(all_releases[20:])
 
     changes_releases_info = {}
     for key, value in check_changes_info.items():

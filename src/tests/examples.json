@@ -1142,13 +1142,13 @@
         "tvOS 15 was released today. In tvOS 14 series Apple fixed in total of 94 security issues over 3 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
     "yearly_report_watchOS_tweet": [
-        "watchOS 8 was released today. In watchOS 7 series Apple fixed in total of 148 security issues over 12 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
+        "watchOS 8 was released today. In watchOS 7 series Apple fixed in total of 150 security issues over 12 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
     "yearly_report_macOS_tweet": [
-        "macOS 12 was released today. In macOS Monterey series Apple fixed in total of 121 security issues over 4 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
+        "macOS 12 was released today. In macOS Monterey series Apple fixed in total of 127 security issues over 4 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
     "yearly_report_iOS_tweet": [
-        "iOS 15 was released today. In iOS 14 series Apple fixed in total of 290 security issues over 11 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
+        "iOS 15 was released today. In iOS 14 series Apple fixed in total of 292 security issues over 11 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
     "zero_day_releases_table": [
         [
@@ -1193,7 +1193,7 @@
     "zero_day_releases_tweet": [
         [
             ":mega: EMERGENCY UPDATES :mega:\n\n",
-            "Apple pushed updates for 2 new zero-days that are being actively exploited and additional updates for 1 zero-day."
+            "Apple pushed updates for 2 new zero-days that may have been actively exploited and additional updates for 1 zero-day."
         ],
         [
             ":bug: ZERO-DAY DETAILS:\n\n",
@@ -1236,7 +1236,7 @@
     "zero_day_releases_1_1_tweet": [
         [
             ":mega: EMERGENCY UPDATES :mega:\n\n",
-            "Apple pushed updates for a new XNU zero-day (CVE-2021-30858) that is being actively exploited and additional updates for CVE-2021-30869."
+            "Apple pushed updates for a new XNU zero-day (CVE-2021-30858) that may have been actively exploited and additional updates for CVE-2021-30869."
         ],
         [
             ":warning: PATCHES:\n\n",
@@ -1261,7 +1261,7 @@
     "zero_day_releases_1_0_tweet": [
         [
             ":mega: EMERGENCY UPDATE :mega:\n\n",
-            "Apple pushed updates for a new WebKit zero-day (CVE-2021-30858) that is being actively exploited."
+            "Apple pushed updates for a new WebKit zero-day (CVE-2021-30858) that may have been actively exploited."
         ],
         [
             ":warning: PATCHES:\n\n",
@@ -1285,7 +1285,7 @@
     "zero_day_releases_0_1_tweet": [
         [
             ":mega: EMERGENCY UPDATE :mega:\n\n",
-            "Apple pushed additional updates for XNU zero-day (CVE-2021-30869) that is being actively exploited."
+            "Apple pushed additional updates for XNU zero-day (CVE-2021-30869) that may have been actively exploited."
         ],
         [
             ":warning: PATCHES:\n\n",
