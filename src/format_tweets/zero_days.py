@@ -59,20 +59,20 @@ def format_zero_days(zero_day_releases_info, stored_data):
     tweet_text = [[], [":bug: ZERO-DAY DETAILS:\n\n"], [":warning: PATCHES:\n\n"], []]
     all_zero_days = {}
 
-    for key, value in list(zero_day_releases_info.items()):
+    for release in list(zero_day_releases_info):
         if (
-            key in stored_data["tweeted_today"]["zero_days"].keys()
-            and value["num_of_zero_days"]
-            == stored_data["tweeted_today"]["zero_days"][key]
+            release.get_name() in stored_data["tweeted_today"]["zero_days"].keys()
+            and release.get_num_of_zero_days()
+            == stored_data["tweeted_today"]["zero_days"][release.get_name()]
         ):
             # if release was tweeted with the same number of zero-days
-            del zero_day_releases_info[key]
+            zero_day_releases_info.remove(release)
             continue
 
-        stored_data["tweeted_today"]["zero_days"][key] = value["num_of_zero_days"]
+        stored_data["tweeted_today"]["zero_days"][release.get_name()] = release.get_num_of_zero_days()
 
-        tweet_text[2].append(f"{value['num_of_zero_days']} in {key}\n")
-        all_zero_days.update(value["list_of_zero_days"])
+        tweet_text[2].append(f"{release.get_format_num_of_zero_days()} in {release.get_name()}\n")
+        all_zero_days.update(release.get_zero_days())
 
     if not zero_day_releases_info:
         return None

@@ -11,16 +11,16 @@ def format_entry_changes(changes_info):
     """
 
     tweet_text = []
-    for key, value in changes_info.items():
-        added = value["entries_added"]
-        updated = value["entries_updated"]
+    for release in changes_info:
+        added = release.get_num_entries_added()
+        updated = release.get_num_entries_updated()
 
         if added is None and updated is not None:
-            tweet_text.append(f"{value['emoji']} {key} - {updated}\n")
+            tweet_text.append(f"{release.get_emoji()} {release.get_name()} - {updated}\n")
         elif added is not None and updated is None:
-            tweet_text.append(f"{value['emoji']} {key} - {added}\n")
+            tweet_text.append(f"{release.get_emoji()} {release.get_name()} - {added}\n")
         elif added is not None and updated is not None:
-            tweet_text.append(f"{value['emoji']} {key} - {added}, {updated}\n")
+            tweet_text.append(f"{release.get_emoji()} {release.get_name()} - {added}, {updated}\n")
 
     num_updates = len(tweet_text)
 
@@ -51,19 +51,19 @@ def format_release_notes_available(notes_releases_info, stored_data):
     -----
     """
 
-    for key, value in list(notes_releases_info.items()):
+    for release in list(notes_releases_info):
         if (
-            key in stored_data["details_available_soon"]
-            and value["release_notes"] is not None
+            release.get_name() in stored_data["details_available_soon"]
+            and release.get_release_notes_link() is not None
         ):
-            stored_data["details_available_soon"].remove(key)
+            stored_data["details_available_soon"].remove(release.get_name())
 
         elif (
-            key not in stored_data["details_available_soon"]
-            and value["num_of_bugs"] == "no details yet"
+            release.get_name() not in stored_data["details_available_soon"]
+            and release.get_format_num_of_bugs() == "no details yet"
         ):
-            stored_data["details_available_soon"].append(key)
-            del notes_releases_info[key]
+            stored_data["details_available_soon"].append(release.get_name())
+            notes_releases_info.remove(release)
 
     if not notes_releases_info:
         return None
@@ -72,7 +72,9 @@ def format_release_notes_available(notes_releases_info, stored_data):
         ":spiral_notepad: RELEASE NOTES AVAILABLE :spiral_notepad:\n\n",
     ]
 
-    for key, value in notes_releases_info.items():
-        tweet_text.append(f"{value['emoji']} {key} - {value['num_of_bugs']}\n")
+    for release in notes_releases_info:
+        tweet_text.append(
+            f"{release.get_emoji()} {release.get_name()} - {release.get_format_num_of_bugs()}\n"
+        )
 
     return tweet_text
