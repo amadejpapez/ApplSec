@@ -1,8 +1,9 @@
 import re
+
 from Release import Release
 
 
-def get_info(releases: list) -> list:
+def get_info(release_rows: list) -> list:
     """
     Gather all data about given releases from Apple's website.
 
@@ -23,7 +24,7 @@ def get_info(releases: list) -> list:
         Class Release (
             "name": "iOS and iPadOS 14.7",
             "emoji": ":iphone:",
-            "release_notes": "https://support.apple.com/kb/HT212623",
+            "release_notes_link": "https://support.apple.com/kb/HT212623",
             "release_date": "26 Jan 2022",
             "num_of_bugs": 37,
             "num_of_zero_days": 3,
@@ -39,41 +40,37 @@ def get_info(releases: list) -> list:
     -----
     """
 
-    release_info = []
+    releases = []
 
-    for release_row in releases:
-        release_info.append(Release(release_row))
+    for row in release_rows:
+        releases.append(Release(row))
 
-        # if title in list(release_info):
-        #     # if title is already in, add * at the end
-        #     # reason being Apple sometime re-releases updated (Safari 14.1)
-        #     # which breaks checking on the second release
-        #     # because there is already info with the same title
-        #     title += "*"
-
-    return release_info
+    return releases
 
 
-def determine_latest_versions(ver_releases):
+def determine_latest_versions(release_rows: list) -> dict:
     """
     Return the latest major version number for each system.
-    For macOS return its name alongside.
+    For macOS also return its name.
     """
 
-    versions = {"iOS": [0], "tvOS": [0], "watchOS": [0], "macOS": [0, ""]}
+    versions = {
+        "iOS": [0],
+        "tvOS": [0],
+        "watchOS": [0],
+        "macOS": [0, ""],
+    }
 
-    for system, ver in versions.items():
-        version = re.findall(rf"(?i){system}[a-z\s]*\s([0-9]+)", str(ver_releases))
+    for key, value in versions.items():
+        search = re.findall(rf"(?i){key}[a-z\s]*\s([0-9]+)", str(release_rows))
 
-        version = list(map(int, version))
-        version.sort(reverse=True)
+        search = list(map(int, search))
+        search.sort(reverse=True)
 
-        ver[0] = int(version[0])
+        value[0] = search[0]
 
     versions["macOS"][1] = re.findall(
-        rf"(?i)(?<=macOS)[a-z\s]+(?={versions['macOS'][0]})", str(ver_releases)
+        rf"(?i)(?<=macOS)[a-z\s]+(?={versions['macOS'][0]})", str(release_rows)
     )[0].strip()
-
-    versions["iOS and iPadOS"] = versions.pop("iOS")
 
     return versions

@@ -18,11 +18,9 @@ all_releases = re.findall(r"(?<=<tr>).*?(?=<\/tr>)", MAIN_PAGE)[1:]
 for i, _ in enumerate(all_releases):
     all_releases[i] = re.findall(r"(?<=<td>).*?(?=<\/td>)", all_releases[i])
 
-# for most functions last 20 releases is enough
 releases = all_releases[:20]
 releases_info = get_info(releases)
 
-# get new releases
 stored_data, midnight = read_file()
 
 if midnight:
@@ -35,42 +33,40 @@ else:
 date_format_one = f"{check_date.day:02d} {check_date.strftime('%b')} {check_date.year}"
 # Format: 08 Jan 2022
 
+latest_versions = determine_latest_versions(releases)
+
+
 new_releases_info = []
+ios_releases_info = []
+notes_releases_info = []
+
 for release in releases_info:
     if release.get_release_date() == date_format_one:
         new_releases_info.append(release)
 
-
-# if the latest iOS series got a new release
-latest_versions = determine_latest_versions(releases)
-ios_releases_info = []
-
-for release in new_releases_info:
+    # if the latest iOS series got a new release
     if (
         "iOS" in release.get_name()
-        and str(latest_versions["iOS and iPadOS"][0]) in release.get_name()
+        and str(latest_versions["iOS"][0]) in release.get_name()
         and release.get_release_notes_link() is not None
         and release.get_num_of_bugs() != len(release.get_zero_days())
     ):
         ios_releases_info.append(release)
 
-if ios_releases_info:
-    tweet(format_ios_modules(ios_releases_info, stored_data))
-
-
-# if any releases that said "soon" got releases notes
-# or if any new releases say "no details yet"
-notes_releases_info = []
-
-for release in releases_info:
+    # if any releases that said "soon" got releases notes
     if (
         release.get_name() in stored_data["details_available_soon"]
         and release.get_release_notes_link() is not None
     ):
         notes_releases_info.append(release)
 
+    # or if any new releases say "no details yet"
     if release.get_format_num_of_bugs() == "no details yet":
         notes_releases_info.append(release)
+
+
+if ios_releases_info:
+    tweet(format_ios_modules(ios_releases_info, stored_data))
 
 if notes_releases_info:
     tweet(format_release_notes_available(list(notes_releases_info), stored_data))
@@ -84,12 +80,11 @@ for release in check_zero_days_info:
     if release.get_num_of_zero_days() > 0:
         zero_day_releases_info.append(release)
 
-if len(zero_day_releases_info):
+if zero_day_releases_info:
     tweet(format_zero_days(list(zero_day_releases_info), stored_data))
 
 
-# in midnight check for release note changes made on the previous day
-# running only once per day, as it is checking last 300 release notes
+# on midnight check for release note changes made on the previous day
 if midnight:
     check_changes_info = releases_info + get_info(all_releases[20:])
 
@@ -98,11 +93,11 @@ if midnight:
         if release.get_num_entries_added() > 0 or release.get_num_entries_updated() > 0:
             changes_releases_info.append(release)
 
-    if len(changes_releases_info):
+    if changes_releases_info:
         tweet(format_entry_changes(changes_releases_info))
 
 
-# new updates should be tweeted last, after all of the above
+# new updates should be tweeted last, after all of the other tweets
 if new_releases_info:
     tweet(format_new_updates(list(new_releases_info), stored_data))
 

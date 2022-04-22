@@ -4,7 +4,7 @@ import re
 import requests
 
 
-def format_new_updates(updates_info, stored_data):
+def format_new_updates(releases_info: list, stored_data: dict) -> list:
     """
     -----
     💥 NEW UPDATES RELEASED 💥
@@ -20,25 +20,30 @@ def format_new_updates(updates_info, stored_data):
     -----
     """
 
-    for release in list(updates_info):
-        if release.get_name() not in stored_data["tweeted_today"]["new_updates"]:
-            stored_data["tweeted_today"]["new_updates"].append(release.get_name())
-        else:
-            updates_info.remove(release)
-
-    if not updates_info:
-        return None
-
     tweet_text = []
-    for release in updates_info:
-        tweet_text.append(f"{release.get_emoji()} {release.get_name()} - {release.get_format_num_of_bugs()}\n")
 
-    if len(updates_info) == 1:
+    for release in list(releases_info):
+        if release.get_name() in stored_data["tweeted_today"]["new_updates"]:
+            releases_info.remove(release)
+        else:
+            stored_data["tweeted_today"]["new_updates"].append(release.get_name())
+
+    if not releases_info:
+        return []
+
+    releases_info.sort(key=lambda x: x.get_num_of_bugs(), reverse=True)
+
+    for release in releases_info:
+        tweet_text.append(
+            f"{release.get_emoji()} {release.get_name()} - {release.get_format_num_of_bugs()}\n"
+        )
+
+    if len(releases_info) == 1:
         tweet_text.insert(0, ":collision: NEW UPDATE RELEASED :collision:\n\n")
 
-        if updates_info[list(updates_info)[0]].get_release_notes_link():
+        if releases_info[0].get_release_notes_link():
             # if there is only one release, add its notes as a link
-            tweet_text.append(updates_info[list(updates_info)[0]].get_release_notes_link())
+            tweet_text.append(releases_info[0].get_release_notes_link())
     else:
         tweet_text.insert(0, ":collision: NEW UPDATES RELEASED :collision:\n\n")
         tweet_text.append("https://support.apple.com/en-us/HT201222")
@@ -46,7 +51,7 @@ def format_new_updates(updates_info, stored_data):
     return tweet_text
 
 
-def format_ios_modules(ios_info, stored_data):
+def format_ios_modules(releases_info: list, stored_data: dict) -> list:
     """
     -----------------------------
     ⚒ FIXED IN iOS 14.7 ⚒
@@ -60,40 +65,43 @@ def format_ios_modules(ios_info, stored_data):
     -----------------------------
     """
 
-    for release in list(ios_info):
-        if release.get_name() not in stored_data["tweeted_today"]["ios_modules"]:
-            stored_data["tweeted_today"]["ios_modules"] = release.get_name()
+    for release in list(releases_info):
+        if release.get_name() in stored_data["tweeted_today"]["ios_modules"]:
+            releases_info.remove(release)
         else:
-            ios_info.remove(release)
+            stored_data["tweeted_today"]["ios_modules"] = release.get_name()
 
-    if not ios_info:
-        return None
+    if not releases_info:
+        return []
 
-    for release in ios_info:
-        ios_release = requests.get(release.get_release_notes_link()).text
-        ios_release = ios_release.split("Additional recognition", 1)[0]
-        modules = collections.Counter(
-            re.findall(r"(?<=<strong>).*?(?=<\/strong>)", ios_release)
+    for release in releases_info:
+        release_note = requests.get(release.get_release_notes_link()).text
+        release_note = release_note.split("Additional recognition", 1)[0]
+
+        search_modules = collections.Counter(
+            re.findall(r"(?<=<strong>).*?(?=<\/strong>)", release_note)
         )
         modules = collections.OrderedDict(
-            sorted(modules.items(), reverse=True, key=lambda t: t[1])
+            sorted(search_modules.items(), reverse=True, key=lambda x: x[1])
         )
 
-        tweet_text = [f":hammer_and_pick: FIXED IN {release.get_name()} :hammer_and_pick:\n\n"]
-        num_modules = 0
+        tweet_text = [
+            f":hammer_and_pick: FIXED IN {release.get_name()} :hammer_and_pick:\n\n"
+        ]
+        num_bugs = 0
 
         for key, value in modules.items():
-            if len(re.findall("bug", str(tweet_text))) <= 3:
-                num_modules += value
+            if len(tweet_text) < 5:
+                num_bugs += value
                 if value > 1:
                     tweet_text.append(f"- {value} bugs in {key}\n")
                 else:
                     tweet_text.append(f"- {value} bug in {key}\n")
 
-        num_modules -= release.get_num_of_bugs()
+        num_bugs = release.get_num_of_bugs() - num_bugs
 
-        if num_modules > 0:
-            tweet_text.append(f"and {num_modules} other vulnerabilities fixed\n")
+        if num_bugs > 0:
+            tweet_text.append(f"and {num_bugs} other vulnerabilities fixed\n")
 
         tweet_text.append(f"{release.get_release_notes_link()}\n")
 

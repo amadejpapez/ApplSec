@@ -2,14 +2,15 @@
 Save and read data from stored_data.json.
 
 File is storing:
-  - 10 last fixed zero-days
-  - releases that do not have release notes yet
-  - data tweeted that day to not tweet things twice
+- 10 last fixed zero-days
+- releases that do not have release notes yet
+- data tweeted on the current day to prevent tweeting the same thing twice
 """
 
 import datetime
 import json
 import os
+from typing import Tuple
 
 LOC = os.path.abspath(os.path.join(__file__, "../stored_data.json"))
 
@@ -26,7 +27,7 @@ FILE_STRUCTURE = {
 }
 
 
-def read_file():
+def read_file() -> Tuple[dict, bool]:
     """
     Return contents of stored_data.json and if it is a start
     of a new day.
@@ -50,7 +51,7 @@ def read_file():
     return stored_data, False
 
 
-def save_file(modified_data, midnight):
+def save_file(modified_data: dict, midnight: bool) -> None:
     """Save data to stored_data.json."""
 
     if midnight:

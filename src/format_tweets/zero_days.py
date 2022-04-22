@@ -1,15 +1,16 @@
-def format_first_tweet(unique_zero_days, all_zero_days):
+def format_first_tweet(unique_zero_days: dict) -> str:
     """Return text for the start of the zero day tweet."""
 
-    length_new = len(unique_zero_days["new"])
     length_old = len(unique_zero_days["old"])
+    length_new = len(unique_zero_days["new"])
+
+    if length_old > 0:
+        text_old = ", ".join(unique_zero_days["old"])
+        zero_day_module = unique_zero_days["old"][list(unique_zero_days["old"].keys())[0]]
 
     if length_new > 0:
         text_new = ", ".join(unique_zero_days["new"])
-    if length_old > 0:
-        text_old = ", ".join(unique_zero_days["old"])
-
-    zero_day_module = all_zero_days[list(all_zero_days.keys())[0]]
+        zero_day_module = unique_zero_days["new"][list(unique_zero_days["new"].keys())[0]]
 
     if length_new == 1 and length_old == 0:
         return f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that may have been actively exploited."
@@ -32,11 +33,10 @@ def format_first_tweet(unique_zero_days, all_zero_days):
     if length_new > 1 and length_old == 1:
         return f"Apple pushed updates for {length_new} new zero-days that may have been actively exploited and additional updates for {length_old} zero-day."
 
-    if length_new > 1 and length_old > 1:
-        return f"Apple pushed updates for {length_new} new zero-days that may have been actively exploited and additional updates for {length_old} zero-days."
+    return f"Apple pushed updates for {length_new} new zero-days that may have been actively exploited and additional updates for {length_old} zero-days."
 
 
-def format_zero_days(zero_day_releases_info, stored_data):
+def format_zero_days(releases_info: list, stored_data: dict) -> list:
     """
     -----
     📣 EMERGENCY UPDATE 📣
@@ -56,35 +56,36 @@ def format_zero_days(zero_day_releases_info, stored_data):
     -----
     """
 
-    tweet_text = [[], [":bug: ZERO-DAY DETAILS:\n\n"], [":warning: PATCHES:\n\n"], []]
-    all_zero_days = {}
-
-    for release in list(zero_day_releases_info):
+    for release in list(releases_info):
         if (
             release.get_name() in stored_data["tweeted_today"]["zero_days"].keys()
             and release.get_num_of_zero_days()
             == stored_data["tweeted_today"]["zero_days"][release.get_name()]
         ):
             # if release was tweeted with the same number of zero-days
-            zero_day_releases_info.remove(release)
+            releases_info.remove(release)
             continue
 
         stored_data["tweeted_today"]["zero_days"][release.get_name()] = release.get_num_of_zero_days()
 
+    if not releases_info:
+        return []
+
+    tweet_text = [[], [":bug: ZERO-DAY DETAILS:\n\n"], [":warning: PATCHES:\n\n"], []]
+    zero_days = {}
+    sorted_zero_days: dict = {"old": {}, "new": {}}
+
+    for release in releases_info:
         tweet_text[2].append(f"{release.get_format_num_of_zero_days()} in {release.get_name()}\n")
-        all_zero_days.update(release.get_zero_days())
+        zero_days.update(release.get_zero_days())
 
-    if not zero_day_releases_info:
-        return None
-
-    unique_zero_days = {"old": {}, "new": {}}
-    for key, value in all_zero_days.items():
+    for key, value in zero_days.items():
         if key in stored_data["zero_days"]:
             # if zero day is in the file, add it to "old"
-            unique_zero_days["old"][key] = value
+            sorted_zero_days["old"][key] = value
         else:
-            # if zero day is not in the file, add it and add it to "new"
-            unique_zero_days["new"][key] = value
+            # if zero day is not in the file, add it to file and "new"
+            sorted_zero_days["new"][key] = value
             stored_data["zero_days"].append(key)
 
         tweet_text[1].append(f"- {key} in {value}\n")
@@ -94,9 +95,9 @@ def format_zero_days(zero_day_releases_info, stored_data):
     else:
         tweet_text[0].append(":mega: EMERGENCY UPDATES :mega:\n\n")
 
-    tweet_text[0].append(format_first_tweet(unique_zero_days, all_zero_days))
+    tweet_text[0].append(format_first_tweet(sorted_zero_days))
 
-    if len(unique_zero_days["new"]) in (0, 1) and len(unique_zero_days["old"]) in (0, 1):
+    if len(sorted_zero_days["new"]) in (0, 1) and len(sorted_zero_days["old"]) in (0, 1):
         # if CVEs are already in the first tweet, do not do a separate DETAILS tweet
         tweet_text[1] = tweet_text[2]
         tweet_text[2] = tweet_text[3]

@@ -17,10 +17,10 @@ API = tweepy.Client(
 )
 
 
-def arrange_elements(tweet_text, item):
+def arrange_elements(tweet_text: list, item: str) -> None:
     """
     Arrange elements so that each element in tweet_text is under 240
-    characters. Each tweet_text element presents each tweet in a thread.
+    characters. Each element is a tweet inside of a thread.
     """
 
     if len(emoji.emojize(tweet_text[-1] + item, language="alias")) < 240:
@@ -29,23 +29,20 @@ def arrange_elements(tweet_text, item):
         tweet_text.append(item)
 
 
-def tweet(results):
+def tweet(results: list):
     """
-    Accepts a Python list of text that has to be tweeted. It
-    arranges the list into one tweet or a thread, as appropriate
+    It arranges the list into a tweet or a thread, as appropriate
     and sends it to Twitter.
 
     ["1", "2", "3", "4", "5", "6", "7"]
 
-    Arrange elements into a tweet as they fit or extend to a thread.
-
     If input list contains a list, it is sorted separately, so each
-    list strictly starts in a new thread tweet.
+    list strictly starts in a new tweet inside of a thread.
 
     ["1", "2", "3", ["4", "5"], ["6", "7"]]
 
-    Arrange first three elements. Add new tweet and arrange the list.
-    Add another tweet and arrange the second list.
+    This arranges first three elements. Adds new tweet and arranges the list.
+    Adds another tweet and arranges the second list.
     """
 
     if not results:

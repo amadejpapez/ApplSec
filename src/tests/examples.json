@@ -39,7 +39,7 @@
             "26 Jan 2022"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213053\">iOS 15.3 and iPad OS 15.3</a>",
+            "<a href=\"https://support.apple.com/kb/HT213053\">iOS 15.3 and iPadOS 15.3</a>",
             "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
             "26 Jan 2022"
         ],
@@ -516,160 +516,97 @@
     ],
     "get_info_table": [
         [
+            "<a href=\"https://support.apple.com/kb/HT212152\">Safari 14.0.3</a>",
+            "macOS Catalina and macOS Mojave",
+            "01 Feb 2021"
+        ],
+        [
+            "<a href=\"https://support.apple.com/kb/HT212223\">Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7)</a>",
+            "macOS Catalina and macOS Mojave",
+            "08 Mar 2021"
+        ],
+        [
             "<a href=\"https://support.apple.com/kb/HT213058\">Safari 15.3</a>",
             "macOS Big Sur and macOS Catalina",
-            "26 Jan 2022"
+            "26 Jan 2021"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213056\">Security Update 2022-001 Catalina</a>",
-            "macOS Catalina",
-            "26 Jan 2022"
+            "<a href=\"https://support.apple.com/kb/HT213091\">Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8)</a>",
+            "macOS Big Sur and macOS Catalina",
+            "10 Feb 2021"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213055\">macOS Big Sur 11.6.3</a>",
-            "macOS Big Sur",
-            "26 Jan 2022"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT213054\">macOS Monterey 12.2</a>",
-            "macOS Monterey",
-            "26 Jan 2022"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT213057\">tvOS 15.3</a>",
-            "Apple TV 4K and Apple TV HD",
-            "<p>26 Jan 2022<p>"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT213053\">iOS 15.3 and iPad OS 15.3</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "26 Jan 2022"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT213059\">watchOS 8.4</a>",
-            "Apple Watch Series 3 and later",
-            "26 Jan 2022"
-        ],
-        [
-            "macOS Big Sur 11.5.2<br><span class=\"note\">This update has no published CVE entries.</span>",
-            "macOS Big Sur",
-            "11 Aug 2021"
-        ],
-        [
-            "macOS Big Sur 11.0",
-            "Preinstalled only on certain Mac models; please update to macOS Big Sur 11.0.1",
-            "Preinstalled"
+            "<a href=\"https://support.apple.com/kb/HT212177\">macOS Big Sur 11.2.1, macOS Catalina 10.15.7 Supplemental Update, macOS Mojave 10.14.6 Security Update 2021-002</a>",
+            "macOS Big Sur 11.2, macOS Catalina 10.15.7, and macOS Mojave 10.14.6",
+            "09 Feb 2021"
         ]
     ],
     "get_info_info": {
-        "Safari 15.3": {
-            "release_notes": "https://support.apple.com/kb/HT213058",
-            "release_date": "26 Jan 2022",
+        "1": { 
+            "name": "Safari 14.0.3",
             "emoji": ":globe_with_meridians:",
-            "num_of_bugs": "4 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": null,
-            "entries_updated": null
+            "release_notes_link": "https://support.apple.com/kb/HT212152",
+            "release_date": "01 Feb 2021",
+            "num_of_bugs": 3,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         },
-        "Security Update 2022-001 Catalina": {
-            "release_notes": "https://support.apple.com/kb/HT213056",
-            "release_date": "26 Jan 2022",
-            "emoji": ":computer:",
-            "num_of_bugs": "5 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": null,
-            "entries_updated": null
+        "2": { 
+            "name": "Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7)",
+            "emoji": ":globe_with_meridians:",
+            "release_notes_link": "https://support.apple.com/kb/HT212223",
+            "release_date": "08 Mar 2021",
+            "num_of_bugs": 1,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         },
-        "macOS Big Sur 11.6.3": {
-            "release_notes": "https://support.apple.com/kb/HT213055",
-            "release_date": "26 Jan 2022",
-            "emoji": ":computer:",
-            "num_of_bugs": "7 bugs fixed",
-            "num_of_zero_days": "1 zero-day",
-            "list_of_zero_days": {
-                "CVE-2022-22587": "IOMobileFrameBuffer"
+        "3": { 
+            "name": "Safari 15.3",
+            "emoji": ":globe_with_meridians:",
+            "release_notes_link": "https://support.apple.com/kb/HT213058",
+            "release_date": "26 Jan 2021",
+            "num_of_bugs": 4,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 0,
+            "num_entries_updated": 0
+        },
+        "4": { 
+            "name": "Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8)",
+            "emoji": ":globe_with_meridians:",
+            "release_notes_link": "https://support.apple.com/kb/HT213091",
+            "release_date": "10 Feb 2021",
+            "num_of_bugs": 1,
+            "num_of_zero_days": 1,
+            "zero_days": {
+                "CVE-2022-22620": "WebKit"
             },
-            "entries_added": null,
-            "entries_updated": null
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         },
-        "macOS Monterey 12.2": {
-            "release_notes": "https://support.apple.com/kb/HT213054",
-            "release_date": "26 Jan 2022",
+        "5": { 
+            "name": "macOS Big Sur 11.2.1 and older",
             "emoji": ":computer:",
-            "num_of_bugs": "13 bugs fixed",
-            "num_of_zero_days": "1 zero-day",
-            "list_of_zero_days": {
-                "CVE-2022-22587": "IOMobileFrameBuffer"
-            },
-            "entries_added": null,
-            "entries_updated": null
-        },
-        "tvOS 15.3": {
-            "release_notes": "https://support.apple.com/kb/HT213057",
-            "release_date": "26 Jan 2022",
-            "emoji": ":tv:",
-            "num_of_bugs": "9 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": null,
-            "entries_updated": null
-        },
-        "iOS and iPadOS 15.3": {
-            "release_notes": "https://support.apple.com/kb/HT213053",
-            "release_date": "26 Jan 2022", 
-            "emoji": ":iphone:",
-            "num_of_bugs": "10 bugs fixed",
-            "num_of_zero_days": "1 zero-day", 
-            "list_of_zero_days": {
-                "CVE-2022-22587": "IOMobileFrameBuffer"
-            },
-            "entries_added": null, 
-            "entries_updated": null
-        },
-        "watchOS 8.4": {
-            "release_notes": "https://support.apple.com/kb/HT213059",
-            "release_date": "26 Jan 2022",
-            "emoji": ":watch:",
-            "num_of_bugs": "8 bugs fixed", 
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": null,
-            "entries_updated": null
-        },
-        "macOS Big Sur 11.5.2": {
-            "release_notes": null,
-            "release_date": "11 Aug 2021",
-            "emoji": ":computer:",
-            "num_of_bugs": "no bugs fixed", 
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": null,
-            "entries_updated": null
-        },
-        "macOS Big Sur 11.0": {
-            "release_notes": null,
-            "release_date": "Preinstalled",
-            "emoji": ":computer:",
-            "num_of_bugs": "no bugs fixed", 
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": null,
-            "entries_updated": null
+            "release_notes_link": "https://support.apple.com/kb/HT212177",
+            "release_date": "09 Feb 2021",
+            "num_of_bugs": 3,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         }
     },
     "get_info_tweet": [
         ":collision: NEW UPDATES RELEASED :collision:\n\n",
         ":globe_with_meridians: Safari 15.3 - 4 bugs fixed\n",
-        ":computer: Security Update 2022-001 Catalina - 5 bugs fixed\n",
-        ":computer: macOS Big Sur 11.6.3 - 7 bugs fixed\n",
-        ":computer: macOS Monterey 12.2 - 13 bugs fixed\n",
-        ":tv: tvOS 15.3 - 9 bugs fixed\n",
-        ":iphone: iOS and iPadOS 15.3 - 10 bugs fixed\n",
-        ":watch: watchOS 8.4 - 8 bugs fixed\n",
-        ":computer: macOS Big Sur 11.5.2 - no bugs fixed\n",
-        ":computer: macOS Big Sur 11.0 - no bugs fixed\n",
+        ":globe_with_meridians: Safari 14.0.3 - 3 bugs fixed\n",
+        ":computer: macOS Big Sur 11.2.1 and older - 3 bugs fixed\n",
+        ":globe_with_meridians: Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7) - 1 bug fixed\n",
+        ":globe_with_meridians: Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8) - 1 bug fixed\n",
         "https://support.apple.com/en-us/HT201222"
     ],
     "new_releases_table": [
@@ -696,7 +633,7 @@
         [
             "<a href=\"https://support.apple.com/kb/HT213057\">tvOS 15.3</a>",
             "Apple TV 4K and Apple TV HD",
-            "26 Jan 2022"
+            "<p>26 Jan 2022<p>"
         ],
         [
             "<a href=\"https://support.apple.com/kb/HT213053\">iOS 15.3 and iPadOS 15.3</a>",
@@ -707,109 +644,145 @@
             "<a href=\"https://support.apple.com/kb/HT213059\">watchOS 8.4</a>",
             "Apple Watch Series 3 and later",
             "26 Jan 2022"
+        ],
+        [
+            "macOS Big Sur 11.5.2<br><span class=\"note\">This update has no published CVE entries.</span>",
+            "macOS Big Sur",
+            "11 Aug 2021"
+        ],
+        [
+            "macOS Big Sur 11.0",
+            "Preinstalled only on certain Mac models; please update to macOS Big Sur 11.0.1",
+            "Preinstalled"
         ]
     ],
     "new_releases_info": {
-        "Safari 15.3": {
-            "release_notes": "https://support.apple.com/kb/HT213058",
-            "release_date": "26 Jan 2022",
+        "1": { 
+            "name": "Safari 15.3",
             "emoji": ":globe_with_meridians:",
-            "num_of_bugs": "4 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": null,
-            "entries_updated": null
-        },
-        "Security Update 2022-001 Catalina": {
-            "release_notes": "https://support.apple.com/kb/HT213056",
+            "release_notes_link": "https://support.apple.com/kb/HT213058",
             "release_date": "26 Jan 2022",
-            "emoji": ":computer:",
-            "num_of_bugs": "5 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": null,
-            "entries_updated": null
+            "num_of_bugs": 4,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         },
-        "macOS Big Sur 11.6.3": {
-            "release_notes": "https://support.apple.com/kb/HT213055",
-            "release_date": "26 Jan 2022",
+        "2": { 
+            "name": "Security Update 2022-001 Catalina",
             "emoji": ":computer:",
-            "num_of_bugs": "7 bugs fixed",
-            "num_of_zero_days": "1 zero-day",
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT213056",
+            "release_date": "26 Jan 2022",
+            "num_of_bugs": 5,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 0,
+            "num_entries_updated": 0
+        },
+        "3": { 
+            "name": "macOS Big Sur 11.6.3",
+            "emoji": ":computer:",
+            "release_notes_link": "https://support.apple.com/kb/HT213055",
+            "release_date": "26 Jan 2022",
+            "num_of_bugs": 7,
+            "num_of_zero_days": 1,
+            "zero_days": {
                 "CVE-2022-22587": "IOMobileFrameBuffer"
             },
-            "entries_added": null,
-            "entries_updated": null
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         },
-        "macOS Monterey 12.2": {
-            "release_notes": "https://support.apple.com/kb/HT213054",
-            "release_date": "26 Jan 2022",
+        "4": { 
+            "name": "macOS Monterey 12.2",
             "emoji": ":computer:",
-            "num_of_bugs": "13 bugs fixed",
-            "num_of_zero_days": "1 zero-day",
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT213054",
+            "release_date": "26 Jan 2022",
+            "num_of_bugs": 13,
+            "num_of_zero_days": 1,
+            "zero_days": {
                 "CVE-2022-22587": "IOMobileFrameBuffer"
             },
-            "entries_added": null,
-            "entries_updated": null
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         },
-        "tvOS 15.3": {
-            "release_notes": "https://support.apple.com/kb/HT213057",
-            "release_date": "26 Jan 2022",
+        "5": { 
+            "name": "tvOS 15.3",
             "emoji": ":tv:",
-            "num_of_bugs": "9 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": null,
-            "entries_updated": null
+            "release_notes_link": "https://support.apple.com/kb/HT213057",
+            "release_date": "26 Jan 2022",
+            "num_of_bugs": 9,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         },
-        "iOS and iPadOS 15.3": {
-            "release_notes": "https://support.apple.com/kb/HT213053",
-            "release_date": "26 Jan 2022", 
+        "6": { 
+            "name": "iOS and iPadOS 15.3",
             "emoji": ":iphone:",
-            "num_of_bugs": "10 bugs fixed",
-            "num_of_zero_days": "1 zero-day", 
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT213053",
+            "release_date": "26 Jan 2022",
+            "num_of_bugs": 10,
+            "num_of_zero_days": 1,
+            "zero_days": {
                 "CVE-2022-22587": "IOMobileFrameBuffer"
             },
-            "entries_added": null, 
-            "entries_updated": null
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         },
-        "watchOS 8.4": {
-            "release_notes": "https://support.apple.com/kb/HT213059",
-            "release_date": "26 Jan 2022",
+        "7": { 
+            "name": "watchOS 8.4",
             "emoji": ":watch:",
-            "num_of_bugs": "8 bugs fixed", 
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": null,
-            "entries_updated": null
+            "release_notes_link": "https://support.apple.com/kb/HT213059",
+            "release_date": "26 Jan 2022",
+            "num_of_bugs": 8,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 0,
+            "num_entries_updated": 0
+        },
+        "8": { 
+            "name": "macOS Big Sur 11.5.2",
+            "emoji": ":computer:",
+            "release_notes_link": "",
+            "release_date": "11 Aug 2021",
+            "num_of_bugs": 0,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 0,
+            "num_entries_updated": 0
+        },
+        "9": { 
+            "name": "macOS Big Sur 11.0",
+            "emoji": ":computer:",
+            "release_notes_link": "",
+            "release_date": "Preinstalled",
+            "num_of_bugs": 0,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         }
     },
     "new_releases_tweet": [
         ":collision: NEW UPDATES RELEASED :collision:\n\n",
-        ":globe_with_meridians: Safari 15.3 - 4 bugs fixed\n",
-        ":computer: Security Update 2022-001 Catalina - 5 bugs fixed\n",
-        ":computer: macOS Big Sur 11.6.3 - 7 bugs fixed\n",
         ":computer: macOS Monterey 12.2 - 13 bugs fixed\n",
-        ":tv: tvOS 15.3 - 9 bugs fixed\n",
         ":iphone: iOS and iPadOS 15.3 - 10 bugs fixed\n",
+        ":tv: tvOS 15.3 - 9 bugs fixed\n",
         ":watch: watchOS 8.4 - 8 bugs fixed\n",
+        ":computer: macOS Big Sur 11.6.3 - 7 bugs fixed\n",
+        ":computer: Security Update 2022-001 Catalina - 5 bugs fixed\n",
+        ":globe_with_meridians: Safari 15.3 - 4 bugs fixed\n",
+        ":computer: macOS Big Sur 11.5.2 - no bugs fixed\n",
+        ":computer: macOS Big Sur 11.0 - no bugs fixed\n",
         "https://support.apple.com/en-us/HT201222"
     ],
-    "new_releases_one_info": {
-        "watchOS 8.4": {
-            "release_notes": "https://support.apple.com/kb/HT213059",
-            "release_date": "26 Jan 2022",
-            "emoji": ":watch:",
-            "num_of_bugs": "8 bugs fixed", 
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": null,
-            "entries_updated": null
-        }
-    },
+    "new_releases_one_table": [
+        [
+            "<a href=\"https://support.apple.com/kb/HT213059\">watchOS 8.4</a>",
+            "Apple Watch Series 3 and later",
+            "26 Jan 2022"
+        ]
+    ],
     "new_releases_one_tweet": [
         ":collision: NEW UPDATE RELEASED :collision:\n\n",
         ":watch: watchOS 8.4 - 8 bugs fixed\n",
@@ -823,16 +796,18 @@
         ]
     ],
     "ios_modules_info": {
-        "iOS and iPadOS 15.3": {
-            "release_notes": "https://support.apple.com/kb/HT213053",
-            "release_date": "26 Jan 2022",
+        "1": { 
+            "name": "iOS and iPadOS 15.3",
             "emoji": ":iphone:",
-            "num_of_bugs": "10 bugs fixed",
-            "num_of_zero_days": "1 zero-day",
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT213053",
+            "release_date": "26 Jan 2022",
+            "num_of_bugs": 10,
+            "num_of_zero_days": 1,
+            "zero_days": {
                 "CVE-2022-22587": "IOMobileFrameBuffer"
             },
-            "entries_added": null, "entries_updated": null
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         }
     },
     "ios_modules_tweet": [
@@ -845,217 +820,236 @@
         "https://support.apple.com/kb/HT213053\n"
     ],
     "entry_changes_info": {
-        "macOS Big Sur 11.6.1": {
-            "release_notes": "https://support.apple.com/kb/HT212872",
-            "release_date": "25 Oct 2021",
+        "1": { 
+            "name": "macOS Big Sur 11.6.1",
             "emoji": ":computer:",
-            "num_of_bugs": "29 bugs fixed",
-            "num_of_zero_days": "1 zero-day",
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT212872",
+            "release_date": "25 Oct 2021",
+            "num_of_bugs": 29,
+            "num_of_zero_days": 1,
+            "zero_days": {
                 "CVE-2021-30883": "IOMobileFrameBuffer"
             },
-            "entries_added": "4 entries added",
-            "entries_updated": "1 entry updated"
+            "num_entries_added": 4,
+            "num_entries_updated": 1
         },
-        "watchOS 8.1":{
-            "release_notes": "https://support.apple.com/kb/HT212874",
-            "release_date": "25 Oct 2021",
+        "2": { 
+            "name": "watchOS 8.1",
             "emoji": ":watch:",
-            "num_of_bugs": "17 bugs fixed",
-            "num_of_zero_days": "1 zero-day",
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT212874",
+            "release_date": "25 Oct 2021",
+            "num_of_bugs": 17,
+            "num_of_zero_days": 1,
+            "zero_days": {
                 "CVE-2021-30883": "IOMobileFrameBuffer"
             },
-            "entries_added": "1 entry added",
-            "entries_updated": null
+            "num_entries_added": 1,
+            "num_entries_updated": 0
         },
-        "iOS and iPadOS 15.1": {
-            "release_notes": "https://support.apple.com/kb/HT212867",
-            "release_date": "25 Oct 2021",
+        "3": { 
+            "name": "iOS and iPadOS 15.1",
             "emoji": ":iphone:",
-            "num_of_bugs": "24 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": "2 entries added",
-            "entries_updated": null
-        },
-        "tvOS 15.1": {
-            "release_notes": "https://support.apple.com/kb/HT212876",
+            "release_notes_link": "https://support.apple.com/kb/HT212867",
             "release_date": "25 Oct 2021",
+            "num_of_bugs": 24,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 2,
+            "num_entries_updated": 0
+        },
+        "4": {
+            "name": "tvOS 15.1",
             "emoji": ":tv:",
-            "num_of_bugs": "19 bugs fixed",
-            "num_of_zero_days": "1 zero-day",
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT212876",
+            "release_date": "25 Oct 2021",
+            "num_of_bugs": 19,
+            "num_of_zero_days": 2,
+            "zero_days": {
                 "CVE-2021-30883": "IOMobileFrameBuffer"
             },
-            "entries_added": "1 entry added",
-            "entries_updated": null
+            "num_entries_added": 1,
+            "num_entries_updated": 0
         },
-        "tvOS 15": {
-            "release_notes": "https://support.apple.com/kb/HT212815",
-            "release_date": "20 Sep 2021",
+        "5": {
+            "name": "tvOS 15",
             "emoji": ":tv:",
-            "num_of_bugs": "29 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": "3 entries added",
-            "entries_updated": "2 entries updated"
-        },
-        "watchOS 8": {
-            "release_notes": "https://support.apple.com/kb/HT212819",
+            "release_notes_link": "https://support.apple.com/kb/HT212815",
             "release_date": "20 Sep 2021",
+            "num_of_bugs": 29,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 3,
+            "num_entries_updated": 2
+        },
+        "6": { 
+            "name": "watchOS 8",
             "emoji": ":watch:",
-            "num_of_bugs": "30 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": "5 entries added",
-            "entries_updated": "2 entries updated"
-        },
-        "iOS and iPadOS 15": {
-            "release_notes": "https://support.apple.com/kb/HT212814",
+            "release_notes_link": "https://support.apple.com/kb/HT212819",
             "release_date": "20 Sep 2021",
-            "emoji": ":iphone:",
-            "num_of_bugs": "42 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": "4 entries added",
-            "entries_updated": "3 entries updated"
+            "num_of_bugs": 30,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 5,
+            "num_entries_updated": 2
         },
-        "macOS Big Sur 11.6": {
-            "release_notes": "https://support.apple.com/kb/HT212804",
+        "7": { 
+            "name": "iOS and iPadOS 15",
+            "emoji": ":iphone:",
+            "release_notes_link": "https://support.apple.com/kb/HT212814",
+            "release_date": "20 Sep 2021",
+            "num_of_bugs": 42,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 4,
+            "num_entries_updated": 3
+        },
+        "8": { 
+            "name": "macOS Big Sur 11.6",
+            "emoji": ":computer:",
+            "release_notes_link": "https://support.apple.com/kb/HT212804",
             "release_date": "13 Sep 2021",
-            "emoji": ":computer:",
-            "num_of_bugs": "29 bugs fixed",
-            "num_of_zero_days": "2 zero-days",
-            "list_of_zero_days": {
+            "num_of_bugs": 29,
+            "num_of_zero_days": 2,
+            "zero_days": {
                 "CVE-2021-30860": "CoreGraphics",
                 "CVE-2021-30858": "WebKit"
             },
-            "entries_added": "8 entries added",
-            "entries_updated": "1 entry updated"
+            "num_entries_added": 8,
+            "num_entries_updated": 1
         },
-        "iOS and iPadOS 14.8": {
-            "release_notes": "https://support.apple.com/kb/HT212807",
-            "release_date": "13 Sep 2021",
+        "9": { 
+            "name": "iOS and iPadOS 14.8",
             "emoji": ":iphone:",
-            "num_of_bugs": "23 bugs fixed",
-            "num_of_zero_days": "2 zero-days",
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT212807",
+            "release_date": "13 Sep 2021",
+            "num_of_bugs": 23,
+            "num_of_zero_days": 2,
+            "zero_days": {
                 "CVE-2021-30860": "CoreGraphics",
                 "CVE-2021-30858": "WebKit"
             },
-            "entries_added": "4 entries added",
-            "entries_updated": null
+            "num_entries_added": 4,
+            "num_entries_updated": 0
         },
-        "Security Update 2021-004 Catalina": {
-            "release_notes": "https://support.apple.com/kb/HT212600",
-            "release_date": "21 Jul 2021",
+        "10": { 
+            "name": "Security Update 2021-004 Catalina",
             "emoji": ":computer:",
-            "num_of_bugs": "32 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": "6 entries added",
-            "entries_updated": "1 entry updated"
-        },
-        "Security Update 2021-005 Mojave": {
-            "release_notes": "https://support.apple.com/kb/HT212603",
+            "release_notes_link": "https://support.apple.com/kb/HT212600",
             "release_date": "21 Jul 2021",
-            "emoji": ":computer:",
-            "num_of_bugs": "25 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": "5 entries added",
-            "entries_updated": null
+            "num_of_bugs": 32,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 6,
+            "num_entries_updated": 1
         },
-        "watchOS 7.6": {
-            "release_notes": "https://support.apple.com/kb/HT212605",
-            "release_date": "19 Jul 2021",
+        "11": { 
+            "name": "Security Update 2021-005 Mojave",
+            "emoji": ":computer:",
+            "release_notes_link": "https://support.apple.com/kb/HT212603",
+            "release_date": "21 Jul 2021",
+            "num_of_bugs": 25,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 5,
+            "num_entries_updated": 0
+        },
+        "12": { 
+            "name": "watchOS 7.6",
             "emoji": ":watch:",
-            "num_of_bugs": "23 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": null,
-            "entries_updated": "2 entries updated"
-        },
-        "tvOS 14.7": {
-            "release_notes": "https://support.apple.com/kb/HT212604",
+            "release_notes_link": "https://support.apple.com/kb/HT212605",
             "release_date": "19 Jul 2021",
-            "emoji": ":tv:",
-            "num_of_bugs": "21 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": "1 entry added",
-            "entries_updated": null
+            "num_of_bugs": 23,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 0,
+            "num_entries_updated": 2
         },
-        "macOS Big Sur 11.4": {
-            "release_notes": "https://support.apple.com/kb/HT212529",
+        "13": {
+            "name": "tvOS 14.7",
+            "emoji": ":tv:",
+            "release_notes_link": "https://support.apple.com/kb/HT212604",
+            "release_date": "19 Jul 2021",
+            "num_of_bugs": 21,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 1,
+            "num_entries_updated": 0
+        },
+        "14": {
+            "name": "macOS Big Sur 11.4",
+            "emoji": ":computer:",
+            "release_notes_link": "https://support.apple.com/kb/HT212529",
             "release_date": "24 May 2021",
-            "emoji": ":computer:",
-            "num_of_bugs": "83 bugs fixed",
-            "num_of_zero_days": "1 zero-day",
-            "list_of_zero_days": {
+            "num_of_bugs": 83,
+            "num_of_zero_days": 1,
+            "zero_days": {
                 "CVE-2021-30713": "TCC"
             },
-            "entries_added": "1 entry added",
-            "entries_updated": null
+            "num_entries_added": 1,
+            "num_entries_updated": 0
         },
-        "iOS and iPadOS 14.6": {
-            "release_notes": "https://support.apple.com/kb/HT212528",
-            "release_date": "24 May 2021",
+        "15": {
+            "name": "iOS and iPadOS 14.6",
             "emoji": ":iphone:",
-            "num_of_bugs": "50 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": "2 entries added",
-            "entries_updated": null
-        },
-        "tvOS 14.6": {
-            "release_notes": "https://support.apple.com/kb/HT212532",
+            "release_notes_link": "https://support.apple.com/kb/HT212528",
             "release_date": "24 May 2021",
+            "num_of_bugs": 50,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 2,
+            "num_entries_updated": 0
+        },
+        "16": {
+            "name": "tvOS 14.6",
             "emoji": ":tv:",
-            "num_of_bugs": "32 bugs fixed",
-            "num_of_zero_days": "2 zero-days",
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT212532",
+            "release_date": "24 May 2021",
+            "num_of_bugs": 32,
+            "num_of_zero_days": 2,
+            "zero_days": {
                 "CVE-2021-30665": "WebKit",
                 "CVE-2021-30663": "WebKit"
             },
-            "entries_added": "1 entry added",
-            "entries_updated": null
+            "num_entries_added": 1,
+            "num_entries_updated": 0
         },
-        "watchOS 7.5": {
-            "release_notes": "https://support.apple.com/kb/HT212533",
-            "release_date": "24 May 2021",
+        "17": {
+            "name": "watchOS 7.5",
             "emoji": ":watch:",
-            "num_of_bugs": "31 bugs fixed",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": "1 entry added",
-            "entries_updated": null
+            "release_notes_link": "https://support.apple.com/kb/HT212533",
+            "release_date": "24 May 2021",
+            "num_of_bugs": 31,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 1,
+            "num_entries_updated": 0
         },
-        "macOS Big Sur 11.3": {
-            "release_notes": "https://support.apple.com/kb/HT212325",
-            "release_date": "26 Apr 2021",
+        "18": {
+            "name": "macOS Big Sur 11.3",
             "emoji": ":computer:",
-            "num_of_bugs": "66 bugs fixed",
-            "num_of_zero_days": "2 zero-days",
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT212325",
+            "release_date": "26 Apr 2021",
+            "num_of_bugs": 66,
+            "num_of_zero_days": 2,
+            "zero_days": {
                 "CVE-2021-30657": "System Preferences",
                 "CVE-2021-30661": "WebKit Storage"
             },
-            "entries_added": "1 entry added",
-            "entries_updated": null
+            "num_entries_added": 1,
+            "num_entries_updated": 0
         },
-        "iOS and iPadOS 14.5": {
-            "release_notes": "https://support.apple.com/kb/HT212317",
-            "release_date": "26 Apr 2021",
+        "19": {
+            "name": "iOS and iPadOS 14.5",
             "emoji": ":iphone:",
-            "num_of_bugs": "64 bugs fixed",
-            "num_of_zero_days": "1 zero-day",
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT212317",
+            "release_date": "26 Apr 2021",
+            "num_of_bugs": 64,
+            "num_of_zero_days": 1,
+            "zero_days": {
                 "CVE-2021-30661": "WebKit Storage"
             },
-            "entries_added": "1 entry added",
-            "entries_updated": null
+            "num_entries_added": 1,
+            "num_entries_updated": 0
         }
     },
     "entry_changes_tweet": [
@@ -1081,25 +1075,27 @@
         ":iphone: iOS and iPadOS 14.5 - 1 entry added\n"
     ],
     "release_notes_soon_info": {
-        "macOS Big Sur 11.3": {
-            "release_notes": null,
-            "release_date": "26 Apr 2021",
+        "1": {
+            "name": "macOS Big Sur 11.3",
             "emoji": ":computer:",
-            "num_of_bugs": "no details yet",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": null,
-            "entries_updated": null
-        },
-        "iOS and iPadOS 14.5": {
-            "release_notes": null,
+            "release_notes_link": "",
             "release_date": "26 Apr 2021",
+            "num_of_bugs": -1,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 0,
+            "num_entries_updated": 0
+        },
+        "2": {
+            "name": "iOS and iPadOS 14.5",
             "emoji": ":iphone:",
-            "num_of_bugs": "no details yet",
-            "num_of_zero_days": null,
-            "list_of_zero_days": {},
-            "entries_added": null,
-            "entries_updated": null
+            "release_notes_link": "",
+            "release_date": "26 Apr 2021",
+            "num_of_bugs": -1,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         }
     },
     "release_notes_soon_file": [
@@ -1107,30 +1103,32 @@
         "iOS and iPadOS 14.5"
     ],
     "release_notes_available_info": {
-        "macOS Big Sur 11.3": {
-            "release_notes": "https://support.apple.com/kb/HT212325",
-            "release_date": "26 Apr 2021",
+        "1": {
+            "name": "macOS Big Sur 11.3",
             "emoji": ":computer:",
-            "num_of_bugs": "66 bugs fixed",
-            "num_of_zero_days": "2 zero-days",
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT212325",
+            "release_date": "26 Apr 2021",
+            "num_of_bugs": 66,
+            "num_of_zero_days": 2,
+            "zero_days": {
                 "CVE-2021-30657": "System Preferences",
                 "CVE-2021-30661": "WebKit Storage"
             },
-            "entries_added": "1 added",
-            "entries_updated": null
+            "num_entries_added": 1,
+            "num_entries_updated": 0
         },
-        "iOS and iPadOS 14.5": {
-            "release_notes": "https://support.apple.com/kb/HT212317",
-            "release_date": "26 Apr 2021",
+        "2": {
+            "name": "iOS and iPadOS 14.5",
             "emoji": ":iphone:",
-            "num_of_bugs": "64 bugs fixed",
-            "num_of_zero_days": "1 zero-day",
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT212317",
+            "release_date": "26 Apr 2021",
+            "num_of_bugs": 64,
+            "num_of_zero_days": 1,
+            "zero_days": {
                 "CVE-2021-30661": "WebKit Storage"
             },
-            "entries_added": "1 added",
-            "entries_updated": null
+            "num_entries_added": 1,
+            "num_entries_updated": 0
         }
     },
     "release_notes_available_tweet": [
@@ -1163,31 +1161,33 @@
         ]
     ],
     "zero_day_releases_info": {
-        "Security Update 2021-006 Catalina": {
+        "1": {
+            "name": "Security Update 2021-006 Catalina",
             "emoji": ":computer:",
-            "entries_added": null,
-            "entries_updated": null,
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT212825",
+            "release_date": "23 Sep 2021",
+            "num_of_bugs": 1,
+            "num_of_zero_days": 1,
+            "zero_days": {
                 "CVE-2021-30869": "XNU"
             },
-            "num_of_bugs": "1 bug fixed",
-            "num_of_zero_days": "1 zero-day",
-            "release_date": "23 Sep 2021",
-            "release_notes": "https://support.apple.com/kb/HT212825"
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         },
-        "iOS 12.5.5": {
+        "2": {
+            "name": "iOS 12.5.5",
             "emoji": ":iphone:",
-            "entries_added": null,
-            "entries_updated": null,
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT212824",
+            "release_date": "23 Sep 2021",
+            "num_of_bugs": 3,
+            "num_of_zero_days": 3,
+            "zero_days": {
                 "CVE-2021-30858": "WebKit",
                 "CVE-2021-30860": "CoreGraphics",
                 "CVE-2021-30869": "XNU"
             },
-            "num_of_bugs": "3 bugs fixed",
-            "num_of_zero_days": "3 zero-days",
-            "release_date": "23 Sep 2021",
-            "release_notes": "https://support.apple.com/kb/HT212824"
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         }
     },
     "zero_day_releases_tweet": [
@@ -1207,36 +1207,38 @@
             "3 zero-days in iOS 12.5.5\n"
         ]
     ],
-    "zero_day_releases_1_1_info": {
-        "Security Update 2021-006 Catalina": {
+    "zero_day_releases_new_old_info": {
+        "1": {
+            "name": "Security Update 2021-006 Catalina",
             "emoji": ":computer:",
-            "entries_added": null,
-            "entries_updated": null,
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT212825",
+            "release_date": "23 Sep 2021",
+            "num_of_bugs": 1,
+            "num_of_zero_days": 1,
+            "zero_days": {
                 "CVE-2021-30869": "XNU"
             },
-            "num_of_bugs": "1 bug fixed",
-            "num_of_zero_days": "1 zero-day",
-            "release_date": "23 Sep 2021",
-            "release_notes": "https://support.apple.com/kb/HT212825"
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         },
-        "iOS 12.5.5": {
+        "2": {
+            "name": "iOS 12.5.5",
             "emoji": ":iphone:",
-            "entries_added": null,
-            "entries_updated": null,
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT212824",
+            "release_date": "23 Sep 2021",
+            "num_of_bugs": 3,
+            "num_of_zero_days": 1,
+            "zero_days": {
                 "CVE-2021-30858": "WebKit"
             },
-            "num_of_bugs": "3 bug fixed",
-            "num_of_zero_days": "1 zero-day",
-            "release_date": "23 Sep 2021",
-            "release_notes": "https://support.apple.com/kb/HT212824"
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         }
     },
-    "zero_day_releases_1_1_tweet": [
+    "zero_day_releases_new_old_tweet": [
         [
             ":mega: EMERGENCY UPDATES :mega:\n\n",
-            "Apple pushed updates for a new XNU zero-day (CVE-2021-30858) that may have been actively exploited and additional updates for CVE-2021-30869."
+            "Apple pushed updates for a new WebKit zero-day (CVE-2021-30858) that may have been actively exploited and additional updates for CVE-2021-30869."
         ],
         [
             ":warning: PATCHES:\n\n",
@@ -1244,21 +1246,22 @@
             "1 zero-day in iOS 12.5.5\n"
         ]
     ],
-    "zero_day_releases_1_0_info": {
-        "Security Update 2021-006 Catalina": {
+    "zero_day_releases_new_info": {
+        "1": {
+            "name": "Security Update 2021-006 Catalina",
             "emoji": ":computer:",
-            "entries_added": null,
-            "entries_updated": null,
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT212825",
+            "release_date": "23 Sep 2021",
+            "num_of_bugs": 1,
+            "num_of_zero_days": 1,
+            "zero_days": {
                 "CVE-2021-30858": "WebKit"
             },
-            "num_of_bugs": "1 bug fixed",
-            "num_of_zero_days": "1 zero-day",
-            "release_date": "23 Sep 2021",
-            "release_notes": "https://support.apple.com/kb/HT212825"
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         }
     },
-    "zero_day_releases_1_0_tweet": [
+    "zero_day_releases_new_tweet": [
         [
             ":mega: EMERGENCY UPDATE :mega:\n\n",
             "Apple pushed updates for a new WebKit zero-day (CVE-2021-30858) that may have been actively exploited."
@@ -1268,21 +1271,22 @@
             "1 zero-day in Security Update 2021-006 Catalina\n"
         ]
     ],
-    "zero_day_releases_0_1_info": {
-        "Security Update 2021-006 Catalina": {
+    "zero_day_releases_old_info": {
+        "1": {
+            "name": "Security Update 2021-006 Catalina",
             "emoji": ":computer:",
-            "entries_added": null,
-            "entries_updated": null,
-            "list_of_zero_days": {
+            "release_notes_link": "https://support.apple.com/kb/HT212825",
+            "release_date": "23 Sep 2021",
+            "num_of_bugs": 1,
+            "num_of_zero_days": 1,
+            "zero_days": {
                 "CVE-2021-30869": "XNU"
             },
-            "num_of_bugs": "1 bug fixed",
-            "num_of_zero_days": "1 zero-day",
-            "release_date": "23 Sep 2021",
-            "release_notes": "https://support.apple.com/kb/HT212825"
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         }
     },
-    "zero_day_releases_0_1_tweet": [
+    "zero_day_releases_old_tweet": [
         [
             ":mega: EMERGENCY UPDATE :mega:\n\n",
             "Apple pushed additional updates for XNU zero-day (CVE-2021-30869) that may have been actively exploited."

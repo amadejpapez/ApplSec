@@ -1,4 +1,4 @@
-def format_entry_changes(changes_info):
+def format_entry_changes(releases_info: list) -> list:
     """
     -----
     🔄 4 SECURITY NOTES UPDATED 🔄
@@ -11,34 +11,34 @@ def format_entry_changes(changes_info):
     """
 
     tweet_text = []
-    for release in changes_info:
-        added = release.get_num_entries_added()
-        updated = release.get_num_entries_updated()
 
-        if added is None and updated is not None:
-            tweet_text.append(f"{release.get_emoji()} {release.get_name()} - {updated}\n")
-        elif added is not None and updated is None:
-            tweet_text.append(f"{release.get_emoji()} {release.get_name()} - {added}\n")
-        elif added is not None and updated is not None:
-            tweet_text.append(f"{release.get_emoji()} {release.get_name()} - {added}, {updated}\n")
+    for release in releases_info:
+        name = f"{release.get_emoji()} {release.get_name()}"
+        added = release.get_format_num_entries_added()
+        updated = release.get_format_num_entries_updated()
 
-    num_updates = len(tweet_text)
+        if not added and updated:
+            tweet_text.append(f"{name} - {updated}\n")
+        elif added and not updated:
+            tweet_text.append(f"{name} - {added}\n")
+        elif added and updated:
+            tweet_text.append(f"{name} - {added}, {updated}\n")
 
-    if num_updates == 1:
+    if len(tweet_text) > 1:
         tweet_text.insert(
             0,
-            ":arrows_counterclockwise: 1 SECURITY NOTE UPDATED :arrows_counterclockwise:\n\n",
+            f":arrows_counterclockwise: {len(tweet_text)} SECURITY NOTES UPDATED :arrows_counterclockwise:\n\n",
         )
     else:
         tweet_text.insert(
             0,
-            f":arrows_counterclockwise: {num_updates} SECURITY NOTES UPDATED :arrows_counterclockwise:\n\n",
+            ":arrows_counterclockwise: 1 SECURITY NOTE UPDATED :arrows_counterclockwise:\n\n",
         )
 
     return tweet_text
 
 
-def format_release_notes_available(notes_releases_info, stored_data):
+def format_release_notes_available(releases_info: list, stored_data: dict) -> list:
     """
     -----
     🗒 RELEASE NOTES AVAILABLE 🗒
@@ -51,7 +51,7 @@ def format_release_notes_available(notes_releases_info, stored_data):
     -----
     """
 
-    for release in list(notes_releases_info):
+    for release in list(releases_info):
         if (
             release.get_name() in stored_data["details_available_soon"]
             and release.get_release_notes_link() is not None
@@ -63,16 +63,16 @@ def format_release_notes_available(notes_releases_info, stored_data):
             and release.get_format_num_of_bugs() == "no details yet"
         ):
             stored_data["details_available_soon"].append(release.get_name())
-            notes_releases_info.remove(release)
+            releases_info.remove(release)
 
-    if not notes_releases_info:
-        return None
+    if not releases_info:
+        return []
 
     tweet_text = [
         ":spiral_notepad: RELEASE NOTES AVAILABLE :spiral_notepad:\n\n",
     ]
 
-    for release in notes_releases_info:
+    for release in releases_info:
         tweet_text.append(
             f"{release.get_emoji()} {release.get_name()} - {release.get_format_num_of_bugs()}\n"
         )

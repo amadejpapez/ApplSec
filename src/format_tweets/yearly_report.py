@@ -1,9 +1,10 @@
 import re
 
 from gather_info import get_info
+from typing import Tuple
 
 
-def get_versions(system, version, releases):
+def get_versions(system: str, version: int, release_rows: list) -> Tuple[str, list]:
     """
     Get last four version numbers for that system.
     For macOS it gives version names instead.
@@ -16,7 +17,7 @@ def get_versions(system, version, releases):
         # get macOS name as Security Updates only contain names
         for x in ["12", "11", "10.15", "10.14"]:
             versions.append(
-                re.findall(rf"(?i)(?<=macOS)[a-z\s]+(?={x})", str(releases))[0].strip()
+                re.findall(rf"(?i)(?<=macOS)[a-z\s]+(?={x})", str(release_rows))[0].strip()
             )
     else:
         num = version
@@ -24,13 +25,10 @@ def get_versions(system, version, releases):
             num -= 1
             versions.append(num)
 
-    if system == "iOS and iPadOS":
-        system = "iOS"
-
     return system, versions
 
 
-def format_yearly_report(releases, system, version, stored_data):
+def format_yearly_report(release_rows: list, system: str, version: int, stored_data: dict) -> list:
     """
     -----
     iOS 15 was released today. In iOS 14 series Apple fixed in total of 346 security issues over 16 releases. 🔐
@@ -43,27 +41,25 @@ def format_yearly_report(releases, system, version, stored_data):
     """
 
     if system in stored_data["tweeted_today"]["yearly_report"]:
-        return None
+        return []
 
     stored_data["tweeted_today"]["yearly_report"].append(system)
 
-    system, versions = get_versions(system, version, releases)
+    system, versions = get_versions(system, version, release_rows)
 
     # get all the links of release notes, count CVEs and save all the info
     info = {}
     for ver in versions:
         info[ver] = {"num_of_bugs": 0, "num_of_releases": 0}
 
-        for release in releases:
+        for release in release_rows:
             if system in release[0] and str(ver) in release[0]:
                 if "href" in release[0]:
                     release_info = get_info([release])
-                    num = re.findall(
-                        r"\d+", release_info[list(release_info)[0]]["num_of_bugs"]
-                    )
+                    num = release_info[0].get_num_of_bugs()
 
-                    if num:
-                        info[ver]["num_of_bugs"] += int(num[0])
+                    if num > 0:
+                        info[ver]["num_of_bugs"] += num
 
                 info[ver]["num_of_releases"] += 1
 
