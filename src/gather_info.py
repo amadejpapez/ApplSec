@@ -1,4 +1,5 @@
 import re
+from typing import Tuple
 
 from Release import Release
 
@@ -74,3 +75,27 @@ def determine_latest_versions(release_rows: list) -> dict:
     )[0].strip()
 
     return versions
+
+
+def determine_latest_four_versions(system: str, version: int, release_rows: list) -> Tuple[str, list]:
+    """
+    Get last four version numbers for that system.
+    For macOS it gives version names instead.
+    """
+
+    versions = []
+
+    if system == "macOS":
+        # macOS versions are hard coded
+        # get macOS name as Security Updates only contain names
+        for x in ["12", "11", "10.15", "10.14"]:
+            versions.append(
+                re.findall(rf"(?i)(?<=macOS)[a-z\s]+(?={x})", str(release_rows))[0].strip()
+            )
+    else:
+        num = version
+        while len(versions) <= 3:
+            num -= 1
+            versions.append(num)
+
+    return system, versions

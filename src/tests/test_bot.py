@@ -3,14 +3,12 @@ import json
 import os
 import re
 import sys
+
 import pytest
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from format_tweets.new_updates import format_ios_modules, format_new_updates
-from format_tweets.release_changes import format_entry_changes, format_release_notes_available
-from format_tweets.yearly_report import format_yearly_report
-from format_tweets.zero_days import format_zero_days
+import format_tweet
 from gather_info import determine_latest_versions, get_info
 
 LOC = os.path.abspath(os.path.join(__file__, "../examples.json"))
@@ -168,7 +166,7 @@ def test_get_info_2():
 
     compare(releases_info, example_file["get_info_info"])
 
-    tweet_format = format_new_updates(
+    tweet_format = format_tweet.new_updates(
         list(releases_info), copy.deepcopy(example_file["stored_data"])
     )
 
@@ -180,7 +178,7 @@ def test_new_updates():
 
     compare(releases_info, example_file["new_releases_info"])
 
-    tweet_format = format_new_updates(list(releases_info), copy.deepcopy(stored_data))
+    tweet_format = format_tweet.new_updates(list(releases_info), copy.deepcopy(stored_data))
 
     assert tweet_format == example_file["new_releases_tweet"]
 
@@ -188,7 +186,7 @@ def test_new_updates():
 def test_new_updates_only_one():
     releases_info = get_info(example_file["new_releases_one_table"])
 
-    tweet_format = format_new_updates(list(releases_info), copy.deepcopy(stored_data))
+    tweet_format = format_tweet.new_updates(list(releases_info), copy.deepcopy(stored_data))
 
     assert tweet_format == example_file["new_releases_one_tweet"]
 
@@ -198,7 +196,7 @@ def test_ios_modules():
 
     compare(releases_info, example_file["ios_modules_info"])
 
-    tweet_format = format_ios_modules(list(releases_info), copy.deepcopy(stored_data))
+    tweet_format = format_tweet.top_ios_modules(list(releases_info), copy.deepcopy(stored_data))
 
     assert tweet_format == example_file["ios_modules_tweet"]
 
@@ -208,7 +206,7 @@ def test_entry_changes():
     for _, value in example_file["entry_changes_info"].items():
         releases_info.append(TestRelease(value))
 
-    tweet_format = format_entry_changes(list(releases_info))
+    tweet_format = format_tweet.entry_changes(list(releases_info))
 
     assert tweet_format == example_file["entry_changes_tweet"]
 
@@ -218,7 +216,7 @@ def test_release_notes_soon():
     for _, value in example_file["release_notes_soon_info"].items():
         releases_info.append(TestRelease(value))
 
-    tweet_format = format_release_notes_available(list(releases_info), stored_data)
+    tweet_format = format_tweet.release_notes_available(list(releases_info), stored_data)
 
     assert tweet_format == []
     assert (
@@ -231,7 +229,7 @@ def test_release_notes_available():
     for _, value in example_file["release_notes_available_info"].items():
         releases_info.append(TestRelease(value))
 
-    tweet_format = format_release_notes_available(list(releases_info), stored_data)
+    tweet_format = format_tweet.release_notes_available(list(releases_info), stored_data)
 
     assert tweet_format == example_file["release_notes_available_tweet"]
     assert stored_data["details_available_soon"] == []
@@ -243,7 +241,7 @@ def test_yearly_report():
     )
 
     for system, version in latest_versions.items():
-        tweet_format = format_yearly_report(
+        tweet_format = format_tweet.yearly_report(
             example_file["last_one_year_table"],
             system,
             version[0],
@@ -258,7 +256,7 @@ def test_zero_day():
 
     compare(releases_info, example_file["zero_day_releases_info"])
 
-    tweet_format = format_zero_days(list(releases_info), copy.deepcopy(stored_data))
+    tweet_format = format_tweet.zero_days(list(releases_info), copy.deepcopy(stored_data))
 
     assert tweet_format == example_file["zero_day_releases_tweet"]
 
@@ -268,7 +266,7 @@ def test_zero_day_new_old():
     for _, value in example_file["zero_day_releases_new_old_info"].items():
         releases_info.append(TestRelease(value))
 
-    tweet_format = format_zero_days(list(releases_info), copy.deepcopy(stored_data))
+    tweet_format = format_tweet.zero_days(list(releases_info), copy.deepcopy(stored_data))
 
     assert tweet_format == example_file["zero_day_releases_new_old_tweet"]
 
@@ -278,7 +276,7 @@ def test_zero_day_new():
     for _, value in example_file["zero_day_releases_new_info"].items():
         releases_info.append(TestRelease(value))
 
-    tweet_format = format_zero_days(list(releases_info), copy.deepcopy(stored_data))
+    tweet_format = format_tweet.zero_days(list(releases_info), copy.deepcopy(stored_data))
 
     assert tweet_format == example_file["zero_day_releases_new_tweet"]
 
@@ -288,6 +286,6 @@ def test_zero_day_old():
     for _, value in example_file["zero_day_releases_old_info"].items():
         releases_info.append(TestRelease(value))
 
-    tweet_format = format_zero_days(list(releases_info), copy.deepcopy(stored_data))
+    tweet_format = format_tweet.zero_days(list(releases_info), copy.deepcopy(stored_data))
 
     assert tweet_format == example_file["zero_day_releases_old_tweet"]

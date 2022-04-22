@@ -29,7 +29,7 @@ def arrange_elements(tweet_text: list, item: str) -> None:
         tweet_text.append(item)
 
 
-def tweet(results: list):
+def tweet(results: list) -> None:
     """
     It arranges the list into a tweet or a thread, as appropriate
     and sends it to Twitter.
