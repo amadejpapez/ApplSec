@@ -1,5 +1,20 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+- new releases are now sorted by the number of bugs, so release with the most bug fixes is now at the top
+- updated wording "zero-day may have been actively exploited" to align with Apple's wording
+- updated tweet wordings
+
+### Fixed
+- if all iOS bugs were fixed in top four modules except 1, it would say "and 1 other vulnerabilities fixed"
+
+### Code
+- refactoring, make a Release class
+- add type hints
+- add CHANGELOG.md
+
 ## [12.0] - 2022-02-11
 
 ### Added

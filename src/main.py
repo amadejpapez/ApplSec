@@ -40,14 +40,14 @@ for release in releases_info:
     if release.get_release_date() == date_format_one:
         new_releases_info.append(release)
 
-    # if the latest iOS series got a new release
-    if (
-        "iOS" in release.get_name()
-        and str(latest_versions["iOS"][0]) in release.get_name()
-        and release.get_security_content_link() is not None
-        and release.get_num_of_bugs() != len(release.get_zero_days())
-    ):
-        ios_release_info.append(release)
+        # if the latest iOS series got a new release
+        if (
+            "iOS" in release.get_name()
+            and str(latest_versions["iOS"][0]) in release.get_name()
+            and release.get_security_content_link() is not None
+            and release.get_num_of_bugs() != len(release.get_zero_days())
+        ):
+            ios_release_info.append(release)
 
     # if any releases that said "soon" got security content available
     if (

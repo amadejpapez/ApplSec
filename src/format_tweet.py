@@ -11,13 +11,13 @@ def new_updates(releases_info: list, stored_data: dict) -> list:
     -----
     💥 NEW UPDATES RELEASED 💥
 
-    🌐 Safari 15.3 - 4 bugs fixed
-    💻 Security Update 2022-001 Catalina - 5 bugs fixed
-    💻 macOS Big Sur 11.6.3 - 7 bugs fixed
     💻 macOS Monterey 12.2 - 13 bugs fixed
-    -----
     📱 iOS and iPadOS 15.3 - 10 bugs fixed
     ⌚ watchOS 8.4 - 8 bugs fixed
+    💻 macOS Big Sur 11.6.3 - 7 bugs fixed
+    -----
+    💻 Security Update 2022-001 Catalina - 5 bugs fixed
+    🌐 Safari 15.3 - 4 bugs fixed
     https://support.apple.com/en-us/HT201222
     -----
     """
@@ -104,6 +104,8 @@ def top_ios_modules(releases_info: list, stored_data: dict) -> list:
 
         if num_bugs > 0:
             tweet_text.append(f"and {num_bugs} other vulnerabilities fixed\n")
+        elif num_bugs == 1:
+            tweet_text.append("and 1 other vulnerability fixed\n")
 
         tweet_text.append(f"{release.get_security_content_link()}\n")
 
