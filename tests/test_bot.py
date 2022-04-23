@@ -4,9 +4,7 @@ import os
 import re
 import sys
 
-import pytest
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
 
 import format_tweet
 from gather_info import determine_latest_versions, get_info
@@ -19,8 +17,7 @@ with open(LOC, "r", encoding="utf-8") as my_file:
 stored_data = copy.deepcopy(example_file["stored_data"])
 
 
-@pytest.mark.skip(reason="")
-class TestRelease:
+class ReleaseTest:
     def __init__(self, release_info: dict):
         self.__name: str = release_info["name"]
         self.__emoji: str = release_info["emoji"]
@@ -204,7 +201,7 @@ def test_ios_modules():
 def test_entry_changes():
     releases_info = []
     for _, value in example_file["entry_changes_info"].items():
-        releases_info.append(TestRelease(value))
+        releases_info.append(ReleaseTest(value))
 
     tweet_format = format_tweet.entry_changes(list(releases_info))
 
@@ -214,7 +211,7 @@ def test_entry_changes():
 def test_security_content_soon():
     releases_info = []
     for _, value in example_file["security_content_soon_info"].items():
-        releases_info.append(TestRelease(value))
+        releases_info.append(ReleaseTest(value))
 
     tweet_format = format_tweet.security_content_available(list(releases_info), stored_data)
 
@@ -227,7 +224,7 @@ def test_security_content_soon():
 def test_security_content_available():
     releases_info = []
     for _, value in example_file["security_content_available_info"].items():
-        releases_info.append(TestRelease(value))
+        releases_info.append(ReleaseTest(value))
 
     tweet_format = format_tweet.security_content_available(list(releases_info), stored_data)
 
@@ -264,7 +261,7 @@ def test_zero_day():
 def test_zero_day_new_old():
     releases_info = []
     for _, value in example_file["zero_day_releases_new_old_info"].items():
-        releases_info.append(TestRelease(value))
+        releases_info.append(ReleaseTest(value))
 
     tweet_format = format_tweet.zero_days(list(releases_info), copy.deepcopy(stored_data))
 
@@ -274,7 +271,7 @@ def test_zero_day_new_old():
 def test_zero_day_new():
     releases_info = []
     for _, value in example_file["zero_day_releases_new_info"].items():
-        releases_info.append(TestRelease(value))
+        releases_info.append(ReleaseTest(value))
 
     tweet_format = format_tweet.zero_days(list(releases_info), copy.deepcopy(stored_data))
 
@@ -284,7 +281,7 @@ def test_zero_day_new():
 def test_zero_day_old():
     releases_info = []
     for _, value in example_file["zero_day_releases_old_info"].items():
-        releases_info.append(TestRelease(value))
+        releases_info.append(ReleaseTest(value))
 
     tweet_format = format_tweet.zero_days(list(releases_info), copy.deepcopy(stored_data))
 
