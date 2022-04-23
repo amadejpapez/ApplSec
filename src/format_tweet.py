@@ -120,11 +120,15 @@ def get_zero_days_first_tweet(sorted_zero_days: dict) -> str:
 
     if length_old > 0:
         text_old = ", ".join(sorted_zero_days["old"])
-        zero_day_module = sorted_zero_days["old"][list(sorted_zero_days["old"].keys())[0]]
+        zero_day_module = sorted_zero_days["old"][
+            list(sorted_zero_days["old"].keys())[0]
+        ]
 
     if length_new > 0:
         text_new = ", ".join(sorted_zero_days["new"])
-        zero_day_module = sorted_zero_days["new"][list(sorted_zero_days["new"].keys())[0]]
+        zero_day_module = sorted_zero_days["new"][
+            list(sorted_zero_days["new"].keys())[0]
+        ]
 
     if length_new == 1 and length_old == 0:
         return f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that may have been actively exploited."
@@ -190,7 +194,9 @@ def zero_days(releases_info: list, stored_data: dict) -> list:
     sorted_zero_days: dict = {"old": {}, "new": {}}
 
     for release in releases_info:
-        tweet_text[2].append(f"{release.get_format_num_of_zero_days()} in {release.get_name()}\n")
+        tweet_text[2].append(
+            f"{release.get_format_num_of_zero_days()} in {release.get_name()}\n"
+        )
         zero_days.update(release.get_zero_days())
 
     for key, value in zero_days.items():

@@ -38,7 +38,9 @@ class Release:
 
         if "iOS" in self.__name and "iPadOS" in self.__name:
             # turn "iOS 15.3 and iPadOS 15.3" into shorter "iOS and iPadOS 15.3"
-            self.__name = self.__name.split("and", 1)[0].strip().replace("iOS", "iOS and iPadOS")
+            self.__name = (
+                self.__name.split("and", 1)[0].strip().replace("iOS", "iOS and iPadOS")
+            )
 
         if "macOS" in self.__name and "Update" in self.__name:
             # for releases "macOS Big Sur 11.2.1, macOS Catalina 10.15.7 Supplemental Update,..."
@@ -50,7 +52,9 @@ class Release:
 
     def set_security_content_link(self, release_row: list) -> None:
         if "href" in release_row[0]:
-            self.__security_content_link = re.findall(r'(?i)href="(.+?)"', release_row[0])[0]
+            self.__security_content_link = re.findall(
+                r'(?i)href="(.+?)"', release_row[0]
+            )[0]
         else:
             self.__security_content_link = ""
 
@@ -95,7 +99,9 @@ class Release:
     def set_zero_days(self, sec_content_html: str) -> None:
         """Check for "in the wild" or "actively exploited", indicating a fixed zero-day."""
 
-        entries = re.findall(r"(?i)(?<=<strong>).*?(?=<strong>|<\/div)", sec_content_html)
+        entries = re.findall(
+            r"(?i)(?<=<strong>).*?(?=<strong>|<\/div)", sec_content_html
+        )
         zero_days = {}
 
         for entry in entries:

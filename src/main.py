@@ -8,7 +8,11 @@ from gather_info import determine_latest_versions, get_info
 from save_data import read_file, save_file
 from twitter import tweet
 
-MAIN_PAGE_HTML = requests.get("https://support.apple.com/en-us/HT201222").text.replace("\n", "").replace("&nbsp;", " ")
+MAIN_PAGE_HTML = (
+    requests.get("https://support.apple.com/en-us/HT201222")
+    .text.replace("\n", "")
+    .replace("&nbsp;", " ")
+)
 all_releases = re.findall(r"(?<=<tr>).*?(?=<\/tr>)", MAIN_PAGE_HTML)[1:]
 
 for i, _ in enumerate(all_releases):
@@ -65,7 +69,11 @@ if ios_release_info:
     tweet(format_tweet.top_ios_modules(ios_release_info, stored_data))
 
 if sec_content_available_info:
-    tweet(format_tweet.security_content_available(list(sec_content_available_info), stored_data))
+    tweet(
+        format_tweet.security_content_available(
+            list(sec_content_available_info), stored_data
+        )
+    )
 
 
 # if there were any zero-days fixed
@@ -109,6 +117,8 @@ for key, value in latest_versions.items():
                 f"{key} {value[1]} {value[0]}",
                 f"{key} {value[1]} {value[0]}.0",
             ):
-                tweet(format_tweet.yearly_report(all_releases, key, value[0], stored_data))
+                tweet(
+                    format_tweet.yearly_report(all_releases, key, value[0], stored_data)
+                )
 
 save_file(stored_data, midnight)
