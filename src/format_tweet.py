@@ -43,9 +43,9 @@ def new_updates(releases_info: list, stored_data: dict) -> list:
     if len(releases_info) == 1:
         tweet_text.insert(0, ":collision: NEW UPDATE RELEASED :collision:\n\n")
 
-        if releases_info[0].get_release_notes_link():
+        if releases_info[0].get_security_content_link():
             # if there is only one release, add its notes as a link
-            tweet_text.append(releases_info[0].get_release_notes_link())
+            tweet_text.append(releases_info[0].get_security_content_link())
     else:
         tweet_text.insert(0, ":collision: NEW UPDATES RELEASED :collision:\n\n")
         tweet_text.append("https://support.apple.com/en-us/HT201222")
@@ -77,11 +77,11 @@ def top_ios_modules(releases_info: list, stored_data: dict) -> list:
         return []
 
     for release in releases_info:
-        release_note = requests.get(release.get_release_notes_link()).text
-        release_note = release_note.split("Additional recognition", 1)[0]
+        sec_content_html = requests.get(release.get_security_content_link()).text
+        sec_content_html = sec_content_html.split("Additional recognition", 1)[0]
 
         search_modules = collections.Counter(
-            re.findall(r"(?<=<strong>).*?(?=<\/strong>)", release_note)
+            re.findall(r"(?<=<strong>).*?(?=<\/strong>)", sec_content_html)
         )
         modules = collections.OrderedDict(
             sorted(search_modules.items(), reverse=True, key=lambda x: x[1])
@@ -105,24 +105,24 @@ def top_ios_modules(releases_info: list, stored_data: dict) -> list:
         if num_bugs > 0:
             tweet_text.append(f"and {num_bugs} other vulnerabilities fixed\n")
 
-        tweet_text.append(f"{release.get_release_notes_link()}\n")
+        tweet_text.append(f"{release.get_security_content_link()}\n")
 
     return tweet_text
 
 
-def get_zero_days_first_tweet(unique_zero_days: dict) -> str:
+def get_zero_days_first_tweet(sorted_zero_days: dict) -> str:
     """Return text for the start of the zero day tweet."""
 
-    length_old = len(unique_zero_days["old"])
-    length_new = len(unique_zero_days["new"])
+    length_old = len(sorted_zero_days["old"])
+    length_new = len(sorted_zero_days["new"])
 
     if length_old > 0:
-        text_old = ", ".join(unique_zero_days["old"])
-        zero_day_module = unique_zero_days["old"][list(unique_zero_days["old"].keys())[0]]
+        text_old = ", ".join(sorted_zero_days["old"])
+        zero_day_module = sorted_zero_days["old"][list(sorted_zero_days["old"].keys())[0]]
 
     if length_new > 0:
-        text_new = ", ".join(unique_zero_days["new"])
-        zero_day_module = unique_zero_days["new"][list(unique_zero_days["new"].keys())[0]]
+        text_new = ", ".join(sorted_zero_days["new"])
+        zero_day_module = sorted_zero_days["new"][list(sorted_zero_days["new"].keys())[0]]
 
     if length_new == 1 and length_old == 0:
         return f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that may have been actively exploited."
@@ -257,10 +257,10 @@ def entry_changes(releases_info: list) -> list:
     return tweet_text
 
 
-def release_notes_available(releases_info: list, stored_data: dict) -> list:
+def security_content_available(releases_info: list, stored_data: dict) -> list:
     """
     -----
-    🗒 RELEASE NOTES AVAILABLE 🗒
+    🗒 SECURITY CONTENT AVAILABLE 🗒
 
     💻 macOS Monterey 12.0.1 - 40 bugs fixed
     💻 macOS Big Sur 11.6.1 - 24 bugs fixed
@@ -273,7 +273,7 @@ def release_notes_available(releases_info: list, stored_data: dict) -> list:
     for release in list(releases_info):
         if (
             release.get_name() in stored_data["details_available_soon"]
-            and release.get_release_notes_link() is not None
+            and release.get_security_content_link() is not None
         ):
             stored_data["details_available_soon"].remove(release.get_name())
 
@@ -288,7 +288,7 @@ def release_notes_available(releases_info: list, stored_data: dict) -> list:
         return []
 
     tweet_text = [
-        ":spiral_notepad: RELEASE NOTES AVAILABLE :spiral_notepad:\n\n",
+        ":spiral_notepad: SECURITY CONTENT AVAILABLE :spiral_notepad:\n\n",
     ]
 
     for release in releases_info:
@@ -318,7 +318,6 @@ def yearly_report(release_rows: list, system: str, version: int, stored_data: di
 
     system, versions = determine_latest_four_versions(system, version, release_rows)
 
-    # get all the links of release notes, count CVEs and save all the info
     info = {}
     for ver in versions:
         info[ver] = {"num_of_bugs": 0, "num_of_releases": 0}
@@ -326,8 +325,8 @@ def yearly_report(release_rows: list, system: str, version: int, stored_data: di
         for release in release_rows:
             if system in release[0] and str(ver) in release[0]:
                 if "href" in release[0]:
-                    release_info = get_info([release])
-                    num = release_info[0].get_num_of_bugs()
+                    sec_content = get_info([release])
+                    num = sec_content[0].get_num_of_bugs()
 
                     if num > 0:
                         info[ver]["num_of_bugs"] += num

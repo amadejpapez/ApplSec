@@ -8,7 +8,7 @@ class Release:
     def __init__(self, release_row: list) -> None:
         self.__name: str
         self.__emoji: str
-        self.__release_notes_link: str
+        self.__security_content_link: str
         self.__release_date: str
         self.__num_of_bugs: int
         self.__num_of_zero_days: int
@@ -18,18 +18,18 @@ class Release:
 
         self.set_name(release_row)
         self.set_emoji()
-        self.set_release_notes_link(release_row)
+        self.set_security_content_link(release_row)
         self.set_release_date(release_row)
 
-        if self.__release_notes_link:
-            release_notes = requests.get(self.__release_notes_link).text
-            release_notes = release_notes.replace("\n", "").replace("&nbsp;", " ")
+        if self.__security_content_link:
+            sec_content_html = requests.get(self.__security_content_link).text
+            sec_content_html = sec_content_html.replace("\n", "").replace("&nbsp;", " ")
         else:
-            release_notes = ""
+            sec_content_html = ""
 
-        self.set_num_of_bugs(release_row, release_notes)
-        self.set_zero_days(release_notes)
-        self.set_num_entries_changed(release_notes)
+        self.set_num_of_bugs(release_row, sec_content_html)
+        self.set_zero_days(sec_content_html)
+        self.set_num_entries_changed(sec_content_html)
 
     def set_name(self, release_row: list) -> None:
         self.__name = re.findall(r"(?i)(?<=[>])[^<]+|^[^<]+", release_row[0])[0]
@@ -48,14 +48,14 @@ class Release:
     def get_name(self) -> str:
         return self.__name
 
-    def set_release_notes_link(self, release_row: list) -> None:
+    def set_security_content_link(self, release_row: list) -> None:
         if "href" in release_row[0]:
-            self.__release_notes_link = re.findall(r'(?i)href="(.+?)"', release_row[0])[0]
+            self.__security_content_link = re.findall(r'(?i)href="(.+?)"', release_row[0])[0]
         else:
-            self.__release_notes_link = ""
+            self.__security_content_link = ""
 
-    def get_release_notes_link(self) -> str:
-        return self.__release_notes_link
+    def get_security_content_link(self) -> str:
+        return self.__security_content_link
 
     def set_release_date(self, release_row: list) -> None:
         self.__release_date = re.findall(r"(?i)(?<=[>])[^<]+|^[^<]+", release_row[2])[0]
@@ -92,10 +92,10 @@ class Release:
     def get_emoji(self) -> str:
         return self.__emoji
 
-    def set_zero_days(self, release_notes: str) -> None:
+    def set_zero_days(self, sec_content_html: str) -> None:
         """Check for "in the wild" or "actively exploited", indicating a fixed zero-day."""
 
-        entries = re.findall(r"(?i)(?<=<strong>).*?(?=<strong>|<\/div)", release_notes)
+        entries = re.findall(r"(?i)(?<=<strong>).*?(?=<strong>|<\/div)", sec_content_html)
         zero_days = {}
 
         for entry in entries:
@@ -121,14 +121,14 @@ class Release:
     def get_zero_days(self) -> dict:
         return self.__zero_days
 
-    def set_num_of_bugs(self, release_row: list, release_notes: str) -> None:
+    def set_num_of_bugs(self, release_row: list, sec_content_html: str) -> None:
         """Return a number of CVEs fixed."""
 
         if "soon" in release_row[0]:
             self.__num_of_bugs = -1
         else:
             self.__num_of_bugs = len(
-                re.findall("(?i)CVE-[0-9]{4}-[0-9]+", release_notes)
+                re.findall("(?i)CVE-[0-9]{4}-[0-9]+", sec_content_html)
             )
 
     def get_num_of_bugs(self) -> int:
@@ -146,7 +146,7 @@ class Release:
 
         return "no bugs fixed"
 
-    def set_num_entries_changed(self, release_notes: str) -> None:
+    def set_num_entries_changed(self, sec_content_html: str) -> None:
         """
         Return if any entries were added or updated.
         Tweet is made at the start of each day for any changes made on the previous day.
@@ -160,10 +160,10 @@ class Release:
         )
 
         self.__num_entries_added = len(
-            re.findall(f"added {date_format_two}", release_notes)
+            re.findall(f"added {date_format_two}", sec_content_html)
         )
         self.__num_entries_updated = len(
-            re.findall(f"updated {date_format_two}", release_notes)
+            re.findall(f"updated {date_format_two}", sec_content_html)
         )
 
     def get_num_entries_added(self) -> int:

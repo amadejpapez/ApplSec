@@ -24,7 +24,7 @@ class TestRelease:
     def __init__(self, release_info: dict):
         self.__name: str = release_info["name"]
         self.__emoji: str = release_info["emoji"]
-        self.__release_notes_link: str = release_info["release_notes_link"]
+        self.__security_content_link: str = release_info["security_content_link"]
         self.__release_date: str = release_info["release_date"]
         self.__num_of_bugs: int = release_info["num_of_bugs"]
         self.__num_of_zero_days: int = release_info["num_of_zero_days"]
@@ -35,8 +35,8 @@ class TestRelease:
     def get_name(self) -> str:
         return self.__name
 
-    def get_release_notes_link(self) -> str:
-        return self.__release_notes_link
+    def get_security_content_link(self) -> str:
+        return self.__security_content_link
 
     def set_release_date(self, release_row: list):
         self.__release_date = re.findall(r"(?i)(?<=[>])[^<]+|^[^<]+", release_row[2])[0]
@@ -106,7 +106,7 @@ class TestRelease:
             f'\"{self.__name}\":' + ' { \n'
             f'    \"name\": \"{self.__name}\",\n'
             f'    \"emoji\": \"{self.__emoji}\",\n'
-            f'    \"release_notes_link\": \"{self.__release_notes_link}\",\n'
+            f'    \"security_content_link\": \"{self.__security_content_link}\",\n'
             f'    \"release_date\": \"{self.__release_date}\",\n'
             f'    \"num_of_bugs\": {self.__num_of_bugs},\n'
             f'    \"num_of_zero_days\": {self.__num_of_zero_days},\n'
@@ -121,7 +121,7 @@ def compare(releases_info, example):
     for release, (_, expected) in zip(releases_info, example.items()):
         assert release.get_name() == expected["name"]
         assert release.get_emoji() == expected["emoji"]
-        assert release.get_release_notes_link() == expected["release_notes_link"]
+        assert release.get_security_content_link() == expected["security_content_link"]
         assert release.get_release_date() == expected["release_date"]
         assert release.get_num_of_bugs() == expected["num_of_bugs"]
         assert release.get_num_of_zero_days() == expected["num_of_zero_days"]
@@ -211,27 +211,27 @@ def test_entry_changes():
     assert tweet_format == example_file["entry_changes_tweet"]
 
 
-def test_release_notes_soon():
+def test_security_content_soon():
     releases_info = []
-    for _, value in example_file["release_notes_soon_info"].items():
+    for _, value in example_file["security_content_soon_info"].items():
         releases_info.append(TestRelease(value))
 
-    tweet_format = format_tweet.release_notes_available(list(releases_info), stored_data)
+    tweet_format = format_tweet.security_content_available(list(releases_info), stored_data)
 
     assert tweet_format == []
     assert (
-        stored_data["details_available_soon"] == example_file["release_notes_soon_file"]
+        stored_data["details_available_soon"] == example_file["security_content_soon_file"]
     )
 
 
-def test_release_notes_available():
+def test_security_content_available():
     releases_info = []
-    for _, value in example_file["release_notes_available_info"].items():
+    for _, value in example_file["security_content_available_info"].items():
         releases_info.append(TestRelease(value))
 
-    tweet_format = format_tweet.release_notes_available(list(releases_info), stored_data)
+    tweet_format = format_tweet.security_content_available(list(releases_info), stored_data)
 
-    assert tweet_format == example_file["release_notes_available_tweet"]
+    assert tweet_format == example_file["security_content_available_tweet"]
     assert stored_data["details_available_soon"] == []
 
 

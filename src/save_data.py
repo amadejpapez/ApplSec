@@ -3,7 +3,7 @@ Save and read data from stored_data.json.
 
 File is storing:
 - 10 last fixed zero-days
-- releases that do not have release notes yet
+- releases that do not have security content available yet
 - data tweeted on the current day to prevent tweeting the same thing twice
 """
 

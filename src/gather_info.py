@@ -25,7 +25,7 @@ def get_info(release_rows: list) -> list:
         Class Release (
             "name": "iOS and iPadOS 14.7",
             "emoji": ":iphone:",
-            "release_notes_link": "https://support.apple.com/kb/HT212623",
+            "security_content_link": "https://support.apple.com/kb/HT212623",
             "release_date": "26 Jan 2022",
             "num_of_bugs": 37,
             "num_of_zero_days": 3,
