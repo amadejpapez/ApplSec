@@ -117,14 +117,14 @@ class ReleaseTest:
 def compare(releases_info, example):
     for release, (_, expected) in zip(releases_info, example.items()):
         assert release.get_name() == expected["name"]
-        assert release.get_emoji() == expected["emoji"]
-        assert release.get_security_content_link() == expected["security_content_link"]
-        assert release.get_release_date() == expected["release_date"]
-        assert release.get_num_of_bugs() == expected["num_of_bugs"]
-        assert release.get_num_of_zero_days() == expected["num_of_zero_days"]
-        assert release.get_zero_days() == expected["zero_days"]
-        assert release.get_num_entries_added() == expected["num_entries_added"]
-        assert release.get_num_entries_updated() == expected["num_entries_updated"]
+        assert release.get_emoji() == expected["emoji"], release.get_name()
+        assert release.get_security_content_link() == expected["security_content_link"], release.get_name()
+        assert release.get_release_date() == expected["release_date"], release.get_name()
+        assert release.get_num_of_bugs() == expected["num_of_bugs"], release.get_name()
+        assert release.get_num_of_zero_days() == expected["num_of_zero_days"], release.get_name()
+        assert release.get_zero_days() == expected["zero_days"], release.get_name()
+        assert release.get_num_entries_added() == expected["num_entries_added"], release.get_name()
+        assert release.get_num_entries_updated() == expected["num_entries_updated"], release.get_name()
 
 
 def test_get_info():

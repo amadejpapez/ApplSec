@@ -677,33 +677,33 @@
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
-            "num_entries_updated": 0
+            "num_entries_updated": 3
         },
         "3": { 
             "name": "macOS Big Sur 11.6.3",
             "emoji": ":computer:",
             "security_content_link": "https://support.apple.com/kb/HT213055",
             "release_date": "26 Jan 2022",
-            "num_of_bugs": 7,
+            "num_of_bugs": 8,
             "num_of_zero_days": 1,
             "zero_days": {
                 "CVE-2022-22587": "IOMobileFrameBuffer"
             },
             "num_entries_added": 0,
-            "num_entries_updated": 0
+            "num_entries_updated": 2
         },
         "4": { 
             "name": "macOS Monterey 12.2",
             "emoji": ":computer:",
             "security_content_link": "https://support.apple.com/kb/HT213054",
             "release_date": "26 Jan 2022",
-            "num_of_bugs": 13,
+            "num_of_bugs": 14,
             "num_of_zero_days": 1,
             "zero_days": {
                 "CVE-2022-22587": "IOMobileFrameBuffer"
             },
-            "num_entries_added": 0,
-            "num_entries_updated": 0
+            "num_entries_added": 1,
+            "num_entries_updated": 4
         },
         "5": { 
             "name": "tvOS 15.3",
@@ -714,7 +714,7 @@
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
-            "num_entries_updated": 0
+            "num_entries_updated": 2
         },
         "6": { 
             "name": "iOS and iPadOS 15.3",
@@ -727,7 +727,7 @@
                 "CVE-2022-22587": "IOMobileFrameBuffer"
             },
             "num_entries_added": 0,
-            "num_entries_updated": 0
+            "num_entries_updated": 2
         },
         "7": { 
             "name": "watchOS 8.4",
@@ -738,7 +738,7 @@
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
-            "num_entries_updated": 0
+            "num_entries_updated": 2
         },
         "8": { 
             "name": "macOS Big Sur 11.5.2",
@@ -765,11 +765,11 @@
     },
     "new_releases_tweet": [
         ":collision: NEW UPDATES RELEASED :collision:\n\n",
-        ":computer: macOS Monterey 12.2 - 13 bugs fixed\n",
+        ":computer: macOS Monterey 12.2 - 14 bugs fixed\n",
         ":iphone: iOS and iPadOS 15.3 - 10 bugs fixed\n",
         ":tv: tvOS 15.3 - 9 bugs fixed\n",
+        ":computer: macOS Big Sur 11.6.3 - 8 bugs fixed\n",
         ":watch: watchOS 8.4 - 8 bugs fixed\n",
-        ":computer: macOS Big Sur 11.6.3 - 7 bugs fixed\n",
         ":computer: Security Update 2022-001 Catalina - 5 bugs fixed\n",
         ":globe_with_meridians: Safari 15.3 - 4 bugs fixed\n",
         ":computer: macOS Big Sur 11.5.2 - no bugs fixed\n",
@@ -807,7 +807,7 @@
                 "CVE-2022-22587": "IOMobileFrameBuffer"
             },
             "num_entries_added": 0,
-            "num_entries_updated": 0
+            "num_entries_updated": 2
         }
     },
     "ios_modules_tweet": [
@@ -1137,16 +1137,16 @@
         ":iphone: iOS and iPadOS 14.5 - 64 bugs fixed\n"
     ],
     "yearly_report_tvOS_tweet": [
-        "tvOS 15 was released today. In tvOS 14 series Apple fixed in total of 94 security issues over 3 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
+        "tvOS 15 was released today. In tvOS 14 series Apple fixed in total of 96 security issues over 3 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
     "yearly_report_watchOS_tweet": [
-        "watchOS 8 was released today. In watchOS 7 series Apple fixed in total of 150 security issues over 12 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
+        "watchOS 8 was released today. In watchOS 7 series Apple fixed in total of 156 security issues over 12 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
     "yearly_report_macOS_tweet": [
-        "macOS 12 was released today. In macOS Monterey series Apple fixed in total of 127 security issues over 4 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
+        "macOS 12 was released today. In macOS Monterey series Apple fixed in total of 136 security issues over 4 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
     "yearly_report_iOS_tweet": [
-        "iOS 15 was released today. In iOS 14 series Apple fixed in total of 292 security issues over 11 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
+        "iOS 15 was released today. In iOS 14 series Apple fixed in total of 297 security issues over 11 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
     "zero_day_releases_table": [
         [
@@ -1179,32 +1179,34 @@
             "emoji": ":iphone:",
             "security_content_link": "https://support.apple.com/kb/HT212824",
             "release_date": "23 Sep 2021",
-            "num_of_bugs": 3,
-            "num_of_zero_days": 3,
+            "num_of_bugs": 4,
+            "num_of_zero_days": 4,
             "zero_days": {
                 "CVE-2021-30858": "WebKit",
                 "CVE-2021-30860": "CoreGraphics",
-                "CVE-2021-30869": "XNU"
+                "CVE-2021-30869": "XNU",
+                "CVE-2021-31010": "Core Telephony"
             },
-            "num_entries_added": 0,
+            "num_entries_added": 1,
             "num_entries_updated": 0
         }
     },
     "zero_day_releases_tweet": [
         [
             ":mega: EMERGENCY UPDATES :mega:\n\n",
-            "Apple pushed updates for 2 new zero-days that may have been actively exploited and additional updates for 1 zero-day."
+            "Apple pushed updates for 3 new zero-days that may have been actively exploited and additional updates for 1 zero-day."
         ],
         [
             ":bug: ZERO-DAY DETAILS:\n\n",
             "- CVE-2021-30869 in XNU\n",
             "- CVE-2021-30860 in CoreGraphics\n",
+            "- CVE-2021-31010 in Core Telephony\n",
             "- CVE-2021-30858 in WebKit\n"
         ],
         [
             ":warning: PATCHES:\n\n",
             "1 zero-day in Security Update 2021-006 Catalina\n", 
-            "3 zero-days in iOS 12.5.5\n"
+            "4 zero-days in iOS 12.5.5\n"
         ]
     ],
     "zero_day_releases_new_old_info": {
@@ -1226,7 +1228,7 @@
             "emoji": ":iphone:",
             "security_content_link": "https://support.apple.com/kb/HT212824",
             "release_date": "23 Sep 2021",
-            "num_of_bugs": 3,
+            "num_of_bugs": 4,
             "num_of_zero_days": 1,
             "zero_days": {
                 "CVE-2021-30858": "WebKit"
