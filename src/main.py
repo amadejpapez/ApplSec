@@ -16,7 +16,7 @@ MAIN_PAGE_HTML = (
 all_releases = re.findall(r"(?<=<tr>).*?(?=<\/tr>)", MAIN_PAGE_HTML)[1:]
 
 for i, _ in enumerate(all_releases):
-    all_releases[i] = re.findall(r"(?<=<td>).*?(?=<\/td>)", all_releases[i])
+    all_releases[i] = re.findall(r"(?<=<td)(?:[^>]*>)(.*?)(?=<\/td>)", all_releases[i])
 
 releases = all_releases[:20]
 releases_info = get_info(releases)
