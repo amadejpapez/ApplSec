@@ -677,7 +677,7 @@
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
-            "num_entries_updated": 3
+            "num_entries_updated": 0
         },
         "3": { 
             "name": "macOS Big Sur 11.6.3",
@@ -690,7 +690,7 @@
                 "CVE-2022-22587": "IOMobileFrameBuffer"
             },
             "num_entries_added": 0,
-            "num_entries_updated": 2
+            "num_entries_updated": 0
         },
         "4": { 
             "name": "macOS Monterey 12.2",
@@ -702,8 +702,8 @@
             "zero_days": {
                 "CVE-2022-22587": "IOMobileFrameBuffer"
             },
-            "num_entries_added": 1,
-            "num_entries_updated": 4
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         },
         "5": { 
             "name": "tvOS 15.3",
@@ -714,7 +714,7 @@
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
-            "num_entries_updated": 2
+            "num_entries_updated": 0
         },
         "6": { 
             "name": "iOS and iPadOS 15.3",
@@ -727,7 +727,7 @@
                 "CVE-2022-22587": "IOMobileFrameBuffer"
             },
             "num_entries_added": 0,
-            "num_entries_updated": 2
+            "num_entries_updated": 0
         },
         "7": { 
             "name": "watchOS 8.4",
@@ -738,7 +738,7 @@
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
-            "num_entries_updated": 2
+            "num_entries_updated": 0
         },
         "8": { 
             "name": "macOS Big Sur 11.5.2",
@@ -807,7 +807,7 @@
                 "CVE-2022-22587": "IOMobileFrameBuffer"
             },
             "num_entries_added": 0,
-            "num_entries_updated": 2
+            "num_entries_updated": 0
         }
     },
     "ios_modules_tweet": [
@@ -1187,7 +1187,7 @@
                 "CVE-2021-30869": "XNU",
                 "CVE-2021-31010": "Core Telephony"
             },
-            "num_entries_added": 1,
+            "num_entries_added": 0,
             "num_entries_updated": 0
         }
     },
