@@ -106,19 +106,21 @@ if new_releases_info:
     tweet(format_tweet.new_updates(list(new_releases_info), stored_data))
 
 
-# if there was a new major release
-for key, value in latest_versions.items():
-    for release in new_releases_info:
-        if release.get_name() in (f"{key} {value[0]}", f"{key} {value[0]}.0"):
-            tweet(format_tweet.yearly_report(all_releases, key, value[0], stored_data))
+# DISABLED AS NOT TESTED ENOUGH
 
-        elif key == "macOS":
-            if release.get_name() in (
-                f"{key} {value[1]} {value[0]}",
-                f"{key} {value[1]} {value[0]}.0",
-            ):
-                tweet(
-                    format_tweet.yearly_report(all_releases, key, value[0], stored_data)
-                )
+# if there was a new major release
+#for key, value in latest_versions.items():
+#    for release in new_releases_info:
+#        if release.get_name() in (f"{key} {value[0]}", f"{key} {value[0]}.0"):
+#            tweet(format_tweet.yearly_report(all_releases, key, value[0], stored_data))
+#
+#        elif key == "macOS":
+#            if release.get_name() in (
+#                f"{key} {value[1]} {value[0]}",
+#                f"{key} {value[1]} {value[0]}.0",
+#            ):
+#                tweet(
+#                    format_tweet.yearly_report(all_releases, key, value[0], stored_data)
+#                )
 
 save_file(stored_data, midnight)
