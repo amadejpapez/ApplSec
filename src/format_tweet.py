@@ -279,11 +279,11 @@ def security_content_available(releases_info: list, stored_data: dict) -> list:
     """
 
     for release in list(releases_info):
-        if (
-            release.get_name() in stored_data["details_available_soon"]
-            and release.get_security_content_link() is not None
-        ):
-            stored_data["details_available_soon"].remove(release.get_name())
+        if release.get_name() in stored_data["details_available_soon"]:
+            if release.get_security_content_link() != "":
+                stored_data["details_available_soon"].remove(release.get_name())
+            else:
+                releases_info.remove(release)
 
         elif (
             release.get_name() not in stored_data["details_available_soon"]

@@ -229,6 +229,21 @@ def test_security_content_soon():
         == example_file["security_content_soon_file"]
     )
 
+    # test if result is the same when same data comes in the next time
+    releases_info = []
+    for _, value in example_file["security_content_soon_info"].items():
+        releases_info.append(ReleaseTest(value))
+
+    tweet_format = format_tweet.security_content_available(
+        list(releases_info), stored_data
+    )
+
+    assert tweet_format == []
+    assert (
+        stored_data["details_available_soon"]
+        == example_file["security_content_soon_file"]
+    )
+
 
 def test_security_content_available():
     releases_info = []

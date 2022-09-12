@@ -48,7 +48,7 @@ for release in releases_info:
         if (
             "iOS" in release.get_name()
             and str(latest_versions["iOS"][0]) in release.get_name()
-            and release.get_security_content_link() is not None
+            and release.get_security_content_link() != ""
             and release.get_num_of_bugs() != len(release.get_zero_days())
         ):
             ios_release_info.append(release)
@@ -56,7 +56,7 @@ for release in releases_info:
     # if any releases that said "soon" got security content available
     if (
         release.get_name() in stored_data["details_available_soon"]
-        and release.get_security_content_link() is not None
+        and release.get_security_content_link() != ""
     ):
         sec_content_available_info.append(release)
 
