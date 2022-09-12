@@ -1054,21 +1054,21 @@
     },
     "entry_changes_tweet": [
         ":arrows_counterclockwise: 19 SECURITY NOTES UPDATED :arrows_counterclockwise:\n\n",
-        ":computer: macOS Big Sur 11.6.1 - 4 entries added, 1 entry updated\n",
-        ":watch: watchOS 8.1 - 1 entry added\n",
-        ":iphone: iOS and iPadOS 15.1 - 2 entries added\n",
-        ":tv: tvOS 15.1 - 1 entry added\n",
-        ":tv: tvOS 15 - 3 entries added, 2 entries updated\n",
+        ":computer: macOS Big Sur 11.6 - 8 entries added, 1 entry updated\n",
         ":watch: watchOS 8 - 5 entries added, 2 entries updated\n",
         ":iphone: iOS and iPadOS 15 - 4 entries added, 3 entries updated\n",
-        ":computer: macOS Big Sur 11.6 - 8 entries added, 1 entry updated\n",
-        ":iphone: iOS and iPadOS 14.8 - 4 entries added\n",
         ":computer: Security Update 2021-004 Catalina - 6 entries added, 1 entry updated\n",
+        ":computer: macOS Big Sur 11.6.1 - 4 entries added, 1 entry updated\n",
+        ":tv: tvOS 15 - 3 entries added, 2 entries updated\n",
         ":computer: Security Update 2021-005 Mojave - 5 entries added\n",
+        ":iphone: iOS and iPadOS 14.8 - 4 entries added\n",
+        ":iphone: iOS and iPadOS 15.1 - 2 entries added\n",
         ":watch: watchOS 7.6 - 2 entries updated\n",
+        ":iphone: iOS and iPadOS 14.6 - 2 entries added\n",
+        ":watch: watchOS 8.1 - 1 entry added\n",
+        ":tv: tvOS 15.1 - 1 entry added\n",
         ":tv: tvOS 14.7 - 1 entry added\n",
         ":computer: macOS Big Sur 11.4 - 1 entry added\n",
-        ":iphone: iOS and iPadOS 14.6 - 2 entries added\n",
         ":tv: tvOS 14.6 - 1 entry added\n",
         ":watch: watchOS 7.5 - 1 entry added\n",
         ":computer: macOS Big Sur 11.3 - 1 entry added\n",
@@ -1104,6 +1104,19 @@
     ],
     "security_content_available_info": {
         "1": {
+            "name": "iOS and iPadOS 14.5",
+            "emoji": ":iphone:",
+            "security_content_link": "https://support.apple.com/kb/HT212317",
+            "release_date": "26 Apr 2021",
+            "num_of_bugs": 64,
+            "num_of_zero_days": 1,
+            "zero_days": {
+                "CVE-2021-30661": "WebKit Storage"
+            },
+            "num_entries_added": 1,
+            "num_entries_updated": 0
+        },
+        "2": {
             "name": "macOS Big Sur 11.3",
             "emoji": ":computer:",
             "security_content_link": "https://support.apple.com/kb/HT212325",
@@ -1112,19 +1125,6 @@
             "num_of_zero_days": 2,
             "zero_days": {
                 "CVE-2021-30657": "System Preferences",
-                "CVE-2021-30661": "WebKit Storage"
-            },
-            "num_entries_added": 1,
-            "num_entries_updated": 0
-        },
-        "2": {
-            "name": "iOS and iPadOS 14.5",
-            "emoji": ":iphone:",
-            "security_content_link": "https://support.apple.com/kb/HT212317",
-            "release_date": "26 Apr 2021",
-            "num_of_bugs": 64,
-            "num_of_zero_days": 1,
-            "zero_days": {
                 "CVE-2021-30661": "WebKit Storage"
             },
             "num_entries_added": 1,

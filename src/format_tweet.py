@@ -230,14 +230,16 @@ def entry_changes(releases_info: list) -> list:
     -----
     🔄 4 SECURITY NOTES UPDATED 🔄
 
-    🌐 Safari 14.1.1 - 1 entry updated
+    💻 macOS Big Sur 11.4 - 8 entries added, 1 entry updated
     💻 Security Update 2021-003 Catalina - 8 entries added
     💻 Security Update 2021-004 Mojave - 6 entries added
-    💻 macOS Big Sur 11.4 - 8 entries added, 1 entry updated
+    🌐 Safari 14.1.1 - 1 entry updated
     -----
     """
 
     tweet_text = []
+
+    releases_info.sort(key=lambda x: (x.get_num_entries_added() + x.get_num_entries_updated()), reverse=True)
 
     for release in releases_info:
         name = f"{release.get_emoji()} {release.get_name()}"
@@ -272,9 +274,9 @@ def security_content_available(releases_info: list, stored_data: dict) -> list:
 
     💻 macOS Monterey 12.0.1 - 40 bugs fixed
     💻 macOS Big Sur 11.6.1 - 24 bugs fixed
+    📱 iOS and iPadOS 15.1 - 22 bugs fixed
     💻 Security Update 2021-007 Catalina - 21 bugs fixed
     ⌚ watchOS 8.1 - 16 bugs fixed
-    📱 iOS and iPadOS 15.1 - 22 bugs fixed
     -----
     """
 
@@ -294,6 +296,8 @@ def security_content_available(releases_info: list, stored_data: dict) -> list:
 
     if not releases_info:
         return []
+
+    releases_info.sort(key=lambda x: x.get_num_of_bugs(), reverse=True)
 
     tweet_text = [
         ":spiral_notepad: SECURITY CONTENT AVAILABLE :spiral_notepad:\n\n",
