@@ -78,25 +78,13 @@ class ReleaseTest:
         return self.__num_entries_added
 
     def get_format_num_entries_added(self) -> str:
-        if self.__num_entries_added > 1:
-            return f"{self.__num_entries_added} entries added"
-
-        if self.__num_entries_added == 1:
-            return "1 entry added"
-
-        return ""
+        return f"{self.__num_entries_added} added"
 
     def get_num_entries_updated(self) -> int:
         return self.__num_entries_updated
 
     def get_format_num_entries_updated(self) -> str:
-        if self.__num_entries_updated > 1:
-            return f"{self.__num_entries_updated} entries updated"
-
-        if self.__num_entries_updated == 1:
-            return "1 entry updated"
-
-        return ""
+        return f"{self.__num_entries_updated} updated"
 
     def print_all_data(self):
         print(

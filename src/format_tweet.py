@@ -228,40 +228,45 @@ def zero_days(releases_info: list, stored_data: dict) -> list:
 def entry_changes(releases_info: list) -> list:
     """
     -----
-    🔄 4 SECURITY NOTES UPDATED 🔄
+    🔄 24 ENTRY CHANGES 🔄
 
-    💻 macOS Big Sur 11.4 - 8 entries added, 1 entry updated
-    💻 Security Update 2021-003 Catalina - 8 entries added
-    💻 Security Update 2021-004 Mojave - 6 entries added
-    🌐 Safari 14.1.1 - 1 entry updated
+    💻 macOS Big Sur 11.4 - 8 added, 1 updated
+    💻 Security Update 2021-003 Catalina - 8 added
+    💻 Security Update 2021-004 Mojave - 6 added
+    🌐 Safari 14.1.1 - 1 updated
     -----
     """
 
     tweet_text = []
+    changes_count = 0
 
     releases_info.sort(key=lambda x: (x.get_num_entries_added() + x.get_num_entries_updated()), reverse=True)
 
     for release in releases_info:
         name = f"{release.get_emoji()} {release.get_name()}"
-        added = release.get_format_num_entries_added()
-        updated = release.get_format_num_entries_updated()
 
-        if not added and updated:
-            tweet_text.append(f"{name} - {updated}\n")
-        elif added and not updated:
-            tweet_text.append(f"{name} - {added}\n")
-        elif added and updated:
-            tweet_text.append(f"{name} - {added}, {updated}\n")
+        changes_count += release.get_num_entries_added() + release.get_num_entries_updated()
 
-    if len(tweet_text) > 1:
+        if release.get_num_entries_added() > 0:
+            if release.get_num_entries_updated() > 0:
+                tweet_text.append(
+                    f"{name} - {release.get_format_num_entries_added()}, {release.get_format_num_entries_updated()}\n"
+                    )
+            else:
+                tweet_text.append(f"{name} - {release.get_format_num_entries_added()}\n")
+
+        elif release.get_num_entries_updated() > 0:
+            tweet_text.append(f"{name} - {release.get_format_num_entries_updated()}\n")
+
+    if changes_count > 1:
         tweet_text.insert(
             0,
-            f":arrows_counterclockwise: {len(tweet_text)} SECURITY NOTES UPDATED :arrows_counterclockwise:\n\n",
+            f":arrows_counterclockwise: {changes_count} ENTRY CHANGES :arrows_counterclockwise:\n\n",
         )
     else:
         tweet_text.insert(
             0,
-            ":arrows_counterclockwise: 1 SECURITY NOTE UPDATED :arrows_counterclockwise:\n\n",
+            ":arrows_counterclockwise: 1 ENTRY CHANGE :arrows_counterclockwise:\n\n",
         )
 
     return tweet_text
