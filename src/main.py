@@ -68,13 +68,6 @@ for release in releases_info:
 if ios_release_info:
     tweet(format_tweet.top_ios_modules(ios_release_info, stored_data))
 
-if sec_content_available_info:
-    tweet(
-        format_tweet.security_content_available(
-            list(sec_content_available_info), stored_data
-        )
-    )
-
 
 # if there were any zero-days fixed
 check_zero_days_info = new_releases_info + sec_content_available_info
@@ -100,6 +93,12 @@ if midnight:
     if changed_releases_info:
         tweet(format_tweet.entry_changes(changed_releases_info))
 
+if sec_content_available_info:
+    tweet(
+        format_tweet.security_content_available(
+            list(sec_content_available_info), stored_data
+        )
+    )
 
 # new updates should be tweeted last, after all of the other tweets
 if new_releases_info:
