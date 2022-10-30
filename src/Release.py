@@ -1,7 +1,8 @@
-import datetime
 import re
 
 import requests
+
+import get_date
 
 
 class Release:
@@ -156,14 +157,9 @@ class Release:
         """
         Return if any entries were added or updated.
         Tweet is made at the start of each day for any changes made on the previous day.
-
-        Date format: January 2, 2022
         """
 
-        previous_day = datetime.date.today() - datetime.timedelta(1)
-        date_format_two = (
-            f"{previous_day.strftime('%B')} {previous_day.day}, {previous_day.year}"
-        )
+        date_format_two = get_date.format_two()
 
         self.__num_entries_added = len(
             re.findall(f"added {date_format_two}", sec_content_html)

@@ -1,23 +1,21 @@
 """
-Save and read data from stored_data.json.
+Save and read data from stored_data.json
 
-File is storing:
-- 10 last fixed zero-days
-- releases that do not have security content available yet
-- data tweeted on the current day to prevent tweeting the same thing twice
+File is storing last 10 zero-days, releases that do not have
+security content available yet and data that was tweeted today.
 """
 
-import datetime
 import json
 import os
-from typing import Tuple
+
+import get_date
 
 LOC = os.path.abspath(os.path.join(__file__, "../stored_data.json"))
 
 FILE_STRUCTURE = {
     "zero_days": [],
     "details_available_soon": [],
-    "todays_date": str(datetime.date.today()),
+    "todays_date": str(get_date.current_date()),
     "tweeted_today": {
         "new_updates": [],
         "ios_modules": "",
@@ -27,36 +25,25 @@ FILE_STRUCTURE = {
 }
 
 
-def read_file() -> Tuple[dict, bool]:
-    """
-    Return contents of stored_data.json and if it is a start
-    of a new day.
-    """
-
+def read_file() -> dict:
     try:
-        with open(LOC, "r", encoding="utf-8") as stored_file:
-            stored_data = json.load(stored_file)
+        with open(LOC, "r", encoding="utf-8") as json_file:
+            json_file = json.load(json_file)
 
     except (json.JSONDecodeError, FileNotFoundError):
-        save_file(FILE_STRUCTURE, False)
-        stored_data, _ = read_file()
+        save_file(FILE_STRUCTURE)
+        stored_data = read_file()
 
-    if len(stored_data["zero_days"]) > 10:
-        # if there are more than 10 zero days in a file, remove the last 3
-        del stored_data["zero_days"][:-3]
+    while len(stored_data["zero_days"]) > 10:
+        del stored_data["zero_days"][-1]
 
-    if stored_data["todays_date"] != str(datetime.date.today()):
-        return stored_data, True
-
-    return stored_data, False
+    return stored_data
 
 
-def save_file(modified_data: dict, midnight: bool) -> None:
-    """Save data to stored_data.json."""
+def save_file(new_data: dict) -> None:
+    if get_date.is_midnight():
+        new_data["tweeted_today"] = FILE_STRUCTURE["tweeted_today"]
+        new_data["todays_date"] = str(get_date.current_date())
 
-    if midnight:
-        modified_data["tweeted_today"] = FILE_STRUCTURE["tweeted_today"]
-        modified_data["todays_date"] = str(datetime.date.today())
-
-    with open(LOC, "w", encoding="utf-8") as stored_file:
-        json.dump(modified_data, stored_file, indent=4)
+    with open(LOC, "w", encoding="utf-8") as json_file:
+        json.dump(new_data, json_file, indent=4)

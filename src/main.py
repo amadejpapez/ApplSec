@@ -1,9 +1,9 @@
-import datetime
 import re
 
 import requests
 
 import format_tweet
+import get_date
 from gather_info import determine_latest_versions, get_info
 from save_data import read_file, save_file
 from twitter import tweet
@@ -21,17 +21,9 @@ for i, _ in enumerate(all_releases):
 releases = all_releases[:20]
 releases_info = get_info(releases)
 
-stored_data, midnight = read_file()
+stored_data = read_file()
 
-if midnight:
-    # on midnight do checks with the previous date to not miss any
-    # changes made between 11pm and 12pm
-    check_date = datetime.date.today() - datetime.timedelta(1)
-else:
-    check_date = datetime.date.today()
-
-date_format_one = f"{check_date.day:02d} {check_date.strftime('%b')} {check_date.year}"
-# Format: 08 Jan 2022
+date_format_one = get_date.format_one()
 
 latest_versions = determine_latest_versions(releases)
 
@@ -82,7 +74,7 @@ if zero_day_releases_info:
 
 
 # on midnight check for security content changes made on the previous day
-if midnight:
+if get_date.is_midnight():
     check_changes_info = releases_info + get_info(all_releases[20:])
 
     changed_releases_info = []
@@ -122,4 +114,4 @@ if new_releases_info:
 #                    format_tweet.yearly_report(all_releases, key, value[0], stored_data)
 #                )
 
-save_file(stored_data, midnight)
+save_file(stored_data)
