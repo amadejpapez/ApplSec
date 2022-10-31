@@ -28,7 +28,7 @@ FILE_STRUCTURE = {
 def read() -> dict:
     try:
         with open(LOC, "r", encoding="utf-8") as json_file:
-            json_file = json.load(json_file)
+            stored_data = json.load(json_file)
 
     except (json.JSONDecodeError, FileNotFoundError):
         save(FILE_STRUCTURE)
