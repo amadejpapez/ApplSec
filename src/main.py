@@ -3,9 +3,10 @@ import re
 import requests
 
 import format_tweet
+import gather_info
 import get_date
 import json_file
-from gather_info import determine_latest_versions, get_info
+from Release import Release
 from twitter import tweet
 
 MAIN_PAGE_HTML = (
@@ -19,13 +20,16 @@ for i, _ in enumerate(all_releases):
     all_releases[i] = re.findall(r"(?<=<td)(?:[^>]*>)(.*?)(?=<\/td>)", all_releases[i])
 
 releases = all_releases[:20]
-releases_info = get_info(releases)
+releases_info = []
+
+for row in releases:
+    releases.append(Release(row))
 
 stored_data = json_file.read()
 
 date_format_one = get_date.format_one()
 
-latest_versions = determine_latest_versions(releases)
+latest_versions = gather_info.latest_versions(releases)
 
 
 new_releases_info = []
@@ -75,10 +79,13 @@ if zero_day_releases_info:
 
 # on midnight check for security content changes made on the previous day
 if get_date.is_midnight():
-    check_changes_info = releases_info + get_info(all_releases[20:])
+    all_releases_info = releases_info
+
+    for row in all_releases[20:]:
+        all_releases_info.append(Release(row))
 
     changed_releases_info = []
-    for release in check_changes_info:
+    for release in all_releases_info:
         if release.get_num_entries_added() > 0 or release.get_num_entries_updated() > 0:
             changed_releases_info.append(release)
 

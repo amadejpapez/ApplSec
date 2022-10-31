@@ -1,3 +1,39 @@
+"""
+Gather all data about given releases from Apple's website.
+
+Input format (release row on the initial Security page):
+-----
+[
+    [
+        "<a href="https://support.apple.com/kb/HT213055">macOS Big Sur 11.6.3</a>",
+        "macOS Big Sur",
+        "26 Jan 2022"
+    ]
+]
+-----
+
+Return format:
+-----
+[
+    Class Release (
+        "name": "iOS and iPadOS 14.7",
+        "emoji": ":iphone:",
+        "security_content_link": "https://support.apple.com/kb/HT212623",
+        "release_date": "26 Jan 2022",
+        "num_of_bugs": 37,
+        "num_of_zero_days": 3,
+        "zero_days": {
+            "CVE-2021-30761": "WebKit",
+            "CVE-2021-30762": "WebKit",
+            "CVE-2021-30713": "TCC"
+        },
+        "num_entries_added": 8,
+        "num_entries_updated": 1
+    )
+]
+-----
+"""
+
 import re
 
 import requests

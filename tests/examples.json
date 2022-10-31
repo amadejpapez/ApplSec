@@ -514,7 +514,7 @@
             "26 Jan 2021"
         ]
     ],
-    "get_info_table": [
+    "release_rows_table": [
         [
             "<a href=\"https://support.apple.com/kb/HT212152\">Safari 14.0.3</a>",
             "macOS Catalina and macOS Mojave",
@@ -541,7 +541,7 @@
             "09 Feb 2021"
         ]
     ],
-    "get_info_info": {
+    "release_rows_info": {
         "1": { 
             "name": "Safari 14.0.3",
             "emoji": ":globe_with_meridians:",
@@ -600,7 +600,7 @@
             "num_entries_updated": 0
         }
     },
-    "get_info_tweet": [
+    "release_rows_tweet": [
         ":collision: NEW UPDATES RELEASED :collision:\n\n",
         ":globe_with_meridians: Safari 15.3 - 4 bugs fixed\n",
         ":globe_with_meridians: Safari 14.0.3 - 3 bugs fixed\n",

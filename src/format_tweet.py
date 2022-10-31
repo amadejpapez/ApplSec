@@ -3,7 +3,8 @@ import re
 
 import requests
 
-from gather_info import determine_latest_four_versions, get_info
+import gather_info
+from Release import Release
 
 
 def new_updates(releases_info: list, stored_data: dict) -> list:
@@ -333,7 +334,7 @@ def yearly_report(release_rows: list, system: str, version: int, stored_data: di
 
     stored_data["tweeted_today"]["yearly_report"].append(system)
 
-    system, versions = determine_latest_four_versions(system, version, release_rows)
+    system, versions = gather_info.latest_four_versions(system, version, release_rows)
 
     info = {}
     for ver in versions:
@@ -342,8 +343,8 @@ def yearly_report(release_rows: list, system: str, version: int, stored_data: di
         for release in release_rows:
             if system in release[0] and str(ver) in release[0]:
                 if "href" in release[0]:
-                    sec_content = get_info([release])
-                    num = sec_content[0].get_num_of_bugs()
+                    sec_content = Release(release)
+                    num = sec_content.get_num_of_bugs()
 
                     if num > 0:
                         info[ver]["num_of_bugs"] += num

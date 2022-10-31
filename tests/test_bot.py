@@ -7,7 +7,8 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
 
 import format_tweet
-from gather_info import determine_latest_versions, get_info
+import gather_info
+from Release import Release
 
 LOC = os.path.abspath(os.path.join(__file__, "../examples.json"))
 
@@ -115,16 +116,25 @@ def compare(releases_info, example):
         assert release.get_num_entries_updated() == expected["num_entries_updated"], release.get_name()
 
 
-def test_get_info():
+def create_release_class(release_rows: list) -> list:
+    releases_info = []
+
+    for row in release_rows:
+        releases_info.append(Release(row))
+
+    return releases_info
+
+
+def test_release_class():
     """
-    Tests get_info() on a big number of releases.
+    Tests Release class on a big number of releases.
     Checks number of returned releases and if titles match.
     """
 
     releases = example_file["last_one_year_table"]
-    releases_info = get_info(releases)
+    releases_info = create_release_class(releases)
 
-    # check if get_info() returned the correct number of releases
+    # check if Release returned the correct number of releases
     assert len(releases) == len(list(releases_info))
 
     # check if titles match
@@ -146,20 +156,20 @@ def test_get_info():
         assert title == releases_info[i].get_name()
 
 
-def test_get_info_2():
-    releases_info = get_info(example_file["get_info_table"])
+def test_release_class_2():
+    releases_info = create_release_class(example_file["release_rows_table"])
 
-    compare(releases_info, example_file["get_info_info"])
+    compare(releases_info, example_file["release_rows_info"])
 
     tweet_format = format_tweet.new_updates(
         list(releases_info), copy.deepcopy(example_file["stored_data"])
     )
 
-    assert tweet_format == example_file["get_info_tweet"]
+    assert tweet_format == example_file["release_rows_tweet"]
 
 
 def test_new_updates():
-    releases_info = get_info(example_file["new_releases_table"])
+    releases_info = create_release_class(example_file["new_releases_table"])
 
     compare(releases_info, example_file["new_releases_info"])
 
@@ -171,7 +181,7 @@ def test_new_updates():
 
 
 def test_new_updates_only_one():
-    releases_info = get_info(example_file["new_releases_one_table"])
+    releases_info = create_release_class(example_file["new_releases_one_table"])
 
     tweet_format = format_tweet.new_updates(
         list(releases_info), copy.deepcopy(stored_data)
@@ -181,7 +191,7 @@ def test_new_updates_only_one():
 
 
 def test_ios_modules():
-    releases_info = get_info(example_file["ios_modules_table"])
+    releases_info = create_release_class(example_file["ios_modules_table"])
 
     compare(releases_info, example_file["ios_modules_info"])
 
@@ -247,7 +257,7 @@ def test_security_content_available():
 
 
 def test_yearly_report():
-    latest_versions = determine_latest_versions(
+    latest_versions = gather_info.latest_version(
         example_file["last_one_year_table"][:50]
     )
 
@@ -263,7 +273,7 @@ def test_yearly_report():
 
 
 def test_zero_day():
-    releases_info = get_info(example_file["zero_day_releases_table"])
+    releases_info = create_release_class(example_file["zero_day_releases_table"])
 
     compare(releases_info, example_file["zero_day_releases_info"])
 
