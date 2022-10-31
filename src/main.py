@@ -4,8 +4,8 @@ import requests
 
 import format_tweet
 import get_date
+import json_file
 from gather_info import determine_latest_versions, get_info
-from save_data import read_file, save_file
 from twitter import tweet
 
 MAIN_PAGE_HTML = (
@@ -21,7 +21,7 @@ for i, _ in enumerate(all_releases):
 releases = all_releases[:20]
 releases_info = get_info(releases)
 
-stored_data = read_file()
+stored_data = json_file.read()
 
 date_format_one = get_date.format_one()
 
@@ -114,4 +114,4 @@ if new_releases_info:
 #                    format_tweet.yearly_report(all_releases, key, value[0], stored_data)
 #                )
 
-save_file(stored_data)
+json_file.save(stored_data)

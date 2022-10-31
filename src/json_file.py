@@ -25,14 +25,14 @@ FILE_STRUCTURE = {
 }
 
 
-def read_file() -> dict:
+def read() -> dict:
     try:
         with open(LOC, "r", encoding="utf-8") as json_file:
             json_file = json.load(json_file)
 
     except (json.JSONDecodeError, FileNotFoundError):
-        save_file(FILE_STRUCTURE)
-        stored_data = read_file()
+        save(FILE_STRUCTURE)
+        stored_data = read()
 
     while len(stored_data["zero_days"]) > 10:
         del stored_data["zero_days"][-1]
@@ -40,7 +40,7 @@ def read_file() -> dict:
     return stored_data
 
 
-def save_file(new_data: dict) -> None:
+def save(new_data: dict) -> None:
     if get_date.is_midnight():
         new_data["tweeted_today"] = FILE_STRUCTURE["tweeted_today"]
         new_data["todays_date"] = str(get_date.current_date())
