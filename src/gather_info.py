@@ -49,9 +49,9 @@ def latest_four_versions(system: str, version: int, release_rows: list) -> Tuple
     if system == "macOS":
         # macOS versions are hard coded
         # get macOS name as Security Updates only contain names
-        for x in ["12", "11", "10.15", "10.14"]:
+        for ver in ["12", "11", "10.15", "10.14"]:
             versions.append(
-                re.findall(rf"(?i)(?<=macOS)[a-z\s]+(?={x})", str(release_names))[0].strip()
+                re.findall(rf"(?i)(?<=macOS)[a-z\s]+(?={ver})", str(release_names))[0].strip()
             )
     else:
         num = version

@@ -62,8 +62,14 @@ class Release:
         if self.__security_content_link:
             sec_content_page_html = requests.get(self.__security_content_link).text
 
-            sec_content_page = lxml.html.document_fromstring(sec_content_page_html).text_content()
-            sec_content_page = sec_content_page_html.split("About Apple security updates", 1)[1].split("Additional recognition", 1)[0].replace("&nbsp;", " ")
+            sec_content_page = lxml.html.document_fromstring(
+                sec_content_page_html
+            ).text_content()
+            sec_content_page = (
+                sec_content_page_html.split("About Apple security updates", 1)[1]
+                .split("Additional recognition", 1)[0]
+                .replace("&nbsp;", " ")
+            )
             sec_content_page = ' '.join(sec_content_page.split())
 
             sec_content_page_html = sec_content_page_html.replace("\n", "").replace("&nbsp;", " ")
@@ -97,7 +103,7 @@ class Release:
         return self.__name
 
     def set_security_content_link(self, release_row: list) -> None:
-        tmp = release_row[0].xpath('.//a/@href')
+        tmp = release_row[0].xpath(".//a/@href")
 
         if tmp != []:
             self.__security_content_link = tmp[0]

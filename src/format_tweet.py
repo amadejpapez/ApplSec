@@ -131,28 +131,33 @@ def get_zero_days_first_tweet(sorted_zero_days: dict) -> str:
             list(sorted_zero_days["new"].keys())[0]
         ]
 
+    text = ""
+
     if length_new == 1 and length_old == 0:
-        return f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that may have been actively exploited."
+        text = f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that may have been actively exploited."
 
-    if length_new == 0 and length_old == 1:
-        return f"Apple pushed additional updates for {zero_day_module} zero-day ({text_old}) that may have been actively exploited."
+    elif length_new == 0 and length_old == 1:
+        text = f"Apple pushed additional updates for {zero_day_module} zero-day ({text_old}) that may have been actively exploited."
 
-    if length_new == 1 and length_old == 1:
-        return f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that may have been actively exploited and additional updates for {text_old}."
+    elif length_new == 1 and length_old == 1:
+        text = f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that may have been actively exploited and additional updates for {text_old}."
 
-    if length_new > 1 and length_old == 0:
-        return f"Apple pushed updates for {length_new} new zero-days that may have been actively exploited."
+    elif length_new > 1 and length_old == 0:
+        text = f"Apple pushed updates for {length_new} new zero-days that may have been actively exploited."
 
-    if length_new == 0 and length_old > 1:
-        return f"Apple pushed additional updates for {length_old} zero-days that may have been actively exploited."
+    elif length_new == 0 and length_old > 1:
+        text = f"Apple pushed additional updates for {length_old} zero-days that may have been actively exploited."
 
-    if length_new == 1 and length_old > 1:
-        return f"Apple pushed updates for {length_new} new zero-day that may have been actively exploited and additional updates for {length_old} zero-days."
+    elif length_new == 1 and length_old > 1:
+        text = f"Apple pushed updates for {length_new} new zero-day that may have been actively exploited and additional updates for {length_old} zero-days."
 
-    if length_new > 1 and length_old == 1:
-        return f"Apple pushed updates for {length_new} new zero-days that may have been actively exploited and additional updates for {length_old} zero-day."
+    elif length_new > 1 and length_old == 1:
+        text = f"Apple pushed updates for {length_new} new zero-days that may have been actively exploited and additional updates for {length_old} zero-day."
 
-    return f"Apple pushed updates for {length_new} new zero-days that may have been actively exploited and additional updates for {length_old} zero-days."
+    else:
+        text = f"Apple pushed updates for {length_new} new zero-days that may have been actively exploited and additional updates for {length_old} zero-days."
+
+    return text
 
 
 def zero_days(releases_info: list, stored_data: dict) -> list:
@@ -191,16 +196,16 @@ def zero_days(releases_info: list, stored_data: dict) -> list:
         return []
 
     tweet_text = [[], [":bug: ZERO-DAY DETAILS:\n\n"], [":warning: PATCHES:\n\n"], []]
-    zero_days = {}
+    zero_days_dict = {}
     sorted_zero_days: dict = {"old": {}, "new": {}}
 
     for release in releases_info:
         tweet_text[2].append(
             f"{release.get_format_num_of_zero_days()} in {release.get_name()}\n"
         )
-        zero_days.update(release.get_zero_days())
+        zero_days_dict.update(release.get_zero_days())
 
-    for key, value in zero_days.items():
+    for key, value in zero_days_dict.items():
         if key in stored_data["zero_days"]:
             # if zero day is in the file, add it to "old"
             sorted_zero_days["old"][key] = value
@@ -241,7 +246,10 @@ def entry_changes(releases_info: list) -> list:
     tweet_text = []
     changes_count = 0
 
-    releases_info.sort(key=lambda x: (x.get_num_entries_added() + x.get_num_entries_updated()), reverse=True)
+    releases_info.sort(
+        key=lambda x: (x.get_num_entries_added() + x.get_num_entries_updated()),
+        reverse=True,
+    )
 
     for release in releases_info:
         name = f"{release.get_emoji()} {release.get_name()}"
@@ -341,7 +349,10 @@ def yearly_report(release_rows: list, system: str, version: int, stored_data: di
         info[ver] = {"num_of_bugs": 0, "num_of_releases": 0}
 
         for release in release_rows:
-            if system in release[0].text_content() and str(ver) in release[0].text_content():
+            if (
+                system in release[0].text_content()
+                and str(ver) in release[0].text_content()
+            ):
                 tmp = release[0].xpath('.//a/@href')
 
                 if tmp != []:

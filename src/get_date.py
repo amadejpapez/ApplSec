@@ -1,11 +1,11 @@
 import datetime
 
 
-def current_date() -> datetime:
+def current_date() -> datetime.date:
     return datetime.date.today()
 
 
-def check_date() -> datetime:
+def check_date() -> datetime.date:
     """
     On midnight, do checks with the previous date,
     to not miss any changes made between 11pm and 12pm.

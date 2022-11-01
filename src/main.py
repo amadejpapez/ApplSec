@@ -10,13 +10,15 @@ from twitter import tweet
 
 
 def retrieve_main_page() -> list:
-    main_page = lxml.html.document_fromstring(requests.get("https://support.apple.com/en-us/HT201222").text)
+    main_page = lxml.html.document_fromstring(
+        requests.get("https://support.apple.com/en-us/HT201222").text
+    )
 
     table = main_page.xpath("//table/tbody")[0].findall("tr")
     all_releases = []
 
     for row in table[1:]:
-        all_releases.append([cell for cell in row.getchildren()])
+        all_releases.append(list(row.getchildren()))
 
     return all_releases
 
@@ -86,7 +88,7 @@ def check_for_yearly_report(coll: dict, latest_versions: dict) -> None:
         for release in coll["new_releases"]:
             if release.get_name() in (f"{key} {value[0]}", f"{key} {value[0]}.0"):
                 coll["yearly_report"].append([key, value[0]])
-    
+
             elif key == "macOS":
                 if release.get_name() in (
                     f"{key} {value[1]} {value[0]}",
@@ -97,7 +99,7 @@ def check_for_yearly_report(coll: dict, latest_versions: dict) -> None:
 
 def main():
     stored_data = json_file.read()
-    
+
     all_releases = retrieve_main_page()
     releases = all_releases[:20]
     releases_info = []
@@ -112,7 +114,7 @@ def main():
         "changed_releases": [],
         "sec_content_available": [],
         "zero_day_releases": [],
-        "yearly_report": []
+        "yearly_report": [],
     }
 
     latest_versions = gather_info.latest_version(releases)
@@ -148,5 +150,5 @@ def main():
     json_file.save(stored_data)
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     main()
