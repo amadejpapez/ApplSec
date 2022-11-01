@@ -1,5 +1,4 @@
-import re
-
+import lxml.html
 import requests
 
 import format_tweet
@@ -11,15 +10,13 @@ from twitter import tweet
 
 
 def retrieve_main_page() -> list:
-    MAIN_PAGE_HTML = (
-        requests.get("https://support.apple.com/en-us/HT201222")
-        .text.replace("\n", "")
-        .replace("&nbsp;", " ")
-    )
-    all_releases = re.findall(r"(?<=<tr>).*?(?=<\/tr>)", MAIN_PAGE_HTML)[1:]
+    main_page = lxml.html.document_fromstring(requests.get("https://support.apple.com/en-us/HT201222").text)
 
-    for i, _ in enumerate(all_releases):
-        all_releases[i] = re.findall(r"(?<=<td)(?:[^>]*>)(.*?)(?=<\/td>)", all_releases[i])
+    table = main_page.xpath("//table/tbody")[0].findall("tr")
+    all_releases = []
+
+    for row in table[1:]:
+        all_releases.append([cell for cell in row.getchildren()])
 
     return all_releases
 

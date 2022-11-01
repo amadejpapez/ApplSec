@@ -89,12 +89,12 @@
             "13 Dec 2021"
         ],
         [
-            "watchOS 8.1.1<br><span class=\"note\">This update has no published CVE entries.</span>",
+            "watchOS 8.1.1\nThis update has no published CVE entries.",
             "Apple Watch Series 7 (GPS + Cellular)",
             "18 Nov 2021"
         ],
         [
-            "iOS 15.1.1<br><span class=\"note\">This update has no published CVE entries.</span>",
+            "iOS 15.1.1\nThis update has no published CVE entries.",
             "iPhone 12 and later",
             "17 Nov 2021"
         ],
@@ -104,7 +104,7 @@
             "10 Nov 2021"
         ],
         [
-            "tvOS 15.1.1<br><span class=\"note\">This update has no published CVE entries.</span>",
+            "tvOS 15.1.1\nThis update has no published CVE entries.",
             "Apple TV 4K and Apple TV HD",
             "01 Nov 2021"
         ],
@@ -154,7 +154,7 @@
             "25 Oct 2021"
         ],
         [
-            "watchOS 8.0.1<br><span style=\"color: rgb(170, 170, 170);\"><span class=\"note\">This update has no published CVE entries.</span>",
+            "watchOS 8.0.1\nThis update has no published CVE entries.",
             "Apple Watch Series 3 and later",
             "11 Oct 2021"
         ],
@@ -244,7 +244,7 @@
             "16 Aug 2021"
         ],
         [
-            "macOS Big Sur 11.5.2<br><span class=\"note\">This update has no published CVE entries.</span>",
+            "macOS Big Sur 11.5.2\nThis update has no published CVE entries.",
             "macOS Big Sur",
             "11 Aug 2021"
         ],
@@ -474,12 +474,12 @@
             "08 Mar 2021"
         ],
         [
-            "macOS Big Sur 11.2.2<br><span class=\"note\">This update has no published CVE entries.</span>",
+            "macOS Big Sur 11.2.2\nThis update has no published CVE entries.",
             "macOS Big Sur 11.2.1",
             "25 Feb 2021"
         ],
         [
-            "watchOS 7.3.1<br><span class=\"note\">This update has no published CVE entries.</span>",
+            "watchOS 7.3.1\nThis update has no published CVE entries.",
             "Apple Watch Series 5 and Apple Watch SE",
             "15 Feb 2021"
         ],
@@ -646,7 +646,7 @@
             "26 Jan 2022"
         ],
         [
-            "macOS Big Sur 11.5.2<br><span class=\"note\">This update has no published CVE entries.</span>",
+            "macOS Big Sur 11.5.2\nThis update has no published CVE entries.",
             "macOS Big Sur",
             "11 Aug 2021"
         ],
@@ -1140,13 +1140,13 @@
         "tvOS 15 was released today. In tvOS 14 series Apple fixed in total of 96 security issues over 3 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
     "yearly_report_watchOS_tweet": [
-        "watchOS 8 was released today. In watchOS 7 series Apple fixed in total of 156 security issues over 12 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
+        "watchOS 8 was released today. In watchOS 7 series Apple fixed in total of 105 security issues over 9 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
     "yearly_report_macOS_tweet": [
         "macOS 12 was released today. In macOS Monterey series Apple fixed in total of 139 security issues over 4 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
     "yearly_report_iOS_tweet": [
-        "iOS 15 was released today. In iOS 14 series Apple fixed in total of 298 security issues over 11 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
+        "iOS 15 was released today. In iOS 14 series Apple fixed in total of 252 security issues over 10 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
     "zero_day_releases_table": [
         [

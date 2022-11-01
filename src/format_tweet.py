@@ -341,9 +341,12 @@ def yearly_report(release_rows: list, system: str, version: int, stored_data: di
         info[ver] = {"num_of_bugs": 0, "num_of_releases": 0}
 
         for release in release_rows:
-            if system in release[0] and str(ver) in release[0]:
-                if "href" in release[0]:
+            if system in release[0].text_content() and str(ver) in release[0].text_content():
+                tmp = release[0].xpath('.//a/@href')
+
+                if tmp != []:
                     sec_content = Release(release)
+
                     num = sec_content.get_num_of_bugs()
 
                     if num > 0:

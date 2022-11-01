@@ -15,8 +15,12 @@ def latest_version(release_rows: list) -> dict:
         "macOS": [0, ""],
     }
 
+    release_names = []
+    for rel in release_rows:
+        release_names.append(rel[0].text_content())
+
     for key, value in versions.items():
-        search = re.findall(rf"(?i){key}[a-z\s]*\s([0-9]+)", str(release_rows))
+        search = re.findall(rf"(?i){key}[a-z\s]*\s([0-9]+)", str(release_names))
 
         search = list(map(int, search))
         search.sort(reverse=True)
@@ -24,7 +28,7 @@ def latest_version(release_rows: list) -> dict:
         value[0] = search[0]
 
     versions["macOS"][1] = re.findall(
-        rf"(?i)(?<=macOS)[a-z\s]+(?={versions['macOS'][0]})", str(release_rows)
+        rf"(?i)(?<=macOS)[a-z\s]+(?={versions['macOS'][0]})", str(release_names)
     )[0].strip()
 
     return versions
@@ -38,12 +42,16 @@ def latest_four_versions(system: str, version: int, release_rows: list) -> Tuple
 
     versions = []
 
+    release_names = []
+    for rel in release_rows:
+        release_names.append(rel[0].text_content())
+
     if system == "macOS":
         # macOS versions are hard coded
         # get macOS name as Security Updates only contain names
         for x in ["12", "11", "10.15", "10.14"]:
             versions.append(
-                re.findall(rf"(?i)(?<=macOS)[a-z\s]+(?={x})", str(release_rows))[0].strip()
+                re.findall(rf"(?i)(?<=macOS)[a-z\s]+(?={x})", str(release_names))[0].strip()
             )
     else:
         num = version

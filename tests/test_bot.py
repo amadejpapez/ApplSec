@@ -6,6 +6,8 @@ import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
 
+import lxml.html
+
 import format_tweet
 import gather_info
 from Release import Release
@@ -116,10 +118,23 @@ def compare(releases_info, example):
         assert release.get_num_entries_updated() == expected["num_entries_updated"], release.get_name()
 
 
+def create_lxml_class(release_rows: list) -> list:
+    releases_tmp = []
+
+    for row in release_rows:
+        tmp = []
+        for x in row:
+            tmp.append(lxml.html.document_fromstring(x))
+
+        releases_tmp.append(tmp)
+
+    return releases_tmp
+
+
 def create_release_class(release_rows: list) -> list:
     releases_info = []
 
-    for row in release_rows:
+    for row in create_lxml_class(release_rows):
         releases_info.append(Release(row))
 
     return releases_info
@@ -142,7 +157,7 @@ def test_release_class():
     for i, value in enumerate(releases):
         title = re.findall(r"(?i)(?<=[>])[^<]+|^[^<]+", value[0])[0]
         # for releases like "macOS Monterey 12.0.1 (Advisory includes security content of..."
-        title = title.split("(Advisory", 1)[0].strip()
+        title = title.split("(Advisory", 1)[0].strip().split("\n", 1)[0].strip()
 
         if "iOS" in title and "iPadOS" in title:
             # turn "iOS 15.3 and iPadOS 15.3" into shorter "iOS and iPadOS 15.3"
@@ -258,12 +273,12 @@ def test_security_content_available():
 
 def test_yearly_report():
     latest_versions = gather_info.latest_version(
-        example_file["last_one_year_table"][:50]
+        create_lxml_class(example_file["last_one_year_table"][:50])
     )
 
     for system, version in latest_versions.items():
         tweet_format = format_tweet.yearly_report(
-            example_file["last_one_year_table"],
+            create_lxml_class(example_file["last_one_year_table"]),
             system,
             version[0],
             copy.deepcopy(stored_data),

@@ -1,7 +1,7 @@
 """
 Gather all data about given releases from Apple's website.
 
-Input format (release row on the initial Security page):
+Input format, list of lxml.html.HtmlElement (release row on the initial Security page):
 -----
 [
     [
@@ -36,6 +36,7 @@ Return format:
 
 import re
 
+import lxml.html
 import requests
 
 import get_date
@@ -59,19 +60,27 @@ class Release:
         self.set_release_date(release_row)
 
         if self.__security_content_link:
-            sec_content_html = requests.get(self.__security_content_link).text
-            sec_content_html = sec_content_html.replace("\n", "").replace("&nbsp;", " ")
-        else:
-            sec_content_html = ""
+            sec_content_page_html = requests.get(self.__security_content_link).text
 
-        self.set_num_of_bugs(release_row, sec_content_html)
-        self.set_zero_days(sec_content_html)
-        self.set_num_entries_changed(sec_content_html)
+            sec_content_page = lxml.html.document_fromstring(sec_content_page_html).text_content()
+            sec_content_page = sec_content_page_html.split("About Apple security updates", 1)[1].split("Additional recognition", 1)[0].replace("&nbsp;", " ")
+            sec_content_page = ' '.join(sec_content_page.split())
+
+            sec_content_page_html = sec_content_page_html.replace("\n", "").replace("&nbsp;", " ")
+        else:
+            sec_content_page_html = ""
+            sec_content_page = ""
+
+        self.set_num_of_bugs(release_row, sec_content_page)
+        self.set_zero_days(sec_content_page_html)
+        self.set_num_entries_changed(sec_content_page)
 
     def set_name(self, release_row: list) -> None:
-        self.__name = re.findall(r"(?i)(?<=[>])[^<]+|^[^<]+", release_row[0])[0]
-        # for releases like "macOS Monterey 12.0.1 (Advisory includes security content of..."
-        self.__name = self.__name.split("(Advisory", 1)[0].strip()
+        self.__name = release_row[0].text_content()
+
+        # for releases with "macOS Monterey 12.0.1 (Advisory includes security content of..."
+        # and for "watchOS 9.0.2\nThis update has no published CVE entries."
+        self.__name = self.__name.split("(Advisory", 1)[0].split("\n", 1)[0].strip()
 
         if "iOS" in self.__name and "iPadOS" in self.__name:
             # turn "iOS 15.3 and iPadOS 15.3" into shorter "iOS and iPadOS 15.3"
@@ -88,10 +97,10 @@ class Release:
         return self.__name
 
     def set_security_content_link(self, release_row: list) -> None:
-        if "href" in release_row[0]:
-            self.__security_content_link = re.findall(
-                r'(?i)href="(.+?)"', release_row[0]
-            )[0]
+        tmp = release_row[0].xpath('.//a/@href')
+
+        if tmp != []:
+            self.__security_content_link = tmp[0]
         else:
             self.__security_content_link = ""
 
@@ -99,7 +108,7 @@ class Release:
         return self.__security_content_link
 
     def set_release_date(self, release_row: list) -> None:
-        self.__release_date = re.findall(r"(?i)(?<=[>])[^<]+|^[^<]+", release_row[2])[0]
+        self.__release_date = release_row[2].text_content()
 
     def get_release_date(self) -> str:
         return self.__release_date
@@ -164,14 +173,14 @@ class Release:
     def get_zero_days(self) -> dict:
         return self.__zero_days
 
-    def set_num_of_bugs(self, release_row: list, sec_content_html: str) -> None:
+    def set_num_of_bugs(self, release_row: list, sec_content_page: str) -> None:
         """Return a number of CVEs fixed."""
 
-        if "soon" in release_row[0]:
+        if "soon" in release_row[0].text_content():
             self.__num_of_bugs = -1
         else:
             self.__num_of_bugs = len(
-                re.findall("(?i)CVE-[0-9]{4}-[0-9]+", sec_content_html)
+                re.findall("(?i)CVE-[0-9]{4}-[0-9]+", sec_content_page)
             )
 
     def get_num_of_bugs(self) -> int:
@@ -189,7 +198,7 @@ class Release:
 
         return "no bugs fixed"
 
-    def set_num_entries_changed(self, sec_content_html: str) -> None:
+    def set_num_entries_changed(self, sec_content_page: str) -> None:
         """
         Return if any entries were added or updated.
         Tweet is made at the start of each day for any changes made on the previous day.
@@ -198,10 +207,10 @@ class Release:
         date_format_two = get_date.format_two()
 
         self.__num_entries_added = len(
-            re.findall(f"added {date_format_two}", sec_content_html)
+            re.findall(f"added {date_format_two}", sec_content_page)
         )
         self.__num_entries_updated = len(
-            re.findall(f"updated {date_format_two}", sec_content_html)
+            re.findall(f"updated {date_format_two}", sec_content_page)
         )
 
     def get_num_entries_added(self) -> int:
