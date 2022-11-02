@@ -1,3 +1,5 @@
+import sys
+
 import lxml.html
 import requests
 
@@ -6,7 +8,9 @@ import gather_info
 import get_date
 import json_file
 from Release import Release
-from twitter import tweet
+
+if "pytest" not in sys.modules:
+    from twitter import tweet
 
 
 def retrieve_main_page() -> list:
