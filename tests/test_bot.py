@@ -325,12 +325,13 @@ def test_zero_day():
     releases_info = convert_to_release_class(example_file["zero_day_releases_table"])
     coll["new_releases"] = releases_info
     coll["zero_day_releases"] = []
+    coll["sec_content_available"] = []
 
     compare(releases_info, example_file["zero_day_releases_info"])
 
     main.check_for_zero_day_releases(coll, copy.deepcopy(stored_data))
 
-    tweet_format = format_tweet.zero_days(coll["zero_day_releases"], stored_data)
+    tweet_format = format_tweet.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
 
     assert tweet_format == example_file["zero_day_releases_tweet"]
 
@@ -339,10 +340,11 @@ def test_zero_day_new_old():
     releases_info = convert_to_release_test_class(example_file["zero_day_releases_new_old_info"])
     coll["new_releases"] = releases_info
     coll["zero_day_releases"] = []
+    coll["sec_content_available"] = []
 
     main.check_for_zero_day_releases(coll, copy.deepcopy(stored_data))
 
-    tweet_format = format_tweet.zero_days(coll["zero_day_releases"], stored_data)
+    tweet_format = format_tweet.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
 
     assert tweet_format == example_file["zero_day_releases_new_old_tweet"]
 
@@ -351,10 +353,11 @@ def test_zero_day_new():
     releases_info = convert_to_release_test_class(example_file["zero_day_releases_new_info"])
     coll["new_releases"] = releases_info
     coll["zero_day_releases"] = []
+    coll["sec_content_available"] = []
 
     main.check_for_zero_day_releases(coll, copy.deepcopy(stored_data))
 
-    tweet_format = format_tweet.zero_days(coll["zero_day_releases"], stored_data)
+    tweet_format = format_tweet.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
 
     assert tweet_format == example_file["zero_day_releases_new_tweet"]
 
@@ -363,9 +366,10 @@ def test_zero_day_old():
     releases_info = convert_to_release_test_class(example_file["zero_day_releases_old_info"])
     coll["new_releases"] = releases_info
     coll["zero_day_releases"] = []
+    coll["sec_content_available"] = []
 
     main.check_for_zero_day_releases(coll, copy.deepcopy(stored_data))
 
-    tweet_format = format_tweet.zero_days(coll["zero_day_releases"], stored_data)
+    tweet_format = format_tweet.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
 
     assert tweet_format == example_file["zero_day_releases_old_tweet"]
