@@ -41,7 +41,7 @@ def check_latest_ios_release(coll: dict, stored_data: dict, release: Release, la
         stored_data["tweeted_today"]["ios_modules"] = release.get_name()
 
 
-def check_sec_content_available(coll: dict, release: Release, stored_data: dict) -> None:
+def check_sec_content_available(coll: dict, stored_data: dict, release: Release) -> None:
     """
     Check if any releases that said "no details yet", got sec content now available.
 
@@ -62,8 +62,7 @@ def check_sec_content_available(coll: dict, release: Release, stored_data: dict)
         stored_data["details_available_soon"].append(release.get_name())
 
 
-def check_for_new_releases(coll: dict, latest_versions: dict, stored_data: dict) -> None:
-    date_format_one = get_date.format_one()
+def check_for_new_releases(coll: dict, stored_data: dict, latest_versions: dict, date_format_one: str) -> None:
     lat_ios_ver = str(latest_versions["iOS"][0])
 
     for release in coll["last_twenty"]:
@@ -103,8 +102,6 @@ def check_for_entry_changes(coll: dict, all_releases: list) -> None:
     Because of checking so many releases and to not make too much requests,
     it is only doing this once per day.
     """
-    if not get_date.is_midnight():
-        return
 
     all_releases_info = coll["last_twenty"]
 
@@ -161,9 +158,12 @@ def main():
 
     latest_versions = gather_info.latest_version(releases)
 
-    check_for_new_releases(coll, stored_data, latest_versions)
-    check_for_entry_changes(coll, all_releases)
+    check_for_new_releases(coll, stored_data, latest_versions, get_date.format_one())
     check_for_zero_day_releases(coll, stored_data)
+
+    if get_date.is_midnight():
+        check_for_entry_changes(coll, all_releases)
+
     # check_for_yearly_report(coll, stored_data, latest_versions) # DISABLED AS NOT TESTED ENOUGH
 
     if coll["ios_release"]:

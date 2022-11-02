@@ -523,17 +523,17 @@
         [
             "<a href=\"https://support.apple.com/kb/HT212223\">Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7)</a>",
             "macOS Catalina and macOS Mojave",
-            "08 Mar 2021"
+            "01 Feb 2021"
         ],
         [
             "<a href=\"https://support.apple.com/kb/HT213058\">Safari 15.3</a>",
             "macOS Big Sur and macOS Catalina",
-            "26 Jan 2021"
+            "01 Feb 2021"
         ],
         [
             "<a href=\"https://support.apple.com/kb/HT213091\">Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8)</a>",
             "macOS Big Sur and macOS Catalina",
-            "10 Feb 2021"
+            "01 Feb 2021"
         ],
         [
             "<a href=\"https://support.apple.com/kb/HT212177\">macOS Big Sur 11.2.1, macOS Catalina 10.15.7 Supplemental Update, macOS Mojave 10.14.6 Security Update 2021-002</a>",
@@ -557,7 +557,7 @@
             "name": "Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7)",
             "emoji": ":globe_with_meridians:",
             "security_content_link": "https://support.apple.com/kb/HT212223",
-            "release_date": "08 Mar 2021",
+            "release_date": "01 Feb 2021",
             "num_of_bugs": 1,
             "num_of_zero_days": 0,
             "zero_days": {},
@@ -568,7 +568,7 @@
             "name": "Safari 15.3",
             "emoji": ":globe_with_meridians:",
             "security_content_link": "https://support.apple.com/kb/HT213058",
-            "release_date": "26 Jan 2021",
+            "release_date": "01 Feb 2021",
             "num_of_bugs": 4,
             "num_of_zero_days": 0,
             "zero_days": {},
@@ -579,7 +579,7 @@
             "name": "Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8)",
             "emoji": ":globe_with_meridians:",
             "security_content_link": "https://support.apple.com/kb/HT213091",
-            "release_date": "10 Feb 2021",
+            "release_date": "01 Feb 2021",
             "num_of_bugs": 1,
             "num_of_zero_days": 1,
             "zero_days": {
@@ -604,7 +604,6 @@
         ":collision: NEW UPDATES RELEASED :collision:\n\n",
         ":globe_with_meridians: Safari 15.3 - 4 bugs fixed\n",
         ":globe_with_meridians: Safari 14.0.3 - 3 bugs fixed\n",
-        ":computer: macOS Big Sur 11.2.1 and older - 3 bugs fixed\n",
         ":globe_with_meridians: Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7) - 1 bug fixed\n",
         ":globe_with_meridians: Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8) - 1 bug fixed\n",
         "https://support.apple.com/en-us/HT201222"
@@ -648,7 +647,7 @@
         [
             "macOS Big Sur 11.5.2\nThis update has no published CVE entries.",
             "macOS Big Sur",
-            "11 Aug 2021"
+            "26 Jan 2022"
         ],
         [
             "macOS Big Sur 11.0",
@@ -744,18 +743,7 @@
             "name": "macOS Big Sur 11.5.2",
             "emoji": ":computer:",
             "security_content_link": "",
-            "release_date": "11 Aug 2021",
-            "num_of_bugs": 0,
-            "num_of_zero_days": 0,
-            "zero_days": {},
-            "num_entries_added": 0,
-            "num_entries_updated": 0
-        },
-        "9": { 
-            "name": "macOS Big Sur 11.0",
-            "emoji": ":computer:",
-            "security_content_link": "",
-            "release_date": "Preinstalled",
+            "release_date": "26 Jan 2022",
             "num_of_bugs": 0,
             "num_of_zero_days": 0,
             "zero_days": {},
@@ -773,7 +761,6 @@
         ":computer: Security Update 2022-001 Catalina - 5 bugs fixed\n",
         ":globe_with_meridians: Safari 15.3 - 4 bugs fixed\n",
         ":computer: macOS Big Sur 11.5.2 - no bugs fixed\n",
-        ":computer: macOS Big Sur 11.0 - no bugs fixed\n",
         "https://support.apple.com/en-us/HT201222"
     ],
     "new_releases_one_table": [
