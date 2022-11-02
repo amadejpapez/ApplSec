@@ -7,7 +7,7 @@ import gather_info
 from Release import Release
 
 
-def new_updates(releases_info: list, stored_data: dict) -> list:
+def new_updates(releases_info: list) -> list:
     """
     -----
     💥 NEW UPDATES RELEASED 💥
@@ -24,15 +24,6 @@ def new_updates(releases_info: list, stored_data: dict) -> list:
     """
 
     tweet_text = []
-
-    for release in list(releases_info):
-        if release.get_name() in stored_data["tweeted_today"]["new_updates"]:
-            releases_info.remove(release)
-        else:
-            stored_data["tweeted_today"]["new_updates"].append(release.get_name())
-
-    if not releases_info:
-        return []
 
     releases_info.sort(key=lambda x: x.get_num_of_bugs(), reverse=True)
 
@@ -54,7 +45,7 @@ def new_updates(releases_info: list, stored_data: dict) -> list:
     return tweet_text
 
 
-def top_ios_modules(releases_info: list, stored_data: dict) -> list:
+def top_ios_modules(releases_info: list) -> list:
     """
     -----------------------------
     ⚒ FIXED IN iOS 14.7 ⚒
@@ -67,15 +58,6 @@ def top_ios_modules(releases_info: list, stored_data: dict) -> list:
     https://support.apple.com/kb/HT212601
     -----------------------------
     """
-
-    for release in list(releases_info):
-        if release.get_name() in stored_data["tweeted_today"]["ios_modules"]:
-            releases_info.remove(release)
-        else:
-            stored_data["tweeted_today"]["ios_modules"] = release.get_name()
-
-    if not releases_info:
-        return []
 
     for release in releases_info:
         sec_content_html = requests.get(release.get_security_content_link()).text
@@ -180,21 +162,6 @@ def zero_days(releases_info: list, stored_data: dict) -> list:
     -----
     """
 
-    for release in list(releases_info):
-        if (
-            release.get_name() in stored_data["tweeted_today"]["zero_days"].keys()
-            and release.get_num_of_zero_days()
-            == stored_data["tweeted_today"]["zero_days"][release.get_name()]
-        ):
-            # if release was tweeted with the same number of zero-days
-            releases_info.remove(release)
-            continue
-
-        stored_data["tweeted_today"]["zero_days"][release.get_name()] = release.get_num_of_zero_days()
-
-    if not releases_info:
-        return []
-
     tweet_text = [[], [":bug: ZERO-DAY DETAILS:\n\n"], [":warning: PATCHES:\n\n"], []]
     zero_days_dict = {}
     sorted_zero_days: dict = {"old": {}, "new": {}}
@@ -281,7 +248,7 @@ def entry_changes(releases_info: list) -> list:
     return tweet_text
 
 
-def security_content_available(releases_info: list, stored_data: dict) -> list:
+def security_content_available(releases_info: list) -> list:
     """
     -----
     🗒 SECURITY CONTENT AVAILABLE 🗒
@@ -293,23 +260,6 @@ def security_content_available(releases_info: list, stored_data: dict) -> list:
     ⌚ watchOS 8.1 - 16 bugs fixed
     -----
     """
-
-    for release in list(releases_info):
-        if release.get_name() in stored_data["details_available_soon"]:
-            if release.get_security_content_link() != "":
-                stored_data["details_available_soon"].remove(release.get_name())
-            else:
-                releases_info.remove(release)
-
-        elif (
-            release.get_name() not in stored_data["details_available_soon"]
-            and release.get_format_num_of_bugs() == "no details yet"
-        ):
-            stored_data["details_available_soon"].append(release.get_name())
-            releases_info.remove(release)
-
-    if not releases_info:
-        return []
 
     releases_info.sort(key=lambda x: x.get_num_of_bugs(), reverse=True)
 
@@ -325,7 +275,7 @@ def security_content_available(releases_info: list, stored_data: dict) -> list:
     return tweet_text
 
 
-def yearly_report(release_rows: list, system: str, version: int, stored_data: dict) -> list:
+def yearly_report(release_rows: list, system: str, version: int) -> list:
     """
     -----
     iOS 15 was released today. In iOS 14 series Apple fixed in total of 346 security issues over 16 releases. 🔐
@@ -336,11 +286,6 @@ def yearly_report(release_rows: list, system: str, version: int, stored_data: di
     - 310 fixed in iOS 11 over 17 releases
     -----
     """
-
-    if system in stored_data["tweeted_today"]["yearly_report"]:
-        return []
-
-    stored_data["tweeted_today"]["yearly_report"].append(system)
 
     system, versions = gather_info.latest_four_versions(system, version, release_rows)
 
