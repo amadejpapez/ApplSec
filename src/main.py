@@ -15,7 +15,7 @@ if "pytest" not in sys.modules:
 
 def retrieve_main_page() -> list:
     main_page = lxml.html.document_fromstring(
-        requests.get("https://support.apple.com/en-us/HT201222", timeout=300).text
+        requests.get("https://support.apple.com/en-us/HT201222", timeout=60).text
     )
 
     table = main_page.xpath("//table/tbody")[0].findall("tr")

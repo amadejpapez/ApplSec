@@ -60,7 +60,7 @@ def top_ios_modules(releases_info: list) -> list:
     """
 
     for release in releases_info:
-        sec_content_html = requests.get(release.get_security_content_link()).text
+        sec_content_html = requests.get(release.get_security_content_link(), timeout=60).text
         sec_content_html = sec_content_html.split("Additional recognition", 1)[0]
 
         search_modules = collections.Counter(

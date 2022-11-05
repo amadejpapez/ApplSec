@@ -113,7 +113,7 @@ def toot(results: list) -> None:
                 API_URL,
                 json={"status": emoji.emojize(text, language="alias")},
                 headers={"Authorization": MASTODON_API["access_token"]},
-                timeout=300
+                timeout=60
             )
 
             post_ids.append(response.json()["id"])
@@ -126,7 +126,7 @@ def toot(results: list) -> None:
                     "in_reply_to_id": post_ids[-1],
                 },
                 headers={"Authorization": MASTODON_API["access_token"]},
-                timeout=300
+                timeout=60
             )
 
             post_ids.append(response.json()["id"])

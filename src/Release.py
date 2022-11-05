@@ -60,7 +60,7 @@ class Release:
         self.set_release_date(release_row)
 
         if self.__security_content_link:
-            sec_content_page_html = requests.get(self.__security_content_link).text
+            sec_content_page_html = requests.get(self.__security_content_link, timeout=60).text
 
             sec_content_page = lxml.html.document_fromstring(
                 sec_content_page_html
