@@ -10,12 +10,12 @@ import json_file
 from Release import Release
 
 if "pytest" not in sys.modules:
-    from twitter import tweet
+    from posting import post
 
 
 def retrieve_main_page() -> list:
     main_page = lxml.html.document_fromstring(
-        requests.get("https://support.apple.com/en-us/HT201222").text
+        requests.get("https://support.apple.com/en-us/HT201222", timeout=300).text
     )
 
     table = main_page.xpath("//table/tbody")[0].findall("tr")
@@ -171,25 +171,23 @@ def main():
     # check_for_yearly_report(coll, stored_data, latest_versions) # DISABLED AS NOT TESTED ENOUGH
 
     if coll["ios_release"]:
-        tweet(format_tweet.top_ios_modules(coll["ios_release"]))
+        post(format_tweet.top_ios_modules(coll["ios_release"]))
 
     if coll["zero_day_releases"]:
-        tweet(format_tweet.zero_days(coll["zero_day_releases"], stored_data))
+        post(format_tweet.zero_days(coll["zero_day_releases"], stored_data))
 
     if coll["changed_releases"]:
-        tweet(format_tweet.entry_changes(coll["changed_releases"]))
+        post(format_tweet.entry_changes(coll["changed_releases"]))
 
     if coll["sec_content_available"]:
-        tweet(
-            format_tweet.security_content_available(coll["sec_content_available"])
-        )
+        post(format_tweet.security_content_available(coll["sec_content_available"]))
 
     # if coll["yearly_report"]:
-    #    tweet(format_tweet.yearly_report(all_releases, key, value[0]))
+    #    post(format_tweet.yearly_report(all_releases, key, value[0]))
 
     # new updates should be tweeted last, after all of the other tweets
     if coll["new_releases"]:
-        tweet(format_tweet.new_updates(coll["new_releases"]))
+        post(format_tweet.new_updates(coll["new_releases"]))
 
     json_file.save(stored_data)
 
