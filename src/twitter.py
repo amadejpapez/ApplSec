@@ -8,73 +8,87 @@ LOC = os.path.abspath(os.path.join(__file__, "../../../auth_secrets.json"))
 with open(LOC, "r", encoding="utf-8") as auth_file:
     KEYS = json.load(auth_file)
 
-API = tweepy.Client(
-    consumer_key=KEYS["ApplSec"]["api_key"],
-    consumer_secret=KEYS["ApplSec"]["api_key_secret"],
-    access_token=KEYS["ApplSec"]["access_token"],
-    access_token_secret=KEYS["ApplSec"]["access_token_secret"],
+TWITTER_API = tweepy.Client(
+    consumer_key=KEYS["Twitter_ApplSec"]["api_key"],
+    consumer_secret=KEYS["Twitter_ApplSec"]["api_key_secret"],
+    access_token=KEYS["Twitter_ApplSec"]["access_token"],
+    access_token_secret=KEYS["Twitter_ApplSec"]["access_token_secret"],
     return_type=dict,
 )
 
 
-def arrange_elements(tweet_text: list, item: str) -> None:
+def join_or_split(arranged_list: list, item: str, MAX_CHAR: int) -> None:
     """
-    Arrange elements so that each element in tweet_text is under 240
-    characters. Each element is a tweet inside of a thread.
+    If character limit is reached, add it as a new thread post. Else join.
     """
 
-    if len(emoji.emojize(tweet_text[-1] + item, language="alias")) < 240:
-        tweet_text[-1] += item
+    if len(emoji.emojize(arranged_list[-1] + item, language="alias")) < MAX_CHAR:
+        arranged_list[-1] += item
     else:
-        tweet_text.append(item)
+        arranged_list.append(item)
 
 
-def tweet(results: list) -> None:
+def arrange_post(results: list, MAX_CHAR: int) -> list:
     """
-    It arranges the list into a tweet or a thread, as appropriate
-    and sends it to Twitter.
-
     ["1", "2", "3", "4", "5", "6", "7"]
 
-    If input list contains a list, it is sorted separately, so each
-    list strictly starts in a new tweet inside of a thread.
+    This is how the passed in post and returned post look like. This is one
+    thread and each element represents a post inside of it.
+
+    Passed in list is not yet correctly sorted as it does not respect the
+    character limits per post. That is this function's job to take care of.
+
+    Each element gets evaluated and if it exceeds the character limit, it
+    will be split into more posts. If it has less, it will be joined together
+    with previous text.
 
     ["1", "2", "3", ["4", "5"], ["6", "7"]]
 
-    This arranges first three elements. Adds new tweet and arranges the list.
-    Adds another tweet and arranges the second list.
+    To prevent joining, you can already pass in a list instead of a string. The
+    list element will then strictly start in a new post inside of a thread and
+    will not be joined with the text before.
     """
+
+    arranged_list = [""]
+
+    for item in results:
+        if isinstance(item, list):
+            arranged_list.append("")
+
+            for elem in item:
+                join_or_split(arranged_list, elem, MAX_CHAR)
+
+        else:
+            join_or_split(arranged_list, item, MAX_CHAR)
+
+    arranged_list = list(filter(None, arranged_list))
+
+    return arranged_list
+
+
+def tweet(results: list) -> None:
+    MAX_CHAR = 250
 
     if not results:
         return
 
-    tweet_text = [""]
-    for group in results:
-        if isinstance(group, list):
-            tweet_text.append("")
+    post_parts = arrange_post(results, MAX_CHAR)
 
-            for element in group:
-                arrange_elements(tweet_text, element)
+    post_ids = []
 
-        else:
-            arrange_elements(tweet_text, group)
-
-    tweet_text = list(filter(None, tweet_text))
-    tweet_id = []
-
-    for text in tweet_text:
-        if tweet_text.index(text) == 0:
-            # first tweet
-            tweet_id.append(
-                API.create_tweet(
+    for text in post_parts:
+        if post_parts.index(text) == 0:
+            # individual post or start of a thread
+            post_ids.append(
+                TWITTER_API.create_tweet(
                     text=emoji.emojize(text, language="alias"),
                 )
             )
         else:
-            # others in the thread
-            tweet_id.append(
-                API.create_tweet(
-                    in_reply_to_tweet_id=tweet_id[-1]["data"]["id"],
+            # other posts in a thread
+            post_ids.append(
+                TWITTER_API.create_tweet(
+                    in_reply_to_tweet_id=post_ids[-1]["data"]["id"],
                     text=emoji.emojize(text, language="alias"),
                 )
             )
