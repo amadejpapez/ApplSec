@@ -70,16 +70,14 @@ def check_for_new_releases(coll: dict, stored_data: dict, latest_versions: dict,
     lat_ios_ver = str(latest_versions["iOS"][0])
 
     for release in coll["last_twenty"]:
-        if (
-            release.get_release_date() == date_format_one
-            and release.get_name() not in stored_data["tweeted_today"]["new_updates"]
-        ):
-            coll["new_releases"].append(release)
+        if release.get_release_date() == date_format_one:
+            if release.get_name() not in stored_data["tweeted_today"]["new_updates"]:
+                coll["new_releases"].append(release)
 
-            stored_data["tweeted_today"]["new_updates"].append(release.get_name())
+                stored_data["tweeted_today"]["new_updates"].append(release.get_name())
 
-        if "iOS" in release.get_name():
-            check_latest_ios_release(coll, stored_data, release, lat_ios_ver)
+            if "iOS" in release.get_name():
+                check_latest_ios_release(coll, stored_data, release, lat_ios_ver)
 
         check_sec_content_available(coll, stored_data, release)
 
