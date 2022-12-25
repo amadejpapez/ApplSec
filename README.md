@@ -6,6 +6,7 @@
 <p align="center"><img src="images/ApplSec.png" width=100></p>
 
 ## Tweeting the following info:
+
 * 💥 when new updates are made available,
 * 🔒 how many vulnerabilities Apple fixed in each update,
 * 💉 four iOS modules that got the most security fixes in the latest update,
@@ -20,6 +21,7 @@
 <p align="center"><img src="images/img6_dark.jpg" width=340></p>
 
 ## 🦾 How does it work?
+
 First, it creates a current day format and searches for it on the [Apple Security Updates](https://support.apple.com/en-us/HT201222) page. If any new updates are found, it starts gathering data from their security notes, counts how many security issues were fixed, checks for zero-days and other information. Then it arranges the gathered data into a tweet or a thread as needed.
 
 If Apple says "no details yet", it will save the name of the release and tweet that info is not available yet. It will continue to check and tweet when security content becomes available with all of the information it contains.
