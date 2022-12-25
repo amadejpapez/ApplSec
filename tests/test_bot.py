@@ -155,7 +155,6 @@ latest_versions = gather_info.latest_version(
 )
 
 coll = {
-    "last_twenty": [],
     "new_releases": [],
     "ios_release": [],
     "changed_releases": [],
@@ -201,10 +200,9 @@ def test_release_class_2():
 
     compare(releases_info, example_file["release_rows_info"])
 
-    coll["last_twenty"] = releases_info
     coll["new_releases"] = []
 
-    main.check_for_new_releases(coll, copy.deepcopy(stored_data), latest_versions, "01 Feb 2021")
+    main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_info)
 
     tweet_format = format_tweet.new_updates(coll["new_releases"])
 
@@ -216,10 +214,9 @@ def test_new_updates():
 
     compare(releases_info, example_file["new_releases_info"])
 
-    coll["last_twenty"] = releases_info
     coll["new_releases"] = []
 
-    main.check_for_new_releases(coll, copy.deepcopy(stored_data), latest_versions, "26 Jan 2022")
+    main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_info)
 
     tweet_format = format_tweet.new_updates(coll["new_releases"])
 
@@ -229,10 +226,9 @@ def test_new_updates():
 def test_new_updates_only_one():
     releases_info = convert_to_release_class(example_file["new_releases_one_table"])
 
-    coll["last_twenty"] = releases_info
     coll["new_releases"] = []
 
-    main.check_for_new_releases(coll, copy.deepcopy(stored_data), latest_versions, "26 Jan 2022")
+    main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_info)
 
     tweet_format = format_tweet.new_updates(coll["new_releases"])
 
@@ -258,24 +254,17 @@ def test_ios_modules():
 def test_entry_changes():
     releases_info = convert_to_release_test_class(example_file["entry_changes_info"])
 
-    coll["last_twenty"] = releases_info
-    coll["changed_releases"] = []
-
-    main.check_for_entry_changes(coll, [])
-
-    tweet_format = format_tweet.entry_changes(coll["changed_releases"])
+    tweet_format = format_tweet.entry_changes(releases_info)
 
     assert tweet_format == example_file["entry_changes_tweet"]
 
 
 def test_security_content_soon():
     releases_info = convert_to_release_test_class(example_file["security_content_soon_info"])
-    coll["sec_content_available"] = []
 
     for release in releases_info:
-        main.check_sec_content_available(coll, stored_data, release)
+        main.save_sec_content_no_details_yet(stored_data, release)
 
-    assert coll["sec_content_available"] == []
     assert (
         stored_data["details_available_soon"]
         == example_file["security_content_soon_file"]
@@ -283,12 +272,10 @@ def test_security_content_soon():
 
     # test if result is the same when same data comes in the next time
     releases_info = convert_to_release_test_class(example_file["security_content_soon_info"])
-    coll["sec_content_available"] = []
 
     for release in releases_info:
-        main.check_sec_content_available(coll, stored_data, release)
+        main.save_sec_content_no_details_yet(stored_data, release)
 
-    assert coll["sec_content_available"] == []
     assert (
         stored_data["details_available_soon"]
         == example_file["security_content_soon_file"]
@@ -296,13 +283,12 @@ def test_security_content_soon():
 
 
 def test_security_content_available():
-    releases_info = convert_to_release_test_class(example_file["security_content_available_info"])
+    releases_info = convert_to_lxml_class(example_file["security_content_available_info"])
 
     stored_data["details_available_soon"] = example_file["security_content_soon_file"]
     coll["sec_content_available"] = []
 
-    for release in releases_info:
-        main.check_sec_content_available(coll, stored_data, release)
+    main.check_if_sec_content_available(coll, stored_data, releases_info)
 
     tweet_format = format_tweet.security_content_available(coll["sec_content_available"])
 

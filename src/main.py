@@ -45,20 +45,11 @@ def check_latest_ios_release(coll: dict, stored_data: dict, release: Release, la
         stored_data["tweeted_today"]["ios_modules"] = release.get_name()
 
 
-def check_sec_content_available(coll: dict, stored_data: dict, release: Release) -> None:
+def save_sec_content_no_details_yet(stored_data: dict, release: Release) -> None:
     """
-    Check if any releases that said "no details yet", got sec content now available.
-
-    Also check if any new "no details yet" releases appeared and save them.
+    Receives releases with "no details yet" from check_for_new_releases()
+    and saves them.
     """
-    if (
-        release.get_name() in stored_data["details_available_soon"]
-        and release.get_security_content_link() != ""
-    ):
-        coll["sec_content_available"].append(release)
-
-        stored_data["details_available_soon"].remove(release.get_name())
-
     if (
         release.get_name() not in stored_data["details_available_soon"]
         and release.get_format_num_of_bugs() == "no details yet"
@@ -66,20 +57,41 @@ def check_sec_content_available(coll: dict, stored_data: dict, release: Release)
         stored_data["details_available_soon"].append(release.get_name())
 
 
-def check_for_new_releases(coll: dict, stored_data: dict, latest_versions: dict, date_format_one: str) -> None:
-    lat_ios_ver = str(latest_versions["iOS"][0])
+def check_if_sec_content_available(coll: dict, stored_data: dict, all_releases: list) -> None:
+    """
+    Check if any releases that said "no details yet", got security content available now.
+    """
+    checked = 0
+    must_check = len(stored_data["details_available_soon"])
 
-    for release in coll["last_twenty"]:
-        if release.get_release_date() == date_format_one:
-            if release.get_name() not in stored_data["tweeted_today"]["new_updates"]:
-                coll["new_releases"].append(release)
+    for release in all_releases:
+        if checked == must_check:
+            break
 
-                stored_data["tweeted_today"]["new_updates"].append(release.get_name())
+        release_obj = Release(release)
 
-            if "iOS" in release.get_name():
-                check_latest_ios_release(coll, stored_data, release, lat_ios_ver)
+        if release_obj.get_name() in stored_data["details_available_soon"]:
+            if release_obj.get_security_content_link() != "":
+                coll["sec_content_available"].append(release_obj)
+                stored_data["details_available_soon"].remove(release_obj.get_name())
 
-        check_sec_content_available(coll, stored_data, release)
+            checked += 1
+
+
+def check_new_releases(coll: dict, stored_data: dict, latest_versions: dict, new_releases_info: list) -> None:
+    latest_ios_ver = str(latest_versions["iOS"][0])
+
+    for release in new_releases_info:
+        if release.get_name() not in stored_data["tweeted_today"]["new_updates"]:
+            coll["new_releases"].append(release)
+
+            stored_data["tweeted_today"]["new_updates"].append(release.get_name())
+
+        if "iOS" in release.get_name():
+            check_latest_ios_release(coll, stored_data, release, latest_ios_ver)
+
+        if release.get_security_content_link() == "":
+            save_sec_content_no_details_yet(stored_data, release)
 
 
 def check_for_zero_day_releases(coll: dict, stored_data: dict) -> None:
@@ -104,10 +116,9 @@ def check_for_entry_changes(coll: dict, all_releases: list) -> None:
     Because of checking so many releases and to not make too much requests,
     it is only doing this once per day.
     """
+    all_releases_info = []
 
-    all_releases_info = coll["last_twenty"]
-
-    for row in all_releases[20:]:
+    for row in all_releases:
         all_releases_info.append(Release(row))
 
     for release in all_releases_info:
@@ -139,17 +150,20 @@ def check_for_yearly_report(coll: dict, stored_data: dict, latest_versions: dict
 
 
 def main():
+    date_format_one = get_date.format_one()
     stored_data = json_file.read()
-
     all_releases = retrieve_main_page()
-    releases = all_releases[:20]
-    releases_info = []
+    latest_versions = gather_info.latest_version(all_releases[:20])
 
-    for row in releases:
-        releases_info.append(Release(row))
+    new_releases_info = []
+
+    for row in all_releases:
+        if (row[2].text_content() != date_format_one):
+            break
+
+        new_releases_info.append(Release(row))
 
     coll = {
-        "last_twenty": releases_info,
         "new_releases": [],
         "ios_release": [],
         "changed_releases": [],
@@ -158,10 +172,9 @@ def main():
         "yearly_report": [],
     }
 
-    latest_versions = gather_info.latest_version(releases)
-
-    check_for_new_releases(coll, stored_data, latest_versions, get_date.format_one())
+    check_new_releases(coll, stored_data, latest_versions, new_releases_info)
     check_for_zero_day_releases(coll, stored_data)
+    check_if_sec_content_available(coll, stored_data, all_releases)
 
     if get_date.is_midnight():
         check_for_entry_changes(coll, all_releases)

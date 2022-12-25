@@ -534,11 +534,6 @@
             "<a href=\"https://support.apple.com/kb/HT213091\">Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8)</a>",
             "macOS Big Sur and macOS Catalina",
             "01 Feb 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212177\">macOS Big Sur 11.2.1, macOS Catalina 10.15.7 Supplemental Update, macOS Mojave 10.14.6 Security Update 2021-002</a>",
-            "macOS Big Sur 11.2, macOS Catalina 10.15.7, and macOS Mojave 10.14.6",
-            "09 Feb 2021"
         ]
     ],
     "release_rows_info": {
@@ -648,11 +643,6 @@
             "macOS Big Sur 11.5.2\nThis update has no published CVE entries.",
             "macOS Big Sur",
             "26 Jan 2022"
-        ],
-        [
-            "macOS Big Sur 11.0",
-            "Preinstalled only on certain Mac models; please update to macOS Big Sur 11.0.1",
-            "Preinstalled"
         ]
     ],
     "new_releases_info": {
@@ -1089,35 +1079,18 @@
         "macOS Big Sur 11.3",
         "iOS and iPadOS 14.5"
     ],
-    "security_content_available_info": {
-        "1": {
-            "name": "iOS and iPadOS 14.5",
-            "emoji": ":iphone:",
-            "security_content_link": "https://support.apple.com/kb/HT212317",
-            "release_date": "26 Apr 2021",
-            "num_of_bugs": 64,
-            "num_of_zero_days": 1,
-            "zero_days": {
-                "CVE-2021-30661": "WebKit Storage"
-            },
-            "num_entries_added": 1,
-            "num_entries_updated": 0
-        },
-        "2": {
-            "name": "macOS Big Sur 11.3",
-            "emoji": ":computer:",
-            "security_content_link": "https://support.apple.com/kb/HT212325",
-            "release_date": "26 Apr 2021",
-            "num_of_bugs": 66,
-            "num_of_zero_days": 2,
-            "zero_days": {
-                "CVE-2021-30657": "System Preferences",
-                "CVE-2021-30661": "WebKit Storage"
-            },
-            "num_entries_added": 1,
-            "num_entries_updated": 0
-        }
-    },
+    "security_content_available_info": [
+        [
+            "<a href=\"https://support.apple.com/kb/HT212317\">iOS 14.5 and iPadOS 14.5</a>",
+            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
+            "26 Apr 2021"
+        ],
+        [
+            "<a href=\"https://support.apple.com/kb/HT212325\">macOS Big Sur 11.3</a>",
+            "macOS Big Sur",
+            "26 Apr 2021"
+        ]
+    ],
     "security_content_available_tweet": [
         ":spiral_notepad: SECURITY CONTENT AVAILABLE :spiral_notepad:\n\n",
         ":computer: macOS Big Sur 11.3 - 66 bugs fixed\n",
