@@ -111,5 +111,12 @@ def post(results: list) -> None:
     if not results:
         return
 
-    tweet(results)
-    toot(results)
+    try:
+        tweet(results)
+    except Exception as e:
+        print("TWITTER FAILED TO POST: " + str(results) + "\n" + str(e) + "\n")
+
+    try:
+        toot(results)
+    except Exception as e:
+        print("MASTODON FAILED TO POST: " + str(results) + "\n" + str(e) + "\n")
