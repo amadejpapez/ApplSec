@@ -60,7 +60,7 @@ def tweet(results: list) -> None:
                 text=emoji.emojize(text, language="alias"),
             )
 
-            post_ids.append(response["data"]["id"])
+            post_ids.append(getattr(response, "data")["id"])
         else:
             # other posts in a thread
             response = TWITTER_API.create_tweet(
@@ -68,13 +68,14 @@ def tweet(results: list) -> None:
                 text=emoji.emojize(text, language="alias"),
             )
 
-            post_ids.append(response["data"]["id"])
+            post_ids.append(getattr(response, "data")["id"])
 
 
 def toot(results: list) -> None:
     """Handle posting to Mastodon."""
     MAX_CHAR = 500
     API_URL = "https://mastodon.social/api/v1/statuses"
+    # API_URL = "https://mas.to/api/v1/statuses"  # TEST ACCOUNT
 
     posts_list = arrange_post(results, MAX_CHAR)
 
