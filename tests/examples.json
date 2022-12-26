@@ -5,7 +5,7 @@
         ],
         "details_available_soon": [],
         "today_date": "",
-        "tweeted_today": {
+        "posted_today": {
             "new_updates": [],
             "ios_modules": "",
             "zero_days": {},
@@ -595,7 +595,7 @@
             "num_entries_updated": 0
         }
     },
-    "release_rows_tweet": [
+    "release_rows_post": [
         ":collision: NEW UPDATES RELEASED :collision:\n\n",
         ":globe_with_meridians: Safari 15.3 - 4 bugs fixed\n",
         ":globe_with_meridians: Safari 14.0.3 - 3 bugs fixed\n",
@@ -741,7 +741,7 @@
             "num_entries_updated": 0
         }
     },
-    "new_releases_tweet": [
+    "new_releases_post": [
         ":collision: NEW UPDATES RELEASED :collision:\n\n",
         ":computer: macOS Monterey 12.2 - 14 bugs fixed\n",
         ":iphone: iOS and iPadOS 15.3 - 10 bugs fixed\n",
@@ -760,7 +760,7 @@
             "26 Jan 2022"
         ]
     ],
-    "new_releases_one_tweet": [
+    "new_releases_one_post": [
         ":collision: NEW UPDATE RELEASED :collision:\n\n",
         ":watch: watchOS 8.4 - 8 bugs fixed\n",
         "https://support.apple.com/kb/HT213059"
@@ -787,7 +787,7 @@
             "num_entries_updated": 0
         }
     },
-    "ios_modules_tweet": [
+    "ios_modules_post": [
         ":hammer_and_pick: FIXED IN iOS and iPadOS 15.3 :hammer_and_pick:\n\n",
         "- 3 bugs in WebKit\n",
         "- 1 bug in ColorSync\n",
@@ -1029,7 +1029,7 @@
             "num_entries_updated": 0
         }
     },
-    "entry_changes_tweet": [
+    "entry_changes_post": [
         ":arrows_counterclockwise: 63 ENTRY CHANGES :arrows_counterclockwise:\n\n",
         ":computer: macOS Big Sur 11.6 - 8 added, 1 updated\n",
         ":watch: watchOS 8 - 5 added, 2 updated\n",
@@ -1091,21 +1091,21 @@
             "26 Apr 2021"
         ]
     ],
-    "security_content_available_tweet": [
+    "security_content_available_post": [
         ":spiral_notepad: SECURITY CONTENT AVAILABLE :spiral_notepad:\n\n",
         ":computer: macOS Big Sur 11.3 - 66 bugs fixed\n",
         ":iphone: iOS and iPadOS 14.5 - 64 bugs fixed\n"
     ],
-    "yearly_report_tvOS_tweet": [
+    "yearly_report_tvOS_post": [
         "tvOS 15 was released today. In tvOS 14 series Apple fixed in total of 96 security issues over 3 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
-    "yearly_report_watchOS_tweet": [
+    "yearly_report_watchOS_post": [
         "watchOS 8 was released today. In watchOS 7 series Apple fixed in total of 105 security issues over 9 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
-    "yearly_report_macOS_tweet": [
+    "yearly_report_macOS_post": [
         "macOS 12 was released today. In macOS Monterey series Apple fixed in total of 139 security issues over 4 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
-    "yearly_report_iOS_tweet": [
+    "yearly_report_iOS_post": [
         "iOS 15 was released today. In iOS 14 series Apple fixed in total of 252 security issues over 10 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
     "zero_day_releases_table": [
@@ -1151,7 +1151,7 @@
             "num_entries_updated": 0
         }
     },
-    "zero_day_releases_tweet": [
+    "zero_day_releases_post": [
         ":mega: EMERGENCY UPDATES :mega:\n\n",
         "Apple pushed updates for 3 new zero-days that may have been actively exploited and additional updates for 1 zero-day.",
         "\n\n:bug: CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina\n- iOS 12.5.5",
@@ -1187,7 +1187,7 @@
             "num_entries_updated": 0
         }
     },
-    "zero_day_releases_new_old_tweet": [
+    "zero_day_releases_new_old_post": [
         ":mega: EMERGENCY UPDATES :mega:\n\n",
         "Apple pushed updates for a new zero-day that may have been actively exploited and additional updates for one zero-day.",
         "\n\n:bug: CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina",
@@ -1208,7 +1208,7 @@
             "num_entries_updated": 0
         }
     },
-    "zero_day_releases_new_tweet": [
+    "zero_day_releases_new_post": [
         ":mega: EMERGENCY UPDATE :mega:\n\n",
         "Apple pushed updates for a new zero-day that may have been actively exploited.",
         "\n\n:bug: CVE-2021-30858 (WebKit):\n- Security Update 2021-006 Catalina"
@@ -1228,7 +1228,7 @@
             "num_entries_updated": 0
         }
     },
-    "zero_day_releases_old_tweet": [
+    "zero_day_releases_old_post": [
         ":mega: EMERGENCY UPDATE :mega:\n\n",
         "Apple pushed additional updates for a zero-day that may have been actively exploited.",
         "\n\n:bug: CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina"

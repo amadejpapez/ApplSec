@@ -2,7 +2,7 @@
 Save and read data from stored_data.json
 
 File is storing last 10 zero-days, releases that do not have
-security content available yet and data that was tweeted today.
+security content available yet and data that was posted today.
 """
 
 import json
@@ -16,7 +16,7 @@ FILE_STRUCTURE = {
     "zero_days": [],
     "details_available_soon": [],
     "todays_date": str(get_date.current_date()),
-    "tweeted_today": {
+    "posted_today": {
         "new_updates": [],
         "ios_modules": "",
         "zero_days": {},
@@ -42,7 +42,7 @@ def read() -> dict:
 
 def save(new_data: dict) -> None:
     if get_date.is_midnight():
-        new_data["tweeted_today"] = FILE_STRUCTURE["tweeted_today"]
+        new_data["posted_today"] = FILE_STRUCTURE["posted_today"]
         new_data["todays_date"] = str(get_date.current_date())
 
     with open(LOC, "w", encoding="utf-8") as json_file:

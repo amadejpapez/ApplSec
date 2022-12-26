@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src"
 
 import lxml.html
 
-import format_tweet
+import format_post
 import gather_info
 import main
 from Release import Release
@@ -204,10 +204,9 @@ def test_release_class_2():
 
     main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_info)
 
-    tweet_format = format_tweet.new_updates(coll["new_releases"])
+    post_format = format_post.new_updates(coll["new_releases"])
 
-    assert tweet_format == example_file["release_rows_tweet"]
-
+    assert post_format == example_file["release_rows_post"]
 
 def test_new_updates():
     releases_info = convert_to_release_class(example_file["new_releases_table"])
@@ -218,9 +217,9 @@ def test_new_updates():
 
     main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_info)
 
-    tweet_format = format_tweet.new_updates(coll["new_releases"])
+    post_format = format_post.new_updates(coll["new_releases"])
 
-    assert tweet_format == example_file["new_releases_tweet"]
+    assert post_format == example_file["new_releases_post"]
 
 
 def test_new_updates_only_one():
@@ -230,9 +229,9 @@ def test_new_updates_only_one():
 
     main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_info)
 
-    tweet_format = format_tweet.new_updates(coll["new_releases"])
+    post_format = format_post.new_updates(coll["new_releases"])
 
-    assert tweet_format == example_file["new_releases_one_tweet"]
+    assert post_format == example_file["new_releases_one_post"]
 
 
 def test_ios_modules():
@@ -246,17 +245,17 @@ def test_ios_modules():
     for release in releases_info:
         main.check_latest_ios_release(coll, copy.deepcopy(stored_data), release, lat_ios_ver)
 
-    tweet_format = format_tweet.top_ios_modules(coll["ios_release"])
+    post_format = format_post.top_ios_modules(coll["ios_release"])
 
-    assert tweet_format == example_file["ios_modules_tweet"]
+    assert post_format == example_file["ios_modules_post"]
 
 
 def test_entry_changes():
     releases_info = convert_to_release_test_class(example_file["entry_changes_info"])
 
-    tweet_format = format_tweet.entry_changes(releases_info)
+    post_format = format_post.entry_changes(releases_info)
 
-    assert tweet_format == example_file["entry_changes_tweet"]
+    assert post_format == example_file["entry_changes_post"]
 
 
 def test_security_content_soon():
@@ -290,21 +289,21 @@ def test_security_content_available():
 
     main.check_if_sec_content_available(coll, stored_data, releases_info)
 
-    tweet_format = format_tweet.security_content_available(coll["sec_content_available"])
+    post_format = format_post.security_content_available(coll["sec_content_available"])
 
-    assert tweet_format == example_file["security_content_available_tweet"]
+    assert post_format == example_file["security_content_available_post"]
     assert stored_data["details_available_soon"] == []
 
 
 def test_yearly_report():
     for system, version in latest_versions.items():
-        tweet_format = format_tweet.yearly_report(
+        post_format = format_post.yearly_report(
             convert_to_lxml_class(example_file["last_one_year_table"]),
             system,
             version[0],
         )
 
-        assert tweet_format[0] == example_file["yearly_report_" + system + "_tweet"][0]
+        assert post_format[0] == example_file["yearly_report_" + system + "_post"][0]
 
 
 def test_zero_day():
@@ -317,9 +316,9 @@ def test_zero_day():
 
     main.check_for_zero_day_releases(coll, copy.deepcopy(stored_data))
 
-    tweet_format = format_tweet.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
+    post_format = format_post.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
 
-    assert tweet_format == example_file["zero_day_releases_tweet"]
+    assert post_format == example_file["zero_day_releases_post"]
 
 
 def test_zero_day_new_old():
@@ -330,9 +329,9 @@ def test_zero_day_new_old():
 
     main.check_for_zero_day_releases(coll, copy.deepcopy(stored_data))
 
-    tweet_format = format_tweet.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
+    post_format = format_post.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
 
-    assert tweet_format == example_file["zero_day_releases_new_old_tweet"]
+    assert post_format == example_file["zero_day_releases_new_old_post"]
 
 
 def test_zero_day_new():
@@ -343,9 +342,9 @@ def test_zero_day_new():
 
     main.check_for_zero_day_releases(coll, copy.deepcopy(stored_data))
 
-    tweet_format = format_tweet.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
+    post_format = format_post.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
 
-    assert tweet_format == example_file["zero_day_releases_new_tweet"]
+    assert post_format == example_file["zero_day_releases_new_post"]
 
 
 def test_zero_day_old():
@@ -356,6 +355,6 @@ def test_zero_day_old():
 
     main.check_for_zero_day_releases(coll, copy.deepcopy(stored_data))
 
-    tweet_format = format_tweet.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
+    post_format = format_post.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
 
-    assert tweet_format == example_file["zero_day_releases_old_tweet"]
+    assert post_format == example_file["zero_day_releases_old_post"]

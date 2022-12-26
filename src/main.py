@@ -3,7 +3,7 @@ import sys
 import lxml.html
 import requests
 
-import format_tweet
+import format_post
 import gather_info
 import get_date
 import json_file
@@ -31,18 +31,18 @@ def check_latest_ios_release(coll: dict, stored_data: dict, release: Release, la
     """
     If the latest iOS series (currently iOS 16) got a new release.
 
-    Do not tweet if all bugs are zero-days, as does are already in a tweet.
+    Do not post if all bugs are zero-days, as does are already in a post.
     """
     if (
         "iOS" in release.get_name()
         and lat_ios_ver in release.get_name()
-        and release.get_name() not in stored_data["tweeted_today"]["ios_modules"]
+        and release.get_name() not in stored_data["posted_today"]["ios_modules"]
         and release.get_security_content_link() != ""
         and release.get_num_of_bugs() != len(release.get_zero_days())
     ):
         coll["ios_release"].append(release)
 
-        stored_data["tweeted_today"]["ios_modules"] = release.get_name()
+        stored_data["posted_today"]["ios_modules"] = release.get_name()
 
 
 def save_sec_content_no_details_yet(stored_data: dict, release: Release) -> None:
@@ -82,10 +82,10 @@ def check_new_releases(coll: dict, stored_data: dict, latest_versions: dict, new
     latest_ios_ver = str(latest_versions["iOS"][0])
 
     for release in new_releases_info:
-        if release.get_name() not in stored_data["tweeted_today"]["new_updates"]:
+        if release.get_name() not in stored_data["posted_today"]["new_updates"]:
             coll["new_releases"].append(release)
 
-            stored_data["tweeted_today"]["new_updates"].append(release.get_name())
+            stored_data["posted_today"]["new_updates"].append(release.get_name())
 
         if "iOS" in release.get_name():
             check_latest_ios_release(coll, stored_data, release, latest_ios_ver)
@@ -103,11 +103,11 @@ def check_for_zero_day_releases(coll: dict, stored_data: dict) -> None:
     for release in check_tmp:
         if (
             release.get_num_of_zero_days() > 0
-            and release.get_name() not in stored_data["tweeted_today"]["zero_days"].keys()
+            and release.get_name() not in stored_data["posted_today"]["zero_days"].keys()
         ):
             coll["zero_day_releases"].append(release)
 
-            stored_data["tweeted_today"]["zero_days"][release.get_name()] = release.get_num_of_zero_days()
+            stored_data["posted_today"]["zero_days"][release.get_name()] = release.get_num_of_zero_days()
 
 
 def check_for_entry_changes(coll: dict, all_releases: list) -> None:
@@ -132,10 +132,10 @@ def check_for_yearly_report(coll: dict, stored_data: dict, latest_versions: dict
     in the last 4 major series releases.
     """
     for key, value in latest_versions.items():
-        if key in stored_data["tweeted_today"]["yearly_report"]:
+        if key in stored_data["posted_today"]["yearly_report"]:
             return
 
-        stored_data["tweeted_today"]["yearly_report"].append(key)
+        stored_data["posted_today"]["yearly_report"].append(key)
 
         for release in coll["new_releases"]:
             if release.get_name() in (f"{key} {value[0]}", f"{key} {value[0]}.0"):
@@ -182,23 +182,23 @@ def main():
     # check_for_yearly_report(coll, stored_data, latest_versions) # DISABLED AS NOT TESTED ENOUGH
 
     if coll["ios_release"]:
-        post(format_tweet.top_ios_modules(coll["ios_release"]))
+        post(format_post.top_ios_modules(coll["ios_release"]))
 
     if coll["zero_day_releases"]:
-        post(format_tweet.zero_days(coll["zero_day_releases"], stored_data))
+        post(format_post.zero_days(coll["zero_day_releases"], stored_data))
 
     if coll["changed_releases"]:
-        post(format_tweet.entry_changes(coll["changed_releases"]))
+        post(format_post.entry_changes(coll["changed_releases"]))
 
     if coll["sec_content_available"]:
-        post(format_tweet.security_content_available(coll["sec_content_available"]))
+        post(format_post.security_content_available(coll["sec_content_available"]))
 
     # if coll["yearly_report"]:
-    #    post(format_tweet.yearly_report(all_releases, key, value[0]))
+    #    post(format_post.yearly_report(all_releases, key, value[0]))
 
-    # new updates should be tweeted last, after all of the other tweets
+    # new updates should be posted last, after all of the other posts
     if coll["new_releases"]:
-        post(format_tweet.new_updates(coll["new_releases"]))
+        post(format_post.new_updates(coll["new_releases"]))
 
     json_file.save(stored_data)
 

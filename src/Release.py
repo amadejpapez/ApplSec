@@ -207,7 +207,7 @@ class Release:
     def set_num_entries_changed(self, sec_content_page: str) -> None:
         """
         Return if any entries were added or updated.
-        Tweet is made at the start of each day for any changes made on the previous day.
+        Post is made at the start of each day for any changes made on the previous day.
         """
 
         date_format_two = get_date.format_two()
