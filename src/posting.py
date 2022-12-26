@@ -14,7 +14,7 @@ TWITTER_API = tweepy.Client(
     consumer_secret=KEYS["Twitter_ApplSec"]["api_key_secret"],
     access_token=KEYS["Twitter_ApplSec"]["access_token"],
     access_token_secret=KEYS["Twitter_ApplSec"]["access_token_secret"],
-    return_type=dict,
+    return_type=type(dict),
 )
 
 MASTODON_API = {
@@ -22,51 +22,25 @@ MASTODON_API = {
 }
 
 
-def join_or_split(arranged: list, item: str, MAX_CHAR: int) -> None:
-    """
-    If character limit is reached, add it as a new thread post. Else join.
-    """
-
-    if len(emoji.emojize(arranged[-1] + item, language="alias")) < MAX_CHAR:
-        arranged[-1] += item
-    else:
-        arranged.append(item)
-
-
 def arrange_post(results: list, MAX_CHAR: int) -> list:
     """
     ["1", "2", "3", "4", "5", "6", "7"]
 
-    This is how the passed in post and returned post look like. This is one
-    thread and each element represents a post inside of it.
+    Accepts and returns a list of strings. Each element represents a "section"
+    inside of a post.
 
-    Passed in list is not yet correctly sorted as it does not respect the
-    character limits per post. That is this function's job to take care of.
+    Function evaluates each element's length. If element can be fully added
+    to the previous one and still respect the character limit, it will do that.
 
-    Each element gets evaluated and if it exceeds the character limit, it
-    will be split into more posts. If it has less, it will be joined together
-    with previous text, if possible.
-
-    ["1", "2", "3", ["4", "5"], ["6", "7"]]
-
-    To prevent joining, you can already pass in a list instead of a string. The
-    list element will then strictly start in a new post inside of a thread and
-    will not be joined with the text before.
+    At return each element represents a post inside of a thread.
     """
-
     arranged = [""]
 
     for item in results:
-        if isinstance(item, list):
-            arranged.append("")
-
-            for elem in item:
-                join_or_split(arranged, elem, MAX_CHAR)
-
+        if len(emoji.emojize(arranged[-1] + item, language="alias")) < MAX_CHAR:
+            arranged[-1] += item
         else:
-            join_or_split(arranged, item, MAX_CHAR)
-
-    arranged = list(filter(None, arranged))
+            arranged.append(item)
 
     return arranged
 
