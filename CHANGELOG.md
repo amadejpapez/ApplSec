@@ -1,12 +1,18 @@
 # Changelog
 
-## [Unreleased]
+## [13.0] - 2022-12-26
+
+### Added
+
+- bot is now also available on Mastodon
 
 ### Changed
 
 - new releases are now sorted by the number of bugs, so release with the most bug fixes is now at the top
-- updated wording "zero-day may have been actively exploited" to align with Apple's wording
-- updated tweet wordings
+- update wording "zero-day may have been actively exploited" to align with Apple's wording
+- re-format zero-day tweet to make more clear which zero-days are new, old and what zero-days are in each release
+- update multiple tweet wordings
+- also sort releases by number of bugs/changes in Security Content Available and Entry Changes
 
 ### Fixed
 
@@ -14,9 +20,14 @@
 
 ### Code
 
-- refactoring, make a Release class
-- add type hints
+- use lxml package for more html parsing, rely less on regex
+- make a Release class
+- do not request all data of the last 20 releases at every run
+- a lot of other code changes and moving around
+- better testing
+- use type hints
 - add CHANGELOG.md
+- add Dependabot
 
 ## [12.0] - 2022-02-11
 
