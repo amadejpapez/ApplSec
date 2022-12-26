@@ -116,12 +116,10 @@ def check_for_entry_changes(coll: dict, all_releases_rows: list) -> None:
     Because of checking so many releases and to not make too much requests,
     it is only doing this once per day.
     """
-    all_releases_info = []
 
     for row in all_releases_rows:
-        all_releases_info.append(Release(row))
+        release = Release(row)
 
-    for release in all_releases_info:
         if release.get_num_entries_added() > 0 or release.get_num_entries_updated() > 0:
             coll["changed_releases"].append(release)
 
