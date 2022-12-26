@@ -19,12 +19,12 @@ def retrieve_main_page() -> list:
     )
 
     table = main_page.xpath("//table/tbody")[0].findall("tr")
-    all_releases = []
+    all_releases_rows = []
 
     for row in table[1:]:
-        all_releases.append(list(row.getchildren()))
+        all_releases_rows.append(list(row.getchildren()))
 
-    return all_releases
+    return all_releases_rows
 
 
 def check_latest_ios_release(coll: dict, stored_data: dict, release: Release, lat_ios_ver: str) -> None:
@@ -57,18 +57,18 @@ def save_sec_content_no_details_yet(stored_data: dict, release: Release) -> None
         stored_data["details_available_soon"].append(release.get_name())
 
 
-def check_if_sec_content_available(coll: dict, stored_data: dict, all_releases: list) -> None:
+def check_if_sec_content_available(coll: dict, stored_data: dict, all_releases_rows: list) -> None:
     """
     Check if any releases that said "no details yet", got security content available now.
     """
     checked = 0
     must_check = len(stored_data["details_available_soon"])
 
-    for release in all_releases:
+    for row in all_releases_rows:
         if checked == must_check:
             break
 
-        release_obj = Release(release)
+        release_obj = Release(row)
 
         if release_obj.get_name() in stored_data["details_available_soon"]:
             if release_obj.get_security_content_link() != "":
@@ -78,10 +78,10 @@ def check_if_sec_content_available(coll: dict, stored_data: dict, all_releases: 
             checked += 1
 
 
-def check_new_releases(coll: dict, stored_data: dict, latest_versions: dict, new_releases_info: list) -> None:
+def check_new_releases(coll: dict, stored_data: dict, latest_versions: dict, new_releases: list) -> None:
     latest_ios_ver = str(latest_versions["iOS"][0])
 
-    for release in new_releases_info:
+    for release in new_releases:
         if release.get_name() not in stored_data["posted_today"]["new_updates"]:
             coll["new_releases"].append(release)
 
@@ -110,7 +110,7 @@ def check_for_zero_day_releases(coll: dict, stored_data: dict) -> None:
             stored_data["posted_today"]["zero_days"][release.get_name()] = release.get_num_of_zero_days()
 
 
-def check_for_entry_changes(coll: dict, all_releases: list) -> None:
+def check_for_entry_changes(coll: dict, all_releases_rows: list) -> None:
     """
     On midnight check for security content changes made on the previous day.
     Because of checking so many releases and to not make too much requests,
@@ -118,7 +118,7 @@ def check_for_entry_changes(coll: dict, all_releases: list) -> None:
     """
     all_releases_info = []
 
-    for row in all_releases:
+    for row in all_releases_rows:
         all_releases_info.append(Release(row))
 
     for release in all_releases_info:
@@ -152,16 +152,16 @@ def check_for_yearly_report(coll: dict, stored_data: dict, latest_versions: dict
 def main():
     date_format_one = get_date.format_one()
     stored_data = json_file.read()
-    all_releases = retrieve_main_page()
-    latest_versions = gather_info.latest_version(all_releases[:20])
+    all_releases_rows = retrieve_main_page()
+    latest_versions = gather_info.latest_version(all_releases_rows[:20])
 
-    new_releases_info = []
+    new_releases = []
 
-    for row in all_releases:
+    for row in all_releases_rows:
         if (row[2].text_content() != date_format_one):
             break
 
-        new_releases_info.append(Release(row))
+        new_releases.append(Release(row))
 
     coll = {
         "new_releases": [],
@@ -172,12 +172,12 @@ def main():
         "yearly_report": [],
     }
 
-    check_new_releases(coll, stored_data, latest_versions, new_releases_info)
+    check_new_releases(coll, stored_data, latest_versions, new_releases)
     check_for_zero_day_releases(coll, stored_data)
-    check_if_sec_content_available(coll, stored_data, all_releases)
+    check_if_sec_content_available(coll, stored_data, all_releases_rows)
 
     if get_date.is_midnight():
-        check_for_entry_changes(coll, all_releases)
+        check_for_entry_changes(coll, all_releases_rows)
 
     # check_for_yearly_report(coll, stored_data, latest_versions) # DISABLED AS NOT TESTED ENOUGH
 

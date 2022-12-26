@@ -16,8 +16,8 @@ def latest_version(release_rows: list) -> dict:
     }
 
     release_names = []
-    for rel in release_rows:
-        release_names.append(rel[0].text_content())
+    for row in release_rows:
+        release_names.append(row[0].text_content())
 
     for key, value in versions.items():
         search = re.findall(rf"(?i){key}[a-z\s]*\s([0-9]+)", str(release_names))
@@ -43,8 +43,8 @@ def latest_four_versions(system: str, version: int, release_rows: list) -> Tuple
     versions = []
 
     release_names = []
-    for rel in release_rows:
-        release_names.append(rel[0].text_content())
+    for row in release_rows:
+        release_names.append(row[0].text_content())
 
     if system == "macOS":
         # macOS versions are hard coded

@@ -99,8 +99,8 @@ class ReleaseTest:
         )
 
 
-def compare(releases_info, example):
-    for release, (_, expected) in zip(releases_info, example.items()):
+def compare(release_obj, example):
+    for release, (_, expected) in zip(release_obj, example.items()):
         assert release.get_name() == expected["name"]
         assert release.get_emoji() == expected["emoji"], release.get_name()
         assert release.get_security_content_link() == expected["security_content_link"], release.get_name()
@@ -126,12 +126,12 @@ def convert_to_lxml_class(release_rows: list) -> list:
 
 
 def convert_to_release_class(release_rows: list) -> list:
-    releases_info = []
+    releases_obj = []
 
     for row in convert_to_lxml_class(release_rows):
-        releases_info.append(Release(row))
+        releases_obj.append(Release(row))
 
-    return releases_info
+    return releases_obj
 
 
 def convert_to_release_test_class(release_info: dict) -> list:
@@ -171,10 +171,10 @@ def test_release_class():
     """
 
     releases = example_file["last_one_year_table"]
-    releases_info = convert_to_release_class(releases)
+    releases_obj = convert_to_release_class(releases)
 
     # check if Release returned the correct number of releases
-    assert len(releases) == len(list(releases_info))
+    assert len(releases) == len(list(releases_obj))
 
     # check if titles match
     # useful for seeing which ones are missing if the above assert fails
@@ -192,30 +192,30 @@ def test_release_class():
             title = title.split(",", 1)[0].strip()
             title += " and older"
 
-        assert title == releases_info[i].get_name()
+        assert title == releases_obj[i].get_name()
 
 
 def test_release_class_2():
-    releases_info = convert_to_release_class(example_file["release_rows_table"])
+    releases_obj = convert_to_release_class(example_file["release_rows_table"])
 
-    compare(releases_info, example_file["release_rows_info"])
+    compare(releases_obj, example_file["release_rows_info"])
 
     coll["new_releases"] = []
 
-    main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_info)
+    main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_obj)
 
     post_format = format_post.new_updates(coll["new_releases"])
 
     assert post_format == example_file["release_rows_post"]
 
 def test_new_updates():
-    releases_info = convert_to_release_class(example_file["new_releases_table"])
+    releases_obj = convert_to_release_class(example_file["new_releases_table"])
 
-    compare(releases_info, example_file["new_releases_info"])
+    compare(releases_obj, example_file["new_releases_info"])
 
     coll["new_releases"] = []
 
-    main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_info)
+    main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_obj)
 
     post_format = format_post.new_updates(coll["new_releases"])
 
@@ -223,11 +223,11 @@ def test_new_updates():
 
 
 def test_new_updates_only_one():
-    releases_info = convert_to_release_class(example_file["new_releases_one_table"])
+    releases_obj = convert_to_release_class(example_file["new_releases_one_table"])
 
     coll["new_releases"] = []
 
-    main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_info)
+    main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_obj)
 
     post_format = format_post.new_updates(coll["new_releases"])
 
@@ -235,14 +235,14 @@ def test_new_updates_only_one():
 
 
 def test_ios_modules():
-    releases_info = convert_to_release_class(example_file["ios_modules_table"])
+    releases_obj = convert_to_release_class(example_file["ios_modules_table"])
 
-    compare(releases_info, example_file["ios_modules_info"])
+    compare(releases_obj, example_file["ios_modules_info"])
 
     lat_ios_ver = str(latest_versions["iOS"][0])
     coll["ios_release"] = []
 
-    for release in releases_info:
+    for release in releases_obj:
         main.check_latest_ios_release(coll, copy.deepcopy(stored_data), release, lat_ios_ver)
 
     post_format = format_post.top_ios_modules(coll["ios_release"])
@@ -251,17 +251,17 @@ def test_ios_modules():
 
 
 def test_entry_changes():
-    releases_info = convert_to_release_test_class(example_file["entry_changes_info"])
+    releases_obj = convert_to_release_test_class(example_file["entry_changes_info"])
 
-    post_format = format_post.entry_changes(releases_info)
+    post_format = format_post.entry_changes(releases_obj)
 
     assert post_format == example_file["entry_changes_post"]
 
 
 def test_security_content_soon():
-    releases_info = convert_to_release_test_class(example_file["security_content_soon_info"])
+    releases_obj = convert_to_release_test_class(example_file["security_content_soon_info"])
 
-    for release in releases_info:
+    for release in releases_obj:
         main.save_sec_content_no_details_yet(stored_data, release)
 
     assert (
@@ -270,9 +270,9 @@ def test_security_content_soon():
     )
 
     # test if result is the same when same data comes in the next time
-    releases_info = convert_to_release_test_class(example_file["security_content_soon_info"])
+    releases_obj = convert_to_release_test_class(example_file["security_content_soon_info"])
 
-    for release in releases_info:
+    for release in releases_obj:
         main.save_sec_content_no_details_yet(stored_data, release)
 
     assert (
@@ -282,12 +282,12 @@ def test_security_content_soon():
 
 
 def test_security_content_available():
-    releases_info = convert_to_lxml_class(example_file["security_content_available_info"])
+    releases_rows = convert_to_lxml_class(example_file["security_content_available_info"])
 
     stored_data["details_available_soon"] = example_file["security_content_soon_file"]
     coll["sec_content_available"] = []
 
-    main.check_if_sec_content_available(coll, stored_data, releases_info)
+    main.check_if_sec_content_available(coll, stored_data, releases_rows)
 
     post_format = format_post.security_content_available(coll["sec_content_available"])
 
@@ -307,12 +307,12 @@ def test_yearly_report():
 
 
 def test_zero_day():
-    releases_info = convert_to_release_class(example_file["zero_day_releases_table"])
-    coll["new_releases"] = releases_info
+    releases_obj = convert_to_release_class(example_file["zero_day_releases_table"])
+    coll["new_releases"] = releases_obj
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
 
-    compare(releases_info, example_file["zero_day_releases_info"])
+    compare(releases_obj, example_file["zero_day_releases_info"])
 
     main.check_for_zero_day_releases(coll, copy.deepcopy(stored_data))
 
@@ -322,8 +322,8 @@ def test_zero_day():
 
 
 def test_zero_day_new_old():
-    releases_info = convert_to_release_test_class(example_file["zero_day_releases_new_old_info"])
-    coll["new_releases"] = releases_info
+    releases_obj = convert_to_release_test_class(example_file["zero_day_releases_new_old_info"])
+    coll["new_releases"] = releases_obj
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
 
@@ -335,8 +335,8 @@ def test_zero_day_new_old():
 
 
 def test_zero_day_new():
-    releases_info = convert_to_release_test_class(example_file["zero_day_releases_new_info"])
-    coll["new_releases"] = releases_info
+    releases_obj = convert_to_release_test_class(example_file["zero_day_releases_new_info"])
+    coll["new_releases"] = releases_obj
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
 
@@ -348,8 +348,8 @@ def test_zero_day_new():
 
 
 def test_zero_day_old():
-    releases_info = convert_to_release_test_class(example_file["zero_day_releases_old_info"])
-    coll["new_releases"] = releases_info
+    releases_obj = convert_to_release_test_class(example_file["zero_day_releases_old_info"])
+    coll["new_releases"] = releases_obj
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
 

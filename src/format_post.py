@@ -7,7 +7,7 @@ import gather_info
 from Release import Release
 
 
-def new_updates(releases_info: list) -> list:
+def new_updates(releases: list) -> list:
     """
     -----
     💥 NEW UPDATES RELEASED 💥
@@ -23,19 +23,19 @@ def new_updates(releases_info: list) -> list:
     """
     post_text = []
 
-    releases_info.sort(key=lambda x: x.get_num_of_bugs(), reverse=True)
+    releases.sort(key=lambda x: x.get_num_of_bugs(), reverse=True)
 
-    for release in releases_info:
+    for release in releases:
         post_text.append(
             f"{release.get_emoji()} {release.get_name()} - {release.get_format_num_of_bugs()}\n"
         )
 
-    if len(releases_info) == 1:
+    if len(releases) == 1:
         post_text.insert(0, ":collision: NEW UPDATE RELEASED :collision:\n\n")
 
-        if releases_info[0].get_security_content_link():
+        if releases[0].get_security_content_link():
             # if there is only one release, add its notes as a link
-            post_text.append(releases_info[0].get_security_content_link())
+            post_text.append(releases[0].get_security_content_link())
     else:
         post_text.insert(0, ":collision: NEW UPDATES RELEASED :collision:\n\n")
         post_text.append("https://support.apple.com/en-us/HT201222")
@@ -43,7 +43,7 @@ def new_updates(releases_info: list) -> list:
     return post_text
 
 
-def top_ios_modules(releases_info: list) -> list:
+def top_ios_modules(releases: list) -> list:
     """
     -----------------------------
     ⚒ FIXED IN iOS 14.7 ⚒
@@ -58,7 +58,7 @@ def top_ios_modules(releases_info: list) -> list:
     """
     post_text = []
 
-    for release in releases_info:
+    for release in releases:
         sec_content_html = requests.get(release.get_security_content_link(), timeout=60).text
         sec_content_html = sec_content_html.split("Additional recognition", 1)[0]
 
@@ -135,7 +135,7 @@ def get_zero_days_start_text(zero_days: dict) -> str:
     return text
 
 
-def zero_days(releases_info: list, stored_data: dict) -> list:
+def zero_days(releases: list, stored_data: dict) -> list:
     """
     -----
     📣 EMERGENCY UPDATES 📣
@@ -158,7 +158,7 @@ def zero_days(releases_info: list, stored_data: dict) -> list:
     """
     zero_days = {}
 
-    for release in releases_info:
+    for release in releases:
         for cve, module in release.get_zero_days().items():
             if not zero_days.get(cve):
                 zero_days[cve] = {"status": "old", "module": module, "releases": [release.get_name()]}
@@ -191,7 +191,7 @@ def zero_days(releases_info: list, stored_data: dict) -> list:
     return post_text
 
 
-def entry_changes(releases_info: list) -> list:
+def entry_changes(releases: list) -> list:
     """
     -----
     🔄 24 ENTRY CHANGES 🔄
@@ -205,12 +205,12 @@ def entry_changes(releases_info: list) -> list:
     post_text = []
     changes_count = 0
 
-    releases_info.sort(
+    releases.sort(
         key=lambda x: (x.get_num_entries_added() + x.get_num_entries_updated()),
         reverse=True,
     )
 
-    for release in releases_info:
+    for release in releases:
         name = f"{release.get_emoji()} {release.get_name()}"
 
         changes_count += release.get_num_entries_added() + release.get_num_entries_updated()
@@ -240,7 +240,7 @@ def entry_changes(releases_info: list) -> list:
     return post_text
 
 
-def security_content_available(releases_info: list) -> list:
+def security_content_available(releases: list) -> list:
     """
     -----
     🗒 SECURITY CONTENT AVAILABLE 🗒
@@ -253,13 +253,13 @@ def security_content_available(releases_info: list) -> list:
     -----
     """
 
-    releases_info.sort(key=lambda x: x.get_num_of_bugs(), reverse=True)
+    releases.sort(key=lambda x: x.get_num_of_bugs(), reverse=True)
 
     post_text = [
         ":spiral_notepad: SECURITY CONTENT AVAILABLE :spiral_notepad:\n\n",
     ]
 
-    for release in releases_info:
+    for release in releases:
         post_text.append(
             f"{release.get_emoji()} {release.get_name()} - {release.get_format_num_of_bugs()}\n"
         )
@@ -285,17 +285,17 @@ def yearly_report(release_rows: list, system: str, version: int) -> list:
     for ver in versions:
         info[ver] = {"num_of_bugs": 0, "num_of_releases": 0}
 
-        for release in release_rows:
+        for row in release_rows:
             if (
-                system in release[0].text_content()
-                and str(ver) in release[0].text_content()
+                system in row[0].text_content()
+                and str(ver) in row[0].text_content()
             ):
-                tmp = release[0].xpath('.//a/@href')
+                tmp = row[0].xpath('.//a/@href')
 
                 if tmp != []:
-                    sec_content = Release(release)
+                    release = Release(row)
 
-                    num = sec_content.get_num_of_bugs()
+                    num = release.get_num_of_bugs()
 
                     if num > 0:
                         info[ver]["num_of_bugs"] += num
