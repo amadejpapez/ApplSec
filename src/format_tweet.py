@@ -58,6 +58,7 @@ def top_ios_modules(releases_info: list) -> list:
     https://support.apple.com/kb/HT212601
     -----------------------------
     """
+    tweet_text = []
 
     for release in releases_info:
         sec_content_html = requests.get(release.get_security_content_link(), timeout=60).text
@@ -95,49 +96,43 @@ def top_ios_modules(releases_info: list) -> list:
     return tweet_text
 
 
-def get_zero_days_first_tweet(sorted_zero_days: dict) -> str:
+def get_zero_days_first_tweet(zero_days: dict) -> str:
     """Return text for the start of the zero day tweet."""
 
-    length_old = len(sorted_zero_days["old"])
-    length_new = len(sorted_zero_days["new"])
+    num_new = 0
+    num_old = 0
 
-    if length_old > 0:
-        text_old = ", ".join(sorted_zero_days["old"])
-        zero_day_module = sorted_zero_days["old"][
-            list(sorted_zero_days["old"].keys())[0]
-        ]
-
-    if length_new > 0:
-        text_new = ", ".join(sorted_zero_days["new"])
-        zero_day_module = sorted_zero_days["new"][
-            list(sorted_zero_days["new"].keys())[0]
-        ]
+    for _, value in zero_days.items():
+        if value["status"] == "new":
+            num_new += 1
+        else:
+            num_old += 1
 
     text = ""
 
-    if length_new == 1 and length_old == 0:
-        text = f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that may have been actively exploited."
+    if num_new == 1 and num_old == 0:
+        text = f"Apple pushed updates for a new zero-day that may have been actively exploited."
 
-    elif length_new == 0 and length_old == 1:
-        text = f"Apple pushed additional updates for {zero_day_module} zero-day ({text_old}) that may have been actively exploited."
+    elif num_new == 0 and num_old == 1:
+        text = f"Apple pushed additional updates for a zero-day that may have been actively exploited."
 
-    elif length_new == 1 and length_old == 1:
-        text = f"Apple pushed updates for a new {zero_day_module} zero-day ({text_new}) that may have been actively exploited and additional updates for {text_old}."
+    elif num_new == 1 and num_old == 1:
+        text = f"Apple pushed updates for a new zero-day that may have been actively exploited and additional updates for one zero-day."
 
-    elif length_new > 1 and length_old == 0:
-        text = f"Apple pushed updates for {length_new} new zero-days that may have been actively exploited."
+    elif num_new > 1 and num_old == 0:
+        text = f"Apple pushed updates for {num_new} new zero-days that may have been actively exploited."
 
-    elif length_new == 0 and length_old > 1:
-        text = f"Apple pushed additional updates for {length_old} zero-days that may have been actively exploited."
+    elif num_new == 0 and num_old > 1:
+        text = f"Apple pushed additional updates for {num_old} zero-days that may have been actively exploited."
 
-    elif length_new == 1 and length_old > 1:
-        text = f"Apple pushed updates for {length_new} new zero-day that may have been actively exploited and additional updates for {length_old} zero-days."
+    elif num_new == 1 and num_old > 1:
+        text = f"Apple pushed updates for 1 new zero-day that may have been actively exploited and additional updates for {num_old} zero-days."
 
-    elif length_new > 1 and length_old == 1:
-        text = f"Apple pushed updates for {length_new} new zero-days that may have been actively exploited and additional updates for {length_old} zero-day."
+    elif num_new > 1 and num_old == 1:
+        text = f"Apple pushed updates for {num_new} new zero-days that may have been actively exploited and additional updates for 1 zero-day."
 
     else:
-        text = f"Apple pushed updates for {length_new} new zero-days that may have been actively exploited and additional updates for {length_old} zero-days."
+        text = f"Apple pushed updates for {num_new} new zero-days that may have been actively exploited and additional updates for {num_old} zero-days."
 
     return text
 
@@ -145,57 +140,57 @@ def get_zero_days_first_tweet(sorted_zero_days: dict) -> str:
 def zero_days(releases_info: list, stored_data: dict) -> list:
     """
     -----
-    📣 EMERGENCY UPDATE 📣
+    📣 EMERGENCY UPDATES 📣
 
-    Apple pushed updates for 3 new zero-days that may have been actively exploited.
-    -----
-    🐛 ZERO-DAY DETAILS:
+    Apple pushed updates for 3 new zero-days that may have been actively exploited and additional updates for 1 zero-day.
 
-    - CVE-2021-30869 in XNU
-    - CVE-2021-30860 in CoreGraphics
-    - CVE-2021-30858 in WebKit
-    -----
-    ⚠️ PATCHES:
+    🐛 CVE-2021-30869 (XNU) additional patches:
+    - Security Update 2021-006 Catalina
+    - iOS 12.5.5
 
-    1 zero-day in Security Update 2021-006 Catalina
-    3 zero-days in iOS 12.5.5
+    🐛 CVE-2021-30860 (CoreGraphics):
+    - iOS 12.5.5
+
+    🐛 CVE-2021-31010 (Core Telephony):
+    - iOS 12.5.5
+ 
+    🐛 CVE-2021-30858 (WebKit):
+    - iOS 12.5.5
     -----
     """
-
-    tweet_text = [[], [":bug: ZERO-DAY DETAILS:\n\n"], [":warning: PATCHES:\n\n"], []]
-    zero_days_dict = {}
-    sorted_zero_days: dict = {"old": {}, "new": {}}
+    zero_days = {}
 
     for release in releases_info:
-        tweet_text[2].append(
-            f"{release.get_format_num_of_zero_days()} in {release.get_name()}\n"
-        )
-        zero_days_dict.update(release.get_zero_days())
+        for cve, module in release.get_zero_days().items():
+            if not zero_days.get(cve):
+                zero_days[cve] = {"status": "old", "module": module, "releases": [release.get_name()]}
+            else:
+                zero_days[cve]["releases"].append(release.get_name())
 
-    for key, value in zero_days_dict.items():
-        if key in stored_data["zero_days"]:
-            # if zero day is in the file, add it to "old"
-            sorted_zero_days["old"][key] = value
-        else:
-            # if zero day is not in the file, add it to file and "new"
-            sorted_zero_days["new"][key] = value
-            stored_data["zero_days"].append(key)
+            # if zero-day was not fixed in any previous releases
+            if cve not in stored_data["zero_days"]:
+                stored_data["zero_days"].append(cve)
+                zero_days[cve]["status"] = "new"
 
-        tweet_text[1].append(f"- {key} in {value}\n")
+    tweet_text = []
 
-    if len(tweet_text[2]) == 2:
-        tweet_text[0].append(":mega: EMERGENCY UPDATE :mega:\n\n")
+    if len(zero_days) == 1:
+        tweet_text.append(":mega: EMERGENCY UPDATE :mega:\n\n")
     else:
-        tweet_text[0].append(":mega: EMERGENCY UPDATES :mega:\n\n")
+        tweet_text.append(":mega: EMERGENCY UPDATES :mega:\n\n")
 
-    tweet_text[0].append(get_zero_days_first_tweet(sorted_zero_days))
+    tweet_text.append(get_zero_days_first_tweet(zero_days))
 
-    if len(sorted_zero_days["new"]) in (0, 1) and len(sorted_zero_days["old"]) in (0, 1):
-        # if CVEs are already in the first tweet, do not do a separate DETAILS tweet
-        tweet_text[1] = tweet_text[2]
-        tweet_text[2] = tweet_text[3]
+    for key, value in zero_days.items():
+        if value["status"] == "new":
+            tweet_text.append("\n\n:bug: " + key + " (" + value["module"] + "):")
+        else:
+            tweet_text.append("\n\n:bug: " + key + " (" + value["module"] + ") additional patches:")
 
-    return list(filter(None, tweet_text))
+        for release in value["releases"]:
+            tweet_text[-1] += ("\n- " + release)
+
+    return tweet_text
 
 
 def entry_changes(releases_info: list) -> list:
