@@ -33,8 +33,8 @@ def new_updates(releases: list) -> list:
     if len(releases) == 1:
         post_text.insert(0, ":collision: NEW UPDATE RELEASED :collision:\n\n")
 
+        # if there is only one release, add its notes as a link instead
         if releases[0].get_security_content_link():
-            # if there is only one release, add its notes as a link
             post_text.append(releases[0].get_security_content_link())
     else:
         post_text.insert(0, ":collision: NEW UPDATES RELEASED :collision:\n\n")
@@ -45,7 +45,7 @@ def new_updates(releases: list) -> list:
 
 def top_ios_modules(releases: list) -> list:
     """
-    -----------------------------
+    -----
     ⚒ FIXED IN iOS 14.7 ⚒
 
     - 4 bugs in WebKit
@@ -54,7 +54,7 @@ def top_ios_modules(releases: list) -> list:
     - 2 bugs in CoreAudio
     and 25 other vulnerabilities fixed
     https://support.apple.com/kb/HT212601
-    -----------------------------
+    -----
     """
     post_text = []
 
@@ -76,11 +76,12 @@ def top_ios_modules(releases: list) -> list:
 
         for key, value in modules.items():
             if len(post_text) < 5:
-                num_bugs += value
                 if value > 1:
                     post_text.append(f"- {value} bugs in {key}\n")
                 else:
                     post_text.append(f"- {value} bug in {key}\n")
+
+                num_bugs += value
 
         num_bugs = release.get_num_of_bugs() - num_bugs
 
@@ -226,15 +227,15 @@ def entry_changes(releases: list) -> list:
         elif release.get_num_entries_updated() > 0:
             post_text.append(f"{name} - {release.get_format_num_entries_updated()}\n")
 
-    if changes_count > 1:
+    if changes_count == 1:
         post_text.insert(
             0,
-            f":arrows_counterclockwise: {changes_count} ENTRY CHANGES :arrows_counterclockwise:\n\n",
+            ":arrows_counterclockwise: 1 ENTRY CHANGE :arrows_counterclockwise:\n\n",
         )
     else:
         post_text.insert(
             0,
-            ":arrows_counterclockwise: 1 ENTRY CHANGE :arrows_counterclockwise:\n\n",
+            f":arrows_counterclockwise: {changes_count} ENTRY CHANGES :arrows_counterclockwise:\n\n",
         )
 
     return post_text

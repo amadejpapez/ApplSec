@@ -116,7 +116,6 @@ def check_for_entry_changes(coll: dict, all_releases_rows: list) -> None:
     Because of checking so many releases and to not make too much requests,
     it is only doing this once per day.
     """
-
     for row in all_releases_rows:
         release = Release(row)
 

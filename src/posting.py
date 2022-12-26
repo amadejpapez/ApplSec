@@ -17,7 +17,7 @@ TWITTER_API = tweepy.Client(
     return_type=type(dict),
 )
 
-MASTODON_API = {
+MASTODON_KEYS = {
     "access_token": ("Bearer " + KEYS["Mastodon_ApplSec"]["access_token"]),
 }
 
@@ -87,7 +87,7 @@ def toot(results: list) -> None:
             response = requests.post(
                 API_URL,
                 json={"status": emoji.emojize(text, language="alias")},
-                headers={"Authorization": MASTODON_API["access_token"]},
+                headers={"Authorization": MASTODON_KEYS["access_token"]},
                 timeout=60
             )
 
@@ -100,7 +100,7 @@ def toot(results: list) -> None:
                     "status": emoji.emojize(text, language="alias"),
                     "in_reply_to_id": post_ids[-1],
                 },
-                headers={"Authorization": MASTODON_API["access_token"]},
+                headers={"Authorization": MASTODON_KEYS["access_token"]},
                 timeout=60
             )
 
