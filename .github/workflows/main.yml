@@ -6,7 +6,7 @@ on:
 
 jobs:
   setup:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check out
@@ -49,7 +49,7 @@ jobs:
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
 
           MASTODON_TEST_ACCESS_TOKEN: ${{ secrets.MASTODON_TEST_ACCESS_TOKEN }}
-        run: python main.py
+        run: python src/main.py
 
       - name: Save stored_data.json
         uses: actions/upload-artifact@v3

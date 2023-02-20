@@ -6,7 +6,7 @@ jobs:
   tests:
     name: Python 3.11
 
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check out
