@@ -5,14 +5,14 @@ import requests
 import tweepy
 
 TWITTER_API = tweepy.Client(
-    consumer_key=os.environ.get("TWITTER_API_KEY"),
-    consumer_secret=os.environ.get("TWITTER_API_KEY_SECRET"),
-    access_token=os.environ.get("TWITTER_ACCESS_TOKEN"),
-    access_token_secret=os.environ.get("TWITTER_ACCESS_TOKEN_SECRET"),
+    consumer_key=os.environ.get("TWITTER_TEST_API_KEY"),
+    consumer_secret=os.environ.get("TWITTER_TEST_API_KEY_SECRET"),
+    access_token=os.environ.get("TWITTER_TEST_ACCESS_TOKEN"),
+    access_token_secret=os.environ.get("TWITTER_TEST_ACCESS_TOKEN_SECRET"),
     return_type=type(dict),
 )
 
-MASTODON_KEY = "Bearer " + os.environ.get("MASTODON_ACCESS_TOKEN", "")
+MASTODON_KEY = "Bearer " + os.environ.get("MASTODON_TEST_ACCESS_TOKEN", "")
 
 
 def arrange_post(results: list, MAX_CHAR: int) -> list:
