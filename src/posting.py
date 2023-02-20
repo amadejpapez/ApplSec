@@ -5,16 +5,14 @@ import requests
 import tweepy
 
 TWITTER_API = tweepy.Client(
-    consumer_key=os.environ.get("Twitter_api_key"),
-    consumer_secret=os.environ.get("Twitter_api_key_secret"),
-    access_token=os.environ.get("Twitter_access_token"),
-    access_token_secret=os.environ.get("Twitter_access_token_secret"),
+    consumer_key=os.environ.get("TWITTER_API_KEY"),
+    consumer_secret=os.environ.get("TWITTER_API_KEY_SECRET"),
+    access_token=os.environ.get("TWITTER_ACCESS_TOKEN"),
+    access_token_secret=os.environ.get("TWITTER_ACCESS_TOKEN_SECRET"),
     return_type=type(dict),
 )
 
-MASTODON_KEYS = {
-    "access_token": ("Bearer " + os.environ.get("Mastodon_access_token", "")),
-}
+MASTODON_KEY = "Bearer " + os.environ.get("MASTODON_ACCESS_TOKEN", "")
 
 
 def arrange_post(results: list, MAX_CHAR: int) -> list:
@@ -70,7 +68,6 @@ def toot(results: list) -> None:
     """Handle posting to Mastodon."""
     MAX_CHAR = 500
     API_URL = "https://mastodon.social/api/v1/statuses"
-    # API_URL = "https://mas.to/api/v1/statuses"  # TEST ACCOUNT
 
     posts_list = arrange_post(results, MAX_CHAR)
 
@@ -82,7 +79,7 @@ def toot(results: list) -> None:
             response = requests.post(
                 API_URL,
                 json={"status": emoji.emojize(text, language="alias")},
-                headers={"Authorization": MASTODON_KEYS["access_token"]},
+                headers={"Authorization": MASTODON_KEY},
                 timeout=60
             )
 
@@ -95,7 +92,7 @@ def toot(results: list) -> None:
                     "status": emoji.emojize(text, language="alias"),
                     "in_reply_to_id": post_ids[-1],
                 },
-                headers={"Authorization": MASTODON_KEYS["access_token"]},
+                headers={"Authorization": MASTODON_KEY},
                 timeout=60
             )
 
