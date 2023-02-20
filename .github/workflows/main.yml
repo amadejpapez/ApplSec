@@ -29,10 +29,12 @@ jobs:
           timezoneLinux: "Europe/Berlin"
 
       - name: Download stored_data.json
-        uses: actions/download-artifact@v3
+        uses: dawidd6/action-download-artifact@v2
         with:
+          workflow: main.yml
           name: stored_data_json
-          path: src/stored_data.json
+          path: src/
+          if_no_artifact_found: fail
 
       - name: ApplSec bot
         env:
