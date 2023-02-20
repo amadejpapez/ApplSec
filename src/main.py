@@ -1,5 +1,3 @@
-import sys
-
 import lxml.html
 import requests
 
@@ -7,10 +5,8 @@ import format_post
 import gather_info
 import get_date
 import json_file
+from posting import post
 from Release import Release
-
-if "pytest" not in sys.modules:
-    from posting import post
 
 
 def retrieve_main_page() -> list:

@@ -1,24 +1,19 @@
-import json
 import os
 
 import emoji
 import requests
 import tweepy
 
-LOC = os.path.abspath(os.path.join(__file__, "../../../auth_secrets.json"))
-with open(LOC, "r", encoding="utf-8") as auth_file:
-    KEYS = json.load(auth_file)
-
 TWITTER_API = tweepy.Client(
-    consumer_key=KEYS["Twitter_ApplSec"]["api_key"],
-    consumer_secret=KEYS["Twitter_ApplSec"]["api_key_secret"],
-    access_token=KEYS["Twitter_ApplSec"]["access_token"],
-    access_token_secret=KEYS["Twitter_ApplSec"]["access_token_secret"],
+    consumer_key=os.environ.get("Twitter_api_key"),
+    consumer_secret=os.environ.get("Twitter_api_key_secret"),
+    access_token=os.environ.get("Twitter_access_token"),
+    access_token_secret=os.environ.get("Twitter_access_token_secret"),
     return_type=type(dict),
 )
 
 MASTODON_KEYS = {
-    "access_token": ("Bearer " + KEYS["Mastodon_ApplSec"]["access_token"]),
+    "access_token": ("Bearer " + os.environ.get("Mastodon_access_token", "")),
 }
 
 
