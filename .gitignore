@@ -3,4 +3,4 @@ __pycache__
 .pytest_cache
 .vscode
 
-stored_data.json
+posted_data.json

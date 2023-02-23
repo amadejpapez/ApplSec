@@ -3,7 +3,7 @@ import requests
 
 import helpers.get_date as get_date
 import helpers.get_version_info as get_version_info
-import helpers.json_file as json_file
+import helpers.posted_data as posted_data
 import post_format
 from post_make import post
 from Release import Release
@@ -144,7 +144,7 @@ def check_for_yearly_report(coll: dict, stored_data: dict, latest_versions: dict
 
 def main():
     date_format_one = get_date.format_one()
-    stored_data = json_file.read()
+    posted_data_json = posted_data.read()
     all_releases_rows = retrieve_main_page()
     latest_versions = get_version_info.latest(all_releases_rows[:20])
 
@@ -165,20 +165,20 @@ def main():
         "yearly_report": [],
     }
 
-    check_new_releases(coll, stored_data, latest_versions, new_releases)
-    check_for_zero_day_releases(coll, stored_data)
-    check_if_sec_content_available(coll, stored_data, all_releases_rows)
+    check_new_releases(coll, posted_data_json, latest_versions, new_releases)
+    check_for_zero_day_releases(coll, posted_data_json)
+    check_if_sec_content_available(coll, posted_data_json, all_releases_rows)
 
     if get_date.is_midnight():
         check_for_entry_changes(coll, all_releases_rows)
 
-    # check_for_yearly_report(coll, stored_data, latest_versions) # DISABLED AS NOT TESTED ENOUGH
+    # check_for_yearly_report(coll, posted_data_json, latest_versions) # DISABLED AS NOT TESTED ENOUGH
 
     if coll["ios_release"]:
         post(post_format.top_ios_modules(coll["ios_release"]))
 
     if coll["zero_day_releases"]:
-        post(post_format.zero_days(coll["zero_day_releases"], stored_data))
+        post(post_format.zero_days(coll["zero_day_releases"], posted_data_json))
 
     if coll["changed_releases"]:
         post(post_format.entry_changes(coll["changed_releases"]))
@@ -193,7 +193,7 @@ def main():
     if coll["new_releases"]:
         post(post_format.new_updates(coll["new_releases"]))
 
-    json_file.save(stored_data)
+    posted_data.save(posted_data_json)
 
 
 if __name__ == "__main__":

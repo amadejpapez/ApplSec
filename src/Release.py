@@ -1,7 +1,7 @@
 """
-Gather all data about given releases from Apple's website.
+Class and functions for organizing data for the individual release.
 
-Input format, list of lxml.html.HtmlElement (release row on the initial Security page):
+Input format is a list of lxml.html.HtmlElement (release row on the initial Security page):
 -----
 [
     [

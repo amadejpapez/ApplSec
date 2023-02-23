@@ -7,8 +7,8 @@ def current_date() -> datetime.date:
 
 def check_date() -> datetime.date:
     """
-    On midnight, do checks with the previous date,
-    to not miss any changes made between 11pm and 12pm.
+    If midnight, return the previous day's date as the bot at that
+    time has to check for any changes between 11pm and 12pm.
     """
 
     if is_midnight():

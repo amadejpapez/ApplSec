@@ -148,7 +148,7 @@ LOC = os.path.abspath(os.path.join(__file__, "../examples.json"))
 with open(LOC, "r", encoding="utf-8") as my_file:
     example_file = json.load(my_file)
 
-stored_data = copy.deepcopy(example_file["stored_data"])
+stored_data = copy.deepcopy(example_file["posted_data"])
 
 latest_versions = get_version_info.latest(
     convert_to_lxml_class(example_file["last_one_year_table"][:50])
