@@ -16,7 +16,7 @@ TWITTER_API_TEST = tweepy.Client(
 MASTODON_KEY_TEST = "Bearer " + os.environ.get("MASTODON_TEST_ACCESS_TOKEN", "")
 
 
-@pytest.mark.posting
+@pytest.mark.skip
 def test_mastodon_posting():
     API_URL = "https://mas.to/api/v1/statuses"
 
@@ -40,7 +40,7 @@ def test_mastodon_posting():
     assert response_d.status_code == 200
 
 
-@pytest.mark.posting
+@pytest.mark.skip
 def test_twitter_posting():
     response_c = TWITTER_API_TEST.create_tweet(
         text="THIS IS A TEST",
