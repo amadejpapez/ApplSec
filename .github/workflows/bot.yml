@@ -23,9 +23,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: Set Timezone to Berlin
-        uses: szenius/set-timezone@v1.1
-        with:
-          timezoneLinux: "Europe/Berlin"
+        run: |
+          sudo timedatectl set-timezone "Europe/Berlin"
 
       - name: Download posted_data.json
         run: |
