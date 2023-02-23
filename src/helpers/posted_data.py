@@ -16,7 +16,6 @@ LOC = os.path.abspath(os.path.join(__file__, "../posted_data.json"))
 FILE_STRUCTURE = {
     "zero_days": [],
     "details_available_soon": [],
-    "todays_date": str(get_date.current_date()),
     "posted_today": {
         "new_updates": [],
         "ios_modules": "",
@@ -44,7 +43,6 @@ def read() -> dict:
 def save(new_data: dict) -> None:
     if get_date.is_midnight():
         new_data["posted_today"] = FILE_STRUCTURE["posted_today"]
-        new_data["todays_date"] = str(get_date.current_date())
 
     with open(LOC, "w", encoding="utf-8") as json_file:
         json.dump(new_data, json_file, indent=4)
