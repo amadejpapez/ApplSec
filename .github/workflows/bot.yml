@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -20,23 +20,19 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install pytest
           pip install -r requirements.txt
-      
+
       - name: Set Timezone to Berlin
         uses: szenius/set-timezone@v1.1
         with:
           timezoneLinux: "Europe/Berlin"
 
-      - name: Download stored_data.json
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow: main.yml
-          name: stored_data_json
-          path: src/
-          if_no_artifact_found: fail
+      - name: Download posted_data.json
+        run: |
+          git clone -b posted_data_json --depth 1 https://github.com/amadejpapez/ApplSec branch
+          copy branch/posted_data.json src/
 
-      - name: ApplSec bot
+      - name: Run ApplSec bot
         env:
           TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
           TWITTER_API_KEY_SECRET: ${{ secrets.TWITTER_API_KEY_SECRET }}
@@ -53,9 +49,11 @@ jobs:
           MASTODON_TEST_ACCESS_TOKEN: ${{ secrets.MASTODON_TEST_ACCESS_TOKEN }}
         run: python src/main.py
 
-      - name: Save stored_data.json
-        uses: actions/upload-artifact@v3
-        with:
-          name: stored_data_json
-          path: src/stored_data.json
-          if-no-files-found: error
+      - name: Save posted_data.json
+        run: |
+          copy src/posted_data.json branch/
+
+          git add . \
+          && git diff --staged --quiet \
+          || git commit -m "$(date "+%d-%m-%Y %T")" --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" \
+          && git push
