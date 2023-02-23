@@ -2,7 +2,7 @@ import re
 from typing import Tuple
 
 
-def latest_version(release_rows: list) -> dict:
+def latest(release_rows: list) -> dict:
     """
     Return the latest major version number for each system.
     For macOS also return its name.
@@ -34,7 +34,7 @@ def latest_version(release_rows: list) -> dict:
     return versions
 
 
-def latest_four_versions(system: str, version: int, release_rows: list) -> Tuple[str, list]:
+def latest_four(system: str, version: int, release_rows: list) -> Tuple[str, list]:
     """
     Get last four version numbers for that system.
     For macOS it gives version names instead.

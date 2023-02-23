@@ -8,7 +8,7 @@ security content available yet and data that was posted today.
 import json
 import os
 
-import get_date
+import helpers.get_date as get_date
 
 LOC = os.path.abspath(os.path.join(__file__, "../stored_data.json"))
 

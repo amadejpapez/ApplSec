@@ -1,11 +1,11 @@
 import lxml.html
 import requests
 
-import format_post
-import gather_info
-import get_date
-import json_file
-from posting import post
+import helpers.get_date as get_date
+import helpers.get_version_info as get_version_info
+import helpers.json_file as json_file
+import post_format
+from post_make import post
 from Release import Release
 
 
@@ -146,7 +146,7 @@ def main():
     date_format_one = get_date.format_one()
     stored_data = json_file.read()
     all_releases_rows = retrieve_main_page()
-    latest_versions = gather_info.latest_version(all_releases_rows[:20])
+    latest_versions = get_version_info.latest(all_releases_rows[:20])
 
     new_releases = []
 
@@ -175,23 +175,23 @@ def main():
     # check_for_yearly_report(coll, stored_data, latest_versions) # DISABLED AS NOT TESTED ENOUGH
 
     if coll["ios_release"]:
-        post(format_post.top_ios_modules(coll["ios_release"]))
+        post(post_format.top_ios_modules(coll["ios_release"]))
 
     if coll["zero_day_releases"]:
-        post(format_post.zero_days(coll["zero_day_releases"], stored_data))
+        post(post_format.zero_days(coll["zero_day_releases"], stored_data))
 
     if coll["changed_releases"]:
-        post(format_post.entry_changes(coll["changed_releases"]))
+        post(post_format.entry_changes(coll["changed_releases"]))
 
     if coll["sec_content_available"]:
-        post(format_post.security_content_available(coll["sec_content_available"]))
+        post(post_format.security_content_available(coll["sec_content_available"]))
 
     # if coll["yearly_report"]:
     #    post(format_post.yearly_report(all_releases, key, value[0]))
 
     # new updates should be posted last, after all of the other posts
     if coll["new_releases"]:
-        post(format_post.new_updates(coll["new_releases"]))
+        post(post_format.new_updates(coll["new_releases"]))
 
     json_file.save(stored_data)
 

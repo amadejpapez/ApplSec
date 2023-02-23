@@ -3,7 +3,7 @@ import re
 
 import requests
 
-import gather_info
+import helpers.get_version_info as get_version_info
 from Release import Release
 
 
@@ -280,7 +280,7 @@ def yearly_report(release_rows: list, system: str, version: int) -> list:
     -----
     """
 
-    system, versions = gather_info.latest_four_versions(system, version, release_rows)
+    system, versions = get_version_info.latest_four(system, version, release_rows)
 
     info = {}
     for ver in versions:

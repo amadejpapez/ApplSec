@@ -39,7 +39,7 @@ import re
 import lxml.html
 import requests
 
-import get_date
+import helpers.get_date as get_date
 
 
 class Release:

@@ -8,9 +8,9 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src"
 
 import lxml.html
 
-import format_post
-import gather_info
+import helpers.get_version_info as get_version_info
 import main
+import post_format
 from Release import Release
 
 
@@ -150,7 +150,7 @@ with open(LOC, "r", encoding="utf-8") as my_file:
 
 stored_data = copy.deepcopy(example_file["stored_data"])
 
-latest_versions = gather_info.latest_version(
+latest_versions = get_version_info.latest(
     convert_to_lxml_class(example_file["last_one_year_table"][:50])
 )
 
@@ -204,9 +204,9 @@ def test_release_class_2():
 
     main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_obj)
 
-    post_format = format_post.new_updates(coll["new_releases"])
+    post = post_format.new_updates(coll["new_releases"])
 
-    assert post_format == example_file["release_rows_post"]
+    assert post == example_file["release_rows_post"]
 
 def test_new_updates():
     releases_obj = convert_to_release_class(example_file["new_releases_table"])
@@ -217,9 +217,9 @@ def test_new_updates():
 
     main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_obj)
 
-    post_format = format_post.new_updates(coll["new_releases"])
+    post = post_format.new_updates(coll["new_releases"])
 
-    assert post_format == example_file["new_releases_post"]
+    assert post == example_file["new_releases_post"]
 
 
 def test_new_updates_only_one():
@@ -229,9 +229,9 @@ def test_new_updates_only_one():
 
     main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_obj)
 
-    post_format = format_post.new_updates(coll["new_releases"])
+    post = post_format.new_updates(coll["new_releases"])
 
-    assert post_format == example_file["new_releases_one_post"]
+    assert post == example_file["new_releases_one_post"]
 
 
 def test_ios_modules():
@@ -245,17 +245,17 @@ def test_ios_modules():
     for release in releases_obj:
         main.check_latest_ios_release(coll, copy.deepcopy(stored_data), release, lat_ios_ver)
 
-    post_format = format_post.top_ios_modules(coll["ios_release"])
+    post = post_format.top_ios_modules(coll["ios_release"])
 
-    assert post_format == example_file["ios_modules_post"]
+    assert post == example_file["ios_modules_post"]
 
 
 def test_entry_changes():
     releases_obj = convert_to_release_test_class(example_file["entry_changes_info"])
 
-    post_format = format_post.entry_changes(releases_obj)
+    post = post_format.entry_changes(releases_obj)
 
-    assert post_format == example_file["entry_changes_post"]
+    assert post == example_file["entry_changes_post"]
 
 
 def test_security_content_soon():
@@ -289,21 +289,21 @@ def test_security_content_available():
 
     main.check_if_sec_content_available(coll, stored_data, releases_rows)
 
-    post_format = format_post.security_content_available(coll["sec_content_available"])
+    post = post_format.security_content_available(coll["sec_content_available"])
 
-    assert post_format == example_file["security_content_available_post"]
+    assert post == example_file["security_content_available_post"]
     assert stored_data["details_available_soon"] == []
 
 
 def test_yearly_report():
     for system, version in latest_versions.items():
-        post_format = format_post.yearly_report(
+        post = post_format.yearly_report(
             convert_to_lxml_class(example_file["last_one_year_table"]),
             system,
             version[0],
         )
 
-        assert post_format[0] == example_file["yearly_report_" + system + "_post"][0]
+        assert post[0] == example_file["yearly_report_" + system + "_post"][0]
 
 
 def test_zero_day():
@@ -316,9 +316,9 @@ def test_zero_day():
 
     main.check_for_zero_day_releases(coll, copy.deepcopy(stored_data))
 
-    post_format = format_post.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
+    post = post_format.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
 
-    assert post_format == example_file["zero_day_releases_post"]
+    assert post == example_file["zero_day_releases_post"]
 
 
 def test_zero_day_new_old():
@@ -329,9 +329,9 @@ def test_zero_day_new_old():
 
     main.check_for_zero_day_releases(coll, copy.deepcopy(stored_data))
 
-    post_format = format_post.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
+    post = post_format.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
 
-    assert post_format == example_file["zero_day_releases_new_old_post"]
+    assert post == example_file["zero_day_releases_new_old_post"]
 
 
 def test_zero_day_new():
@@ -342,9 +342,9 @@ def test_zero_day_new():
 
     main.check_for_zero_day_releases(coll, copy.deepcopy(stored_data))
 
-    post_format = format_post.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
+    post = post_format.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
 
-    assert post_format == example_file["zero_day_releases_new_post"]
+    assert post == example_file["zero_day_releases_new_post"]
 
 
 def test_zero_day_old():
@@ -355,6 +355,6 @@ def test_zero_day_old():
 
     main.check_for_zero_day_releases(coll, copy.deepcopy(stored_data))
 
-    post_format = format_post.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
+    post = post_format.zero_days(coll["zero_day_releases"], copy.deepcopy(stored_data))
 
-    assert post_format == example_file["zero_day_releases_old_post"]
+    assert post == example_file["zero_day_releases_old_post"]
