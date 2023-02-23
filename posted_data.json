@@ -1,7 +1,19 @@
 {
     "zero_days": [
+        "CVE-2022-22620",
+        "CVE-2022-22675",
+        "CVE-2022-22674",
+        "CVE-2022-32894",
+        "CVE-2022-32893",
+        "CVE-2022-32917",
+        "CVE-2022-42827",
+        "CVE-2022-42856",
+        "CVE-2023-23529"
     ],
-    "details_available_soon": [],
+    "details_available_soon": [
+        "tvOS 16.3.2 (details available soon)",
+        "watchOS 9.3.1 (details available soon)"
+    ],
     "posted_today": {
         "new_updates": [
         ],
