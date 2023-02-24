@@ -59,24 +59,28 @@ class Release:
         self.set_security_content_link(release_row)
         self.set_release_date(release_row)
 
-        if self.__name == "tvOS 14.6":
-            self.__security_content_link = ""
+        sec_content_page_html = ""
+        sec_content_page = ""
 
         if self.__security_content_link:
-            sec_content_page_html = requests.get(self.__security_content_link, timeout=60).text
+            try:
+                sec_content_page_html = requests.get(self.__security_content_link, timeout=60).text
 
-            sec_content_page = lxml.html.document_fromstring(sec_content_page_html).text_content()
-            sec_content_page = (
-                sec_content_page_html.split("About Apple security updates", 1)[1]
-                .split("Additional recognition", 1)[0]
-                .replace("&nbsp;", " ")
-            )
-            sec_content_page = " ".join(sec_content_page.split())
+                sec_content_page = lxml.html.document_fromstring(sec_content_page_html).text_content()
+                sec_content_page = (
+                    sec_content_page_html.split("About Apple security updates", 1)[1]
+                    .split("Additional recognition", 1)[0]
+                    .replace("&nbsp;", " ")
+                )
+                sec_content_page = " ".join(sec_content_page.split())
 
-            sec_content_page_html = sec_content_page_html.replace("\n", "").replace("&nbsp;", " ")
-        else:
-            sec_content_page_html = ""
-            sec_content_page = ""
+                sec_content_page_html = sec_content_page_html.replace("\n", "").replace("&nbsp;", " ")
+
+            except Exception as e:
+                print(f"ERROR: security content parsing failed for\n{self.__name}\n" + str(e) + "\n")
+                self.__security_content_link = ""
+                sec_content_page_html = ""
+                sec_content_page = ""
 
         self.set_num_of_bugs(release_row, sec_content_page)
         self.set_zero_days(sec_content_page_html)

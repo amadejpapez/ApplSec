@@ -1108,7 +1108,7 @@
         ":iphone: iOS and iPadOS 14.5 - 64 bugs fixed\n"
     ],
     "yearly_report_tvOS_post": [
-        "tvOS 15 was released today. In tvOS 14 series Apple fixed in total of 64 security issues over 3 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
+        "tvOS 15 was released today. In tvOS 14 series Apple fixed in total of 96 security issues over 3 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
     ],
     "yearly_report_watchOS_post": [
         "watchOS 8 was released today. In watchOS 7 series Apple fixed in total of 105 security issues over 9 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"

@@ -106,9 +106,9 @@ def post(results: list) -> None:
     try:
         tweet(results)
     except Exception as e:
-        print("TWITTER FAILED TO POST: " + str(results) + "\n" + str(e) + "\n")
+        print("ERROR: Twitter failed to post\n" + str(results) + "\n" + str(e) + "\n")
 
     try:
         toot(results)
     except Exception as e:
-        print("MASTODON FAILED TO POST: " + str(results) + "\n" + str(e) + "\n")
+        print("ERROR: Mastodon failed to post\n" + str(results) + "\n" + str(e) + "\n")
