@@ -24,7 +24,7 @@ def test_mastodon_posting():
         API_URL,
         json={"status": "THIS IS A TEST"},
         headers={"Authorization": MASTODON_KEY_TEST},
-        timeout=60
+        timeout=60,
     )
 
     assert response_c.status_code == 200
@@ -34,7 +34,7 @@ def test_mastodon_posting():
     response_d = requests.delete(
         API_URL + "/" + response_c.json()["id"],
         headers={"Authorization": MASTODON_KEY_TEST},
-        timeout=60
+        timeout=60,
     )
 
     assert response_d.status_code == 200
@@ -52,4 +52,4 @@ def test_twitter_posting():
         id=getattr(response_c, "data")["id"],
     )
 
-    assert getattr(response_d, "data")["deleted"] == True
+    assert getattr(response_d, "data")["deleted"] is True

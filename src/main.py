@@ -23,7 +23,9 @@ def retrieve_main_page() -> list:
     return all_releases_rows
 
 
-def check_latest_ios_release(coll: dict, stored_data: dict, release: Release, lat_ios_ver: str) -> None:
+def check_latest_ios_release(
+    coll: dict, stored_data: dict, release: Release, lat_ios_ver: str
+) -> None:
     """
     If the latest iOS series (currently iOS 16) got a new release.
 
@@ -74,7 +76,9 @@ def check_if_sec_content_available(coll: dict, stored_data: dict, all_releases_r
             checked += 1
 
 
-def check_new_releases(coll: dict, stored_data: dict, latest_versions: dict, new_releases: list) -> None:
+def check_new_releases(
+    coll: dict, stored_data: dict, latest_versions: dict, new_releases: list
+) -> None:
     latest_ios_ver = str(latest_versions["iOS"][0])
 
     for release in new_releases:
@@ -103,7 +107,9 @@ def check_for_zero_day_releases(coll: dict, stored_data: dict) -> None:
         ):
             coll["zero_day_releases"].append(release)
 
-            stored_data["posted_today"]["zero_days"][release.get_name()] = release.get_num_of_zero_days()
+            stored_data["posted_today"]["zero_days"][
+                release.get_name()
+            ] = release.get_num_of_zero_days()
 
 
 def check_for_entry_changes(coll: dict, all_releases_rows: list) -> None:
@@ -151,7 +157,7 @@ def main():
     new_releases = []
 
     for row in all_releases_rows:
-        if (row[2].text_content() != date_format_one):
+        if row[2].text_content() != date_format_one:
             break
 
         new_releases.append(Release(row))

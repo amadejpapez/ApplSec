@@ -208,6 +208,7 @@ def test_release_class_2():
 
     assert post == example_file["release_rows_post"]
 
+
 def test_new_updates():
     releases_obj = convert_to_release_class(example_file["new_releases_table"])
 
@@ -276,10 +277,7 @@ def test_security_content_soon():
     for release in releases_obj:
         main.save_sec_content_no_details_yet(stored_data, release)
 
-    assert (
-        stored_data["details_available_soon"]
-        == example_file["security_content_soon_file"]
-    )
+    assert stored_data["details_available_soon"] == example_file["security_content_soon_file"]
 
     # test if result is the same when same data comes in the next time
     releases_obj = convert_to_release_test_class(example_file["security_content_soon_info"])
@@ -287,10 +285,7 @@ def test_security_content_soon():
     for release in releases_obj:
         main.save_sec_content_no_details_yet(stored_data, release)
 
-    assert (
-        stored_data["details_available_soon"]
-        == example_file["security_content_soon_file"]
-    )
+    assert stored_data["details_available_soon"] == example_file["security_content_soon_file"]
 
 
 def test_security_content_available():

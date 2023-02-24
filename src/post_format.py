@@ -69,9 +69,7 @@ def top_ios_modules(releases: list) -> list:
             sorted(search_modules.items(), reverse=True, key=lambda x: x[1])
         )
 
-        post_text = [
-            f":hammer_and_pick: FIXED IN {release.get_name()} :hammer_and_pick:\n\n"
-        ]
+        post_text = [f":hammer_and_pick: FIXED IN {release.get_name()} :hammer_and_pick:\n\n"]
         num_bugs = 0
 
         for key, value in modules.items():
@@ -110,13 +108,13 @@ def get_zero_days_start_text(zero_days: dict) -> str:
     text = ""
 
     if num_new == 1 and num_old == 0:
-        text = f"Apple pushed updates for a new zero-day that may have been actively exploited."
+        text = "Apple pushed updates for a new zero-day that may have been actively exploited."
 
     elif num_new == 0 and num_old == 1:
-        text = f"Apple pushed additional updates for a zero-day that may have been actively exploited."
+        text = "Apple pushed additional updates for a zero-day that may have been actively exploited."
 
     elif num_new == 1 and num_old == 1:
-        text = f"Apple pushed updates for a new zero-day that may have been actively exploited and additional updates for one zero-day."
+        text = "Apple pushed updates for a new zero-day that may have been actively exploited and additional updates for one zero-day."
 
     elif num_new > 1 and num_old == 0:
         text = f"Apple pushed updates for {num_new} new zero-days that may have been actively exploited."
@@ -152,7 +150,7 @@ def zero_days(releases: list, stored_data: dict) -> list:
 
     🐛 CVE-2021-31010 (Core Telephony):
     - iOS 12.5.5
- 
+
     🐛 CVE-2021-30858 (WebKit):
     - iOS 12.5.5
     -----
@@ -162,7 +160,11 @@ def zero_days(releases: list, stored_data: dict) -> list:
     for release in releases:
         for cve, module in release.get_zero_days().items():
             if not zero_days.get(cve):
-                zero_days[cve] = {"status": "old", "module": module, "releases": [release.get_name()]}
+                zero_days[cve] = {
+                    "status": "old",
+                    "module": module,
+                    "releases": [release.get_name()],
+                }
             else:
                 zero_days[cve]["releases"].append(release.get_name())
 
@@ -187,7 +189,7 @@ def zero_days(releases: list, stored_data: dict) -> list:
             post_text.append("\n\n:bug: " + key + " (" + value["module"] + ") additional patches:")
 
         for release in value["releases"]:
-            post_text[-1] += ("\n- " + release)
+            post_text[-1] += "\n- " + release
 
     return post_text
 
@@ -220,7 +222,7 @@ def entry_changes(releases: list) -> list:
             if release.get_num_entries_updated() > 0:
                 post_text.append(
                     f"{name} - {release.get_format_num_entries_added()}, {release.get_format_num_entries_updated()}\n"
-                    )
+                )
             else:
                 post_text.append(f"{name} - {release.get_format_num_entries_added()}\n")
 
@@ -287,11 +289,8 @@ def yearly_report(release_rows: list, system: str, version: int) -> list:
         info[ver] = {"num_of_bugs": 0, "num_of_releases": 0}
 
         for row in release_rows:
-            if (
-                system in row[0].text_content()
-                and str(ver) in row[0].text_content()
-            ):
-                tmp = row[0].xpath('.//a/@href')
+            if system in row[0].text_content() and str(ver) in row[0].text_content():
+                tmp = row[0].xpath(".//a/@href")
 
                 if tmp != []:
                     release = Release(row)
@@ -318,8 +317,6 @@ def yearly_report(release_rows: list, system: str, version: int) -> list:
 
     if system == "macOS":
         # for macOS create a thread with additional info in the second post
-        post_text.append(
-            "Numbers also contain issues from Security and Supplemental Updates."
-        )
+        post_text.append("Numbers also contain issues from Security and Supplemental Updates.")
 
     return post_text

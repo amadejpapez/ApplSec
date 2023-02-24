@@ -65,15 +65,13 @@ class Release:
         if self.__security_content_link:
             sec_content_page_html = requests.get(self.__security_content_link, timeout=60).text
 
-            sec_content_page = lxml.html.document_fromstring(
-                sec_content_page_html
-            ).text_content()
+            sec_content_page = lxml.html.document_fromstring(sec_content_page_html).text_content()
             sec_content_page = (
                 sec_content_page_html.split("About Apple security updates", 1)[1]
                 .split("Additional recognition", 1)[0]
                 .replace("&nbsp;", " ")
             )
-            sec_content_page = ' '.join(sec_content_page.split())
+            sec_content_page = " ".join(sec_content_page.split())
 
             sec_content_page_html = sec_content_page_html.replace("\n", "").replace("&nbsp;", " ")
         else:
@@ -96,9 +94,7 @@ class Release:
 
         if "iOS" in self.__name and "iPadOS" in self.__name:
             # turn "iOS 15.3 and iPadOS 15.3" into shorter "iOS and iPadOS 15.3"
-            self.__name = (
-                self.__name.split("and", 1)[0].strip().replace("iOS", "iOS and iPadOS")
-            )
+            self.__name = self.__name.split("and", 1)[0].strip().replace("iOS", "iOS and iPadOS")
 
         if "macOS" in self.__name and "Update" in self.__name:
             # for releases "macOS Big Sur 11.2.1, macOS Catalina 10.15.7 Supplemental Update,..."
@@ -157,9 +153,7 @@ class Release:
     def set_zero_days(self, sec_content_html: str) -> None:
         """Check for "in the wild" or "actively exploited", indicating a fixed zero-day."""
 
-        entries = re.findall(
-            r"(?i)(?<=<strong>).*?(?=<strong>|<\/div)", sec_content_html
-        )
+        entries = re.findall(r"(?i)(?<=<strong>).*?(?=<strong>|<\/div)", sec_content_html)
         zero_days = {}
 
         for entry in entries:
@@ -191,9 +185,7 @@ class Release:
         if "soon" in release_row[0].text_content():
             self.__num_of_bugs = -1
         else:
-            self.__num_of_bugs = len(
-                re.findall("(?i)CVE-[0-9]{4}-[0-9]+", sec_content_page)
-            )
+            self.__num_of_bugs = len(re.findall("(?i)CVE-[0-9]{4}-[0-9]+", sec_content_page))
 
     def get_num_of_bugs(self) -> int:
         return self.__num_of_bugs
@@ -218,12 +210,8 @@ class Release:
 
         date_format_two = get_date.format_two()
 
-        self.__num_entries_added = len(
-            re.findall(f"added {date_format_two}", sec_content_page)
-        )
-        self.__num_entries_updated = len(
-            re.findall(f"updated {date_format_two}", sec_content_page)
-        )
+        self.__num_entries_added = len(re.findall(f"added {date_format_two}", sec_content_page))
+        self.__num_entries_updated = len(re.findall(f"updated {date_format_two}", sec_content_page))
 
     def get_num_entries_added(self) -> int:
         return self.__num_entries_added
