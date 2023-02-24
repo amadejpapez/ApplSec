@@ -28,7 +28,7 @@ jobs:
 
       - name: Download posted_data.json
         run: |
-          git clone -b posted_data_json --depth 1 https://github.com/amadejpapez/ApplSec branch
+          git clone -b posted_data_json --depth 1 https://github-actions[bot]:${{ secrets.GITHUB_TOKEN }}@github.com/amadejpapez/ApplSec branch
           cp branch/posted_data.json src/
 
       - name: Run ApplSec bot
