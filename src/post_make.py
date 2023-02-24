@@ -1,6 +1,5 @@
 import os
 
-import emoji
 import requests
 import tweepy
 
@@ -30,7 +29,7 @@ def arrange_post(results: list, MAX_CHAR: int) -> list:
     arranged = [""]
 
     for item in results:
-        if len(emoji.emojize(arranged[-1] + item, language="alias")) < MAX_CHAR:
+        if len(arranged[-1] + item) < MAX_CHAR:
             arranged[-1] += item
         else:
             arranged.append(item)
@@ -50,7 +49,7 @@ def tweet(results: list) -> None:
         if posts_list.index(text) == 0:
             # individual post or start of a thread
             response = TWITTER_API.create_tweet(
-                text=emoji.emojize(text, language="alias"),
+                text=text,
             )
 
             post_ids.append(getattr(response, "data")["id"])
@@ -58,7 +57,7 @@ def tweet(results: list) -> None:
             # other posts in a thread
             response = TWITTER_API.create_tweet(
                 in_reply_to_tweet_id=post_ids[-1],
-                text=emoji.emojize(text, language="alias"),
+                text=text,
             )
 
             post_ids.append(getattr(response, "data")["id"])
@@ -78,7 +77,7 @@ def toot(results: list) -> None:
             # individual post or start of a thread
             response = requests.post(
                 API_URL,
-                json={"status": emoji.emojize(text, language="alias")},
+                json={"status": text},
                 headers={"Authorization": MASTODON_KEY},
                 timeout=60,
             )
@@ -89,7 +88,7 @@ def toot(results: list) -> None:
             response = requests.post(
                 API_URL,
                 json={
-                    "status": emoji.emojize(text, language="alias"),
+                    "status": text,
                     "in_reply_to_id": post_ids[-1],
                 },
                 headers={"Authorization": MASTODON_KEY},

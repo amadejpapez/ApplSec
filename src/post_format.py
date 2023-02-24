@@ -31,13 +31,13 @@ def new_updates(releases: list) -> list:
         )
 
     if len(releases) == 1:
-        post_text.insert(0, ":collision: NEW UPDATE RELEASED :collision:\n\n")
+        post_text.insert(0, "💥 NEW UPDATE RELEASED 💥\n\n")
 
         # if there is only one release, add its notes as a link instead
         if releases[0].get_security_content_link():
             post_text.append(releases[0].get_security_content_link())
     else:
-        post_text.insert(0, ":collision: NEW UPDATES RELEASED :collision:\n\n")
+        post_text.insert(0, "💥 NEW UPDATES RELEASED 💥\n\n")
         post_text.append("https://support.apple.com/en-us/HT201222")
 
     return post_text
@@ -46,7 +46,7 @@ def new_updates(releases: list) -> list:
 def top_ios_modules(releases: list) -> list:
     """
     -----
-    ⚒ FIXED IN iOS 14.7 ⚒
+    ⚒️ FIXED IN iOS 14.7 ⚒️
 
     - 4 bugs in WebKit
     - 3 bugs in FontParser
@@ -69,7 +69,7 @@ def top_ios_modules(releases: list) -> list:
             sorted(search_modules.items(), reverse=True, key=lambda x: x[1])
         )
 
-        post_text = [f":hammer_and_pick: FIXED IN {release.get_name()} :hammer_and_pick:\n\n"]
+        post_text = [f"⚒️ FIXED IN {release.get_name()} ⚒️\n\n"]
         num_bugs = 0
 
         for key, value in modules.items():
@@ -176,17 +176,17 @@ def zero_days(releases: list, stored_data: dict) -> list:
     post_text = []
 
     if len(zero_days) == 1:
-        post_text.append(":mega: EMERGENCY UPDATE :mega:\n\n")
+        post_text.append("📣 EMERGENCY UPDATE 📣\n\n")
     else:
-        post_text.append(":mega: EMERGENCY UPDATES :mega:\n\n")
+        post_text.append("📣 EMERGENCY UPDATES 📣\n\n")
 
     post_text.append(get_zero_days_start_text(zero_days))
 
     for key, value in zero_days.items():
         if value["status"] == "new":
-            post_text.append("\n\n:bug: " + key + " (" + value["module"] + "):")
+            post_text.append("\n\n🐛 " + key + " (" + value["module"] + "):")
         else:
-            post_text.append("\n\n:bug: " + key + " (" + value["module"] + ") additional patches:")
+            post_text.append("\n\n🐛 " + key + " (" + value["module"] + ") additional patches:")
 
         for release in value["releases"]:
             post_text[-1] += "\n- " + release
@@ -232,12 +232,12 @@ def entry_changes(releases: list) -> list:
     if changes_count == 1:
         post_text.insert(
             0,
-            ":arrows_counterclockwise: 1 ENTRY CHANGE :arrows_counterclockwise:\n\n",
+            "🔄 1 ENTRY CHANGE 🔄\n\n",
         )
     else:
         post_text.insert(
             0,
-            f":arrows_counterclockwise: {changes_count} ENTRY CHANGES :arrows_counterclockwise:\n\n",
+            f"🔄 {changes_count} ENTRY CHANGES 🔄\n\n",
         )
 
     return post_text
@@ -246,7 +246,7 @@ def entry_changes(releases: list) -> list:
 def security_content_available(releases: list) -> list:
     """
     -----
-    🗒 SECURITY CONTENT AVAILABLE 🗒
+    📝 SECURITY CONTENT AVAILABLE 📝
 
     💻 macOS Monterey 12.0.1 - 40 bugs fixed
     💻 macOS Big Sur 11.6.1 - 24 bugs fixed
@@ -259,7 +259,7 @@ def security_content_available(releases: list) -> list:
     releases.sort(key=lambda x: x.get_num_of_bugs(), reverse=True)
 
     post_text = [
-        ":spiral_notepad: SECURITY CONTENT AVAILABLE :spiral_notepad:\n\n",
+        "📝 SECURITY CONTENT AVAILABLE 📝\n\n",
     ]
 
     for release in releases:
@@ -305,7 +305,7 @@ def yearly_report(release_rows: list, system: str, version: int) -> list:
     second_version = list(info.keys())[0]
 
     post_text = [
-        f"{system} {version} was released today. In {system} {second_version} series Apple fixed in total of {info[second_version]['num_of_bugs']} security issues over {info[second_version]['num_of_releases']} releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
+        f"{system} {version} was released today. In {system} {second_version} series Apple fixed in total of {info[second_version]['num_of_bugs']} security issues over {info[second_version]['num_of_releases']} releases. 🔐\n\n📊 COMPARED TO:\n"
     ]
 
     del info[second_version]

@@ -539,7 +539,7 @@
     "release_rows_info": {
         "1": { 
             "name": "Safari 14.0.3",
-            "emoji": ":globe_with_meridians:",
+            "emoji": "🌐",
             "security_content_link": "https://support.apple.com/en-us/HT212152",
             "release_date": "01 Feb 2021",
             "num_of_bugs": 3,
@@ -550,7 +550,7 @@
         },
         "2": { 
             "name": "Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7)",
-            "emoji": ":globe_with_meridians:",
+            "emoji": "🌐",
             "security_content_link": "https://support.apple.com/en-us/HT212223",
             "release_date": "01 Feb 2021",
             "num_of_bugs": 1,
@@ -561,7 +561,7 @@
         },
         "3": { 
             "name": "Safari 15.3",
-            "emoji": ":globe_with_meridians:",
+            "emoji": "🌐",
             "security_content_link": "https://support.apple.com/en-us/HT213058",
             "release_date": "01 Feb 2021",
             "num_of_bugs": 4,
@@ -572,7 +572,7 @@
         },
         "4": { 
             "name": "Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8)",
-            "emoji": ":globe_with_meridians:",
+            "emoji": "🌐",
             "security_content_link": "https://support.apple.com/en-us/HT213091",
             "release_date": "01 Feb 2021",
             "num_of_bugs": 1,
@@ -585,7 +585,7 @@
         },
         "5": { 
             "name": "macOS Big Sur 11.2.1 and older",
-            "emoji": ":computer:",
+            "emoji": "💻",
             "security_content_link": "https://support.apple.com/en-us/HT212177",
             "release_date": "09 Feb 2021",
             "num_of_bugs": 3,
@@ -596,11 +596,11 @@
         }
     },
     "release_rows_post": [
-        ":collision: NEW UPDATES RELEASED :collision:\n\n",
-        ":globe_with_meridians: Safari 15.3 - 4 bugs fixed\n",
-        ":globe_with_meridians: Safari 14.0.3 - 3 bugs fixed\n",
-        ":globe_with_meridians: Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7) - 1 bug fixed\n",
-        ":globe_with_meridians: Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8) - 1 bug fixed\n",
+        "💥 NEW UPDATES RELEASED 💥\n\n",
+        "🌐 Safari 15.3 - 4 bugs fixed\n",
+        "🌐 Safari 14.0.3 - 3 bugs fixed\n",
+        "🌐 Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7) - 1 bug fixed\n",
+        "🌐 Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8) - 1 bug fixed\n",
         "https://support.apple.com/en-us/HT201222"
     ],
     "new_releases_table": [
@@ -648,7 +648,7 @@
     "new_releases_info": {
         "1": { 
             "name": "Safari 15.3",
-            "emoji": ":globe_with_meridians:",
+            "emoji": "🌐",
             "security_content_link": "https://support.apple.com/en-us/HT213058",
             "release_date": "26 Jan 2022",
             "num_of_bugs": 4,
@@ -659,7 +659,7 @@
         },
         "2": { 
             "name": "Security Update 2022-001 Catalina",
-            "emoji": ":computer:",
+            "emoji": "🖥️",
             "security_content_link": "https://support.apple.com/en-us/HT213056",
             "release_date": "26 Jan 2022",
             "num_of_bugs": 5,
@@ -670,7 +670,7 @@
         },
         "3": { 
             "name": "macOS Big Sur 11.6.3",
-            "emoji": ":computer:",
+            "emoji": "💻",
             "security_content_link": "https://support.apple.com/en-us/HT213055",
             "release_date": "26 Jan 2022",
             "num_of_bugs": 8,
@@ -683,7 +683,7 @@
         },
         "4": { 
             "name": "macOS Monterey 12.2",
-            "emoji": ":computer:",
+            "emoji": "💻",
             "security_content_link": "https://support.apple.com/en-us/HT213054",
             "release_date": "26 Jan 2022",
             "num_of_bugs": 14,
@@ -696,7 +696,7 @@
         },
         "5": { 
             "name": "tvOS 15.3",
-            "emoji": ":tv:",
+            "emoji": "📺",
             "security_content_link": "https://support.apple.com/en-us/HT213057",
             "release_date": "26 Jan 2022",
             "num_of_bugs": 9,
@@ -707,7 +707,7 @@
         },
         "6": { 
             "name": "iOS and iPadOS 15.3",
-            "emoji": ":iphone:",
+            "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/HT213053",
             "release_date": "26 Jan 2022",
             "num_of_bugs": 10,
@@ -720,7 +720,7 @@
         },
         "7": { 
             "name": "watchOS 8.4",
-            "emoji": ":watch:",
+            "emoji": "⌚",
             "security_content_link": "https://support.apple.com/en-us/HT213059",
             "release_date": "26 Jan 2022",
             "num_of_bugs": 8,
@@ -731,7 +731,7 @@
         },
         "8": { 
             "name": "macOS Big Sur 11.5.2",
-            "emoji": ":computer:",
+            "emoji": "💻",
             "security_content_link": "",
             "release_date": "26 Jan 2022",
             "num_of_bugs": 0,
@@ -742,15 +742,15 @@
         }
     },
     "new_releases_post": [
-        ":collision: NEW UPDATES RELEASED :collision:\n\n",
-        ":computer: macOS Monterey 12.2 - 14 bugs fixed\n",
-        ":iphone: iOS and iPadOS 15.3 - 10 bugs fixed\n",
-        ":tv: tvOS 15.3 - 9 bugs fixed\n",
-        ":computer: macOS Big Sur 11.6.3 - 8 bugs fixed\n",
-        ":watch: watchOS 8.4 - 8 bugs fixed\n",
-        ":computer: Security Update 2022-001 Catalina - 5 bugs fixed\n",
-        ":globe_with_meridians: Safari 15.3 - 4 bugs fixed\n",
-        ":computer: macOS Big Sur 11.5.2 - no bugs fixed\n",
+        "💥 NEW UPDATES RELEASED 💥\n\n",
+        "💻 macOS Monterey 12.2 - 14 bugs fixed\n",
+        "📱 iOS and iPadOS 15.3 - 10 bugs fixed\n",
+        "📺 tvOS 15.3 - 9 bugs fixed\n",
+        "💻 macOS Big Sur 11.6.3 - 8 bugs fixed\n",
+        "⌚ watchOS 8.4 - 8 bugs fixed\n",
+        "🖥️ Security Update 2022-001 Catalina - 5 bugs fixed\n",
+        "🌐 Safari 15.3 - 4 bugs fixed\n",
+        "💻 macOS Big Sur 11.5.2 - no bugs fixed\n",
         "https://support.apple.com/en-us/HT201222"
     ],
     "new_releases_one_table": [
@@ -761,8 +761,8 @@
         ]
     ],
     "new_releases_one_post": [
-        ":collision: NEW UPDATE RELEASED :collision:\n\n",
-        ":watch: watchOS 8.4 - 8 bugs fixed\n",
+        "💥 NEW UPDATE RELEASED 💥\n\n",
+        "⌚ watchOS 8.4 - 8 bugs fixed\n",
         "https://support.apple.com/en-us/HT213059"
     ],
     "new_releases_details_soon_table": [
@@ -773,8 +773,8 @@
         ]
     ],
     "new_releases_details_soon_post": [
-        ":collision: NEW UPDATE RELEASED :collision:\n\n",
-        ":tv: tvOS 16.3.2 - no details yet\n"
+        "💥 NEW UPDATE RELEASED 💥\n\n",
+        "📺 tvOS 16.3.2 - no details yet\n"
     ],
     "ios_modules_table": [
         [
@@ -786,7 +786,7 @@
     "ios_modules_info": {
         "1": { 
             "name": "iOS and iPadOS 15.3",
-            "emoji": ":iphone:",
+            "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/HT213053",
             "release_date": "26 Jan 2022",
             "num_of_bugs": 10,
@@ -799,7 +799,7 @@
         }
     },
     "ios_modules_post": [
-        ":hammer_and_pick: FIXED IN iOS and iPadOS 15.3 :hammer_and_pick:\n\n",
+        "⚒️ FIXED IN iOS and iPadOS 15.3 ⚒️\n\n",
         "- 3 bugs in WebKit\n",
         "- 1 bug in ColorSync\n",
         "- 1 bug in Crash Reporter\n",
@@ -810,7 +810,7 @@
     "entry_changes_info": {
         "1": { 
             "name": "macOS Big Sur 11.6.1",
-            "emoji": ":computer:",
+            "emoji": "💻",
             "security_content_link": "https://support.apple.com/en-us/HT212872",
             "release_date": "25 Oct 2021",
             "num_of_bugs": 29,
@@ -823,7 +823,7 @@
         },
         "2": { 
             "name": "watchOS 8.1",
-            "emoji": ":watch:",
+            "emoji": "⌚",
             "security_content_link": "https://support.apple.com/en-us/HT212874",
             "release_date": "25 Oct 2021",
             "num_of_bugs": 17,
@@ -836,7 +836,7 @@
         },
         "3": { 
             "name": "iOS and iPadOS 15.1",
-            "emoji": ":iphone:",
+            "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/HT212867",
             "release_date": "25 Oct 2021",
             "num_of_bugs": 24,
@@ -847,7 +847,7 @@
         },
         "4": {
             "name": "tvOS 15.1",
-            "emoji": ":tv:",
+            "emoji": "📺",
             "security_content_link": "https://support.apple.com/en-us/HT212876",
             "release_date": "25 Oct 2021",
             "num_of_bugs": 19,
@@ -860,7 +860,7 @@
         },
         "5": {
             "name": "tvOS 15",
-            "emoji": ":tv:",
+            "emoji": "📺",
             "security_content_link": "https://support.apple.com/en-us/HT212815",
             "release_date": "20 Sep 2021",
             "num_of_bugs": 29,
@@ -871,7 +871,7 @@
         },
         "6": { 
             "name": "watchOS 8",
-            "emoji": ":watch:",
+            "emoji": "⌚",
             "security_content_link": "https://support.apple.com/en-us/HT212819",
             "release_date": "20 Sep 2021",
             "num_of_bugs": 30,
@@ -882,7 +882,7 @@
         },
         "7": { 
             "name": "iOS and iPadOS 15",
-            "emoji": ":iphone:",
+            "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/HT212814",
             "release_date": "20 Sep 2021",
             "num_of_bugs": 42,
@@ -893,7 +893,7 @@
         },
         "8": { 
             "name": "macOS Big Sur 11.6",
-            "emoji": ":computer:",
+            "emoji": "💻",
             "security_content_link": "https://support.apple.com/en-us/HT212804",
             "release_date": "13 Sep 2021",
             "num_of_bugs": 29,
@@ -907,7 +907,7 @@
         },
         "9": { 
             "name": "iOS and iPadOS 14.8",
-            "emoji": ":iphone:",
+            "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/HT212807",
             "release_date": "13 Sep 2021",
             "num_of_bugs": 23,
@@ -921,7 +921,7 @@
         },
         "10": { 
             "name": "Security Update 2021-004 Catalina",
-            "emoji": ":computer:",
+            "emoji": "🖥️",
             "security_content_link": "https://support.apple.com/en-us/HT212600",
             "release_date": "21 Jul 2021",
             "num_of_bugs": 32,
@@ -932,7 +932,7 @@
         },
         "11": { 
             "name": "Security Update 2021-005 Mojave",
-            "emoji": ":computer:",
+            "emoji": "🖥️",
             "security_content_link": "https://support.apple.com/en-us/HT212603",
             "release_date": "21 Jul 2021",
             "num_of_bugs": 25,
@@ -943,7 +943,7 @@
         },
         "12": { 
             "name": "watchOS 7.6",
-            "emoji": ":watch:",
+            "emoji": "⌚",
             "security_content_link": "https://support.apple.com/en-us/HT212605",
             "release_date": "19 Jul 2021",
             "num_of_bugs": 23,
@@ -954,7 +954,7 @@
         },
         "13": {
             "name": "tvOS 14.7",
-            "emoji": ":tv:",
+            "emoji": "📺",
             "security_content_link": "https://support.apple.com/en-us/HT212604",
             "release_date": "19 Jul 2021",
             "num_of_bugs": 21,
@@ -965,7 +965,7 @@
         },
         "14": {
             "name": "macOS Big Sur 11.4",
-            "emoji": ":computer:",
+            "emoji": "💻",
             "security_content_link": "https://support.apple.com/en-us/HT212529",
             "release_date": "24 May 2021",
             "num_of_bugs": 83,
@@ -978,7 +978,7 @@
         },
         "15": {
             "name": "iOS and iPadOS 14.6",
-            "emoji": ":iphone:",
+            "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/HT212528",
             "release_date": "24 May 2021",
             "num_of_bugs": 50,
@@ -989,7 +989,7 @@
         },
         "16": {
             "name": "tvOS 14.6",
-            "emoji": ":tv:",
+            "emoji": "📺",
             "security_content_link": "https://support.apple.com/en-us/HT212532",
             "release_date": "24 May 2021",
             "num_of_bugs": 32,
@@ -1003,7 +1003,7 @@
         },
         "17": {
             "name": "watchOS 7.5",
-            "emoji": ":watch:",
+            "emoji": "⌚",
             "security_content_link": "https://support.apple.com/en-us/HT212533",
             "release_date": "24 May 2021",
             "num_of_bugs": 31,
@@ -1014,7 +1014,7 @@
         },
         "18": {
             "name": "macOS Big Sur 11.3",
-            "emoji": ":computer:",
+            "emoji": "💻",
             "security_content_link": "https://support.apple.com/en-us/HT212325",
             "release_date": "26 Apr 2021",
             "num_of_bugs": 66,
@@ -1028,7 +1028,7 @@
         },
         "19": {
             "name": "iOS and iPadOS 14.5",
-            "emoji": ":iphone:",
+            "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/HT212317",
             "release_date": "26 Apr 2021",
             "num_of_bugs": 64,
@@ -1041,31 +1041,31 @@
         }
     },
     "entry_changes_post": [
-        ":arrows_counterclockwise: 63 ENTRY CHANGES :arrows_counterclockwise:\n\n",
-        ":computer: macOS Big Sur 11.6 - 8 added, 1 updated\n",
-        ":watch: watchOS 8 - 5 added, 2 updated\n",
-        ":iphone: iOS and iPadOS 15 - 4 added, 3 updated\n",
-        ":computer: Security Update 2021-004 Catalina - 6 added, 1 updated\n",
-        ":computer: macOS Big Sur 11.6.1 - 4 added, 1 updated\n",
-        ":tv: tvOS 15 - 3 added, 2 updated\n",
-        ":computer: Security Update 2021-005 Mojave - 5 added\n",
-        ":iphone: iOS and iPadOS 14.8 - 4 added\n",
-        ":iphone: iOS and iPadOS 15.1 - 2 added\n",
-        ":watch: watchOS 7.6 - 2 updated\n",
-        ":iphone: iOS and iPadOS 14.6 - 2 added\n",
-        ":watch: watchOS 8.1 - 1 added\n",
-        ":tv: tvOS 15.1 - 1 added\n",
-        ":tv: tvOS 14.7 - 1 added\n",
-        ":computer: macOS Big Sur 11.4 - 1 added\n",
-        ":tv: tvOS 14.6 - 1 added\n",
-        ":watch: watchOS 7.5 - 1 added\n",
-        ":computer: macOS Big Sur 11.3 - 1 added\n",
-        ":iphone: iOS and iPadOS 14.5 - 1 added\n"
+        "🔄 63 ENTRY CHANGES 🔄\n\n",
+        "💻 macOS Big Sur 11.6 - 8 added, 1 updated\n",
+        "⌚ watchOS 8 - 5 added, 2 updated\n",
+        "📱 iOS and iPadOS 15 - 4 added, 3 updated\n",
+        "🖥️ Security Update 2021-004 Catalina - 6 added, 1 updated\n",
+        "💻 macOS Big Sur 11.6.1 - 4 added, 1 updated\n",
+        "📺 tvOS 15 - 3 added, 2 updated\n",
+        "🖥️ Security Update 2021-005 Mojave - 5 added\n",
+        "📱 iOS and iPadOS 14.8 - 4 added\n",
+        "📱 iOS and iPadOS 15.1 - 2 added\n",
+        "⌚ watchOS 7.6 - 2 updated\n",
+        "📱 iOS and iPadOS 14.6 - 2 added\n",
+        "⌚ watchOS 8.1 - 1 added\n",
+        "📺 tvOS 15.1 - 1 added\n",
+        "📺 tvOS 14.7 - 1 added\n",
+        "💻 macOS Big Sur 11.4 - 1 added\n",
+        "📺 tvOS 14.6 - 1 added\n",
+        "⌚ watchOS 7.5 - 1 added\n",
+        "💻 macOS Big Sur 11.3 - 1 added\n",
+        "📱 iOS and iPadOS 14.5 - 1 added\n"
     ],
     "security_content_soon_info": {
         "1": {
             "name": "macOS Big Sur 11.3",
-            "emoji": ":computer:",
+            "emoji": "💻",
             "security_content_link": "",
             "release_date": "26 Apr 2021",
             "num_of_bugs": -1,
@@ -1076,7 +1076,7 @@
         },
         "2": {
             "name": "iOS and iPadOS 14.5",
-            "emoji": ":iphone:",
+            "emoji": "📱",
             "security_content_link": "",
             "release_date": "26 Apr 2021",
             "num_of_bugs": -1,
@@ -1103,21 +1103,21 @@
         ]
     ],
     "security_content_available_post": [
-        ":spiral_notepad: SECURITY CONTENT AVAILABLE :spiral_notepad:\n\n",
-        ":computer: macOS Big Sur 11.3 - 66 bugs fixed\n",
-        ":iphone: iOS and iPadOS 14.5 - 64 bugs fixed\n"
+        "📝 SECURITY CONTENT AVAILABLE 📝\n\n",
+        "💻 macOS Big Sur 11.3 - 66 bugs fixed\n",
+        "📱 iOS and iPadOS 14.5 - 64 bugs fixed\n"
     ],
     "yearly_report_tvOS_post": [
-        "tvOS 15 was released today. In tvOS 14 series Apple fixed in total of 96 security issues over 3 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
+        "tvOS 15 was released today. In tvOS 14 series Apple fixed in total of 96 security issues over 3 releases. 🔐\n\n📊 COMPARED TO:\n"
     ],
     "yearly_report_watchOS_post": [
-        "watchOS 8 was released today. In watchOS 7 series Apple fixed in total of 105 security issues over 9 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
+        "watchOS 8 was released today. In watchOS 7 series Apple fixed in total of 105 security issues over 9 releases. 🔐\n\n📊 COMPARED TO:\n"
     ],
     "yearly_report_macOS_post": [
-        "macOS 12 was released today. In macOS Monterey series Apple fixed in total of 139 security issues over 4 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
+        "macOS 12 was released today. In macOS Monterey series Apple fixed in total of 139 security issues over 4 releases. 🔐\n\n📊 COMPARED TO:\n"
     ],
     "yearly_report_iOS_post": [
-        "iOS 15 was released today. In iOS 14 series Apple fixed in total of 252 security issues over 10 releases. :locked_with_key:\n\n:bar_chart: COMPARED TO:\n"
+        "iOS 15 was released today. In iOS 14 series Apple fixed in total of 252 security issues over 10 releases. 🔐\n\n📊 COMPARED TO:\n"
     ],
     "zero_day_releases_table": [
         [
@@ -1134,7 +1134,7 @@
     "zero_day_releases_info": {
         "1": {
             "name": "Security Update 2021-006 Catalina",
-            "emoji": ":computer:",
+            "emoji": "🖥️",
             "security_content_link": "https://support.apple.com/en-us/HT212825",
             "release_date": "23 Sep 2021",
             "num_of_bugs": 1,
@@ -1147,7 +1147,7 @@
         },
         "2": {
             "name": "iOS 12.5.5",
-            "emoji": ":iphone:",
+            "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/HT212824",
             "release_date": "23 Sep 2021",
             "num_of_bugs": 4,
@@ -1163,17 +1163,17 @@
         }
     },
     "zero_day_releases_post": [
-        ":mega: EMERGENCY UPDATES :mega:\n\n",
+        "📣 EMERGENCY UPDATES 📣\n\n",
         "Apple pushed updates for 3 new zero-days that may have been actively exploited and additional updates for 1 zero-day.",
-        "\n\n:bug: CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina\n- iOS 12.5.5",
-        "\n\n:bug: CVE-2021-30860 (CoreGraphics):\n- iOS 12.5.5",
-        "\n\n:bug: CVE-2021-31010 (Core Telephony):\n- iOS 12.5.5",
-        "\n\n:bug: CVE-2021-30858 (WebKit):\n- iOS 12.5.5"
+        "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina\n- iOS 12.5.5",
+        "\n\n🐛 CVE-2021-30860 (CoreGraphics):\n- iOS 12.5.5",
+        "\n\n🐛 CVE-2021-31010 (Core Telephony):\n- iOS 12.5.5",
+        "\n\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5"
     ],
     "zero_day_releases_new_old_info": {
         "1": {
             "name": "Security Update 2021-006 Catalina",
-            "emoji": ":computer:",
+            "emoji": "🖥️",
             "security_content_link": "https://support.apple.com/en-us/HT212825",
             "release_date": "23 Sep 2021",
             "num_of_bugs": 1,
@@ -1186,7 +1186,7 @@
         },
         "2": {
             "name": "iOS 12.5.5",
-            "emoji": ":iphone:",
+            "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/HT212824",
             "release_date": "23 Sep 2021",
             "num_of_bugs": 4,
@@ -1199,15 +1199,15 @@
         }
     },
     "zero_day_releases_new_old_post": [
-        ":mega: EMERGENCY UPDATES :mega:\n\n",
+        "📣 EMERGENCY UPDATES 📣\n\n",
         "Apple pushed updates for a new zero-day that may have been actively exploited and additional updates for one zero-day.",
-        "\n\n:bug: CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina",
-        "\n\n:bug: CVE-2021-30858 (WebKit):\n- iOS 12.5.5"
+        "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina",
+        "\n\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5"
     ],
     "zero_day_releases_new_info": {
         "1": {
             "name": "Security Update 2021-006 Catalina",
-            "emoji": ":computer:",
+            "emoji": "🖥️",
             "security_content_link": "https://support.apple.com/en-us/HT212825",
             "release_date": "23 Sep 2021",
             "num_of_bugs": 1,
@@ -1220,14 +1220,14 @@
         }
     },
     "zero_day_releases_new_post": [
-        ":mega: EMERGENCY UPDATE :mega:\n\n",
+        "📣 EMERGENCY UPDATE 📣\n\n",
         "Apple pushed updates for a new zero-day that may have been actively exploited.",
-        "\n\n:bug: CVE-2021-30858 (WebKit):\n- Security Update 2021-006 Catalina"
+        "\n\n🐛 CVE-2021-30858 (WebKit):\n- Security Update 2021-006 Catalina"
     ],
     "zero_day_releases_old_info": {
         "1": {
             "name": "Security Update 2021-006 Catalina",
-            "emoji": ":computer:",
+            "emoji": "🖥️",
             "security_content_link": "https://support.apple.com/en-us/HT212825",
             "release_date": "23 Sep 2021",
             "num_of_bugs": 1,
@@ -1240,8 +1240,8 @@
         }
     },
     "zero_day_releases_old_post": [
-        ":mega: EMERGENCY UPDATE :mega:\n\n",
+        "📣 EMERGENCY UPDATE 📣\n\n",
         "Apple pushed additional updates for a zero-day that may have been actively exploited.",
-        "\n\n:bug: CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina"
+        "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina"
     ]
 }

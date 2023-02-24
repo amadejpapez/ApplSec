@@ -39,7 +39,6 @@ At the start of the day, it checks if Apple updated any old security notes on th
 - [Tweepy](https://github.com/tweepy/tweepy), for communication with Twitter API
 - [requests](https://github.com/psf/requests), for communication with Mastodon API and to request Apple's website
 - [lxml](https://github.com/lxml/lxml), for easier HTML processing
-- [emoji](https://github.com/carpedm20/emoji), for outputting emojis
 - [PythonAnywhere](https://www.pythonanywhere.com/), service used for hourly running the bot
 
 <br>

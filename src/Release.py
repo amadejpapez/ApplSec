@@ -17,7 +17,7 @@ Return format:
 [
     Class Release (
         "name": "iOS and iPadOS 14.7",
-        "emoji": ":iphone:",
+        "emoji": "📱",
         "security_content_link": "https://support.apple.com/en-us/HT212623",
         "release_date": "26 Jan 2022",
         "num_of_bugs": 37,
@@ -129,19 +129,19 @@ class Release:
         """Set an emoji depending on the title."""
 
         emoji_dict = {
-            "Apple Music": ":musical_note:",
-            "Apple TV": ":tv:",
-            "GarageBand": ":musical_note:",
-            "iCloud": ":cloud:",
-            "iOS": ":iphone:",
-            "iPadOS": ":iphone:",
-            "iTunes": ":musical_note:",
-            "macOS": ":computer:",
-            "Safari": ":globe_with_meridians:",
-            "Security Update": ":computer:",
-            "Shazam": ":musical_note:",
-            "tvOS": ":tv:",
-            "watchOS": ":watch:",
+            "Apple Music": "🎵",
+            "Apple TV": "📺",
+            "GarageBand": "🎵",
+            "iCloud": "☁️",
+            "iOS": "📱",
+            "iPadOS": "📱",
+            "iTunes": "🎵",
+            "macOS": "💻",
+            "Safari": "🌐",
+            "Security Update": "🖥️",
+            "Shazam": "🎵",
+            "tvOS": "📺",
+            "watchOS": "⌚",
         }
 
         for key, value in emoji_dict.items():
@@ -149,7 +149,7 @@ class Release:
                 self.__emoji = value
                 return
 
-        self.__emoji = ":hammer_and_wrench:"
+        self.__emoji = "🛠️"
 
     def get_emoji(self) -> str:
         return self.__emoji
