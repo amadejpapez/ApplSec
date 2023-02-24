@@ -9,8 +9,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout main
         uses: actions/checkout@v3
+        with:
+          path: main
+
+      - name: Checkout posted_data_json
+        uses: actions/checkout@v3
+        with:
+          ref: posted_data_json
+          path: branch
+
+      - name: Set up posted_data.json
+        run: |
+          cd main/
+          cp ../branch/posted_data.json src/
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -25,11 +38,6 @@ jobs:
       - name: Set Timezone to Berlin
         run: |
           sudo timedatectl set-timezone "Europe/Berlin"
-
-      - name: Download posted_data.json
-        run: |
-          git clone -b posted_data_json --depth 1 https://github-actions[bot]:${{ secrets.GITHUB_TOKEN }}@github.com/amadejpapez/ApplSec branch
-          cp branch/posted_data.json src/
 
       - name: Run ApplSec bot
         env:
@@ -50,8 +58,8 @@ jobs:
 
       - name: Save posted_data.json
         run: |
-          cp src/posted_data.json branch/
-          cd branch
+          cd ../branch/
+          cp main/src/posted_data.json .
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
