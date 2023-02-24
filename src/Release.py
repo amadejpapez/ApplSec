@@ -91,6 +91,9 @@ class Release:
         # and for "watchOS 9.0.2\nThis update has no published CVE entries."
         self.__name = self.__name.split("(Advisory", 1)[0].split("\n", 1)[0].strip()
 
+        # "no details yet" releases might have this bracket alongside of their name
+        self.__name = self.__name.split("(details available soon)", 1)[0].strip()
+
         if "iOS" in self.__name and "iPadOS" in self.__name:
             # turn "iOS 15.3 and iPadOS 15.3" into shorter "iOS and iPadOS 15.3"
             self.__name = (

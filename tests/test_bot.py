@@ -234,6 +234,18 @@ def test_new_updates_only_one():
     assert post == example_file["new_releases_one_post"]
 
 
+def test_new_updates_details_soon():
+    releases_obj = convert_to_release_class(example_file["new_releases_details_soon_table"])
+
+    coll["new_releases"] = []
+
+    main.check_new_releases(coll, copy.deepcopy(stored_data), latest_versions, releases_obj)
+
+    post = post_format.new_updates(coll["new_releases"])
+
+    assert post == example_file["new_releases_details_soon_post"]
+
+
 def test_ios_modules():
     releases_obj = convert_to_release_class(example_file["ios_modules_table"])
 

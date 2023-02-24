@@ -765,6 +765,17 @@
         ":watch: watchOS 8.4 - 8 bugs fixed\n",
         "https://support.apple.com/en-us/HT213059"
     ],
+    "new_releases_details_soon_table": [
+        [
+            "tvOS 16.3.2 (details available soon)",
+            "Apple TV 4K (all models) and Apple TV HD",
+            "13 Feb 2023"
+        ]
+    ],
+    "new_releases_details_soon_post": [
+        ":collision: NEW UPDATE RELEASED :collision:\n\n",
+        ":tv: tvOS 16.3.2 - no details yet\n"
+    ],
     "ios_modules_table": [
         [
             "<a href=\"https://support.apple.com/en-us/HT213053\">iOS 15.3 and iPadOS 15.3</a>",
