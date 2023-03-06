@@ -11,7 +11,7 @@ import os
 
 import helpers.get_date as get_date
 
-LOC = os.path.abspath(os.path.join(__file__, "../posted_data.json"))
+LOC = os.path.abspath(os.path.join(__file__, "../../posted_data.json"))
 
 FILE_STRUCTURE = {
     "zero_days": [],
