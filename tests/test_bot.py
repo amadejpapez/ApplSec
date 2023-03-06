@@ -9,6 +9,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src"
 import lxml.html
 
 import helpers.get_version_info as get_version_info
+import helpers.posted_data as posted_data
 import main
 import post_format
 from Release import Release
@@ -162,6 +163,16 @@ coll = {
     "zero_day_releases": [],
     "yearly_report": [],
 }
+
+def test_posted_data_json():
+    """
+    Verify that the file is generated in /src
+    """
+    if (os.path.exists("src/posted_data.json")):
+        os.remove("src/posted_data.json")
+
+    posted_data.read()
+    assert os.path.isfile("src/posted_data.json") == True
 
 
 def test_release_class():
