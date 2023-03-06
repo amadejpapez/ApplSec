@@ -1,4 +1,5 @@
 import os
+import sys
 
 import requests
 import tweepy
@@ -103,11 +104,13 @@ def post(results: list) -> None:
         return
 
     try:
-        tweet(results)
-    except Exception as e:
-        print("ERROR: Twitter failed to post\n" + str(results) + "\n" + str(e) + "\n")
-
-    try:
         toot(results)
     except Exception as e:
         print("ERROR: Mastodon failed to post\n" + str(results) + "\n" + str(e) + "\n")
+        sys.exit(1)
+
+    try:
+        tweet(results)
+    except Exception as e:
+        print("ERROR: Twitter failed to post\n" + str(results) + "\n" + str(e) + "\n")
+        sys.exit(1)
