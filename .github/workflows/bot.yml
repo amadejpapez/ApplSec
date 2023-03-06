@@ -56,6 +56,7 @@ jobs:
         run: python main/src/main.py
 
       - name: Save posted_data.json
+        if: always()
         run: |
           cd branch/
           cp ../main/src/posted_data.json .
