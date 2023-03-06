@@ -67,7 +67,8 @@ def tweet(results: list) -> None:
 def toot(results: list) -> None:
     """Handle posting to Mastodon."""
     MAX_CHAR = 500
-    API_URL = "https://mastodon.social/api/v1/statuses"
+    # API_URL = "https://mastodon.social/api/v1/statuses"
+    API_URL = "https://mas.to/api/v1/statuses"
 
     posts_list = arrange_post(results, MAX_CHAR)
 
