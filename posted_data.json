@@ -10,14 +10,11 @@
         "CVE-2022-42856",
         "CVE-2023-23529"
     ],
-    "details_available_soon": [
-    ],
+    "details_available_soon": [],
     "posted_today": {
-        "new_updates": [
-        ],
+        "new_updates": [],
         "ios_modules": "",
-        "zero_days": {
-        },
+        "zero_days": {},
         "yearly_report": []
     }
 }
