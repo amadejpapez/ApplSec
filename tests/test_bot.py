@@ -33,9 +33,6 @@ class ReleaseTest:
     def get_security_content_link(self) -> str:
         return self.__security_content_link
 
-    def set_release_date(self, release_row: list):
-        self.__release_date = re.findall(r"(?i)(?<=[>])[^<]+|^[^<]+", release_row[2])[0]
-
     def get_release_date(self) -> str:
         return self.__release_date
 
