@@ -132,19 +132,19 @@ class Release:
         """Set an emoji depending on the title."""
 
         emoji_dict = {
+            "iOS": "📱",
+            "tvOS": "📺",
+            "macOS": "💻",
+            "watchOS": "⌚",
+            "Safari": "🌐",
+            "Security Update": "🖥️",
+            "iPadOS": "📱",
             "Apple Music": "🎵",
             "Apple TV": "📺",
             "GarageBand": "🎵",
             "iCloud": "☁️",
-            "iOS": "📱",
-            "iPadOS": "📱",
             "iTunes": "🎵",
-            "macOS": "💻",
-            "Safari": "🌐",
-            "Security Update": "🖥️",
             "Shazam": "🎵",
-            "tvOS": "📺",
-            "watchOS": "⌚",
         }
 
         for key, value in emoji_dict.items():
