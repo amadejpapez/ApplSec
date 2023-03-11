@@ -42,6 +42,28 @@ import requests
 import helpers.get_date as get_date
 
 
+def create_name(release_row: list) -> str:
+    name = release_row[0].text_content()
+
+    # for releases with "macOS Monterey 12.0.1 (Advisory includes security content of..."
+    # and for "watchOS 9.0.2\nThis update has no published CVE entries."
+    name = name.split("(Advisory", 1)[0].split("\n", 1)[0].strip()
+
+    # "no details yet" releases might have this bracket alongside of their name
+    name = name.split("(details available soon)", 1)[0].strip()
+
+    if "iOS" in name and "iPadOS" in name:
+        # turn "iOS 15.3 and iPadOS 15.3" into shorter "iOS and iPadOS 15.3"
+        name = name.split("and", 1)[0].strip().replace("iOS", "iOS and iPadOS")
+
+    if "macOS" in name and "Update" in name:
+        # for releases "macOS Big Sur 11.2.1, macOS Catalina 10.15.7 Supplemental Update,..."
+        name = name.split(",", 1)[0].strip()
+        name += " and older"
+
+    return name
+
+
 class Release:
     def __init__(self, release_row: list) -> None:
         self.__name: str
@@ -54,7 +76,7 @@ class Release:
         self.__num_entries_added: int
         self.__num_entries_updated: int
 
-        self.set_name(release_row)
+        self.__name = create_name(release_row)
         self.set_emoji()
         self.set_security_content_link(release_row)
         self.set_release_date(release_row)
@@ -85,25 +107,6 @@ class Release:
         self.set_num_of_bugs(release_row, sec_content_page)
         self.set_zero_days(sec_content_page_html)
         self.set_num_entries_changed(sec_content_page)
-
-    def set_name(self, release_row: list) -> None:
-        self.__name = release_row[0].text_content()
-
-        # for releases with "macOS Monterey 12.0.1 (Advisory includes security content of..."
-        # and for "watchOS 9.0.2\nThis update has no published CVE entries."
-        self.__name = self.__name.split("(Advisory", 1)[0].split("\n", 1)[0].strip()
-
-        # "no details yet" releases might have this bracket alongside of their name
-        self.__name = self.__name.split("(details available soon)", 1)[0].strip()
-
-        if "iOS" in self.__name and "iPadOS" in self.__name:
-            # turn "iOS 15.3 and iPadOS 15.3" into shorter "iOS and iPadOS 15.3"
-            self.__name = self.__name.split("and", 1)[0].strip().replace("iOS", "iOS and iPadOS")
-
-        if "macOS" in self.__name and "Update" in self.__name:
-            # for releases "macOS Big Sur 11.2.1, macOS Catalina 10.15.7 Supplemental Update,..."
-            self.__name = self.__name.split(",", 1)[0].strip()
-            self.__name += " and older"
 
     def get_name(self) -> str:
         return self.__name
