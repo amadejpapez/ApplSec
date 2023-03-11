@@ -6,7 +6,7 @@ import helpers.get_version_info as get_version_info
 import helpers.posted_data as posted_data
 import post_format
 from post_make import post
-from Release import Release
+from Release import Release, create_name
 
 
 def retrieve_main_page() -> list:
@@ -34,13 +34,13 @@ def check_latest_ios_release(
     if (
         "iOS" in release.get_name()
         and lat_ios_ver in release.get_name()
-        and release.get_name() not in stored_data["posted_today"]["ios_modules"]
+        and release.get_name() not in stored_data["posts"]["ios_modules"]
         and release.get_security_content_link() != ""
         and release.get_num_of_bugs() != len(release.get_zero_days())
     ):
         coll["ios_release"].append(release)
 
-        stored_data["posted_today"]["ios_modules"] = release.get_name()
+        stored_data["posts"]["ios_modules"].append(release.get_name())
 
 
 def save_sec_content_no_details_yet(stored_data: dict, release: Release) -> None:
@@ -82,10 +82,10 @@ def check_new_releases(
     latest_ios_ver = str(latest_versions["iOS"][0])
 
     for release in new_releases:
-        if release.get_name() not in stored_data["posted_today"]["new_updates"]:
+        if release.get_name() not in stored_data["posts"]["new_updates"]:
             coll["new_releases"].append(release)
 
-            stored_data["posted_today"]["new_updates"].append(release.get_name())
+            stored_data["posts"]["new_updates"].append(release.get_name())
 
         if "iOS" in release.get_name():
             check_latest_ios_release(coll, stored_data, release, latest_ios_ver)
@@ -103,11 +103,11 @@ def check_for_zero_day_releases(coll: dict, stored_data: dict) -> None:
     for release in check_tmp:
         if (
             release.get_num_of_zero_days() > 0
-            and release.get_name() not in stored_data["posted_today"]["zero_days"].keys()
+            and release.get_name() not in stored_data["posts"]["zero_days"].keys()
         ):
             coll["zero_day_releases"].append(release)
 
-            stored_data["posted_today"]["zero_days"][
+            stored_data["posts"]["zero_days"][
                 release.get_name()
             ] = release.get_num_of_zero_days()
 
@@ -131,10 +131,10 @@ def check_for_yearly_report(coll: dict, stored_data: dict, latest_versions: dict
     in the last 4 major series releases.
     """
     for key, value in latest_versions.items():
-        if key in stored_data["posted_today"]["yearly_report"]:
+        if key in stored_data["posts"]["yearly_report"]:
             return
 
-        stored_data["posted_today"]["yearly_report"].append(key)
+        stored_data["posts"]["yearly_report"].append(key)
 
         for release in coll["new_releases"]:
             if release.get_name() in (f"{key} {value[0]}", f"{key} {value[0]}.0"):
@@ -149,7 +149,6 @@ def check_for_yearly_report(coll: dict, stored_data: dict, latest_versions: dict
 
 
 def main():
-    date_format_one = get_date.format_one()
     posted_data_json = posted_data.read()
     all_releases_rows = retrieve_main_page()
     latest_versions = get_version_info.latest(all_releases_rows[:20])
@@ -157,10 +156,10 @@ def main():
     new_releases = []
 
     for row in all_releases_rows:
-        if row[2].text_content() != date_format_one:
+        if create_name(row) in posted_data_json["posts"]["new_updates"]:
             break
 
-        new_releases.append(Release(row))
+        new_releases.insert(0, Release(row))
 
     coll = {
         "new_releases": [],

@@ -29,7 +29,7 @@ If Apple says "no details yet", it will save the release's name and say in the p
 
 In the end, it arranges the gathered data into a post or a thread as needed and sends it to Twitter and Mastodon.
 
-The bot is checking for changes every hour. In order to avoid posting and checking the same thing twice, it saves posted data for the current day in a JSON file. The file also stores ten last zero-days, so it can tell if a zero-day is new or if it's just an additional update for another platform.
+The bot is checking for changes every hour. In order to avoid posting and checking the same thing twice, it stores recently posted data in a JSON file. The file also contains ten last zero-days, so it can tell if a zero-day is new or if it's just an additional update for another platform.
 
 At midnight, the bot checks if Apple has updated or added any entries to older security notes. On January 19th, 2022, Apple updated 25 security notes, adding and updating entries back to releases from two years ago.
 
