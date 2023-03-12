@@ -536,7 +536,7 @@
         ]
     ],
     "release_rows_info": {
-        "1": { 
+        "1": {
             "name": "Safari 14.0.3",
             "emoji": "🌐",
             "security_content_link": "https://support.apple.com/en-us/HT212152",
@@ -547,7 +547,7 @@
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
-        "2": { 
+        "2": {
             "name": "Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7)",
             "emoji": "🌐",
             "security_content_link": "https://support.apple.com/en-us/HT212223",
@@ -558,7 +558,7 @@
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
-        "3": { 
+        "3": {
             "name": "Safari 15.3",
             "emoji": "🌐",
             "security_content_link": "https://support.apple.com/en-us/HT213058",
@@ -569,7 +569,7 @@
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
-        "4": { 
+        "4": {
             "name": "Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8)",
             "emoji": "🌐",
             "security_content_link": "https://support.apple.com/en-us/HT213091",
@@ -582,7 +582,7 @@
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
-        "5": { 
+        "5": {
             "name": "macOS Big Sur 11.2.1 and older",
             "emoji": "💻",
             "security_content_link": "https://support.apple.com/en-us/HT212177",
@@ -645,7 +645,7 @@
         ]
     ],
     "new_releases_info": {
-        "1": { 
+        "1": {
             "name": "Safari 15.3",
             "emoji": "🌐",
             "security_content_link": "https://support.apple.com/en-us/HT213058",
@@ -656,7 +656,7 @@
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
-        "2": { 
+        "2": {
             "name": "Security Update 2022-001 Catalina",
             "emoji": "🖥️",
             "security_content_link": "https://support.apple.com/en-us/HT213056",
@@ -667,7 +667,7 @@
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
-        "3": { 
+        "3": {
             "name": "macOS Big Sur 11.6.3",
             "emoji": "💻",
             "security_content_link": "https://support.apple.com/en-us/HT213055",
@@ -680,7 +680,7 @@
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
-        "4": { 
+        "4": {
             "name": "macOS Monterey 12.2",
             "emoji": "💻",
             "security_content_link": "https://support.apple.com/en-us/HT213054",
@@ -693,7 +693,7 @@
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
-        "5": { 
+        "5": {
             "name": "tvOS 15.3",
             "emoji": "📺",
             "security_content_link": "https://support.apple.com/en-us/HT213057",
@@ -704,7 +704,7 @@
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
-        "6": { 
+        "6": {
             "name": "iOS and iPadOS 15.3",
             "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/HT213053",
@@ -717,7 +717,7 @@
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
-        "7": { 
+        "7": {
             "name": "watchOS 8.4",
             "emoji": "⌚",
             "security_content_link": "https://support.apple.com/en-us/HT213059",
@@ -728,7 +728,7 @@
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
-        "8": { 
+        "8": {
             "name": "macOS Big Sur 11.5.2",
             "emoji": "💻",
             "security_content_link": "",
@@ -822,7 +822,7 @@
         ]
     ],
     "ios_modules_info": {
-        "1": { 
+        "1": {
             "name": "iOS and iPadOS 15.3",
             "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/HT213053",
@@ -846,7 +846,7 @@
         "https://support.apple.com/en-us/HT213053\n"
     ],
     "entry_changes_info": {
-        "1": { 
+        "1": {
             "name": "macOS Big Sur 11.6.1",
             "emoji": "💻",
             "security_content_link": "https://support.apple.com/en-us/HT212872",
@@ -859,7 +859,7 @@
             "num_entries_added": 4,
             "num_entries_updated": 1
         },
-        "2": { 
+        "2": {
             "name": "watchOS 8.1",
             "emoji": "⌚",
             "security_content_link": "https://support.apple.com/en-us/HT212874",
@@ -872,7 +872,7 @@
             "num_entries_added": 1,
             "num_entries_updated": 0
         },
-        "3": { 
+        "3": {
             "name": "iOS and iPadOS 15.1",
             "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/HT212867",
@@ -907,7 +907,7 @@
             "num_entries_added": 3,
             "num_entries_updated": 2
         },
-        "6": { 
+        "6": {
             "name": "watchOS 8",
             "emoji": "⌚",
             "security_content_link": "https://support.apple.com/en-us/HT212819",
@@ -918,7 +918,7 @@
             "num_entries_added": 5,
             "num_entries_updated": 2
         },
-        "7": { 
+        "7": {
             "name": "iOS and iPadOS 15",
             "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/HT212814",
@@ -929,7 +929,7 @@
             "num_entries_added": 4,
             "num_entries_updated": 3
         },
-        "8": { 
+        "8": {
             "name": "macOS Big Sur 11.6",
             "emoji": "💻",
             "security_content_link": "https://support.apple.com/en-us/HT212804",
@@ -943,7 +943,7 @@
             "num_entries_added": 8,
             "num_entries_updated": 1
         },
-        "9": { 
+        "9": {
             "name": "iOS and iPadOS 14.8",
             "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/HT212807",
@@ -957,7 +957,7 @@
             "num_entries_added": 4,
             "num_entries_updated": 0
         },
-        "10": { 
+        "10": {
             "name": "Security Update 2021-004 Catalina",
             "emoji": "🖥️",
             "security_content_link": "https://support.apple.com/en-us/HT212600",
@@ -968,7 +968,7 @@
             "num_entries_added": 6,
             "num_entries_updated": 1
         },
-        "11": { 
+        "11": {
             "name": "Security Update 2021-005 Mojave",
             "emoji": "🖥️",
             "security_content_link": "https://support.apple.com/en-us/HT212603",
@@ -979,7 +979,7 @@
             "num_entries_added": 5,
             "num_entries_updated": 0
         },
-        "12": { 
+        "12": {
             "name": "watchOS 7.6",
             "emoji": "⌚",
             "security_content_link": "https://support.apple.com/en-us/HT212605",
