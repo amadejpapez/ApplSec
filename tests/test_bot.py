@@ -1,7 +1,6 @@
 import copy
 import json
 import os
-import re
 import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
@@ -27,19 +26,24 @@ class ReleaseTest:
         self.__num_entries_added: int = release_info["num_entries_added"]
         self.__num_entries_updated: int = release_info["num_entries_updated"]
 
-    def get_name(self) -> str:
+    @property
+    def name(self) -> str:
         return self.__name
 
-    def get_security_content_link(self) -> str:
+    @property
+    def security_content_link(self) -> str:
         return self.__security_content_link
 
-    def get_release_date(self) -> str:
+    @property
+    def release_date(self) -> str:
         return self.__release_date
 
-    def get_emoji(self) -> str:
+    @property
+    def emoji(self) -> str:
         return self.__emoji
 
-    def get_num_of_zero_days(self) -> int:
+    @property
+    def num_of_zero_days(self) -> int:
         return self.__num_of_zero_days
 
     def get_format_num_of_zero_days(self) -> str:
@@ -51,10 +55,12 @@ class ReleaseTest:
 
         return "no zero-days"
 
-    def get_zero_days(self) -> dict:
+    @property
+    def zero_days(self) -> dict:
         return self.__zero_days
 
-    def get_num_of_bugs(self) -> int:
+    @property
+    def num_of_bugs(self) -> int:
         return self.__num_of_bugs
 
     def get_format_num_of_bugs(self) -> str:
@@ -69,19 +75,21 @@ class ReleaseTest:
 
         return "no bugs fixed"
 
-    def get_num_entries_added(self) -> int:
+    @property
+    def num_entries_added(self) -> int:
         return self.__num_entries_added
 
     def get_format_num_entries_added(self) -> str:
         return f"{self.__num_entries_added} added"
 
-    def get_num_entries_updated(self) -> int:
+    @property
+    def num_entries_updated(self) -> int:
         return self.__num_entries_updated
 
     def get_format_num_entries_updated(self) -> str:
         return f"{self.__num_entries_updated} updated"
 
-    def print_all_data(self):
+    def __str__(self):
         print(
             f'"{self.__name}":' + " { \n"
             f'    "name": "{self.__name}",\n'
@@ -97,17 +105,17 @@ class ReleaseTest:
         )
 
 
-def compare(release_obj, example):
+def compare(release_obj: list[Release], example: dict):
     for release, (_, expected) in zip(release_obj, example.items()):
-        assert release.get_name() == expected["name"]
-        assert release.get_emoji() == expected["emoji"], release.get_name()
-        assert release.get_security_content_link() == expected["security_content_link"], release.get_name()
-        assert release.get_release_date() == expected["release_date"], release.get_name()
-        assert release.get_num_of_bugs() == expected["num_of_bugs"], release.get_name()
-        assert release.get_num_of_zero_days() == expected["num_of_zero_days"], release.get_name()
-        assert release.get_zero_days() == expected["zero_days"], release.get_name()
-        assert release.get_num_entries_added() == expected["num_entries_added"], release.get_name()
-        assert release.get_num_entries_updated() == expected["num_entries_updated"], release.get_name()
+        assert release.name == expected["name"]
+        assert release.emoji == expected["emoji"], release.name
+        assert release.security_content_link == expected["security_content_link"], release.name
+        assert release.release_date == expected["release_date"], release.name
+        assert release.num_of_bugs == expected["num_of_bugs"], release.name
+        assert release.num_of_zero_days == expected["num_of_zero_days"], release.name
+        assert release.zero_days == expected["zero_days"], release.name
+        assert release.num_entries_added == expected["num_entries_added"], release.name
+        assert release.num_entries_updated == expected["num_entries_updated"], release.name
 
 
 def convert_to_lxml_class(release_rows: list) -> list:
@@ -157,8 +165,7 @@ coll = {
     "ios_release": [],
     "changed_releases": [],
     "sec_content_available": [],
-    "zero_day_releases": [],
-    "yearly_report": [],
+    "zero_day_releases": []
 }
 
 def test_posted_data_json():
@@ -187,20 +194,7 @@ def test_release_class():
     # check if titles match
     # useful for seeing which ones are missing if the above assert fails
     for i, value in enumerate(releases):
-        title = re.findall(r"(?i)(?<=[>])[^<]+|^[^<]+", value[0])[0]
-        # for releases like "macOS Monterey 12.0.1 (Advisory includes security content of..."
-        title = title.split("(Advisory", 1)[0].strip().split("\n", 1)[0].strip()
-
-        if "iOS" in title and "iPadOS" in title:
-            # turn "iOS 15.3 and iPadOS 15.3" into shorter "iOS and iPadOS 15.3"
-            title = title.split("and", 1)[0].strip().replace("iOS", "iOS and iPadOS")
-
-        if "macOS" in title and "Update" in title:
-            # for releases "macOS Big Sur 11.2.1, macOS Catalina 10.15.7 Supplemental Update,..."
-            title = title.split(",", 1)[0].strip()
-            title += " and older"
-
-        assert title == releases_obj[i].get_name()
+        assert Release.retrieve_name([lxml.html.document_fromstring(releases[i][0])]) == releases_obj[i].name
 
 
 def test_release_class_2():
