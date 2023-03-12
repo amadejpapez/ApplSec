@@ -1,7 +1,7 @@
 """
 Class and functions for organizing data for the individual release.
 
-Input format is a list of lxml.html.HtmlElement (release row on the initial Security page):
+Input format is an lxml release row on the Apple Security Content page:
 -----
 [
     [
@@ -42,47 +42,12 @@ import requests
 import helpers.get_date as get_date
 
 
-def create_name(release_row: list) -> str:
-    name = release_row[0].text_content()
-
-    # for releases with "macOS Monterey 12.0.1 (Advisory includes security content of..."
-    # and for "watchOS 9.0.2\nThis update has no published CVE entries."
-    name = name.split("(Advisory", 1)[0].split("\n", 1)[0].strip()
-
-    # "no details yet" releases might have this bracket alongside of their name
-    name = name.split("(details available soon)", 1)[0].strip()
-
-    if "iOS" in name and "iPadOS" in name:
-        # turn "iOS 15.3 and iPadOS 15.3" into shorter "iOS and iPadOS 15.3"
-        name = name.split("and", 1)[0].strip().replace("iOS", "iOS and iPadOS")
-
-    if "macOS" in name and "Update" in name:
-        # for releases "macOS Big Sur 11.2.1, macOS Catalina 10.15.7 Supplemental Update,..."
-        name = name.split(",", 1)[0].strip()
-        name += " and older"
-
-    return name
-
-
 class Release:
-    def __init__(self, release_row: list) -> None:
-        self.__name: str
-        self.__emoji: str
-        self.__security_content_link: str
-        self.__release_date: str
-        self.__num_of_bugs: int
-        self.__num_of_zero_days: int
-        self.__zero_days: dict
-        self.__num_entries_added: int
-        self.__num_entries_updated: int
-
-        self.__name = create_name(release_row)
-        self.set_emoji()
-        self.set_security_content_link(release_row)
-        self.set_release_date(release_row)
-
-        sec_content_page_html = ""
-        sec_content_page = ""
+    def __init__(self, release_row: list[lxml.html.HtmlElement]) -> None:
+        self.__name: str = Release.retrieve_name(release_row)
+        self.__emoji: str = Release.retrieve_emoji(self.__name)
+        self.__security_content_link: str = Release.retrieve_security_content_link(release_row)
+        self.__release_date: str = release_row[2].text_content()
 
         if self.__security_content_link:
             try:
@@ -103,36 +68,63 @@ class Release:
                 self.__security_content_link = ""
                 sec_content_page_html = ""
                 sec_content_page = ""
+        else:
+            sec_content_page_html = ""
+            sec_content_page = ""
 
-        self.set_num_of_bugs(release_row, sec_content_page)
-        self.set_zero_days(sec_content_page_html)
-        self.set_num_entries_changed(sec_content_page)
+        self.__num_of_bugs: int = Release.retrieve_num_of_bugs(release_row, sec_content_page)
+        self.__zero_days: dict = Release.retrieve_zero_days(sec_content_page_html)
+        self.__num_of_zero_days: int = len(self.__zero_days)
+
+        self.__num_entries_added: int = sec_content_page.count(f"added {get_date.format_two()}")
+        self.__num_entries_updated: int = sec_content_page.count(f"updated {get_date.format_two()}")
 
     @property
     def name(self) -> str:
         return self.__name
 
-    def set_security_content_link(self, release_row: list) -> None:
+    @staticmethod
+    def retrieve_name(release_row: list) -> str:
+        name = release_row[0].text_content()
+
+        # for releases with "macOS Monterey 12.0.1 (Advisory includes security content of..."
+        # and for "watchOS 9.0.2\nThis update has no published CVE entries."
+        name = name.split("(Advisory", 1)[0].split("\n", 1)[0].strip()
+
+        # "no details yet" releases might have this bracket alongside of their name
+        name = name.split("(details available soon)", 1)[0].strip()
+
+        if "iOS" in name and "iPadOS" in name:
+            # turn "iOS 15.3 and iPadOS 15.3" into shorter "iOS and iPadOS 15.3"
+            name = name.split("and", 1)[0].strip().replace("iOS", "iOS and iPadOS")
+
+        if "macOS" in name and "Update" in name:
+            # for releases "macOS Big Sur 11.2.1, macOS Catalina 10.15.7 Supplemental Update,..."
+            name = name.split(",", 1)[0].strip()
+            name += " and older"
+
+        return name
+
+    @staticmethod
+    def retrieve_security_content_link(release_row: list) -> str:
         tmp = release_row[0].xpath(".//a/@href")
 
         if tmp != []:
-            self.__security_content_link = tmp[0]
+            return tmp[0]
         else:
-            self.__security_content_link = ""
+            return ""
 
     @property
     def security_content_link(self) -> str:
         return self.__security_content_link
 
-    def set_release_date(self, release_row: list) -> None:
-        self.__release_date = release_row[2].text_content()
-
     @property
     def release_date(self) -> str:
         return self.__release_date
 
-    def set_emoji(self) -> None:
-        """Set an emoji depending on the title."""
+    @staticmethod
+    def retrieve_emoji(release_name: str) -> str:
+        """Set an emoji depending on the name of the release."""
 
         emoji_dict = {
             "iOS": "📱",
@@ -151,17 +143,17 @@ class Release:
         }
 
         for key, value in emoji_dict.items():
-            if key in self.__name:
-                self.__emoji = value
-                return
+            if key in release_name:
+                return value
 
-        self.__emoji = "🛠️"
+        return "🛠️"
 
     @property
     def emoji(self) -> str:
         return self.__emoji
 
-    def set_zero_days(self, sec_content_html: str) -> None:
+    @staticmethod
+    def retrieve_zero_days(sec_content_html: str) -> dict:
         """Check for "in the wild" or "actively exploited", indicating a fixed zero-day."""
 
         entries = re.findall(r"(?i)(?<=<strong>).*?(?=<strong>|<\/div)", sec_content_html)
@@ -172,8 +164,7 @@ class Release:
                 cve = re.findall(r"(?i)CVE-[0-9]{4}-[0-9]+", entry)[0]
                 zero_days[cve] = re.findall(r"(?i).+?(?=<\/strong>)", entry)[0]
 
-        self.__num_of_zero_days = len(zero_days)
-        self.__zero_days = zero_days
+        return zero_days
 
     @property
     def num_of_zero_days(self) -> int:
@@ -192,13 +183,14 @@ class Release:
     def zero_days(self) -> dict:
         return self.__zero_days
 
-    def set_num_of_bugs(self, release_row: list, sec_content_page: str) -> None:
+    @staticmethod
+    def retrieve_num_of_bugs(release_row: list, sec_content_page: str) -> int:
         """Return a number of CVEs fixed."""
 
         if "soon" in release_row[0].text_content():
-            self.__num_of_bugs = -1
+            return -1
         else:
-            self.__num_of_bugs = len(re.findall("(?i)CVE-[0-9]{4}-[0-9]+", sec_content_page))
+            return len(re.findall("(?i)CVE-[0-9]{4}-[0-9]+", sec_content_page))
 
     @property
     def num_of_bugs(self) -> int:
@@ -215,17 +207,6 @@ class Release:
             return "no details yet"
 
         return "no bugs fixed"
-
-    def set_num_entries_changed(self, sec_content_page: str) -> None:
-        """
-        Return if any entries were added or updated.
-        Post is made at the start of each day for any changes made on the previous day.
-        """
-
-        date_format_two = get_date.format_two()
-
-        self.__num_entries_added = len(re.findall(f"added {date_format_two}", sec_content_page))
-        self.__num_entries_updated = len(re.findall(f"updated {date_format_two}", sec_content_page))
 
     @property
     def num_entries_added(self) -> int:

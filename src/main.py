@@ -6,7 +6,7 @@ import helpers.get_version_info as get_version_info
 import helpers.manage_posted_data as manage_posted_data
 import post_format
 from post_make import post
-from Release import Release, create_name
+from Release import Release
 
 
 def retrieve_main_page() -> list:
@@ -156,7 +156,7 @@ def main():
     new_releases = []
 
     for row in all_releases_rows:
-        if create_name(row) in posted_data["posts"]["new_updates"]:
+        if Release.retrieve_name(row) in posted_data["posts"]["new_updates"]:
             break
 
         new_releases.insert(0, Release(row))
