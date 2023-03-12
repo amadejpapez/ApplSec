@@ -24,7 +24,7 @@ def retrieve_main_page() -> list:
 
 
 def check_latest_ios_release(
-    coll: dict, posted_data: dict, release: Release, lat_ios_ver: str
+    coll: dict[str, list[Release]], posted_data: dict, release: Release, lat_ios_ver: str
 ) -> None:
     """
     If the latest iOS series (currently iOS 16) got a new release.
@@ -32,15 +32,15 @@ def check_latest_ios_release(
     Do not post if all bugs are zero-days, as does are already in a post.
     """
     if (
-        "iOS" in release.get_name()
-        and lat_ios_ver in release.get_name()
-        and release.get_name() not in posted_data["posts"]["ios_modules"]
-        and release.get_security_content_link() != ""
-        and release.get_num_of_bugs() != len(release.get_zero_days())
+        "iOS" in release.name
+        and lat_ios_ver in release.name
+        and release.name not in posted_data["posts"]["ios_modules"]
+        and release.security_content_link != ""
+        and release.num_of_bugs != len(release.zero_days)
     ):
         coll["ios_release"].append(release)
 
-        posted_data["posts"]["ios_modules"].append(release.get_name())
+        posted_data["posts"]["ios_modules"].append(release.name)
 
 
 def save_sec_content_no_details_yet(posted_data: dict, release: Release) -> None:
@@ -49,13 +49,13 @@ def save_sec_content_no_details_yet(posted_data: dict, release: Release) -> None
     and saves them.
     """
     if (
-        release.get_name() not in posted_data["details_available_soon"]
+        release.name not in posted_data["details_available_soon"]
         and release.get_format_num_of_bugs() == "no details yet"
     ):
-        posted_data["details_available_soon"].append(release.get_name())
+        posted_data["details_available_soon"].append(release.name)
 
 
-def check_if_sec_content_available(coll: dict, posted_data: dict, all_releases_rows: list) -> None:
+def check_if_sec_content_available(coll: dict[str, list[Release]], posted_data: dict, all_releases_rows: list) -> None:
     """
     Check if any releases that said "no details yet", got security content available now.
     """
@@ -68,33 +68,33 @@ def check_if_sec_content_available(coll: dict, posted_data: dict, all_releases_r
 
         release_obj = Release(row)
 
-        if release_obj.get_name() in posted_data["details_available_soon"]:
-            if release_obj.get_security_content_link() != "":
+        if release_obj.name in posted_data["details_available_soon"]:
+            if release_obj.security_content_link != "":
                 coll["sec_content_available"].append(release_obj)
-                posted_data["details_available_soon"].remove(release_obj.get_name())
+                posted_data["details_available_soon"].remove(release_obj.name)
 
             checked += 1
 
 
 def check_new_releases(
-    coll: dict, posted_data: dict, latest_versions: dict, new_releases: list
+    coll: dict[str, list[Release]], posted_data: dict, latest_versions: dict, new_releases: list[Release]
 ) -> None:
     latest_ios_ver = str(latest_versions["iOS"][0])
 
     for release in new_releases:
-        if release.get_name() not in posted_data["posts"]["new_updates"]:
+        if release.name not in posted_data["posts"]["new_updates"]:
             coll["new_releases"].append(release)
 
-            posted_data["posts"]["new_updates"].append(release.get_name())
+            posted_data["posts"]["new_updates"].append(release.name)
 
-        if "iOS" in release.get_name():
+        if "iOS" in release.name:
             check_latest_ios_release(coll, posted_data, release, latest_ios_ver)
 
-        if release.get_security_content_link() == "":
+        if release.security_content_link == "":
             save_sec_content_no_details_yet(posted_data, release)
 
 
-def check_for_zero_day_releases(coll: dict, posted_data: dict) -> None:
+def check_for_zero_day_releases(coll: dict[str, list[Release]], posted_data: dict) -> None:
     """
     Look if there are any releases, containing zero-days.
     """
@@ -102,17 +102,17 @@ def check_for_zero_day_releases(coll: dict, posted_data: dict) -> None:
 
     for release in check_tmp:
         if (
-            release.get_num_of_zero_days() > 0
-            and release.get_name() not in posted_data["posts"]["zero_days"].keys()
+            release.num_of_zero_days > 0
+            and release.name not in posted_data["posts"]["zero_days"].keys()
         ):
             coll["zero_day_releases"].append(release)
 
             posted_data["posts"]["zero_days"][
-                release.get_name()
-            ] = release.get_num_of_zero_days()
+                release.name
+            ] = release.num_of_zero_days
 
 
-def check_for_entry_changes(coll: dict, all_releases_rows: list) -> None:
+def check_for_entry_changes(coll: dict[str, list[Release]], all_releases_rows: list) -> None:
     """
     On midnight check for security content changes made on the previous day.
     Because of checking so many releases and to not make too much requests,
@@ -121,11 +121,11 @@ def check_for_entry_changes(coll: dict, all_releases_rows: list) -> None:
     for row in all_releases_rows:
         release = Release(row)
 
-        if release.get_num_entries_added() > 0 or release.get_num_entries_updated() > 0:
+        if release.num_entries_added > 0 or release.num_entries_updated > 0:
             coll["changed_releases"].append(release)
 
 
-def check_for_yearly_report(coll: dict, posted_data: dict, latest_versions: dict) -> None:
+def check_for_yearly_report(coll: dict[str, list[Release]], coll_yearly_report: list, posted_data: dict, latest_versions: dict) -> None:
     """
     If there is a new major upgrade. Report how many bugs Apple fixed
     in the last 4 major series releases.
@@ -137,15 +137,15 @@ def check_for_yearly_report(coll: dict, posted_data: dict, latest_versions: dict
         posted_data["posts"]["yearly_report"].append(key)
 
         for release in coll["new_releases"]:
-            if release.get_name() in (f"{key} {value[0]}", f"{key} {value[0]}.0"):
-                coll["yearly_report"].append([key, value[0]])
+            if release.name in (f"{key} {value[0]}", f"{key} {value[0]}.0"):
+                coll_yearly_report.append([key, value[0]])
 
             elif key == "macOS":
-                if release.get_name() in (
+                if release.name in (
                     f"{key} {value[1]} {value[0]}",
                     f"{key} {value[1]} {value[0]}.0",
                 ):
-                    coll["yearly_report"].append([key, value[0]])
+                    coll_yearly_report.append([key, value[0]])
 
 
 def main():
@@ -167,8 +167,8 @@ def main():
         "changed_releases": [],
         "sec_content_available": [],
         "zero_day_releases": [],
-        "yearly_report": [],
     }
+    coll_yearly_report = []
 
     check_new_releases(coll, posted_data, latest_versions, new_releases)
     check_for_zero_day_releases(coll, posted_data)
@@ -177,7 +177,7 @@ def main():
     if get_date.is_midnight():
         check_for_entry_changes(coll, all_releases_rows)
 
-    # check_for_yearly_report(coll, posted_data, latest_versions) # DISABLED AS NOT TESTED ENOUGH
+    # check_for_yearly_report(coll, coll_yearly_report, posted_data, latest_versions) # DISABLED AS NOT TESTED ENOUGH
 
     if coll["ios_release"]:
         post(post_format.top_ios_modules(coll["ios_release"]))
@@ -191,7 +191,7 @@ def main():
     if coll["sec_content_available"]:
         post(post_format.security_content_available(coll["sec_content_available"]))
 
-    # if coll["yearly_report"]:
+    # if coll_yearly_report:
     #    post(format_post.yearly_report(all_releases, key, value[0]))
 
     # new updates should be posted last, after all of the other posts

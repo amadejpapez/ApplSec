@@ -108,7 +108,8 @@ class Release:
         self.set_zero_days(sec_content_page_html)
         self.set_num_entries_changed(sec_content_page)
 
-    def get_name(self) -> str:
+    @property
+    def name(self) -> str:
         return self.__name
 
     def set_security_content_link(self, release_row: list) -> None:
@@ -119,13 +120,15 @@ class Release:
         else:
             self.__security_content_link = ""
 
-    def get_security_content_link(self) -> str:
+    @property
+    def security_content_link(self) -> str:
         return self.__security_content_link
 
     def set_release_date(self, release_row: list) -> None:
         self.__release_date = release_row[2].text_content()
 
-    def get_release_date(self) -> str:
+    @property
+    def release_date(self) -> str:
         return self.__release_date
 
     def set_emoji(self) -> None:
@@ -154,7 +157,8 @@ class Release:
 
         self.__emoji = "🛠️"
 
-    def get_emoji(self) -> str:
+    @property
+    def emoji(self) -> str:
         return self.__emoji
 
     def set_zero_days(self, sec_content_html: str) -> None:
@@ -171,7 +175,8 @@ class Release:
         self.__num_of_zero_days = len(zero_days)
         self.__zero_days = zero_days
 
-    def get_num_of_zero_days(self) -> int:
+    @property
+    def num_of_zero_days(self) -> int:
         return self.__num_of_zero_days
 
     def get_format_num_of_zero_days(self) -> str:
@@ -183,7 +188,8 @@ class Release:
 
         return "no zero-days"
 
-    def get_zero_days(self) -> dict:
+    @property
+    def zero_days(self) -> dict:
         return self.__zero_days
 
     def set_num_of_bugs(self, release_row: list, sec_content_page: str) -> None:
@@ -194,7 +200,8 @@ class Release:
         else:
             self.__num_of_bugs = len(re.findall("(?i)CVE-[0-9]{4}-[0-9]+", sec_content_page))
 
-    def get_num_of_bugs(self) -> int:
+    @property
+    def num_of_bugs(self) -> int:
         return self.__num_of_bugs
 
     def get_format_num_of_bugs(self) -> str:
@@ -220,13 +227,15 @@ class Release:
         self.__num_entries_added = len(re.findall(f"added {date_format_two}", sec_content_page))
         self.__num_entries_updated = len(re.findall(f"updated {date_format_two}", sec_content_page))
 
-    def get_num_entries_added(self) -> int:
+    @property
+    def num_entries_added(self) -> int:
         return self.__num_entries_added
 
     def get_format_num_entries_added(self) -> str:
         return f"{self.__num_entries_added} added"
 
-    def get_num_entries_updated(self) -> int:
+    @property
+    def num_entries_updated(self) -> int:
         return self.__num_entries_updated
 
     def get_format_num_entries_updated(self) -> str:

@@ -7,7 +7,7 @@ import helpers.get_version_info as get_version_info
 from Release import Release
 
 
-def new_updates(releases: list) -> list:
+def new_updates(releases: list[Release]) -> list:
     """
     -----
     💥 NEW UPDATES RELEASED 💥
@@ -23,19 +23,19 @@ def new_updates(releases: list) -> list:
     """
     post_text = []
 
-    releases.sort(key=lambda x: x.get_num_of_bugs(), reverse=True)
+    releases.sort(key=lambda x: x.num_of_bugs, reverse=True)
 
     for release in releases:
         post_text.append(
-            f"{release.get_emoji()} {release.get_name()} - {release.get_format_num_of_bugs()}\n"
+            f"{release.emoji} {release.name} - {release.get_format_num_of_bugs()}\n"
         )
 
     if len(releases) == 1:
         post_text.insert(0, "💥 NEW UPDATE RELEASED 💥\n\n")
 
         # if there is only one release, add its notes as a link instead
-        if releases[0].get_security_content_link():
-            post_text.append(releases[0].get_security_content_link())
+        if releases[0].security_content_link:
+            post_text.append(releases[0].security_content_link)
     else:
         post_text.insert(0, "💥 NEW UPDATES RELEASED 💥\n\n")
         post_text.append("https://support.apple.com/en-us/HT201222")
@@ -43,7 +43,7 @@ def new_updates(releases: list) -> list:
     return post_text
 
 
-def top_ios_modules(releases: list) -> list:
+def top_ios_modules(releases: list[Release]) -> list:
     """
     -----
     ⚒️ FIXED IN iOS 14.7 ⚒️
@@ -59,7 +59,7 @@ def top_ios_modules(releases: list) -> list:
     post_text = []
 
     for release in releases:
-        sec_content_html = requests.get(release.get_security_content_link(), timeout=60).text
+        sec_content_html = requests.get(release.security_content_link, timeout=60).text
         sec_content_html = sec_content_html.split("Additional recognition", 1)[0]
 
         search_modules = collections.Counter(
@@ -69,7 +69,7 @@ def top_ios_modules(releases: list) -> list:
             sorted(search_modules.items(), reverse=True, key=lambda x: x[1])
         )
 
-        post_text = [f"⚒️ FIXED IN {release.get_name()} ⚒️\n\n"]
+        post_text = [f"⚒️ FIXED IN {release.name} ⚒️\n\n"]
         num_bugs = 0
 
         for key, value in modules.items():
@@ -81,14 +81,14 @@ def top_ios_modules(releases: list) -> list:
 
                 num_bugs += value
 
-        num_bugs = release.get_num_of_bugs() - num_bugs
+        num_bugs = release.num_of_bugs - num_bugs
 
         if num_bugs > 0:
             post_text.append(f"and {num_bugs} other vulnerabilities fixed\n")
         elif num_bugs == 1:
             post_text.append("and 1 other vulnerability fixed\n")
 
-        post_text.append(f"{release.get_security_content_link()}\n")
+        post_text.append(f"{release.security_content_link}\n")
 
     return post_text
 
@@ -134,7 +134,7 @@ def get_zero_days_start_text(zero_days: dict) -> str:
     return text
 
 
-def zero_days(releases: list, posted_data: dict) -> list:
+def zero_days(releases: list[Release], posted_data: dict) -> list:
     """
     -----
     📣 EMERGENCY UPDATES 📣
@@ -158,15 +158,15 @@ def zero_days(releases: list, posted_data: dict) -> list:
     zero_days = {}
 
     for release in releases:
-        for cve, module in release.get_zero_days().items():
+        for cve, module in release.zero_days.items():
             if not zero_days.get(cve):
                 zero_days[cve] = {
                     "status": "old",
                     "module": module,
-                    "releases": [release.get_name()],
+                    "releases": [release.name],
                 }
             else:
-                zero_days[cve]["releases"].append(release.get_name())
+                zero_days[cve]["releases"].append(release.name)
 
             # if zero-day was not fixed in any previous releases
             if cve not in posted_data["zero_days"]:
@@ -194,7 +194,7 @@ def zero_days(releases: list, posted_data: dict) -> list:
     return post_text
 
 
-def entry_changes(releases: list) -> list:
+def entry_changes(releases: list[Release]) -> list:
     """
     -----
     🔄 24 ENTRY CHANGES 🔄
@@ -209,24 +209,24 @@ def entry_changes(releases: list) -> list:
     changes_count = 0
 
     releases.sort(
-        key=lambda x: (x.get_num_entries_added() + x.get_num_entries_updated()),
+        key=lambda x: (x.num_entries_added + x.num_entries_updated),
         reverse=True,
     )
 
     for release in releases:
-        name = f"{release.get_emoji()} {release.get_name()}"
+        name = f"{release.emoji} {release.name}"
 
-        changes_count += release.get_num_entries_added() + release.get_num_entries_updated()
+        changes_count += release.num_entries_added + release.num_entries_updated
 
-        if release.get_num_entries_added() > 0:
-            if release.get_num_entries_updated() > 0:
+        if release.num_entries_added > 0:
+            if release.num_entries_updated > 0:
                 post_text.append(
                     f"{name} - {release.get_format_num_entries_added()}, {release.get_format_num_entries_updated()}\n"
                 )
             else:
                 post_text.append(f"{name} - {release.get_format_num_entries_added()}\n")
 
-        elif release.get_num_entries_updated() > 0:
+        elif release.num_entries_updated > 0:
             post_text.append(f"{name} - {release.get_format_num_entries_updated()}\n")
 
     if changes_count == 1:
@@ -243,7 +243,7 @@ def entry_changes(releases: list) -> list:
     return post_text
 
 
-def security_content_available(releases: list) -> list:
+def security_content_available(releases: list[Release]) -> list:
     """
     -----
     📝 SECURITY CONTENT AVAILABLE 📝
@@ -256,7 +256,7 @@ def security_content_available(releases: list) -> list:
     -----
     """
 
-    releases.sort(key=lambda x: x.get_num_of_bugs(), reverse=True)
+    releases.sort(key=lambda x: x.num_of_bugs, reverse=True)
 
     post_text = [
         "📝 SECURITY CONTENT AVAILABLE 📝\n\n",
@@ -264,7 +264,7 @@ def security_content_available(releases: list) -> list:
 
     for release in releases:
         post_text.append(
-            f"{release.get_emoji()} {release.get_name()} - {release.get_format_num_of_bugs()}\n"
+            f"{release.emoji} {release.name} - {release.get_format_num_of_bugs()}\n"
         )
 
     return post_text
@@ -295,7 +295,7 @@ def yearly_report(release_rows: list, system: str, version: int) -> list:
                 if tmp != []:
                     release = Release(row)
 
-                    num = release.get_num_of_bugs()
+                    num = release.num_of_bugs
 
                     if num > 0:
                         info[ver]["num_of_bugs"] += num
