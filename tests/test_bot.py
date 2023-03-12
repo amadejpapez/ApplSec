@@ -219,16 +219,18 @@ def test_release_class_2():
 
 def test_new_updates():
     releases_obj = convert_to_release_class(example_file["new_releases_table"])
+    posted_data_test = copy.deepcopy(posted_data)
 
     compare(releases_obj, example_file["new_releases_info"])
 
     coll["new_releases"] = []
 
-    main.check_new_releases(coll, copy.deepcopy(posted_data), latest_versions, releases_obj)
+    main.check_new_releases(coll, posted_data_test, latest_versions, releases_obj)
 
     post = post_format.new_updates(coll["new_releases"])
 
     assert post == example_file["new_releases_post"]
+    assert posted_data_test == example_file["new_releases_posted_data"]
 
 
 def test_new_updates_only_one():
@@ -245,14 +247,16 @@ def test_new_updates_only_one():
 
 def test_new_updates_details_soon():
     releases_obj = convert_to_release_class(example_file["new_releases_details_soon_table"])
+    posted_data_test = copy.deepcopy(posted_data)
 
     coll["new_releases"] = []
 
-    main.check_new_releases(coll, copy.deepcopy(posted_data), latest_versions, releases_obj)
+    main.check_new_releases(coll, posted_data_test, latest_versions, releases_obj)
 
     post = post_format.new_updates(coll["new_releases"])
 
     assert post == example_file["new_releases_details_soon_post"]
+    assert posted_data_test == example_file["new_releases_details_soon_posted_data"]
 
 
 def test_ios_modules():
@@ -323,17 +327,19 @@ def test_yearly_report():
 
 def test_zero_day():
     releases_obj = convert_to_release_class(example_file["zero_day_releases_table"])
+    posted_data_test = copy.deepcopy(posted_data)
     coll["new_releases"] = releases_obj
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
 
     compare(releases_obj, example_file["zero_day_releases_info"])
 
-    main.check_for_zero_day_releases(coll, copy.deepcopy(posted_data))
+    main.check_for_zero_day_releases(coll, posted_data_test)
 
-    post = post_format.zero_days(coll["zero_day_releases"], copy.deepcopy(posted_data))
+    post = post_format.zero_days(coll["zero_day_releases"], posted_data_test)
 
     assert post == example_file["zero_day_releases_post"]
+    assert posted_data_test == example_file["zero_day_releases_posted_data"]
 
 
 def test_zero_day_new_old():

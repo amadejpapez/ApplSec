@@ -752,6 +752,29 @@
         "💻 macOS Big Sur 11.5.2 - no bugs fixed\n",
         "https://support.apple.com/en-us/HT201222"
     ],
+    "new_releases_posted_data": {
+        "zero_days": [
+            "CVE-2021-30869"
+        ],
+        "details_available_soon": [],
+        "posts": {
+            "new_updates": [
+                "Safari 15.3",
+                "Security Update 2022-001 Catalina",
+                "macOS Big Sur 11.6.3",
+                "macOS Monterey 12.2",
+                "tvOS 15.3",
+                "iOS and iPadOS 15.3",
+                "watchOS 8.4",
+                "macOS Big Sur 11.5.2"
+            ],
+            "ios_modules": [
+                "iOS and iPadOS 15.3"
+            ],
+            "zero_days": {},
+            "yearly_report": []
+        }
+    },
     "new_releases_one_table": [
         [
             "<a href=\"https://support.apple.com/en-us/HT213059\">watchOS 8.4</a>",
@@ -775,6 +798,22 @@
         "💥 NEW UPDATE RELEASED 💥\n\n",
         "📺 tvOS 16.3.2 - no details yet\n"
     ],
+    "new_releases_details_soon_posted_data": {
+        "zero_days": [
+            "CVE-2021-30869"
+        ],
+        "details_available_soon": [
+            "tvOS 16.3.2"
+        ],
+        "posts": {
+            "new_updates": [
+                "tvOS 16.3.2"
+            ],
+            "ios_modules": [],
+            "zero_days": {},
+            "yearly_report": []
+        }
+    },
     "ios_modules_table": [
         [
             "<a href=\"https://support.apple.com/en-us/HT213053\">iOS 15.3 and iPadOS 15.3</a>",
@@ -1169,6 +1208,24 @@
         "\n\n🐛 CVE-2021-31010 (Core Telephony):\n- iOS 12.5.5",
         "\n\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5"
     ],
+    "zero_day_releases_posted_data": {
+        "zero_days": [
+            "CVE-2021-30869",
+            "CVE-2021-30860",
+            "CVE-2021-31010",
+            "CVE-2021-30858"
+        ],
+        "details_available_soon": [],
+        "posts": {
+            "new_updates": [],
+            "ios_modules": [],
+            "zero_days": {
+                "Security Update 2021-006 Catalina": 1,
+                "iOS 12.5.5": 4
+            },
+            "yearly_report": []
+        }
+    },
     "zero_day_releases_new_old_info": {
         "1": {
             "name": "Security Update 2021-006 Catalina",
