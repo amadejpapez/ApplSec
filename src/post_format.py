@@ -26,9 +26,7 @@ def new_updates(releases: list[Release]) -> list:
     releases.sort(key=lambda x: x.num_of_bugs, reverse=True)
 
     for release in releases:
-        post_text.append(
-            f"{release.emoji} {release.name} - {release.get_format_num_of_bugs()}\n"
-        )
+        post_text.append(f"{release.emoji} {release.name} - {release.get_format_num_of_bugs()}\n")
 
     if len(releases) == 1:
         post_text.insert(0, "💥 NEW UPDATE RELEASED 💥\n\n")
@@ -263,9 +261,7 @@ def security_content_available(releases: list[Release]) -> list:
     ]
 
     for release in releases:
-        post_text.append(
-            f"{release.emoji} {release.name} - {release.get_format_num_of_bugs()}\n"
-        )
+        post_text.append(f"{release.emoji} {release.name} - {release.get_format_num_of_bugs()}\n")
 
     return post_text
 

@@ -44,9 +44,9 @@ import helpers.get_date as get_date
 
 class Release:
     def __init__(self, release_row: list[lxml.html.HtmlElement]) -> None:
-        self.__name: str = Release.retrieve_name(release_row)
-        self.__emoji: str = Release.retrieve_emoji(self.__name)
-        self.__security_content_link: str = Release.retrieve_security_content_link(release_row)
+        self.__name: str = self.retrieve_name(release_row)
+        self.__emoji: str = self.retrieve_emoji(self.__name)
+        self.__security_content_link: str = self.retrieve_security_content_link(release_row)
         self.__release_date: str = release_row[2].text_content()
 
         if self.__security_content_link:
@@ -72,16 +72,12 @@ class Release:
             sec_content_page_html = ""
             sec_content_page = ""
 
-        self.__num_of_bugs: int = Release.retrieve_num_of_bugs(release_row, sec_content_page)
-        self.__zero_days: dict = Release.retrieve_zero_days(sec_content_page_html)
+        self.__num_of_bugs: int = self.retrieve_num_of_bugs(release_row, sec_content_page)
+        self.__zero_days: dict = self.retrieve_zero_days(sec_content_page_html)
         self.__num_of_zero_days: int = len(self.__zero_days)
 
         self.__num_entries_added: int = sec_content_page.count(f"added {get_date.format_two()}")
         self.__num_entries_updated: int = sec_content_page.count(f"updated {get_date.format_two()}")
-
-    @property
-    def name(self) -> str:
-        return self.__name
 
     @staticmethod
     def retrieve_name(release_row: list) -> str:
@@ -105,22 +101,9 @@ class Release:
 
         return name
 
-    @staticmethod
-    def retrieve_security_content_link(release_row: list) -> str:
-        tmp = release_row[0].xpath(".//a/@href")
-
-        if tmp != []:
-            return tmp[0]
-        else:
-            return ""
-
     @property
-    def security_content_link(self) -> str:
-        return self.__security_content_link
-
-    @property
-    def release_date(self) -> str:
-        return self.__release_date
+    def name(self) -> str:
+        return self.__name
 
     @staticmethod
     def retrieve_emoji(release_name: str) -> str:
@@ -153,35 +136,21 @@ class Release:
         return self.__emoji
 
     @staticmethod
-    def retrieve_zero_days(sec_content_html: str) -> dict:
-        """Check for "in the wild" or "actively exploited", indicating a fixed zero-day."""
+    def retrieve_security_content_link(release_row: list) -> str:
+        tmp = release_row[0].xpath(".//a/@href")
 
-        entries = re.findall(r"(?i)(?<=<strong>).*?(?=<strong>|<\/div)", sec_content_html)
-        zero_days = {}
-
-        for entry in entries:
-            if "in the wild" in entry or "actively exploited" in entry:
-                cve = re.findall(r"(?i)CVE-[0-9]{4}-[0-9]+", entry)[0]
-                zero_days[cve] = re.findall(r"(?i).+?(?=<\/strong>)", entry)[0]
-
-        return zero_days
+        if tmp != []:
+            return tmp[0]
+        else:
+            return ""
 
     @property
-    def num_of_zero_days(self) -> int:
-        return self.__num_of_zero_days
-
-    def get_format_num_of_zero_days(self) -> str:
-        if self.__num_of_zero_days > 1:
-            return f"{self.__num_of_zero_days} zero-days"
-
-        if self.__num_of_zero_days == 1:
-            return f"{self.__num_of_zero_days} zero-day"
-
-        return "no zero-days"
+    def security_content_link(self) -> str:
+        return self.__security_content_link
 
     @property
-    def zero_days(self) -> dict:
-        return self.__zero_days
+    def release_date(self) -> str:
+        return self.__release_date
 
     @staticmethod
     def retrieve_num_of_bugs(release_row: list, sec_content_page: str) -> int:
@@ -207,6 +176,37 @@ class Release:
             return "no details yet"
 
         return "no bugs fixed"
+
+    @staticmethod
+    def retrieve_zero_days(sec_content_html: str) -> dict:
+        """Check for "in the wild" or "actively exploited", indicating a fixed zero-day."""
+
+        entries = re.findall(r"(?i)(?<=<strong>).*?(?=<strong>|<\/div)", sec_content_html)
+        zero_days = {}
+
+        for entry in entries:
+            if "in the wild" in entry or "actively exploited" in entry:
+                cve = re.findall(r"(?i)CVE-[0-9]{4}-[0-9]+", entry)[0]
+                zero_days[cve] = re.findall(r"(?i).+?(?=<\/strong>)", entry)[0]
+
+        return zero_days
+
+    @property
+    def zero_days(self) -> dict:
+        return self.__zero_days
+
+    @property
+    def num_of_zero_days(self) -> int:
+        return self.__num_of_zero_days
+
+    def get_format_num_of_zero_days(self) -> str:
+        if self.__num_of_zero_days > 1:
+            return f"{self.__num_of_zero_days} zero-days"
+
+        if self.__num_of_zero_days == 1:
+            return f"{self.__num_of_zero_days} zero-day"
+
+        return "no zero-days"
 
     @property
     def num_entries_added(self) -> int:

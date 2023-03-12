@@ -38,10 +38,10 @@ def read() -> dict:
 
 
 def clear_old_data(new_data: dict) -> dict:
-    while (len(new_data["posts"]["new_updates"]) > 15):
+    while len(new_data["posts"]["new_updates"]) > 15:
         new_data["posts"]["new_updates"].pop(0)
 
-    while (len(new_data["posts"]["ios_modules"]) > 3):
+    while len(new_data["posts"]["ios_modules"]) > 3:
         new_data["posts"]["ios_modules"].pop(0)
 
     while len(new_data["zero_days"]) > 10:

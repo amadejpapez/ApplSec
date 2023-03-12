@@ -55,7 +55,9 @@ def save_sec_content_no_details_yet(posted_data: dict, release: Release) -> None
         posted_data["details_available_soon"].append(release.name)
 
 
-def check_if_sec_content_available(coll: dict[str, list[Release]], posted_data: dict, all_releases_rows: list) -> None:
+def check_if_sec_content_available(
+    coll: dict[str, list[Release]], posted_data: dict, all_releases_rows: list
+) -> None:
     """
     Check if any releases that said "no details yet", got security content available now.
     """
@@ -77,7 +79,10 @@ def check_if_sec_content_available(coll: dict[str, list[Release]], posted_data: 
 
 
 def check_new_releases(
-    coll: dict[str, list[Release]], posted_data: dict, latest_versions: dict, new_releases: list[Release]
+    coll: dict[str, list[Release]],
+    posted_data: dict,
+    latest_versions: dict,
+    new_releases: list[Release],
 ) -> None:
     latest_ios_ver = str(latest_versions["iOS"][0])
 
@@ -107,9 +112,7 @@ def check_for_zero_day_releases(coll: dict[str, list[Release]], posted_data: dic
         ):
             coll["zero_day_releases"].append(release)
 
-            posted_data["posts"]["zero_days"][
-                release.name
-            ] = release.num_of_zero_days
+            posted_data["posts"]["zero_days"][release.name] = release.num_of_zero_days
 
 
 def check_for_entry_changes(coll: dict[str, list[Release]], all_releases_rows: list) -> None:
@@ -125,7 +128,12 @@ def check_for_entry_changes(coll: dict[str, list[Release]], all_releases_rows: l
             coll["changed_releases"].append(release)
 
 
-def check_for_yearly_report(coll: dict[str, list[Release]], coll_yearly_report: list, posted_data: dict, latest_versions: dict) -> None:
+def check_for_yearly_report(
+    coll: dict[str, list[Release]],
+    coll_yearly_report: list,
+    posted_data: dict,
+    latest_versions: dict,
+) -> None:
     """
     If there is a new major upgrade. Report how many bugs Apple fixed
     in the last 4 major series releases.

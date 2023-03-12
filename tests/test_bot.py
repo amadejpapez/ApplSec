@@ -165,18 +165,19 @@ coll = {
     "ios_release": [],
     "changed_releases": [],
     "sec_content_available": [],
-    "zero_day_releases": []
+    "zero_day_releases": [],
 }
+
 
 def test_posted_data_json():
     """
     Verify that the file is generated in /src
     """
-    if (os.path.exists("src/posted_data.json")):
+    if os.path.exists("src/posted_data.json"):
         os.remove("src/posted_data.json")
 
     manage_posted_data.read()
-    assert os.path.isfile("src/posted_data.json") == True
+    assert os.path.isfile("src/posted_data.json") is True
 
 
 def test_release_class():
@@ -193,8 +194,11 @@ def test_release_class():
 
     # check if titles match
     # useful for seeing which ones are missing if the above assert fails
-    for i, value in enumerate(releases):
-        assert Release.retrieve_name([lxml.html.document_fromstring(releases[i][0])]) == releases_obj[i].name
+    for i, _ in enumerate(releases):
+        assert (
+            Release.retrieve_name([lxml.html.document_fromstring(releases[i][0])])
+            == releases_obj[i].name
+        )
 
 
 def test_release_class_2():
