@@ -107,13 +107,13 @@ def post(results: list) -> None:
         return
 
     try:
-        toot(results)
+        toot(list(results))
     except Exception as e:
         print("ERROR: Mastodon failed to post\n" + str(results) + "\n" + str(e) + "\n")
         sys.exit(1)
 
     try:
-        tweet(results)
+        tweet(list(results))
     except Exception as e:
         print("ERROR: Twitter failed to post\n" + str(results) + "\n" + str(e) + "\n")
         sys.exit(1)
