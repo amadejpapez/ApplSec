@@ -11,6 +11,20 @@
             "yearly_report": []
         }
     },
+    "posted_data_test": {
+        "zero_days": [
+            "CVE-2021-30869"
+        ],
+        "details_available_soon": [],
+        "posts": {
+            "new_updates": [
+                "Safari 16.3"
+            ],
+            "ios_modules": [],
+            "zero_days": {},
+            "yearly_report": []
+        }
+    },
     "last_one_year_table": [
         [
             "<a href=\"https://support.apple.com/en-us/HT213058\">Safari 15.3</a>",

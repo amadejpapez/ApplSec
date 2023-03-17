@@ -169,6 +169,8 @@ def main():
 
         new_releases.insert(0, Release(row))
 
+        assert len(new_releases) < 20, "ERROR: More than 20 new releases detected. Something may not be right. Verify posted_data.json[posts][new_updates]."
+
     coll = {
         "new_releases": [],
         "ios_release": [],

@@ -34,6 +34,8 @@ def read() -> dict:
         save(FILE_STRUCTURE)
         posted_data_json = read()
 
+    assert posted_data_json["posts"]["new_updates"] != [], "ERROR: new_updates list inside of posted_data.json is empty. This is used to recognize that releases published before them are new. Add at least last 3 release names there."
+
     return posted_data_json
 
 

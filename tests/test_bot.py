@@ -2,6 +2,7 @@ import copy
 import json
 import os
 import sys
+import pytest
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
 
@@ -171,13 +172,18 @@ coll = {
 
 def test_posted_data_json():
     """
-    Verify that the file is generated in /src
+    Verify that the file is generated in /src and that reading/saving works.
     """
     if os.path.exists("src/posted_data.json"):
         os.remove("src/posted_data.json")
 
-    manage_posted_data.read()
+    with pytest.raises(AssertionError):
+        manage_posted_data.read()
+
+    manage_posted_data.save(example_file["posted_data_test"])
+
     assert os.path.isfile("src/posted_data.json") is True
+    assert manage_posted_data.read() == example_file["posted_data_test"]
 
 
 def test_release_class():
