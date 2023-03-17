@@ -56,7 +56,7 @@ class Release:
                 sec_content_page = lxml.html.document_fromstring(sec_content_page_html).text_content()
                 sec_content_page = (
                     sec_content_page_html.split("About Apple security updates", 1)[1]
-                    .split("Additional recognition", 1)[0]
+                    .split("Published Date", 1)[0]
                     .replace("&nbsp;", " ")
                 )
                 sec_content_page = " ".join(sec_content_page.split())
