@@ -31,9 +31,7 @@
             "iOS 16.3.1 and iPadOS 16.3.1",
             "iOS and iPadOS 16.4"
         ],
-        "zero_days": {
-            "iOS and iPadOS 15.7.4": 1
-        },
+        "zero_days": {},
         "yearly_report": []
     }
 }
