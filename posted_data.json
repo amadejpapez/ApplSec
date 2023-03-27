@@ -16,12 +16,24 @@
             "Safari 16.3",
             "macOS Big Sur 11.7.4",
             "tvOS 16.3.3",
-            "GarageBand for macOS 10.4.8"
+            "GarageBand for macOS 10.4.8",
+            "macOS Ventura 13.3",
+            "macOS Monterey 12.6.4",
+            "macOS Big Sur 11.7.5",
+            "tvOS 16.4",
+            "watchOS 9.4",
+            "iOS and iPadOS 16.4",
+            "iOS and iPadOS 15.7.4",
+            "Safari 16.4",
+            "Studio Display Firmware Update 16.4"
         ],
         "ios_modules": [
-            "iOS 16.3.1 and iPadOS 16.3.1"
+            "iOS 16.3.1 and iPadOS 16.3.1",
+            "iOS and iPadOS 16.4"
         ],
-        "zero_days": {},
+        "zero_days": {
+            "iOS and iPadOS 15.7.4": 1
+        },
         "yearly_report": []
     }
 }
