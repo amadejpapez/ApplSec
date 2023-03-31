@@ -25,7 +25,8 @@
             "iOS and iPadOS 16.4",
             "iOS and iPadOS 15.7.4",
             "Safari 16.4",
-            "Studio Display Firmware Update 16.4"
+            "Studio Display Firmware Update 16.4",
+            "Xcode 14.3"
         ],
         "ios_modules": [
             "iOS 16.3.1 and iPadOS 16.3.1",
