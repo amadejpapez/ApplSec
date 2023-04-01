@@ -12,7 +12,7 @@ TWITTER_API = tweepy.Client(
     return_type=type(dict),
 )
 
-MASTODON_KEY = "Bearer " + os.environ.get("MASTODON_TEST_ACCESS_TOKEN", "")
+MASTODON_KEY = "Bearer " + os.environ.get("MASTODON_ACCESS_TOKEN", "")
 
 
 def arrange_post(results: list, MAX_CHAR: int) -> list:
@@ -67,8 +67,8 @@ def tweet(results: list) -> None:
 def toot(results: list) -> None:
     """Handle posting to Mastodon."""
     MAX_CHAR = 500
-    # API_URL = "https://mastodon.social/api/v1/statuses"
-    API_URL = "https://mas.to/api/v1/statuses"
+    API_URL = "https://mastodon.social/api/v1/statuses"
+    # API_URL = "https://mas.to/api/v1/statuses"
 
     results.append("\n\n#apple #cybersecurity #infosec #security #ios")
 

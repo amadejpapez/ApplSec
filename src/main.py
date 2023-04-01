@@ -178,7 +178,7 @@ def main():
         "sec_content_available": [],
         "zero_day_releases": [],
     }
-    coll_yearly_report = []
+    # coll_yearly_report = []
 
     check_new_releases(coll, posted_data, latest_versions, new_releases)
     check_for_zero_day_releases(coll, posted_data)
