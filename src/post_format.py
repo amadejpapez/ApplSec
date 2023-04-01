@@ -23,7 +23,7 @@ def new_updates(releases: list[Release]) -> list:
     """
     post_text = []
 
-    releases.sort(key=lambda x: x.num_of_bugs, reverse=True)
+    releases.sort(key=lambda x: (x.num_of_bugs, x.name), reverse=True)
 
     for release in releases:
         post_text.append(f"{release.emoji} {release.name} - {release.get_format_num_of_bugs()}\n")
@@ -207,7 +207,7 @@ def entry_changes(releases: list[Release]) -> list:
     changes_count = 0
 
     releases.sort(
-        key=lambda x: (x.num_entries_added + x.num_entries_updated),
+        key=lambda x: (x.num_entries_added + x.num_entries_updated, x.name),
         reverse=True,
     )
 
@@ -254,7 +254,7 @@ def security_content_available(releases: list[Release]) -> list:
     -----
     """
 
-    releases.sort(key=lambda x: x.num_of_bugs, reverse=True)
+    releases.sort(key=lambda x: (x.num_of_bugs, x.name), reverse=True)
 
     post_text = [
         "📝 SECURITY CONTENT AVAILABLE 📝\n\n",
