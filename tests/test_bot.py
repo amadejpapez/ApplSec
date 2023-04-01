@@ -2,7 +2,9 @@ import copy
 import json
 import os
 import sys
+
 import pytest
+from freezegun import freeze_time
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
 
@@ -285,6 +287,17 @@ def test_entry_changes():
     post = post_format.entry_changes(releases_obj)
 
     assert post == example_file["entry_changes_post"]
+
+
+@freeze_time("2023-03-17")
+def test_entry_changes2():
+    """Test that both first and Additional Recognition sections are checked."""
+
+    releases_obj = convert_to_release_class(example_file["entry_changes2_table"])
+
+    post = post_format.entry_changes(releases_obj)
+
+    assert post == example_file["entry_changes2_post"]
 
 
 def test_security_content_soon():

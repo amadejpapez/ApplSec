@@ -1114,6 +1114,82 @@
         "💻 macOS Big Sur 11.3 - 1 added\n",
         "📱 iOS and iPadOS 14.5 - 1 added\n"
     ],
+    "entry_changes2_table": [
+        [
+            "<a href=\"https://support.apple.com/en-us/HT213537\">Safari 16.2</a>",
+            "macOS Big Sur and macOS Monterey",
+            "13 Dec 2022"
+        ],
+        [
+            "<a href=\"https://support.apple.com/en-us/HT212003\">iOS 14.3 and iPadOS 14.3</a>",
+            "iPhone 6s and later, iPad Air 2 and later, iPad mini 4 and later, and iPod touch (7th generation)",
+            "14 Dec 2020"
+        ],
+        [
+            "<a href=\"https://support.apple.com/en-us/HT213530\">iOS 16.2 and iPadOS 16.2</a>",
+            "iPhone 8 and later, iPad Pro (all models), iPad Air 3rd generation and later, iPad 5th generation and later, and iPad mini 5th generation and later",
+            "13 Dec 2022"
+        ],
+        [
+            "<a href=\"https://support.apple.com/en-us/HT213346\">iOS 15.6 and iPadOS 15.6</a>",
+            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
+            "20 Jul 2022"
+        ],
+        [
+            "<a href=\"https://support.apple.com/en-us/HT213532\">macOS Ventura 13.1</a>",
+            "macOS Ventura",
+            "13 Dec 2022"
+        ],
+        [
+            "<a href=\"https://support.apple.com/en-us/HT213598\">iOS 15.7.3 and iPadOS 15.7.3</a>",
+            "iPhone 6s (all models), iPhone 7 (all models), iPhone SE (1st generation), iPad Air 2, iPad mini (4th generation), and iPod touch (7th generation)",
+            "23 Jan 2023"
+        ],
+        [
+            "<a href=\"https://support.apple.com/en-us/HT213182\">iOS 15.4 and iPadOS 15.4</a>",
+            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
+            "14 Mar 2022"
+        ],
+        [
+            "<a href=\"https://support.apple.com/en-us/HT213341\">Safari 15.6</a>",
+            "macOS Big Sur and macOS Catalina",
+            "20 Jul 2022"
+        ],
+        [
+            "<a href=\"https://support.apple.com/en-us/HT213600\">Safari 16.3</a>",
+            "macOS Big Sur and macOS Monterey",
+            "23 Jan 2023"
+        ],
+        [
+            "<a href=\"https://support.apple.com/en-us/HT213258\">iOS 15.5 and iPadOS 15.5</a>",
+            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
+            "16 May 2022"
+        ],
+        [
+            "<a href=\"https://support.apple.com/en-us/HT213531\">iOS 15.7.2 and iPadOS 15.7.2</a>",
+            "iPhone 6s (all models), iPhone 7 (all models), iPhone SE (1st generation), iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
+            "13 Dec 2022"
+        ],
+        [
+            "<a href=\"https://support.apple.com/en-us/HT213446\">iOS 16</a>",
+            "iPhone 8 and later",
+            "12 Sep 2022"
+        ]
+    ],
+    "entry_changes2_post": [
+        "🔄 34 ENTRY CHANGES 🔄\n\n",
+        "📱 iOS 16 - 6 added, 2 updated\n",
+        "📱 iOS and iPadOS 16.2 - 4 added, 1 updated\n",
+        "💻 macOS Ventura 13.1 - 4 added, 1 updated\n",
+        "📱 iOS and iPadOS 15.5 - 2 added, 1 updated\n",
+        "📱 iOS and iPadOS 15.7.2 - 3 added\n",
+        "📱 iOS and iPadOS 15.6 - 2 added\n",
+        "📱 iOS and iPadOS 15.7.3 - 2 updated\n",
+        "📱 iOS and iPadOS 15.4 - 2 added\n",
+        "🌐 Safari 15.6 - 1 added, 1 updated\n",
+        "🌐 Safari 16.2 - 1 updated\n",
+        "📱 iOS and iPadOS 14.3 - 1 added\n"
+    ],
     "security_content_soon_info": {
         "1": {
             "name": "macOS Big Sur 11.3",
