@@ -70,7 +70,7 @@ def toot(results: list) -> None:
     # API_URL = "https://mastodon.social/api/v1/statuses"
     API_URL = "https://mas.to/api/v1/statuses"
 
-    results.append("#apple #cybersecurity #infosec #security #ios")
+    results.append("\n\n#apple #cybersecurity #infosec #security #ios")
 
     posts_list = arrange_post(results, MAX_CHAR)
 
