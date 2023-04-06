@@ -2,7 +2,10 @@ name: ApplSec bot
 
 on:
   schedule:
+    # every full hour
     - cron: "0 * * * *"
+    # between 4 and 8 pm UTC on weekdays run every 15 minutes as that is the time when updates usually get released 
+    - cron: "*/15 16-20 * * 1-5"
   workflow_dispatch:
 
 jobs:
@@ -35,7 +38,7 @@ jobs:
         run: |
           pip install -r main/requirements.txt
 
-      - name: Set Timezone to Berlin
+      - name: Set Timezone to CET/CEST
         run: |
           sudo timedatectl set-timezone "Europe/Berlin"
 
