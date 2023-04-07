@@ -34,11 +34,7 @@
             "iOS 16.3.1 and iPadOS 16.3.1",
             "iOS and iPadOS 16.4"
         ],
-        "zero_days": {
-            "macOS Ventura 13.3.1": 2,
-            "iOS and iPadOS 16.4.1": 2,
-            "Safari 16.4.1": 1
-        },
+        "zero_days": {},
         "yearly_report": []
     }
 }
