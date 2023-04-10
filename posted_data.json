@@ -34,11 +34,7 @@
             "iOS 16.3.1 and iPadOS 16.3.1",
             "iOS and iPadOS 16.4"
         ],
-        "zero_days": {
-            "iOS and iPadOS 15.7.5": 2,
-            "macOS Monterey 12.6.5": 1,
-            "macOS Big Sur 11.7.6": 1
-        },
+        "zero_days": {},
         "yearly_report": []
     }
 }
