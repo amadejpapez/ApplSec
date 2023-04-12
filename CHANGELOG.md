@@ -1,5 +1,30 @@
 # Changelog
 
+## [14.0] - 2023-04-12
+
+### Added
+
+- catch releases with non-today release date, Apple sometimes adds security content for a release a day or more later
+- automatically add hashtags to Mastodon posts
+
+### Changed
+
+- run bot more often at the time when Apple usually releases updates, so it should catch them quicker
+- sort releases both by number of bugs and then by name
+
+### Fixed
+
+- do not skip over Additional Recognition section and catch entry changes there, this is a regression and a new test has been added
+- strip "(details available soon)" from release names
+
+### Code
+
+- run bot as a GitHub Action cron job, previously it was on PythonAnywhere
+- add test-requirements.txt for test dependencies
+- use emojis directly, remove emoji package dependency
+- store API keys inside of environmental variables, instead of a JSON file
+- various other moving around, renames and more
+
 ## [13.0] - 2022-12-26
 
 ### Added
