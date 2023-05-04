@@ -14,7 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_updates": [
-            "macOS Big Sur 11.7.5",
             "tvOS 16.4",
             "watchOS 9.4",
             "iOS and iPadOS 16.4",
@@ -28,7 +27,8 @@
             "iOS and iPadOS 15.7.5",
             "macOS Monterey 12.6.5",
             "macOS Big Sur 11.7.6",
-            "tvOS 16.4.1"
+            "tvOS 16.4.1",
+            "Beats Firmware Update 5B66"
         ],
         "ios_modules": [
             "iOS 16.3.1 and iPadOS 16.3.1",
