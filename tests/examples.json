@@ -699,7 +699,7 @@
             "emoji": "💻",
             "security_content_link": "https://support.apple.com/en-us/HT213054",
             "release_date": "26 Jan 2022",
-            "num_of_bugs": 14,
+            "num_of_bugs": 15,
             "num_of_zero_days": 1,
             "zero_days": {
                 "CVE-2022-22587": "IOMobileFrameBuffer"
@@ -756,7 +756,7 @@
     },
     "new_releases_post": [
         "💥 NEW UPDATES RELEASED 💥\n\n",
-        "💻 macOS Monterey 12.2 - 14 bugs fixed\n",
+        "💻 macOS Monterey 12.2 - 15 bugs fixed\n",
         "📱 iOS and iPadOS 15.3 - 10 bugs fixed\n",
         "📺 tvOS 15.3 - 9 bugs fixed\n",
         "⌚ watchOS 8.4 - 8 bugs fixed\n",
@@ -1242,7 +1242,7 @@
         "watchOS 8 was released today. In watchOS 7 series Apple fixed in total of 105 security issues over 9 releases. 🔐\n\n📊 COMPARED TO:\n"
     ],
     "yearly_report_macOS_post": [
-        "macOS 12 was released today. In macOS Monterey series Apple fixed in total of 139 security issues over 4 releases. 🔐\n\n📊 COMPARED TO:\n"
+        "macOS 12 was released today. In macOS Monterey series Apple fixed in total of 140 security issues over 4 releases. 🔐\n\n📊 COMPARED TO:\n"
     ],
     "yearly_report_iOS_post": [
         "iOS 15 was released today. In iOS 14 series Apple fixed in total of 252 security issues over 10 releases. 🔐\n\n📊 COMPARED TO:\n"
