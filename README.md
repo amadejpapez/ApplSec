@@ -7,7 +7,7 @@
 <p align="center"><img src="images/ApplSec.png" width=100></p>
 
 <p align="center"><b>Running on 🐥 <a href="https://twitter.com/ApplSec">@ApplSec</a> since February 6, 2021</b></p>
-<p align="center"><b>Running on 🐘 <a href="https://mastodon.social/@ApplSec">@ApplSec@mastodon.social</a> since November 5, 2022</b></p>
+<p align="center"><b>Running on 🐘 <a href="https://infosec.exchange/@ApplSec">@ApplSec@infosec.exchange</a> since November 5, 2022</b></p>
 
 <br>
 

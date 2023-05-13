@@ -66,9 +66,8 @@ def tweet(results: list) -> None:
 
 def toot(results: list) -> None:
     """Handle posting to Mastodon."""
-    MAX_CHAR = 500
-    API_URL = "https://mastodon.social/api/v1/statuses"
-    # API_URL = "https://mas.to/api/v1/statuses"
+    MAX_CHAR = 11_000
+    API_URL = "https://infosec.exchange/api/v1/statuses"
 
     results.append("\n\n#apple #cybersecurity #infosec #security #ios")
 
