@@ -5,6 +5,14 @@ import requests
 import tweepy
 
 TWITTER_API = tweepy.Client(
+    consumer_key=os.environ.get("TWITTER_API_KEY"),
+    consumer_secret=os.environ.get("TWITTER_API_KEY_SECRET"),
+    access_token=os.environ.get("TWITTER_ACCESS_TOKEN"),
+    access_token_secret=os.environ.get("TWITTER_ACCESS_TOKEN_SECRET"),
+    return_type=type(dict),
+)
+
+TWITTER_API_TEST = tweepy.Client(
     consumer_key=os.environ.get("TWITTER_TEST_API_KEY"),
     consumer_secret=os.environ.get("TWITTER_TEST_API_KEY_SECRET"),
     access_token=os.environ.get("TWITTER_TEST_ACCESS_TOKEN"),
@@ -13,6 +21,7 @@ TWITTER_API = tweepy.Client(
 )
 
 MASTODON_KEY = "Bearer " + os.environ.get("MASTODON_ACCESS_TOKEN", "")
+MASTODON_KEY_TEST = "Bearer " + os.environ.get("MASTODON_TEST_ACCESS_TOKEN_TEST", "")
 
 
 def arrange_post(results: list, MAX_CHAR: int) -> list:
@@ -38,7 +47,7 @@ def arrange_post(results: list, MAX_CHAR: int) -> list:
     return arranged
 
 
-def tweet(results: list) -> None:
+def tweet(results: list, API: tweepy.Client) -> None:
     """Handle posting to Twitter."""
     MAX_CHAR = 250
 
@@ -49,14 +58,14 @@ def tweet(results: list) -> None:
     for text in posts_list:
         if posts_list.index(text) == 0:
             # individual post or start of a thread
-            response = TWITTER_API.create_tweet(
+            response = API.create_tweet(
                 text=text,
             )
 
             post_ids.append(getattr(response, "data")["id"])
         else:
             # other posts in a thread
-            response = TWITTER_API.create_tweet(
+            response = API.create_tweet(
                 in_reply_to_tweet_id=post_ids[-1],
                 text=text,
             )
@@ -64,7 +73,7 @@ def tweet(results: list) -> None:
             post_ids.append(getattr(response, "data")["id"])
 
 
-def toot(results: list) -> None:
+def toot(results: list, API_KEY: str) -> None:
     """Handle posting to Mastodon."""
     MAX_CHAR = 11_000
     API_URL = "https://infosec.exchange/api/v1/statuses"
@@ -81,7 +90,7 @@ def toot(results: list) -> None:
             response = requests.post(
                 API_URL,
                 json={"status": text},
-                headers={"Authorization": MASTODON_KEY},
+                headers={"Authorization": API_KEY},
                 timeout=60,
             )
 
@@ -94,7 +103,7 @@ def toot(results: list) -> None:
                     "status": text,
                     "in_reply_to_id": post_ids[-1],
                 },
-                headers={"Authorization": MASTODON_KEY},
+                headers={"Authorization": API_KEY},
                 timeout=60,
             )
 
@@ -106,13 +115,13 @@ def post(results: list) -> None:
         return
 
     try:
-        toot(list(results))
+        toot(list(results), MASTODON_KEY)
     except Exception as e:
         print("ERROR: Mastodon failed to post\n" + str(results) + "\n" + str(e) + "\n")
         sys.exit(1)
 
     try:
-        tweet(list(results))
+        tweet(list(results), TWITTER_API_TEST)
     except Exception as e:
         print("ERROR: Twitter failed to post\n" + str(results) + "\n" + str(e) + "\n")
         sys.exit(1)
