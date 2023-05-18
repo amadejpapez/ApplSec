@@ -1,40 +1,48 @@
 {
     "zero_days": [
-        "CVE-2022-22675",
-        "CVE-2022-22674",
-        "CVE-2022-32894",
         "CVE-2022-32893",
         "CVE-2022-32917",
         "CVE-2022-42827",
         "CVE-2022-42856",
         "CVE-2023-23529",
         "CVE-2023-28206",
-        "CVE-2023-28205"
+        "CVE-2023-28205",
+        "CVE-2023-32409",
+        "CVE-2023-28204",
+        "CVE-2023-32373"
     ],
     "details_available_soon": [],
     "posts": {
         "new_updates": [
-            "tvOS 16.4",
-            "watchOS 9.4",
-            "iOS and iPadOS 16.4",
-            "iOS and iPadOS 15.7.4",
-            "Safari 16.4",
-            "Studio Display Firmware Update 16.4",
-            "Xcode 14.3",
-            "macOS Ventura 13.3.1",
             "iOS and iPadOS 16.4.1",
             "Safari 16.4.1",
             "iOS and iPadOS 15.7.5",
             "macOS Monterey 12.6.5",
             "macOS Big Sur 11.7.6",
             "tvOS 16.4.1",
-            "Beats Firmware Update 5B66"
+            "Beats Firmware Update 5B66",
+            "macOS Monterey 12.6.6",
+            "macOS Ventura 13.4",
+            "macOS Big Sur 11.7.7",
+            "iOS and iPadOS 15.7.6",
+            "iOS and iPadOS 16.5",
+            "tvOS 16.5",
+            "watchOS 9.5",
+            "Safari 16.5"
         ],
         "ios_modules": [
             "iOS 16.3.1 and iPadOS 16.3.1",
-            "iOS and iPadOS 16.4"
+            "iOS and iPadOS 16.4",
+            "iOS and iPadOS 16.5"
         ],
-        "zero_days": {},
+        "zero_days": {
+            "macOS Ventura 13.4": 3,
+            "iOS and iPadOS 15.7.6": 2,
+            "iOS and iPadOS 16.5": 3,
+            "tvOS 16.5": 3,
+            "watchOS 9.5": 3,
+            "Safari 16.5": 3
+        },
         "yearly_report": []
     }
 }
