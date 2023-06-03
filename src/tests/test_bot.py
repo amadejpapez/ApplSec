@@ -1,14 +1,10 @@
 import copy
 import json
 import os
-import sys
-
-import pytest
-from freezegun import freeze_time
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
 
 import lxml.html
+import pytest
+from freezegun import freeze_time
 
 import helpers.get_version_info as get_version_info
 import helpers.manage_posted_data as manage_posted_data
@@ -73,9 +69,7 @@ def convert_to_release_from_dict(release_info: dict) -> list:
     return releases_class
 
 
-LOC = os.path.abspath(os.path.join(__file__, "../examples.json"))
-
-with open(LOC, "r", encoding="utf-8") as my_file:
+with open("src/tests/examples.json", "r", encoding="utf-8") as my_file:
     example_file = json.load(my_file)
 
 posted_data = copy.deepcopy(example_file["posted_data"])
