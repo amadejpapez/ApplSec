@@ -68,7 +68,7 @@ def check_if_sec_content_available(
         if checked == must_check:
             break
 
-        release_obj = Release(row)
+        release_obj = Release.parse_from_table(row)
 
         if release_obj.name in posted_data["details_available_soon"]:
             if release_obj.security_content_link != "":
@@ -122,7 +122,7 @@ def check_for_entry_changes(coll: dict[str, list[Release]], all_releases_rows: l
     it is only doing this once per day.
     """
     for row in all_releases_rows:
-        release = Release(row)
+        release = Release.parse_from_table(row)
 
         if release.num_entries_added > 0 or release.num_entries_updated > 0:
             coll["changed_releases"].append(release)
@@ -164,10 +164,10 @@ def main():
     new_releases = []
 
     for row in all_releases_rows:
-        if Release.retrieve_name(row) in posted_data["posts"]["new_updates"]:
+        if Release.parse_name(row) in posted_data["posts"]["new_updates"]:
             break
 
-        new_releases.insert(0, Release(row))
+        new_releases.insert(0, Release.parse_from_table(row))
 
         assert len(new_releases) < 20, "ERROR: More than 20 new releases detected. Something may not be right. Verify posted_data.json[posts][new_updates]."
 

@@ -289,7 +289,7 @@ def yearly_report(release_rows: list, system: str, version: int) -> list:
                 tmp = row[0].xpath(".//a/@href")
 
                 if tmp != []:
-                    release = Release(row)
+                    release = Release.parse_from_table(row)
 
                     num = release.num_of_bugs
 

@@ -17,106 +17,15 @@ import post_format
 from Release import Release
 
 
-class ReleaseTest:
-    def __init__(self, release_info: dict):
-        self.__name: str = release_info["name"]
-        self.__emoji: str = release_info["emoji"]
-        self.__security_content_link: str = release_info["security_content_link"]
-        self.__release_date: str = release_info["release_date"]
-        self.__num_of_bugs: int = release_info["num_of_bugs"]
-        self.__num_of_zero_days: int = release_info["num_of_zero_days"]
-        self.__zero_days: dict = release_info["zero_days"]
-        self.__num_entries_added: int = release_info["num_entries_added"]
-        self.__num_entries_updated: int = release_info["num_entries_updated"]
-
-    @property
-    def name(self) -> str:
-        return self.__name
-
-    @property
-    def security_content_link(self) -> str:
-        return self.__security_content_link
-
-    @property
-    def release_date(self) -> str:
-        return self.__release_date
-
-    @property
-    def emoji(self) -> str:
-        return self.__emoji
-
-    @property
-    def num_of_zero_days(self) -> int:
-        return self.__num_of_zero_days
-
-    def get_format_num_of_zero_days(self) -> str:
-        if self.__num_of_zero_days > 1:
-            return f"{self.__num_of_zero_days} zero-days"
-
-        if self.__num_of_zero_days == 1:
-            return f"{self.__num_of_zero_days} zero-day"
-
-        return "no zero-days"
-
-    @property
-    def zero_days(self) -> dict:
-        return self.__zero_days
-
-    @property
-    def num_of_bugs(self) -> int:
-        return self.__num_of_bugs
-
-    def get_format_num_of_bugs(self) -> str:
-        if self.__num_of_bugs > 1:
-            return f"{self.__num_of_bugs} bugs fixed"
-
-        if self.__num_of_bugs == 1:
-            return f"{self.__num_of_bugs} bug fixed"
-
-        if self.__num_of_bugs == -1:
-            return "no details yet"
-
-        return "no bugs fixed"
-
-    @property
-    def num_entries_added(self) -> int:
-        return self.__num_entries_added
-
-    def get_format_num_entries_added(self) -> str:
-        return f"{self.__num_entries_added} added"
-
-    @property
-    def num_entries_updated(self) -> int:
-        return self.__num_entries_updated
-
-    def get_format_num_entries_updated(self) -> str:
-        return f"{self.__num_entries_updated} updated"
-
-    def __str__(self):
-        print(
-            f'"{self.__name}":' + " { \n"
-            f'    "name": "{self.__name}",\n'
-            f'    "emoji": "{self.__emoji}",\n'
-            f'    "security_content_link": "{self.__security_content_link}",\n'
-            f'    "release_date": "{self.__release_date}",\n'
-            f'    "num_of_bugs": {self.__num_of_bugs},\n'
-            f'    "num_of_zero_days": {self.__num_of_zero_days},\n'
-            f'    "zero_days": {self.__zero_days},\n'
-            f'    "num_entries_added": {self.__num_entries_added},\n'
-            f'    "num_entries_updated": {self.__num_entries_updated}\n'
-            "},\n"
-        )
-
-
 def compare(release_obj: list[Release], example: dict):
     for release, (_, expected) in zip(release_obj, example.items()):
         assert release.name == expected["name"]
         assert release.emoji == expected["emoji"], release.name
-        assert release.security_content_link == expected["security_content_link"], release.name
         assert release.release_date == expected["release_date"], release.name
+        assert release.security_content_link == expected["security_content_link"], release.name
+        assert release.zero_days == expected["zero_days"], release.name
         assert release.num_of_bugs == expected["num_of_bugs"], release.name
         assert release.num_of_zero_days == expected["num_of_zero_days"], release.name
-        assert release.zero_days == expected["zero_days"], release.name
         assert release.num_entries_added == expected["num_entries_added"], release.name
         assert release.num_entries_updated == expected["num_entries_updated"], release.name
 
@@ -134,20 +43,32 @@ def convert_to_lxml_class(release_rows: list) -> list:
     return releases_tmp
 
 
-def convert_to_release_class(release_rows: list) -> list:
+def convert_to_release_from_table(release_rows: list) -> list:
     releases_obj = []
 
     for row in convert_to_lxml_class(release_rows):
-        releases_obj.append(Release(row))
+        releases_obj.append(Release.parse_from_table(row))
 
     return releases_obj
 
 
-def convert_to_release_test_class(release_info: dict) -> list:
+def convert_to_release_from_dict(release_info: dict) -> list:
     releases_class = []
 
     for _, value in release_info.items():
-        releases_class.append(ReleaseTest(value))
+        releases_class.append(
+            Release(
+                value["name"],
+                value["emoji"],
+                value["release_date"],
+                value["security_content_link"],
+                value["zero_days"],
+                value["num_of_bugs"],
+                value["num_of_zero_days"],
+                value["num_entries_added"],
+                value["num_entries_updated"],
+            )
+        )
 
     return releases_class
 
@@ -195,7 +116,7 @@ def test_release_class():
     """
 
     releases = example_file["last_one_year_table"]
-    releases_obj = convert_to_release_class(releases)
+    releases_obj = convert_to_release_from_table(releases)
 
     # check if Release returned the correct number of releases
     assert len(releases) == len(list(releases_obj))
@@ -204,13 +125,13 @@ def test_release_class():
     # useful for seeing which ones are missing if the above assert fails
     for i, _ in enumerate(releases):
         assert (
-            Release.retrieve_name([lxml.html.document_fromstring(releases[i][0])])
+            Release.parse_name([lxml.html.document_fromstring(releases[i][0])])
             == releases_obj[i].name
         )
 
 
 def test_release_class_2():
-    releases_obj = convert_to_release_class(example_file["release_rows_table"])
+    releases_obj = convert_to_release_from_table(example_file["release_rows_table"])
 
     compare(releases_obj, example_file["release_rows_info"])
 
@@ -224,7 +145,7 @@ def test_release_class_2():
 
 
 def test_new_updates():
-    releases_obj = convert_to_release_class(example_file["new_releases_table"])
+    releases_obj = convert_to_release_from_table(example_file["new_releases_table"])
     posted_data_test = copy.deepcopy(posted_data)
 
     compare(releases_obj, example_file["new_releases_info"])
@@ -240,7 +161,7 @@ def test_new_updates():
 
 
 def test_new_updates_only_one():
-    releases_obj = convert_to_release_class(example_file["new_releases_one_table"])
+    releases_obj = convert_to_release_from_table(example_file["new_releases_one_table"])
 
     coll["new_releases"] = []
 
@@ -252,7 +173,7 @@ def test_new_updates_only_one():
 
 
 def test_new_updates_details_soon():
-    releases_obj = convert_to_release_class(example_file["new_releases_details_soon_table"])
+    releases_obj = convert_to_release_from_table(example_file["new_releases_details_soon_table"])
     posted_data_test = copy.deepcopy(posted_data)
 
     coll["new_releases"] = []
@@ -266,7 +187,7 @@ def test_new_updates_details_soon():
 
 
 def test_ios_modules():
-    releases_obj = convert_to_release_class(example_file["ios_modules_table"])
+    releases_obj = convert_to_release_from_table(example_file["ios_modules_table"])
 
     compare(releases_obj, example_file["ios_modules_info"])
 
@@ -282,7 +203,7 @@ def test_ios_modules():
 
 
 def test_entry_changes():
-    releases_obj = convert_to_release_test_class(example_file["entry_changes_info"])
+    releases_obj = convert_to_release_from_dict(example_file["entry_changes_info"])
 
     post = post_format.entry_changes(releases_obj)
 
@@ -293,7 +214,7 @@ def test_entry_changes():
 def test_entry_changes2():
     """Test that both first and Additional Recognition sections are checked."""
 
-    releases_obj = convert_to_release_class(example_file["entry_changes2_table"])
+    releases_obj = convert_to_release_from_table(example_file["entry_changes2_table"])
 
     post = post_format.entry_changes(releases_obj)
 
@@ -301,7 +222,7 @@ def test_entry_changes2():
 
 
 def test_security_content_soon():
-    releases_obj = convert_to_release_test_class(example_file["security_content_soon_info"])
+    releases_obj = convert_to_release_from_dict(example_file["security_content_soon_info"])
 
     for release in releases_obj:
         main.save_sec_content_no_details_yet(posted_data, release)
@@ -309,7 +230,7 @@ def test_security_content_soon():
     assert posted_data["details_available_soon"] == example_file["security_content_soon_file"]
 
     # test if result is the same when same data comes in the next time
-    releases_obj = convert_to_release_test_class(example_file["security_content_soon_info"])
+    releases_obj = convert_to_release_from_dict(example_file["security_content_soon_info"])
 
     for release in releases_obj:
         main.save_sec_content_no_details_yet(posted_data, release)
@@ -343,7 +264,7 @@ def test_yearly_report():
 
 
 def test_zero_day():
-    releases_obj = convert_to_release_class(example_file["zero_day_releases_table"])
+    releases_obj = convert_to_release_from_table(example_file["zero_day_releases_table"])
     posted_data_test = copy.deepcopy(posted_data)
     coll["new_releases"] = releases_obj
     coll["zero_day_releases"] = []
@@ -360,7 +281,7 @@ def test_zero_day():
 
 
 def test_zero_day_new_old():
-    releases_obj = convert_to_release_test_class(example_file["zero_day_releases_new_old_info"])
+    releases_obj = convert_to_release_from_dict(example_file["zero_day_releases_new_old_info"])
     coll["new_releases"] = releases_obj
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
@@ -373,7 +294,7 @@ def test_zero_day_new_old():
 
 
 def test_zero_day_new():
-    releases_obj = convert_to_release_test_class(example_file["zero_day_releases_new_info"])
+    releases_obj = convert_to_release_from_dict(example_file["zero_day_releases_new_info"])
     coll["new_releases"] = releases_obj
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
@@ -386,7 +307,7 @@ def test_zero_day_new():
 
 
 def test_zero_day_old():
-    releases_obj = convert_to_release_test_class(example_file["zero_day_releases_old_info"])
+    releases_obj = convert_to_release_from_dict(example_file["zero_day_releases_old_info"])
     coll["new_releases"] = releases_obj
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
