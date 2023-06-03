@@ -8,8 +8,8 @@ from freezegun import freeze_time
 
 import helpers.get_version_info as get_version_info
 import helpers.manage_posted_data as manage_posted_data
+import helpers.post_format as post_format
 import main
-import post_format
 from Release import Release
 
 

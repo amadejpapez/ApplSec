@@ -4,8 +4,8 @@ import requests
 import helpers.get_date as get_date
 import helpers.get_version_info as get_version_info
 import helpers.manage_posted_data as manage_posted_data
-import post_format
-from post_make import post
+import helpers.post_format as post_format
+from helpers.post_make import post
 from Release import Release
 
 
