@@ -13,15 +13,15 @@ TWITTER_API = tweepy.Client(
 )
 
 TWITTER_API_TEST = tweepy.Client(
-    consumer_key=os.environ.get("TWITTER_TEST_API_KEY"),
-    consumer_secret=os.environ.get("TWITTER_TEST_API_KEY_SECRET"),
-    access_token=os.environ.get("TWITTER_TEST_ACCESS_TOKEN"),
-    access_token_secret=os.environ.get("TWITTER_TEST_ACCESS_TOKEN_SECRET"),
+    consumer_key=os.environ.get("TWITTER_API_KEY_TEST"),
+    consumer_secret=os.environ.get("TWITTER_API_KEY_SECRET_TEST"),
+    access_token=os.environ.get("TWITTER_ACCESS_TOKEN_TEST"),
+    access_token_secret=os.environ.get("TWITTER_ACCESS_TOKEN_SECRET_TEST"),
     return_type=type(dict),
 )
 
 MASTODON_KEY = "Bearer " + os.environ.get("MASTODON_ACCESS_TOKEN", "")
-MASTODON_KEY_TEST = "Bearer " + os.environ.get("MASTODON_TEST_ACCESS_TOKEN_TEST", "")
+MASTODON_KEY_TEST = "Bearer " + os.environ.get("MASTODON_ACCESS_TOKEN_TEST", "")
 
 
 def arrange_post(results: list, MAX_CHAR: int) -> list:
