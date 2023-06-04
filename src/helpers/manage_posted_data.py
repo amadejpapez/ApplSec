@@ -18,6 +18,7 @@ FILE_STRUCTURE = {
     "details_available_soon": [],
     "posts": {
         "new_updates": [],
+        "new_sec_content": [],
         "ios_modules": [],
         "zero_days": {},
         "yearly_report": [],
@@ -34,7 +35,7 @@ def read() -> dict:
         save(FILE_STRUCTURE)
         posted_data_json = read()
 
-    assert posted_data_json["posts"]["new_updates"] != [], "ERROR: new_updates list inside of posted_data.json is empty. This is used to recognize that releases published before them are new. Add at least last 3 release names there."
+    assert posted_data_json["posts"]["new_sec_content"] != [], "ERROR: 'new_sec_content' list inside of posted_data.json is empty. This is used to recognize that releases published before them are new. Add at least last 3 release names there."
 
     return posted_data_json
 
@@ -42,6 +43,9 @@ def read() -> dict:
 def clear_old_data(new_data: dict) -> dict:
     while len(new_data["posts"]["new_updates"]) > 15:
         new_data["posts"]["new_updates"].pop(0)
+
+    while len(new_data["posts"]["new_sec_content"]) > 15:
+        new_data["posts"]["new_sec_content"].pop(0)
 
     while len(new_data["posts"]["ios_modules"]) > 3:
         new_data["posts"]["ios_modules"].pop(0)

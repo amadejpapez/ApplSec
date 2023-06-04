@@ -5,7 +5,7 @@
         ],
         "details_available_soon": [],
         "posts": {
-            "new_updates": [],
+            "new_sec_content": [],
             "ios_modules": [],
             "zero_days": {},
             "yearly_report": []
@@ -17,7 +17,7 @@
         ],
         "details_available_soon": [],
         "posts": {
-            "new_updates": [
+            "new_sec_content": [
                 "Safari 16.3"
             ],
             "ios_modules": [],
@@ -527,7 +527,7 @@
             "26 Jan 2021"
         ]
     ],
-    "release_rows_table": [
+    "new_sec_content_rows_table": [
         [
             "<a href=\"https://support.apple.com/en-us/HT212152\">Safari 14.0.3</a>",
             "macOS Catalina and macOS Mojave",
@@ -549,7 +549,7 @@
             "01 Feb 2021"
         ]
     ],
-    "release_rows_info": {
+    "new_sec_content_rows_info": {
         "1": {
             "name": "Safari 14.0.3",
             "emoji": "🌐",
@@ -608,15 +608,15 @@
             "num_entries_updated": 0
         }
     },
-    "release_rows_post": [
-        "💥 NEW UPDATES RELEASED 💥\n\n",
+    "new_sec_content_rows_post": [
+        "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "🌐 Safari 15.3 - 4 bugs fixed\n",
         "🌐 Safari 14.0.3 - 3 bugs fixed\n",
         "🌐 Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8) - 1 bug fixed\n",
         "🌐 Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7) - 1 bug fixed\n",
-        "https://support.apple.com/en-us/HT201222"
+        "https://support.apple.com/kb/HT201222"
     ],
-    "new_releases_table": [
+    "new_sec_content_table": [
         [
             "<a href=\"https://support.apple.com/en-us/HT213058\">Safari 15.3</a>",
             "macOS Big Sur and macOS Catalina",
@@ -658,7 +658,7 @@
             "26 Jan 2022"
         ]
     ],
-    "new_releases_info": {
+    "new_sec_content_info": {
         "1": {
             "name": "Safari 15.3",
             "emoji": "🌐",
@@ -754,8 +754,8 @@
             "num_entries_updated": 0
         }
     },
-    "new_releases_post": [
-        "💥 NEW UPDATES RELEASED 💥\n\n",
+    "new_sec_content_post": [
+        "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "💻 macOS Monterey 12.2 - 15 bugs fixed\n",
         "📱 iOS and iPadOS 15.3 - 10 bugs fixed\n",
         "📺 tvOS 15.3 - 9 bugs fixed\n",
@@ -764,23 +764,23 @@
         "🖥️ Security Update 2022-001 Catalina - 5 bugs fixed\n",
         "🌐 Safari 15.3 - 4 bugs fixed\n",
         "💻 macOS Big Sur 11.5.2 - no bugs fixed\n",
-        "https://support.apple.com/en-us/HT201222"
+        "https://support.apple.com/kb/HT201222"
     ],
-    "new_releases_posted_data": {
+    "new_sec_content_posted_data": {
         "zero_days": [
             "CVE-2021-30869"
         ],
         "details_available_soon": [],
         "posts": {
-            "new_updates": [
-                "Safari 15.3",
-                "Security Update 2022-001 Catalina",
-                "macOS Big Sur 11.6.3",
-                "macOS Monterey 12.2",
-                "tvOS 15.3",
-                "iOS and iPadOS 15.3",
+            "new_sec_content": [
+                "macOS Big Sur 11.5.2",
                 "watchOS 8.4",
-                "macOS Big Sur 11.5.2"
+                "iOS and iPadOS 15.3",
+                "tvOS 15.3",
+                "macOS Monterey 12.2",
+                "macOS Big Sur 11.6.3",
+                "Security Update 2022-001 Catalina",
+                "Safari 15.3"
             ],
             "ios_modules": [
                 "iOS and iPadOS 15.3"
@@ -789,30 +789,30 @@
             "yearly_report": []
         }
     },
-    "new_releases_one_table": [
+    "new_sec_content_one_table": [
         [
             "<a href=\"https://support.apple.com/en-us/HT213059\">watchOS 8.4</a>",
             "Apple Watch Series 3 and later",
             "26 Jan 2022"
         ]
     ],
-    "new_releases_one_post": [
-        "💥 NEW UPDATE RELEASED 💥\n\n",
+    "new_sec_content_one_post": [
+        "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "⌚ watchOS 8.4 - 8 bugs fixed\n",
         "https://support.apple.com/en-us/HT213059"
     ],
-    "new_releases_details_soon_table": [
+    "new_sec_content_details_soon_table": [
         [
             "tvOS 16.3.2 (details available soon)",
             "Apple TV 4K (all models) and Apple TV HD",
             "13 Feb 2023"
         ]
     ],
-    "new_releases_details_soon_post": [
-        "💥 NEW UPDATE RELEASED 💥\n\n",
+    "new_sec_content_details_soon_post": [
+        "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "📺 tvOS 16.3.2 - no details yet\n"
     ],
-    "new_releases_details_soon_posted_data": {
+    "new_sec_content_details_soon_posted_data": {
         "zero_days": [
             "CVE-2021-30869"
         ],
@@ -820,7 +820,7 @@
             "tvOS 16.3.2"
         ],
         "posts": {
-            "new_updates": [
+            "new_sec_content": [
                 "tvOS 16.3.2"
             ],
             "ios_modules": [],
@@ -1231,9 +1231,10 @@
         ]
     ],
     "security_content_available_post": [
-        "📝 SECURITY CONTENT AVAILABLE 📝\n\n",
+        "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "💻 macOS Big Sur 11.3 - 66 bugs fixed\n",
-        "📱 iOS and iPadOS 14.5 - 64 bugs fixed\n"
+        "📱 iOS and iPadOS 14.5 - 64 bugs fixed\n",
+        "https://support.apple.com/kb/HT201222"
     ],
     "yearly_report_tvOS_post": [
         "tvOS 15 was released today. In tvOS 14 series Apple fixed in total of 96 security issues over 3 releases. 🔐\n\n📊 COMPARED TO:\n"
@@ -1307,7 +1308,7 @@
         ],
         "details_available_soon": [],
         "posts": {
-            "new_updates": [],
+            "new_sec_content": [],
             "ios_modules": [],
             "zero_days": {
                 "Security Update 2021-006 Catalina": 1,

@@ -9,7 +9,7 @@ from helpers.post_make import post
 from Release import Release
 
 
-def retrieve_main_page() -> list:
+def retrieve_security_page() -> list:
     main_page = lxml.html.document_fromstring(
         requests.get("https://support.apple.com/en-us/HT201222", timeout=60).text
     )
@@ -72,25 +72,34 @@ def check_if_sec_content_available(
 
         if release_obj.name in posted_data["details_available_soon"]:
             if release_obj.security_content_link != "":
-                coll["sec_content_available"].append(release_obj)
+                coll["new_sec_content"].append(release_obj)
                 posted_data["details_available_soon"].remove(release_obj.name)
 
             checked += 1
 
 
-def check_new_releases(
+def check_new_security_content(
     coll: dict[str, list[Release]],
     posted_data: dict,
     latest_versions: dict,
-    new_releases: list[Release],
+    all_releases_rows: list,
 ) -> None:
     latest_ios_ver = str(latest_versions["iOS"][0])
+    new_sec_content = []
 
-    for release in new_releases:
-        if release.name not in posted_data["posts"]["new_updates"]:
-            coll["new_releases"].append(release)
+    for row in all_releases_rows:
+        if Release.parse_name(row) in posted_data["posts"]["new_sec_content"]:
+            break
 
-            posted_data["posts"]["new_updates"].append(release.name)
+        new_sec_content.insert(0, Release.parse_from_table(row))
+
+        assert len(new_sec_content) < 20, "ERROR: More than 20 new security contents found. Something may not be right. Verify posted_data.json[posts][new_sec_content]."
+
+    for release in new_sec_content:
+        if release.name not in posted_data["posts"]["new_sec_content"]:
+            coll["new_sec_content"].append(release)
+
+            posted_data["posts"]["new_sec_content"].append(release.name)
 
         if "iOS" in release.name:
             check_latest_ios_release(coll, posted_data, release, latest_ios_ver)
@@ -103,7 +112,7 @@ def check_for_zero_day_releases(coll: dict[str, list[Release]], posted_data: dic
     """
     Look if there are any releases, containing zero-days.
     """
-    check_tmp = coll["new_releases"] + coll["sec_content_available"]
+    check_tmp = coll["new_sec_content"] + coll["sec_content_available"]
 
     for release in check_tmp:
         if (
@@ -158,29 +167,19 @@ def check_for_yearly_report(
 
 def main():
     posted_data = manage_posted_data.read()
-    all_releases_rows = retrieve_main_page()
+    all_releases_rows = retrieve_security_page()
     latest_versions = get_version_info.latest(all_releases_rows[:20])
-
-    new_releases = []
-
-    for row in all_releases_rows:
-        if Release.parse_name(row) in posted_data["posts"]["new_updates"]:
-            break
-
-        new_releases.insert(0, Release.parse_from_table(row))
-
-        assert len(new_releases) < 20, "ERROR: More than 20 new releases detected. Something may not be right. Verify posted_data.json[posts][new_updates]."
 
     coll = {
         "new_releases": [],
+        "new_sec_content": [],
         "ios_release": [],
         "changed_releases": [],
-        "sec_content_available": [],
         "zero_day_releases": [],
     }
     # coll_yearly_report = []
 
-    check_new_releases(coll, posted_data, latest_versions, new_releases)
+    check_new_security_content(coll, posted_data, latest_versions, all_releases_rows)
     check_for_zero_day_releases(coll, posted_data)
     check_if_sec_content_available(coll, posted_data, all_releases_rows)
 
@@ -198,15 +197,12 @@ def main():
     if coll["changed_releases"]:
         post(post_format.entry_changes(coll["changed_releases"]))
 
-    if coll["sec_content_available"]:
-        post(post_format.security_content_available(coll["sec_content_available"]))
-
     # if coll_yearly_report:
     #    post(format_post.yearly_report(all_releases, key, value[0]))
 
     # new updates should be posted last, after all of the other posts
-    if coll["new_releases"]:
-        post(post_format.new_updates(coll["new_releases"]))
+    if coll["new_sec_content"]:
+        post(post_format.new_security_content(coll["new_sec_content"]))
 
     manage_posted_data.save(posted_data)
 

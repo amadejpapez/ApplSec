@@ -110,7 +110,7 @@ def test_release_class():
     """
 
     releases = example_file["last_one_year_table"]
-    releases_obj = convert_to_release_from_table(releases)
+    releases_obj = convert_to_lxml_class(releases)
 
     # check if Release returned the correct number of releases
     assert len(releases) == len(list(releases_obj))
@@ -120,64 +120,70 @@ def test_release_class():
     for i, _ in enumerate(releases):
         assert (
             Release.parse_name([lxml.html.document_fromstring(releases[i][0])])
-            == releases_obj[i].name
+            == Release.parse_name(releases_obj[i])
         )
 
 
 def test_release_class_2():
-    releases_obj = convert_to_release_from_table(example_file["release_rows_table"])
+    releases_obj = convert_to_lxml_class(example_file["new_sec_content_rows_table"])
 
-    compare(releases_obj, example_file["release_rows_info"])
+    compare(
+        convert_to_release_from_table(example_file["new_sec_content_rows_table"]),
+        example_file["new_sec_content_rows_info"]
+    )
 
-    coll["new_releases"] = []
+    coll["new_sec_content"] = []
 
-    main.check_new_releases(coll, copy.deepcopy(posted_data), latest_versions, releases_obj)
+    main.check_new_security_content(coll, copy.deepcopy(posted_data), latest_versions, releases_obj)
 
-    post = post_format.new_updates(coll["new_releases"])
+    post = post_format.new_security_content(coll["new_sec_content"])
 
-    assert post == example_file["release_rows_post"]
+    assert post == example_file["new_sec_content_rows_post"]
 
 
-def test_new_updates():
-    releases_obj = convert_to_release_from_table(example_file["new_releases_table"])
+def test_new_sec_content():
+    releases_obj = convert_to_lxml_class(example_file["new_sec_content_table"])
     posted_data_test = copy.deepcopy(posted_data)
 
-    compare(releases_obj, example_file["new_releases_info"])
+    compare(
+        convert_to_release_from_table(example_file["new_sec_content_table"]),
+        example_file["new_sec_content_info"]
+    )
 
-    coll["new_releases"] = []
+    coll["new_sec_content"] = []
 
-    main.check_new_releases(coll, posted_data_test, latest_versions, releases_obj)
+    main.check_new_security_content(coll, posted_data_test, latest_versions, releases_obj)
 
-    post = post_format.new_updates(coll["new_releases"])
+    post = post_format.new_security_content(coll["new_sec_content"])
 
-    assert post == example_file["new_releases_post"]
-    assert posted_data_test == example_file["new_releases_posted_data"]
-
-
-def test_new_updates_only_one():
-    releases_obj = convert_to_release_from_table(example_file["new_releases_one_table"])
-
-    coll["new_releases"] = []
-
-    main.check_new_releases(coll, copy.deepcopy(posted_data), latest_versions, releases_obj)
-
-    post = post_format.new_updates(coll["new_releases"])
-
-    assert post == example_file["new_releases_one_post"]
+    assert post == example_file["new_sec_content_post"]
+    assert posted_data_test == example_file["new_sec_content_posted_data"]
 
 
-def test_new_updates_details_soon():
-    releases_obj = convert_to_release_from_table(example_file["new_releases_details_soon_table"])
+def test_new_sec_content_only_one():
+    releases_obj = convert_to_lxml_class(example_file["new_sec_content_one_table"])
+
+    coll["new_sec_content"] = []
+
+    main.check_new_security_content(coll, copy.deepcopy(posted_data), latest_versions, releases_obj)
+
+    post = post_format.new_security_content(coll["new_sec_content"])
+
+    assert post == example_file["new_sec_content_one_post"]
+
+
+def test_new_sec_content_details_soon():
+    releases_obj = convert_to_lxml_class(example_file["new_sec_content_details_soon_table"])
     posted_data_test = copy.deepcopy(posted_data)
 
-    coll["new_releases"] = []
+    coll["new_sec_content"] = []
 
-    main.check_new_releases(coll, posted_data_test, latest_versions, releases_obj)
+    main.check_new_security_content(coll, posted_data_test, latest_versions, releases_obj)
 
-    post = post_format.new_updates(coll["new_releases"])
+    post = post_format.new_security_content(coll["new_sec_content"])
 
-    assert post == example_file["new_releases_details_soon_post"]
-    assert posted_data_test == example_file["new_releases_details_soon_posted_data"]
+    assert post == example_file["new_sec_content_details_soon_post"]
+    assert posted_data_test == example_file["new_sec_content_details_soon_posted_data"]
 
 
 def test_ios_modules():
@@ -236,11 +242,11 @@ def test_security_content_available():
     releases_rows = convert_to_lxml_class(example_file["security_content_available_info"])
 
     posted_data["details_available_soon"] = example_file["security_content_soon_file"]
-    coll["sec_content_available"] = []
+    coll["new_sec_content"] = []
 
     main.check_if_sec_content_available(coll, posted_data, releases_rows)
 
-    post = post_format.security_content_available(coll["sec_content_available"])
+    post = post_format.new_security_content(coll["new_sec_content"])
 
     assert post == example_file["security_content_available_post"]
     assert posted_data["details_available_soon"] == []
@@ -260,7 +266,7 @@ def test_yearly_report():
 def test_zero_day():
     releases_obj = convert_to_release_from_table(example_file["zero_day_releases_table"])
     posted_data_test = copy.deepcopy(posted_data)
-    coll["new_releases"] = releases_obj
+    coll["new_sec_content"] = releases_obj
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
 
@@ -276,7 +282,7 @@ def test_zero_day():
 
 def test_zero_day_new_old():
     releases_obj = convert_to_release_from_dict(example_file["zero_day_releases_new_old_info"])
-    coll["new_releases"] = releases_obj
+    coll["new_sec_content"] = releases_obj
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
 
@@ -289,7 +295,7 @@ def test_zero_day_new_old():
 
 def test_zero_day_new():
     releases_obj = convert_to_release_from_dict(example_file["zero_day_releases_new_info"])
-    coll["new_releases"] = releases_obj
+    coll["new_sec_content"] = releases_obj
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
 
@@ -302,7 +308,7 @@ def test_zero_day_new():
 
 def test_zero_day_old():
     releases_obj = convert_to_release_from_dict(example_file["zero_day_releases_old_info"])
-    coll["new_releases"] = releases_obj
+    coll["new_sec_content"] = releases_obj
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
 

@@ -241,27 +241,36 @@ def entry_changes(releases: list[Release]) -> list:
     return post_text
 
 
-def security_content_available(releases: list[Release]) -> list:
+def new_security_content(releases: list[Release]) -> list:
     """
     -----
-    📝 SECURITY CONTENT AVAILABLE 📝
+    🐛 NEW SECURITY CONTENT 🐛
 
-    💻 macOS Monterey 12.0.1 - 40 bugs fixed
-    💻 macOS Big Sur 11.6.1 - 24 bugs fixed
-    📱 iOS and iPadOS 15.1 - 22 bugs fixed
-    💻 Security Update 2021-007 Catalina - 21 bugs fixed
-    ⌚ watchOS 8.1 - 16 bugs fixed
+    📱 iOS and iPadOS 16.5 - 39 bugs fixed
+    ⌚ watchOS 9.5 - 32 bugs fixed
+    📺 tvOS 16.5 - 28 bugs fixed
+    🌐 Safari 16.5 - 5 bugs fixed
+    🎵 iTunes 12.12.9 for Windows - 2 bugs fixed
+    ⌚ watchOS 9.5.1 - no bugs fixed
+    https://support.apple.com/en-us/HT201222
     -----
     """
 
     releases.sort(key=lambda x: (x.num_of_bugs, x.name), reverse=True)
 
     post_text = [
-        "📝 SECURITY CONTENT AVAILABLE 📝\n\n",
+        "🐛 NEW SECURITY CONTENT 🐛\n\n",
     ]
 
     for release in releases:
         post_text.append(f"{release.emoji} {release.name} - {release.get_format_num_of_bugs()}\n")
+
+    # if there is only one release, add its notes as a link instead
+    if len(releases) == 1:
+        if releases[0].security_content_link:
+            post_text.append(releases[0].security_content_link)
+    else:
+        post_text.append("https://support.apple.com/kb/HT201222")
 
     return post_text
 
