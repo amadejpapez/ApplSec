@@ -93,7 +93,7 @@ class Release:
         if self.__num_of_bugs == -1:
             return "no details yet"
 
-        return "no bugs fixed"
+        return "no CVE entries"
 
     @property
     def num_of_zero_days(self) -> int:

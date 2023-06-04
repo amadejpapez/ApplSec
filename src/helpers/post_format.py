@@ -245,7 +245,7 @@ def new_security_content(releases: list[Release]) -> list:
     📺 tvOS 16.5 - 28 bugs fixed
     🌐 Safari 16.5 - 5 bugs fixed
     🎵 iTunes 12.12.9 for Windows - 2 bugs fixed
-    ⌚ watchOS 9.5.1 - no bugs fixed
+    ⌚ watchOS 9.5.1 - no CVE entries
     https://support.apple.com/en-us/HT201222
     -----
     """
