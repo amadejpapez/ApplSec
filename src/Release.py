@@ -2,18 +2,19 @@
 Example:
 
 Class Release (
-    "name": "iOS and iPadOS 14.7",
+    "name": "iOS and iPadOS 16.5",
     "emoji": "📱",
-    "release_date": "26 Jan 2022",
+    "release_notes_link": "https://developer.apple.com/news/releases/?id=05182023g",
     "security_content_link": "https://support.apple.com/en-us/HT212623",
     "zero_days": {
-        "CVE-2021-30761": "WebKit",
-        "CVE-2021-30762": "WebKit",
-        "CVE-2021-30713": "TCC"
+        "CVE-2023-32409": "WebKit",
+        "CVE-2023-28204": "WebKit",
+        "CVE-2023-32373": "WebKit"
     },
-    "num_of_bugs": 37,
+    "release_date": "18 May 2023",
+    "num_of_bugs": 39,
     "num_of_zero_days": 3,
-    "num_entries_added": 8,
+    "num_entries_added": 0,
     "num_entries_updated": 1
 )
 """
@@ -22,6 +23,7 @@ from __future__ import annotations
 
 import re
 
+import lxml.etree
 import lxml.html
 import requests
 
@@ -33,8 +35,9 @@ class Release:
         self,
         name: str,
         emoji: str,
-        release_date: str,
+        release_notes_link: str,
         security_content_link: str,
+        release_date: str,
         zero_days: dict[str, str],
         num_of_bugs: int,
         num_of_zero_days: int,
@@ -43,8 +46,9 @@ class Release:
     ):
         self.__name = name
         self.__emoji = emoji
-        self.__release_date = release_date
+        self.__release_notes_link = release_notes_link
         self.__security_content_link = security_content_link
+        self.__release_date = release_date
         self.__zero_days = zero_days
         self.__num_of_bugs = num_of_bugs
         self.__num_of_zero_days = num_of_zero_days
@@ -60,12 +64,16 @@ class Release:
         return self.__emoji
 
     @property
-    def release_date(self) -> str:
-        return self.__release_date
+    def release_notes_link(self) -> str:
+        return self.__release_notes_link
 
     @property
     def security_content_link(self) -> str:
         return self.__security_content_link
+
+    @property
+    def release_date(self) -> str:
+        return self.__release_date
 
     @property
     def zero_days(self) -> dict:
@@ -117,14 +125,13 @@ class Release:
     @staticmethod
     def parse_from_table(row: list[lxml.html.HtmlElement]) -> Release:
         """
-        Input format is an lxml release row on the Apple Security Content page:
+        Input format is the release row from the Apple Security Content page.
+        All 3 elements are of type lxml.html.HtmlElement. This is an example of their contents:
         -----
         [
-            [
-                "<a href="https://support.apple.com/en-us/HT213055">macOS Big Sur 11.6.3</a>",
-                "macOS Big Sur",
-                "26 Jan 2022"
-            ]
+            "<a href="https://support.apple.com/en-us/HT213055">macOS Big Sur 11.6.3</a>",
+            "macOS Big Sur",
+            "26 Jan 2022"
         ]
         -----
         """
@@ -160,8 +167,9 @@ class Release:
         return Release(
             name,
             Release.parse_emoji(name),
-            row[2].text_content(),
+            "",
             security_content_link,
+            row[2].text_content(),
             zero_days_tmp,
             Release.parse_num_of_bugs(row, sec_content_page),
             len(zero_days_tmp),
@@ -199,16 +207,17 @@ class Release:
             "Apple Music": "🎵",
             "Apple TV": "📺",
             "GarageBand": "🎵",
-            "Safari": "🌐",
-            "Security Update": "🖥️",
-            "Shazam": "🎵",
             "iCloud": "☁️",
             "iOS": "📱",
             "iPadOS": "📱",
             "iTunes": "🎵",
             "macOS": "💻",
+            "Safari": "🌐",
+            "Security Update": "🖥️",
+            "Shazam": "🎵",
             "tvOS": "📺",
             "watchOS": "⌚",
+            "Xcode": "🔨",
         }
 
         for key, value in emoji_dict.items():
@@ -248,3 +257,26 @@ class Release:
                 zero_days[cve] = re.findall(r"(?i).+?(?=<\/strong>)", entry)[0]
 
         return zero_days
+
+    @staticmethod
+    def from_rss_release(xml_item: lxml.etree._Element) -> Release:
+        """
+        Input format is of type lxml.etree._Element from Apple Releases page.
+        Example item from Apple Releases RSS feed:
+        -----
+        <item xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
+            <title>iPadOS 15.7.3 (19H307)</title>
+            <link>https://developer.apple.com/news/releases/?id=01232023a</link>
+            <guid>https://developer.apple.com/news/releases/?id=01232023a</guid>
+            <description>View downloads</description>
+            <pubDate>Mon, 23 Jan 2023 09:00:00 PST</pubDate>
+            <content:encoded>&lt;p&gt;&lt;a href=/download class=more&gt;View downloads&lt;/a&gt;&lt;/p&gt;</content:encoded>
+        </item>
+        -----
+        """
+
+        name = xml_item.xpath("title")[0].text
+
+        return Release(
+            name, Release.parse_emoji(name), xml_item.xpath("link")[0].text, "", "", {}, 0, 0, 0, 0
+        )

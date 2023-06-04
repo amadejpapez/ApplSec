@@ -12,31 +12,25 @@ def new_updates(releases: list[Release]) -> list:
     -----
     💥 NEW UPDATES RELEASED 💥
 
-    💻 macOS Monterey 12.2 - 13 bugs fixed
-    📱 iOS and iPadOS 15.3 - 10 bugs fixed
-    ⌚ watchOS 8.4 - 8 bugs fixed
-    💻 macOS Big Sur 11.6.3 - 7 bugs fixed
-    💻 Security Update 2022-001 Catalina - 5 bugs fixed
-    🌐 Safari 15.3 - 4 bugs fixed
-    https://support.apple.com/en-us/HT201222
+    📱 iOS 16.6 beta 2 (20G5037d)
+    📱 iPadOS 16.6 beta 2 (20G5037d)
+    💻 macOS 13.5 beta 2 (22G5038d)
+    📺 tvOS 16.6 beta 2 (20M5538d)
+    ⌚ watchOS 9.6 beta 2 (20U5538d)
+    🛠️ Xcode 14.3.1 (14E300c)
     -----
     """
     post_text = []
 
-    releases.sort(key=lambda x: (x.num_of_bugs, x.name), reverse=True)
+    releases.sort(key=lambda x: (x.name.lower()))
 
     for release in releases:
-        post_text.append(f"{release.emoji} {release.name} - {release.get_format_num_of_bugs()}\n")
+        post_text.append(f"{release.emoji} {release.name}\n")
 
     if len(releases) == 1:
         post_text.insert(0, "💥 NEW UPDATE RELEASED 💥\n\n")
-
-        # if there is only one release, add its notes as a link instead
-        if releases[0].security_content_link:
-            post_text.append(releases[0].security_content_link)
     else:
         post_text.insert(0, "💥 NEW UPDATES RELEASED 💥\n\n")
-        post_text.append("https://support.apple.com/en-us/HT201222")
 
     return post_text
 

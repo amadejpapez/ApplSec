@@ -1,3 +1,4 @@
+import lxml.etree
 import lxml.html
 import requests
 
@@ -21,6 +22,43 @@ def retrieve_security_page() -> list:
         all_releases_rows.append(list(row.getchildren()))
 
     return all_releases_rows
+
+
+def retrieve_releases_page() -> lxml.etree._ElementTree:
+    rss_feed = requests.get(
+        "https://developer.apple.com/news/releases/rss/releases.rss", timeout=60
+    ).text.encode("utf-8")
+    xml_tree = lxml.etree.fromstring(rss_feed, None)
+
+    return xml_tree
+
+
+def check_new_releases(
+    coll: dict[str, list[Release]], posted_data: dict, xml_tree: lxml.etree._ElementTree
+) -> None:
+    new_releases = []
+
+    for el in xml_tree.xpath("//item"):
+        name = el.xpath("title")[0].text
+        emoji = Release.parse_emoji(name)
+
+        if name in posted_data["posts"]["new_releases"]:
+            break
+
+        # skip releases that do not have an emoji in parse_emoji()
+        # specifically to skip updates for App Store Connect, TestFlight and so on
+        if emoji == "🛠️":
+            continue
+
+        new_releases.insert(0, Release.from_rss_release(el))
+
+        assert len(new_releases) < 20, "ERROR: More than 20 new releases detected. Something may not be right. Verify posted_data.json[posts][new_releases]."
+
+    for release in new_releases:
+        if release.emoji != "" and release.name not in posted_data["posts"]["new_releases"]:
+            coll["new_releases"].append(release)
+
+            posted_data["posts"]["new_releases"].append(release.name)
 
 
 def check_latest_ios_release(
@@ -112,9 +150,7 @@ def check_for_zero_day_releases(coll: dict[str, list[Release]], posted_data: dic
     """
     Look if there are any releases, containing zero-days.
     """
-    check_tmp = coll["new_sec_content"] + coll["sec_content_available"]
-
-    for release in check_tmp:
+    for release in coll["new_sec_content"]:
         if (
             release.num_of_zero_days > 0
             and release.name not in posted_data["posts"]["zero_days"].keys()
@@ -168,6 +204,7 @@ def check_for_yearly_report(
 def main():
     posted_data = manage_posted_data.read()
     all_releases_rows = retrieve_security_page()
+    releases_page = retrieve_releases_page()
     latest_versions = get_version_info.latest(all_releases_rows[:20])
 
     coll = {
@@ -178,6 +215,8 @@ def main():
         "zero_day_releases": [],
     }
     # coll_yearly_report = []
+
+    check_new_releases(coll, posted_data, releases_page)
 
     check_new_security_content(coll, posted_data, latest_versions, all_releases_rows)
     check_for_zero_day_releases(coll, posted_data)
@@ -201,6 +240,9 @@ def main():
     #    post(format_post.yearly_report(all_releases, key, value[0]))
 
     # new updates should be posted last, after all of the other posts
+    if coll["new_releases"]:
+        post(post_format.new_updates(coll["new_releases"]))
+
     if coll["new_sec_content"]:
         post(post_format.new_security_content(coll["new_sec_content"]))
 

@@ -52,12 +52,15 @@ def convert_to_release_from_dict(release_info: dict) -> list:
     releases_class = []
 
     for _, value in release_info.items():
+        release_notes_link = value["release_notes_link"] if ("release_notes_link" in value) else ""
+
         releases_class.append(
             Release(
                 value["name"],
                 value["emoji"],
-                value["release_date"],
+                release_notes_link,
                 value["security_content_link"],
+                value["release_date"],
                 value["zero_days"],
                 value["num_of_bugs"],
                 value["num_of_zero_days"],
@@ -69,7 +72,7 @@ def convert_to_release_from_dict(release_info: dict) -> list:
     return releases_class
 
 
-with open("src/tests/examples.json", "r", encoding="utf-8") as my_file:
+with open("src/tests/examples_sec_content.json", "r", encoding="utf-8") as my_file:
     example_file = json.load(my_file)
 
 posted_data = copy.deepcopy(example_file["posted_data"])
@@ -129,7 +132,7 @@ def test_release_class_2():
 
     compare(
         convert_to_release_from_table(example_file["new_sec_content_rows_table"]),
-        example_file["new_sec_content_rows_info"]
+        example_file["new_sec_content_rows_info"],
     )
 
     coll["new_sec_content"] = []
@@ -147,7 +150,7 @@ def test_new_sec_content():
 
     compare(
         convert_to_release_from_table(example_file["new_sec_content_table"]),
-        example_file["new_sec_content_info"]
+        example_file["new_sec_content_info"],
     )
 
     coll["new_sec_content"] = []

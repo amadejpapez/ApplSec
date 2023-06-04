@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <atom:link href="https://developer.apple.com/news/releases/rss/releases.rss" rel="self" type="application/rss+xml" />
+        <title>Releases - Apple Developer</title>
+        <link>https://developer.apple.com/news/</link>
+        <description>Apple Developer News and Updates feed provided by Apple, Inc.</description>
+        <language>en-US</language>
+        <lastBuildDate>Thu, 01 Jun 2023 10:00:00 PDT</lastBuildDate>
+        <generator>Custom</generator>
+        <copyright>Copyright 2023, Apple Inc.</copyright>
+
+        <item>
+            <title>Xcode 14.3.1 (14E300c)</title>
+            <link>https://developer.apple.com/news/releases/?id=06012023a</link>
+            <guid>https://developer.apple.com/news/releases/?id=06012023a</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Thu, 01 Jun 2023 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download/applications class=more>View downloads</a></p><il><p><a href=/go/?id=xcode-14.3.1-sdk-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>iOS 16.6 beta 2 (20G5037d)</title>
+            <link>https://developer.apple.com/news/releases/?id=05312023e</link>
+            <guid>https://developer.apple.com/news/releases/?id=05312023e</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Wed, 31 May 2023 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=ios-16.6-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>iPadOS 16.6 beta 2 (20G5037d)</title>
+            <link>https://developer.apple.com/news/releases/?id=05312023d</link>
+            <guid>https://developer.apple.com/news/releases/?id=05312023d</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Wed, 31 May 2023 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=iPadOS-16.6-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>macOS 13.5 beta 2 (22G5038d)</title>
+            <link>https://developer.apple.com/news/releases/?id=05312023c</link>
+            <guid>https://developer.apple.com/news/releases/?id=05312023c</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Wed, 31 May 2023 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=macos-13.5-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>watchOS 9.6 beta 2 (20U5538d)</title>
+            <link>https://developer.apple.com/news/releases/?id=05312023b</link>
+            <guid>https://developer.apple.com/news/releases/?id=05312023b</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Wed, 31 May 2023 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=watchos-9.6-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>tvOS 16.6 beta 2 (20M5538d)</title>
+            <link>https://developer.apple.com/news/releases/?id=05312023a</link>
+            <guid>https://developer.apple.com/news/releases/?id=05312023a</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Wed, 31 May 2023 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=tvos-16.6-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>watchOS 9.5.1 (20T570)</title>
+            <link>https://developer.apple.com/news/releases/?id=05302023a</link>
+            <guid>https://developer.apple.com/news/releases/?id=05302023a</guid>
+            <description>View downloads</description>
+            <pubDate>Tue, 30 May 2023 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p>]]></content:encoded>
+        </item>
+        <item>
+            <title>TestFlight 3.3.2</title>
+            <link>https://developer.apple.com/news/releases/?id=05112023a</link>
+            <guid>https://developer.apple.com/news/releases/?id=05112023a</guid>
+            <description>TestFlight 3.3.2 is now available on the App Store for iPhone, iPad, and
+                Mac. This update includes stability improvements and bug fixes.View on the App Store</description>
+            <pubDate>Wed, 24 May 2023 14:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p>TestFlight 3.3.2 is now available on the App Store for iPhone, iPad, and Mac. This update includes stability improvements and bug fixes.</p></br><a href=https://apps.apple.com/us/app/testflight/id899247664 class=more>View on the App Store</a>]]></content:encoded>
+        </item>
+        <item>
+            <title>iOS 16.5 (20F66)</title>
+            <link>https://developer.apple.com/news/releases/?id=05182023g</link>
+            <guid>https://developer.apple.com/news/releases/?id=05182023g</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Thu, 18 May 2023 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=ios-16.5-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>iPadOS 16.5 (20F66)</title>
+            <link>https://developer.apple.com/news/releases/?id=05182023f</link>
+            <guid>https://developer.apple.com/news/releases/?id=05182023f</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Thu, 18 May 2023 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=iPadOS-16.5-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>macOS 13.4 (22F66)</title>
+            <link>https://developer.apple.com/news/releases/?id=05182023e</link>
+            <guid>https://developer.apple.com/news/releases/?id=05182023e</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Thu, 18 May 2023 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=macos-13.4-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>tvOS 16.5 (20L563)</title>
+            <link>https://developer.apple.com/news/releases/?id=05182023c</link>
+            <guid>https://developer.apple.com/news/releases/?id=05182023c</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Thu, 18 May 2023 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=tvos-16.5-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>iOS 15.7.6 (19H349)</title>
+            <link>https://developer.apple.com/news/releases/?id=05182023b</link>
+            <guid>https://developer.apple.com/news/releases/?id=05182023b</guid>
+            <description>View downloads</description>
+            <pubDate>Thu, 18 May 2023 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p>]]></content:encoded>
+        </item>
+        <item>
+            <title>iPadOS 15.7.6 (19H349)</title>
+            <link>https://developer.apple.com/news/releases/?id=05182023a</link>
+            <guid>https://developer.apple.com/news/releases/?id=05182023a</guid>
+            <description>View downloads</description>
+            <pubDate>Thu, 18 May 2023 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p>]]></content:encoded>
+        </item>
+        <item>
+            <title>App Store Connect 1.11.2</title>
+            <link>https://developer.apple.com/news/releases/?id=04242023a</link>
+            <guid>https://developer.apple.com/news/releases/?id=04242023a</guid>
+            <description>App Store Connect 1.11.2 is now available on the App Store for iPhone and
+                iPad. This update includes stability improvements and bug fixes.View on the App
+                Store</description>
+            <pubDate>Mon, 24 Apr 2023 17:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p>App Store Connect 1.11.2  is now available on the App Store for iPhone and iPad. This update includes stability improvements and bug fixes.</p><p><a href="https://apps.apple.com/us/app/app-store-connect/id1234793120" class=more>View on the App Store</a>]]></content:encoded>
+        </item>
+        <item>
+            <title>Transporter 1.2.5</title>
+            <link>https://developer.apple.com/news/releases/?id=04062023a</link>
+            <guid>https://developer.apple.com/news/releases/?id=04062023a</guid>
+            <description>Transporter 1.2.5 is now available on the Mac App Store. This update
+                includes stability improvements and bug fixes.View on the Mac App Store</description>
+            <pubDate>Thu, 06 Apr 2023 11:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p>Transporter 1.2.5 is now available on the Mac App Store. This update includes stability improvements and bug fixes.</p></br><il><p><a href=https://apps.apple.com/us/app/transporter/id1450874784?mt=12 class=more>View on the Mac App Store</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>App Store Connect Update</title>
+            <link>https://developer.apple.com/news/releases/?id=03212023i</link>
+            <guid>https://developer.apple.com/news/releases/?id=03212023i</guid>
+            <description>Apps built for iOS 16.4 RC, iPadOS 16.4 RC, macOS 13.3 RC, tvOS 16.4 RC, or
+                watchOS 9.4 RC using Xcode 14.3 RC can now be submitted to the App Store, and for
+                internal and external testing through TestFlight.</description>
+            <pubDate>Tue, 21 Mar 2023 17:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p>Apps built for iOS 16.4 RC, iPadOS 16.4 RC, macOS 13.3 RC, tvOS 16.4 RC, or watchOS 9.4 RC using Xcode 14.3 RC can now be submitted to the App Store, and for internal and external testing through TestFlight.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title>App Store Connect Update</title>
+            <link>https://developer.apple.com/news/releases/?id=03172023a</link>
+            <guid>https://developer.apple.com/news/releases/?id=03172023a</guid>
+            <description>You can now access a monthly Transaction Tax Report, which summarizes sales
+                tax, use tax, goods and services tax, and other similar taxes applied on your
+                transactions where Apple administers tax. This report is available for sales
+                completed on the App Store in the United States and Canada.Learn More</description>
+            <pubDate>Fri, 17 Mar 2023 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p>You can now access a monthly Transaction Tax Report, which summarizes sales tax, use tax, goods and services tax, and other similar taxes applied on your transactions where Apple administers tax. This report is available for sales completed on the App&nbsp;Store in the United States and Canada.<br/><br/><a href=https://developer.apple.com/help/app-store-connect/getting-paid/download-financial-reports/ class=more>Learn More</a><br/></p>]]></content:encoded>
+        </item>
+        <item>
+            <title>App Store Connect API 2.3</title>
+            <link>https://developer.apple.com/news/releases/?id=03092023b</link>
+            <guid>https://developer.apple.com/news/releases/?id=03092023b</guid>
+            <description>This update supports new App Store pricing upgrade capabilities, which are
+                now available for all purchase types (including paid apps and one-time in-app
+                purchases).More flexible price points. Choose from 900 price points — nearly 10
+                times the number of price points previously available for most apps.Enhanced global
+                pricing. Use globally equalized prices that follow the most common pricing
+                conventions in each country or region, so you can provide pricing that’s more
+                relevant to customers.Worldwide options for base price. Specify a country or region
+                of your choosing as the basis for globally equalized prices across the other 174
+                storefronts and 44 currencies for paid apps and one-time in-app purchases.Regional
+                options for availability. Define the availability of in-app purchases and
+                subscriptions by region, so you can deliver content and services customized for each
+                market.Learn more about pricing upgradesView the full API release notes</description>
+            <pubDate>Thu, 09 Mar 2023 09:00:00 PST</pubDate>
+            <content:encoded><![CDATA[<p>This update supports new App Store pricing upgrade capabilities, which are now available for all purchase types (including paid apps and one-time in-app purchases).<br/><ul><li><b>More flexible price points.</b> Choose from 900 price points — nearly 10 times the number of price points previously available for most apps.</li></p><p><li><b>Enhanced global pricing.</b> Use globally equalized prices that follow the most common pricing conventions in each country or region, so you can provide pricing that’s more relevant to customers.</li></p><p><li><b>Worldwide options for base price.</b> Specify a country or region of your choosing as the basis for globally equalized prices across the other 174 storefronts and 44 currencies for paid apps and one-time in-app purchases.</li></p><p><li><b>Regional options for availability.</b> Define the availability of in-app purchases and subscriptions by region, so you can deliver content and services customized for each market.</li></p><br/><a href=https://developer.apple.com/news/?id=dbrszv62 class=more>Learn more about pricing upgrades</a><br/><a href=https://developer.apple.com/documentation/appstoreconnectapi/app_store_connect_api_release_notes/app_store_connect_api_version_2_3_release_notes class=more>View the full API release notes</a></p>]]></content:encoded>
+        </item>
+        <item>
+            <title>App Store Connect Update</title>
+            <link>https://developer.apple.com/news/releases/?id=01302023a</link>
+            <guid>https://developer.apple.com/news/releases/?id=01302023a</guid>
+            <description>You can now choose to apply Billing Grace Period only to existing paid
+                renewals, or continue applying it to all subscription renewals (existing paid
+                renewals and free offers transitioning to paid renewals). You can also choose a
+                duration of 3, 16, or 28 days instead of having the duration predefined based on
+                your subscription length. When you enable Billing Grace Period in App Store Connect,
+                Apple attempts to address any subscriber billing issues and recover the subscription
+                while subscribers retain access to subscription benefits. If the subscription is
+                recovered within this period, there’s no interruption to the days of paid service or
+                to your revenue.Learn how to enable Billing Grace Period</description>
+            <pubDate>Mon, 30 Jan 2023 09:00:00 PST</pubDate>
+            <content:encoded><![CDATA[<p>You can now choose to apply Billing Grace Period only to existing paid renewals, or continue applying it to all subscription renewals (existing paid renewals and free offers transitioning to paid renewals). You can also choose a duration of 3, 16, or 28 days instead of having the duration predefined based on your subscription length.  When you enable Billing Grace Period in App Store Connect, Apple attempts to address any subscriber billing issues and recover the subscription while subscribers retain access to subscription benefits. If the subscription is recovered within this period, there’s no interruption to the days of paid service or to your revenue.<br/><br/><a href=https://developer.apple.com/help/app-store-connect/manage-subscriptions/enable-billing-grace-period-for-auto-renewable-subscriptions class=more>Learn how to enable Billing Grace Period</a></p>]]></content:encoded>
+        </item>
+        <item>
+            <title>App Store Connect Update</title>
+            <link>https://developer.apple.com/news/releases/?id=01012023a</link>
+            <guid>https://developer.apple.com/news/releases/?id=01012023a</guid>
+            <description>As of January 1, 2023, the euro (EUR) is the official currency of Croatia,
+                replacing the Croatian kuna (HRK). Price tiers in App Store Connect have be
+                converted to euros using the statutory fixed conversion rate of 7.53450 HRK =
+                1.00000 EUR established by the Council of the European Union on July 12,
+                2022.View kuna and euro equivalent price tiersThe following has been automatically
+                updated from kunas to euros:Prices on the App Store (customers with auto-renewable
+                subscriptions will be notified)Proceeds from sales in CroatiaSales and Trends
+                reports and monthly financial reports for CroatiaCurrency for your bank in App Store
+                Connect, If you’ve selected the kuna</description>
+            <pubDate>Sun, 01 Jan 2023 09:00:00 PST</pubDate>
+            <content:encoded><![CDATA[<p>As of January 1, 2023, the euro (EUR) is the official currency of Croatia, replacing the Croatian kuna (HRK). Price tiers in App Store Connect have be converted to euros using the statutory fixed conversion rate of 7.53450 HRK = 1.00000 EUR established by the Council of the European Union on July 12, 2022.</p><p><a href=https://www.apple.com/hr/legal/currency/ class="icon icon-after icon-chevronright">View kuna and euro equivalent price tiers</a></p><p>The following has been automatically updated from kunas to euros:</p><ul class="list"><li>Prices on the App Store (customers with auto-renewable subscriptions will be notified)</li><li>Proceeds from sales in Croatia</li><li>Sales and Trends reports and monthly financial reports for Croatia</li><li>Currency for your bank in App Store Connect, If you’ve selected the kuna</li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>TestFlight Update</title>
+            <link>https://developer.apple.com/news/releases/?id=09292022a</link>
+            <guid>https://developer.apple.com/news/releases/?id=09292022a</guid>
+            <description>Apps built for iOS 16.1 beta 3, iPadOS 16 beta 10, macOS 13 beta 9, tvOS
+                16.1 beta 3, and watchOS 9.1 beta 3 using Xcode 14.1 beta 3 can now be submitted for
+                internal and external testing, with support for Background Assets in iOS, iPadOS,
+                and macOS.</description>
+            <pubDate>Thu, 29 Sep 2022 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p>Apps built for iOS 16.1 beta 3, iPadOS 16 beta 10, macOS 13 beta 9, tvOS 16.1 beta 3, and watchOS 9.1 beta 3 using Xcode 14.1 beta 3 can now be submitted for internal and external testing, with support for Background Assets in iOS, iPadOS, and macOS.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title>Apple Developer App Update</title>
+            <link>https://developer.apple.com/news/releases/?id=09142022a</link>
+            <guid>https://developer.apple.com/news/releases/?id=09142022a</guid>
+            <description>You can now use the Apple Developer app for Mac to enroll in the Apple
+                Developer Program, with support for many local currencies and payment methods.
+                Members who enrolled on the web can also use the Apple Developer app for Mac to
+                renew their membership as an auto-renewable subscription.</description>
+            <pubDate>Wed, 14 Sep 2022 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p>You can now use the Apple Developer app for Mac to enroll in the Apple Developer Program, with support for many local currencies and payment methods. Members who enrolled on the web can also use the Apple Developer app for Mac to renew their membership as an auto-renewable subscription.</p>]]></content:encoded>
+        </item>
+
+    </channel>
+</rss>

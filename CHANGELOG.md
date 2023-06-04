@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- Bot now also follows Apple Releases page. This allows for quicker posts about updates, before security contents is published. So posts about new updates should be very quick, contain build numbers and beta software!
+
 ## [14.0] - 2023-04-12
 
 ### Added
