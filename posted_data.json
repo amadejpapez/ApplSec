@@ -18,7 +18,14 @@
             "macOS 13.5 beta 2 (22G5038d)",
             "iPadOS 16.6 beta 2 (20G5037d)",
             "iOS 16.6 beta 2 (20G5037d)",
-            "Xcode 14.3.1 (14E300c)"
+            "Xcode 14.3.1 (14E300c)",
+            "macOS 13.4 (22F66 | 22F2073)",
+            "tvOS 17 beta (21J5273q)",
+            "watchOS 10 beta (21R5275t)",
+            "macOS 14 beta (23A5257q)",
+            "iPadOS 17 beta (21A5248v)",
+            "iOS 17 beta (21A5248v)",
+            "Xcode 15 beta (15A5160n)"
         ],
         "new_sec_content": [
             "iOS and iPadOS 15.7.5",
