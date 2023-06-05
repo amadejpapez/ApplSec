@@ -5,6 +5,7 @@
         ],
         "details_available_soon": [],
         "posts": {
+            "new_releases": [],
             "new_sec_content": [],
             "ios_modules": [],
             "zero_days": {},
@@ -17,6 +18,9 @@
         ],
         "details_available_soon": [],
         "posts": {
+            "new_releases": [
+                "iOS 16.6 beta 2 (20G5037d)"
+            ],
             "new_sec_content": [
                 "Safari 16.3"
             ],
@@ -772,6 +776,7 @@
         ],
         "details_available_soon": [],
         "posts": {
+            "new_releases": [],
             "new_sec_content": [
                 "macOS Big Sur 11.5.2",
                 "watchOS 8.4",
@@ -820,6 +825,7 @@
             "tvOS 16.3.2"
         ],
         "posts": {
+            "new_releases": [],
             "new_sec_content": [
                 "tvOS 16.3.2"
             ],
@@ -1308,6 +1314,7 @@
         ],
         "details_available_soon": [],
         "posts": {
+            "new_releases": [],
             "new_sec_content": [],
             "ios_modules": [],
             "zero_days": {
