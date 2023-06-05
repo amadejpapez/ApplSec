@@ -115,7 +115,7 @@ def post(results: list) -> None:
         return
 
     try:
-        toot(list(results), MASTODON_KEY)
+        toot(list(results), MASTODON_KEY_TEST)
     except Exception as e:
         print("ERROR: Mastodon failed to post\n" + str(results) + "\n" + str(e) + "\n")
         sys.exit(1)
