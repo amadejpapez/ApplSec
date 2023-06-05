@@ -13,7 +13,14 @@
     ],
     "details_available_soon": [],
     "posts": {
-        "new_updates": [
+        "new_releases": [
+            "watchOS 9.6 beta 2 (20U5538d)",
+            "macOS 13.5 beta 2 (22G5038d)",
+            "iPadOS 16.6 beta 2 (20G5037d)",
+            "iOS 16.6 beta 2 (20G5037d)",
+            "Xcode 14.3.1 (14E300c)"
+        ],
+        "new_sec_content": [
             "iOS and iPadOS 15.7.5",
             "macOS Monterey 12.6.5",
             "macOS Big Sur 11.7.6",
