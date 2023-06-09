@@ -1,13 +1,11 @@
-import json
-
 import lxml.etree
 
 import helpers.post_format as post_format
 import main
 from helpers.PostedFile import PostedFile
+from tests.helpers import read_examples
 
-with open("src/tests/examples_rss.json", "r", encoding="utf-8") as my_file:
-    example_file = json.load(my_file)
+examples = read_examples("examples_rss")
 
 coll = {
     "new_releases": [],
@@ -28,5 +26,5 @@ def test_rss_releases():
     main.check_new_releases(coll, rss_feed)
     post = post_format.new_updates(coll["new_releases"])
 
-    assert post == example_file["new_releases_post"]
-    assert PostedFile.data == example_file["posted_data_new"]
+    assert post == examples["new_releases_post"]
+    assert PostedFile.data == examples["posted_data_new"]
