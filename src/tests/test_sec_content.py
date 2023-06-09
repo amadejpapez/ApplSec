@@ -1,4 +1,3 @@
-import copy
 import json
 import os
 
@@ -7,9 +6,9 @@ import pytest
 from freezegun import freeze_time
 
 import helpers.get_version_info as get_version_info
-import helpers.manage_posted_data as manage_posted_data
 import helpers.post_format as post_format
 import main
+from helpers.PostedFile import PostedFile
 from Release import Release
 
 
@@ -75,7 +74,7 @@ def convert_to_release_from_dict(release_info: dict) -> list:
 with open("src/tests/examples_sec_content.json", "r", encoding="utf-8") as my_file:
     example_file = json.load(my_file)
 
-posted_data = copy.deepcopy(example_file["posted_data"])
+PostedFile.reset()
 
 latest_versions = get_version_info.latest(
     convert_to_lxml_class(example_file["last_one_year_table"][:50])
@@ -98,12 +97,12 @@ def test_posted_data_json():
         os.remove("src/posted_data.json")
 
     with pytest.raises(AssertionError):
-        manage_posted_data.read()
+        PostedFile.read()
 
-    manage_posted_data.save(example_file["posted_data_test"])
+    # PostedFile.save(example_file["posted_data_test"])
 
     assert os.path.isfile("src/posted_data.json") is True
-    assert manage_posted_data.read() == example_file["posted_data_test"]
+    assert PostedFile.read() == example_file["posted_data_test"]
 
 
 def test_release_class():
@@ -129,6 +128,7 @@ def test_release_class():
 
 def test_release_class_2():
     releases_obj = convert_to_lxml_class(example_file["new_sec_content_rows_table"])
+    PostedFile.reset()
 
     compare(
         convert_to_release_from_table(example_file["new_sec_content_rows_table"]),
@@ -137,7 +137,7 @@ def test_release_class_2():
 
     coll["new_sec_content"] = []
 
-    main.check_new_security_content(coll, copy.deepcopy(posted_data), latest_versions, releases_obj)
+    main.check_new_security_content(coll, latest_versions, releases_obj)
 
     post = post_format.new_security_content(coll["new_sec_content"])
 
@@ -146,7 +146,7 @@ def test_release_class_2():
 
 def test_new_sec_content():
     releases_obj = convert_to_lxml_class(example_file["new_sec_content_table"])
-    posted_data_test = copy.deepcopy(posted_data)
+    PostedFile.reset()
 
     compare(
         convert_to_release_from_table(example_file["new_sec_content_table"]),
@@ -155,20 +155,21 @@ def test_new_sec_content():
 
     coll["new_sec_content"] = []
 
-    main.check_new_security_content(coll, posted_data_test, latest_versions, releases_obj)
+    main.check_new_security_content(coll, latest_versions, releases_obj)
 
     post = post_format.new_security_content(coll["new_sec_content"])
 
     assert post == example_file["new_sec_content_post"]
-    assert posted_data_test == example_file["new_sec_content_posted_data"]
+    assert PostedFile.data == example_file["new_sec_content_posted_data"]
 
 
 def test_new_sec_content_only_one():
     releases_obj = convert_to_lxml_class(example_file["new_sec_content_one_table"])
+    PostedFile.reset()
 
     coll["new_sec_content"] = []
 
-    main.check_new_security_content(coll, copy.deepcopy(posted_data), latest_versions, releases_obj)
+    main.check_new_security_content(coll, latest_versions, releases_obj)
 
     post = post_format.new_security_content(coll["new_sec_content"])
 
@@ -177,20 +178,21 @@ def test_new_sec_content_only_one():
 
 def test_new_sec_content_details_soon():
     releases_obj = convert_to_lxml_class(example_file["new_sec_content_details_soon_table"])
-    posted_data_test = copy.deepcopy(posted_data)
+    PostedFile.reset()
 
     coll["new_sec_content"] = []
 
-    main.check_new_security_content(coll, posted_data_test, latest_versions, releases_obj)
+    main.check_new_security_content(coll, latest_versions, releases_obj)
 
     post = post_format.new_security_content(coll["new_sec_content"])
 
     assert post == example_file["new_sec_content_details_soon_post"]
-    assert posted_data_test == example_file["new_sec_content_details_soon_posted_data"]
+    assert PostedFile.data == example_file["new_sec_content_details_soon_posted_data"]
 
 
 def test_ios_modules():
     releases_obj = convert_to_release_from_table(example_file["ios_modules_table"])
+    PostedFile.reset()
 
     compare(releases_obj, example_file["ios_modules_info"])
 
@@ -198,7 +200,7 @@ def test_ios_modules():
     coll["ios_release"] = []
 
     for release in releases_obj:
-        main.check_latest_ios_release(coll, copy.deepcopy(posted_data), release, lat_ios_ver)
+        main.check_latest_ios_release(coll, release, lat_ios_ver)
 
     post = post_format.top_ios_modules(coll["ios_release"])
 
@@ -226,33 +228,35 @@ def test_entry_changes2():
 
 def test_security_content_soon():
     releases_obj = convert_to_release_from_dict(example_file["security_content_soon_info"])
+    PostedFile.reset()
 
     for release in releases_obj:
-        main.save_sec_content_no_details_yet(posted_data, release)
+        main.save_sec_content_no_details_yet(release)
 
-    assert posted_data["details_available_soon"] == example_file["security_content_soon_file"]
+    assert PostedFile.data["details_available_soon"] == example_file["security_content_soon_file"]
 
     # test if result is the same when same data comes in the next time
     releases_obj = convert_to_release_from_dict(example_file["security_content_soon_info"])
 
     for release in releases_obj:
-        main.save_sec_content_no_details_yet(posted_data, release)
+        main.save_sec_content_no_details_yet(release)
 
-    assert posted_data["details_available_soon"] == example_file["security_content_soon_file"]
+    assert PostedFile.data["details_available_soon"] == example_file["security_content_soon_file"]
 
 
 def test_security_content_available():
     releases_rows = convert_to_lxml_class(example_file["security_content_available_info"])
+    PostedFile.reset()
 
-    posted_data["details_available_soon"] = example_file["security_content_soon_file"]
+    PostedFile.data["details_available_soon"] = example_file["security_content_soon_file"]
     coll["new_sec_content"] = []
 
-    main.check_if_sec_content_available(coll, posted_data, releases_rows)
+    main.check_if_sec_content_available(coll, releases_rows)
 
     post = post_format.new_security_content(coll["new_sec_content"])
 
     assert post == example_file["security_content_available_post"]
-    assert posted_data["details_available_soon"] == []
+    assert PostedFile.data["details_available_soon"] == []
 
 
 def test_yearly_report():
@@ -268,19 +272,21 @@ def test_yearly_report():
 
 def test_zero_day():
     releases_obj = convert_to_release_from_table(example_file["zero_day_releases_table"])
-    posted_data_test = copy.deepcopy(posted_data)
     coll["new_sec_content"] = releases_obj
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
 
+    PostedFile.reset()
+    PostedFile.data["zero_days"] = ["CVE-2021-30869"]
+
     compare(releases_obj, example_file["zero_day_releases_info"])
 
-    main.check_for_zero_day_releases(coll, posted_data_test)
+    main.check_for_zero_day_releases(coll)
 
-    post = post_format.zero_days(coll["zero_day_releases"], posted_data_test)
+    post = post_format.zero_days(coll["zero_day_releases"])
 
     assert post == example_file["zero_day_releases_post"]
-    assert posted_data_test == example_file["zero_day_releases_posted_data"]
+    assert PostedFile.data == example_file["zero_day_releases_posted_data"]
 
 
 def test_zero_day_new_old():
@@ -289,9 +295,12 @@ def test_zero_day_new_old():
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
 
-    main.check_for_zero_day_releases(coll, copy.deepcopy(posted_data))
+    PostedFile.reset()
+    PostedFile.data["zero_days"] = ["CVE-2021-30869"]
 
-    post = post_format.zero_days(coll["zero_day_releases"], copy.deepcopy(posted_data))
+    main.check_for_zero_day_releases(coll)
+
+    post = post_format.zero_days(coll["zero_day_releases"])
 
     assert post == example_file["zero_day_releases_new_old_post"]
 
@@ -302,9 +311,12 @@ def test_zero_day_new():
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
 
-    main.check_for_zero_day_releases(coll, copy.deepcopy(posted_data))
+    PostedFile.reset()
+    PostedFile.data["zero_days"] = ["CVE-2021-30869"]
 
-    post = post_format.zero_days(coll["zero_day_releases"], copy.deepcopy(posted_data))
+    main.check_for_zero_day_releases(coll)
+
+    post = post_format.zero_days(coll["zero_day_releases"])
 
     assert post == example_file["zero_day_releases_new_post"]
 
@@ -315,8 +327,11 @@ def test_zero_day_old():
     coll["zero_day_releases"] = []
     coll["sec_content_available"] = []
 
-    main.check_for_zero_day_releases(coll, copy.deepcopy(posted_data))
+    PostedFile.reset()
+    PostedFile.data["zero_days"] = ["CVE-2021-30869"]
 
-    post = post_format.zero_days(coll["zero_day_releases"], copy.deepcopy(posted_data))
+    main.check_for_zero_day_releases(coll)
+
+    post = post_format.zero_days(coll["zero_day_releases"])
 
     assert post == example_file["zero_day_releases_old_post"]

@@ -1,17 +1,4 @@
 {
-    "posted_data": {
-        "zero_days": [
-            "CVE-2021-30869"
-        ],
-        "details_available_soon": [],
-        "posts": {
-            "new_releases": [],
-            "new_sec_content": [],
-            "ios_modules": [],
-            "zero_days": {},
-            "yearly_report": []
-        }
-    },
     "posted_data_test": {
         "zero_days": [
             "CVE-2021-30869"
@@ -771,9 +758,7 @@
         "https://support.apple.com/kb/HT201222"
     ],
     "new_sec_content_posted_data": {
-        "zero_days": [
-            "CVE-2021-30869"
-        ],
+        "zero_days": [],
         "details_available_soon": [],
         "posts": {
             "new_releases": [],
@@ -818,9 +803,7 @@
         "📺 tvOS 16.3.2 - no details yet\n"
     ],
     "new_sec_content_details_soon_posted_data": {
-        "zero_days": [
-            "CVE-2021-30869"
-        ],
+        "zero_days": [],
         "details_available_soon": [
             "tvOS 16.3.2"
         ],

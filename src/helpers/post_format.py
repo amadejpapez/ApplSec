@@ -4,6 +4,7 @@ import re
 import requests
 
 import helpers.get_version_info as get_version_info
+from helpers.PostedFile import PostedFile
 from Release import Release
 
 
@@ -126,7 +127,7 @@ def get_zero_days_start_text(zero_days: dict) -> str:
     return text
 
 
-def zero_days(releases: list[Release], posted_data: dict) -> list:
+def zero_days(releases: list[Release]) -> list:
     """
     -----
     📣 EMERGENCY UPDATES 📣
@@ -161,8 +162,8 @@ def zero_days(releases: list[Release], posted_data: dict) -> list:
                 zero_days[cve]["releases"].append(release.name)
 
             # if zero-day was not fixed in any previous releases
-            if cve not in posted_data["zero_days"]:
-                posted_data["zero_days"].append(cve)
+            if cve not in PostedFile.data["zero_days"]:
+                PostedFile.data["zero_days"].append(cve)
                 zero_days[cve]["status"] = "new"
 
     post_text = []

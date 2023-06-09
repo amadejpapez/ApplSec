@@ -50,6 +50,10 @@ class PostedFile:
             json.dump(PostedFile._clear_old_data(PostedFile.data), json_file, indent=4)
 
     @staticmethod
+    def reset() -> None:
+        PostedFile.data = PostedFile.FILE_STRUCTURE
+
+    @staticmethod
     def _clear_old_data(new_data: dict) -> dict:
         while len(new_data["posts"]["new_releases"]) > 15:
             new_data["posts"]["new_releases"].pop(0)
