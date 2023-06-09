@@ -3,24 +3,9 @@ import os
 import pytest
 
 from helpers.PostedFile import PostedFile
+from tests.helpers import read_examples
 
-posted_data_test = {
-    "zero_days": [
-        "CVE-2021-30869"
-    ],
-    "details_available_soon": [],
-    "posts": {
-        "new_releases": [
-            "iOS 16.6 beta 2 (20G5037d)"
-        ],
-        "new_sec_content": [
-            "Safari 16.3"
-        ],
-        "ios_modules": [],
-        "zero_days": {},
-        "yearly_report": []
-    }
-}
+posted_data_test = read_examples("posted_file")["posted_data_test"]
 
 FILE_LOC = "src/posted_data.json"
 
