@@ -6,7 +6,7 @@ from Release import Release
 
 
 def read_examples(name: str) -> dict:
-    with open("src/tests/fixtures/" + name + ".json", "r", encoding="utf-8") as my_file:
+    with open("tests/fixtures/" + name + ".json", "r", encoding="utf-8") as my_file:
         return json.load(my_file)
 
 

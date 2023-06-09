@@ -1,14 +1,14 @@
 import lxml.html
 from freezegun import freeze_time
+from helpers_test import compare, info_to_release, read_examples, row_to_lxml, row_to_release
 
 import helpers.get_version_info as get_version_info
 import helpers.post_format as post_format
 import main
 from helpers.PostedFile import PostedFile
 from Release import Release
-from tests.helpers import compare, info_to_release, read_examples, row_to_lxml, row_to_release
 
-examples = read_examples("examples_sec_content")
+examples = read_examples("posts_sec")
 
 latest_versions = get_version_info.latest(row_to_lxml(examples["last_one_year_table"][:50]))
 
