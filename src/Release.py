@@ -44,83 +44,43 @@ class Release:
         num_entries_added: int,
         num_entries_updated: int,
     ):
-        self.__name = name
-        self.__emoji = emoji
-        self.__release_notes_link = release_notes_link
-        self.__security_content_link = security_content_link
-        self.__release_date = release_date
-        self.__zero_days = zero_days
-        self.__num_of_bugs = num_of_bugs
-        self.__num_of_zero_days = num_of_zero_days
-        self.__num_entries_added = num_entries_added
-        self.__num_entries_updated = num_entries_updated
-
-    @property
-    def name(self) -> str:
-        return self.__name
-
-    @property
-    def emoji(self) -> str:
-        return self.__emoji
-
-    @property
-    def release_notes_link(self) -> str:
-        return self.__release_notes_link
-
-    @property
-    def security_content_link(self) -> str:
-        return self.__security_content_link
-
-    @property
-    def release_date(self) -> str:
-        return self.__release_date
-
-    @property
-    def zero_days(self) -> dict:
-        return self.__zero_days
-
-    @property
-    def num_of_bugs(self) -> int:
-        return self.__num_of_bugs
+        self.name = name
+        self.emoji = emoji
+        self.release_notes_link = release_notes_link
+        self.security_content_link = security_content_link
+        self.release_date = release_date
+        self.zero_days = zero_days
+        self.num_of_bugs = num_of_bugs
+        self.num_of_zero_days = num_of_zero_days
+        self.num_entries_added = num_entries_added
+        self.num_entries_updated = num_entries_updated
 
     def get_format_num_of_bugs(self) -> str:
-        if self.__num_of_bugs > 1:
-            return f"{self.__num_of_bugs} bugs fixed"
+        if self.num_of_bugs > 1:
+            return f"{self.num_of_bugs} bugs fixed"
 
-        if self.__num_of_bugs == 1:
-            return f"{self.__num_of_bugs} bug fixed"
+        if self.num_of_bugs == 1:
+            return f"{self.num_of_bugs} bug fixed"
 
-        if self.__num_of_bugs == -1:
+        if self.num_of_bugs == -1:
             return "no details yet"
 
         return "no CVE entries"
 
-    @property
-    def num_of_zero_days(self) -> int:
-        return self.__num_of_zero_days
-
     def get_format_num_of_zero_days(self) -> str:
-        if self.__num_of_zero_days > 1:
-            return f"{self.__num_of_zero_days} zero-days"
+        if self.num_of_zero_days > 1:
+            return f"{self.num_of_zero_days} zero-days"
 
-        if self.__num_of_zero_days == 1:
-            return f"{self.__num_of_zero_days} zero-day"
+        if self.num_of_zero_days == 1:
+            return f"{self.num_of_zero_days} zero-day"
 
         return "no zero-days"
 
-    @property
-    def num_entries_added(self) -> int:
-        return self.__num_entries_added
-
     def get_format_num_entries_added(self) -> str:
-        return f"{self.__num_entries_added} added"
-
-    @property
-    def num_entries_updated(self) -> int:
-        return self.__num_entries_updated
+        return f"{self.num_entries_added} added"
 
     def get_format_num_entries_updated(self) -> str:
-        return f"{self.__num_entries_updated} updated"
+        return f"{self.num_entries_updated} updated"
 
     @staticmethod
     def parse_from_table(row: list[lxml.html.HtmlElement]) -> Release:
