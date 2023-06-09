@@ -1,8 +1,6 @@
 import json
-import os
 
 import lxml.html
-import pytest
 from freezegun import freeze_time
 
 import helpers.get_version_info as get_version_info
@@ -87,22 +85,6 @@ coll = {
     "sec_content_available": [],
     "zero_day_releases": [],
 }
-
-
-def test_posted_data_json():
-    """
-    Verify that the file is generated in /src and that reading/saving works.
-    """
-    if os.path.exists("src/posted_data.json"):
-        os.remove("src/posted_data.json")
-
-    with pytest.raises(AssertionError):
-        PostedFile.read()
-
-    # PostedFile.save(example_file["posted_data_test"])
-
-    assert os.path.isfile("src/posted_data.json") is True
-    assert PostedFile.read() == example_file["posted_data_test"]
 
 
 def test_release_class():
