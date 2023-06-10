@@ -7,7 +7,7 @@ from helpers.posted_file import PostedFile
 examples = read_examples("posts_rss")
 
 
-def test_rss_releases():
+def test_rss_releases() -> None:
     rss_feed = ""
     PostedFile.reset()
 

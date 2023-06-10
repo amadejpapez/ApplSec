@@ -9,7 +9,7 @@ from helpers.posted_file import PostedFile
 from release import Release
 
 
-def retrieve_page() -> list:
+def retrieve_page() -> list[list[lxml.html.HtmlElement]]:
     main_page = lxml.html.document_fromstring(requests.get("https://support.apple.com/en-us/HT201222", timeout=60).text)
 
     table = main_page.xpath("//table/tbody")[0].findall("tr")
@@ -21,7 +21,7 @@ def retrieve_page() -> list:
     return all_release_rows
 
 
-def get_new(all_release_rows: list) -> list[Release]:
+def get_new(all_release_rows: list[list[lxml.html.HtmlElement]]) -> list[Release]:
     """Return new security content listings that have not been posted yet."""
     new_sec_content = []
 
@@ -49,7 +49,7 @@ def get_new(all_release_rows: list) -> list[Release]:
     return new_sec_content
 
 
-def get_if_available(all_release_rows: list) -> list[Release]:
+def get_if_available(all_release_rows: list[list[lxml.html.HtmlElement]]) -> list[Release]:
     """Return releases that said "no details yet" but have it available now."""
     checked = 0
     must_check = len(PostedFile.data["details_available_soon"])
@@ -71,7 +71,7 @@ def get_if_available(all_release_rows: list) -> list[Release]:
     return new_sec_content
 
 
-def format_new_sec_content(releases: list[Release]) -> list:
+def format_new_sec_content(releases: list[Release]) -> list[str]:
     """
     🐛 NEW SECURITY CONTENT 🐛
 
@@ -101,7 +101,7 @@ def format_new_sec_content(releases: list[Release]) -> list:
     return post_text
 
 
-def get_new_ios_release(new_sec_content: list[Release], latest_versions: dict) -> list[Release]:
+def get_new_ios_release(new_sec_content: list[Release], latest_versions: dict[str, list]) -> list[Release]:
     """
     If the latest iOS series got a new release.
     Do not post if all bugs are zero-days, as does are already in a post.
@@ -122,7 +122,7 @@ def get_new_ios_release(new_sec_content: list[Release], latest_versions: dict) -
     return []
 
 
-def format_ios_release(releases: list[Release]) -> list:
+def format_ios_release(releases: list[Release]) -> list[str]:
     """
     ⚒️ FIXED IN iOS 14.7 ⚒️
 
@@ -181,7 +181,7 @@ def get_new_zero_days(new_sec_content: list[Release]) -> list[Release]:
     return zero_day_releases
 
 
-def _format_zero_days_start_text(zero_days: dict) -> str:
+def _format_zero_days_start_text(zero_days: dict[str, dict]) -> str:
     """Return text for the start of the zero day post."""
     num_new = 0
     num_old = 0
@@ -213,7 +213,7 @@ def _format_zero_days_start_text(zero_days: dict) -> str:
     return text
 
 
-def format_zero_days(releases: list[Release]) -> list:
+def format_zero_days(releases: list[Release]) -> list[str]:
     """
     📣 EMERGENCY UPDATES 📣
 
@@ -226,7 +226,7 @@ def format_zero_days(releases: list[Release]) -> list:
     🐛 CVE-2021-30860 (CoreGraphics):
     - iOS 12.5.5
     """
-    zero_days = {}
+    zero_days: dict[str, dict] = {}
 
     for release in releases:
         for cve, module in release.zero_days.items():
@@ -259,13 +259,13 @@ def format_zero_days(releases: list[Release]) -> list:
         else:
             post_text.append("\n\n🐛 " + key + " (" + value["module"] + ") additional patches:")
 
-        for release in value["releases"]:
-            post_text[-1] += "\n- " + release
+        for item in value["releases"]:
+            post_text[-1] += "\n- " + item
 
     return post_text
 
 
-def get_entry_changes(all_release_rows: list) -> list[Release]:
+def get_entry_changes(all_release_rows: list[list[lxml.html.HtmlElement]]) -> list[Release]:
     """
     Check for security content changes made on the previous day.
     Because of checking all of the security notes, it is only called at midnight.
@@ -281,7 +281,7 @@ def get_entry_changes(all_release_rows: list) -> list[Release]:
     return changed_releases
 
 
-def format_entry_changes(releases: list[Release]) -> list:
+def format_entry_changes(releases: list[Release]) -> list[str]:
     """
     🔄 24 ENTRY CHANGES 🔄
 
@@ -328,7 +328,7 @@ def format_entry_changes(releases: list[Release]) -> list:
     return post_text
 
 
-def get_yearly_report(new_sec_content: list[Release], latest_versions: dict) -> list:
+def get_yearly_report(new_sec_content: list[Release], latest_versions: dict[str, list]) -> list[list[str]]:
     """
     If there is a new major upgrade. Report how many bugs Apple fixed
     in the last 4 major series releases.
@@ -355,7 +355,7 @@ def get_yearly_report(new_sec_content: list[Release], latest_versions: dict) -> 
     return new_yearly_report
 
 
-def format_yearly_report(release_rows: list, system: str, version: int) -> list:
+def format_yearly_report(release_rows: list[list[lxml.html.HtmlElement]], system: str, version: int) -> list[str]:
     """
     iOS 15 was released today. In iOS 14 series Apple fixed in total of 346 security issues over 16 releases. 🔐
 

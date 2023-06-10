@@ -32,7 +32,7 @@ class PostedFile:
     data: dict
 
     @staticmethod
-    def read():
+    def read() -> None:
         try:
             with open(PostedFile._LOC, "r", encoding="utf-8") as json_file:
                 PostedFile.data = json.load(json_file)

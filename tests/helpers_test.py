@@ -10,7 +10,7 @@ def read_examples(name: str) -> dict:
         return json.load(my_file)
 
 
-def compare(release_obj: list[Release], example: dict):
+def compare(release_obj: list[Release], example: dict[str, dict]) -> None:
     for release, (_, expected) in zip(release_obj, example.items()):
         assert release.name == expected["name"]
         assert release.emoji == expected["emoji"], release.name
@@ -23,7 +23,7 @@ def compare(release_obj: list[Release], example: dict):
         assert release.num_entries_updated == expected["num_entries_updated"], release.name
 
 
-def row_to_lxml(release_rows: list) -> list:
+def row_to_lxml(release_rows: list[str]) -> list[list[lxml.html.HtmlElement]]:
     releases_tmp = []
 
     for row in release_rows:
@@ -36,7 +36,7 @@ def row_to_lxml(release_rows: list) -> list:
     return releases_tmp
 
 
-def row_to_release(release_rows: list) -> list:
+def row_to_release(release_rows: list[str]) -> list[Release]:
     releases_obj = []
 
     for row in row_to_lxml(release_rows):
@@ -45,7 +45,7 @@ def row_to_release(release_rows: list) -> list:
     return releases_obj
 
 
-def info_to_release(release_info: dict) -> list:
+def info_to_release(release_info: dict) -> list[Release]:
     releases_class = []
 
     for _, value in release_info.items():

@@ -10,7 +10,7 @@ posted_data_test = read_examples("posted_file")["posted_data_test"]
 FILE_LOC = "src/posted_data.json"
 
 
-def test_posted_data_create():
+def test_posted_data_create() -> None:
     if os.path.exists(FILE_LOC):
         os.remove(FILE_LOC)
 
@@ -22,7 +22,7 @@ def test_posted_data_create():
     assert PostedFile.data == PostedFile.FILE_STRUCTURE
 
 
-def test_posted_data_invalid_file():
+def test_posted_data_invalid_file() -> None:
     with open(FILE_LOC, "w", encoding="utf-8") as json_file:
         json_file.write("{")
 
@@ -37,7 +37,7 @@ def test_posted_data_invalid_file():
     assert PostedFile.data == PostedFile.FILE_STRUCTURE
 
 
-def test_posted_data_save_read():
+def test_posted_data_save_read() -> None:
     test_posted_data_create()
 
     PostedFile.data = posted_data_test

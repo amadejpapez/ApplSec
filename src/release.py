@@ -138,7 +138,7 @@ class Release:
         )
 
     @staticmethod
-    def parse_name(release_row: list) -> str:
+    def parse_name(release_row: list[lxml.html.HtmlElement]) -> str:
         name = release_row[0].text_content()
 
         # for releases with "macOS Monterey 12.0.1 (Advisory includes security content of..."
@@ -187,7 +187,7 @@ class Release:
         return "🛠️"
 
     @staticmethod
-    def parse_security_content_link(release_row: list) -> str:
+    def parse_security_content_link(release_row: list[lxml.html.HtmlElement]) -> str:
         tmp = release_row[0].xpath(".//a/@href")
 
         if tmp != []:
@@ -196,7 +196,7 @@ class Release:
             return ""
 
     @staticmethod
-    def parse_num_of_bugs(release_row: list, sec_content_page: str) -> int:
+    def parse_num_of_bugs(release_row: list[lxml.html.HtmlElement], sec_content_page: str) -> int:
         """Return a number of CVEs fixed."""
 
         if "soon" in release_row[0].text_content():
@@ -205,7 +205,7 @@ class Release:
             return len(re.findall("(?i)CVE-[0-9]{4}-[0-9]+", sec_content_page))
 
     @staticmethod
-    def parse_zero_days(sec_content_html: str) -> dict:
+    def parse_zero_days(sec_content_html: str) -> dict[str, str]:
         """Check for "in the wild" or "actively exploited", indicating a fixed zero-day."""
 
         entries = re.findall(r"(?i)(?<=<strong>).*?(?=<strong>|<\/div)", sec_content_html)

@@ -24,7 +24,7 @@ MASTODON_KEY = "Bearer " + os.environ.get("MASTODON_ACCESS_TOKEN", "")
 MASTODON_KEY_TEST = "Bearer " + os.environ.get("MASTODON_ACCESS_TOKEN_TEST", "")
 
 
-def arrange_post(results: list, MAX_CHAR: int) -> list:
+def arrange_post(results: list[str], MAX_CHAR: int) -> list[str]:
     """
     ["1", "2", "3", "4", "5", "6", "7"]
 
@@ -47,7 +47,7 @@ def arrange_post(results: list, MAX_CHAR: int) -> list:
     return arranged
 
 
-def tweet(results: list, API: tweepy.Client) -> None:
+def tweet(results: list[str], API: tweepy.Client) -> None:
     """Handle posting to Twitter."""
     MAX_CHAR = 250
 
@@ -73,7 +73,7 @@ def tweet(results: list, API: tweepy.Client) -> None:
             post_ids.append(getattr(response, "data")["id"])
 
 
-def toot(results: list, API_KEY: str) -> None:
+def toot(results: list[str], API_KEY: str) -> None:
     """Handle posting to Mastodon."""
     MAX_CHAR = 11_000
     API_URL = "https://infosec.exchange/api/v1/statuses"
@@ -110,7 +110,7 @@ def toot(results: list, API_KEY: str) -> None:
             post_ids.append(response.json()["id"])
 
 
-def post(results: list) -> None:
+def post(results: list[str]) -> None:
     if not results:
         return
 

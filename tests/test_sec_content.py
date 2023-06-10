@@ -14,7 +14,7 @@ latest_versions = get_version_info.latest(row_to_lxml(examples["last_one_year_ta
 PostedFile.reset()
 
 
-def test_release_class():
+def test_release_class() -> None:
     """
     Tests Release class on a big number of releases.
     Checks number of returned releases and if titles match.
@@ -34,7 +34,7 @@ def test_release_class():
         )
 
 
-def test_release_class_2():
+def test_release_class_2() -> None:
     releases_obj = row_to_lxml(examples["new_sec_content_rows_table"])
     PostedFile.reset()
 
@@ -49,7 +49,7 @@ def test_release_class_2():
     assert post == examples["new_sec_content_rows_post"]
 
 
-def test_new_sec_content():
+def test_new_sec_content() -> None:
     releases_obj = row_to_lxml(examples["new_sec_content_table"])
     PostedFile.reset()
 
@@ -65,7 +65,7 @@ def test_new_sec_content():
     assert PostedFile.data == examples["new_sec_content_posted_data"]
 
 
-def test_new_sec_content_only_one():
+def test_new_sec_content_only_one() -> None:
     releases_obj = row_to_lxml(examples["new_sec_content_one_table"])
     PostedFile.reset()
 
@@ -75,7 +75,7 @@ def test_new_sec_content_only_one():
     assert post == examples["new_sec_content_one_post"]
 
 
-def test_new_sec_content_details_soon():
+def test_new_sec_content_details_soon() -> None:
     releases_obj = row_to_lxml(examples["new_sec_content_details_soon_table"])
     PostedFile.reset()
 
@@ -86,7 +86,7 @@ def test_new_sec_content_details_soon():
     assert PostedFile.data == examples["new_sec_content_details_soon_posted_data"]
 
 
-def test_ios_modules():
+def test_ios_modules() -> None:
     releases_obj = row_to_release(examples["ios_modules_table"])
     PostedFile.reset()
 
@@ -98,7 +98,7 @@ def test_ios_modules():
     assert post == examples["ios_modules_post"]
 
 
-def test_entry_changes():
+def test_entry_changes() -> None:
     releases_obj = info_to_release(examples["entry_changes_info"])
 
     post = sec_content.format_entry_changes(releases_obj)
@@ -107,7 +107,7 @@ def test_entry_changes():
 
 
 @freeze_time("2023-03-17")
-def test_entry_changes2():
+def test_entry_changes2() -> None:
     """Test that both first and Additional Recognition sections are checked."""
 
     releases_obj = row_to_release(examples["entry_changes2_table"])
@@ -117,7 +117,7 @@ def test_entry_changes2():
     assert post == examples["entry_changes2_post"]
 
 
-def test_security_content_soon():
+def test_security_content_soon() -> None:
     releases_obj = row_to_lxml(examples["security_content_soon_info"])
     PostedFile.reset()
 
@@ -133,7 +133,7 @@ def test_security_content_soon():
     assert PostedFile.data["details_available_soon"] == examples["security_content_soon_file"]
 
 
-def test_security_content_available():
+def test_security_content_available() -> None:
     releases_rows = row_to_lxml(examples["security_content_available_info"])
     PostedFile.reset()
 
@@ -146,7 +146,7 @@ def test_security_content_available():
     assert PostedFile.data["details_available_soon"] == []
 
 
-def test_yearly_report():
+def test_yearly_report() -> None:
     for system, version in latest_versions.items():
         post = sec_content.format_yearly_report(
             row_to_lxml(examples["last_one_year_table"]),
@@ -157,7 +157,7 @@ def test_yearly_report():
         assert post[0] == examples["yearly_report_" + system + "_post"][0]
 
 
-def test_zero_day():
+def test_zero_day() -> None:
     releases_obj = row_to_lxml(examples["zero_day_releases_table"])
 
     PostedFile.reset()
@@ -171,7 +171,7 @@ def test_zero_day():
     assert PostedFile.data == examples["zero_day_releases_posted_data"]
 
 
-def test_zero_day_new_old():
+def test_zero_day_new_old() -> None:
     new_releases = info_to_release(examples["zero_day_releases_new_old_info"])
 
     PostedFile.reset()
@@ -183,7 +183,7 @@ def test_zero_day_new_old():
     assert post == examples["zero_day_releases_new_old_post"]
 
 
-def test_zero_day_new():
+def test_zero_day_new() -> None:
     new_releases = info_to_release(examples["zero_day_releases_new_info"])
 
     PostedFile.reset()
@@ -195,7 +195,7 @@ def test_zero_day_new():
     assert post == examples["zero_day_releases_new_post"]
 
 
-def test_zero_day_old():
+def test_zero_day_old() -> None:
     new_releases = info_to_release(examples["zero_day_releases_old_info"])
 
     PostedFile.reset()
