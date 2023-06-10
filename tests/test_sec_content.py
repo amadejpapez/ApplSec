@@ -3,22 +3,13 @@ from freezegun import freeze_time
 from helpers_test import compare, info_to_release, read_examples, row_to_lxml, row_to_release
 
 import helpers.get_version_info as get_version_info
-import helpers.post_format as post_format
-import main
-from helpers.PostedFile import PostedFile
-from Release import Release
+import post.sec_content as sec_content
+from helpers.posted_file import PostedFile
+from release import Release
 
 examples = read_examples("posts_sec")
 
 latest_versions = get_version_info.latest(row_to_lxml(examples["last_one_year_table"][:50]))
-
-coll = {
-    "new_releases": [],
-    "ios_release": [],
-    "changed_releases": [],
-    "sec_content_available": [],
-    "zero_day_releases": [],
-}
 
 PostedFile.reset()
 
@@ -52,11 +43,8 @@ def test_release_class_2():
         examples["new_sec_content_rows_info"],
     )
 
-    coll["new_sec_content"] = []
-
-    main.check_new_security_content(coll, latest_versions, releases_obj)
-
-    post = post_format.new_security_content(coll["new_sec_content"])
+    new_releases = sec_content.get_new(releases_obj)
+    post = sec_content.format_new_sec_content(new_releases)
 
     assert post == examples["new_sec_content_rows_post"]
 
@@ -70,11 +58,8 @@ def test_new_sec_content():
         examples["new_sec_content_info"],
     )
 
-    coll["new_sec_content"] = []
-
-    main.check_new_security_content(coll, latest_versions, releases_obj)
-
-    post = post_format.new_security_content(coll["new_sec_content"])
+    new_releases = sec_content.get_new(releases_obj)
+    post = sec_content.format_new_sec_content(new_releases)
 
     assert post == examples["new_sec_content_post"]
     assert PostedFile.data == examples["new_sec_content_posted_data"]
@@ -84,11 +69,8 @@ def test_new_sec_content_only_one():
     releases_obj = row_to_lxml(examples["new_sec_content_one_table"])
     PostedFile.reset()
 
-    coll["new_sec_content"] = []
-
-    main.check_new_security_content(coll, latest_versions, releases_obj)
-
-    post = post_format.new_security_content(coll["new_sec_content"])
+    new_releases = sec_content.get_new(releases_obj)
+    post = sec_content.format_new_sec_content(new_releases)
 
     assert post == examples["new_sec_content_one_post"]
 
@@ -97,11 +79,8 @@ def test_new_sec_content_details_soon():
     releases_obj = row_to_lxml(examples["new_sec_content_details_soon_table"])
     PostedFile.reset()
 
-    coll["new_sec_content"] = []
-
-    main.check_new_security_content(coll, latest_versions, releases_obj)
-
-    post = post_format.new_security_content(coll["new_sec_content"])
+    new_releases = sec_content.get_new(releases_obj)
+    post = sec_content.format_new_sec_content(new_releases)
 
     assert post == examples["new_sec_content_details_soon_post"]
     assert PostedFile.data == examples["new_sec_content_details_soon_posted_data"]
@@ -113,13 +92,8 @@ def test_ios_modules():
 
     compare(releases_obj, examples["ios_modules_info"])
 
-    lat_ios_ver = str(latest_versions["iOS"][0])
-    coll["ios_release"] = []
-
-    for release in releases_obj:
-        main.check_latest_ios_release(coll, release, lat_ios_ver)
-
-    post = post_format.top_ios_modules(coll["ios_release"])
+    new_releases = sec_content.get_new_ios_release(releases_obj, latest_versions)
+    post = sec_content.format_ios_release(new_releases)
 
     assert post == examples["ios_modules_post"]
 
@@ -127,7 +101,7 @@ def test_ios_modules():
 def test_entry_changes():
     releases_obj = info_to_release(examples["entry_changes_info"])
 
-    post = post_format.entry_changes(releases_obj)
+    post = sec_content.format_entry_changes(releases_obj)
 
     assert post == examples["entry_changes_post"]
 
@@ -138,25 +112,23 @@ def test_entry_changes2():
 
     releases_obj = row_to_release(examples["entry_changes2_table"])
 
-    post = post_format.entry_changes(releases_obj)
+    post = sec_content.format_entry_changes(releases_obj)
 
     assert post == examples["entry_changes2_post"]
 
 
 def test_security_content_soon():
-    releases_obj = info_to_release(examples["security_content_soon_info"])
+    releases_obj = row_to_lxml(examples["security_content_soon_info"])
     PostedFile.reset()
 
-    for release in releases_obj:
-        main.save_sec_content_no_details_yet(release)
+    sec_content.get_new(releases_obj)
 
     assert PostedFile.data["details_available_soon"] == examples["security_content_soon_file"]
 
     # test if result is the same when same data comes in the next time
-    releases_obj = info_to_release(examples["security_content_soon_info"])
+    releases_obj = row_to_lxml(examples["security_content_soon_info"])
 
-    for release in releases_obj:
-        main.save_sec_content_no_details_yet(release)
+    sec_content.get_new(releases_obj)
 
     assert PostedFile.data["details_available_soon"] == examples["security_content_soon_file"]
 
@@ -166,11 +138,9 @@ def test_security_content_available():
     PostedFile.reset()
 
     PostedFile.data["details_available_soon"] = examples["security_content_soon_file"]
-    coll["new_sec_content"] = []
 
-    main.check_if_sec_content_available(coll, releases_rows)
-
-    post = post_format.new_security_content(coll["new_sec_content"])
+    new_releases = sec_content.get_if_available(releases_rows)
+    post = sec_content.format_new_sec_content(new_releases)
 
     assert post == examples["security_content_available_post"]
     assert PostedFile.data["details_available_soon"] == []
@@ -178,7 +148,7 @@ def test_security_content_available():
 
 def test_yearly_report():
     for system, version in latest_versions.items():
-        post = post_format.yearly_report(
+        post = sec_content.format_yearly_report(
             row_to_lxml(examples["last_one_year_table"]),
             system,
             version[0],
@@ -188,67 +158,50 @@ def test_yearly_report():
 
 
 def test_zero_day():
-    releases_obj = row_to_release(examples["zero_day_releases_table"])
-    coll["new_sec_content"] = releases_obj
-    coll["zero_day_releases"] = []
-    coll["sec_content_available"] = []
+    releases_obj = row_to_lxml(examples["zero_day_releases_table"])
 
     PostedFile.reset()
     PostedFile.data["zero_days"] = ["CVE-2021-30869"]
 
-    compare(releases_obj, examples["zero_day_releases_info"])
-
-    main.check_for_zero_day_releases(coll)
-
-    post = post_format.zero_days(coll["zero_day_releases"])
+    new_releases = sec_content.get_new(releases_obj)
+    new_zero_days = sec_content.get_new_zero_days(new_releases)
+    post = sec_content.format_zero_days(new_zero_days)
 
     assert post == examples["zero_day_releases_post"]
     assert PostedFile.data == examples["zero_day_releases_posted_data"]
 
 
 def test_zero_day_new_old():
-    releases_obj = info_to_release(examples["zero_day_releases_new_old_info"])
-    coll["new_sec_content"] = releases_obj
-    coll["zero_day_releases"] = []
-    coll["sec_content_available"] = []
+    new_releases = info_to_release(examples["zero_day_releases_new_old_info"])
 
     PostedFile.reset()
     PostedFile.data["zero_days"] = ["CVE-2021-30869"]
 
-    main.check_for_zero_day_releases(coll)
-
-    post = post_format.zero_days(coll["zero_day_releases"])
+    new_zero_days = sec_content.get_new_zero_days(new_releases)
+    post = sec_content.format_zero_days(new_zero_days)
 
     assert post == examples["zero_day_releases_new_old_post"]
 
 
 def test_zero_day_new():
-    releases_obj = info_to_release(examples["zero_day_releases_new_info"])
-    coll["new_sec_content"] = releases_obj
-    coll["zero_day_releases"] = []
-    coll["sec_content_available"] = []
+    new_releases = info_to_release(examples["zero_day_releases_new_info"])
 
     PostedFile.reset()
     PostedFile.data["zero_days"] = ["CVE-2021-30869"]
 
-    main.check_for_zero_day_releases(coll)
-
-    post = post_format.zero_days(coll["zero_day_releases"])
+    new_zero_days = sec_content.get_new_zero_days(new_releases)
+    post = sec_content.format_zero_days(new_zero_days)
 
     assert post == examples["zero_day_releases_new_post"]
 
 
 def test_zero_day_old():
-    releases_obj = info_to_release(examples["zero_day_releases_old_info"])
-    coll["new_sec_content"] = releases_obj
-    coll["zero_day_releases"] = []
-    coll["sec_content_available"] = []
+    new_releases = info_to_release(examples["zero_day_releases_old_info"])
 
     PostedFile.reset()
     PostedFile.data["zero_days"] = ["CVE-2021-30869"]
 
-    main.check_for_zero_day_releases(coll)
-
-    post = post_format.zero_days(coll["zero_day_releases"])
+    new_zero_days = sec_content.get_new_zero_days(new_releases)
+    post = sec_content.format_zero_days(new_zero_days)
 
     assert post == examples["zero_day_releases_old_post"]

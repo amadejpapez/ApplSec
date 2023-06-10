@@ -2,7 +2,7 @@ import json
 
 import lxml.html
 
-from Release import Release
+from release import Release
 
 
 def read_examples(name: str) -> dict:

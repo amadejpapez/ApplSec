@@ -755,9 +755,7 @@
                 "Security Update 2022-001 Catalina",
                 "Safari 15.3"
             ],
-            "ios_modules": [
-                "iOS and iPadOS 15.3"
-            ],
+            "ios_modules": [],
             "zero_days": {},
             "yearly_report": []
         }
@@ -1162,30 +1160,18 @@
         "📱 iOS and iPadOS 14.3 - 1 added\n",
         "🌐 Safari 16.2 - 1 updated\n"
     ],
-    "security_content_soon_info": {
-        "1": {
-            "name": "macOS Big Sur 11.3",
-            "emoji": "💻",
-            "security_content_link": "",
-            "release_date": "26 Apr 2021",
-            "num_of_bugs": -1,
-            "num_of_zero_days": 0,
-            "zero_days": {},
-            "num_entries_added": 0,
-            "num_entries_updated": 0
-        },
-        "2": {
-            "name": "iOS and iPadOS 14.5",
-            "emoji": "📱",
-            "security_content_link": "",
-            "release_date": "26 Apr 2021",
-            "num_of_bugs": -1,
-            "num_of_zero_days": 0,
-            "zero_days": {},
-            "num_entries_added": 0,
-            "num_entries_updated": 0
-        }
-    },
+    "security_content_soon_info": [
+        [
+            "iOS 14.5 and iPadOS 14.5 (details available soon)",
+            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
+            "26 Apr 2021"
+        ],
+        [
+            "macOS Big Sur 11.3 (details available soon)",
+            "macOS Big Sur",
+            "26 Apr 2021"
+        ]
+    ],
     "security_content_soon_file": [
         "macOS Big Sur 11.3",
         "iOS and iPadOS 14.5"
@@ -1281,7 +1267,10 @@
         "details_available_soon": [],
         "posts": {
             "new_releases": [],
-            "new_sec_content": [],
+            "new_sec_content": [
+                "iOS 12.5.5",
+                "Security Update 2021-006 Catalina"
+            ],
             "ios_modules": [],
             "zero_days": {
                 "Security Update 2021-006 Catalina": 1,

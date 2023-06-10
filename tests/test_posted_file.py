@@ -3,7 +3,7 @@ import os
 import pytest
 from helpers_test import read_examples
 
-from helpers.PostedFile import PostedFile
+from helpers.posted_file import PostedFile
 
 posted_data_test = read_examples("posted_file")["posted_data_test"]
 
