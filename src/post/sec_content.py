@@ -5,8 +5,8 @@ import lxml.html
 import requests
 
 import helpers.get_version_info as get_version_info
-from helpers.PostedFile import PostedFile
-from Release import Release
+from helpers.posted_file import PostedFile
+from release import Release
 
 
 def retrieve_page() -> list:

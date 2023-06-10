@@ -2,7 +2,7 @@ import helpers.get_date as get_date
 import helpers.get_version_info as get_version_info
 import post.rss_releases as rss_releases
 import post.sec_content as sec_content
-from helpers.PostedFile import PostedFile
+from helpers.posted_file import PostedFile
 from post.send_post import post
 
 

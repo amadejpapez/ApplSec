@@ -2,8 +2,8 @@ import lxml.etree
 import lxml.html
 import requests
 
-from helpers.PostedFile import PostedFile
-from Release import Release
+from helpers.posted_file import PostedFile
+from release import Release
 
 
 def retrieve_rss() -> lxml.etree._ElementTree:
