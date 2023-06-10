@@ -40,3 +40,26 @@ def get_new() -> list[Release]:
         ), "ERROR: More than 20 new releases detected. Something may not be right. Verify posted_data.json[posts][new_releases]."
 
     return new_releases
+
+
+def format_releases(releases: list[Release]) -> list:
+    """
+    💥 NEW UPDATES RELEASED 💥
+
+    📱 iOS 16.6 beta 2 (20G5037d)
+    📱 iPadOS 16.6 beta 2 (20G5037d)
+    💻 macOS 13.5 beta 2 (22G5038d)
+    """
+    post_text = []
+
+    releases.sort(key=lambda x: (x.name.lower()))
+
+    for release in releases:
+        post_text.append(f"{release.emoji} {release.name}\n")
+
+    if len(releases) == 1:
+        post_text.insert(0, "💥 NEW UPDATE RELEASED 💥\n\n")
+    else:
+        post_text.insert(0, "💥 NEW UPDATES RELEASED 💥\n\n")
+
+    return post_text
