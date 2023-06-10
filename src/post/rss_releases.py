@@ -15,10 +15,9 @@ def retrieve_rss() -> lxml.etree._ElementTree:
     return xml_tree
 
 
-def get_new() -> list[Release]:
+def get_new(xml_tree: lxml.etree._ElementTree = retrieve_rss()) -> list[Release]:
     """Return new releases from RSS that have not been posted yet."""
     new_releases = []
-    xml_tree = retrieve_rss()
 
     for el in xml_tree.xpath("//item"):
         name = el.xpath("title")[0].text
