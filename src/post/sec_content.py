@@ -190,7 +190,7 @@ def get_new_zero_days(new_sec_content: list[Release]) -> list[Release]:
     return zero_day_releases
 
 
-def format_zero_days_start_text(zero_days: dict) -> str:
+def _format_zero_days_start_text(zero_days: dict) -> str:
     """Return text for the start of the zero day post."""
     num_new = 0
     num_old = 0
@@ -260,7 +260,7 @@ def format_zero_days(releases: list[Release]) -> list:
     else:
         post_text.append("📣 EMERGENCY UPDATES 📣\n\n")
 
-    post_text.append(format_zero_days_start_text(zero_days))
+    post_text.append(_format_zero_days_start_text(zero_days))
 
     for key, value in zero_days.items():
         if value["status"] == "new":
