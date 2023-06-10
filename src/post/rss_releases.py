@@ -32,12 +32,16 @@ def get_new() -> list[Release]:
         if emoji == "🛠️":
             continue
 
-        if name not in PostedFile.data["posts"]["new_releases"]:
-            PostedFile.data["posts"]["new_releases"].append(name)
-            new_releases.append(Release.from_rss_release(el))
+        new_releases.append(Release.from_rss_release(el))
 
         assert (len(new_releases) < 20
         ), "ERROR: More than 20 new releases detected. Something may not be right. Verify posted_data.json[posts][new_releases]."
+
+    # reverse it, so the last release from the page is at the end in posted_data.json
+    new_releases.reverse()
+    for release in new_releases:
+        if release.name not in PostedFile.data["posts"]["new_releases"]:
+            PostedFile.data["posts"]["new_releases"].append(release.name)
 
     return new_releases
 

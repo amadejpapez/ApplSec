@@ -32,7 +32,7 @@ def main():
 
     # if yearly_reports:
     #     for item in yearly_reports:
-    #         post(post_format.yearly_report(all_release_rows, item[0], item[1]))
+    #         post(sec_content.format_yearly_report(all_release_rows, item[0], item[1]))
 
     # new updates should be posted last, after all of the other posts
     if new_releases_rss:

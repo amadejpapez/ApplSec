@@ -37,6 +37,7 @@ def get_new(all_release_rows: list) -> list[Release]:
             len(new_sec_content) < 20
         ), "ERROR: More than 20 new security contents found. Something may not be right. Verify posted_data.json[posts][new_sec_content]."
 
+    new_sec_content.reverse()
     for release in new_sec_content:
         PostedFile.data["posts"]["new_sec_content"].append(release.name)
 
@@ -180,7 +181,11 @@ def get_new_zero_days(new_sec_content: list[Release]) -> list[Release]:
             and release.name not in PostedFile.data["posts"]["zero_days"].keys()
         ):
             zero_day_releases.append(release)
-            PostedFile.data["posts"]["zero_days"][release.name] = release.num_of_zero_days
+
+    zero_day_releases.reverse()
+    for release in zero_day_releases:
+        PostedFile.data["posts"]["zero_days"][release.name] = release.num_of_zero_days
+    zero_day_releases.reverse()
 
     return zero_day_releases
 
@@ -359,7 +364,7 @@ def get_yearly_report(new_sec_content: list[Release], latest_versions: dict) -> 
     return new_yearly_report
 
 
-def yearly_report(release_rows: list, system: str, version: int) -> list:
+def format_yearly_report(release_rows: list, system: str, version: int) -> list:
     """
     iOS 15 was released today. In iOS 14 series Apple fixed in total of 346 security issues over 16 releases. 🔐
 
