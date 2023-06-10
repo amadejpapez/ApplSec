@@ -237,6 +237,4 @@ class Release:
 
         name = xml_item.xpath("title")[0].text
 
-        return Release(
-            name, Release.parse_emoji(name), xml_item.xpath("link")[0].text, "", "", {}, 0, 0, 0, 0
-        )
+        return Release(name, Release.parse_emoji(name), xml_item.xpath("link")[0].text, "", "", {}, 0, 0, 0, 0)

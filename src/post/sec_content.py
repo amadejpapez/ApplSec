@@ -10,9 +10,7 @@ from release import Release
 
 
 def retrieve_page() -> list:
-    main_page = lxml.html.document_fromstring(
-        requests.get("https://support.apple.com/en-us/HT201222", timeout=60).text
-    )
+    main_page = lxml.html.document_fromstring(requests.get("https://support.apple.com/en-us/HT201222", timeout=60).text)
 
     table = main_page.xpath("//table/tbody")[0].findall("tr")
     all_release_rows = []
@@ -141,12 +139,8 @@ def format_ios_release(releases: list[Release]) -> list:
         sec_content_html = requests.get(release.security_content_link, timeout=60).text
         sec_content_html = sec_content_html.split("Additional recognition", 1)[0]
 
-        search_modules = collections.Counter(
-            re.findall(r"(?<=<strong>).*?(?=<\/strong>)", sec_content_html)
-        )
-        modules = collections.OrderedDict(
-            sorted(search_modules.items(), reverse=True, key=lambda x: x[1])
-        )
+        search_modules = collections.Counter(re.findall(r"(?<=<strong>).*?(?=<\/strong>)", sec_content_html))
+        modules = collections.OrderedDict(sorted(search_modules.items(), reverse=True, key=lambda x: x[1]))
 
         post_text = [f"⚒️ FIXED IN {release.name} ⚒️\n\n"]
         num_bugs = 0
@@ -176,10 +170,7 @@ def get_new_zero_days(new_sec_content: list[Release]) -> list[Release]:
     zero_day_releases = []
 
     for release in new_sec_content:
-        if (
-            release.num_of_zero_days > 0
-            and release.name not in PostedFile.data["posts"]["zero_days"].keys()
-        ):
+        if release.num_of_zero_days > 0 and release.name not in PostedFile.data["posts"]["zero_days"].keys():
             zero_day_releases.append(release)
 
     zero_day_releases.reverse()
@@ -403,9 +394,7 @@ def format_yearly_report(release_rows: list, system: str, version: int) -> list:
     del info[second_version]
 
     for key, value in info.items():
-        post_text.append(
-            f"- {value['num_of_bugs']} fixed in {system} {key} over {value['num_of_releases']} releases\n"
-        )
+        post_text.append(f"- {value['num_of_bugs']} fixed in {system} {key} over {value['num_of_releases']} releases\n")
 
     if system == "macOS":
         # for macOS create a thread with additional info in the second post

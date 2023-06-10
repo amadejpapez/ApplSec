@@ -7,9 +7,9 @@ from release import Release
 
 
 def retrieve_rss() -> lxml.etree._ElementTree:
-    rss_feed = requests.get(
-        "https://developer.apple.com/news/releases/rss/releases.rss", timeout=60
-    ).text.encode("utf-8")
+    rss_feed = requests.get("https://developer.apple.com/news/releases/rss/releases.rss", timeout=60).text.encode(
+        "utf-8"
+    )
     xml_tree = lxml.etree.fromstring(rss_feed, None)
 
     return xml_tree
@@ -33,7 +33,8 @@ def get_new(xml_tree: lxml.etree._ElementTree = retrieve_rss()) -> list[Release]
 
         new_releases.append(Release.from_rss_release(el))
 
-        assert (len(new_releases) < 20
+        assert (
+            len(new_releases) < 20
         ), "ERROR: More than 20 new releases detected. Something may not be right. Verify posted_data.json[posts][new_releases]."
 
     # reverse it, so the last release from the page is at the end in posted_data.json

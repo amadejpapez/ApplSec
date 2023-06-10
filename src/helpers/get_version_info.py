@@ -27,9 +27,9 @@ def latest(release_rows: list) -> dict:
 
         value[0] = search[0]
 
-    versions["macOS"][1] = re.findall(
-        rf"(?i)(?<=macOS)[a-z\s]+(?={versions['macOS'][0]})", str(release_names)
-    )[0].strip()
+    versions["macOS"][1] = re.findall(rf"(?i)(?<=macOS)[a-z\s]+(?={versions['macOS'][0]})", str(release_names))[
+        0
+    ].strip()
 
     return versions
 
@@ -50,9 +50,7 @@ def latest_four(system: str, version: int, release_rows: list) -> Tuple[str, lis
         # macOS versions are hard coded
         # get macOS name as Security Updates only contain names
         for ver in ["12", "11", "10.15", "10.14"]:
-            versions.append(
-                re.findall(rf"(?i)(?<=macOS)[a-z\s]+(?={ver})", str(release_names))[0].strip()
-            )
+            versions.append(re.findall(rf"(?i)(?<=macOS)[a-z\s]+(?={ver})", str(release_names))[0].strip())
     else:
         num = version
         while len(versions) <= 3:
