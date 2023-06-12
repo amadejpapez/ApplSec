@@ -51,7 +51,7 @@ def arrange_post(results: list[str], MAX_CHAR: int) -> list[str]:
 
 def tweet(results: list[str], API: tweepy.Client) -> None:
     """Handle posting to Twitter."""
-    MAX_CHAR = 250
+    MAX_CHAR = 280
 
     posts_list = arrange_post(results, MAX_CHAR)
 

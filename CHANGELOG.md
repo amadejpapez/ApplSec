@@ -10,6 +10,10 @@
 
 - New releases or new security content post will now be made first, followed by others. Previously, everything was before (zero-days,...) and then new security content was the last post.
 
+### Fixed
+
+- Twitter posts are now up to 280 characters, as previously it was set at 250
+
 ## [14.0] - 2023-04-12
 
 ### Added
