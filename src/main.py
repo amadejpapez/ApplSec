@@ -20,6 +20,12 @@ def main():
 
     new_releases_rss = rss_releases.get_new()
 
+    if new_releases_rss:
+        post(rss_releases.format_releases(new_releases_rss))
+
+    if new_sec_content:
+        post(sec_content.format_new_sec_content(new_sec_content))
+
     if ios_release:
         post(sec_content.format_ios_release(ios_release))
 
@@ -33,13 +39,6 @@ def main():
     # if yearly_reports:
     #     for item in yearly_reports:
     #         post(sec_content.format_yearly_report(all_release_rows, item[0], item[1]))
-
-    # new updates should be posted last, after all of the other posts
-    if new_releases_rss:
-        post(rss_releases.format_releases(new_releases_rss))
-
-    if new_sec_content:
-        post(sec_content.format_new_sec_content(new_sec_content))
 
     PostedFile.save()
 
