@@ -187,7 +187,7 @@ def _format_zero_days_start_text(zero_days: dict[str, dict]) -> str:
     text = ""
 
     for _, value in zero_days.items():
-        if value["status"] == "new":
+        if value["details"]["status"] == "new":
             num_new += 1
         else:
             num_old += 1
@@ -216,24 +216,25 @@ def format_zero_days(releases: list[Release]) -> list[str]:
     """
     📣 EMERGENCY UPDATES 📣
 
-    Apple pushed updates for 1 new zero-day that may have been actively exploited and additional updates for 1 zero-day.
+    Apple pushed updates for 3 new zero-days that may have been actively exploited
+    and additional updates for 1 zero-day.
 
     🐛 CVE-2021-30869 (XNU) additional patches:
     - Security Update 2021-006 Catalina
     - iOS 12.5.5
 
-    🐛 CVE-2021-30860 (CoreGraphics):
-    - iOS 12.5.5
+    🐛 CVE-2021-30860 (CoreGraphics), CVE-2021-31010 (Core Telephony), CVE-2021-30858 (WebKit):
+    - iOS 12.5.5"
     """
-    zero_days: dict[str, dict] = {}
 
+    # group releases by CVE, determine if CVE new or old
+    zero_days: dict[str, dict] = {}
     for release in releases:
         for cve, module in release.zero_days.items():
             if not zero_days.get(cve):
                 zero_days[cve] = {
-                    "status": "old",
-                    "module": module,
                     "releases": [release.name],
+                    "details": {"status": "old", "module": module},
                 }
             else:
                 zero_days[cve]["releases"].append(release.name)
@@ -241,7 +242,17 @@ def format_zero_days(releases: list[Release]) -> list[str]:
             # if zero-day was not fixed in any previous releases
             if cve not in PostedFile.data["zero_days"]:
                 PostedFile.data["zero_days"].append(cve)
-                zero_days[cve]["status"] = "new"
+                zero_days[cve]["details"]["status"] = "new"
+
+    # group set of releases if they share multiple CVEs together
+    release_groups: list[dict] = []
+    for key, value in zero_days.items():
+        for item in release_groups:
+            if item["releases"] == value["releases"]:
+                item["zero_days"][key] = value["details"]
+                break
+        else:
+            release_groups.append({"releases": value["releases"], "zero_days": {key: value["details"]}})
 
     post_text = []
 
@@ -252,14 +263,21 @@ def format_zero_days(releases: list[Release]) -> list[str]:
 
     post_text.append(_format_zero_days_start_text(zero_days))
 
-    for key, value in zero_days.items():
-        if value["status"] == "new":
-            post_text.append("\n\n🐛 " + key + " (" + value["module"] + "):")
-        else:
-            post_text.append("\n\n🐛 " + key + " (" + value["module"] + ") additional patches:")
+    for group in release_groups:
+        text = "\n\n🐛 "
 
-        for item in value["releases"]:
-            post_text[-1] += "\n- " + item
+        for cve, value in group["zero_days"].items():
+            if value["status"] == "new":
+                text += cve + " (" + value["module"] + "), "
+            else:
+                text += cve + " (" + value["module"] + ") additional patches, "
+
+        text = text[:-2] + ":"
+
+        for rel in group["releases"]:
+            text += "\n- " + rel
+
+        post_text.append(text)
 
     return post_text
 

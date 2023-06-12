@@ -9,6 +9,7 @@
 ### Changed
 
 - New releases or new security content post will now be made first, followed by others. Previously, everything was before (zero-days,...) and then new security content was the last post.
+- If set of releases share multiple zero-days, they will be grouped together. Meaning CVE information separated by coma and then listed releases. This avoids same set of releases being repeated by different CVEs.
 
 ### Fixed
 
