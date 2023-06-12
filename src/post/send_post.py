@@ -4,6 +4,8 @@ import sys
 import requests
 import tweepy
 
+from helpers.posted_file import PostedFile
+
 TWITTER_API = tweepy.Client(
     consumer_key=os.environ.get("TWITTER_API_KEY"),
     consumer_secret=os.environ.get("TWITTER_API_KEY_SECRET"),
@@ -125,3 +127,5 @@ def post(results: list[str]) -> None:
     except Exception as e:
         print("ERROR: Twitter failed to post\n" + str(results) + "\n" + str(e) + "\n")
         sys.exit(1)
+
+    PostedFile.save()
