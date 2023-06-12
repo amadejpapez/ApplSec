@@ -176,7 +176,6 @@ def get_new_zero_days(new_sec_content: list[Release]) -> list[Release]:
     zero_day_releases.reverse()
     for release in zero_day_releases:
         PostedFile.data["posts"]["zero_days"][release.name] = release.num_of_zero_days
-    zero_day_releases.reverse()
 
     return zero_day_releases
 

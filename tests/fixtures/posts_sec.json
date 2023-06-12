@@ -1310,8 +1310,8 @@
     "zero_day_releases_new_old_post": [
         "📣 EMERGENCY UPDATES 📣\n\n",
         "Apple pushed updates for a new zero-day that may have been actively exploited and additional updates for one zero-day.",
-        "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina",
-        "\n\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5"
+        "\n\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5",
+        "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina"
     ],
     "zero_day_releases_new_info": {
         "1": {

@@ -9,6 +9,7 @@ File is used to store:
 
 from __future__ import annotations
 
+import copy
 import json
 import os
 
@@ -37,7 +38,7 @@ class PostedFile:
             with open(PostedFile._LOC, "r", encoding="utf-8") as json_file:
                 PostedFile.data = json.load(json_file)
         except Exception:
-            PostedFile.data = PostedFile.FILE_STRUCTURE
+            PostedFile.data = copy.deepcopy(PostedFile.FILE_STRUCTURE)
             PostedFile.save()
 
         assert (
@@ -55,7 +56,7 @@ class PostedFile:
 
     @staticmethod
     def reset() -> None:
-        PostedFile.data = PostedFile.FILE_STRUCTURE
+        PostedFile.data = copy.deepcopy(PostedFile.FILE_STRUCTURE)
 
     @staticmethod
     def _clear_old_data(new_data: dict) -> dict:
