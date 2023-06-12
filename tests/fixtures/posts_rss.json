@@ -10,24 +10,18 @@
             "yearly_report": []
         }
     },
-    "posted_data_new": {
+    "new_releases_posted_data": {
         "zero_days": [],
         "details_available_soon": [],
         "posts": {
             "new_releases": [
-                "iPadOS 15.7.6 (19H349)",
-                "iOS 15.7.6 (19H349)",
-                "tvOS 16.5 (20L563)",
-                "macOS 13.4 (22F66)",
-                "iPadOS 16.5 (20F66)",
-                "iOS 16.5 (20F66)",
-                "watchOS 9.5.1 (20T570)",
-                "tvOS 16.6 beta 2 (20M5538d)",
-                "watchOS 9.6 beta 2 (20U5538d)",
-                "macOS 13.5 beta 2 (22G5038d)",
-                "iPadOS 16.6 beta 2 (20G5037d)",
-                "iOS 16.6 beta 2 (20G5037d)",
-                "Xcode 14.3.1 (14E300c)"
+                "macOS 13.4 (22F66 | 22F2073)",
+                "tvOS 17 beta (21J5273q)",
+                "watchOS 10 beta (21R5275t)",
+                "macOS 14 beta (23A5257q)",
+                "iPadOS 17 beta (21A5248v)",
+                "iOS 17 beta (21A5248v)",
+                "Xcode 15 beta (15A5160n)"
             ],
             "new_sec_content": [],
             "ios_modules": [],
@@ -37,18 +31,11 @@
     },
     "new_releases_post": [
         "💥 NEW UPDATES RELEASED 💥\n\n",
-        "📱 iOS 15.7.6 (19H349)\n",
-        "📱 iOS 16.5 (20F66)\n",
-        "📱 iOS 16.6 beta 2 (20G5037d)\n",
-        "📱 iPadOS 15.7.6 (19H349)\n",
-        "📱 iPadOS 16.5 (20F66)\n",
-        "📱 iPadOS 16.6 beta 2 (20G5037d)\n",
-        "💻 macOS 13.4 (22F66)\n",
-        "💻 macOS 13.5 beta 2 (22G5038d)\n",
-        "📺 tvOS 16.5 (20L563)\n",
-        "📺 tvOS 16.6 beta 2 (20M5538d)\n",
-        "⌚ watchOS 9.5.1 (20T570)\n",
-        "⌚ watchOS 9.6 beta 2 (20U5538d)\n",
-        "🔨 Xcode 14.3.1 (14E300c)\n"
+        "📱 iOS 17 beta (21A5248v)\n",
+        "📱 iPadOS 17 beta (21A5248v)\n",
+        "💻 macOS 14 beta (23A5257q)\n",
+        "📺 tvOS 17 beta (21J5273q)\n",
+        "⌚ watchOS 10 beta (21R5275t)\n",
+        "🔨 Xcode 15 beta (15A5160n)\n"
     ]
 }

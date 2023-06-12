@@ -24,7 +24,8 @@ def is_midnight() -> bool:
 def format_one() -> str:
     """
     Return date in a format: 08 Jan 2022
-    Used on the main page.
+    Used on the main security page for security content release date
+    and in Developer RSS for new releases.
     """
 
     tmp_date = check_date()

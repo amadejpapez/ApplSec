@@ -45,10 +45,6 @@ class PostedFile:
             PostedFile.data["posts"]["new_sec_content"] != []
         ), "ERROR: 'new_sec_content' list inside of posted_data.json is empty. This is used to recognize that releases published before them are new. Add at least last 3 release names there."
 
-        assert (
-            PostedFile.data["posts"]["new_releases"] != []
-        ), "ERROR: 'new_releases' list inside of posted_data.json is empty. This is used to recognize that releases published before them are new. Add at least last 3 release names there."
-
     @staticmethod
     def save() -> None:
         with open(PostedFile._LOC, "w", encoding="utf-8") as json_file:

@@ -2,6 +2,7 @@ import lxml.etree
 import lxml.html
 import requests
 
+import helpers.get_date as get_date
 from helpers.posted_file import PostedFile
 from release import Release
 
@@ -23,6 +24,11 @@ def get_new(xml_tree: lxml.etree._Element = retrieve_rss()) -> list[Release]:
         name = el.xpath("title")[0].text
         emoji = Release.parse_emoji(name)
 
+        # break if not today's date
+        if get_date.format_one() not in el.xpath("pubDate")[0].text:
+            break
+
+        # break if already posted
         if name in PostedFile.data["posts"]["new_releases"]:
             break
 
@@ -32,10 +38,6 @@ def get_new(xml_tree: lxml.etree._Element = retrieve_rss()) -> list[Release]:
             continue
 
         new_releases.append(Release.from_rss_release(el))
-
-        assert (
-            len(new_releases) < 20
-        ), "ERROR: More than 20 new releases detected. Something may not be right. Verify posted_data.json[posts][new_releases]."
 
     # reverse it, so the last release from the page is at the end in posted_data.json
     new_releases.reverse()

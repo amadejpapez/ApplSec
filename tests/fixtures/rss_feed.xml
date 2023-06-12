@@ -7,10 +7,93 @@
         <link>https://developer.apple.com/news/</link>
         <description>Apple Developer News and Updates feed provided by Apple, Inc.</description>
         <language>en-US</language>
-        <lastBuildDate>Thu, 01 Jun 2023 10:00:00 PDT</lastBuildDate>
+        <lastBuildDate>Mon, 05 Jun 2023 14:00:00 PDT</lastBuildDate>
         <generator>Custom</generator>
         <copyright>Copyright 2023, Apple Inc.</copyright>
 
+        <item>
+            <title>Xcode 15 beta (15A5160n)</title>
+            <link>https://developer.apple.com/news/releases/?id=06052023a</link>
+            <guid>https://developer.apple.com/news/releases/?id=06052023a</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Mon, 05 Jun 2023 14:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download/applications class=more>View downloads</a></p><il><p><a href=/go/?id=xcode-15-sdk-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>iOS 17 beta (21A5248v)</title>
+            <link>https://developer.apple.com/news/releases/?id=06052023b</link>
+            <guid>https://developer.apple.com/news/releases/?id=06052023b</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Mon, 05 Jun 2023 14:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=ios-17-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>iPadOS 17 beta (21A5248v)</title>
+            <link>https://developer.apple.com/news/releases/?id=06052023c</link>
+            <guid>https://developer.apple.com/news/releases/?id=06052023c</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Mon, 05 Jun 2023 14:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=ipados-17-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>macOS 14 beta (23A5257q)</title>
+            <link>https://developer.apple.com/news/releases/?id=06052023d</link>
+            <guid>https://developer.apple.com/news/releases/?id=06052023d</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Mon, 05 Jun 2023 14:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=macos-14-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>watchOS 10 beta (21R5275t)</title>
+            <link>https://developer.apple.com/news/releases/?id=06052023e</link>
+            <guid>https://developer.apple.com/news/releases/?id=06052023e</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Mon, 05 Jun 2023 14:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=watchos-10-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>tvOS 17 beta (21J5273q)</title>
+            <link>https://developer.apple.com/news/releases/?id=06052023f</link>
+            <guid>https://developer.apple.com/news/releases/?id=06052023f</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Mon, 05 Jun 2023 14:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=tvos-17-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
+        <item>
+            <title>TestFlight Update</title>
+            <link>https://developer.apple.com/news/releases/?id=06052023g</link>
+            <guid>https://developer.apple.com/news/releases/?id=06052023g</guid>
+            <description>You can now submit apps built with Xcode 15 beta using the SDK for iOS 17
+                beta, iPadOS 17 beta, macOS 14 beta, tvOS 17 beta, and watchOS 10 beta for internal
+                and external testing, with support for the following:Tap to Present ID on iOSApple
+                Pay Later Merchandising on iOS and iPadOSShallow Depth and Pressure on watchOSVMNet
+                on macOSSensitive Content Analysis on iOS, iPadOS, and macOSNot yet
+                supported:TestFlight Internal Only distribution from XcodeKnown Issues:watchOS apps
+                that have a minimum deployment target below version 6.0 may not install properly
+                with TestFlight. To resolve this, temporarily set the minimum deployment target to
+                version 6.0 or higher.</description>
+            <pubDate>Mon, 05 Jun 2023 13:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p>You can now submit apps built with Xcode 15 beta using the SDK for iOS&nbsp;17 beta, iPadOS&nbsp;17 beta, macOS&nbsp;14 beta, tvOS&nbsp;17 beta, and watchOS&nbsp;10 beta for internal and external testing, with support for the following:<p><ul><li>Tap to Present ID on iOS</li></p><p><li>Apple Pay Later Merchandising on iOS and iPadOS</li></p><p><li>Shallow Depth and Pressure on watchOS</li></p><p><li>VMNet on macOS</li></p><p><li>Sensitive Content Analysis on iOS, iPadOS, and macOS</p></ul><p><b>Not yet supported:</b></p><p><ul><li>TestFlight Internal Only distribution from Xcode</li></p></ul><p><b>Known Issues:</b></p><p><ul><li>watchOS apps that have a minimum deployment target below version 6.0 may not install properly with TestFlight. To resolve this, temporarily set the minimum deployment target to version 6.0 or higher.</li></p></ul></p>]]></content:encoded>
+        </item>
+        <item>
+            <title>App Store Connect API 2.4</title>
+            <link>https://developer.apple.com/news/releases/?id=06052023h</link>
+            <guid>https://developer.apple.com/news/releases/?id=06052023h</guid>
+            <description>This release supports product page optimization tests that run without
+                being interrupted by new app version releases, and a new actors resource that
+                provides details on which team member submitted and last interacted with an App
+                Store submission.View the full API release notes</description>
+            <pubDate>Mon, 05 Jun 2023 13:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p>This release supports product page optimization tests that run without being interrupted by new app version releases, and a new actors resource that provides details on which team member submitted and last interacted with an App Store submission.<br/><br/><a href=https://developer.apple.com/documentation/appstoreconnectapi/app_store_connect_api_release_notes/app_store_connect_api_2_4_release_notes class=more>View the full API release notes</a></p>]]></content:encoded>
+        </item>
+        <item>
+            <title>macOS 13.4 (22F66 | 22F2073)</title>
+            <link>https://developer.apple.com/news/releases/?id=06052023i</link>
+            <guid>https://developer.apple.com/news/releases/?id=06052023i</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Mon, 05 Jun 2023 13:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=macos-13.4-rn class=more>View release notes</a></p></il>]]></content:encoded>
+        </item>
         <item>
             <title>Xcode 14.3.1 (14E300c)</title>
             <link>https://developer.apple.com/news/releases/?id=06012023a</link>
@@ -93,14 +176,6 @@
             <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=iPadOS-16.5-rn class=more>View release notes</a></p></il>]]></content:encoded>
         </item>
         <item>
-            <title>macOS 13.4 (22F66)</title>
-            <link>https://developer.apple.com/news/releases/?id=05182023e</link>
-            <guid>https://developer.apple.com/news/releases/?id=05182023e</guid>
-            <description>View downloadsView release notes</description>
-            <pubDate>Thu, 18 May 2023 10:00:00 PDT</pubDate>
-            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=macos-13.4-rn class=more>View release notes</a></p></il>]]></content:encoded>
-        </item>
-        <item>
             <title>tvOS 16.5 (20L563)</title>
             <link>https://developer.apple.com/news/releases/?id=05182023c</link>
             <guid>https://developer.apple.com/news/releases/?id=05182023c</guid>
@@ -165,25 +240,6 @@
             <content:encoded><![CDATA[<p>You can now access a monthly Transaction Tax Report, which summarizes sales tax, use tax, goods and services tax, and other similar taxes applied on your transactions where Apple administers tax. This report is available for sales completed on the App&nbsp;Store in the United States and Canada.<br/><br/><a href=https://developer.apple.com/help/app-store-connect/getting-paid/download-financial-reports/ class=more>Learn More</a><br/></p>]]></content:encoded>
         </item>
         <item>
-            <title>App Store Connect API 2.3</title>
-            <link>https://developer.apple.com/news/releases/?id=03092023b</link>
-            <guid>https://developer.apple.com/news/releases/?id=03092023b</guid>
-            <description>This update supports new App Store pricing upgrade capabilities, which are
-                now available for all purchase types (including paid apps and one-time in-app
-                purchases).More flexible price points. Choose from 900 price points — nearly 10
-                times the number of price points previously available for most apps.Enhanced global
-                pricing. Use globally equalized prices that follow the most common pricing
-                conventions in each country or region, so you can provide pricing that’s more
-                relevant to customers.Worldwide options for base price. Specify a country or region
-                of your choosing as the basis for globally equalized prices across the other 174
-                storefronts and 44 currencies for paid apps and one-time in-app purchases.Regional
-                options for availability. Define the availability of in-app purchases and
-                subscriptions by region, so you can deliver content and services customized for each
-                market.Learn more about pricing upgradesView the full API release notes</description>
-            <pubDate>Thu, 09 Mar 2023 09:00:00 PST</pubDate>
-            <content:encoded><![CDATA[<p>This update supports new App Store pricing upgrade capabilities, which are now available for all purchase types (including paid apps and one-time in-app purchases).<br/><ul><li><b>More flexible price points.</b> Choose from 900 price points — nearly 10 times the number of price points previously available for most apps.</li></p><p><li><b>Enhanced global pricing.</b> Use globally equalized prices that follow the most common pricing conventions in each country or region, so you can provide pricing that’s more relevant to customers.</li></p><p><li><b>Worldwide options for base price.</b> Specify a country or region of your choosing as the basis for globally equalized prices across the other 174 storefronts and 44 currencies for paid apps and one-time in-app purchases.</li></p><p><li><b>Regional options for availability.</b> Define the availability of in-app purchases and subscriptions by region, so you can deliver content and services customized for each market.</li></p><br/><a href=https://developer.apple.com/news/?id=dbrszv62 class=more>Learn more about pricing upgrades</a><br/><a href=https://developer.apple.com/documentation/appstoreconnectapi/app_store_connect_api_release_notes/app_store_connect_api_version_2_3_release_notes class=more>View the full API release notes</a></p>]]></content:encoded>
-        </item>
-        <item>
             <title>App Store Connect Update</title>
             <link>https://developer.apple.com/news/releases/?id=01302023a</link>
             <guid>https://developer.apple.com/news/releases/?id=01302023a</guid>
@@ -206,14 +262,14 @@
             <description>As of January 1, 2023, the euro (EUR) is the official currency of Croatia,
                 replacing the Croatian kuna (HRK). Price tiers in App Store Connect have be
                 converted to euros using the statutory fixed conversion rate of 7.53450 HRK =
-                1.00000 EUR established by the Council of the European Union on July 12,
-                2022.View kuna and euro equivalent price tiersThe following has been automatically
-                updated from kunas to euros:Prices on the App Store (customers with auto-renewable
+                1.00000 EUR established by the Council of the European Union on July 12, 2022.View
+                kuna and euro equivalent price tiersThe following has been automatically updated
+                from kunas to euros:Prices on the App Store (customers with auto-renewable
                 subscriptions will be notified)Proceeds from sales in CroatiaSales and Trends
                 reports and monthly financial reports for CroatiaCurrency for your bank in App Store
                 Connect, If you’ve selected the kuna</description>
             <pubDate>Sun, 01 Jan 2023 09:00:00 PST</pubDate>
-            <content:encoded><![CDATA[<p>As of January 1, 2023, the euro (EUR) is the official currency of Croatia, replacing the Croatian kuna (HRK). Price tiers in App Store Connect have be converted to euros using the statutory fixed conversion rate of 7.53450 HRK = 1.00000 EUR established by the Council of the European Union on July 12, 2022.</p><p><a href=https://www.apple.com/hr/legal/currency/ class="icon icon-after icon-chevronright">View kuna and euro equivalent price tiers</a></p><p>The following has been automatically updated from kunas to euros:</p><ul class="list"><li>Prices on the App Store (customers with auto-renewable subscriptions will be notified)</li><li>Proceeds from sales in Croatia</li><li>Sales and Trends reports and monthly financial reports for Croatia</li><li>Currency for your bank in App Store Connect, If you’ve selected the kuna</li></ul>]]></content:encoded>
+            <content:encoded><![CDATA[<p>As of January 1, 2023, the euro (EUR) is the official currency of Croatia, replacing the Croatian kuna (HRK). Price tiers in App Store Connect have be converted to euros using the statutory fixed conversion rate of 7.53450 HRK = 1.00000 EUR established by the Council of the European Union on July 12, 2022.</p><p><a href=https://www.apple.com/hr/legal/currency/ class="icon icon-after icon-chevronright">View kuna and euro equivalent price tiers</a></p><p>The following has been automatically updated from kunas to euros:</p><ul class="list"><li>Prices on the App Store (customers with auto-renewable subscriptions will be notified)</li><li>Proceeds from sales in Croatia</li><li>Sales and Trends reports and monthly financial reports for Croatia</li><li>Currency for your bank in App Store Connect, If you’ve selected the kuna</li></ul>]]></content:encoded>
         </item>
         <item>
             <title>TestFlight Update</title>
