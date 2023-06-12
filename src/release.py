@@ -207,9 +207,14 @@ class Release:
     @staticmethod
     def parse_zero_days(sec_content_html: str) -> dict[str, str]:
         """Check for "in the wild" or "actively exploited", indicating a fixed zero-day."""
+        zero_days: dict[str, str] = {}
+
+        if "actively exploited" not in sec_content_html:
+            if "in the wild" not in sec_content_html:
+                # if there isn't any zero days, end early
+                return zero_days
 
         entries = re.findall(r"(?i)(?<=<strong>).*?(?=<strong>|<\/div)", sec_content_html)
-        zero_days = {}
 
         for entry in entries:
             if "in the wild" in entry or "actively exploited" in entry:
