@@ -20,10 +20,17 @@ def test_rss_releases() -> None:
         rss_feed = lxml.etree.fromstring(my_file.read().encode("utf-8"), None)
 
     new_releases = rss_releases.get_new(rss_feed)
-    post = rss_releases.format_releases(new_releases)
 
+    post = rss_releases.format_releases(new_releases)
     assert post == examples["new_releases_post"]
+
     assert PostedFile.data == examples["new_releases_posted_data"]
+
+    # test again after posting and verify it returns nothing
+    new_releases = rss_releases.get_new(rss_feed)
+
+    post = rss_releases.format_releases(new_releases)
+    assert post == []
 
 
 @freeze_time("2023-06-06")

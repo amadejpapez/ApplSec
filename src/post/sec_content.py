@@ -83,6 +83,8 @@ def format_new_sec_content_mastodon(releases: list[Release]) -> list[str]:
     https://support.apple.com/kb/HT213761
     ⌚ watchOS 9.5.1 - no CVE entries
     """
+    if not releases:
+        return []
 
     releases.sort(key=lambda x: (x.num_of_bugs, x.name), reverse=True)
 
@@ -109,6 +111,8 @@ def format_new_sec_content_twitter(releases: list[Release]) -> list[str]:
     ⌚ watchOS 9.5.1 - no CVE entries
     https://support.apple.com/en-us/HT201222
     """
+    if not releases:
+        return []
 
     releases.sort(key=lambda x: (x.num_of_bugs, x.name), reverse=True)
 
@@ -161,6 +165,9 @@ def format_ios_release(releases: list[Release]) -> list[str]:
     and 25 other vulnerabilities fixed
     https://support.apple.com/kb/HT212601
     """
+    if not releases:
+        return []
+
     post_text = []
 
     for release in releases:
@@ -258,6 +265,8 @@ def format_zero_days(releases: list[Release]) -> list[str]:
     🐛 CVE-2021-30858 (WebKit):
     - iOS 12.5.5"
     """
+    if not releases:
+        return []
 
     # group releases by CVE, determine if CVE new or old
     zero_days: dict[str, dict] = {}

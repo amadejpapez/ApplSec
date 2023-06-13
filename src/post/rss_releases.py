@@ -56,6 +56,9 @@ def format_releases(releases: list[Release]) -> list[str]:
     📱 iPadOS 16.6 beta 2 (20G5037d)
     💻 macOS 13.5 beta 2 (22G5038d)
     """
+    if not releases:
+        return []
+
     post_text = []
 
     releases.sort(key=lambda x: (x.name.lower()))

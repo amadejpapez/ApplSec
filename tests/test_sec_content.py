@@ -11,17 +11,11 @@ examples = read_examples("posts_sec")
 
 latest_versions = get_version_info.latest(row_to_lxml(examples["last_one_year_table"][:50]))
 
-PostedFile.reset()
 
-
-def test_release_class() -> None:
-    """
-    Tests Release class on a big number of releases.
-    Checks number of returned releases and if titles match.
-    """
-
+def test_release_class_parsing() -> None:
+    """Test Release class parsing on a big number of releases."""
     releases = examples["last_one_year_table"]
-    releases_obj = row_to_lxml(releases)
+    releases_obj = row_to_release(releases)
 
     # check if Release returned the correct number of releases
     assert len(releases) == len(list(releases_obj))
@@ -29,21 +23,17 @@ def test_release_class() -> None:
     # check if titles match
     # useful for seeing which ones are missing if the above assert fails
     for i, _ in enumerate(releases):
-        assert Release.parse_name([lxml.html.document_fromstring(releases[i][0])]) == Release.parse_name(
-            releases_obj[i]
-        )
+        assert Release.parse_name([lxml.html.document_fromstring(releases[i][0])]) == releases_obj[i].name
 
 
-def test_release_class_2() -> None:
-    releases_obj = row_to_lxml(examples["new_sec_content_rows_table"])
+def test_release_class_safari() -> None:
+    """Test Release class on weirdly named Safari releases."""
     PostedFile.reset()
+    releases_obj = row_to_release(examples["new_sec_content_rows_table"])
 
-    compare(
-        row_to_release(examples["new_sec_content_rows_table"]),
-        examples["new_sec_content_rows_info"],
-    )
+    compare(releases_obj, examples["new_sec_content_rows_info"])
 
-    new_releases = sec_content.get_new(releases_obj)
+    new_releases = sec_content.get_new(row_to_lxml(examples["new_sec_content_rows_table"]))
 
     post = sec_content.format_new_sec_content_mastodon(new_releases)
     assert post == examples["new_sec_content_rows_post_mastodon"]
@@ -56,20 +46,24 @@ def test_new_sec_content() -> None:
     releases_obj = row_to_lxml(examples["new_sec_content_table"])
     PostedFile.reset()
 
-    compare(
-        row_to_release(examples["new_sec_content_table"]),
-        examples["new_sec_content_info"],
-    )
+    compare(row_to_release(examples["new_sec_content_table"]), examples["new_sec_content_info"])
 
     new_releases = sec_content.get_new(releases_obj)
 
     post = sec_content.format_new_sec_content_mastodon(new_releases)
     assert post == examples["new_sec_content_post_mastodon"]
-
     post = sec_content.format_new_sec_content_twitter(new_releases)
     assert post == examples["new_sec_content_post_twitter"]
 
     assert PostedFile.data == examples["new_sec_content_posted_data"]
+
+    # test again after posting and verify it returns nothing
+    new_releases = sec_content.get_new(releases_obj)
+
+    post = sec_content.format_new_sec_content_mastodon(new_releases)
+    assert post == []
+    post = sec_content.format_new_sec_content_twitter(new_releases)
+    assert post == []
 
 
 def test_new_sec_content_only_one() -> None:
@@ -80,7 +74,6 @@ def test_new_sec_content_only_one() -> None:
 
     post = sec_content.format_new_sec_content_mastodon(new_releases)
     assert post == examples["new_sec_content_one_post_mastodon"]
-
     post = sec_content.format_new_sec_content_twitter(new_releases)
     assert post == examples["new_sec_content_one_post_twitter"]
 
@@ -93,7 +86,6 @@ def test_new_sec_content_details_soon() -> None:
 
     post = sec_content.format_new_sec_content_mastodon(new_releases)
     assert post == examples["new_sec_content_details_soon_post"]
-
     post = sec_content.format_new_sec_content_twitter(new_releases)
     assert post == examples["new_sec_content_details_soon_post"]
 
@@ -107,9 +99,15 @@ def test_ios_modules() -> None:
     compare(releases_obj, examples["ios_modules_info"])
 
     new_releases = sec_content.get_new_ios_release(releases_obj, latest_versions)
-    post = sec_content.format_ios_release(new_releases)
 
+    post = sec_content.format_ios_release(new_releases)
     assert post == examples["ios_modules_post"]
+
+    # test again after posting and verify it returns nothing
+    new_releases = sec_content.get_new_ios_release(releases_obj, latest_versions)
+
+    post = sec_content.format_ios_release(new_releases)
+    assert post == []
 
 
 def test_entry_changes() -> None:
@@ -117,7 +115,6 @@ def test_entry_changes() -> None:
 
     post = sec_content.format_entry_changes_mastodon(releases_obj)
     assert post == examples["entry_changes_post_mastodon"]
-
     post = sec_content.format_entry_changes_twitter(releases_obj)
     assert post == examples["entry_changes_post_twitter"]
 
@@ -125,12 +122,10 @@ def test_entry_changes() -> None:
 @freeze_time("2023-03-17")
 def test_entry_changes2() -> None:
     """Test that both first and Additional Recognition sections are checked."""
-
     releases_obj = row_to_release(examples["entry_changes2_table"])
 
     post = sec_content.format_entry_changes_mastodon(releases_obj)
     assert post == examples["entry_changes2_post_mastodon"]
-
     post = sec_content.format_entry_changes_twitter(releases_obj)
     assert post == examples["entry_changes2_post_twitter"]
 
@@ -161,11 +156,18 @@ def test_security_content_available() -> None:
 
     post = sec_content.format_new_sec_content_mastodon(new_releases)
     assert post == examples["security_content_available_post_mastodon"]
-
     post = sec_content.format_new_sec_content_twitter(new_releases)
     assert post == examples["security_content_available_post_twitter"]
 
     assert PostedFile.data["details_available_soon"] == []
+
+    # test again after posting and verify it returns nothing
+    new_releases = sec_content.get_if_available(releases_rows)
+
+    post = sec_content.format_new_sec_content_mastodon(new_releases)
+    assert post == []
+    post = sec_content.format_new_sec_content_twitter(new_releases)
+    assert post == []
 
 
 def test_yearly_report() -> None:
@@ -187,10 +189,18 @@ def test_zero_day() -> None:
 
     new_releases = sec_content.get_new(releases_obj)
     new_zero_days = sec_content.get_new_zero_days(new_releases)
-    post = sec_content.format_zero_days(new_zero_days)
 
+    post = sec_content.format_zero_days(new_zero_days)
     assert post == examples["zero_day_releases_post"]
+
     assert PostedFile.data == examples["zero_day_releases_posted_data"]
+
+    # test again after posting and verify it returns nothing
+    new_releases = sec_content.get_new(releases_obj)
+    new_zero_days = sec_content.get_new_zero_days(new_releases)
+
+    post = sec_content.format_zero_days(new_zero_days)
+    assert post == []
 
 
 def test_zero_day_new_old() -> None:
