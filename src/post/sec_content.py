@@ -131,7 +131,7 @@ def format_ios_release(releases: list[Release]) -> list[str]:
     - 3 bugs in Model I/O
     - 2 bugs in CoreAudio
     and 25 other vulnerabilities fixed
-    https://support.apple.com/en-us/HT212601
+    https://support.apple.com/kb/HT212601
     """
     post_text = []
 

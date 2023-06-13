@@ -5,7 +5,7 @@ Class Release (
     "name": "iOS and iPadOS 16.5",
     "emoji": "📱",
     "release_notes_link": "https://developer.apple.com/news/releases/?id=05182023g",
-    "security_content_link": "https://support.apple.com/en-us/HT212623",
+    "security_content_link": "https://support.apple.com/kb/HT212623",
     "zero_days": {
         "CVE-2023-32409": "WebKit",
         "CVE-2023-28204": "WebKit",
@@ -89,7 +89,7 @@ class Release:
         All 3 elements are of type lxml.html.HtmlElement. This is an example of their contents:
         -----
         [
-            "<a href="https://support.apple.com/en-us/HT213055">macOS Big Sur 11.6.3</a>",
+            "<a href="https://support.apple.com/kb/HT213055">macOS Big Sur 11.6.3</a>",
             "macOS Big Sur",
             "26 Jan 2022"
         ]
