@@ -223,7 +223,9 @@ def format_zero_days(releases: list[Release]) -> list[str]:
     - Security Update 2021-006 Catalina
     - iOS 12.5.5
 
-    🐛 CVE-2021-30860 (CoreGraphics), CVE-2021-31010 (Core Telephony), CVE-2021-30858 (WebKit):
+    🐛 CVE-2021-30860 (CoreGraphics),
+    🐛 CVE-2021-31010 (Core Telephony),
+    🐛 CVE-2021-30858 (WebKit):
     - iOS 12.5.5"
     """
 
@@ -264,15 +266,15 @@ def format_zero_days(releases: list[Release]) -> list[str]:
     post_text.append(_format_zero_days_start_text(zero_days))
 
     for group in release_groups:
-        text = "\n\n🐛 "
+        text = "\n"
 
         for cve, value in group["zero_days"].items():
             if value["status"] == "new":
-                text += cve + " (" + value["module"] + "), "
+                text += "\n🐛 " + cve + " (" + value["module"] + "),"
             else:
-                text += cve + " (" + value["module"] + ") additional patches, "
+                text += "\n🐛 " + cve + " (" + value["module"] + ") additional patches,"
 
-        text = text[:-2] + ":"
+        text = text[:-1] + ":"
 
         for rel in group["releases"]:
             text += "\n- " + rel
