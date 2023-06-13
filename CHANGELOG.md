@@ -1,20 +1,26 @@
 # Changelog
 
-## [Unreleased]
+## [15.0] - 2023-06-13
 
 ### Added
 
-- Bot now also follows Apple Releases page. This allows for quicker posts about updates, before security contents is published. So posts about new updates should be very quick, contain build numbers and beta software!
+- Bot now follows [Apple Developer - Releases](https://developer.apple.com/news/releases/) page. This allows for quicker posts about updates, before security contents is published. Posts about new updates should now be posted sooner, contain build numbers and beta software!
 - New Security Content and Entry Changes posts now contain, below each release name, a link to their security content. This should make it easier to access the said security content. For now only enabled for Mastodon, as it makes the post too long and then splits it into many tweets with each having around 2 or 3 releases.
 
 ### Changed
 
-- New releases or new security content post will now be made first, followed by others. Previously, everything was before (zero-days,...) and then new security content was the last post.
-- If set of releases share multiple zero-days, they will be grouped together. Meaning CVE information separated by coma and then listed releases. This avoids same set of releases being repeated by different CVEs.
+- New Releases or New Security Content post will now be made first, followed by others. Previously, everything was before (zero-days,...) and then New Security Content was the last post.
+- If a set of releases share multiple zero-days, they will be grouped together. Meaning CVE information separated by coma and then listed releases. This avoids same set of releases being repeated by different CVEs.
+- "NEW UPDATES RELEASED" posts now contain releases from RSS with build numbers. Previous "NEW UPDATES RELEASED" with "x bugs fixed" have been moved to "NEW SECURITY CONTENT".
 
 ### Fixed
 
-- Twitter posts are now up to 280 characters, as previously it was set at 250
+- Twitter posts are now up to 280 characters, as previously it was set at max 250
+
+### Code
+
+- more and improved testing
+- various other moving around, renames and more
 
 ## [14.0] - 2023-04-12
 
