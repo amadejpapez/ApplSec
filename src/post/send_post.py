@@ -112,20 +112,24 @@ def toot(results: list[str], API_KEY: str) -> None:
             post_ids.append(response.json()["id"])
 
 
-def post(results: list[str]) -> None:
-    if not results:
+def post(results_mastodon: list[str], results_twitter: list[str] = []) -> None:
+    if not results_mastodon and not results_twitter:
         return
 
+    # if results_twitter is not submitted, do the same post on Twitter as on Mastodon
+    if not results_twitter:
+        results_twitter = results_mastodon
+
     try:
-        toot(list(results), MASTODON_KEY_TEST)
+        toot(list(results_mastodon), MASTODON_KEY_TEST)
     except Exception as e:
-        print("ERROR: Mastodon failed to post\n" + str(results) + "\n" + str(e) + "\n")
+        print("ERROR: Mastodon failed to post\n" + str(results_mastodon) + "\n" + str(e) + "\n")
         sys.exit(1)
 
     try:
-        tweet(list(results), TWITTER_API_TEST)
+        tweet(list(results_twitter), TWITTER_API_TEST)
     except Exception as e:
-        print("ERROR: Twitter failed to post\n" + str(results) + "\n" + str(e) + "\n")
+        print("ERROR: Twitter failed to post\n" + str(results_twitter) + "\n" + str(e) + "\n")
         sys.exit(1)
 
     PostedFile.save()

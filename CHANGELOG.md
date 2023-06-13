@@ -5,6 +5,7 @@
 ### Added
 
 - Bot now also follows Apple Releases page. This allows for quicker posts about updates, before security contents is published. So posts about new updates should be very quick, contain build numbers and beta software!
+- New Security Content and Entry Changes posts now contain, below each release name, a link to their security content. This should make it easier to access the said security content. For now only enabled for Mastodon, as it makes the post too long and then splits it into many tweets with each having around 2 or 3 releases.
 
 ### Changed
 

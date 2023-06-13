@@ -18,7 +18,10 @@ def main():
 
     new_sec_content = sec_content.get_new(all_release_rows) + sec_content.get_if_available(all_release_rows)
     if new_sec_content:
-        post(sec_content.format_new_sec_content(new_sec_content))
+        post(
+            sec_content.format_new_sec_content_mastodon(new_sec_content),
+            sec_content.format_new_sec_content_twitter(new_sec_content),
+        )
 
     ios_release = sec_content.get_new_ios_release(new_sec_content, latest_versions)
     if ios_release:
@@ -30,7 +33,10 @@ def main():
 
     if get_date.is_midnight():
         changed_releases = sec_content.get_entry_changes(all_release_rows)
-        post(sec_content.format_entry_changes(changed_releases))
+        post(
+            sec_content.format_entry_changes_mastodon(changed_releases),
+            sec_content.format_entry_changes_twitter(changed_releases),
+        )
 
     # DISABLED AS ITS ACCURACY NOT TESTED ENOUGH
     # yearly_reports = releases_sec.get_yearly_report(new_sec_content, latest_versions)

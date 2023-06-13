@@ -44,9 +44,12 @@ def test_release_class_2() -> None:
     )
 
     new_releases = sec_content.get_new(releases_obj)
-    post = sec_content.format_new_sec_content(new_releases)
 
-    assert post == examples["new_sec_content_rows_post"]
+    post = sec_content.format_new_sec_content_mastodon(new_releases)
+    assert post == examples["new_sec_content_rows_post_mastodon"]
+
+    post = sec_content.format_new_sec_content_twitter(new_releases)
+    assert post == examples["new_sec_content_rows_post_twitter"]
 
 
 def test_new_sec_content() -> None:
@@ -59,9 +62,13 @@ def test_new_sec_content() -> None:
     )
 
     new_releases = sec_content.get_new(releases_obj)
-    post = sec_content.format_new_sec_content(new_releases)
 
-    assert post == examples["new_sec_content_post"]
+    post = sec_content.format_new_sec_content_mastodon(new_releases)
+    assert post == examples["new_sec_content_post_mastodon"]
+
+    post = sec_content.format_new_sec_content_twitter(new_releases)
+    assert post == examples["new_sec_content_post_twitter"]
+
     assert PostedFile.data == examples["new_sec_content_posted_data"]
 
 
@@ -70,9 +77,12 @@ def test_new_sec_content_only_one() -> None:
     PostedFile.reset()
 
     new_releases = sec_content.get_new(releases_obj)
-    post = sec_content.format_new_sec_content(new_releases)
 
-    assert post == examples["new_sec_content_one_post"]
+    post = sec_content.format_new_sec_content_mastodon(new_releases)
+    assert post == examples["new_sec_content_one_post_mastodon"]
+
+    post = sec_content.format_new_sec_content_twitter(new_releases)
+    assert post == examples["new_sec_content_one_post_twitter"]
 
 
 def test_new_sec_content_details_soon() -> None:
@@ -80,9 +90,13 @@ def test_new_sec_content_details_soon() -> None:
     PostedFile.reset()
 
     new_releases = sec_content.get_new(releases_obj)
-    post = sec_content.format_new_sec_content(new_releases)
 
+    post = sec_content.format_new_sec_content_mastodon(new_releases)
     assert post == examples["new_sec_content_details_soon_post"]
+
+    post = sec_content.format_new_sec_content_twitter(new_releases)
+    assert post == examples["new_sec_content_details_soon_post"]
+
     assert PostedFile.data == examples["new_sec_content_details_soon_posted_data"]
 
 
@@ -101,9 +115,11 @@ def test_ios_modules() -> None:
 def test_entry_changes() -> None:
     releases_obj = info_to_release(examples["entry_changes_info"])
 
-    post = sec_content.format_entry_changes(releases_obj)
+    post = sec_content.format_entry_changes_mastodon(releases_obj)
+    assert post == examples["entry_changes_post_mastodon"]
 
-    assert post == examples["entry_changes_post"]
+    post = sec_content.format_entry_changes_twitter(releases_obj)
+    assert post == examples["entry_changes_post_twitter"]
 
 
 @freeze_time("2023-03-17")
@@ -112,9 +128,11 @@ def test_entry_changes2() -> None:
 
     releases_obj = row_to_release(examples["entry_changes2_table"])
 
-    post = sec_content.format_entry_changes(releases_obj)
+    post = sec_content.format_entry_changes_mastodon(releases_obj)
+    assert post == examples["entry_changes2_post_mastodon"]
 
-    assert post == examples["entry_changes2_post"]
+    post = sec_content.format_entry_changes_twitter(releases_obj)
+    assert post == examples["entry_changes2_post_twitter"]
 
 
 def test_security_content_soon() -> None:
@@ -140,9 +158,13 @@ def test_security_content_available() -> None:
     PostedFile.data["details_available_soon"] = examples["security_content_soon_file"]
 
     new_releases = sec_content.get_if_available(releases_rows)
-    post = sec_content.format_new_sec_content(new_releases)
 
-    assert post == examples["security_content_available_post"]
+    post = sec_content.format_new_sec_content_mastodon(new_releases)
+    assert post == examples["security_content_available_post_mastodon"]
+
+    post = sec_content.format_new_sec_content_twitter(new_releases)
+    assert post == examples["security_content_available_post_twitter"]
+
     assert PostedFile.data["details_available_soon"] == []
 
 
