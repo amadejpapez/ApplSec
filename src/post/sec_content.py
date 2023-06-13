@@ -196,10 +196,10 @@ def format_ios_release(releases: list[Release]) -> list[str]:
 
     num_bugs = release.num_of_bugs - num_bugs
 
-    if num_bugs > 0:
-        post_text.append(f"and {num_bugs} other vulnerabilities fixed\n")
-    elif num_bugs == 1:
+    if num_bugs == 1:
         post_text.append("and 1 other vulnerability fixed\n")
+    elif num_bugs > 0:
+        post_text.append(f"and {num_bugs} other vulnerabilities fixed\n")
 
     post_text.append(f"{release.security_content_link}\n")
 

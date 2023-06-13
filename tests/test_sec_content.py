@@ -132,6 +132,25 @@ def test_ios_modules() -> None:
     assert post == []
 
 
+def test_ios_modules_no_other_vulnerabilities() -> None:
+    releases_obj = row_to_release(examples["ios_modules_no_other_table"])
+    PostedFile.reset()
+
+    new_releases = sec_content.get_new_ios_release(releases_obj, latest_versions)
+
+    post = sec_content.format_ios_release(new_releases)
+    assert post == examples["ios_modules_no_other_post"]
+
+
+def test_ios_modules_one_other_vulnerability() -> None:
+    # uses iTunes release as it was the only one easy to find with bugs in 5 modules
+    releases_obj = info_to_release(examples["ios_modules_one_other_info"])
+    PostedFile.reset()
+
+    post = sec_content.format_ios_release(releases_obj)
+    assert post == examples["ios_modules_one_other_post"]
+
+
 def test_entry_changes() -> None:
     releases_obj = info_to_release(examples["entry_changes_info"])
 
