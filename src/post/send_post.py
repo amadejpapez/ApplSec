@@ -55,7 +55,7 @@ def tweet(results: list[str], API: tweepy.Client) -> None:
 
     posts_list = arrange_post(results, MAX_CHAR)
 
-    post_ids = []
+    post_ids: list[str] = []
 
     for text in posts_list:
         if posts_list.index(text) == 0:
@@ -63,8 +63,6 @@ def tweet(results: list[str], API: tweepy.Client) -> None:
             response = API.create_tweet(
                 text=text,
             )
-
-            post_ids.append(getattr(response, "data")["id"])
         else:
             # other posts in a thread
             response = API.create_tweet(
@@ -72,7 +70,7 @@ def tweet(results: list[str], API: tweepy.Client) -> None:
                 text=text,
             )
 
-            post_ids.append(getattr(response, "data")["id"])
+        post_ids.append(getattr(response, "data")["id"])
 
 
 def toot(results: list[str], API_KEY: str) -> None:
@@ -84,7 +82,7 @@ def toot(results: list[str], API_KEY: str) -> None:
 
     posts_list = arrange_post(results, MAX_CHAR)
 
-    post_ids = []
+    post_ids: list[str] = []
 
     for text in posts_list:
         if posts_list.index(text) == 0:
@@ -95,8 +93,6 @@ def toot(results: list[str], API_KEY: str) -> None:
                 headers={"Authorization": API_KEY},
                 timeout=60,
             )
-
-            post_ids.append(response.json()["id"])
         else:
             # other posts in a thread
             response = requests.post(
@@ -109,7 +105,7 @@ def toot(results: list[str], API_KEY: str) -> None:
                 timeout=60,
             )
 
-            post_ids.append(response.json()["id"])
+        post_ids.append(response.json()["id"])
 
 
 def post(results_mastodon: list[str], results_twitter: list[str] = []) -> None:

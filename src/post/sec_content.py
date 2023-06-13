@@ -174,13 +174,15 @@ def format_ios_release(releases: list[Release]) -> list[str]:
         num_bugs = 0
 
         for key, value in modules.items():
-            if len(post_text) < 5:
-                if value > 1:
-                    post_text.append(f"- {value} bugs in {key}\n")
-                else:
-                    post_text.append(f"- {value} bug in {key}\n")
+            if len(post_text) >= 5:
+                break
 
-                num_bugs += value
+            if value > 1:
+                post_text.append(f"- {value} bugs in {key}\n")
+            else:
+                post_text.append(f"- {value} bug in {key}\n")
+
+            num_bugs += value
 
         num_bugs = release.num_of_bugs - num_bugs
 
@@ -354,14 +356,12 @@ def format_entry_changes_mastodon(releases: list[Release]) -> list[str]:
 
         changes_count += release.num_entries_added + release.num_entries_updated
 
-        if release.num_entries_added > 0:
-            if release.num_entries_updated > 0:
-                post_text.append(
-                    f"{name} - {release.get_format_num_entries_added()}, {release.get_format_num_entries_updated()}\n"
-                )
-            else:
-                post_text.append(f"{name} - {release.get_format_num_entries_added()}\n")
-
+        if release.num_entries_added > 0 and release.num_entries_updated > 0:
+            post_text.append(
+                f"{name} - {release.get_format_num_entries_added()}, {release.get_format_num_entries_updated()}\n"
+            )
+        elif release.num_entries_added > 0:
+            post_text.append(f"{name} - {release.get_format_num_entries_added()}\n")
         elif release.num_entries_updated > 0:
             post_text.append(f"{name} - {release.get_format_num_entries_updated()}\n")
 
@@ -399,14 +399,12 @@ def format_entry_changes_twitter(releases: list[Release]) -> list[str]:
 
         changes_count += release.num_entries_added + release.num_entries_updated
 
-        if release.num_entries_added > 0:
-            if release.num_entries_updated > 0:
-                post_text.append(
-                    f"{name} - {release.get_format_num_entries_added()}, {release.get_format_num_entries_updated()}\n"
-                )
-            else:
-                post_text.append(f"{name} - {release.get_format_num_entries_added()}\n")
-
+        if release.num_entries_added > 0 and release.num_entries_updated > 0:
+            post_text.append(
+                f"{name} - {release.get_format_num_entries_added()}, {release.get_format_num_entries_updated()}\n"
+            )
+        elif release.num_entries_added > 0:
+            post_text.append(f"{name} - {release.get_format_num_entries_added()}\n")
         elif release.num_entries_updated > 0:
             post_text.append(f"{name} - {release.get_format_num_entries_updated()}\n")
 
