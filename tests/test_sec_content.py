@@ -12,6 +12,14 @@ examples = read_examples("posts_sec")
 latest_versions = get_version_info.latest(row_to_lxml(examples["last_one_year_table"][:50]))
 
 
+def test_sec_page_download() -> None:
+    """Verify successful download, parse first and that there are min 100 items."""
+    releases = sec_content.retrieve_page()
+
+    Release.parse_from_table(releases[0])
+    assert len(releases) > 100
+
+
 def test_release_class_parsing() -> None:
     """Test Release class parsing on a big number of releases."""
     releases = examples["last_one_year_table"]
@@ -64,6 +72,20 @@ def test_new_sec_content() -> None:
     assert post == []
     post = sec_content.format_new_sec_content_twitter(new_releases)
     assert post == []
+
+
+def test_new_sec_content_from_example_html() -> None:
+    PostedFile.reset()
+
+    with open("tests/fixtures/sec_page.html", "r", encoding="utf-8") as my_file:
+        releases = sec_content.retrieve_page(my_file.read())
+
+    releases_obj = []
+    for x in releases:
+        releases_obj.append(Release.parse_from_table(x))
+
+    post = sec_content.format_new_sec_content_mastodon(releases_obj[:20])
+    assert post == examples["new_sec_content_from_html_post"]
 
 
 def test_new_sec_content_only_one() -> None:

@@ -7,13 +7,12 @@ from helpers.posted_file import PostedFile
 from release import Release
 
 
-def retrieve_rss() -> lxml.etree._Element:
-    rss_feed = requests.get("https://developer.apple.com/news/releases/rss/releases.rss", timeout=60).text.encode(
-        "utf-8"
-    )
-    xml_tree = lxml.etree.fromstring(rss_feed, None)
+def _request_rss_feed() -> str:
+    return requests.get("https://developer.apple.com/news/releases/rss/releases.rss", timeout=60).text
 
-    return xml_tree
+
+def retrieve_rss(rss: str = _request_rss_feed()) -> lxml.etree._Element:
+    return lxml.etree.fromstring(rss.encode("utf-8"), None)
 
 
 def get_new(xml_tree: lxml.etree._Element = retrieve_rss()) -> list[Release]:

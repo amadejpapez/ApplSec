@@ -9,8 +9,12 @@ from helpers.posted_file import PostedFile
 from release import Release
 
 
-def retrieve_page() -> list[list[lxml.html.HtmlElement]]:
-    main_page = lxml.html.document_fromstring(requests.get("https://support.apple.com/en-us/HT201222", timeout=60).text)
+def _request_sec_page() -> str:
+    return requests.get("https://support.apple.com/en-us/HT201222", timeout=60).text
+
+
+def retrieve_page(html: str = _request_sec_page()) -> list[list[lxml.html.HtmlElement]]:
+    main_page = lxml.html.document_fromstring(html)
 
     table = main_page.xpath("//table/tbody")[0].findall("tr")
     all_release_rows = []

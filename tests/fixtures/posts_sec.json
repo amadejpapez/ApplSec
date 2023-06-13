@@ -820,6 +820,29 @@
             "yearly_report": []
         }
     },
+    "new_sec_content_from_html_post": [
+        "🐛 NEW SECURITY CONTENT 🐛\n\n",
+        "💻 macOS Ventura 13.4 - 51 bugs fixed\nhttps://support.apple.com/kb/HT213758\n",
+        "📱 iOS and iPadOS 16.5 - 39 bugs fixed\nhttps://support.apple.com/kb/HT213757\n",
+        "⌚ watchOS 9.5 - 32 bugs fixed\nhttps://support.apple.com/kb/HT213764\n",
+        "💻 macOS Monterey 12.6.6 - 29 bugs fixed\nhttps://support.apple.com/kb/HT213759\n",
+        "📺 tvOS 16.5 - 28 bugs fixed\nhttps://support.apple.com/kb/HT213761\n",
+        "💻 macOS Big Sur 11.7.7 - 25 bugs fixed\nhttps://support.apple.com/kb/HT213760\n",
+        "📱 iOS and iPadOS 15.7.6 - 17 bugs fixed\nhttps://support.apple.com/kb/HT213765\n",
+        "🌐 Safari 16.5 - 5 bugs fixed\nhttps://support.apple.com/kb/HT213762\n",
+        "💻 macOS Ventura 13.3.1 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213721\n",
+        "🎵 iTunes 12.12.9 for Windows - 2 bugs fixed\nhttps://support.apple.com/kb/HT213763\n",
+        "📱 iOS and iPadOS 16.4.1 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213720\n",
+        "📱 iOS and iPadOS 15.7.5 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213723\n",
+        "🔨 Xcode 14.3 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213679\n",
+        "🛠️ Beats Firmware Update 5B66 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213752\n",
+        "🛠️ AirPods Firmware Update 5E133 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213752\n",
+        "💻 macOS Monterey 12.6.5 - 1 bug fixed\nhttps://support.apple.com/kb/HT213724\n",
+        "💻 macOS Big Sur 11.7.6 - 1 bug fixed\nhttps://support.apple.com/kb/HT213725\n",
+        "🌐 Safari 16.4.1 - 1 bug fixed\nhttps://support.apple.com/kb/HT213722\n",
+        "⌚ watchOS 9.5.1 - no CVE entries\n",
+        "📺 tvOS 16.4.1 - no CVE entries\n"
+    ],
     "ios_modules_table": [
         [
             "<a href=\"https://support.apple.com/kb/HT213053\">iOS 15.3 and iPadOS 15.3</a>",
