@@ -428,7 +428,7 @@ def format_entry_changes_twitter(releases: list[Release]) -> list[str]:
     return post_text
 
 
-def get_yearly_report(new_sec_content: list[Release], latest_versions: dict[str, list]) -> list[list[str]]:
+def get_yearly_report(new_sec_content: list[Release], latest_versions: dict[str, list]) -> list[list[str | int]]:
     """
     If there is a new major upgrade. Report how many bugs Apple fixed
     in the last 4 major series releases.
@@ -437,7 +437,7 @@ def get_yearly_report(new_sec_content: list[Release], latest_versions: dict[str,
 
     for key, value in latest_versions.items():
         if key in PostedFile.data["posts"]["yearly_report"]:
-            return []
+            continue
 
         PostedFile.data["posts"]["yearly_report"].append(key)
 

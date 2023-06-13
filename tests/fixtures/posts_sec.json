@@ -1332,6 +1332,28 @@
         "📱 iOS and iPadOS 14.5 - 64 bugs fixed\n",
         "https://support.apple.com/kb/HT201222"
     ],
+    "yearly_report_table": [
+        [
+            "<a href=\"https://support.apple.com/kb/HT212815\">tvOS 15</a>",
+            "Apple TV 4K and Apple TV HD",
+            "20 Sep 2021"
+        ],
+        [
+            "<a href=\"https://support.apple.com/kb/HT212819\">watchOS 8</a>",
+            "Apple Watch Series 3 and later",
+            "20 Sep 2021"
+        ],
+        [
+            "<a href=\"https://support.apple.com/kb/HT212814\">iOS 15 and iPadOS 15</a>",
+            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
+            "20 Sep 2021"
+        ],
+        [
+            "<a href=\"https://support.apple.com/kb/HT212869\">macOS Monterey 12</a> <em>(Advisory includes security content of macOS Monterey 12.0 and macOS Monterey 12.0.1)</em>",
+            "Mac Pro (2013 and later), MacBook Air (Early 2015 and later), MacBook Pro (Early 2015 and later), Mac mini (Late 2014 and later), iMac (Late 2015 and later), MacBook (Early 2016 and later), iMac Pro (2017 and later)",
+            "25 Oct 2021"
+        ]
+    ],
     "yearly_report_tvOS_post": [
         "tvOS 15 was released today. In tvOS 14 series Apple fixed in total of 96 security issues over 3 releases. 🔐\n\n📊 COMPARED TO:\n"
     ],
