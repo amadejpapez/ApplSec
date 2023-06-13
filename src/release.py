@@ -132,7 +132,7 @@ class Release:
 
     @staticmethod
     def parse_name(release_row: list[lxml.html.HtmlElement]) -> str:
-        name = release_row[0].text_content()
+        name = release_row[0].text_content().replace(u"\xa0", u" ")
 
         # for releases with "macOS Monterey 12.0.1 (Advisory includes security content of..."
         # and for "watchOS 9.0.2\nThis update has no published CVE entries."
