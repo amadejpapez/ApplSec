@@ -168,37 +168,36 @@ def format_ios_release(releases: list[Release]) -> list[str]:
     if not releases:
         return []
 
-    post_text = []
+    release = releases[0]
 
-    for release in releases:
-        sec_content_html = requests.get(release.security_content_link, timeout=60).text
-        sec_content_html = sec_content_html.split("Additional recognition", 1)[0]
+    sec_content_html = requests.get(release.security_content_link, timeout=60).text
+    sec_content_html = sec_content_html.split("Additional recognition", 1)[0]
 
-        search_modules = collections.Counter(re.findall(r"(?<=<strong>).*?(?=<\/strong>)", sec_content_html))
-        modules = collections.OrderedDict(sorted(search_modules.items(), reverse=True, key=lambda x: x[1]))
+    search_modules = collections.Counter(re.findall(r"(?<=<strong>).*?(?=<\/strong>)", sec_content_html))
+    modules = collections.OrderedDict(sorted(search_modules.items(), reverse=True, key=lambda x: x[1]))
 
-        post_text = [f"⚒️ FIXED IN {release.name} ⚒️\n\n"]
-        num_bugs = 0
+    post_text = [f"⚒️ FIXED IN {release.name} ⚒️\n\n"]
+    num_bugs = 0
 
-        for key, value in modules.items():
-            if len(post_text) >= 5:
-                break
+    for key, value in modules.items():
+        if len(post_text) >= 5:
+            break
 
-            if value > 1:
-                post_text.append(f"- {value} bugs in {key}\n")
-            else:
-                post_text.append(f"- {value} bug in {key}\n")
+        if value > 1:
+            post_text.append(f"- {value} bugs in {key}\n")
+        else:
+            post_text.append(f"- {value} bug in {key}\n")
 
-            num_bugs += value
+        num_bugs += value
 
-        num_bugs = release.num_of_bugs - num_bugs
+    num_bugs = release.num_of_bugs - num_bugs
 
-        if num_bugs > 0:
-            post_text.append(f"and {num_bugs} other vulnerabilities fixed\n")
-        elif num_bugs == 1:
-            post_text.append("and 1 other vulnerability fixed\n")
+    if num_bugs > 0:
+        post_text.append(f"and {num_bugs} other vulnerabilities fixed\n")
+    elif num_bugs == 1:
+        post_text.append("and 1 other vulnerability fixed\n")
 
-        post_text.append(f"{release.security_content_link}\n")
+    post_text.append(f"{release.security_content_link}\n")
 
     return post_text
 
