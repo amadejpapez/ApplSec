@@ -89,6 +89,8 @@ class Release:
 
         name = Release.parse_name(row)
         security_content_link = Release.parse_security_content_link(row)
+        # some releases are listed with http, upgrade them
+        security_content_link = security_content_link.replace("http:", "https:")
 
         if security_content_link:
             try:
