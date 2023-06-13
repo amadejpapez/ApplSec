@@ -67,15 +67,6 @@ class Release:
 
         return "no CVE entries"
 
-    def get_format_num_of_zero_days(self) -> str:
-        if self.num_of_zero_days > 1:
-            return f"{self.num_of_zero_days} zero-days"
-
-        if self.num_of_zero_days == 1:
-            return f"{self.num_of_zero_days} zero-day"
-
-        return "no zero-days"
-
     def get_format_num_entries_added(self) -> str:
         return f"{self.num_entries_added} added"
 
