@@ -37,5 +37,22 @@
         "📺 tvOS 17 beta (21J5273q)\n",
         "⌚ watchOS 10 beta (21R5275t)\n",
         "🔨 Xcode 15 beta (15A5160n)\n"
+    ],
+    "new_releases_one_posted_data": {
+        "zero_days": [],
+        "details_available_soon": [],
+        "posts": {
+            "new_releases": [
+                "tvOS 17 beta (21J5273q)"
+            ],
+            "new_sec_content": [],
+            "ios_modules": [],
+            "zero_days": {},
+            "yearly_report": []
+        }
+    },
+    "new_releases_one_post": [
+        "💥 NEW UPDATE RELEASED 💥\n\n",
+        "📺 tvOS 17 beta (21J5273q)\n"
     ]
 }

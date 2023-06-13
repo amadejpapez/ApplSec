@@ -144,12 +144,24 @@ def test_entry_changes() -> None:
 @freeze_time("2023-03-17")
 def test_entry_changes2() -> None:
     """Test that both first and Additional Recognition sections are checked."""
-    releases_obj = row_to_release(examples["entry_changes2_table"])
+    releases = row_to_lxml(examples["entry_changes2_table"])
+    releases_obj = sec_content.get_entry_changes(releases)
 
     post = sec_content.format_entry_changes_mastodon(releases_obj)
     assert post == examples["entry_changes2_post_mastodon"]
     post = sec_content.format_entry_changes_twitter(releases_obj)
     assert post == examples["entry_changes2_post_twitter"]
+
+
+@freeze_time("2023-03-17")
+def test_entry_changes_only_one() -> None:
+    releases = row_to_lxml(examples["entry_changes_one_table"])
+    releases_obj = sec_content.get_entry_changes(releases)
+
+    post = sec_content.format_entry_changes_mastodon(releases_obj)
+    assert post == examples["entry_changes_one_post_mastodon"]
+    post = sec_content.format_entry_changes_twitter(releases_obj)
+    assert post == examples["entry_changes_one_post_twitter"]
 
 
 def test_security_content_soon() -> None:
@@ -203,7 +215,7 @@ def test_yearly_report() -> None:
         assert post[0] == examples["yearly_report_" + system + "_post"][0]
 
 
-def test_zero_day() -> None:
+def test_zero_day_many_new_one_old() -> None:
     releases_obj = row_to_lxml(examples["zero_day_releases_table"])
 
     PostedFile.reset()
@@ -225,8 +237,57 @@ def test_zero_day() -> None:
     assert post == []
 
 
-def test_zero_day_new_old() -> None:
-    new_releases = info_to_release(examples["zero_day_releases_new_old_info"])
+def test_zero_day_one_new_many_old() -> None:
+    releases_obj = row_to_lxml(examples["zero_day_releases_table"])
+
+    PostedFile.reset()
+    PostedFile.data["zero_days"] = ["CVE-2021-30869", "CVE-2021-30860", "CVE-2021-31010",]
+
+    new_releases = sec_content.get_new(releases_obj)
+    new_zero_days = sec_content.get_new_zero_days(new_releases)
+
+    post = sec_content.format_zero_days(new_zero_days)
+    assert post == examples["zero_day_releases_one_new_many_old_post"]
+
+
+def test_zero_day_many_new_many_old() -> None:
+    releases_obj = row_to_lxml(examples["zero_day_releases_table"])
+
+    PostedFile.reset()
+    PostedFile.data["zero_days"] = ["CVE-2021-30860", "CVE-2021-31010",]
+
+    new_releases = sec_content.get_new(releases_obj)
+    new_zero_days = sec_content.get_new_zero_days(new_releases)
+
+    post = sec_content.format_zero_days(new_zero_days)
+    assert post == examples["zero_day_releases_many_new_many_old_post"]
+
+
+def test_zero_day_many_new() -> None:
+    new_releases = info_to_release(examples["zero_day_releases_two_info"])
+
+    PostedFile.reset()
+
+    new_zero_days = sec_content.get_new_zero_days(new_releases)
+    post = sec_content.format_zero_days(new_zero_days)
+
+    assert post == examples["zero_day_releases_many_new_post"]
+
+
+def test_zero_day_many_old() -> None:
+    new_releases = info_to_release(examples["zero_day_releases_two_info"])
+
+    PostedFile.reset()
+    PostedFile.data["zero_days"] = ["CVE-2021-30869", "CVE-2021-30858"]
+
+    new_zero_days = sec_content.get_new_zero_days(new_releases)
+    post = sec_content.format_zero_days(new_zero_days)
+
+    assert post == examples["zero_day_releases_many_old_post"]
+
+
+def test_zero_day_one_new_one_old() -> None:
+    new_releases = info_to_release(examples["zero_day_releases_two_info"])
 
     PostedFile.reset()
     PostedFile.data["zero_days"] = ["CVE-2021-30869"]
@@ -234,23 +295,11 @@ def test_zero_day_new_old() -> None:
     new_zero_days = sec_content.get_new_zero_days(new_releases)
     post = sec_content.format_zero_days(new_zero_days)
 
-    assert post == examples["zero_day_releases_new_old_post"]
+    assert post == examples["zero_day_releases_one_new_one_old_post"]
 
 
-def test_zero_day_new() -> None:
-    new_releases = info_to_release(examples["zero_day_releases_new_info"])
-
-    PostedFile.reset()
-    PostedFile.data["zero_days"] = ["CVE-2021-30869"]
-
-    new_zero_days = sec_content.get_new_zero_days(new_releases)
-    post = sec_content.format_zero_days(new_zero_days)
-
-    assert post == examples["zero_day_releases_new_post"]
-
-
-def test_zero_day_old() -> None:
-    new_releases = info_to_release(examples["zero_day_releases_old_info"])
+def test_zero_day_one_new() -> None:
+    new_releases = info_to_release(examples["zero_day_releases_one_new_info"])
 
     PostedFile.reset()
     PostedFile.data["zero_days"] = ["CVE-2021-30869"]
@@ -258,4 +307,16 @@ def test_zero_day_old() -> None:
     new_zero_days = sec_content.get_new_zero_days(new_releases)
     post = sec_content.format_zero_days(new_zero_days)
 
-    assert post == examples["zero_day_releases_old_post"]
+    assert post == examples["zero_day_releases_one_new_post"]
+
+
+def test_zero_day_one_old() -> None:
+    new_releases = info_to_release(examples["zero_day_releases_one_old_info"])
+
+    PostedFile.reset()
+    PostedFile.data["zero_days"] = ["CVE-2021-30869"]
+
+    new_zero_days = sec_content.get_new_zero_days(new_releases)
+    post = sec_content.format_zero_days(new_zero_days)
+
+    assert post == examples["zero_day_releases_one_old_post"]

@@ -73,3 +73,20 @@ def test_rss_releases_none() -> None:
 
     assert new_releases == []
     assert PostedFile.data == examples["posted_data"]
+
+
+@freeze_time("2023-06-05 10:00:00")
+def test_rss_releases_only_one() -> None:
+    """Test new releases with one of them already posted."""
+    rss_feed = ""
+    PostedFile.reset()
+
+    PostedFile.data["posts"]["new_releases"] = ["macOS 13.4 (22F66 | 22F2073)"]
+
+    with open("tests/fixtures/rss_feed.xml", "r", encoding="utf-8") as my_file:
+        rss_feed = rss_releases.retrieve_rss(my_file.read())
+
+    new_releases = rss_releases.get_new(rss_feed)
+
+    post = rss_releases.format_releases([new_releases[0]])
+    assert post == examples["new_releases_one_post"]
