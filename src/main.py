@@ -33,10 +33,11 @@ def main():
 
     if get_date.is_midnight():
         changed_releases = sec_content.get_entry_changes(all_release_rows)
-        post(
-            sec_content.format_entry_changes_mastodon(changed_releases),
-            sec_content.format_entry_changes_twitter(changed_releases),
-        )
+        if changed_releases:
+            post(
+                sec_content.format_entry_changes_mastodon(changed_releases),
+                sec_content.format_entry_changes_twitter(changed_releases),
+            )
 
     # DISABLED AS ITS ACCURACY NOT TESTED ENOUGH
     # yearly_reports = releases_sec.get_yearly_report(new_sec_content, latest_versions)

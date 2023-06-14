@@ -355,6 +355,9 @@ def format_entry_changes_mastodon(releases: list[Release]) -> list[str]:
     🌐 Safari 14.1.1 - 1 updated
     https://support.apple.com/kb/HT212534
     """
+    if not releases:
+        return []
+
     post_text = []
     changes_count = 0
 
@@ -398,6 +401,9 @@ def format_entry_changes_twitter(releases: list[Release]) -> list[str]:
     💻 Security Update 2021-004 Mojave - 6 added
     🌐 Safari 14.1.1 - 1 updated
     """
+    if not releases:
+        return []
+
     post_text = []
     changes_count = 0
 
