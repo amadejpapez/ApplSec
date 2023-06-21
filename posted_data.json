@@ -31,7 +31,6 @@
             "Xcode 15 beta 2 (15A5161b)"
         ],
         "new_sec_content": [
-            "macOS Big Sur 11.7.7",
             "iOS and iPadOS 15.7.6",
             "iOS and iPadOS 16.5",
             "tvOS 16.5",
@@ -45,14 +44,17 @@
             "macOS Monterey 12.6.7",
             "macOS Ventura 13.4.1",
             "iOS and iPadOS 15.7.7",
-            "iOS and iPadOS 16.5.1"
+            "iOS and iPadOS 16.5.1",
+            "Safari 16.5.1"
         ],
         "ios_modules": [
             "iOS 16.3.1 and iPadOS 16.3.1",
             "iOS and iPadOS 16.4",
             "iOS and iPadOS 16.5"
         ],
-        "zero_days": {},
+        "zero_days": {
+            "Safari 16.5.1": 1
+        },
         "yearly_report": []
     }
 }
