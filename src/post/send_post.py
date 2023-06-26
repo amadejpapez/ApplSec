@@ -108,7 +108,7 @@ def toot(results: list[str], API_KEY: str) -> None:
         post_ids.append(response.json()["id"])
 
 
-def post(results_mastodon: list[str], results_twitter: list[str] = []) -> None:
+def post(results_mastodon: list[str], results_twitter: list[str] = [], post_to_test_acc: bool = True) -> None:
     if not results_mastodon and not results_twitter:
         return
 
@@ -117,13 +117,19 @@ def post(results_mastodon: list[str], results_twitter: list[str] = []) -> None:
         results_twitter = results_mastodon
 
     try:
-        toot(list(results_mastodon), MASTODON_KEY_TEST)
+        if post_to_test_acc:
+            toot(list(results_mastodon), MASTODON_KEY_TEST)
+        else:
+            toot(list(results_mastodon), MASTODON_KEY)
     except Exception as e:
         print("ERROR: Mastodon failed to post\n" + str(results_mastodon) + "\n" + str(e) + "\n")
         sys.exit(1)
 
     try:
-        tweet(list(results_twitter), TWITTER_API_TEST)
+        if post_to_test_acc:
+            tweet(list(results_twitter), TWITTER_API_TEST)
+        else:
+            tweet(list(results_twitter), TWITTER_API)
     except Exception as e:
         print("ERROR: Twitter failed to post\n" + str(results_twitter) + "\n" + str(e) + "\n")
         sys.exit(1)
