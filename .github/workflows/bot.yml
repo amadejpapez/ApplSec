@@ -13,10 +13,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout main
+      - name: Get latest release tag
+        id: get_latest_tag
+        run: |
+          echo "latest_tag=$(curl -s https://api.github.com/repos/amadejpapez/ApplSec/releases/latest | jq '.tag_name' | sed 's/\"//g')" >> $GITHUB_OUTPUT
+
+      - name: Checkout main, latest release
         uses: actions/checkout@v3
         with:
           path: main
+          ref: ${{ steps.get_latest_tag.outputs.latest_tag }}
 
       - name: Checkout posted_data_json
         uses: actions/checkout@v3
