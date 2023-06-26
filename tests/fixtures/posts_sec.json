@@ -1412,7 +1412,7 @@
     "zero_day_releases_post": [
         "📣 EMERGENCY UPDATES 📣\n\n",
         "Apple pushed updates for 3 new zero-days that may have been actively exploited and additional updates for 1 zero-day.",
-        "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina\n- iOS 12.5.5",
+        "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- iOS 12.5.5\n- Security Update 2021-006 Catalina",
         "\n\n🐛 CVE-2021-30860 (CoreGraphics),\n🐛 CVE-2021-31010 (Core Telephony),\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5"
     ],
     "zero_day_releases_posted_data": {
@@ -1486,13 +1486,13 @@
     "zero_day_releases_one_new_many_old_post": [
         "📣 EMERGENCY UPDATES 📣\n\n",
         "Apple pushed updates for 1 new zero-day that may have been actively exploited and additional updates for 3 zero-days.",
-        "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina\n- iOS 12.5.5",
+        "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- iOS 12.5.5\n- Security Update 2021-006 Catalina",
         "\n\n🐛 CVE-2021-30860 (CoreGraphics) additional patches,\n🐛 CVE-2021-31010 (Core Telephony) additional patches,\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5"
     ],
     "zero_day_releases_many_new_many_old_post": [
         "📣 EMERGENCY UPDATES 📣\n\n",
         "Apple pushed updates for 2 new zero-days that may have been actively exploited and additional updates for 2 zero-days.",
-        "\n\n🐛 CVE-2021-30869 (XNU):\n- Security Update 2021-006 Catalina\n- iOS 12.5.5",
+        "\n\n🐛 CVE-2021-30869 (XNU):\n- iOS 12.5.5\n- Security Update 2021-006 Catalina",
         "\n\n🐛 CVE-2021-30860 (CoreGraphics) additional patches,\n🐛 CVE-2021-31010 (Core Telephony) additional patches,\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5"
     ],
     "zero_day_releases_one_new_info": {

@@ -318,6 +318,7 @@ def format_zero_days(releases: list[Release]) -> list[str]:
 
         text = text[:-1] + ":"
 
+        group["releases"].sort(key=str.lower)
         for rel in group["releases"]:
             text += "\n- " + rel
 
