@@ -108,7 +108,7 @@ def toot(results: list[str], API_KEY: str) -> None:
         post_ids.append(response.json()["id"])
 
 
-def post(results_mastodon: list[str], results_twitter: list[str] = [], post_to_test_acc: bool = True) -> None:
+def post(results_mastodon: list[str], results_twitter: list[str] = [], post_to_test_acc: bool = False) -> None:
     if not results_mastodon and not results_twitter:
         return
 
