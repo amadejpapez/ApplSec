@@ -1,5 +1,20 @@
 # Changelog
 
+## [15.1] - 2023-06-26
+
+### Changed
+
+- in zero-day posts, each CVE will now have releases sorted alphabetically
+
+### Fixed
+
+- upgrade security content links from `http` to `https`
+- remove `&nbsp;` character from release names
+
+### Code
+
+- more and improved tests
+
 ## [15.0] - 2023-06-13
 
 ### Added
