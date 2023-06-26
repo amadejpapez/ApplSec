@@ -224,15 +224,15 @@ def test_security_content_available() -> None:
 
 
 def test_yearly_report() -> None:
-    latest_versions: dict[str, list] = {'iOS and iPadOS': [15], 'macOS': [12, 'Monterey'], 'tvOS': [15], 'watchOS': [8]}
+    latest_versions: dict[str, list] = {"iOS and iPadOS": [15], "macOS": [12, "Monterey"], "tvOS": [15], "watchOS": [8]}
     releases_obj = row_to_release(examples["yearly_report_table"])
     PostedFile.reset()
 
     data = sec_content.get_yearly_report(releases_obj, latest_versions)
 
-    assert data == [['iOS and iPadOS', 15], ['macOS', 12], ['tvOS', 15], ['watchOS', 8]]
-    data.remove(['iOS and iPadOS', 15])
-    data.append(['iOS', 15])
+    assert data == [["iOS and iPadOS", 15], ["macOS", 12], ["tvOS", 15], ["watchOS", 8]]
+    data.remove(["iOS and iPadOS", 15])
+    data.append(["iOS", 15])
 
     for item in data:
         post = sec_content.format_yearly_report(
@@ -243,14 +243,14 @@ def test_yearly_report() -> None:
 
         assert post[0] == examples["yearly_report_" + str(item[0]) + "_post"][0]
 
-    assert PostedFile.data["posts"]["yearly_report"] == ['iOS and iPadOS', 'macOS', 'tvOS', 'watchOS']
+    assert PostedFile.data["posts"]["yearly_report"] == ["iOS and iPadOS", "macOS", "tvOS", "watchOS"]
 
     # try again, should return empty
     data = sec_content.get_yearly_report(releases_obj, latest_versions)
     assert data == []
 
     # try again with one being be removed from the PostedFile
-    PostedFile.data["posts"]["yearly_report"] = ["iOS and iPadOS", 'macOS', 'tvOS']
+    PostedFile.data["posts"]["yearly_report"] = ["iOS and iPadOS", "macOS", "tvOS"]
     data = sec_content.get_yearly_report(releases_obj, latest_versions)
     assert data == [["watchOS", 8]]
 
@@ -281,7 +281,11 @@ def test_zero_day_one_new_many_old() -> None:
     releases_obj = row_to_lxml(examples["zero_day_releases_table"])
 
     PostedFile.reset()
-    PostedFile.data["zero_days"] = ["CVE-2021-30869", "CVE-2021-30860", "CVE-2021-31010",]
+    PostedFile.data["zero_days"] = [
+        "CVE-2021-30869",
+        "CVE-2021-30860",
+        "CVE-2021-31010",
+    ]
 
     new_releases = sec_content.get_new(releases_obj)
     new_zero_days = sec_content.get_new_zero_days(new_releases)
@@ -294,7 +298,10 @@ def test_zero_day_many_new_many_old() -> None:
     releases_obj = row_to_lxml(examples["zero_day_releases_table"])
 
     PostedFile.reset()
-    PostedFile.data["zero_days"] = ["CVE-2021-30860", "CVE-2021-31010",]
+    PostedFile.data["zero_days"] = [
+        "CVE-2021-30860",
+        "CVE-2021-31010",
+    ]
 
     new_releases = sec_content.get_new(releases_obj)
     new_zero_days = sec_content.get_new_zero_days(new_releases)
@@ -318,7 +325,10 @@ def test_zero_day_many_old() -> None:
     new_releases = info_to_release(examples["zero_day_releases_two_info"])
 
     PostedFile.reset()
-    PostedFile.data["zero_days"] = ["CVE-2021-30869", "CVE-2021-30858"]
+    PostedFile.data["zero_days"] = [
+        "CVE-2021-30869",
+        "CVE-2021-30858",
+    ]
 
     new_zero_days = sec_content.get_new_zero_days(new_releases)
     post = sec_content.format_zero_days(new_zero_days)
