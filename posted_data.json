@@ -14,11 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "macOS 13.5 beta 3 (22G5048d)",
-            "iPadOS 16.6 beta 3 (20G5047d)",
-            "iOS 16.6 beta 3 (20G5047d)",
-            "watchOS 9.5.2 (20T571)",
-            "iPadOS 15.7.7 (19H357)",
             "iOS 15.7.7 (19H357)",
             "macOS 13.4.1 (22F82 | 22F2083)",
             "iPadOS 16.5.1 (20F75)",
@@ -28,7 +23,12 @@
             "macOS 14 beta 2 (23A5276g)",
             "iPadOS 17 beta 2 (21A5268h)",
             "iOS 17 beta 2 (21A5268h)",
-            "Xcode 15 beta 2 (15A5161b)"
+            "Xcode 15 beta 2 (15A5161b)",
+            "tvOS 16.6 beta 4 (20M5559c)",
+            "watchOS 9.6 beta 4 (20U5559c)",
+            "macOS 13.5 beta 4 (22G5059d)",
+            "iPadOS 16.6 beta 4 (20G5058d)",
+            "iOS 16.6 beta 4 (20G5058d)"
         ],
         "new_sec_content": [
             "iOS and iPadOS 15.7.6",
