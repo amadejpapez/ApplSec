@@ -1,6 +1,5 @@
 {
     "zero_days": [
-        "CVE-2022-42856",
         "CVE-2023-23529",
         "CVE-2023-28206",
         "CVE-2023-28205",
@@ -9,7 +8,8 @@
         "CVE-2023-32373",
         "CVE-2023-32434",
         "CVE-2023-32439",
-        "CVE-2023-32435"
+        "CVE-2023-32435",
+        "CVE-2023-37450"
     ],
     "details_available_soon": [],
     "posts": {
@@ -31,7 +31,6 @@
             "iOS 16.6 beta 5 (20G5070a)"
         ],
         "new_sec_content": [
-            "tvOS 16.5",
             "watchOS 9.5",
             "Safari 16.5",
             "iTunes 12.12.9 for Windows",
@@ -45,14 +44,17 @@
             "iOS and iPadOS 16.5.1",
             "Safari 16.5.1",
             "Rapid Security Response macOS Ventura 13.4.1 (a)",
-            "Rapid Security Response iOS and iPadOS 16.5.1 (a)"
+            "Rapid Security Response iOS and iPadOS 16.5.1 (a)",
+            "Safari 16.5.2"
         ],
         "ios_modules": [
             "iOS 16.3.1 and iPadOS 16.3.1",
             "iOS and iPadOS 16.4",
             "iOS and iPadOS 16.5"
         ],
-        "zero_days": {},
+        "zero_days": {
+            "Safari 16.5.2": 1
+        },
         "yearly_report": []
     }
 }
