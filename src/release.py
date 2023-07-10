@@ -97,8 +97,14 @@ class Release:
                 sec_content_page_html = requests.get(security_content_link, timeout=60).text
 
                 sec_content_page = lxml.html.document_fromstring(sec_content_page_html).text_content()
+
+                if "Rapid Security Response" in name:
+                    title = "About Rapid Security Response"
+                else:
+                    title = "About Apple security updates"
+
                 sec_content_page = (
-                    sec_content_page_html.split("About Apple security updates", 1)[1]
+                    sec_content_page_html.split(title, 1)[1]
                     .split("Published Date", 1)[0]
                     .replace("&nbsp;", " ")
                 )
