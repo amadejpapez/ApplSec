@@ -114,6 +114,17 @@ def test_new_sec_content_details_soon() -> None:
     assert PostedFile.data == examples["new_sec_content_details_soon_posted_data"]
 
 
+def test_new_sec_content_rsr() -> None:
+    # Rapid Security Response (RSR)
+    releases_obj = row_to_lxml(examples["new_sec_content_rsr"])
+    PostedFile.reset()
+
+    new_releases = sec_content.get_new(releases_obj)
+
+    post = sec_content.format_new_sec_content_mastodon(new_releases)
+    assert post == examples["new_sec_content_rsr_post"]
+
+
 def test_ios_modules() -> None:
     releases_obj = row_to_release(examples["ios_modules_table"])
     PostedFile.reset()

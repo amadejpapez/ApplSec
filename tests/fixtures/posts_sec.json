@@ -843,6 +843,23 @@
         "⌚ watchOS 9.5.1 - no CVE entries\n",
         "📺 tvOS 16.4.1 - no CVE entries\n"
     ],
+    "new_sec_content_rsr": [
+        [
+            "<a href=\"https://support.apple.com/kb/HT213823\">Rapid Security Response<br> iOS 16.5.1 (a) & iPadOS 16.5.1 (a)</a>",
+            "iOS 16.5.1 and iPadOS 16.5.1",
+            "10 Jul 2023"
+        ],
+        [
+            "<a href=\"https://support.apple.com/kb/HT213825\">Rapid Security Response<br> macOS Ventura 13.4.1 (a)</a>",
+            "macOS Ventura 13.4.1",
+            "10 Jul 2023"
+        ]
+    ],
+    "new_sec_content_rsr_post": [
+        "🐛 NEW SECURITY CONTENT 🐛\n\n",
+        "💻 Rapid Security Response macOS Ventura 13.4.1 (a) - 1 bug fixed\nhttps://support.apple.com/kb/HT213825\n",
+        "📱 Rapid Security Response iOS and iPadOS 16.5.1 (a) - 1 bug fixed\nhttps://support.apple.com/kb/HT213823\n"
+    ],
     "ios_modules_table": [
         [
             "<a href=\"https://support.apple.com/kb/HT213053\">iOS 15.3 and iPadOS 15.3</a>",
