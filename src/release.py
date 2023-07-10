@@ -145,11 +145,13 @@ class Release:
         name = name.replace("\n", "")
 
         # "no details yet" releases might have this bracket alongside of their name
-        name = name.split("(details available soon)", 1)[0].strip()
+        name = name.replace("(details available soon)", "").strip()
 
+        # "iOS 15.3 and iPadOS 15.3" -> "iOS and iPadOS 15.3"
         if "iOS" in name and "iPadOS" in name:
-            # turn "iOS 15.3 and iPadOS 15.3" into shorter "iOS and iPadOS 15.3"
-            name = name.split("and", 1)[0].strip().replace("iOS", "iOS and iPadOS")
+            ver = re.findall(r"iOS (.+?) (?:and|&) iPadOS", name)[0]
+            if re.findall(rf"iOS {re.escape(ver)} (?:and|&) iPadOS {re.escape(ver)}", name):
+                name = name.replace(re.findall(rf"iOS {re.escape(ver)} (?:and|&)", name)[0], "iOS and")
 
         if "macOS" in name and "Update" in name:
             # for releases "macOS Big Sur 11.2.1, macOS Catalina 10.15.7 Supplemental Update,..."
