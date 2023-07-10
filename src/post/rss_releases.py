@@ -49,7 +49,7 @@ def get_new(xml_tree: lxml.etree._Element = retrieve_rss()) -> list[Release]:
 
 def format_releases(releases: list[Release]) -> list[str]:
     """
-    💥 NEW UPDATES RELEASED 💥
+    🧪 NEW BETA RELEASES 🧪
 
     📱 iOS 16.6 beta 2 (20G5037d)
     📱 iPadOS 16.6 beta 2 (20G5037d)
@@ -63,11 +63,17 @@ def format_releases(releases: list[Release]) -> list[str]:
     releases.sort(key=lambda x: (x.name.lower()))
 
     for release in releases:
+        # post only beta releases
+        if "beta" not in release.name:
+            break
+
         post_text.append(f"{release.emoji} {release.name}\n")
 
     if len(releases) == 1:
-        post_text.insert(0, "💥 NEW UPDATE RELEASED 💥\n\n")
+        post_text.insert(0, "🧪 NEW BETA RELEASE 🧪\n\n")
     else:
-        post_text.insert(0, "💥 NEW UPDATES RELEASED 💥\n\n")
+        post_text.insert(0, "🧪 NEW BETA RELEASES 🧪\n\n")
+
+    post_text.append("https://developer.apple.com/news/releases")
 
     return post_text
