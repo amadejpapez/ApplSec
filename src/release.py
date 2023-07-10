@@ -134,9 +134,15 @@ class Release:
     def parse_name(release_row: list[lxml.html.HtmlElement]) -> str:
         name = release_row[0].text_content().replace("\xa0", " ")
 
-        # for releases with "macOS Monterey 12.0.1 (Advisory includes security content of..."
-        # and for "watchOS 9.0.2\nThis update has no published CVE entries."
-        name = name.split("(Advisory", 1)[0].split("\n", 1)[0].strip()
+        # handle "macOS Monterey 12.0.1 (Advisory includes security content of..."
+        name = name.split("(Advisory", 1)[0]
+
+        # handle "watchOS 9.0.2\nThis update has no published CVE entries."
+        if "update has no published CVE entries" in name:
+            name = name.split("\n", 1)[0].strip()
+
+        # handle "Rapid Security Response\nmacOS Ventura 13.4.1 (a)"
+        name = name.replace("\n", "")
 
         # "no details yet" releases might have this bracket alongside of their name
         name = name.split("(details available soon)", 1)[0].strip()
