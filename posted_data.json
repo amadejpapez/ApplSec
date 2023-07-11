@@ -14,7 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "tvOS 17 beta 3 (21J5303f)",
             "watchOS 10 beta 3 (21R5305e)",
             "macOS 14 beta 3 (23A5286g)",
             "iPadOS 17 beta 3 (21A5277h)",
@@ -28,7 +27,8 @@
             "tvOS 17 beta 3 (21J5303h)",
             "macOS 14 beta 3 (23A5286i)",
             "iPadOS 17 beta 3 (21A5277j)",
-            "iOS 17 beta 3 (21A5277j)"
+            "iOS 17 beta 3 (21A5277j)",
+            "Xcode 15 beta 4 (15A5195m)"
         ],
         "new_sec_content": [
             "watchOS 9.5",
@@ -52,9 +52,7 @@
             "iOS and iPadOS 16.4",
             "iOS and iPadOS 16.5"
         ],
-        "zero_days": {
-            "Safari 16.5.2": 1
-        },
+        "zero_days": {},
         "yearly_report": []
     }
 }
