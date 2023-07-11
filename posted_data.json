@@ -14,10 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "watchOS 9.6 beta 4 (20U5559c)",
-            "macOS 13.5 beta 4 (22G5059d)",
-            "iPadOS 16.6 beta 4 (20G5058d)",
-            "iOS 16.6 beta 4 (20G5058d)",
             "tvOS 17 beta 3 (21J5303f)",
             "watchOS 10 beta 3 (21R5305e)",
             "macOS 14 beta 3 (23A5286g)",
@@ -28,7 +24,11 @@
             "watchOS 9.6 beta 5 (20U5570a)",
             "macOS 13.5 beta 5 (22G5072a)",
             "iPadOS 16.6 beta 5 (20G5070a)",
-            "iOS 16.6 beta 5 (20G5070a)"
+            "iOS 16.6 beta 5 (20G5070a)",
+            "tvOS 17 beta 3 (21J5303h)",
+            "macOS 14 beta 3 (23A5286i)",
+            "iPadOS 17 beta 3 (21A5277j)",
+            "iOS 17 beta 3 (21A5277j)"
         ],
         "new_sec_content": [
             "watchOS 9.5",
