@@ -31,8 +31,6 @@
             "Xcode 15 beta 4 (15A5195m)"
         ],
         "new_sec_content": [
-            "watchOS 9.5",
-            "Safari 16.5",
             "iTunes 12.12.9 for Windows",
             "watchOS 9.5.1",
             "watchOS 8.8.1",
@@ -45,14 +43,19 @@
             "Safari 16.5.1",
             "Rapid Security Response macOS Ventura 13.4.1 (a)",
             "Rapid Security Response iOS and iPadOS 16.5.1 (a)",
-            "Safari 16.5.2"
+            "Safari 16.5.2",
+            "Rapid Security Response macOS Ventura 13.4.1 (c)",
+            "Rapid Security Response iOS and iPadOS 16.5.1 (c)"
         ],
         "ios_modules": [
             "iOS 16.3.1 and iPadOS 16.3.1",
             "iOS and iPadOS 16.4",
             "iOS and iPadOS 16.5"
         ],
-        "zero_days": {},
+        "zero_days": {
+            "Rapid Security Response iOS and iPadOS 16.5.1 (c)": 1,
+            "Rapid Security Response macOS Ventura 13.4.1 (c)": 1
+        },
         "yearly_report": []
     }
 }
