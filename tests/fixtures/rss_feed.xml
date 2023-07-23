@@ -12,6 +12,14 @@
         <copyright>Copyright 2023, Apple Inc.</copyright>
 
         <item>
+            <title>iOS 15.7.6 (19H349)</title>
+            <link>https://developer.apple.com/news/releases/?id=05182023b</link>
+            <guid>https://developer.apple.com/news/releases/?id=05182023b</guid>
+            <description>View downloads</description>
+            <pubDate>Mon, 05 Jun 2023 14:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p>]]></content:encoded>
+        </item>
+        <item>
             <title>Xcode 15 beta (15A5160n)</title>
             <link>https://developer.apple.com/news/releases/?id=06052023a</link>
             <guid>https://developer.apple.com/news/releases/?id=06052023a</guid>
@@ -182,14 +190,6 @@
             <description>View downloadsView release notes</description>
             <pubDate>Thu, 18 May 2023 10:00:00 PDT</pubDate>
             <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p><il><p><a href=/go/?id=tvos-16.5-rn class=more>View release notes</a></p></il>]]></content:encoded>
-        </item>
-        <item>
-            <title>iOS 15.7.6 (19H349)</title>
-            <link>https://developer.apple.com/news/releases/?id=05182023b</link>
-            <guid>https://developer.apple.com/news/releases/?id=05182023b</guid>
-            <description>View downloads</description>
-            <pubDate>Thu, 18 May 2023 10:00:00 PDT</pubDate>
-            <content:encoded><![CDATA[<p><a href=/download class=more>View downloads</a></p>]]></content:encoded>
         </item>
         <item>
             <title>iPadOS 15.7.6 (19H349)</title>

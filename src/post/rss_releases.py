@@ -16,7 +16,7 @@ def retrieve_rss(rss: str = _request_rss_feed()) -> lxml.etree._Element:
 
 
 def get_new(xml_tree: lxml.etree._Element = retrieve_rss()) -> list[Release]:
-    """Return new releases from RSS that have not been posted yet."""
+    """Return new (beta) releases from RSS that have not been posted yet."""
     new_releases = []
 
     for el in xml_tree.xpath("//item"):
@@ -26,6 +26,10 @@ def get_new(xml_tree: lxml.etree._Element = retrieve_rss()) -> list[Release]:
         # break if not today's date
         if get_date.format_one() not in el.xpath("pubDate")[0].text:
             break
+
+        # post only beta releases
+        if "beta" not in name and "RC" not in name:
+            continue
 
         # break if already posted
         if name in PostedFile.data["posts"]["new_releases"]:
@@ -63,10 +67,6 @@ def format_releases(releases: list[Release]) -> list[str]:
     releases.sort(key=lambda x: (x.name.lower()))
 
     for release in releases:
-        # post only beta releases
-        if "beta" not in release.name and "RC" not in release.name:
-            break
-
         post_text.append(f"{release.emoji} {release.name}\n")
 
     if len(releases) == 1:
