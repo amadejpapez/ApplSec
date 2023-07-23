@@ -64,7 +64,7 @@ def format_releases(releases: list[Release]) -> list[str]:
 
     for release in releases:
         # post only beta releases
-        if "beta" not in release.name:
+        if "beta" not in release.name and "RC" not in release.name:
             break
 
         post_text.append(f"{release.emoji} {release.name}\n")
