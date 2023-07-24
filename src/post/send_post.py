@@ -132,6 +132,6 @@ def post(results_mastodon: list[str], results_twitter: list[str] = [], post_to_t
             tweet(list(results_twitter), TWITTER_API)
     except Exception as e:
         print("ERROR: Twitter failed to post\n" + str(results_twitter) + "\n" + str(e) + "\n")
-        sys.exit(1)
+        # sys.exit(1)
 
     PostedFile.save()
