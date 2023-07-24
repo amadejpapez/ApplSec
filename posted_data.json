@@ -1,6 +1,5 @@
 {
     "zero_days": [
-        "CVE-2023-23529",
         "CVE-2023-28206",
         "CVE-2023-28205",
         "CVE-2023-32409",
@@ -9,7 +8,8 @@
         "CVE-2023-32434",
         "CVE-2023-32439",
         "CVE-2023-32435",
-        "CVE-2023-37450"
+        "CVE-2023-37450",
+        "CVE-2023-38606"
     ],
     "details_available_soon": [],
     "posts": {
@@ -31,30 +31,37 @@
             "iOS 16.6 RC (20G75)"
         ],
         "new_sec_content": [
-            "iTunes 12.12.9 for Windows",
-            "watchOS 9.5.1",
-            "watchOS 8.8.1",
-            "watchOS 9.5.2",
-            "macOS Big Sur 11.7.8",
-            "macOS Monterey 12.6.7",
-            "macOS Ventura 13.4.1",
-            "iOS and iPadOS 15.7.7",
             "iOS and iPadOS 16.5.1",
             "Safari 16.5.1",
             "Rapid Security Response macOS Ventura 13.4.1 (a)",
             "Rapid Security Response iOS and iPadOS 16.5.1 (a)",
             "Safari 16.5.2",
             "Rapid Security Response macOS Ventura 13.4.1 (c)",
-            "Rapid Security Response iOS and iPadOS 16.5.1 (c)"
+            "Rapid Security Response iOS and iPadOS 16.5.1 (c)",
+            "watchOS 9.6",
+            "tvOS 16.6",
+            "macOS Big Sur 11.7.9",
+            "macOS Monterey 12.6.8",
+            "macOS Ventura 13.5",
+            "iOS and iPadOS 15.7.8",
+            "iOS and iPadOS 16.6",
+            "Safari 16.6"
         ],
         "ios_modules": [
-            "iOS 16.3.1 and iPadOS 16.3.1",
             "iOS and iPadOS 16.4",
-            "iOS and iPadOS 16.5"
+            "iOS and iPadOS 16.5",
+            "iOS and iPadOS 16.6"
         ],
         "zero_days": {
             "Rapid Security Response iOS and iPadOS 16.5.1 (c)": 1,
-            "Rapid Security Response macOS Ventura 13.4.1 (c)": 1
+            "Rapid Security Response macOS Ventura 13.4.1 (c)": 1,
+            "iOS and iPadOS 15.7.8": 2,
+            "tvOS 16.6": 2,
+            "macOS Big Sur 11.7.9": 1,
+            "watchOS 9.6": 2,
+            "macOS Monterey 12.6.8": 1,
+            "iOS and iPadOS 16.6": 2,
+            "macOS Ventura 13.5": 2
         },
         "yearly_report": []
     }
