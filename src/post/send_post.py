@@ -24,7 +24,8 @@ TWITTER_API_TEST = tweepy.Client(
 
 MASTODON_KEY = "Bearer " + os.environ.get("MASTODON_ACCESS_TOKEN", "")
 MASTODON_KEY_TEST = "Bearer " + os.environ.get("MASTODON_ACCESS_TOKEN_TEST", "")
-
+# temporary
+MASTODON_KEY = MASTODON_KEY_TEST
 
 def arrange_post(results: list[str], MAX_CHAR: int) -> list[str]:
     """
