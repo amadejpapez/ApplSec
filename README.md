@@ -50,6 +50,8 @@ The bot is often updated as new ideas appear and to keep up with any changes to 
 
 <br>
 
+<hr>
+
 _Not affiliated with Apple Inc._
 
-_Apple, Apple logo, iCloud, watchOS, tvOS and macOS are trademarks of Apple Inc., registered in the U.S. and other countries and regions._
+_Apple, iCloud, watchOS, tvOS and macOS are trademarks of Apple Inc., registered in the U.S. and other countries and regions._
