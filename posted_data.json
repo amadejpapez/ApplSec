@@ -31,7 +31,6 @@
             "Xcode 15 beta 6 (15A5219j)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 16.5.1",
             "Safari 16.5.1",
             "Rapid Security Response macOS Ventura 13.4.1 (a)",
             "Rapid Security Response iOS and iPadOS 16.5.1 (a)",
@@ -45,7 +44,8 @@
             "macOS Ventura 13.5",
             "iOS and iPadOS 15.7.8",
             "iOS and iPadOS 16.6",
-            "Safari 16.6"
+            "Safari 16.6",
+            "watchOS 9.6.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 16.4",
