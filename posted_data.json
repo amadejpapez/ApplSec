@@ -14,10 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "tvOS 17 beta 4 (21J5318f)",
-            "watchOS 10 beta 4 (21R5320i)",
-            "macOS 14 beta 4 (23A5301g)",
-            "iPadOS 17 beta 4 (21A5291h)",
             "iOS 17 beta 4 (21A5291h)",
             "Xcode 15 beta 5 (15A5209g)",
             "macOS 14 beta 4 (23A5301h)",
@@ -28,7 +24,11 @@
             "macOS 14 beta 5 (23A5312d)",
             "iPadOS 17 beta 5 (21A5303d)",
             "iOS 17 beta 5 (21A5303d)",
-            "Xcode 15 beta 6 (15A5219j)"
+            "Xcode 15 beta 6 (15A5219j)",
+            "tvOS 17 beta 6 (21J5339b)",
+            "watchOS 10 beta 6 (21R5341c)",
+            "iPadOS 17 beta 6 (21A5312c)",
+            "iOS 17 beta 6 (21A5312c)"
         ],
         "new_sec_content": [
             "Safari 16.5.1",
