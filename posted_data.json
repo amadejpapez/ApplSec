@@ -14,11 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "watchOS 10 beta 5 (21R5332f)",
-            "macOS 14 beta 5 (23A5312d)",
-            "iPadOS 17 beta 5 (21A5303d)",
-            "iOS 17 beta 5 (21A5303d)",
-            "Xcode 15 beta 6 (15A5219j)",
             "tvOS 17 beta 6 (21J5339b)",
             "watchOS 10 beta 6 (21R5341c)",
             "iPadOS 17 beta 6 (21A5312c)",
@@ -28,7 +23,12 @@
             "macOS 14 beta 6 (23A5328b)",
             "iPadOS 17 beta 7 (21A5319a)",
             "iOS 17 beta 7 (21A5319a)",
-            "Xcode 15 beta 7 (15A5229h)"
+            "Xcode 15 beta 7 (15A5229h)",
+            "tvOS 17 beta 8 (21J5353a)",
+            "watchOS 10 beta 8 (21R5355a)",
+            "iPadOS 17 beta 8 (21A5326a)",
+            "iOS 17 beta 8 (21A5326a)",
+            "Xcode 15 beta 8 (15A5229m)"
         ],
         "new_sec_content": [
             "Rapid Security Response macOS Ventura 13.4.1 (a)",
