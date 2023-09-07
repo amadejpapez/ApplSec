@@ -1,7 +1,5 @@
 {
     "zero_days": [
-        "CVE-2023-28206",
-        "CVE-2023-28205",
         "CVE-2023-32409",
         "CVE-2023-28204",
         "CVE-2023-32373",
@@ -9,7 +7,9 @@
         "CVE-2023-32439",
         "CVE-2023-32435",
         "CVE-2023-37450",
-        "CVE-2023-38606"
+        "CVE-2023-38606",
+        "CVE-2023-41064",
+        "CVE-2023-41061"
     ],
     "details_available_soon": [],
     "posts": {
@@ -31,9 +31,6 @@
             "tvOS 17 beta 9 (21J5354a)"
         ],
         "new_sec_content": [
-            "Rapid Security Response macOS Ventura 13.4.1 (a)",
-            "Rapid Security Response iOS and iPadOS 16.5.1 (a)",
-            "Safari 16.5.2",
             "Rapid Security Response macOS Ventura 13.4.1 (c)",
             "Rapid Security Response iOS and iPadOS 16.5.1 (c)",
             "watchOS 9.6",
@@ -45,14 +42,21 @@
             "iOS and iPadOS 16.6",
             "Safari 16.6",
             "watchOS 9.6.1",
-            "macOS Ventura 13.5.1"
+            "macOS Ventura 13.5.1",
+            "watchOS 9.6.2",
+            "iOS and iPadOS 16.6.1",
+            "macOS Ventura 13.5.2"
         ],
         "ios_modules": [
             "iOS and iPadOS 16.4",
             "iOS and iPadOS 16.5",
             "iOS and iPadOS 16.6"
         ],
-        "zero_days": {},
+        "zero_days": {
+            "macOS Ventura 13.5.2": 1,
+            "watchOS 9.6.2": 1,
+            "iOS and iPadOS 16.6.1": 2
+        },
         "yearly_report": []
     }
 }
