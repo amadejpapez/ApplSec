@@ -52,11 +52,7 @@
             "iOS and iPadOS 16.5",
             "iOS and iPadOS 16.6"
         ],
-        "zero_days": {
-            "macOS Ventura 13.5.2": 1,
-            "watchOS 9.6.2": 1,
-            "iOS and iPadOS 16.6.1": 2
-        },
+        "zero_days": {},
         "yearly_report": []
     }
 }
