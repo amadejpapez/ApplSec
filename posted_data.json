@@ -31,9 +31,6 @@
             "tvOS 17 beta 9 (21J5354a)"
         ],
         "new_sec_content": [
-            "Rapid Security Response macOS Ventura 13.4.1 (c)",
-            "Rapid Security Response iOS and iPadOS 16.5.1 (c)",
-            "watchOS 9.6",
             "tvOS 16.6",
             "macOS Big Sur 11.7.9",
             "macOS Monterey 12.6.8",
@@ -45,14 +42,21 @@
             "macOS Ventura 13.5.1",
             "watchOS 9.6.2",
             "iOS and iPadOS 16.6.1",
-            "macOS Ventura 13.5.2"
+            "macOS Ventura 13.5.2",
+            "macOS Big Sur 11.7.10",
+            "macOS Monterey 12.6.9",
+            "iOS and iPadOS 15.7.9"
         ],
         "ios_modules": [
             "iOS and iPadOS 16.4",
             "iOS and iPadOS 16.5",
             "iOS and iPadOS 16.6"
         ],
-        "zero_days": {},
+        "zero_days": {
+            "iOS and iPadOS 15.7.9": 1,
+            "macOS Big Sur 11.7.10": 1,
+            "macOS Monterey 12.6.9": 1
+        },
         "yearly_report": []
     }
 }
