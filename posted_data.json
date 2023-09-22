@@ -35,7 +35,6 @@
             "tvOS 17 beta 9 (21J5354a)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 16.6.1",
             "macOS Ventura 13.5.2",
             "macOS Big Sur 11.7.10",
             "macOS Monterey 12.6.9",
@@ -49,7 +48,8 @@
             "watchOS 10.0.1",
             "iOS and iPadOS 16.7",
             "iOS and iPadOS 17.0.1",
-            "Safari 16.6.1"
+            "Safari 16.6.1",
+            "iOS 17.0.2"
         ],
         "ios_modules": [
             "iOS and iPadOS 16.4",
