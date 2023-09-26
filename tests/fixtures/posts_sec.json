@@ -799,11 +799,23 @@
             "tvOS 16.3.2 (details available soon)",
             "Apple TV 4K (all models) and Apple TV HD",
             "13 Feb 2023"
+        ],
+        [
+            "iOS 17 and iPadOS 17 (Details available soon.)",
+            "iPhone XS and later",
+            "18 Sep 2023"
         ]
     ],
-    "new_sec_content_details_soon_post": [
+    "new_sec_content_details_soon_post_mastodon": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "📺 tvOS 16.3.2 - no details yet\n"
+        "📺 tvOS 16.3.2 - no details yet\n",
+        "📱 iOS and iPadOS 17 - no details yet\n"
+    ],
+    "new_sec_content_details_soon_post_twitter": [
+        "🐛 NEW SECURITY CONTENT 🐛\n\n",
+        "📺 tvOS 16.3.2 - no details yet\n",
+        "📱 iOS and iPadOS 17 - no details yet\n",
+        "https://support.apple.com/kb/HT201222"
     ],
     "new_sec_content_details_soon_posted_data": {
         "zero_days": [],
