@@ -101,17 +101,29 @@ def test_new_sec_content_only_one() -> None:
 
 
 def test_new_sec_content_details_soon() -> None:
+    # details available soon
     releases_obj = row_to_lxml(examples["new_sec_content_details_soon_table"])
     PostedFile.reset()
 
     new_releases = sec_content.get_new(releases_obj)
 
     post = sec_content.format_new_sec_content_mastodon(new_releases)
-    assert post == examples["new_sec_content_details_soon_post"]
+    assert post == examples["new_sec_content_details_soon_post_mastodon"]
     post = sec_content.format_new_sec_content_twitter(new_releases)
-    assert post == examples["new_sec_content_details_soon_post"]
+    assert post == examples["new_sec_content_details_soon_post_twitter"]
 
     assert PostedFile.data == examples["new_sec_content_details_soon_posted_data"]
+
+    # details now available
+    releases_obj = row_to_lxml(examples["new_sec_content_details_available_table"])
+    new_releases = sec_content.get_new(releases_obj)
+
+    post = sec_content.format_new_sec_content_mastodon(new_releases)
+    assert post == examples["new_sec_content_details_available_post_mastodon"]
+    post = sec_content.format_new_sec_content_twitter(new_releases)
+    assert post == examples["new_sec_content_details_available_post_twitter"]
+
+    assert PostedFile.data == examples["new_sec_content_details_available_posted_data"]
 
 
 def test_new_sec_content_rsr() -> None:
