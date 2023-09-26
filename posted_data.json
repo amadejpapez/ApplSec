@@ -11,11 +11,7 @@
         "CVE-2023-41991",
         "CVE-2023-41993"
     ],
-    "details_available_soon": [
-        "tvOS 17",
-        "watchOS 10",
-        "iOS and iPadOS 17"
-    ],
+    "details_available_soon": [],
     "posts": {
         "new_releases": [
             "iPadOS 17 beta 6 (21A5312c)",
@@ -52,9 +48,9 @@
             "macOS Sonoma 14"
         ],
         "ios_modules": [
-            "iOS and iPadOS 16.4",
             "iOS and iPadOS 16.5",
-            "iOS and iPadOS 16.6"
+            "iOS and iPadOS 16.6",
+            "iOS and iPadOS 17"
         ],
         "zero_days": {
             "iOS and iPadOS 15.7.9": 1,
