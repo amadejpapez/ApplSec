@@ -50,7 +50,7 @@ def get_new(all_release_rows: list[list[lxml.html.HtmlElement]]) -> list[Release
             # save releases with "no details yet"
             PostedFile.data["details_available_soon"].append(release.name)
 
-    return new_sec_content
+    return new_sec_content + get_if_available(all_release_rows)
 
 
 def get_if_available(all_release_rows: list[list[lxml.html.HtmlElement]]) -> list[Release]:

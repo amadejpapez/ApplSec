@@ -16,7 +16,7 @@ def main():
     if new_releases_rss:
         post(rss_releases.format_releases(new_releases_rss))
 
-    new_sec_content = sec_content.get_new(all_release_rows) + sec_content.get_if_available(all_release_rows)
+    new_sec_content = sec_content.get_new(all_release_rows)
     if new_sec_content:
         post(
             sec_content.format_new_sec_content_mastodon(new_sec_content),
