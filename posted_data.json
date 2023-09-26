@@ -52,20 +52,7 @@
             "iOS and iPadOS 16.6",
             "iOS and iPadOS 17"
         ],
-        "zero_days": {
-            "iOS and iPadOS 15.7.9": 1,
-            "macOS Big Sur 11.7.10": 1,
-            "macOS Monterey 12.6.9": 1,
-            "macOS Monterey 12.7": 1,
-            "macOS Ventura 13.6": 3,
-            "watchOS 10.0.1": 2,
-            "watchOS 9.6.3": 2,
-            "iOS and iPadOS 16.7": 3,
-            "iOS and iPadOS 17.0.1": 3,
-            "Safari 16.6.1": 1,
-            "macOS Sonoma 14": 1,
-            "Safari 17": 1
-        },
+        "zero_days": {},
         "yearly_report": []
     }
 }
