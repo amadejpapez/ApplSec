@@ -28,7 +28,7 @@ def get_new(xml_tree: lxml.etree._Element = retrieve_rss()) -> list[Release]:
             break
 
         # post only beta releases
-        if "beta" not in name and "RC" not in name:
+        if "beta" not in name and "RC" not in name and "Release Candidate" not in name:
             continue
 
         # break if already posted
