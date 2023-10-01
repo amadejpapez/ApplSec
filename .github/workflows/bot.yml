@@ -14,12 +14,12 @@ jobs:
 
     steps:
       - name: Checkout main
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: main
 
       - name: Checkout posted_data_json
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: posted_data_json
           path: branch
