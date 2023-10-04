@@ -1,6 +1,5 @@
 {
     "zero_days": [
-        "CVE-2023-32434",
         "CVE-2023-32439",
         "CVE-2023-32435",
         "CVE-2023-37450",
@@ -9,7 +8,8 @@
         "CVE-2023-41061",
         "CVE-2023-41992",
         "CVE-2023-41991",
-        "CVE-2023-41993"
+        "CVE-2023-41993",
+        "CVE-2023-42824"
     ],
     "details_available_soon": [],
     "posts": {
@@ -31,7 +31,6 @@
             "Xcode 15.1 beta (15C5028h)"
         ],
         "new_sec_content": [
-            "tvOS 17(Details available soon.)",
             "watchOS 10(Details available soon.)",
             "iOS and iPadOS 17(Details available soon.)",
             "macOS Monterey 12.7",
@@ -45,14 +44,17 @@
             "macOS Sonoma 14",
             "Safari 17",
             "watchOS 10.0.2",
-            "iOS and iPadOS 17.0.2"
+            "iOS and iPadOS 17.0.2",
+            "iOS and iPadOS 17.0.3"
         ],
         "ios_modules": [
-            "iOS and iPadOS 16.5",
             "iOS and iPadOS 16.6",
-            "iOS and iPadOS 17"
+            "iOS and iPadOS 17",
+            "iOS and iPadOS 17.0.3"
         ],
-        "zero_days": {},
+        "zero_days": {
+            "iOS and iPadOS 17.0.3": 1
+        },
         "yearly_report": []
     }
 }
