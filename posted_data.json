@@ -31,7 +31,6 @@
             "iOS 17.1 beta 3 (21B5066a)"
         ],
         "new_sec_content": [
-            "watchOS 10(Details available soon.)",
             "iOS and iPadOS 17(Details available soon.)",
             "macOS Monterey 12.7",
             "macOS Ventura 13.6",
@@ -45,16 +44,15 @@
             "Safari 17",
             "watchOS 10.0.2",
             "iOS and iPadOS 17.0.2",
-            "iOS and iPadOS 17.0.3"
+            "iOS and iPadOS 17.0.3",
+            "iOS and iPadOS 16.7.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 16.6",
             "iOS and iPadOS 17",
             "iOS and iPadOS 17.0.3"
         ],
-        "zero_days": {
-            "iOS and iPadOS 17.0.3": 1
-        },
+        "zero_days": {},
         "yearly_report": []
     }
 }
