@@ -14,8 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "macOS 14.1 beta (23B5046f)",
-            "iPadOS 17.1 beta (21B5045h)",
             "iOS 17.1 beta (21B5045h)",
             "tvOS 17.1 beta 2 (21K5054e)",
             "watchOS 10.1 beta 2 (21S5053f)",
@@ -28,7 +26,9 @@
             "iPadOS 17.1 beta 3 (21B5066a)",
             "iOS 17.1 beta 3 (21B5066a)",
             "Xcode 15.0.1 Release Candidate (15A507)",
-            "tvOS 17.1 beta 3 (21K5064b)"
+            "tvOS 17.1 beta 3 (21K5064b)",
+            "macOS 14.1 Release Candidate (23B73)",
+            "iPadOS 17.1 Release Candidate (21B74)"
         ],
         "new_sec_content": [
             "iOS and iPadOS 17(Details available soon.)",
