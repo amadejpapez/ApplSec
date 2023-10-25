@@ -1,6 +1,5 @@
 {
     "zero_days": [
-        "CVE-2023-32439",
         "CVE-2023-32435",
         "CVE-2023-37450",
         "CVE-2023-38606",
@@ -9,7 +8,8 @@
         "CVE-2023-41992",
         "CVE-2023-41991",
         "CVE-2023-41993",
-        "CVE-2023-42824"
+        "CVE-2023-42824",
+        "CVE-2023-32434"
     ],
     "details_available_soon": [],
     "posts": {
@@ -31,28 +31,30 @@
             "iOS 17.1 Release Candidate 2 (21B77)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 17(Details available soon.)",
-            "macOS Monterey 12.7",
-            "macOS Ventura 13.6",
-            "watchOS 9.6.3",
-            "watchOS 10.0.1",
-            "iOS and iPadOS 16.7",
-            "iOS and iPadOS 17.0.1",
-            "Safari 16.6.1",
-            "iOS 17.0.2",
             "macOS Sonoma 14",
             "Safari 17",
             "watchOS 10.0.2",
             "iOS and iPadOS 17.0.2",
             "iOS and iPadOS 17.0.3",
-            "iOS and iPadOS 16.7.1"
+            "iOS and iPadOS 16.7.1",
+            "Safari 17.1",
+            "watchOS 10.1",
+            "tvOS 17.1",
+            "macOS Monterey 12.7.1",
+            "macOS Ventura 13.6.1",
+            "macOS Sonoma 14.1",
+            "iOS and iPadOS 15.8",
+            "iOS and iPadOS 16.7.2",
+            "iOS and iPadOS 17.1"
         ],
         "ios_modules": [
-            "iOS and iPadOS 16.6",
             "iOS and iPadOS 17",
-            "iOS and iPadOS 17.0.3"
+            "iOS and iPadOS 17.0.3",
+            "iOS and iPadOS 17.1"
         ],
-        "zero_days": {},
+        "zero_days": {
+            "iOS and iPadOS 15.8": 1
+        },
         "yearly_report": []
     }
 }
