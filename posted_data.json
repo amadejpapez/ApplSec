@@ -14,12 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "macOS 14.1 Release Candidate (23B73)",
-            "iPadOS 17.1 Release Candidate (21B74)",
-            "iOS 17.1 Release Candidate 2 (21B77)",
-            "tvOS 17.2 beta (21K5330g)",
-            "watchOS 10.2 beta (21S6331f)",
-            "macOS 14.2 beta (23C5030f)",
             "iPadOS 17.2 beta (21C5029g)",
             "iOS 17.2 beta (21C5029g)",
             "Xcode 15.1 beta 2 (15C5028h)",
@@ -28,7 +22,13 @@
             "watchOS 10.2 beta 2 (21S5342e)",
             "macOS 14.2 beta 2 (23C5041e)",
             "iPadOS 17.2 beta 2 (21C5040g)",
-            "iOS 17.2 beta 2 (21C5040g)"
+            "iOS 17.2 beta 2 (21C5040g)",
+            "tvOS 17.2 beta 3 (21K5348f)",
+            "watchOS 10.2 beta 3 (21S5349e)",
+            "macOS 14.2 beta 3 (23C5047e)",
+            "iPadOS 17.2 beta 3 (21C5046c)",
+            "iOS 17.2 beta 3 (21C5046c)",
+            "Xcode 15.1 beta 3 (15C5059c)"
         ],
         "new_sec_content": [
             "iOS and iPadOS 17.0.3",
