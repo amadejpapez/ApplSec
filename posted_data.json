@@ -14,7 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "iOS 17.2 beta 3 (21C5046c)",
             "Xcode 15.1 beta 3 (15C5059c)",
             "tvOS 17.2 beta 4 (21K5356c)",
             "watchOS 10.2 beta 4 (21S5358a)",
@@ -28,7 +27,8 @@
             "macOS 14.2 Release Candidate (23C63)",
             "iPadOS 17.2 Release Candidate (21C62)",
             "iOS 17.2 Release Candidate (21C62)",
-            "Xcode 15.1 Release Candidate (15C65)"
+            "Xcode 15.1 Release Candidate (15C65)",
+            "tvOS 17.2 Release Candidate 2 (21K365)"
         ],
         "new_sec_content": [
             "watchOS 10.1",
