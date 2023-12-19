@@ -31,9 +31,6 @@
             "Xcode 15.2 beta (15C5500c)"
         ],
         "new_sec_content": [
-            "watchOS 10.1.1",
-            "macOS Sonoma 14.1.1",
-            "macOS Ventura 13.6.2",
             "iOS and iPadOS 17.1.1",
             "macOS Sonoma 14.1.2",
             "iOS and iPadOS 17.1.2",
@@ -45,7 +42,10 @@
             "macOS Sonoma 14.2",
             "iOS and iPadOS 16.7.3",
             "iOS and iPadOS 17.2",
-            "Safari 17.2"
+            "Safari 17.2",
+            "macOS Sonoma 14.2.1",
+            "iOS and iPadOS 16.7.4",
+            "iOS 17.2.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 17.1",
