@@ -848,12 +848,12 @@
     ],
     "new_sec_content_details_available_post_mastodon": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "📱 iOS and iPadOS 17 - 48 bugs fixed\nhttps://support.apple.com/kb/HT213938\n",
+        "📱 iOS and iPadOS 17 - 64 bugs fixed\nhttps://support.apple.com/kb/HT213938\n",
         "📺 tvOS 16.3.2 - 1 bug fixed\nhttps://support.apple.com/kb/HT213632\n"
     ],
     "new_sec_content_details_available_post_twitter": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "📱 iOS and iPadOS 17 - 48 bugs fixed\n",
+        "📱 iOS and iPadOS 17 - 64 bugs fixed\n",
         "📺 tvOS 16.3.2 - 1 bug fixed\n",
         "https://support.apple.com/kb/HT201222"
     ],
@@ -873,16 +873,16 @@
     },
     "new_sec_content_from_html_post": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "💻 macOS Ventura 13.4 - 58 bugs fixed\nhttps://support.apple.com/kb/HT213758\n",
-        "📱 iOS and iPadOS 16.5 - 44 bugs fixed\nhttps://support.apple.com/kb/HT213757\n",
+        "💻 macOS Ventura 13.4 - 62 bugs fixed\nhttps://support.apple.com/kb/HT213758\n",
+        "📱 iOS and iPadOS 16.5 - 46 bugs fixed\nhttps://support.apple.com/kb/HT213757\n",
         "⌚ watchOS 9.5 - 38 bugs fixed\nhttps://support.apple.com/kb/HT213764\n",
         "📺 tvOS 16.5 - 37 bugs fixed\nhttps://support.apple.com/kb/HT213761\n",
-        "💻 macOS Monterey 12.6.6 - 29 bugs fixed\nhttps://support.apple.com/kb/HT213759\n",
-        "💻 macOS Big Sur 11.7.7 - 25 bugs fixed\nhttps://support.apple.com/kb/HT213760\n",
-        "📱 iOS and iPadOS 15.7.6 - 17 bugs fixed\nhttps://support.apple.com/kb/HT213765\n",
+        "💻 macOS Monterey 12.6.6 - 32 bugs fixed\nhttps://support.apple.com/kb/HT213759\n",
+        "💻 macOS Big Sur 11.7.7 - 27 bugs fixed\nhttps://support.apple.com/kb/HT213760\n",
+        "📱 iOS and iPadOS 15.7.6 - 18 bugs fixed\nhttps://support.apple.com/kb/HT213765\n",
         "🌐 Safari 16.5 - 5 bugs fixed\nhttps://support.apple.com/kb/HT213762\n",
+        "🎵 iTunes 12.12.9 for Windows - 3 bugs fixed\nhttps://support.apple.com/kb/HT213763\n",
         "💻 macOS Ventura 13.3.1 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213721\n",
-        "🎵 iTunes 12.12.9 for Windows - 2 bugs fixed\nhttps://support.apple.com/kb/HT213763\n",
         "📱 iOS and iPadOS 16.4.1 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213720\n",
         "📱 iOS and iPadOS 15.7.5 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213723\n",
         "🔨 Xcode 14.3 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213679\n",
@@ -1319,10 +1319,10 @@
         ]
     ],
     "entry_changes2_post_mastodon": [
-        "🔄 34 ENTRY CHANGES 🔄\n\n",
+        "🔄 33 ENTRY CHANGES 🔄\n\n",
         "📱 iOS 16 - 6 added, 2 updated\nhttps://support.apple.com/kb/HT213446\n",
-        "💻 macOS Ventura 13.1 - 4 added, 1 updated\nhttps://support.apple.com/kb/HT213532\n",
         "📱 iOS and iPadOS 16.2 - 4 added, 1 updated\nhttps://support.apple.com/kb/HT213530\n",
+        "💻 macOS Ventura 13.1 - 4 added\nhttps://support.apple.com/kb/HT213532\n",
         "📱 iOS and iPadOS 15.7.2 - 3 added\nhttps://support.apple.com/kb/HT213531\n",
         "📱 iOS and iPadOS 15.5 - 2 added, 1 updated\nhttps://support.apple.com/kb/HT213258\n",
         "📱 iOS and iPadOS 15.7.3 - 2 updated\nhttps://support.apple.com/kb/HT213598\n",
@@ -1333,10 +1333,10 @@
         "🌐 Safari 16.2 - 1 updated\nhttps://support.apple.com/kb/HT213537\n"
     ],
     "entry_changes2_post_twitter": [
-        "🔄 34 ENTRY CHANGES 🔄\n\n",
+        "🔄 33 ENTRY CHANGES 🔄\n\n",
         "📱 iOS 16 - 6 added, 2 updated\n",
-        "💻 macOS Ventura 13.1 - 4 added, 1 updated\n",
         "📱 iOS and iPadOS 16.2 - 4 added, 1 updated\n",
+        "💻 macOS Ventura 13.1 - 4 added\n",
         "📱 iOS and iPadOS 15.7.2 - 3 added\n",
         "📱 iOS and iPadOS 15.5 - 2 added, 1 updated\n",
         "📱 iOS and iPadOS 15.7.3 - 2 updated\n",
