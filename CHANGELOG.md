@@ -1,5 +1,27 @@
 # Changelog
 
+## [15.2] - 2023-12-26
+
+### Added
+
+- Support for Rapid Security Response (RSR) updates
+  - remove line break from RSR updates, example "Rapid Security Response\nmacOS Ventura 13.4.1 (a)" (f640f29)
+  - RSR have a different security notes title (4071317)
+
+### Changed
+
+- New logo and screenshots. (6cb233f, e408226, 7c34da9) - I received an email from Apple and my Mastodon account got temporarily suspended, because I used their Apple Security logo and used "Apple" in my name (Apple Security Updates), which they considered copyright infringement and impersonation. After changes it got unsuspended. :)
+- beta updates should also contain RC updates (b3d5d4d)
+
+### Fixed
+
+- "(Details available soon.)" was not getting correctly removed as Apple sometimes used the dot or not, sometimes a different capitalization,... (4362aa9)
+- Apple sometimes spells RC out for some releases (766ce08)
+
+### Code
+
+- use dependabot grouping feature, to group all pip updates into one PR (4f39b43)
+
 ## [15.1] - 2023-06-26
 
 ### Changed
