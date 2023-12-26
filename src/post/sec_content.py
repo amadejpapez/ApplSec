@@ -178,6 +178,7 @@ def format_ios_release(releases: list[Release]) -> list[str]:
     sec_content_html = sec_content_html.split("Additional recognition", 1)[0]
 
     search_modules = collections.Counter(re.findall(r"(?<=<strong>).*?(?=<\/strong>)", sec_content_html))
+    search_modules += collections.Counter(re.findall(r"(?<=<b>).*?(?=<\/b>)", sec_content_html))
     modules = collections.OrderedDict(sorted(search_modules.items(), reverse=True, key=lambda x: x[1]))
 
     post_text = [f"⚒️ FIXED IN {release.name} ⚒️\n\n"]
