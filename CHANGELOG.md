@@ -1,5 +1,11 @@
 # Changelog
 
+## [15.3] - 2023-12-26
+
+### Added
+
+- Support for new security content page design (48a90fb) - Apple appears to have started a new page design on some older and newer releases
+
 ## [15.2] - 2023-12-26
 
 ### Added
