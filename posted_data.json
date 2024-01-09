@@ -14,7 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "tvOS 17.3 beta (21K5625e)",
             "watchOS 10.3 beta (21S5625c)",
             "macOS 14.3 beta (23D5033f)",
             "iPadOS 17.3 beta (21D5026f)",
@@ -28,7 +27,8 @@
             "watchOS 10.3 beta 3 (21S5642a)",
             "macOS 14.3 beta 3 (23D5051b)",
             "iPadOS 17.3 beta 3 (21D5044a)",
-            "iOS 17.3 beta 3 (21D5044a)"
+            "iOS 17.3 beta 3 (21D5044a)",
+            "tvOS 17.3 beta 3 (21K5643b)"
         ],
         "new_sec_content": [
             "macOS Sonoma 14.1.2",
