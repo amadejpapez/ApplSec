@@ -31,7 +31,6 @@
             "tvOS 17.3 beta 3 (21K5643b)"
         ],
         "new_sec_content": [
-            "macOS Sonoma 14.1.2",
             "iOS and iPadOS 17.1.2",
             "Safari 17.1.2",
             "watchOS 10.2",
@@ -45,7 +44,8 @@
             "macOS Sonoma 14.2.1",
             "iOS and iPadOS 16.7.4",
             "iOS 17.2.1",
-            "Safari 17.2.1"
+            "Safari 17.2.1",
+            "Magic Keyboard Firmware Update 2.0.6"
         ],
         "ios_modules": [
             "iOS and iPadOS 17.1",
