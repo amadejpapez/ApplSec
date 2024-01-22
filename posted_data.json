@@ -31,26 +31,26 @@
             "iOS 17.3 Release Candidate (21D50)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 17.1.2",
-            "Safari 17.1.2",
-            "watchOS 10.2",
-            "tvOS 17.2",
-            "macOS Monterey 12.7.2",
-            "macOS Ventura 13.6.3",
-            "macOS Sonoma 14.2",
-            "iOS and iPadOS 16.7.3",
             "iOS and iPadOS 17.2",
             "Safari 17.2",
             "macOS Sonoma 14.2.1",
             "iOS and iPadOS 16.7.4",
             "iOS 17.2.1",
             "Safari 17.2.1",
-            "Magic Keyboard Firmware Update 2.0.6"
+            "Magic Keyboard Firmware Update 2.0.6",
+            "tvOS 17.3",
+            "watchOS 10.3",
+            "macOS Monterey 12.7.3",
+            "macOS Ventura 13.6.4",
+            "macOS Sonoma 14.3",
+            "iOS and iPadOS 15.8.1",
+            "iOS and iPadOS 16.7.5",
+            "iOS and iPadOS 17.3"
         ],
         "ios_modules": [
-            "iOS and iPadOS 17.1",
             "iOS and iPadOS 17.1.2",
-            "iOS and iPadOS 17.2"
+            "iOS and iPadOS 17.2",
+            "iOS and iPadOS 17.3"
         ],
         "zero_days": {},
         "yearly_report": []
