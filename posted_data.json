@@ -14,7 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "iPadOS 15.8.1 Release Candidate (19H380)",
             "iOS 15.8.1 Release Candidate (19H380)",
             "iPadOS 16.7.5 Release Candidate (20H307)",
             "iOS 16.7.5 Release Candidate (20H307)",
@@ -28,7 +27,8 @@
             "iOS 17.4 beta (21E5184i)",
             "Xcode 15.3 beta (15E5178i)",
             "watchOS 10.4 beta (21T5185g)",
-            "macOS 14.4 beta (23E5180j)"
+            "macOS 14.4 beta (23E5180j)",
+            "iOS 17.4 beta (21E5184k)"
         ],
         "new_sec_content": [
             "Safari 17.2",
