@@ -1444,6 +1444,11 @@
             "<a href=\"https://support.apple.com/kb/HT212824\">iOS 12.5.5</a>",
             "iPhone 5s, iPhone 6, iPhone 6 Plus, iPad Air, iPad mini 2, iPad mini 3, and iPod touch (6th generation)",
             "23 Sep 2021"
+        ],
+        [
+            "<a href=\"https://support.apple.com/kb/HT214062\">iOS 15.8.1 and iPadOS 15.8.1</a>",
+            "iPhone 6s (all models), iPhone 7 (all models), iPhone SE (1st generation), iPad Air 2, iPad mini (4th generation), and iPod touch (7th generation)",
+            "22 Jan 2024"
         ]
     ],
     "zero_day_releases_info": {
@@ -1479,28 +1484,33 @@
     },
     "zero_day_releases_post": [
         "📣 EMERGENCY UPDATES 📣\n\n",
-        "Apple pushed updates for 3 new zero-days that may have been actively exploited and additional updates for 1 zero-day.",
+        "Apple pushed updates for 5 new zero-days that may have been actively exploited and additional updates for 1 zero-day.",
         "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- iOS 12.5.5\n- Security Update 2021-006 Catalina",
-        "\n\n🐛 CVE-2021-30860 (CoreGraphics),\n🐛 CVE-2021-31010 (Core Telephony),\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5"
+        "\n\n🐛 CVE-2021-30860 (CoreGraphics),\n🐛 CVE-2021-31010 (Core Telephony),\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5",
+        "\n\n🐛 CVE-2023-42916 (WebKit),\n🐛 CVE-2023-42917 (WebKit):\n- iOS and iPadOS 15.8.1"
     ],
     "zero_day_releases_posted_data": {
         "zero_days": [
             "CVE-2021-30869",
             "CVE-2021-30860",
             "CVE-2021-31010",
-            "CVE-2021-30858"
+            "CVE-2021-30858",
+            "CVE-2023-42916",
+            "CVE-2023-42917"
         ],
         "details_available_soon": [],
         "posts": {
             "new_releases": [],
             "new_sec_content": [
+                "iOS and iPadOS 15.8.1",
                 "iOS 12.5.5",
                 "Security Update 2021-006 Catalina"
             ],
             "ios_modules": [],
             "zero_days": {
                 "Security Update 2021-006 Catalina": 1,
-                "iOS 12.5.5": 4
+                "iOS 12.5.5": 4,
+                "iOS and iPadOS 15.8.1": 2
             },
             "yearly_report": []
         }
@@ -1553,15 +1563,17 @@
     ],
     "zero_day_releases_one_new_many_old_post": [
         "📣 EMERGENCY UPDATES 📣\n\n",
-        "Apple pushed updates for 1 new zero-day that may have been actively exploited and additional updates for 3 zero-days.",
+        "Apple pushed updates for 3 new zero-days that may have been actively exploited and additional updates for 3 zero-days.",
         "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- iOS 12.5.5\n- Security Update 2021-006 Catalina",
-        "\n\n🐛 CVE-2021-30860 (CoreGraphics) additional patches,\n🐛 CVE-2021-31010 (Core Telephony) additional patches,\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5"
+        "\n\n🐛 CVE-2021-30860 (CoreGraphics) additional patches,\n🐛 CVE-2021-31010 (Core Telephony) additional patches,\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5",
+        "\n\n🐛 CVE-2023-42916 (WebKit),\n🐛 CVE-2023-42917 (WebKit):\n- iOS and iPadOS 15.8.1"
     ],
     "zero_day_releases_many_new_many_old_post": [
         "📣 EMERGENCY UPDATES 📣\n\n",
-        "Apple pushed updates for 2 new zero-days that may have been actively exploited and additional updates for 2 zero-days.",
+        "Apple pushed updates for 4 new zero-days that may have been actively exploited and additional updates for 2 zero-days.",
         "\n\n🐛 CVE-2021-30869 (XNU):\n- iOS 12.5.5\n- Security Update 2021-006 Catalina",
-        "\n\n🐛 CVE-2021-30860 (CoreGraphics) additional patches,\n🐛 CVE-2021-31010 (Core Telephony) additional patches,\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5"
+        "\n\n🐛 CVE-2021-30860 (CoreGraphics) additional patches,\n🐛 CVE-2021-31010 (Core Telephony) additional patches,\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5",
+        "\n\n🐛 CVE-2023-42916 (WebKit),\n🐛 CVE-2023-42917 (WebKit):\n- iOS and iPadOS 15.8.1"
     ],
     "zero_day_releases_one_new_info": {
         "1": {

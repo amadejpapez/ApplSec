@@ -216,16 +216,23 @@ class Release:
         """Check for "in the wild" or "actively exploited", indicating a fixed zero-day."""
         zero_days: dict[str, str] = {}
 
-        if "actively exploited" not in sec_content_html:
-            if "in the wild" not in sec_content_html:
-                # if there isn't any zero days, end early
-                return zero_days
+        if (
+            "in the wild" not in sec_content_html
+            and "actively exploited" not in sec_content_html
+            and "may have been exploited" not in sec_content_html
+        ):
+            # if there isn't any zero days, end early
+            return zero_days
 
         entries = re.findall(r"(?i)(?<=<strong>).*?(?=<strong>|<\/div>)", sec_content_html)
         entries += re.findall(r"(?i)(?<=<b>).*?(?=<b>|<div id=\"disclaimer\")", sec_content_html)
 
         for entry in entries:
-            if "in the wild" in entry or "actively exploited" in entry:
+            if (
+                "in the wild" in entry
+                or "actively exploited" in entry
+                or "may have been exploited" in entry
+            ):
                 cve = re.findall(r"(?i)CVE-[0-9]{4}-[0-9]+", entry)[0]
                 zero_days[cve] = re.findall(r"(?i).+?(?=<\/strong>|<\/b>)", entry)[0]
 
