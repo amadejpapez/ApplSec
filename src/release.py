@@ -183,6 +183,7 @@ class Release:
             "Security Update": "🖥️",
             "Shazam": "🎵",
             "tvOS": "📺",
+            "visionOS": "🥽",
             "watchOS": "⌚",
             "Xcode": "🔨",
         }
