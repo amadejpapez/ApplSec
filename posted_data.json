@@ -31,9 +31,6 @@
             "Xcode 15.3 beta 2 (15E5188j)"
         ],
         "new_sec_content": [
-            "macOS Sonoma 14.2.1",
-            "iOS and iPadOS 16.7.4",
-            "iOS 17.2.1",
             "Safari 17.2.1",
             "Magic Keyboard Firmware Update 2.0.6",
             "tvOS 17.3",
@@ -45,7 +42,10 @@
             "iOS and iPadOS 16.7.5",
             "iOS and iPadOS 17.3",
             "Safari 17.3",
-            "visionOS 1.0.2"
+            "visionOS 1.0.2",
+            "watchOS 10.3.1",
+            "macOS Sonoma 14.3.1",
+            "iOS and iPadOS 17.3.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 17.1.2",
