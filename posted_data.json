@@ -14,12 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "macOS 14.4 beta (23E5180j)",
-            "iOS 17.4 beta (21E5184k)",
-            "watchOS 10.4 beta 2 (21T5196d)",
-            "tvOS 17.4 beta 2 (21L5206f)",
-            "macOS 14.4 beta 2 (23E5191e)",
-            "iPadOS 17.4 beta 2 (21E5195e)",
             "iOS 17.4 beta 2 (21E5195e)",
             "Xcode 15.3 beta 2 (15E5188j)",
             "watchOS 10.4 beta 3 (21T5202e)",
@@ -28,7 +22,13 @@
             "macOS 14.4 beta 3 (23E5196e)",
             "iPadOS 17.4 beta 3 (21E5200d)",
             "iOS 17.4 beta 3 (21E5200d)",
-            "Xcode 15.3 beta 3 (15E5194e)"
+            "Xcode 15.3 beta 3 (15E5194e)",
+            "watchOS 10.4 beta 4 (21T5213a)",
+            "visionOS 1.1 beta 3 (21O5197a)",
+            "tvOS 17.4 beta 4 (21L5222a)",
+            "macOS 14.4 beta 4 (23E5205c)",
+            "iPadOS 17.4 beta 4 (21E5209b)",
+            "iOS 17.4 beta 4 (21E5209b)"
         ],
         "new_sec_content": [
             "tvOS 17.3",
