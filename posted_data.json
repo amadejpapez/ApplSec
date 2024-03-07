@@ -52,16 +52,7 @@
             "iOS and iPadOS 17.3",
             "iOS and iPadOS 17.4"
         ],
-        "zero_days": {
-            "iOS and iPadOS 16.7.6": 1,
-            "iOS and iPadOS 17.4": 2,
-            "visionOS 1.1": 2,
-            "tvOS 17.4": 2,
-            "watchOS 10.4": 2,
-            "macOS Monterey 12.7.4": 1,
-            "macOS Ventura 13.6.5": 1,
-            "macOS Sonoma 14.4": 2
-        },
+        "zero_days": {},
         "yearly_report": []
     }
 }
