@@ -31,7 +31,6 @@
             "Xcode 15.3 Release Candidate 2 (15E204a)"
         ],
         "new_sec_content": [
-            "watchOS 10.3.1",
             "macOS Sonoma 14.3.1",
             "iOS and iPadOS 17.3.1",
             "Safari 17.3.1",
@@ -45,7 +44,8 @@
             "macOS Monterey 12.7.4",
             "macOS Ventura 13.6.5",
             "macOS Sonoma 14.4",
-            "Safari 17.4"
+            "Safari 17.4",
+            "GarageBand 10.4.11"
         ],
         "ios_modules": [
             "iOS and iPadOS 17.2",
