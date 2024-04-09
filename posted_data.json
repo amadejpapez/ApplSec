@@ -18,7 +18,6 @@
     ],
     "posts": {
         "new_releases": [
-            "macOS 14.4 beta 5 (23E5211a)",
             "iPadOS 17.4 Release Candidate (21E217)",
             "iOS 17.4 Release Candidate (21E217)",
             "Xcode 15.3 Release Candidate (15E5202a)",
@@ -32,7 +31,8 @@
             "tvOS 17.5 beta (21L5543d)",
             "macOS 14.5 beta (23F5049f)",
             "iPadOS 17.5 beta (21F5048f)",
-            "iOS 17.5 beta (21F5048f)"
+            "iOS 17.5 beta (21F5048f)",
+            "visionOS 1.2 beta (21O5555f)"
         ],
         "new_sec_content": [
             "watchOS 10.4",
