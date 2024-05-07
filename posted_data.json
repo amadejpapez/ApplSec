@@ -18,21 +18,21 @@
     ],
     "posts": {
         "new_releases": [
-            "macOS 14.5 beta 2 (23F5059e)",
-            "iPadOS 17.5 beta 2 (21F5058e)",
-            "iOS 17.5 beta 2 (21F5058e)",
-            "watchOS 10.5 beta 3 (21T5560d)",
-            "visionOS 1.2 beta 3 (21O5570d)",
-            "tvOS 17.5 beta 3 (21L5558d)",
-            "macOS 14.5 beta 3 (23F5064f)",
-            "iPadOS 17.5 beta 3 (21F5063f)",
             "iOS 17.5 beta 3 (21F5063f)",
             "watchOS 10.5 beta 4 (21T5571a)",
             "visionOS 1.2 beta 4 (21O5580a)",
             "tvOS 17.5 beta 4 (21L5567a)",
             "macOS 14.5 beta 4 (23F5074a)",
             "iPadOS 17.5 beta 4 (21F5073b)",
-            "iOS 17.5 beta 4 (21F5073b)"
+            "iOS 17.5 beta 4 (21F5073b)",
+            "iPadOS 16.7.8 RC (20H343)",
+            "iOS 16.7.8 RC (20H343)",
+            "watchOS 10.5 RC (21T575)",
+            "visionOS 1.2 beta 5 (21O5587a)",
+            "tvOS 17.5 RC (21L569)",
+            "iPadOS 17.5 RC (21F79)",
+            "iOS 17.5 RC (21F79)",
+            "Xcode 15.4 RC (15F31c)"
         ],
         "new_sec_content": [
             "macOS Monterey 12.7.4",
