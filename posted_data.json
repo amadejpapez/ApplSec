@@ -35,7 +35,6 @@
             "Xcode 15.4 RC (15F31c)"
         ],
         "new_sec_content": [
-            "macOS Monterey 12.7.4",
             "macOS Ventura 13.6.5",
             "macOS Sonoma 14.4",
             "Safari 17.4",
@@ -49,7 +48,8 @@
             "macOS Ventura 13.6.6",
             "macOS Sonoma 14.4.1",
             "Safari 17.4.1",
-            "visionOS 1.1.2"
+            "visionOS 1.1.2",
+            "iTunes 12.13.2 for Windows"
         ],
         "ios_modules": [
             "iOS and iPadOS 17.3",
