@@ -18,7 +18,6 @@
     ],
     "posts": {
         "new_releases": [
-            "watchOS 10.5 beta 4 (21T5571a)",
             "visionOS 1.2 beta 4 (21O5580a)",
             "tvOS 17.5 beta 4 (21L5567a)",
             "macOS 14.5 beta 4 (23F5074a)",
@@ -32,7 +31,8 @@
             "iPadOS 17.5 RC (21F79)",
             "iOS 17.5 RC (21F79)",
             "Xcode 15.4 RC (15F31c)",
-            "watchOS 10.5 RC 2 (21T576)"
+            "watchOS 10.5 RC 2 (21T576)",
+            "macOS 14.5 RC (23F79)"
         ],
         "new_sec_content": [
             "macOS Ventura 13.6.5",
