@@ -35,13 +35,6 @@
             "macOS 14.5 RC (23F79)"
         ],
         "new_sec_content": [
-            "macOS Ventura 13.6.5",
-            "macOS Sonoma 14.4",
-            "Safari 17.4",
-            "GarageBand 10.4.11",
-            "visionOS 1.1.1 Details coming soon",
-            "iOS and iPadOS 16.7.7 Details coming soon",
-            "iOS and iPadOS 17.4.1 Details coming soon",
             "visionOS 1.1.1",
             "iOS and iPadOS 16.7.7",
             "iOS and iPadOS 17.4.1",
@@ -49,14 +42,24 @@
             "macOS Sonoma 14.4.1",
             "Safari 17.4.1",
             "visionOS 1.1.2",
-            "iTunes 12.13.2 for Windows"
+            "iTunes 12.13.2 for Windows",
+            "tvOS 17.5",
+            "watchOS 10.5",
+            "macOS Monterey 12.7.5",
+            "macOS Ventura 13.6.7",
+            "macOS Sonoma 14.5",
+            "iOS and iPadOS 16.7.8",
+            "iOS and iPadOS 17.5"
         ],
         "ios_modules": [
-            "iOS and iPadOS 17.3",
             "iOS and iPadOS 17.4",
-            "iOS and iPadOS 17.4.1"
+            "iOS and iPadOS 17.4.1",
+            "iOS and iPadOS 17.5"
         ],
-        "zero_days": {},
+        "zero_days": {
+            "iOS and iPadOS 16.7.8": 1,
+            "macOS Ventura 13.6.7": 1
+        },
         "yearly_report": []
     }
 }
