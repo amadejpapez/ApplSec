@@ -35,7 +35,6 @@
             "iOS 18 beta (22A5282m)"
         ],
         "new_sec_content": [
-            "macOS Ventura 13.6.6",
             "macOS Sonoma 14.4.1",
             "Safari 17.4.1",
             "visionOS 1.1.2",
@@ -49,7 +48,8 @@
             "iOS and iPadOS 17.5",
             "Safari 17.5",
             "iOS and iPadOS 17.5.1",
-            "tvOS 17.5.1"
+            "tvOS 17.5.1",
+            "visionOS 1.2"
         ],
         "ios_modules": [
             "iOS and iPadOS 17.4",
