@@ -18,12 +18,6 @@
     ],
     "posts": {
         "new_releases": [
-            "watchOS 10.5 RC (21T575)",
-            "visionOS 1.2 beta 5 (21O5587a)",
-            "tvOS 17.5 RC (21L569)",
-            "iPadOS 17.5 RC (21F79)",
-            "iOS 17.5 RC (21F79)",
-            "Xcode 15.4 RC (15F31c)",
             "watchOS 10.5 RC 2 (21T576)",
             "macOS 14.5 RC (23F79)",
             "watchOS 11 beta (22R5284o)",
@@ -32,7 +26,13 @@
             "macOS 15 beta (24A5264n)",
             "iPadOS 18 beta (22A5282m)",
             "iOS 18 beta (22A5282m)",
-            "Xcode 16 beta (16A5171c)"
+            "Xcode 16 beta (16A5171c)",
+            "watchOS 10.6 beta (21U5551b)",
+            "visionOS 1.3 beta (21O5747c)",
+            "tvOS 17.6 beta (21M5045c)",
+            "macOS 14.6 beta (23G5052d)",
+            "iPadOS 17.6 beta (21G5052e)",
+            "iOS 17.6 beta (21G5052e)"
         ],
         "new_sec_content": [
             "macOS Sonoma 14.4.1",
