@@ -18,7 +18,6 @@
     ],
     "posts": {
         "new_releases": [
-            "macOS 15 beta (24A5264n)",
             "iPadOS 18 beta (22A5282m)",
             "iOS 18 beta (22A5282m)",
             "Xcode 16 beta (16A5171c)",
@@ -32,7 +31,8 @@
             "tvOS 18 beta 2 (22J5305e)",
             "macOS 15 beta 2 (24A5279h)",
             "iPadOS 18 beta 2 (22A5297f)",
-            "iOS 18 beta 2 (22A5297f)"
+            "iOS 18 beta 2 (22A5297f)",
+            "Xcode 16 beta 2 (16A5171r)"
         ],
         "new_sec_content": [
             "macOS Sonoma 14.4.1",
