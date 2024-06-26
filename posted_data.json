@@ -35,7 +35,6 @@
             "Xcode 16 beta 2 (16A5171r)"
         ],
         "new_sec_content": [
-            "macOS Sonoma 14.4.1",
             "Safari 17.4.1",
             "visionOS 1.1.2",
             "iTunes 12.13.2 for Windows",
@@ -49,7 +48,8 @@
             "Safari 17.5",
             "iOS and iPadOS 17.5.1",
             "tvOS 17.5.1",
-            "visionOS 1.2"
+            "visionOS 1.2",
+            "AirPods Firmware Update 6A326, AirPods Firmware Update 6F8, and Beats Firmware Update 6F8"
         ],
         "ios_modules": [
             "iOS and iPadOS 17.4",
