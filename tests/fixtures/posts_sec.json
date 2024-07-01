@@ -972,11 +972,10 @@
     },
     "ios_modules_one_other_post": [
         "⚒️ FIXED IN iTunes 12.12.4 for Windows ⚒️\n\n",
+        "- 2 bugs in iTunes\n",
         "- 1 bug in AppleGraphicsControl\n",
         "- 1 bug in ImageIO\n",
-        "- 1 bug in iTunes\n",
         "- 1 bug in Mobile Device Service\n",
-        "and 1 other vulnerability fixed\n",
         "https://support.apple.com/kb/HT213259\n"
     ],
     "entry_changes_info": {
