@@ -92,14 +92,12 @@ class Release:
 
         if security_content_link:
             try:
-                sec_content_page_html = requests.get(security_content_link, timeout=60).text
-
-                sec_content_page = lxml.html.document_fromstring(sec_content_page_html).text_content()
-
                 if "Rapid Security Response" in name:
                     title = "About Rapid Security Response"
                 else:
                     title = "About Apple security updates"
+
+                sec_content_page_html = requests.get(security_content_link, timeout=60).text
 
                 sec_content_page = (
                     sec_content_page_html.split(title, 1)[1]
@@ -208,6 +206,8 @@ class Release:
 
         if "soon" in release_row[0].text_content():
             return -1
+        elif sec_content_page == "":
+            return 0
         else:
             return len(re.findall("(?i)CVE-[0-9]{4}-[0-9]+", sec_content_page))
 
@@ -215,6 +215,9 @@ class Release:
     def parse_zero_days(sec_content_html: str) -> dict[str, str]:
         """Check for "in the wild" or "actively exploited", indicating a fixed zero-day."""
         zero_days: dict[str, str] = {}
+
+        if sec_content_html == "":
+            return zero_days
 
         if (
             "in the wild" not in sec_content_html
