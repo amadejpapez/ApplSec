@@ -89,8 +89,6 @@ class Release:
 
         name = Release.parse_name(row)
         security_content_link = Release.parse_security_content_link(row)
-        # some releases are listed with http, upgrade them
-        security_content_link = security_content_link.replace("http:", "https:")
 
         if security_content_link:
             try:
@@ -199,7 +197,8 @@ class Release:
         tmp = release_row[0].xpath(".//a/@href")
 
         if tmp != []:
-            return tmp[0]
+            # some releases are listed with http, upgrade them
+            return tmp[0].replace("http:", "https:")
         else:
             return ""
 
