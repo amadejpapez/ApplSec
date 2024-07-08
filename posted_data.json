@@ -18,7 +18,6 @@
     ],
     "posts": {
         "new_releases": [
-            "macOS 15 beta 2 (24A5279h)",
             "iPadOS 18 beta 2 (22A5297f)",
             "iOS 18 beta 2 (22A5297f)",
             "Xcode 16 beta 2 (16A5171r)",
@@ -32,7 +31,8 @@
             "visionOS 2 beta 3 (22N5277g)",
             "tvOS 18 beta 3 (22J5315e)",
             "iPadOS 18 beta 3 (22A5307f)",
-            "iOS 18 beta 3 (22A5307f)"
+            "iOS 18 beta 3 (22A5307f)",
+            "Xcode 16 beta 3 (16A5202i)"
         ],
         "new_sec_content": [
             "Safari 17.4.1",
