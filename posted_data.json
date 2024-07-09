@@ -18,12 +18,6 @@
     ],
     "posts": {
         "new_releases": [
-            "iPadOS 18 beta 2 (22A5297f)",
-            "iOS 18 beta 2 (22A5297f)",
-            "Xcode 16 beta 2 (16A5171r)",
-            "watchOS 10.6 beta 2 (21U5560b)",
-            "visionOS 1.3 beta 2 (21O5756a)",
-            "tvOS 17.6 beta 2 (21M5054a)",
             "macOS 14.6 beta 2 (23G5061b)",
             "iPadOS 17.6 beta 2 (21G5061c)",
             "iOS 17.6 beta 2 (21G5061c)",
@@ -32,7 +26,13 @@
             "tvOS 18 beta 3 (22J5315e)",
             "iPadOS 18 beta 3 (22A5307f)",
             "iOS 18 beta 3 (22A5307f)",
-            "Xcode 16 beta 3 (16A5202i)"
+            "Xcode 16 beta 3 (16A5202i)",
+            "watchOS 10.6 beta 3 (21U5565c)",
+            "visionOS 1.3 beta 3 (21O5761a)",
+            "tvOS 17.6 beta 3 (21M5059b)",
+            "macOS 14.6 beta 3 (23G5066c)",
+            "iPadOS 17.6 beta 3 (21G5066d)",
+            "iOS 17.6 beta 3 (21G5066d)"
         ],
         "new_sec_content": [
             "Safari 17.4.1",
