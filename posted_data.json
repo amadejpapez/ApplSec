@@ -18,9 +18,6 @@
     ],
     "posts": {
         "new_releases": [
-            "iPadOS 17.6 beta 2 (21G5061c)",
-            "iOS 17.6 beta 2 (21G5061c)",
-            "watchOS 11 beta 3 (22R5309f)",
             "visionOS 2 beta 3 (22N5277g)",
             "tvOS 18 beta 3 (22J5315e)",
             "iPadOS 18 beta 3 (22A5307f)",
@@ -32,7 +29,10 @@
             "macOS 14.6 beta 3 (23G5066c)",
             "iPadOS 17.6 beta 3 (21G5066d)",
             "iOS 17.6 beta 3 (21G5066d)",
-            "macOS 15 beta 3 (24A5289g)"
+            "macOS 15 beta 3 (24A5289g)",
+            "macOS 15 beta 3 (24A5289h)",
+            "iPadOS 18 beta 3 (22A5307i)",
+            "iOS 18 beta 3 (22A5307i)"
         ],
         "new_sec_content": [
             "Safari 17.4.1",
