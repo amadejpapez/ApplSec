@@ -18,9 +18,6 @@
     ],
     "posts": {
         "new_releases": [
-            "watchOS 10.6 Release Candidate (21U577)",
-            "visionOS 1.3 Release Candidate (21O771)",
-            "tvOS 17.6 Release Candidate (21M71)",
             "macOS 14.6 Release Candidate (23G80)",
             "iPadOS 17.6 Release Candidate (21G79)",
             "iOS 17.6 Release Candidate (21G79)",
@@ -32,7 +29,10 @@
             "iOS 18 beta 4 (22A5316j)",
             "Xcode 16 beta 4 (16A5211f)",
             "iPadOS 18 beta 4 (22A5316k)",
-            "iOS 18 beta 4 (22A5316k)"
+            "iOS 18 beta 4 (22A5316k)",
+            "macOS 15.1 beta (24B5009l)",
+            "iPadOS 18.1 beta (22B5007p)",
+            "iOS 18.1 beta (22B5007p)"
         ],
         "new_sec_content": [
             "Safari 17.4.1",
