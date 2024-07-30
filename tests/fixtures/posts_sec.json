@@ -848,12 +848,12 @@
     ],
     "new_sec_content_details_available_post_mastodon": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "📱 iOS and iPadOS 17 - 64 bugs fixed\nhttps://support.apple.com/kb/HT213938\n",
+        "📱 iOS and iPadOS 17 - 68 bugs fixed\nhttps://support.apple.com/kb/HT213938\n",
         "📺 tvOS 16.3.2 - 1 bug fixed\nhttps://support.apple.com/kb/HT213632\n"
     ],
     "new_sec_content_details_available_post_twitter": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "📱 iOS and iPadOS 17 - 64 bugs fixed\n",
+        "📱 iOS and iPadOS 17 - 68 bugs fixed\n",
         "📺 tvOS 16.3.2 - 1 bug fixed\n",
         "https://support.apple.com/kb/HT201222"
     ],
@@ -873,7 +873,7 @@
     },
     "new_sec_content_from_html_post": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "💻 macOS Ventura 13.4 - 62 bugs fixed\nhttps://support.apple.com/kb/HT213758\n",
+        "💻 macOS Ventura 13.4 - 63 bugs fixed\nhttps://support.apple.com/kb/HT213758\n",
         "📱 iOS and iPadOS 16.5 - 46 bugs fixed\nhttps://support.apple.com/kb/HT213757\n",
         "⌚ watchOS 9.5 - 38 bugs fixed\nhttps://support.apple.com/kb/HT213764\n",
         "📺 tvOS 16.5 - 37 bugs fixed\nhttps://support.apple.com/kb/HT213761\n",
