@@ -35,10 +35,6 @@
             "Xcode 16 beta 5 (16A5221g)"
         ],
         "new_sec_content": [
-            "Safari 17.5",
-            "iOS and iPadOS 17.5.1",
-            "tvOS 17.5.1",
-            "visionOS 1.2",
             "AirPods Firmware Update 6A326, AirPods Firmware Update 6F8, and Beats Firmware Update 6F8",
             "iOS and iPadOS 15.8.3",
             "visionOS 1.3",
@@ -49,7 +45,11 @@
             "macOS Sonoma 14.6",
             "iOS and iPadOS 16.7.9",
             "iOS and iPadOS 17.6",
-            "Safari 17.6"
+            "Safari 17.6",
+            "macOS Ventura 13.6.9",
+            "macOS Sonoma 14.6.1",
+            "iOS and iPadOS 16.7.10",
+            "iOS and iPadOS 17.6.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 17.4.1",
