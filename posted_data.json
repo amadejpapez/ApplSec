@@ -18,7 +18,6 @@
     ],
     "posts": {
         "new_releases": [
-            "iPadOS 18 beta 4 (22A5316j)",
             "iOS 18 beta 4 (22A5316j)",
             "Xcode 16 beta 4 (16A5211f)",
             "iPadOS 18 beta 4 (22A5316k)",
@@ -32,7 +31,8 @@
             "macOS 15 beta 5 (24A5309e)",
             "iPadOS 18 beta 5 (22A5326f)",
             "iOS 18 beta 5 (22A5326f)",
-            "Xcode 16 beta 5 (16A5221g)"
+            "Xcode 16 beta 5 (16A5221g)",
+            "Xcode 16.1 beta (16B5001e)"
         ],
         "new_sec_content": [
             "AirPods Firmware Update 6A326, AirPods Firmware Update 6F8, and Beats Firmware Update 6F8",
