@@ -18,21 +18,21 @@
     ],
     "posts": {
         "new_releases": [
-            "iOS 18.1 beta (22B5007p)",
-            "watchOS 11 beta 5 (22R5328e)",
-            "visionOS 2 beta 5 (22N5297g)",
-            "tvOS 18 beta 5 (22J5335d)",
-            "macOS 15 beta 5 (24A5309e)",
-            "iPadOS 18 beta 5 (22A5326f)",
-            "iOS 18 beta 5 (22A5326f)",
-            "Xcode 16 beta 5 (16A5221g)",
             "Xcode 16.1 beta (16B5001e)",
             "watchOS 11 beta 7 (22R5348a)",
             "visionOS 2 beta 7 (22N5314a)",
             "tvOS 18 beta 7 (22J5353a)",
             "iPadOS 18 beta 7 (22A5346a)",
             "iOS 18 beta 7 (22A5346a)",
-            "Xcode 16 beta 6 (16A5230g)"
+            "Xcode 16 beta 6 (16A5230g)",
+            "visionOS 2 beta 8 (22N5318a)",
+            "tvOS 18 beta 8 (22J5356a)",
+            "macOS 15 beta 8 (24A5331b)",
+            "iPadOS 18 beta 8 (22A5350a)",
+            "iOS 18 beta 8 (22A5350a)",
+            "macOS 15.1 beta 3 (24B5035e)",
+            "iPadOS 18.1 beta 3 (22B5034e)",
+            "iOS 18.1 beta 3 (22B5034e)"
         ],
         "new_sec_content": [
             "visionOS 1.3",
