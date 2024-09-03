@@ -35,12 +35,6 @@
             "visionOS 2 beta 9 (22N5319a)"
         ],
         "new_sec_content": [
-            "visionOS 1.3",
-            "tvOS 17.6",
-            "watchOS 10.6",
-            "macOS Monterey 12.7.6",
-            "macOS Ventura 13.6.8",
-            "macOS Sonoma 14.6",
             "iOS and iPadOS 16.7.9",
             "iOS and iPadOS 17.6",
             "Safari 17.6",
@@ -49,7 +43,13 @@
             "iOS and iPadOS 16.7.10",
             "iOS and iPadOS 17.6.1",
             "tvOS 17.6.1",
-            "watchOS 10.6.1"
+            "watchOS 10.6.1",
+            "macOS Ventura 13.6.9This update has no published CVE entries.",
+            "macOS Sonoma 14.6.1This update has no published CVE entries.",
+            "iOS and iPadOS 16.7.10This update has no published CVE entries.",
+            "iOS and iPadOS 17.6.1This update has no published CVE entries.",
+            "tvOS 17.6.1This update has no published CVE entries.",
+            "watchOS 10.6.1This update has no published CVE entries."
         ],
         "ios_modules": [
             "iOS and iPadOS 17.4.1",
