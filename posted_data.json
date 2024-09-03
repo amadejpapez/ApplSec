@@ -18,7 +18,6 @@
     ],
     "posts": {
         "new_releases": [
-            "Xcode 16.1 beta (16B5001e)",
             "watchOS 11 beta 7 (22R5348a)",
             "visionOS 2 beta 7 (22N5314a)",
             "tvOS 18 beta 7 (22J5353a)",
@@ -32,7 +31,8 @@
             "iOS 18 beta 8 (22A5350a)",
             "macOS 15.1 beta 3 (24B5035e)",
             "iPadOS 18.1 beta 3 (22B5034e)",
-            "iOS 18.1 beta 3 (22B5034e)"
+            "iOS 18.1 beta 3 (22B5034e)",
+            "visionOS 2 beta 9 (22N5319a)"
         ],
         "new_sec_content": [
             "visionOS 1.3",
