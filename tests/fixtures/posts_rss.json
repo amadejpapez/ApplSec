@@ -15,13 +15,13 @@
         "details_available_soon": [],
         "posts": {
             "new_releases": [
-                "macOS 13.4 (22F66 | 22F2073)",
-                "tvOS 17 beta (21J5273q)",
-                "watchOS 10 beta (21R5275t)",
-                "macOS 14 beta (23A5257q)",
-                "iPadOS 17 beta (21A5248v)",
-                "iOS 17 beta (21A5248v)",
-                "Xcode 15 beta (15A5160n)"
+                "tvOS 18 beta 8 (22J5356a)",
+                "macOS 15 beta 8 (24A5331b)",
+                "iPadOS 18 beta 8 (22A5350a)",
+                "iOS 18 beta 8 (22A5350a)",
+                "macOS 15.1 beta 3 (24B5035e)",
+                "iPadOS 18.1 beta 3 (22B5034e)",
+                "iOS 18.1 beta 3 (22B5034e)"
             ],
             "new_sec_content": [],
             "ios_modules": [],
@@ -31,12 +31,12 @@
     },
     "new_releases_post": [
         "🧪 NEW BETA RELEASES 🧪\n\n",
-        "📱 iOS 17 beta (21A5248v)\n",
-        "📱 iPadOS 17 beta (21A5248v)\n",
-        "💻 macOS 14 beta (23A5257q)\n",
-        "📺 tvOS 17 beta (21J5273q)\n",
-        "⌚ watchOS 10 beta (21R5275t)\n",
-        "🔨 Xcode 15 beta (15A5160n)\n",
+        "📱 iOS 18 beta 8 (22A5350a)\n",
+        "📱 iOS 18.1 beta 3 (22B5034e)\n",
+        "📱 iPadOS 18 beta 8 (22A5350a)\n",
+        "📱 iPadOS 18.1 beta 3 (22B5034e)\n",
+        "💻 macOS 15 beta 8 (24A5331b)\n",
+        "💻 macOS 15.1 beta 3 (24B5035e)\n",
         "https://developer.apple.com/news/releases"
     ],
     "new_releases_one_posted_data": {
@@ -54,7 +54,7 @@
     },
     "new_releases_one_post": [
         "🧪 NEW BETA RELEASE 🧪\n\n",
-        "📺 tvOS 17 beta (21J5273q)\n",
+        "📱 iOS 18.1 beta 3 (22B5034e)\n",
         "https://developer.apple.com/news/releases"
     ]
 }

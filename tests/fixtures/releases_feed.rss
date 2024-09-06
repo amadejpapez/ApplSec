@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <atom:link href="https://developer.apple.com/news/releases/rss/releases.rss" rel="self" type="application/rss+xml" />
+        <title>Releases - Apple Developer</title>
+        <link>https://developer.apple.com/news/</link>
+        <description>Apple Developer News and Updates feed provided by Apple, Inc.</description>
+        <language>en-US</language>
+        <lastBuildDate>Tue, 03 Sep 2024 10:00:00 PDT</lastBuildDate>
+        <generator>Custom</generator>
+        <copyright>Copyright 2024, Apple Inc.</copyright>
+
+        <item>
+            <title>iOS 18.1 beta 3 (22B5034e)</title>
+            <link>https://developer.apple.com/news/releases/?id=08282024f</link>
+            <guid>https://developer.apple.com/news/releases/?id=08282024f</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Wed, 28 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li><li><a href=/go/?id=ios-18_1-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>iPadOS 18.1 beta 3 (22B5034e)</title>
+            <link>https://developer.apple.com/news/releases/?id=08282024g</link>
+            <guid>https://developer.apple.com/news/releases/?id=08282024g</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Wed, 28 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li><li><a href=/go/?id=ipados-18_1-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>macOS 15.1 beta 3 (24B5035e)</title>
+            <link>https://developer.apple.com/news/releases/?id=08282024h</link>
+            <guid>https://developer.apple.com/news/releases/?id=08282024h</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Wed, 28 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li><li><a href=/go/?id=macos-15_1-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>iOS 18 beta 8 (22A5350a)</title>
+            <link>https://developer.apple.com/news/releases/?id=08282024a</link>
+            <guid>https://developer.apple.com/news/releases/?id=08282024a</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Wed, 28 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li><li><a href=/go/?id=ios-18-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>iPadOS 18 beta 8 (22A5350a)</title>
+            <link>https://developer.apple.com/news/releases/?id=08282024b</link>
+            <guid>https://developer.apple.com/news/releases/?id=08282024b</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Wed, 28 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li><li><a href=/go/?id=ipados-18-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>macOS 15 beta 8 (24A5331b)</title>
+            <link>https://developer.apple.com/news/releases/?id=08282024c</link>
+            <guid>https://developer.apple.com/news/releases/?id=08282024c</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Wed, 28 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li><li><a href=/go/?id=macos-15-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>tvOS 18 beta 8 (22J5356a)</title>
+            <link>https://developer.apple.com/news/releases/?id=08282024d</link>
+            <guid>https://developer.apple.com/news/releases/?id=08282024d</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Wed, 28 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li><li><a href=/go/?id=tvos-18-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>TestFlight update</title>
+            <link>https://developer.apple.com/news/releases/?id=08212024a</link>
+            <guid>https://developer.apple.com/news/releases/?id=08212024a</guid>
+            <description>View release notes</description>
+            <pubDate>Tue, 20 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/testflight/release-notes class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>Xcode 16 beta 6 (16A5230g)</title>
+            <link>https://developer.apple.com/news/releases/?id=08202024g</link>
+            <guid>https://developer.apple.com/news/releases/?id=08202024g</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Tue, 20 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download/applications class=more>View downloads</a></li><li><a href=/go/?id=xcode-16-sdk-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>watchOS 11 beta 7 (22R5348a)</title>
+            <link>https://developer.apple.com/news/releases/?id=08202024f</link>
+            <guid>https://developer.apple.com/news/releases/?id=08202024f</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Tue, 20 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li><li><a href=/go/?id=watchos-11-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>iOS 17.6.1 (21G101)</title>
+            <link>https://developer.apple.com/news/releases/?id=08192024a</link>
+            <guid>https://developer.apple.com/news/releases/?id=08192024a</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Mon, 19 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li><li><a href=/go/?id=ios-17.6-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>iPadOS 17.6.1 (21G101)</title>
+            <link>https://developer.apple.com/news/releases/?id=08192024b</link>
+            <guid>https://developer.apple.com/news/releases/?id=08192024b</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Mon, 19 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li><li><a href=/go/?id=ipados-17.6-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>tvOS 17.6.1 (21M80)</title>
+            <link>https://developer.apple.com/news/releases/?id=08192024c</link>
+            <guid>https://developer.apple.com/news/releases/?id=08192024c</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Mon, 19 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li><li><a href=/go/?id=tvos-17.6-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>watchOS 10.6.1 (21U580)</title>
+            <link>https://developer.apple.com/news/releases/?id=08192024d</link>
+            <guid>https://developer.apple.com/news/releases/?id=08192024d</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Mon, 19 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li><li><a href=/go/?id=watchos-10.6-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>Xcode 16.1 beta (16B5001e)</title>
+            <link>https://developer.apple.com/news/releases/?id=08122024k</link>
+            <guid>https://developer.apple.com/news/releases/?id=08122024k</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Tue, 13 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download/applications class=more>View downloads</a></li><li><a href=/go/?id=xcode-16_1-sdk-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>macOS 14.6.1 (23G93)</title>
+            <link>https://developer.apple.com/news/releases/?id=08072024c</link>
+            <guid>https://developer.apple.com/news/releases/?id=08072024c</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Wed, 07 Aug 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li><li><a href=/go/?id=macos-14.6-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>visionOS 1.3 (21O771)</title>
+            <link>https://developer.apple.com/news/releases/?id=07292024h</link>
+            <guid>https://developer.apple.com/news/releases/?id=07292024h</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Mon, 29 Jul 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li><li><a href=/go/?id=visionos-1.3-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>Transporter 1.3.1</title>
+            <link>https://developer.apple.com/news/releases/?id=07162024g</link>
+            <guid>https://developer.apple.com/news/releases/?id=07162024g</guid>
+            <description>View release notes</description>
+            <pubDate>Tue, 16 Jul 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=https://developer.apple.com/transporter/release-notes/ class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>AirPods Firmware beta (7A5220e)</title>
+            <link>https://developer.apple.com/news/releases/?id=06122024a</link>
+            <guid>https://developer.apple.com/news/releases/?id=06122024a</guid>
+            <description>View installation instructions</description>
+            <pubDate>Wed, 12 Jun 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><a href=https://developer.apple.com/support/install-beta/#airpods-beta class=more>View installation instructions</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>App Store Connect API 3.5</title>
+            <link>https://developer.apple.com/news/releases/?id=06112024a</link>
+            <guid>https://developer.apple.com/news/releases/?id=06112024a</guid>
+            <description>Download fileView release notes</description>
+            <pubDate>Tue, 11 Jun 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><a href=https://developer.apple.com/sample-code/app-store-connect/app-store-connect-openapi-specification.zip class=more>Download file</a></li><li><a href=https://developer.apple.com/documentation/appstoreconnectapi/app_store_connect_api_release_notes/app_store_connect_api_3_5_release_notes class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>TestFlight update</title>
+            <link>https://developer.apple.com/news/releases/?id=06102024i</link>
+            <guid>https://developer.apple.com/news/releases/?id=06102024i</guid>
+            <description>View release notes</description>
+            <pubDate>Mon, 10 Jun 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/testflight/release-notes class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>Xcode 15.4 (15F31d)</title>
+            <link>https://developer.apple.com/news/releases/?id=05132024a</link>
+            <guid>https://developer.apple.com/news/releases/?id=05132024a</guid>
+            <description>View downloadsView release notes</description>
+            <pubDate>Mon, 13 May 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download/applications class=more>View downloads</a></li><li><a href=/go/?id=xcode-15.4-sdk-rn class=more>View release notes</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>iOS 16.7.8 (20H343)</title>
+            <link>https://developer.apple.com/news/releases/?id=05132024g</link>
+            <guid>https://developer.apple.com/news/releases/?id=05132024g</guid>
+            <description>View downloads</description>
+            <pubDate>Mon, 13 May 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>iPadOS 16.7.8 (20H343)</title>
+            <link>https://developer.apple.com/news/releases/?id=05132024h</link>
+            <guid>https://developer.apple.com/news/releases/?id=05132024h</guid>
+            <description>View downloads</description>
+            <pubDate>Mon, 13 May 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>App Store Connect Update</title>
+            <link>https://developer.apple.com/news/releases/?id=05092024b</link>
+            <guid>https://developer.apple.com/news/releases/?id=05092024b</guid>
+            <description>You can now submit apps built with Xcode 15.4 RC using the SDK for iOS 17.5
+                RC, iPadOS 17.5 RC, macOS 14.5 RC, tvOS 17.5 RC, and watchOS 10.5 RC for the App
+                Store, and for internal and external testing through TestFlight.</description>
+            <pubDate>Thu, 09 May 2024 10:00:00 PDT</pubDate>
+            <content:encoded><![CDATA[<p>You can now submit apps built with Xcode 15.4 RC using the SDK for iOS 17.5 RC, iPadOS 17.5 RC, macOS 14.5 RC, tvOS 17.5 RC, and watchOS 10.5 RC for the App Store, and for internal and external testing through TestFlight.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title>iOS 15.8.2 (19H384)</title>
+            <link>https://developer.apple.com/news/releases/?id=03052024b</link>
+            <guid>https://developer.apple.com/news/releases/?id=03052024b</guid>
+            <description>View downloads</description>
+            <pubDate>Tue, 05 Mar 2024 09:00:00 PST</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title>iPadOS 15.8.2 (19H384)</title>
+            <link>https://developer.apple.com/news/releases/?id=03052024a</link>
+            <guid>https://developer.apple.com/news/releases/?id=03052024a</guid>
+            <description>View downloads</description>
+            <pubDate>Tue, 05 Mar 2024 09:00:00 PST</pubDate>
+            <content:encoded><![CDATA[<ul class=links-stacked><li><a href=/download class=more>View downloads</a></li></ul>]]></content:encoded>
+        </item>
+
+    </channel>
+</rss>
