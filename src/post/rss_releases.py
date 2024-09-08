@@ -74,6 +74,4 @@ def format_releases(releases: list[Release]) -> list[str]:
     else:
         post_text.insert(0, "🧪 NEW BETA RELEASES 🧪\n\n")
 
-    post_text.append("https://developer.apple.com/news/releases")
-
     return post_text
