@@ -107,16 +107,16 @@ class Release:
         zero_days_tmp = Release.parse_zero_days(sec_content_page)
 
         return Release(
-            name,
-            Release.parse_emoji(name),
-            "",
-            security_content_link,
-            row[2].text_content(),
-            zero_days_tmp,
-            Release.parse_num_of_bugs(row, sec_content_page),
-            len(zero_days_tmp),
-            sec_content_page.count(f"added {get_date.format_two()}"),
-            sec_content_page.count(f"updated {get_date.format_two()}"),
+            name=name,
+            emoji=Release.parse_emoji(name),
+            release_notes_link="",
+            security_content_link=security_content_link,
+            release_date=Release.parse_release_date(row),
+            zero_days=zero_days_tmp,
+            num_of_bugs=Release.parse_num_of_bugs(row, sec_content_page),
+            num_of_zero_days=len(zero_days_tmp),
+            num_entries_added=sec_content_page.count(f"added {get_date.format_two()}"),
+            num_entries_updated=sec_content_page.count(f"updated {get_date.format_two()}"),
         )
 
     @staticmethod
@@ -127,11 +127,9 @@ class Release:
         name = name.split("(Advisory", 1)[0]
 
         # handle "watchOS 9.0.2\nThis update has no published CVE entries."
-        if "update has no published CVE entries" in name:
-            name = name.split("\n", 1)[0].strip()
+        name = name.replace("This update has no published CVE entries.", "")
 
-        # handle "Rapid Security Response\nmacOS Ventura 13.4.1 (a)"
-        name = name.replace("\n", "")
+        name = name.replace("\n", "").strip()
 
         # "no details yet" releases might have this bracket alongside of their name
         name = re.sub(r"(?i)\(details available soon\.?\)", "", name).strip()
@@ -189,6 +187,12 @@ class Release:
             return tmp[0].replace("http:", "https:")
         else:
             return ""
+
+    @staticmethod
+    def parse_release_date(release_row: list[lxml.html.HtmlElement]) -> str:
+        release_date = release_row[2].text_content()
+
+        return release_date.replace("\n", "").strip()
 
     @staticmethod
     def parse_num_of_bugs(release_row: list[lxml.html.HtmlElement], sec_content_page: str) -> int:
