@@ -195,6 +195,9 @@ class Release:
         tmp = release_row[0].xpath(".//a/@href")
 
         if tmp != []:
+            if tmp[0].startswith("/"):
+                return "https://support.apple.com" + tmp[0]
+
             # some releases are listed with http, upgrade them
             return tmp[0].replace("http:", "https:")
         else:
