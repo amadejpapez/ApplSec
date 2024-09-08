@@ -232,6 +232,7 @@ class Release:
 
         entries = re.findall(r"(?i)(?<=<strong>).*?(?=<strong>|<\/div>)", sec_content_html)
         entries += re.findall(r"(?i)(?<=<b>).*?(?=<b>|<div id=\"disclaimer\")", sec_content_html)
+        entries += re.findall(r"(?i)(?<=<h3 class=\"gb-header\">).*?(?=<h3|<div id=\"disclaimer\")", sec_content_html)
 
         for entry in entries:
             if (
@@ -240,7 +241,7 @@ class Release:
                 or "may have been exploited" in entry
             ):
                 cve = re.findall(r"(?i)CVE-[0-9]{4}-[0-9]+", entry)[0]
-                zero_days[cve] = re.findall(r"(?i).+?(?=<\/strong>|<\/b>)", entry)[0]
+                zero_days[cve] = re.findall(r"(?i).+?(?=<\/strong>|<\/b>|<\/h3>)", entry)[0]
 
         return zero_days
 

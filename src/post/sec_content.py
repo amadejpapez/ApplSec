@@ -179,6 +179,7 @@ def format_ios_release(releases: list[Release]) -> list[str]:
 
     search_modules = collections.Counter(re.findall(r"(?<=<strong>).*?(?=<\/strong>)", sec_content_html))
     search_modules += collections.Counter(re.findall(r"(?<=<b>).*?(?=<\/b>)", sec_content_html))
+    search_modules += collections.Counter(re.findall(r"(?<=<h3 class=\"gb-header\">).*?(?=<\/h3>)", sec_content_html))
     modules = collections.OrderedDict(sorted(search_modules.items(), reverse=True, key=lambda x: x[1]))
 
     post_text = [f"⚒️ FIXED IN {release.name} ⚒️\n\n"]
