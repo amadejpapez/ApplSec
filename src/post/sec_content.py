@@ -10,7 +10,7 @@ from release import Release
 
 
 def _request_sec_page() -> str:
-    return requests.get("https://support.apple.com/en-us/HT201222", timeout=60).text
+    return requests.get("https://support.apple.com/en-us/100100", timeout=60).text
 
 
 def retrieve_page(html: str = _request_sec_page()) -> list[list[lxml.html.HtmlElement]]:
