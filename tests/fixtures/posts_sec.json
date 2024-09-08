@@ -1,581 +1,356 @@
 {
     "last_one_year_table": [
         [
-            "<a href=\"https://support.apple.com/kb/HT213058\">Safari 15.3</a>",
-            "macOS Big Sur and macOS Catalina",
-            "26 Jan 2022"
+            "<td>\n<p>watchOS 10.6.1</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>Apple Watch Series 4 and later</p>\n</td>",
+            "<td>\n<p>19 Aug 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213056\">Security Update 2022-001 Catalina</a>",
-            "macOS Catalina",
-            "26 Jan 2022"
+            "<td>\n<p>tvOS 17.6.1</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>Apple TV HD and Apple TV 4K (all models)</p>\n</td>",
+            "<td>\n<p>19 Aug 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213055\">macOS Big Sur 11.6.3</a>",
-            "macOS Big Sur",
-            "26 Jan 2022"
+            "<td>\n<p>iOS 17.6.1 and iPadOS 17.6.1</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>iPhone XS and later, iPad Pro 13-inch, iPad Pro 12.9-inch 2nd generation and later, iPad Pro 10.5-inch, iPad Pro 11-inch 1st generation and later, iPad Air 3rd generation and later, iPad 6th generation and later, and iPad mini 5th generation and later</p>\n</td>",
+            "<td>\n<p>07 Aug 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213054\">macOS Monterey 12.2</a>",
-            "macOS Monterey",
-            "26 Jan 2022"
+            "<td>\n<p>iOS 16.7.10 and iPadOS 16.7.10</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>iPhone 8, iPhone 8 Plus, iPhone X, iPad 5th generation, iPad Pro 9.7-inch, and iPad Pro 12.9-inch 1st generation</p>\n</td>",
+            "<td>\n<p>07 Aug 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213057\">tvOS 15.3</a>",
-            "Apple TV 4K and Apple TV HD",
-            "26 Jan 2022"
+            "<td>\n<p>macOS Sonoma 14.6.1</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>macOS Sonoma</p>\n</td>",
+            "<td>\n<p>07 Aug 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213053\">iOS 15.3 and iPadOS 15.3</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "26 Jan 2022"
+            "<td>\n<p>macOS Ventura 13.6.9</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>macOS Ventura</p>\n</td>",
+            "<td>\n<p>07 Aug 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213059\">watchOS 8.4</a>",
-            "Apple Watch Series 3 and later",
-            "26 Jan 2022"
+            "<td>\n<p><a href=\"/en-us/120913\" class=\"gb-anchor\">Safari 17.6</a></p>\n</td>",
+            "<td>\n<p>macOS Monterey and macOS Ventura</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213043\">iOS 15.2.1 and iPadOS 15.2.1</a>",
-            "Phone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "12 Jan 2022"
+            "<td>\n<p><a href=\"/en-us/120909\" class=\"gb-anchor\">iOS 17.6 and iPadOS 17.6</a></p>\n</td>",
+            "<td>\n<p>iPhone XS and later, iPad Pro 13-inch, iPad Pro 12.9-inch 2nd generation and later, iPad Pro 10.5-inch, iPad Pro 11-inch 1st generation and later, iPad Air 3rd generation and later, iPad 6th generation and later, and iPad mini 5th generation and later</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212982\">Safari 15.2</a>",
-            "macOS Big Sur and macOS Catalina",
-            "14 Dec 2021"
+            "<td>\n<p><a href=\"/en-us/120908\" class=\"gb-anchor\">iOS 16.7.9 and iPadOS 16.7.9</a></p>\n</td>",
+            "<td>\n<p>iPhone 8, iPhone 8 Plus, iPhone X, iPad 5th generation, iPad Pro 9.7-inch, and iPad Pro 12.9-inch 1st generation</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212976\">iOS 15.2 and iPadOS 15.2</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "13 Dec 2021"
+            "<td>\n<p><a href=\"/en-us/120911\" class=\"gb-anchor\">macOS Sonoma 14.6</a></p>\n</td>",
+            "<td>\n<p>macOS Sonoma</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212978\">macOS Monterey 12.1</a>",
-            "macOS Monterey",
-            "13 Dec 2021"
+            "<td>\n<p><a href=\"/en-us/120912\" class=\"gb-anchor\">macOS Ventura 13.6.8</a></p>\n</td>",
+            "<td>\n<p>macOS Ventura</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212979\">macOS Big Sur 11.6.2</a>",
-            "macOS Big Sur",
-            "13 Dec 2021"
+            "<td>\n<p><a href=\"/en-us/120910\" class=\"gb-anchor\">macOS Monterey 12.7.6</a></p>\n</td>",
+            "<td>\n<p>macOS Monterey</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212981\">Security Update 2021-008 Catalina</a>",
-            "macOS Catalina",
-            "13 Dec 2021"
+            "<td>\n<p><a href=\"/en-us/120916\" class=\"gb-anchor\">watchOS 10.6</a></p>\n</td>",
+            "<td>\n<p>Apple Watch Series 4 and later</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212980\">tvOS 15.2</a>",
-            "Apple TV 4K and Apple TV HD",
-            "13 Dec 2021"
+            "<td>\n<p><a href=\"/en-us/120914\" class=\"gb-anchor\">tvOS 17.6</a></p>\n</td>",
+            "<td>\n<p>Apple TV HD and Apple TV 4K (all models)</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212975\">watchOS 8.3</a>",
-            "Apple Watch Series 3 and later",
-            "13 Dec 2021"
+            "<td>\n<p><a href=\"/en-us/120915\" class=\"gb-anchor\">visionOS 1.3</a></p>\n</td>",
+            "<td>\n<p>Apple Vision Pro</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
-            "watchOS 8.1.1\nThis update has no published CVE entries.",
-            "Apple Watch Series 7 (GPS + Cellular)",
-            "18 Nov 2021"
+            "<td>\n<p>iOS 15.8.3 and iPadOS 15.8.3</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>iPhone 6s (all models), iPhone 7 (all models), iPhone SE (1st generation), iPad Air 2, iPad mini (4th generation), and iPod touch (7th generation)</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
-            "iOS 15.1.1\nThis update has no published CVE entries.",
-            "iPhone 12 and later",
-            "17 Nov 2021"
+            "<td>\n<p><a href=\"/en-us/120907\" class=\"gb-anchor\">AirPods Firmware Update 6A326, AirPods Firmware Update 6F8, and Beats Firmware Update 6F8</a>\n</p>\n</td>",
+            "<td>\n<p>AirPods (2nd generation and later), AirPods Pro (all models), AirPods Max, Powerbeats Pro, and Beats Fit Pro</p>\n</td>",
+            "<td>\n<p>25 Jun 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212953\">iCloud for Windows 13</a>",
-            "Windows 10 and later via the Microsoft Store",
-            "10 Nov 2021"
+            "<td>\n<p><a href=\"/en-us/120906\" class=\"gb-anchor\">visionOS 1.2</a></p>\n</td>",
+            "<td>\n<p>Apple Vision Pro</p>\n</td>",
+            "<td>\n<p>10 Jun 2024</p>\n</td>"
         ],
         [
-            "tvOS 15.1.1\nThis update has no published CVE entries.",
-            "Apple TV 4K and Apple TV HD",
-            "01 Nov 2021"
+            "<td>\n<p>tvOS 17.5.1</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>Apple TV HD and Apple TV 4K (all models)</p>\n</td>",
+            "<td>\n<p>21 May 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212875\">Safari 15.1</a>",
-            "macOS Big Sur and macOS Catalina",
-            "27 Oct 2021"
+            "<td>\n<p>iOS 17.5.1 and iPadOS 17.5.1</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>iPhone XS and later, iPad Pro 13-inch, iPad Pro 12.9-inch 2nd generation and later, iPad Pro 10.5-inch, iPad Pro 11-inch 1st generation and later, iPad Air 3rd generation and later, iPad 6th generation and later, and iPad mini 5th generation and later</p>\n</td>",
+            "<td>\n<p>20 May 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212868\">iOS 14.8.1 and iPadOS 14.8.1</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "26 Oct 2021"
+            "<td>\n<p><a href=\"/en-us/120896\" class=\"gb-anchor\">Safari 17.5</a></p>\n</td>",
+            "<td>\n<p>macOS Monterey and macOS Ventura</p>\n</td>",
+            "<td>\n<p>13 May 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212869\">macOS Monterey 12.0.1</a> <em>(Advisory includes security content of macOS Monterey 12.0 and macOS Monterey 12.0.1)</em>",
-            "Mac Pro (2013 and later), MacBook Air (Early 2015 and later), MacBook Pro (Early 2015 and later), Mac mini (Late 2014 and later), iMac (Late 2015 and later), MacBook (Early 2016 and later), iMac Pro (2017 and later)",
-            "25 Oct 2021"
+            "<td>\n<p><a href=\"/en-us/120905\" class=\"gb-anchor\">iOS 17.5 and iPadOS 17.5</a></p>\n</td>",
+            "<td>\n<p>iPhone XS and later, iPad Pro 13-inch, iPad Pro 12.9-inch 2nd generation and later, iPad Pro 10.5-inch, iPad Pro 11-inch 1st generation and later, iPad Air 3rd generation and later, iPad 6th generation and later, and iPad mini 5th generation and later</p>\n</td>",
+            "<td>\n<p>13 May 2024</p>\n</td>"
         ],
         [
-            "macOS Monterey 12.0",
-            "Preinstalled only on certain Mac models; please update to macOS Monterey 12.0.1",
-            "Preinstalled"
+            "<td>\n<p><a href=\"/en-us/120898\" class=\"gb-anchor\">iOS 16.7.8 and iPadOS 16.7.8</a></p>\n</td>",
+            "<td>\n<p>iPhone 8, iPhone 8 Plus, iPhone X, iPad 5th generation, iPad Pro 9.7-inch, and iPad Pro 12.9-inch 1st generation</p>\n</td>",
+            "<td>\n<p>13 May 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212872\">macOS Big Sur 11.6.1</a>",
-            "macOS Big Sur",
-            "25 Oct 2021"
+            "<td>\n<p><a href=\"/en-us/120903\" class=\"gb-anchor\">macOS Sonoma 14.5</a></p>\n</td>",
+            "<td>\n<p>macOS Sonoma</p>\n</td>",
+            "<td>\n<p>13 May 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212871\">Security Update 2021-007 Catalina</a>",
-            "macOS Catalina",
-            "25 Oct 2021"
+            "<td>\n<p><a href=\"/en-us/120900\" class=\"gb-anchor\">macOS Ventura 13.6.7</a></p>\n</td>",
+            "<td>\n<p>macOS Ventura</p>\n</td>",
+            "<td>\n<p>13 May 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212874\">watchOS 8.1</a>",
-            "Apple Watch Series 3 and later",
-            "25 Oct 2021"
+            "<td>\n<p><a href=\"/en-us/120899\" class=\"gb-anchor\">macOS Monterey 12.7.5</a></p>\n</td>",
+            "<td>\n<p>macOS Monterey</p>\n</td>",
+            "<td>\n<p>13 May 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212867\">iOS 15.1 and iPadOS 15.1</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "25 Oct 2021"
+            "<td>\n<p><a href=\"/en-us/120902\" class=\"gb-anchor\">watchOS 10.5</a></p>\n</td>",
+            "<td>\n<p>Apple Watch Series 4 and later</p>\n</td>",
+            "<td>\n<p>13 May 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212876\">tvOS 15.1</a>",
-            "Apple TV 4K and Apple TV HD",
-            "25 Oct 2021"
+            "<td>\n<p><a href=\"/en-us/120901\" class=\"gb-anchor\">tvOS 17.5</a></p>\n</td>",
+            "<td>\n<p>Apple TV HD and Apple TV 4K (all models)</p>\n</td>",
+            "<td>\n<p>13 May 2024</p>\n</td>"
         ],
         [
-            "watchOS 8.0.1\nThis update has no published CVE entries.",
-            "Apple Watch Series 3 and later",
-            "11 Oct 2021"
+            "<td>\n<p><a href=\"/en-us/120897\" class=\"gb-anchor\">iTunes 12.13.2 for Windows</a></p>\n</td>",
+            "<td>\n<p>Windows 10 and later</p>\n</td>",
+            "<td>\n<p>08 May 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212846\">iOS 15.0.2 and iPadOS 15.0.2</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "11 Oct 2021"
+            "<td>\n<p>visionOS 1.1.2</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>Apple Vision Pro</p>\n</td>",
+            "<td>\n<p>09 Apr 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212866\">iOS 15.0.1 and iPadOS 15.0.1</a><br>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "01 Oct 2021"
+            "<td>\n<p><a href=\"/en-us/120888\" class=\"gb-anchor\">Safari 17.4.1</a></p>\n</td>",
+            "<td>\n<p>macOS Monterey and macOS Ventura</p>\n</td>",
+            "<td>\n<p>25 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212825\">Security Update 2021-006 Catalina</a>",
-            "macOS Catalina",
-            "23 Sep 2021"
+            "<td>\n<p><a href=\"/en-us/120889\" class=\"gb-anchor\">macOS Sonoma 14.4.1</a></p>\n</td>",
+            "<td>\n<p>macOS Sonoma</p>\n</td>",
+            "<td>\n<p>25 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212824\">iOS 12.5.5</a>",
-            "iPhone 5s, iPhone 6, iPhone 6 Plus, iPad Air, iPad mini 2, iPad mini 3, and iPod touch (6th generation)",
-            "23 Sep 2021"
+            "<td>\n<p><a href=\"/en-us/120891\" class=\"gb-anchor\">macOS Ventura 13.6.6</a></p>\n</td>",
+            "<td>\n<p>macOS Ventura</p>\n</td>",
+            "<td>\n<p>25 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212817\">iTunes 12.12 for Windows</a>",
-            "Windows 10 and later",
-            "20 Sep 2021"
+            "<td>\n<p><a href=\"/en-us/120890\" class=\"gb-anchor\">iOS 17.4.1 and iPadOS 17.4.1</a></p>\n</td>",
+            "<td>\n<p>iPhone XS and later, iPad Pro 12.9-inch 2nd generation and later, iPad Pro 10.5-inch, iPad Pro 11-inch 1st generation and later, iPad Air 3rd generation and later, iPad 6th generation and later, and iPad mini 5th generation and later</p>\n</td>",
+            "<td>\n<p>21 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212816\">Safari 15</a>",
-            "macOS Big Sur and macOS Catalina",
-            "20 Sep 2021"
+            "<td>\n<p><a href=\"/en-us/120892\" class=\"gb-anchor\">iOS 16.7.7 and iPadOS 16.7.7</a></p>\n</td>",
+            "<td>\n<p>iPhone 8, iPhone 8 Plus, iPhone X, iPad 5th generation, iPad Pro 9.7-inch, and iPad Pro 12.9-inch 1st generation</p>\n</td>",
+            "<td>\n<p>21 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212818\">Xcode 13</a>",
-            "macOS Big Sur 11.3 and later",
-            "20 Sep 2021"
+            "<td>\n<p><a href=\"/en-us/120312\" class=\"gb-anchor\">visionOS 1.1.1</a>\n</p>\n</td>",
+            "<td>\n<p>Apple Vision Pro</p>\n</td>",
+            "<td>\n<p>21 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212815\">tvOS 15</a>",
-            "Apple TV 4K and Apple TV HD",
-            "20 Sep 2021"
+            "<td>\n<p><a href=\"/en-us/120885\" class=\"gb-anchor\">GarageBand 10.4.11</a></p>\n</td>",
+            "<td>\n<p>macOS Ventura and macOS Sonoma</p>\n</td>",
+            "<td>\n<p>12 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212819\">watchOS 8</a>",
-            "Apple Watch Series 3 and later",
-            "20 Sep 2021"
+            "<td>\n<p><a href=\"/en-us/120894\" class=\"gb-anchor\">Safari 17.4</a></p>\n</td>",
+            "<td>\n<p>macOS Monterey and macOS Ventura</p>\n</td>",
+            "<td>\n<p>07 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212814\">iOS 15 and iPadOS 15</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "20 Sep 2021"
+            "<td>\n<p><a href=\"/en-us/120895\" class=\"gb-anchor\">macOS Sonoma 14.4</a></p>\n</td>",
+            "<td>\n<p>macOS Sonoma</p>\n</td>",
+            "<td>\n<p>07 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212809\">iTunes U 3.8.3</a>",
-            "iOS 12.4 and later or iPadOS 12.4 and later",
-            "15 Sep 2021"
+            "<td>\n<p><a href=\"/en-us/120886\" class=\"gb-anchor\">macOS Ventura 13.6.5</a></p>\n</td>",
+            "<td>\n<p>macOS Ventura</p>\n</td>",
+            "<td>\n<p>07 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212808\">Safari 14.1.2</a>",
-            "macOS Catalina and macOS Mojave",
-            "13 Sep 2021"
+            "<td>\n<p><a href=\"/en-us/120884\" class=\"gb-anchor\">macOS Monterey 12.7.4</a></p>\n</td>",
+            "<td>\n<p>macOS Monterey</p>\n</td>",
+            "<td>\n<p>07 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212805\">Security Update 2021-005 Catalina</a>",
-            "macOS Catalina",
-            "13 Sep 2021"
+            "<td>\n<p><a href=\"/en-us/120881\" class=\"gb-anchor\">watchOS 10.4</a></p>\n</td>",
+            "<td>\n<p>Apple Watch Series 4 and later</p>\n</td>",
+            "<td>\n<p>07 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212804\">macOS Big Sur 11.6</a>",
-            "macOS Big Sur",
-            "13 Sep 2021"
+            "<td>\n<p><a href=\"/en-us/120882\" class=\"gb-anchor\">tvOS 17.4</a></p>\n</td>",
+            "<td>\n<p>Apple TV HD and Apple TV 4K (all models)</p>\n</td>",
+            "<td>\n<p>07 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212806\">watchOS 7.6.2</a>",
-            "Apple Watch Series 3 and later",
-            "13 Sep 2021"
+            "<td>\n<p><a href=\"/en-us/120883\" class=\"gb-anchor\">visionOS 1.1</a></p>\n</td>",
+            "<td>\n<p>Apple Vision Pro</p>\n</td>",
+            "<td>\n<p>07 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212807\">iOS 14.8 and iPadOS 14.8</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "13 Sep 2021"
+            "<td>\n<p><a href=\"/en-us/120887\" class=\"gb-anchor\">Xcode 15.3</a></p>\n</td>",
+            "<td>\n<p>macOS Sonoma 14 and later</p>\n</td>",
+            "<td>\n<p>05 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212607\">iCloud for Windows 12.5</a>",
-            "Windows 10 and later via the Microsoft Store",
-            "16 Aug 2021"
+            "<td>\n<p><a href=\"/en-us/120893\" class=\"gb-anchor\">iOS 17.4 and iPadOS 17.4</a></p>\n</td>",
+            "<td>\n<p>iPhone XS and later, iPad Pro 12.9-inch 2nd generation and later, iPad Pro 10.5-inch, iPad Pro 11-inch 1st generation and later, iPad Air 3rd generation and later, iPad 6th generation and later, and iPad mini 5th generation and later</p>\n</td>",
+            "<td>\n<p>05 Mar 2024</p>\n</td>"
         ],
         [
-            "macOS Big Sur 11.5.2\nThis update has no published CVE entries.",
-            "macOS Big Sur",
-            "11 Aug 2021"
+            "<td>\n<p><a href=\"/en-us/120880\" class=\"gb-anchor\">iOS 16.7.6 and iPadOS 16.7.6</a></p>\n</td>",
+            "<td>\n<p>iPhone 8, iPhone 8 Plus, iPhone X, iPad 5th generation, iPad Pro 9.7-inch, and iPad Pro 12.9-inch 1st generation</p>\n</td>",
+            "<td>\n<p>05 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212609\">iTunes 12.11.4 for Windows</a>",
-            "Windows 10 and later",
-            "09 Aug 2021"
+            "<td>\n<p>iOS 15.8.2 and iPadOS 15.8.2</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>iPhone 6s (all models), iPhone 7 (all models), iPhone SE (1st generation), iPad Air 2, iPad mini (4th generation), and iPod touch (7th generation)</p>\n</td>",
+            "<td>\n<p>05 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212713\">watchOS 7.6.1</a>",
-            "Apple Watch Series 3 and later",
-            "29 Jul 2021"
+            "<td>\n<p>visionOS 1.0.3</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>Apple Vision Pro</p>\n</td>",
+            "<td>\n<p>12 Feb 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212623\">iOS 14.7.1 and iPadOS 14.7.1</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "26 Jul 2021"
+            "<td>\n<p>Safari 17.3.1</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>macOS Monterey and macOS Ventura</p>\n</td>",
+            "<td>\n<p>09 Feb 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212622\">macOS Big Sur 11.5.1</a>",
-            "macOS Big Sur",
-            "26 Jul 2021"
+            "<td>\n<p>iOS 17.3.1 and iPadOS 17.3.1</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>iPhone XS and later, iPad Pro 12.9-inch 2nd generation and later, iPad Pro 10.5-inch, iPad Pro 11-inch 1st generation and later, iPad Air 3rd generation and later, iPad 6th generation and later, and iPad mini 5th generation and later</p>\n</td>",
+            "<td>\n<p>08 Feb 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212602\">macOS Big Sur 11.5</a>",
-            "macOS Big Sur",
-            "21 Jul 2021"
+            "<td>\n<p>macOS Sonoma 14.3.1</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>macOS Sonoma</p>\n</td>",
+            "<td>\n<p>08 Feb 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212600\">Security Update 2021-004 Catalina</a>",
-            "macOS Catalina",
-            "21 Jul 2021"
+            "<td>\n<p>watchOS 10.3.1</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>Apple Watch Series 4 and later</p>\n</td>",
+            "<td>\n<p>08 Feb 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212603\">Security Update 2021-005 Mojave</a>",
-            "macOS Mojave",
-            "21 Jul 2021"
+            "<td>\n<p><a href=\"/en-us/118479\" class=\"gb-anchor\">visionOS 1.0.2</a>\n</p>\n</td>",
+            "<td>\n<p>Apple Vision Pro</p>\n</td>",
+            "<td>\n<p>31 Jan 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212601\">iPadOS 14.7</a>",
-            "iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, and iPad mini 4 and later",
-            "21 Jul 2021"
+            "<td>\n<p><a href=\"/en-us/120339\" class=\"gb-anchor\">Safari 17.3</a></p>\n</td>",
+            "<td>\n<p>macOS Monterey and macOS Ventura</p>\n</td>",
+            "<td>\n<p>22 Jan 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212606\">Safari 14.1.2</a>",
-            "macOS Catalina and macOS Mojave",
-            "19 Jul 2021"
+            "<td>\n<p><a href=\"/en-us/120304\" class=\"gb-anchor\">iOS 17.3 and iPadOS 17.3</a></p>\n</td>",
+            "<td>\n<p>iPhone XS and later, iPad Pro 12.9-inch 2nd generation and later, iPad Pro 10.5-inch, iPad Pro 11-inch 1st generation and later, iPad Air 3rd generation and later, iPad 6th generation and later, and iPad mini 5th generation and later</p>\n</td>",
+            "<td>\n<p>22 Jan 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212601\">iOS 14.7</a>",
-            "iPhone 6s and later, and iPod touch (7th generation)",
-            "19 Jul 2021"
+            "<td>\n<p><a href=\"/en-us/120310\" class=\"gb-anchor\">iOS 16.7.5 and iPadOS 16.7.5</a></p>\n</td>",
+            "<td>\n<p>iPhone 8, iPhone 8 Plus, iPhone X, iPad 5th generation, iPad Pro 9.7-inch, and iPad Pro 12.9-inch 1st generation</p>\n</td>",
+            "<td>\n<p>22 Jan 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212605\">watchOS 7.6</a>",
-            "Apple Watch Series 3 and later",
-            "19 Jul 2021"
+            "<td>\n<p><a href=\"/en-us/120308\" class=\"gb-anchor\">iOS 15.8.1 and iPadOS 15.8.1</a></p>\n</td>",
+            "<td>\n<p>iPhone 6s (all models), iPhone 7 (all models), iPhone SE (1st generation), iPad Air 2, iPad mini (4th generation), and iPod touch (7th generation)</p>\n</td>",
+            "<td>\n<p>22 Jan 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212604\">tvOS 14.7</a>",
-            "Apple TV 4K and Apple TV HD",
-            "19 Jul 2021"
+            "<td>\n<p><a href=\"/en-us/120309\" class=\"gb-anchor\">macOS Sonoma 14.3</a></p>\n</td>",
+            "<td>\n<p>macOS Sonoma</p>\n</td>",
+            "<td>\n<p>22 Jan 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212549\">iMovie 10.2.4</a>",
-            "macOS Catalina 10.15.6 and later",
-            "17 Jun 2021"
+            "<td>\n<p><a href=\"/en-us/120307\" class=\"gb-anchor\">macOS Ventura 13.6.4</a></p>\n</td>",
+            "<td>\n<p>macOS Ventura</p>\n</td>",
+            "<td>\n<p>22 Jan 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212548\">iOS 12.5.4</a>",
-            "iPhone 5s, iPhone 6, iPhone 6 Plus, iPad Air, iPad mini 2, iPad mini 3, and iPod touch (6th generation)",
-            "14 Jun 2021"
+            "<td>\n<p><a href=\"/en-us/120305\" class=\"gb-anchor\">macOS Monterey 12.7.3</a></p>\n</td>",
+            "<td>\n<p>macOS Monterey</p>\n</td>",
+            "<td>\n<p>22 Jan 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212534\">Safari 14.1.1</a>",
-            "macOS Catalina and macOS Mojave",
-            "24 May 2021"
+            "<td>\n<p><a href=\"/en-us/120306\" class=\"gb-anchor\">watchOS 10.3</a></p>\n</td>",
+            "<td>\n<p>Apple Watch Series 4 and later</p>\n</td>",
+            "<td>\n<p>22 Jan 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212530\">Security Update 2021-003 Catalina</a>",
-            "macOS Catalina",
-            "24 May 2021"
+            "<td>\n<p><a href=\"/en-us/120311\" class=\"gb-anchor\">tvOS 17.3</a></p>\n</td>",
+            "<td>\n<p>Apple TV HD and Apple TV 4K (all models)</p>\n</td>",
+            "<td>\n<p>22 Jan 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212531\">Security Update 2021-004 Mojave</a>",
-            "macOS Mojave",
-            "24 May 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212529\">macOS Big Sur 11.4</a>",
-            "macOS Big Sur",
-            "24 May 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212528\">iOS 14.6 and iPadOS 14.6</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "24 May 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212532\">tvOS 14.6</a>",
-            "Apple TV 4K and Apple TV HD",
-            "24 May 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212533\">watchOS 7.5</a>",
-            "Apple Watch Series 3 and later",
-            "24 May 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212517\">Boot Camp 6.1.14</a>",
-            "Mac Pro (Late 2013 and later), MacBook Pro (Late 2013 and later), MacBook Air (Mid 2013 and later), Mac mini (Mid 2014 and later), iMac (Mid 2014 and later), MacBook (Early 2015 and later), iMac Pro (Late 2017)",
-            "17 May 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212340\">Safari 14.1</a>",
-            "macOS Catalina and macOS Mojave",
-            "04 May 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212335\">macOS Big Sur 11.3.1</a>",
-            "macOS Big Sur",
-            "03 May 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212336\">iOS 14.5.1 and iPadOS 14.5.1</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "03 May 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212341\">iOS 12.5.3</a>",
-            "iPhone 5s, iPhone 6, iPhone 6 Plus, iPad Air, iPad mini 2, iPad mini 3, and iPod touch (6th generation)",
-            "03 May 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212339\">watchOS 7.4.1</a>",
-            "Apple Watch Series 3 and later",
-            "03 May 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212321\">iCloud for Windows 12.3</a>",
-            "Windows 10 and later via the Microsoft Store",
-            "26 Apr 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212320\">Xcode 12.5</a>",
-            "macOS Big Sur 11 and later",
-            "26 Apr 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212318\">Safari 14.1</a>",
-            "macOS Catalina and macOS Mojave",
-            "26 Apr 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212325\">macOS Big Sur 11.3</a>",
-            "macOS Big Sur",
-            "26 Apr 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212326\">Security Update 2021-002 Catalina</a>",
-            "macOS Catalina",
-            "26 Apr 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212327\">Security Update 2021-003 Mojave</a>",
-            "macOS Mojave",
-            "26 Apr 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212317\">iOS 14.5 and iPadOS 14.5</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "26 Apr 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212324\">watchOS 7.4</a>",
-            "Apple Watch Series 3 and later",
-            "26 Apr 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212323\">tvOS 14.5</a>",
-            "Apple TV 4K and Apple TV HD",
-            "26 Apr 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212319\">iTunes 12.11.3 for Windows</a>",
-            "Windows 10 and later",
-            "22 Apr 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212299\">GarageBand 10.4.3</a>",
-            "macOS Big Sur",
-            "06 Apr 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212256\">iOS 14.4.2 and iPadOS 14.4.2</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "26 Mar 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212257\">iOS 12.5.2</a>",
-            "iPhone 5s, iPhone 6, iPhone 6 Plus, iPad Air, iPad mini 2, iPad mini 3, and iPod touch (6th generation)",
-            "26 Mar 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212258\">watchOS 7.3.3</a>",
-            "Apple Watch Series 3 and later",
-            "26 Mar 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212223\">Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7)</a>",
-            "macOS Catalina and macOS Mojave",
-            "08 Mar 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212220\">macOS Big Sur 11.2.3</a>",
-            "macOS Big Sur",
-            "08 Mar 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212222\">watchOS 7.3.2</a>",
-            "Apple Watch Series 3 and later",
-            "08 Mar 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212221\">iOS 14.4.1 and iPadOS 14.4.1</a>",
-            "iPhone 6s and later, iPad Air 2 and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "08 Mar 2021"
-        ],
-        [
-            "macOS Big Sur 11.2.2\nThis update has no published CVE entries.",
-            "macOS Big Sur 11.2.1",
-            "25 Feb 2021"
-        ],
-        [
-            "watchOS 7.3.1\nThis update has no published CVE entries.",
-            "Apple Watch Series 5 and Apple Watch SE",
-            "15 Feb 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212177\">macOS Big Sur 11.2.1, macOS Catalina 10.15.7 Supplemental Update, macOS Mojave 10.14.6 Security Update 2021-002</a>",
-            "macOS Big Sur 11.2, macOS Catalina 10.15.7, and macOS Mojave 10.14.6",
-            "09 Feb 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212152\">Safari 14.0.3</a>",
-            "macOS Catalina and macOS Mojave",
-            "01 Feb 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212147\">macOS Big Sur 11.2, Security Update 2021-001 Catalina, Security Update 2021-001 Mojave</a>",
-            "macOS Big Sur 11.0.1, macOS Catalina 10.15.7, and macOS Mojave 10.14.6",
-            "01 Feb 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212153\">Xcode 12.4</a>",
-            "macOS Catalina 10.15.4 and later",
-            "26 Jan 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212145\">iCloud for Windows 12.0</a>",
-            "Windows 10 and later via the Microsoft Store",
-            "26 Jan 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212146\">iOS 14.4 and iPadOS 14.4</a>",
-            "iPhone 6s and later, iPad Air 2 and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "26 Jan 2021"
+            "<td>\n<p><a href=\"/en-us/120303\" class=\"gb-anchor\">Magic Keyboard Firmware Update 2.0.6</a></p>\n</td>",
+            "<td>\n<p>Magic Keyboard; Magic Keyboard (2021); Magic Keyboard with Numeric Keypad; Magic Keyboard with Touch ID; and Magic Keyboard with Touch ID and Numeric Keypad</p>\n</td>",
+            "<td>\n<p>09 Jan 2024</p>\n</td>"
         ]
     ],
     "new_sec_content_rows_table": [
         [
-            "<a href=\"https://support.apple.com/kb/HT212152\">Safari 14.0.3</a>",
-            "macOS Catalina and macOS Mojave",
-            "01 Feb 2021"
+            "<td>\n<p><a href=\"/en-us/120913\" class=\"gb-anchor\">Safari 17.6</a></p>\n</td>",
+            "<td>\n<p>macOS Monterey and macOS Ventura</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212223\">Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7)</a>",
-            "macOS Catalina and macOS Mojave",
-            "01 Feb 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT213058\">Safari 15.3</a>",
-            "macOS Big Sur and macOS Catalina",
-            "01 Feb 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT213091\">Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8)</a>",
-            "macOS Big Sur and macOS Catalina",
-            "01 Feb 2021"
+            "<td>\n<p><a href=\"/en-us/120913\" class=\"gb-anchor\">Safari 17.6 (v. 14610.4.3.1.7 and 15610.4.3.1.7)</a></p>\n</td>",
+            "<td>\n<p>macOS Monterey and macOS Ventura</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ]
     ],
     "new_sec_content_rows_info": {
         "1": {
-            "name": "Safari 14.0.3",
+            "name": "Safari 17.6",
             "emoji": "🌐",
-            "security_content_link": "https://support.apple.com/kb/HT212152",
-            "release_date": "01 Feb 2021",
-            "num_of_bugs": 3,
+            "security_content_link": "https://support.apple.com/en-us/120913",
+            "release_date": "29 Jul 2024",
+            "num_of_bugs": 9,
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
         "2": {
-            "name": "Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7)",
+            "name": "Safari 17.6 (v. 14610.4.3.1.7 and 15610.4.3.1.7)",
             "emoji": "🌐",
-            "security_content_link": "https://support.apple.com/kb/HT212223",
-            "release_date": "01 Feb 2021",
-            "num_of_bugs": 1,
-            "num_of_zero_days": 0,
-            "zero_days": {},
-            "num_entries_added": 0,
-            "num_entries_updated": 0
-        },
-        "3": {
-            "name": "Safari 15.3",
-            "emoji": "🌐",
-            "security_content_link": "https://support.apple.com/kb/HT213058",
-            "release_date": "01 Feb 2021",
-            "num_of_bugs": 4,
-            "num_of_zero_days": 0,
-            "zero_days": {},
-            "num_entries_added": 0,
-            "num_entries_updated": 0
-        },
-        "4": {
-            "name": "Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8)",
-            "emoji": "🌐",
-            "security_content_link": "https://support.apple.com/kb/HT213091",
-            "release_date": "01 Feb 2021",
-            "num_of_bugs": 1,
-            "num_of_zero_days": 1,
-            "zero_days": {
-                "CVE-2022-22620": "WebKit"
-            },
-            "num_entries_added": 0,
-            "num_entries_updated": 0
-        },
-        "5": {
-            "name": "macOS Big Sur 11.2.1 and older",
-            "emoji": "💻",
-            "security_content_link": "https://support.apple.com/kb/HT212177",
-            "release_date": "09 Feb 2021",
-            "num_of_bugs": 3,
+            "security_content_link": "https://support.apple.com/en-us/120913",
+            "release_date": "29 Jul 2024",
+            "num_of_bugs": 9,
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
@@ -584,24 +359,20 @@
     },
     "new_sec_content_rows_post_mastodon": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "🌐 Safari 15.3 - 4 bugs fixed\nhttps://support.apple.com/kb/HT213058\n",
-        "🌐 Safari 14.0.3 - 3 bugs fixed\nhttps://support.apple.com/kb/HT212152\n",
-        "🌐 Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8) - 1 bug fixed\nhttps://support.apple.com/kb/HT213091\n",
-        "🌐 Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7) - 1 bug fixed\nhttps://support.apple.com/kb/HT212223\n"
+        "🌐 Safari 17.6 (v. 14610.4.3.1.7 and 15610.4.3.1.7) - 9 bugs fixed\nhttps://support.apple.com/en-us/120913\n",
+        "🌐 Safari 17.6 - 9 bugs fixed\nhttps://support.apple.com/en-us/120913\n"
     ],
     "new_sec_content_rows_post_twitter": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "🌐 Safari 15.3 - 4 bugs fixed\n",
-        "🌐 Safari 14.0.3 - 3 bugs fixed\n",
-        "🌐 Safari 15.3 (v. 16612.4.9.1.8 and 15612.4.9.1.8) - 1 bug fixed\n",
-        "🌐 Safari 14.0.3 (v. 14610.4.3.1.7 and 15610.4.3.1.7) - 1 bug fixed\n",
+        "🌐 Safari 17.6 (v. 14610.4.3.1.7 and 15610.4.3.1.7) - 9 bugs fixed\n",
+        "🌐 Safari 17.6 - 9 bugs fixed\n",
         "https://support.apple.com/kb/HT201222"
     ],
     "new_sec_content_table": [
         [
-            "<a href=\"https://support.apple.com/kb/HT213058\">Safari 15.3</a>",
-            "macOS Big Sur and macOS Catalina",
-            "26 Jan 2022"
+            "<td>\n<p><a href=\"/en-us/120913\" class=\"gb-anchor\">Safari 17.6</a></p>\n</td>",
+            "<td>\n<p>macOS Monterey and macOS Ventura</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
             "<a href=\"https://support.apple.com/kb/HT213056\">Security Update 2022-001 Catalina</a>",
@@ -609,43 +380,48 @@
             "26 Jan 2022"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213055\">macOS Big Sur 11.6.3</a>",
-            "macOS Big Sur",
-            "26 Jan 2022"
+            "<td>\n<p><a href=\"/en-us/120910\" class=\"gb-anchor\">macOS Monterey 12.7.6</a></p>\n</td>",
+            "<td>\n<p>macOS Monterey</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213054\">macOS Monterey 12.2</a>",
-            "macOS Monterey",
-            "26 Jan 2022"
+            "<td>\n<p><a href=\"/en-us/120912\" class=\"gb-anchor\">macOS Ventura 13.6.8</a></p>\n</td>",
+            "<td>\n<p>macOS Ventura</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213057\">tvOS 15.3</a>",
-            "Apple TV 4K and Apple TV HD",
-            "<p>26 Jan 2022<p>"
+            "<td>\n<p><a href=\"/en-us/120914\" class=\"gb-anchor\">tvOS 17.6</a></p>\n</td>",
+            "<td>\n<p>Apple TV HD and Apple TV 4K (all models)</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213053\">iOS 15.3 and iPadOS 15.3</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "26 Jan 2022"
+            "<td>\n<p><a href=\"/en-us/120908\" class=\"gb-anchor\">iOS 16.7.9 and iPadOS 16.7.9</a></p>\n</td>",
+            "<td>\n<p>iPhone 8, iPhone 8 Plus, iPhone X, iPad 5th generation, iPad Pro 9.7-inch, and iPad Pro 12.9-inch 1st generation</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213059\">watchOS 8.4</a>",
-            "Apple Watch Series 3 and later",
-            "26 Jan 2022"
+            "<td>\n<p><a href=\"/en-us/120916\" class=\"gb-anchor\">watchOS 10.6</a></p>\n</td>",
+            "<td>\n<p>Apple Watch Series 4 and later</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ],
         [
             "macOS Big Sur 11.5.2\nThis update has no published CVE entries.",
             "macOS Big Sur",
             "26 Jan 2022"
+        ],
+        [
+            "<td>\n<p>watchOS 10.6.1</p>\n<div class=\"note gb-note\">\n<p class=\"gb-paragraph\">This update has no published CVE entries.</p>\n</div>\n</td>",
+            "<td>\n<p>Apple Watch Series 4 and later</p>\n</td>",
+            "<td>\n<p>19 Aug 2024</p>\n</td>"
         ]
     ],
     "new_sec_content_info": {
         "1": {
-            "name": "Safari 15.3",
+            "name": "Safari 17.6",
             "emoji": "🌐",
-            "security_content_link": "https://support.apple.com/kb/HT213058",
-            "release_date": "26 Jan 2022",
-            "num_of_bugs": 4,
+            "security_content_link": "https://support.apple.com/en-us/120913",
+            "release_date": "29 Jul 2024",
+            "num_of_bugs": 9,
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
@@ -663,61 +439,57 @@
             "num_entries_updated": 0
         },
         "3": {
-            "name": "macOS Big Sur 11.6.3",
+            "name": "macOS Monterey 12.7.6",
             "emoji": "💻",
-            "security_content_link": "https://support.apple.com/kb/HT213055",
-            "release_date": "26 Jan 2022",
-            "num_of_bugs": 8,
+            "security_content_link": "https://support.apple.com/en-us/120910",
+            "release_date": "29 Jul 2024",
+            "num_of_bugs": 41,
             "num_of_zero_days": 1,
             "zero_days": {
-                "CVE-2022-22587": "IOMobileFrameBuffer"
+                "CVE-2024-23296": "RTKit"
             },
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
         "4": {
-            "name": "macOS Monterey 12.2",
+            "name": "macOS Ventura 13.6.8",
             "emoji": "💻",
-            "security_content_link": "https://support.apple.com/kb/HT213054",
-            "release_date": "26 Jan 2022",
-            "num_of_bugs": 15,
-            "num_of_zero_days": 1,
-            "zero_days": {
-                "CVE-2022-22587": "IOMobileFrameBuffer"
-            },
+            "security_content_link": "https://support.apple.com/en-us/120912",
+            "release_date": "29 Jul 2024",
+            "num_of_bugs": 45,
+            "num_of_zero_days": 0,
+            "zero_days": {},
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
         "5": {
-            "name": "tvOS 15.3",
+            "name": "tvOS 17.6",
             "emoji": "📺",
-            "security_content_link": "https://support.apple.com/kb/HT213057",
-            "release_date": "26 Jan 2022",
-            "num_of_bugs": 9,
+            "security_content_link": "https://support.apple.com/en-us/120914",
+            "release_date": "29 Jul 2024",
+            "num_of_bugs": 19,
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
         "6": {
-            "name": "iOS and iPadOS 15.3",
+            "name": "iOS and iPadOS 16.7.9",
             "emoji": "📱",
-            "security_content_link": "https://support.apple.com/kb/HT213053",
-            "release_date": "26 Jan 2022",
-            "num_of_bugs": 10,
-            "num_of_zero_days": 1,
-            "zero_days": {
-                "CVE-2022-22587": "IOMobileFrameBuffer"
-            },
+            "security_content_link": "https://support.apple.com/en-us/120908",
+            "release_date": "29 Jul 2024",
+            "num_of_bugs": 26,
+            "num_of_zero_days": 0,
+            "zero_days": {},
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
         "7": {
-            "name": "watchOS 8.4",
+            "name": "watchOS 10.6",
             "emoji": "⌚",
-            "security_content_link": "https://support.apple.com/kb/HT213059",
-            "release_date": "26 Jan 2022",
-            "num_of_bugs": 8,
+            "security_content_link": "https://support.apple.com/en-us/120916",
+            "release_date": "29 Jul 2024",
+            "num_of_bugs": 29,
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
@@ -733,28 +505,41 @@
             "zero_days": {},
             "num_entries_added": 0,
             "num_entries_updated": 0
+        },
+        "9": {
+            "name": "watchOS 10.6.1",
+            "emoji": "⌚",
+            "security_content_link": "",
+            "release_date": "19 Aug 2024",
+            "num_of_bugs": 0,
+            "num_of_zero_days": 0,
+            "zero_days": {},
+            "num_entries_added": 0,
+            "num_entries_updated": 0
         }
     },
     "new_sec_content_post_mastodon": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "💻 macOS Monterey 12.2 - 15 bugs fixed\nhttps://support.apple.com/kb/HT213054\n",
-        "📱 iOS and iPadOS 15.3 - 10 bugs fixed\nhttps://support.apple.com/kb/HT213053\n",
-        "📺 tvOS 15.3 - 9 bugs fixed\nhttps://support.apple.com/kb/HT213057\n",
-        "⌚ watchOS 8.4 - 8 bugs fixed\nhttps://support.apple.com/kb/HT213059\n",
-        "💻 macOS Big Sur 11.6.3 - 8 bugs fixed\nhttps://support.apple.com/kb/HT213055\n",
+        "💻 macOS Ventura 13.6.8 - 45 bugs fixed\nhttps://support.apple.com/en-us/120912\n",
+        "💻 macOS Monterey 12.7.6 - 41 bugs fixed\nhttps://support.apple.com/en-us/120910\n",
+        "⌚ watchOS 10.6 - 29 bugs fixed\nhttps://support.apple.com/en-us/120916\n",
+        "📱 iOS and iPadOS 16.7.9 - 26 bugs fixed\nhttps://support.apple.com/en-us/120908\n",
+        "📺 tvOS 17.6 - 19 bugs fixed\nhttps://support.apple.com/en-us/120914\n",
+        "🌐 Safari 17.6 - 9 bugs fixed\nhttps://support.apple.com/en-us/120913\n",
         "🖥️ Security Update 2022-001 Catalina - 5 bugs fixed\nhttps://support.apple.com/kb/HT213056\n",
-        "🌐 Safari 15.3 - 4 bugs fixed\nhttps://support.apple.com/kb/HT213058\n",
+        "⌚ watchOS 10.6.1 - no CVE entries\n",
         "💻 macOS Big Sur 11.5.2 - no CVE entries\n"
     ],
     "new_sec_content_post_twitter": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "💻 macOS Monterey 12.2 - 15 bugs fixed\n",
-        "📱 iOS and iPadOS 15.3 - 10 bugs fixed\n",
-        "📺 tvOS 15.3 - 9 bugs fixed\n",
-        "⌚ watchOS 8.4 - 8 bugs fixed\n",
-        "💻 macOS Big Sur 11.6.3 - 8 bugs fixed\n",
+        "💻 macOS Ventura 13.6.8 - 45 bugs fixed\n",
+        "💻 macOS Monterey 12.7.6 - 41 bugs fixed\n",
+        "⌚ watchOS 10.6 - 29 bugs fixed\n",
+        "📱 iOS and iPadOS 16.7.9 - 26 bugs fixed\n",
+        "📺 tvOS 17.6 - 19 bugs fixed\n",
+        "🌐 Safari 17.6 - 9 bugs fixed\n",
         "🖥️ Security Update 2022-001 Catalina - 5 bugs fixed\n",
-        "🌐 Safari 15.3 - 4 bugs fixed\n",
+        "⌚ watchOS 10.6.1 - no CVE entries\n",
         "💻 macOS Big Sur 11.5.2 - no CVE entries\n",
         "https://support.apple.com/kb/HT201222"
     ],
@@ -764,14 +549,15 @@
         "posts": {
             "new_releases": [],
             "new_sec_content": [
+                "watchOS 10.6.1",
                 "macOS Big Sur 11.5.2",
-                "watchOS 8.4",
-                "iOS and iPadOS 15.3",
-                "tvOS 15.3",
-                "macOS Monterey 12.2",
-                "macOS Big Sur 11.6.3",
+                "watchOS 10.6",
+                "iOS and iPadOS 16.7.9",
+                "tvOS 17.6",
+                "macOS Ventura 13.6.8",
+                "macOS Monterey 12.7.6",
                 "Security Update 2022-001 Catalina",
-                "Safari 15.3"
+                "Safari 17.6"
             ],
             "ios_modules": [],
             "zero_days": {},
@@ -780,19 +566,19 @@
     },
     "new_sec_content_one_table": [
         [
-            "<a href=\"https://support.apple.com/kb/HT213059\">watchOS 8.4</a>",
-            "Apple Watch Series 3 and later",
-            "26 Jan 2022"
+            "<td>\n<p><a href=\"/en-us/120916\" class=\"gb-anchor\">watchOS 10.6</a></p>\n</td>",
+            "<td>\n<p>Apple Watch Series 4 and later</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ]
     ],
     "new_sec_content_one_post_mastodon": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "⌚ watchOS 8.4 - 8 bugs fixed\nhttps://support.apple.com/kb/HT213059\n"
+        "⌚ watchOS 10.6 - 29 bugs fixed\nhttps://support.apple.com/en-us/120916\n"
     ],
     "new_sec_content_one_post_twitter": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "⌚ watchOS 8.4 - 8 bugs fixed\n",
-        "https://support.apple.com/kb/HT213059"
+        "⌚ watchOS 10.6 - 29 bugs fixed\n",
+        "https://support.apple.com/en-us/120916"
     ],
     "new_sec_content_details_soon_table": [
         [
@@ -804,15 +590,22 @@
             "iOS 17 and iPadOS 17 (Details available soon.)",
             "iPhone XS and later",
             "18 Sep 2023"
+        ],
+        [
+            "<td>\n<p>watchOS 10.6 (details available soon)</p>\n</td>",
+            "<td>\n<p>Apple Watch Series 4 and later</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ]
     ],
     "new_sec_content_details_soon_post_mastodon": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
+        "⌚ watchOS 10.6 - no details yet\n",
         "📺 tvOS 16.3.2 - no details yet\n",
         "📱 iOS and iPadOS 17 - no details yet\n"
     ],
     "new_sec_content_details_soon_post_twitter": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
+        "⌚ watchOS 10.6 - no details yet\n",
         "📺 tvOS 16.3.2 - no details yet\n",
         "📱 iOS and iPadOS 17 - no details yet\n",
         "https://support.apple.com/kb/HT201222"
@@ -820,12 +613,14 @@
     "new_sec_content_details_soon_posted_data": {
         "zero_days": [],
         "details_available_soon": [
+            "watchOS 10.6",
             "iOS and iPadOS 17",
             "tvOS 16.3.2"
         ],
         "posts": {
             "new_releases": [],
             "new_sec_content": [
+                "watchOS 10.6",
                 "iOS and iPadOS 17",
                 "tvOS 16.3.2"
             ],
@@ -844,16 +639,23 @@
             "<a href=\"https://support.apple.com/kb/HT213938\">iOS 17 and iPadOS 17</a>",
             "iPhone XS and later",
             "18 Sep 2023"
+        ],
+        [
+            "<td>\n<p><a href=\"/en-us/120916\" class=\"gb-anchor\">watchOS 10.6</a></p>\n</td>",
+            "<td>\n<p>Apple Watch Series 4 and later</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ]
     ],
     "new_sec_content_details_available_post_mastodon": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "📱 iOS and iPadOS 17 - 68 bugs fixed\nhttps://support.apple.com/kb/HT213938\n",
+        "⌚ watchOS 10.6 - 29 bugs fixed\nhttps://support.apple.com/en-us/120916\n",
         "📺 tvOS 16.3.2 - 1 bug fixed\nhttps://support.apple.com/kb/HT213632\n"
     ],
     "new_sec_content_details_available_post_twitter": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "📱 iOS and iPadOS 17 - 68 bugs fixed\n",
+        "⌚ watchOS 10.6 - 29 bugs fixed\n",
         "📺 tvOS 16.3.2 - 1 bug fixed\n",
         "https://support.apple.com/kb/HT201222"
     ],
@@ -863,6 +665,7 @@
         "posts": {
             "new_releases": [],
             "new_sec_content": [
+                "watchOS 10.6",
                 "iOS and iPadOS 17",
                 "tvOS 16.3.2"
             ],
@@ -873,26 +676,26 @@
     },
     "new_sec_content_from_html_post": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "💻 macOS Ventura 13.4 - 63 bugs fixed\nhttps://support.apple.com/kb/HT213758\n",
-        "📱 iOS and iPadOS 16.5 - 46 bugs fixed\nhttps://support.apple.com/kb/HT213757\n",
-        "⌚ watchOS 9.5 - 38 bugs fixed\nhttps://support.apple.com/kb/HT213764\n",
-        "📺 tvOS 16.5 - 37 bugs fixed\nhttps://support.apple.com/kb/HT213761\n",
-        "💻 macOS Monterey 12.6.6 - 32 bugs fixed\nhttps://support.apple.com/kb/HT213759\n",
-        "💻 macOS Big Sur 11.7.7 - 27 bugs fixed\nhttps://support.apple.com/kb/HT213760\n",
-        "📱 iOS and iPadOS 15.7.6 - 18 bugs fixed\nhttps://support.apple.com/kb/HT213765\n",
-        "🌐 Safari 16.5 - 5 bugs fixed\nhttps://support.apple.com/kb/HT213762\n",
-        "🎵 iTunes 12.12.9 for Windows - 3 bugs fixed\nhttps://support.apple.com/kb/HT213763\n",
-        "💻 macOS Ventura 13.3.1 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213721\n",
-        "📱 iOS and iPadOS 16.4.1 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213720\n",
-        "📱 iOS and iPadOS 15.7.5 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213723\n",
-        "🔨 Xcode 14.3 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213679\n",
-        "🛠️ Beats Firmware Update 5B66 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213752\n",
-        "🛠️ AirPods Firmware Update 5E133 - 2 bugs fixed\nhttps://support.apple.com/kb/HT213752\n",
-        "💻 macOS Monterey 12.6.5 - 1 bug fixed\nhttps://support.apple.com/kb/HT213724\n",
-        "💻 macOS Big Sur 11.7.6 - 1 bug fixed\nhttps://support.apple.com/kb/HT213725\n",
-        "🌐 Safari 16.4.1 - 1 bug fixed\nhttps://support.apple.com/kb/HT213722\n",
-        "⌚ watchOS 9.5.1 - no CVE entries\n",
-        "📺 tvOS 16.4.1 - no CVE entries\n"
+        "💻 macOS Sonoma 14.6 - 69 bugs fixed\nhttps://support.apple.com/en-us/120911\n",
+        "💻 macOS Ventura 13.6.8 - 45 bugs fixed\nhttps://support.apple.com/en-us/120912\n",
+        "💻 macOS Monterey 12.7.6 - 41 bugs fixed\nhttps://support.apple.com/en-us/120910\n",
+        "📱 iOS and iPadOS 17.6 - 35 bugs fixed\nhttps://support.apple.com/en-us/120909\n",
+        "⌚ watchOS 10.6 - 29 bugs fixed\nhttps://support.apple.com/en-us/120916\n",
+        "📱 iOS and iPadOS 16.7.9 - 26 bugs fixed\nhttps://support.apple.com/en-us/120908\n",
+        "🥽 visionOS 1.2 - 22 bugs fixed\nhttps://support.apple.com/en-us/120906\n",
+        "🥽 visionOS 1.3 - 20 bugs fixed\nhttps://support.apple.com/en-us/120915\n",
+        "📺 tvOS 17.6 - 19 bugs fixed\nhttps://support.apple.com/en-us/120914\n",
+        "🌐 Safari 17.6 - 9 bugs fixed\nhttps://support.apple.com/en-us/120913\n",
+        "🛠️ AirPods Firmware Update 6A326, AirPods Firmware Update 6F8, and Beats Firmware Update 6F8 - 1 bug fixed\nhttps://support.apple.com/en-us/120907\n",
+        "⌚ watchOS 10.6.1 - no CVE entries\n",
+        "📺 tvOS 17.6.1 - no CVE entries\n",
+        "📺 tvOS 17.5.1 - no CVE entries\n",
+        "💻 macOS Ventura 13.6.9 - no CVE entries\n",
+        "💻 macOS Sonoma 14.6.1 - no CVE entries\n",
+        "📱 iOS and iPadOS 17.6.1 - no CVE entries\n",
+        "📱 iOS and iPadOS 17.5.1 - no CVE entries\n",
+        "📱 iOS and iPadOS 16.7.10 - no CVE entries\n",
+        "📱 iOS and iPadOS 15.8.3 - no CVE entries\n"
     ],
     "new_sec_content_rsr": [
         [
@@ -904,53 +707,57 @@
             "<a href=\"https://support.apple.com/kb/HT213825\">Rapid Security Response<br> macOS Ventura 13.4.1 (a)</a>",
             "macOS Ventura 13.4.1",
             "10 Jul 2023"
+        ],
+        [
+            "<td>\n<p><a href=\"/en-us/120916\" class=\"gb-anchor\">Rapid Security Response<br> watchOS 10.6 (a)</a></p>\n</td>",
+            "<td>\n<p>Apple Watch Series 4 and later</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ]
     ],
     "new_sec_content_rsr_post": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
+        "⌚ Rapid Security Response watchOS 10.6 (a) - 29 bugs fixed\nhttps://support.apple.com/en-us/120916\n",
         "💻 Rapid Security Response macOS Ventura 13.4.1 (a) - 1 bug fixed\nhttps://support.apple.com/kb/HT213825\n",
         "📱 Rapid Security Response iOS and iPadOS 16.5.1 (a) - 1 bug fixed\nhttps://support.apple.com/kb/HT213823\n"
     ],
     "ios_modules_table": [
         [
-            "<a href=\"https://support.apple.com/kb/HT213053\">iOS 15.3 and iPadOS 15.3</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "26 Jan 2022"
+            "<td>\n<p><a href=\"/en-us/120909\" class=\"gb-anchor\">iOS 17.6 and iPadOS 17.6</a></p>\n</td>",
+            "<td>\n<p>iPhone XS and later, iPad Pro 13-inch, iPad Pro 12.9-inch 2nd generation and later, iPad Pro 10.5-inch, iPad Pro 11-inch 1st generation and later, iPad Air 3rd generation and later, iPad 6th generation and later, and iPad mini 5th generation and later</p>\n</td>",
+            "<td>\n<p>29 Jul 2024</p>\n</td>"
         ]
     ],
     "ios_modules_info": {
         "1": {
-            "name": "iOS and iPadOS 15.3",
+            "name": "iOS and iPadOS 17.6",
             "emoji": "📱",
-            "security_content_link": "https://support.apple.com/kb/HT213053",
-            "release_date": "26 Jan 2022",
-            "num_of_bugs": 10,
-            "num_of_zero_days": 1,
-            "zero_days": {
-                "CVE-2022-22587": "IOMobileFrameBuffer"
-            },
+            "security_content_link": "https://support.apple.com/en-us/120909",
+            "release_date": "29 Jul 2024",
+            "num_of_bugs": 35,
+            "num_of_zero_days": 0,
+            "zero_days": {},
             "num_entries_added": 0,
             "num_entries_updated": 0
         }
     },
     "ios_modules_post": [
-        "⚒️ FIXED IN iOS and iPadOS 15.3 ⚒️\n\n",
-        "- 3 bugs in WebKit\n",
-        "- 1 bug in ColorSync\n",
-        "- 1 bug in Crash Reporter\n",
-        "- 1 bug in iCloud\n",
-        "and 4 other vulnerabilities fixed\n",
-        "https://support.apple.com/kb/HT213053\n"
+        "⚒️ FIXED IN iOS and iPadOS 17.6 ⚒️\n\n",
+        "- 6 bugs in WebKit\n",
+        "- 4 bugs in ImageIO\n",
+        "- 4 bugs in Shortcuts\n",
+        "- 3 bugs in Siri\n",
+        "and 18 other vulnerabilities fixed\n",
+        "https://support.apple.com/en-us/120909\n"
     ],
     "ios_modules_no_other_table": [
         [
-            "<a href=\"https://support.apple.com/kb/HT213598\">iOS 15.7.3 and iPadOS 15.7.3</a>",
+            "<a href=\"https://support.apple.com/kb/HT213598\">iOS 17.7.3 and iPadOS 17.7.3</a>",
             "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
             "23 Jan 2023"
         ]
     ],
     "ios_modules_no_other_post": [
-        "⚒️ FIXED IN iOS and iPadOS 15.7.3 ⚒️\n\n",
+        "⚒️ FIXED IN iOS and iPadOS 17.7.3 ⚒️\n\n",
         "- 2 bugs in Kernel\n",
         "- 1 bug in Mail Exchange\n",
         "- 1 bug in Maps\n",
@@ -978,426 +785,98 @@
         "- 1 bug in Mobile Device Service\n",
         "https://support.apple.com/kb/HT213259\n"
     ],
-    "entry_changes_info": {
-        "1": {
-            "name": "macOS Big Sur 11.6.1",
-            "emoji": "💻",
-            "security_content_link": "https://support.apple.com/kb/HT212872",
-            "release_date": "25 Oct 2021",
-            "num_of_bugs": 29,
-            "num_of_zero_days": 1,
-            "zero_days": {
-                "CVE-2021-30883": "IOMobileFrameBuffer"
-            },
-            "num_entries_added": 4,
-            "num_entries_updated": 1
-        },
-        "2": {
-            "name": "watchOS 8.1",
-            "emoji": "⌚",
-            "security_content_link": "https://support.apple.com/kb/HT212874",
-            "release_date": "25 Oct 2021",
-            "num_of_bugs": 17,
-            "num_of_zero_days": 1,
-            "zero_days": {
-                "CVE-2021-30883": "IOMobileFrameBuffer"
-            },
-            "num_entries_added": 1,
-            "num_entries_updated": 0
-        },
-        "3": {
-            "name": "iOS and iPadOS 15.1",
-            "emoji": "📱",
-            "security_content_link": "https://support.apple.com/kb/HT212867",
-            "release_date": "25 Oct 2021",
-            "num_of_bugs": 24,
-            "num_of_zero_days": 0,
-            "zero_days": {},
-            "num_entries_added": 2,
-            "num_entries_updated": 0
-        },
-        "4": {
-            "name": "tvOS 15.1",
-            "emoji": "📺",
-            "security_content_link": "https://support.apple.com/kb/HT212876",
-            "release_date": "25 Oct 2021",
-            "num_of_bugs": 19,
-            "num_of_zero_days": 2,
-            "zero_days": {
-                "CVE-2021-30883": "IOMobileFrameBuffer"
-            },
-            "num_entries_added": 1,
-            "num_entries_updated": 0
-        },
-        "5": {
-            "name": "tvOS 15",
-            "emoji": "📺",
-            "security_content_link": "https://support.apple.com/kb/HT212815",
-            "release_date": "20 Sep 2021",
-            "num_of_bugs": 29,
-            "num_of_zero_days": 0,
-            "zero_days": {},
-            "num_entries_added": 3,
-            "num_entries_updated": 2
-        },
-        "6": {
-            "name": "watchOS 8",
-            "emoji": "⌚",
-            "security_content_link": "https://support.apple.com/kb/HT212819",
-            "release_date": "20 Sep 2021",
-            "num_of_bugs": 30,
-            "num_of_zero_days": 0,
-            "zero_days": {},
-            "num_entries_added": 5,
-            "num_entries_updated": 2
-        },
-        "7": {
-            "name": "iOS and iPadOS 15",
-            "emoji": "📱",
-            "security_content_link": "https://support.apple.com/kb/HT212814",
-            "release_date": "20 Sep 2021",
-            "num_of_bugs": 42,
-            "num_of_zero_days": 0,
-            "zero_days": {},
-            "num_entries_added": 4,
-            "num_entries_updated": 3
-        },
-        "8": {
-            "name": "macOS Big Sur 11.6",
-            "emoji": "💻",
-            "security_content_link": "https://support.apple.com/kb/HT212804",
-            "release_date": "13 Sep 2021",
-            "num_of_bugs": 29,
-            "num_of_zero_days": 2,
-            "zero_days": {
-                "CVE-2021-30860": "CoreGraphics",
-                "CVE-2021-30858": "WebKit"
-            },
-            "num_entries_added": 8,
-            "num_entries_updated": 1
-        },
-        "9": {
-            "name": "iOS and iPadOS 14.8",
-            "emoji": "📱",
-            "security_content_link": "https://support.apple.com/kb/HT212807",
-            "release_date": "13 Sep 2021",
-            "num_of_bugs": 23,
-            "num_of_zero_days": 2,
-            "zero_days": {
-                "CVE-2021-30860": "CoreGraphics",
-                "CVE-2021-30858": "WebKit"
-            },
-            "num_entries_added": 4,
-            "num_entries_updated": 0
-        },
-        "10": {
-            "name": "Security Update 2021-004 Catalina",
-            "emoji": "🖥️",
-            "security_content_link": "https://support.apple.com/kb/HT212600",
-            "release_date": "21 Jul 2021",
-            "num_of_bugs": 32,
-            "num_of_zero_days": 0,
-            "zero_days": {},
-            "num_entries_added": 6,
-            "num_entries_updated": 1
-        },
-        "11": {
-            "name": "Security Update 2021-005 Mojave",
-            "emoji": "🖥️",
-            "security_content_link": "https://support.apple.com/kb/HT212603",
-            "release_date": "21 Jul 2021",
-            "num_of_bugs": 25,
-            "num_of_zero_days": 0,
-            "zero_days": {},
-            "num_entries_added": 5,
-            "num_entries_updated": 0
-        },
-        "12": {
-            "name": "watchOS 7.6",
-            "emoji": "⌚",
-            "security_content_link": "https://support.apple.com/kb/HT212605",
-            "release_date": "19 Jul 2021",
-            "num_of_bugs": 23,
-            "num_of_zero_days": 0,
-            "zero_days": {},
-            "num_entries_added": 0,
-            "num_entries_updated": 2
-        },
-        "13": {
-            "name": "tvOS 14.7",
-            "emoji": "📺",
-            "security_content_link": "https://support.apple.com/kb/HT212604",
-            "release_date": "19 Jul 2021",
-            "num_of_bugs": 21,
-            "num_of_zero_days": 0,
-            "zero_days": {},
-            "num_entries_added": 1,
-            "num_entries_updated": 0
-        },
-        "14": {
-            "name": "macOS Big Sur 11.4",
-            "emoji": "💻",
-            "security_content_link": "https://support.apple.com/kb/HT212529",
-            "release_date": "24 May 2021",
-            "num_of_bugs": 83,
-            "num_of_zero_days": 1,
-            "zero_days": {
-                "CVE-2021-30713": "TCC"
-            },
-            "num_entries_added": 1,
-            "num_entries_updated": 0
-        },
-        "15": {
-            "name": "iOS and iPadOS 14.6",
-            "emoji": "📱",
-            "security_content_link": "https://support.apple.com/kb/HT212528",
-            "release_date": "24 May 2021",
-            "num_of_bugs": 50,
-            "num_of_zero_days": 0,
-            "zero_days": {},
-            "num_entries_added": 2,
-            "num_entries_updated": 0
-        },
-        "16": {
-            "name": "tvOS 14.6",
-            "emoji": "📺",
-            "security_content_link": "https://support.apple.com/kb/HT212532",
-            "release_date": "24 May 2021",
-            "num_of_bugs": 32,
-            "num_of_zero_days": 2,
-            "zero_days": {
-                "CVE-2021-30665": "WebKit",
-                "CVE-2021-30663": "WebKit"
-            },
-            "num_entries_added": 1,
-            "num_entries_updated": 0
-        },
-        "17": {
-            "name": "watchOS 7.5",
-            "emoji": "⌚",
-            "security_content_link": "https://support.apple.com/kb/HT212533",
-            "release_date": "24 May 2021",
-            "num_of_bugs": 31,
-            "num_of_zero_days": 0,
-            "zero_days": {},
-            "num_entries_added": 1,
-            "num_entries_updated": 0
-        },
-        "18": {
-            "name": "macOS Big Sur 11.3",
-            "emoji": "💻",
-            "security_content_link": "https://support.apple.com/kb/HT212325",
-            "release_date": "26 Apr 2021",
-            "num_of_bugs": 66,
-            "num_of_zero_days": 2,
-            "zero_days": {
-                "CVE-2021-30657": "System Preferences",
-                "CVE-2021-30661": "WebKit Storage"
-            },
-            "num_entries_added": 1,
-            "num_entries_updated": 0
-        },
-        "19": {
-            "name": "iOS and iPadOS 14.5",
-            "emoji": "📱",
-            "security_content_link": "https://support.apple.com/kb/HT212317",
-            "release_date": "26 Apr 2021",
-            "num_of_bugs": 64,
-            "num_of_zero_days": 1,
-            "zero_days": {
-                "CVE-2021-30661": "WebKit Storage"
-            },
-            "num_entries_added": 1,
-            "num_entries_updated": 0
-        }
-    },
-    "entry_changes_post_mastodon": [
-        "🔄 63 ENTRY CHANGES 🔄\n\n",
-        "💻 macOS Big Sur 11.6 - 8 added, 1 updated\nhttps://support.apple.com/kb/HT212804\n",
-        "⌚ watchOS 8 - 5 added, 2 updated\nhttps://support.apple.com/kb/HT212819\n",
-        "📱 iOS and iPadOS 15 - 4 added, 3 updated\nhttps://support.apple.com/kb/HT212814\n",
-        "🖥️ Security Update 2021-004 Catalina - 6 added, 1 updated\nhttps://support.apple.com/kb/HT212600\n",
-        "📺 tvOS 15 - 3 added, 2 updated\nhttps://support.apple.com/kb/HT212815\n",
-        "💻 macOS Big Sur 11.6.1 - 4 added, 1 updated\nhttps://support.apple.com/kb/HT212872\n",
-        "🖥️ Security Update 2021-005 Mojave - 5 added\nhttps://support.apple.com/kb/HT212603\n",
-        "📱 iOS and iPadOS 14.8 - 4 added\nhttps://support.apple.com/kb/HT212807\n",
-        "⌚ watchOS 7.6 - 2 updated\nhttps://support.apple.com/kb/HT212605\n",
-        "📱 iOS and iPadOS 15.1 - 2 added\nhttps://support.apple.com/kb/HT212867\n",
-        "📱 iOS and iPadOS 14.6 - 2 added\nhttps://support.apple.com/kb/HT212528\n",
-        "⌚ watchOS 8.1 - 1 added\nhttps://support.apple.com/kb/HT212874\n",
-        "⌚ watchOS 7.5 - 1 added\nhttps://support.apple.com/kb/HT212533\n",
-        "📺 tvOS 15.1 - 1 added\nhttps://support.apple.com/kb/HT212876\n",
-        "📺 tvOS 14.7 - 1 added\nhttps://support.apple.com/kb/HT212604\n",
-        "📺 tvOS 14.6 - 1 added\nhttps://support.apple.com/kb/HT212532\n",
-        "💻 macOS Big Sur 11.4 - 1 added\nhttps://support.apple.com/kb/HT212529\n",
-        "💻 macOS Big Sur 11.3 - 1 added\nhttps://support.apple.com/kb/HT212325\n",
-        "📱 iOS and iPadOS 14.5 - 1 added\nhttps://support.apple.com/kb/HT212317\n"
-    ],
-    "entry_changes_post_twitter": [
-        "🔄 63 ENTRY CHANGES 🔄\n\n",
-        "💻 macOS Big Sur 11.6 - 8 added, 1 updated\n",
-        "⌚ watchOS 8 - 5 added, 2 updated\n",
-        "📱 iOS and iPadOS 15 - 4 added, 3 updated\n",
-        "🖥️ Security Update 2021-004 Catalina - 6 added, 1 updated\n",
-        "📺 tvOS 15 - 3 added, 2 updated\n",
-        "💻 macOS Big Sur 11.6.1 - 4 added, 1 updated\n",
-        "🖥️ Security Update 2021-005 Mojave - 5 added\n",
-        "📱 iOS and iPadOS 14.8 - 4 added\n",
-        "⌚ watchOS 7.6 - 2 updated\n",
-        "📱 iOS and iPadOS 15.1 - 2 added\n",
-        "📱 iOS and iPadOS 14.6 - 2 added\n",
-        "⌚ watchOS 8.1 - 1 added\n",
-        "⌚ watchOS 7.5 - 1 added\n",
-        "📺 tvOS 15.1 - 1 added\n",
-        "📺 tvOS 14.7 - 1 added\n",
-        "📺 tvOS 14.6 - 1 added\n",
-        "💻 macOS Big Sur 11.4 - 1 added\n",
-        "💻 macOS Big Sur 11.3 - 1 added\n",
-        "📱 iOS and iPadOS 14.5 - 1 added\n"
-    ],
-    "entry_changes2_table": [
+    "entry_changes_table": [
         [
-            "<a href=\"https://support.apple.com/kb/HT213537\">Safari 16.2</a>",
-            "macOS Big Sur and macOS Monterey",
-            "13 Dec 2022"
+            "<td>\n<p><a href=\"/en-us/120895\" class=\"gb-anchor\">macOS Sonoma 14.4</a></p>\n</td>",
+            "<td>\n<p>macOS Sonoma</p>\n</td>",
+            "<td>\n<p>07 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212003\">iOS 14.3 and iPadOS 14.3</a>",
-            "iPhone 6s and later, iPad Air 2 and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "14 Dec 2020"
+            "<td>\n<p><a href=\"/en-us/120903\" class=\"gb-anchor\">macOS Sonoma 14.5</a></p>\n</td>",
+            "<td>\n<p>macOS Sonoma</p>\n</td>",
+            "<td>\n<p>13 May 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213530\">iOS 16.2 and iPadOS 16.2</a>",
-            "iPhone 8 and later, iPad Pro (all models), iPad Air 3rd generation and later, iPad 5th generation and later, and iPad mini 5th generation and later",
-            "13 Dec 2022"
+            "<td>\n<p><a href=\"/en-us/120902\" class=\"gb-anchor\">watchOS 10.5</a></p>\n</td>",
+            "<td>\n<p>Apple Watch Series 4 and later</p>\n</td>",
+            "<td>\n<p>13 May 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213346\">iOS 15.6 and iPadOS 15.6</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "20 Jul 2022"
+            "<td>\n<p><a href=\"/en-us/120901\" class=\"gb-anchor\">tvOS 17.5</a></p>\n</td>",
+            "<td>\n<p>Apple TV HD and Apple TV 4K (all models)</p>\n</td>",
+            "<td>\n<p>13 May 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213532\">macOS Ventura 13.1</a>",
-            "macOS Ventura",
-            "13 Dec 2022"
+            "<td>\n<p><a href=\"/en-us/120905\" class=\"gb-anchor\">iOS 17.5 and iPadOS 17.5</a></p>\n</td>",
+            "<td>\n<p>iPhone XS and later, iPad Pro 13-inch, iPad Pro 12.9-inch 2nd generation and later, iPad Pro 10.5-inch, iPad Pro 11-inch 1st generation and later, iPad Air 3rd generation and later, iPad 6th generation and later, and iPad mini 5th generation and later</p>\n</td>",
+            "<td>\n<p>13 May 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213598\">iOS 15.7.3 and iPadOS 15.7.3</a>",
-            "iPhone 6s (all models), iPhone 7 (all models), iPhone SE (1st generation), iPad Air 2, iPad mini (4th generation), and iPod touch (7th generation)",
-            "23 Jan 2023"
+            "<td>\n<p><a href=\"/en-us/120906\" class=\"gb-anchor\">visionOS 1.2</a></p>\n</td>",
+            "<td>\n<p>Apple Vision Pro</p>\n</td>",
+            "<td>\n<p>10 Jun 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213182\">iOS 15.4 and iPadOS 15.4</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "14 Mar 2022"
+            "<td>\n<p><a href=\"/en-us/120900\" class=\"gb-anchor\">macOS Ventura 13.6.7</a></p>\n</td>",
+            "<td>\n<p>macOS Ventura</p>\n</td>",
+            "<td>\n<p>13 May 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213341\">Safari 15.6</a>",
-            "macOS Big Sur and macOS Catalina",
-            "20 Jul 2022"
+            "<td>\n<p><a href=\"/en-us/120899\" class=\"gb-anchor\">macOS Monterey 12.7.5</a></p>\n</td>",
+            "<td>\n<p>macOS Monterey</p>\n</td>",
+            "<td>\n<p>13 May 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213600\">Safari 16.3</a>",
-            "macOS Big Sur and macOS Monterey",
-            "23 Jan 2023"
+            "<td>\n<p><a href=\"/en-us/120893\" class=\"gb-anchor\">iOS 17.4 and iPadOS 17.4</a></p>\n</td>",
+            "<td>\n<p>iPhone XS and later, iPad Pro 12.9-inch 2nd generation and later, iPad Pro 10.5-inch, iPad Pro 11-inch 1st generation and later, iPad Air 3rd generation and later, iPad 6th generation and later, and iPad mini 5th generation and later</p>\n</td>",
+            "<td>\n<p>05 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT213258\">iOS 15.5 and iPadOS 15.5</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "16 May 2022"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT213531\">iOS 15.7.2 and iPadOS 15.7.2</a>",
-            "iPhone 6s (all models), iPhone 7 (all models), iPhone SE (1st generation), iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "13 Dec 2022"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT213446\">iOS 16</a>",
-            "iPhone 8 and later",
-            "12 Sep 2022"
+            "<td>\n<p><a href=\"/en-us/120898\" class=\"gb-anchor\">iOS 16.7.8 and iPadOS 16.7.8</a></p>\n</td>",
+            "<td>\n<p>iPhone 8, iPhone 8 Plus, iPhone X, iPad 5th generation, iPad Pro 9.7-inch, and iPad Pro 12.9-inch 1st generation</p>\n</td>",
+            "<td>\n<p>13 May 2024</p>\n</td>"
         ]
     ],
-    "entry_changes2_post_mastodon": [
-        "🔄 32 ENTRY CHANGES 🔄\n\n",
-        "📱 iOS 16 - 6 added, 2 updated\nhttps://support.apple.com/kb/HT213446\n",
-        "💻 macOS Ventura 13.1 - 4 added\nhttps://support.apple.com/kb/HT213532\n",
-        "📱 iOS and iPadOS 16.2 - 4 added\nhttps://support.apple.com/kb/HT213530\n",
-        "📱 iOS and iPadOS 15.7.2 - 3 added\nhttps://support.apple.com/kb/HT213531\n",
-        "📱 iOS and iPadOS 15.5 - 2 added, 1 updated\nhttps://support.apple.com/kb/HT213258\n",
-        "📱 iOS and iPadOS 15.7.3 - 2 updated\nhttps://support.apple.com/kb/HT213598\n",
-        "📱 iOS and iPadOS 15.6 - 2 added\nhttps://support.apple.com/kb/HT213346\n",
-        "📱 iOS and iPadOS 15.4 - 2 added\nhttps://support.apple.com/kb/HT213182\n",
-        "🌐 Safari 15.6 - 1 added, 1 updated\nhttps://support.apple.com/kb/HT213341\n",
-        "📱 iOS and iPadOS 14.3 - 1 added\nhttps://support.apple.com/kb/HT212003\n",
-        "🌐 Safari 16.2 - 1 updated\nhttps://support.apple.com/kb/HT213537\n"
+    "entry_changes_post_mastodon": [
+        "🔄 27 ENTRY CHANGES 🔄\n\n",
+        "💻 macOS Sonoma 14.4 - 8 added\nhttps://support.apple.com/en-us/120895\n",
+        "💻 macOS Sonoma 14.5 - 4 added, 1 updated\nhttps://support.apple.com/en-us/120903\n",
+        "⌚ watchOS 10.5 - 3 added\nhttps://support.apple.com/en-us/120902\n",
+        "📺 tvOS 17.5 - 3 added\nhttps://support.apple.com/en-us/120901\n",
+        "📱 iOS and iPadOS 17.5 - 3 added\nhttps://support.apple.com/en-us/120905\n",
+        "🥽 visionOS 1.2 - 1 added\nhttps://support.apple.com/en-us/120906\n",
+        "💻 macOS Ventura 13.6.7 - 1 added\nhttps://support.apple.com/en-us/120900\n",
+        "💻 macOS Monterey 12.7.5 - 1 added\nhttps://support.apple.com/en-us/120899\n",
+        "📱 iOS and iPadOS 17.4 - 1 added\nhttps://support.apple.com/en-us/120893\n",
+        "📱 iOS and iPadOS 16.7.8 - 1 added\nhttps://support.apple.com/en-us/120898\n"
     ],
-    "entry_changes2_post_twitter": [
-        "🔄 32 ENTRY CHANGES 🔄\n\n",
-        "📱 iOS 16 - 6 added, 2 updated\n",
-        "💻 macOS Ventura 13.1 - 4 added\n",
-        "📱 iOS and iPadOS 16.2 - 4 added\n",
-        "📱 iOS and iPadOS 15.7.2 - 3 added\n",
-        "📱 iOS and iPadOS 15.5 - 2 added, 1 updated\n",
-        "📱 iOS and iPadOS 15.7.3 - 2 updated\n",
-        "📱 iOS and iPadOS 15.6 - 2 added\n",
-        "📱 iOS and iPadOS 15.4 - 2 added\n",
-        "🌐 Safari 15.6 - 1 added, 1 updated\n",
-        "📱 iOS and iPadOS 14.3 - 1 added\n",
-        "🌐 Safari 16.2 - 1 updated\n"
+    "entry_changes_post_twitter": [
+        "🔄 27 ENTRY CHANGES 🔄\n\n",
+        "💻 macOS Sonoma 14.4 - 8 added\n",
+        "💻 macOS Sonoma 14.5 - 4 added, 1 updated\n",
+        "⌚ watchOS 10.5 - 3 added\n",
+        "📺 tvOS 17.5 - 3 added\n",
+        "📱 iOS and iPadOS 17.5 - 3 added\n",
+        "🥽 visionOS 1.2 - 1 added\n",
+        "💻 macOS Ventura 13.6.7 - 1 added\n",
+        "💻 macOS Monterey 12.7.5 - 1 added\n",
+        "📱 iOS and iPadOS 17.4 - 1 added\n",
+        "📱 iOS and iPadOS 16.7.8 - 1 added\n"
     ],
     "entry_changes_one_table": [
         [
-            "<a href=\"https://support.apple.com/kb/HT213537\">Safari 16.2</a>",
-            "macOS Big Sur and macOS Monterey",
-            "13 Dec 2022"
+            "<td>\n<p><a href=\"/en-us/120893\" class=\"gb-anchor\">iOS 17.4 and iPadOS 17.4</a></p>\n</td>",
+            "<td>\n<p>iPhone XS and later, iPad Pro 12.9-inch 2nd generation and later, iPad Pro 10.5-inch, iPad Pro 11-inch 1st generation and later, iPad Air 3rd generation and later, iPad 6th generation and later, and iPad mini 5th generation and later</p>\n</td>",
+            "<td>\n<p>05 Mar 2024</p>\n</td>"
         ]
     ],
     "entry_changes_one_post_mastodon": [
         "🔄 1 ENTRY CHANGE 🔄\n\n",
-        "🌐 Safari 16.2 - 1 updated\nhttps://support.apple.com/kb/HT213537\n"
+        "📱 iOS and iPadOS 17.4 - 1 added\nhttps://support.apple.com/en-us/120893\n"
     ],
     "entry_changes_one_post_twitter": [
         "🔄 1 ENTRY CHANGE 🔄\n\n",
-        "🌐 Safari 16.2 - 1 updated\n"
-    ],
-    "security_content_soon_info": [
-        [
-            "iOS 14.5 and iPadOS 14.5 (details available soon)",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "26 Apr 2021"
-        ],
-        [
-            "macOS Big Sur 11.3 (details available soon)",
-            "macOS Big Sur",
-            "26 Apr 2021"
-        ]
-    ],
-    "security_content_soon_file": [
-        "macOS Big Sur 11.3",
-        "iOS and iPadOS 14.5"
-    ],
-    "security_content_available_info": [
-        [
-            "<a href=\"https://support.apple.com/kb/HT212317\">iOS 14.5 and iPadOS 14.5</a>",
-            "iPhone 6s and later, iPad Pro (all models), iPad Air 2 and later, iPad 5th generation and later, iPad mini 4 and later, and iPod touch (7th generation)",
-            "26 Apr 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT212325\">macOS Big Sur 11.3</a>",
-            "macOS Big Sur",
-            "26 Apr 2021"
-        ]
-    ],
-    "security_content_available_post_mastodon": [
-        "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "💻 macOS Big Sur 11.3 - 66 bugs fixed\nhttps://support.apple.com/kb/HT212325\n",
-        "📱 iOS and iPadOS 14.5 - 64 bugs fixed\nhttps://support.apple.com/kb/HT212317\n"
-    ],
-    "security_content_available_post_twitter": [
-        "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "💻 macOS Big Sur 11.3 - 66 bugs fixed\n",
-        "📱 iOS and iPadOS 14.5 - 64 bugs fixed\n",
-        "https://support.apple.com/kb/HT201222"
+        "📱 iOS and iPadOS 17.4 - 1 added\n"
     ],
     "yearly_report_table": [
         [
@@ -1435,183 +914,141 @@
     ],
     "zero_day_releases_table": [
         [
-            "<a href=\"https://support.apple.com/kb/HT212825\">Security Update 2021-006 Catalina</a>",
-            "macOS Catalina",
-            "23 Sep 2021"
+            "<td>\n<p><a href=\"/en-us/120880\" class=\"gb-anchor\">iOS 16.7.6 and iPadOS 16.7.6</a></p>\n</td>",
+            "<td>\n<p>iPhone 8, iPhone 8 Plus, iPhone X, iPad 5th generation, iPad Pro 9.7-inch, and iPad Pro 12.9-inch 1st generation</p>\n</td>",
+            "<td>\n<p>05 Mar 2024</p>\n</td>"
         ],
         [
-            "<a href=\"https://support.apple.com/kb/HT212824\">iOS 12.5.5</a>",
-            "iPhone 5s, iPhone 6, iPhone 6 Plus, iPad Air, iPad mini 2, iPad mini 3, and iPod touch (6th generation)",
-            "23 Sep 2021"
-        ],
-        [
-            "<a href=\"https://support.apple.com/kb/HT214062\">iOS 15.8.1 and iPadOS 15.8.1</a>",
-            "iPhone 6s (all models), iPhone 7 (all models), iPhone SE (1st generation), iPad Air 2, iPad mini (4th generation), and iPod touch (7th generation)",
-            "22 Jan 2024"
+            "<td>\n<p><a href=\"/en-us/120893\" class=\"gb-anchor\">iOS 17.4 and iPadOS 17.4</a></p>\n</td>",
+            "<td>\n<p>iPhone XS and later, iPad Pro 12.9-inch 2nd generation and later, iPad Pro 10.5-inch, iPad Pro 11-inch 1st generation and later, iPad Air 3rd generation and later, iPad 6th generation and later, and iPad mini 5th generation and later</p>\n</td>",
+            "<td>\n<p>05 Mar 2024</p>\n</td>"
         ]
     ],
     "zero_day_releases_info": {
         "1": {
-            "name": "Security Update 2021-006 Catalina",
-            "emoji": "🖥️",
-            "security_content_link": "https://support.apple.com/kb/HT212825",
-            "release_date": "23 Sep 2021",
-            "num_of_bugs": 1,
-            "num_of_zero_days": 1,
+            "name": "iOS and iPadOS 17.4",
+            "emoji": "📱",
+            "security_content_link": "https://support.apple.com/en-us/120893",
+            "release_date": "05 Mar 2024",
+            "num_of_bugs": 39,
+            "num_of_zero_days": 2,
             "zero_days": {
-                "CVE-2021-30869": "XNU"
+                "CVE-2024-23225": "Kernel",
+                "CVE-2024-23296": "RTKit"
             },
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
         "2": {
-            "name": "iOS 12.5.5",
+            "name": "iOS and iPadOS 16.7.6",
             "emoji": "📱",
-            "security_content_link": "https://support.apple.com/kb/HT212824",
-            "release_date": "23 Sep 2021",
-            "num_of_bugs": 4,
-            "num_of_zero_days": 4,
+            "security_content_link": "https://support.apple.com/en-us/120880",
+            "release_date": "05 Mar 2024",
+            "num_of_bugs": 19,
+            "num_of_zero_days": 1,
             "zero_days": {
-                "CVE-2021-30858": "WebKit",
-                "CVE-2021-30860": "CoreGraphics",
-                "CVE-2021-30869": "XNU",
-                "CVE-2021-31010": "Core Telephony"
+                "CVE-2024-23225": "Kernel"
             },
             "num_entries_added": 0,
             "num_entries_updated": 0
         }
     },
-    "zero_day_releases_post": [
-        "📣 EMERGENCY UPDATES 📣\n\n",
-        "Apple pushed updates for 5 new zero-days that may have been actively exploited and additional updates for 1 zero-day.",
-        "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- iOS 12.5.5\n- Security Update 2021-006 Catalina",
-        "\n\n🐛 CVE-2021-30860 (CoreGraphics),\n🐛 CVE-2021-31010 (Core Telephony),\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5",
-        "\n\n🐛 CVE-2023-42916 (WebKit),\n🐛 CVE-2023-42917 (WebKit):\n- iOS and iPadOS 15.8.1"
-    ],
     "zero_day_releases_posted_data": {
         "zero_days": [
-            "CVE-2021-30869",
-            "CVE-2021-30860",
-            "CVE-2021-31010",
-            "CVE-2021-30858",
-            "CVE-2023-42916",
-            "CVE-2023-42917"
+            "CVE-2024-23225",
+            "CVE-2024-23296"
         ],
         "details_available_soon": [],
         "posts": {
             "new_releases": [],
             "new_sec_content": [
-                "iOS and iPadOS 15.8.1",
-                "iOS 12.5.5",
-                "Security Update 2021-006 Catalina"
+                "iOS and iPadOS 17.4",
+                "iOS and iPadOS 16.7.6"
             ],
             "ios_modules": [],
             "zero_days": {
-                "Security Update 2021-006 Catalina": 1,
-                "iOS 12.5.5": 4,
-                "iOS and iPadOS 15.8.1": 2
+                "iOS and iPadOS 16.7.6": 1,
+                "iOS and iPadOS 17.4": 2
             },
             "yearly_report": []
         }
     },
-    "zero_day_releases_two_info": {
+    "zero_day_releases_many_new_post": [
+        "📣 EMERGENCY UPDATES 📣\n\n",
+        "Apple pushed updates for 2 new zero-days that may have been actively exploited.",
+        "\n\n🐛 CVE-2024-23225 (Kernel):\n- iOS and iPadOS 16.7.6\n- iOS and iPadOS 17.4",
+        "\n\n🐛 CVE-2024-23296 (RTKit):\n- iOS and iPadOS 17.4"
+    ],
+    "zero_day_releases_many_old_post": [
+        "📣 EMERGENCY UPDATES 📣\n\n",
+        "Apple pushed additional updates for 2 zero-days that may have been actively exploited.",
+        "\n\n🐛 CVE-2024-23225 (Kernel) additional patches:\n- iOS and iPadOS 16.7.6\n- iOS and iPadOS 17.4",
+        "\n\n🐛 CVE-2024-23296 (RTKit) additional patches:\n- iOS and iPadOS 17.4"
+    ],
+    "zero_day_releases_one_new_one_old_post": [
+        "📣 EMERGENCY UPDATES 📣\n\n",
+        "Apple pushed updates for a new zero-day that may have been actively exploited and additional updates for one zero-day.",
+        "\n\n🐛 CVE-2024-23225 (Kernel):\n- iOS and iPadOS 16.7.6\n- iOS and iPadOS 17.4",
+        "\n\n🐛 CVE-2024-23296 (RTKit) additional patches:\n- iOS and iPadOS 17.4"
+    ],
+    "zero_day_releases_one_new_post": [
+        "📣 EMERGENCY UPDATE 📣\n\n",
+        "Apple pushed updates for a new zero-day that may have been actively exploited.",
+        "\n\n🐛 CVE-2024-23225 (Kernel):\n- iOS and iPadOS 16.7.6"
+    ],
+    "zero_day_releases_one_old_post": [
+        "📣 EMERGENCY UPDATE 📣\n\n",
+        "Apple pushed additional updates for a zero-day that may have been actively exploited.",
+        "\n\n🐛 CVE-2024-23225 (Kernel) additional patches:\n- iOS and iPadOS 16.7.6"
+    ],
+    "zero_day_many_releases_info": {
         "1": {
-            "name": "Security Update 2021-006 Catalina",
-            "emoji": "🖥️",
-            "security_content_link": "https://support.apple.com/kb/HT212825",
-            "release_date": "23 Sep 2021",
-            "num_of_bugs": 1,
-            "num_of_zero_days": 1,
+            "name": "iOS and iPadOS 17.4",
+            "emoji": "📱",
+            "security_content_link": "https://support.apple.com/en-us/120893",
+            "release_date": "05 Mar 2024",
+            "num_of_bugs": 39,
+            "num_of_zero_days": 2,
             "zero_days": {
-                "CVE-2021-30869": "XNU"
+                "CVE-2024-23225": "Kernel",
+                "CVE-2024-23296": "RTKit",
+                "CVE-2023-42916": "WebKit",
+                "CVE-2021-30860": "CoreGraphics"
             },
             "num_entries_added": 0,
             "num_entries_updated": 0
         },
         "2": {
-            "name": "iOS 12.5.5",
+            "name": "iOS and iPadOS 16.7.6",
             "emoji": "📱",
-            "security_content_link": "https://support.apple.com/kb/HT212824",
-            "release_date": "23 Sep 2021",
-            "num_of_bugs": 4,
+            "security_content_link": "https://support.apple.com/en-us/120880",
+            "release_date": "05 Mar 2024",
+            "num_of_bugs": 19,
             "num_of_zero_days": 1,
             "zero_days": {
-                "CVE-2021-30858": "WebKit"
+                "CVE-2024-23225": "Kernel",
+                "CVE-2023-42916": "WebKit"
             },
             "num_entries_added": 0,
             "num_entries_updated": 0
         }
     },
-    "zero_day_releases_one_new_one_old_post": [
+    "zero_day_releases_many_new_one_old_post": [
         "📣 EMERGENCY UPDATES 📣\n\n",
-        "Apple pushed updates for a new zero-day that may have been actively exploited and additional updates for one zero-day.",
-        "\n\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5",
-        "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina"
-    ],
-    "zero_day_releases_many_old_post": [
-        "📣 EMERGENCY UPDATES 📣\n\n",
-        "Apple pushed additional updates for 2 zero-days that may have been actively exploited.",
-        "\n\n🐛 CVE-2021-30858 (WebKit) additional patches:\n- iOS 12.5.5",
-        "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina"
-    ],
-    "zero_day_releases_many_new_post": [
-        "📣 EMERGENCY UPDATES 📣\n\n",
-        "Apple pushed updates for 2 new zero-days that may have been actively exploited.",
-        "\n\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5",
-        "\n\n🐛 CVE-2021-30869 (XNU):\n- Security Update 2021-006 Catalina"
+        "Apple pushed updates for 3 new zero-days that may have been actively exploited and additional updates for 1 zero-day.",
+        "\n\n🐛 CVE-2024-23225 (Kernel),\n🐛 CVE-2023-42916 (WebKit) additional patches:\n- iOS and iPadOS 16.7.6\n- iOS and iPadOS 17.4",
+        "\n\n🐛 CVE-2024-23296 (RTKit),\n🐛 CVE-2021-30860 (CoreGraphics):\n- iOS and iPadOS 17.4"
     ],
     "zero_day_releases_one_new_many_old_post": [
         "📣 EMERGENCY UPDATES 📣\n\n",
-        "Apple pushed updates for 3 new zero-days that may have been actively exploited and additional updates for 3 zero-days.",
-        "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- iOS 12.5.5\n- Security Update 2021-006 Catalina",
-        "\n\n🐛 CVE-2021-30860 (CoreGraphics) additional patches,\n🐛 CVE-2021-31010 (Core Telephony) additional patches,\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5",
-        "\n\n🐛 CVE-2023-42916 (WebKit),\n🐛 CVE-2023-42917 (WebKit):\n- iOS and iPadOS 15.8.1"
+        "Apple pushed updates for 1 new zero-day that may have been actively exploited and additional updates for 3 zero-days.",
+        "\n\n🐛 CVE-2024-23225 (Kernel) additional patches,\n🐛 CVE-2023-42916 (WebKit):\n- iOS and iPadOS 16.7.6\n- iOS and iPadOS 17.4",
+        "\n\n🐛 CVE-2024-23296 (RTKit) additional patches,\n🐛 CVE-2021-30860 (CoreGraphics) additional patches:\n- iOS and iPadOS 17.4"
     ],
     "zero_day_releases_many_new_many_old_post": [
         "📣 EMERGENCY UPDATES 📣\n\n",
-        "Apple pushed updates for 4 new zero-days that may have been actively exploited and additional updates for 2 zero-days.",
-        "\n\n🐛 CVE-2021-30869 (XNU):\n- iOS 12.5.5\n- Security Update 2021-006 Catalina",
-        "\n\n🐛 CVE-2021-30860 (CoreGraphics) additional patches,\n🐛 CVE-2021-31010 (Core Telephony) additional patches,\n🐛 CVE-2021-30858 (WebKit):\n- iOS 12.5.5",
-        "\n\n🐛 CVE-2023-42916 (WebKit),\n🐛 CVE-2023-42917 (WebKit):\n- iOS and iPadOS 15.8.1"
-    ],
-    "zero_day_releases_one_new_info": {
-        "1": {
-            "name": "Security Update 2021-006 Catalina",
-            "emoji": "🖥️",
-            "security_content_link": "https://support.apple.com/kb/HT212825",
-            "release_date": "23 Sep 2021",
-            "num_of_bugs": 1,
-            "num_of_zero_days": 1,
-            "zero_days": {
-                "CVE-2021-30858": "WebKit"
-            },
-            "num_entries_added": 0,
-            "num_entries_updated": 0
-        }
-    },
-    "zero_day_releases_one_new_post": [
-        "📣 EMERGENCY UPDATE 📣\n\n",
-        "Apple pushed updates for a new zero-day that may have been actively exploited.",
-        "\n\n🐛 CVE-2021-30858 (WebKit):\n- Security Update 2021-006 Catalina"
-    ],
-    "zero_day_releases_one_old_info": {
-        "1": {
-            "name": "Security Update 2021-006 Catalina",
-            "emoji": "🖥️",
-            "security_content_link": "https://support.apple.com/kb/HT212825",
-            "release_date": "23 Sep 2021",
-            "num_of_bugs": 1,
-            "num_of_zero_days": 1,
-            "zero_days": {
-                "CVE-2021-30869": "XNU"
-            },
-            "num_entries_added": 0,
-            "num_entries_updated": 0
-        }
-    },
-    "zero_day_releases_one_old_post": [
-        "📣 EMERGENCY UPDATE 📣\n\n",
-        "Apple pushed additional updates for a zero-day that may have been actively exploited.",
-        "\n\n🐛 CVE-2021-30869 (XNU) additional patches:\n- Security Update 2021-006 Catalina"
+        "Apple pushed updates for 2 new zero-days that may have been actively exploited and additional updates for 2 zero-days.",
+        "\n\n🐛 CVE-2024-23225 (Kernel) additional patches,\n🐛 CVE-2023-42916 (WebKit):\n- iOS and iPadOS 16.7.6\n- iOS and iPadOS 17.4",
+        "\n\n🐛 CVE-2024-23296 (RTKit) additional patches,\n🐛 CVE-2021-30860 (CoreGraphics):\n- iOS and iPadOS 17.4"
     ]
 }

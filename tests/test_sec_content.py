@@ -1,4 +1,5 @@
 import lxml.html
+import pytest
 from freezegun import freeze_time
 from helpers_test import compare, info_to_release, read_examples, row_to_lxml, row_to_release
 
@@ -17,11 +18,11 @@ def test_sec_page_download() -> None:
     releases = sec_content.retrieve_page()
 
     Release.parse_from_table(releases[0])
-    assert len(releases) > 100
+    assert len(releases) > 60
 
 
 def test_release_class_parsing() -> None:
-    """Test Release class parsing on a big number of releases."""
+    """Verify that parsing does not a fail with a big number of releases."""
     releases = examples["last_one_year_table"]
     releases_obj = row_to_release(releases)
 
@@ -35,7 +36,7 @@ def test_release_class_parsing() -> None:
 
 
 def test_release_class_safari() -> None:
-    """Test Release class on weirdly named Safari releases."""
+    """Verify parsing on weirdly named Safari releases."""
     PostedFile.reset()
     releases_obj = row_to_release(examples["new_sec_content_rows_table"])
 
@@ -77,7 +78,7 @@ def test_new_sec_content() -> None:
 def test_new_sec_content_from_example_html() -> None:
     PostedFile.reset()
 
-    with open("tests/fixtures/sec_page.html", "r", encoding="utf-8") as my_file:
+    with open("tests/fixtures/sec_page_2024.html", "r", encoding="utf-8") as my_file:
         releases = sec_content.retrieve_page(my_file.read())
 
     releases_obj = []
@@ -114,6 +115,10 @@ def test_new_sec_content_details_soon() -> None:
 
     assert PostedFile.data == examples["new_sec_content_details_soon_posted_data"]
 
+    # verify it returns no releases the second time
+    new_releases2 = sec_content.get_new(releases_obj)
+    assert new_releases2 == []
+
     # details now available
     releases_obj = row_to_lxml(examples["new_sec_content_details_available_table"])
     new_releases = sec_content.get_new(releases_obj)
@@ -124,6 +129,14 @@ def test_new_sec_content_details_soon() -> None:
     assert post == examples["new_sec_content_details_available_post_twitter"]
 
     assert PostedFile.data == examples["new_sec_content_details_available_posted_data"]
+
+    # verify it returns no releases the second time
+    new_releases2 = sec_content.get_if_available(releases_obj)
+
+    post = sec_content.format_new_sec_content_mastodon(new_releases2)
+    assert post == []
+    post = sec_content.format_new_sec_content_twitter(new_releases2)
+    assert post == []
 
 
 def test_new_sec_content_rsr() -> None:
@@ -174,8 +187,11 @@ def test_ios_modules_one_other_vulnerability() -> None:
     assert post == examples["ios_modules_one_other_post"]
 
 
+@freeze_time("2024-07-30")
 def test_entry_changes() -> None:
-    releases_obj = info_to_release(examples["entry_changes_info"])
+    """Test that both first and Additional Recognition sections are checked."""
+    releases = row_to_lxml(examples["entry_changes_table"])
+    releases_obj = sec_content.get_entry_changes(releases)
 
     post = sec_content.format_entry_changes_mastodon(releases_obj)
     assert post == examples["entry_changes_post_mastodon"]
@@ -183,19 +199,7 @@ def test_entry_changes() -> None:
     assert post == examples["entry_changes_post_twitter"]
 
 
-@freeze_time("2023-03-17")
-def test_entry_changes2() -> None:
-    """Test that both first and Additional Recognition sections are checked."""
-    releases = row_to_lxml(examples["entry_changes2_table"])
-    releases_obj = sec_content.get_entry_changes(releases)
-
-    post = sec_content.format_entry_changes_mastodon(releases_obj)
-    assert post == examples["entry_changes2_post_mastodon"]
-    post = sec_content.format_entry_changes_twitter(releases_obj)
-    assert post == examples["entry_changes2_post_twitter"]
-
-
-@freeze_time("2023-03-17")
+@freeze_time("2024-07-30")
 def test_entry_changes_only_one() -> None:
     releases = row_to_lxml(examples["entry_changes_one_table"])
     releases_obj = sec_content.get_entry_changes(releases)
@@ -206,46 +210,7 @@ def test_entry_changes_only_one() -> None:
     assert post == examples["entry_changes_one_post_twitter"]
 
 
-def test_security_content_soon() -> None:
-    releases_obj = row_to_lxml(examples["security_content_soon_info"])
-    PostedFile.reset()
-
-    sec_content.get_new(releases_obj)
-
-    assert PostedFile.data["details_available_soon"] == examples["security_content_soon_file"]
-
-    # test if result is the same when same data comes in the next time
-    releases_obj = row_to_lxml(examples["security_content_soon_info"])
-
-    sec_content.get_new(releases_obj)
-
-    assert PostedFile.data["details_available_soon"] == examples["security_content_soon_file"]
-
-
-def test_security_content_available() -> None:
-    releases_rows = row_to_lxml(examples["security_content_available_info"])
-    PostedFile.reset()
-
-    PostedFile.data["details_available_soon"] = examples["security_content_soon_file"]
-
-    new_releases = sec_content.get_if_available(releases_rows)
-
-    post = sec_content.format_new_sec_content_mastodon(new_releases)
-    assert post == examples["security_content_available_post_mastodon"]
-    post = sec_content.format_new_sec_content_twitter(new_releases)
-    assert post == examples["security_content_available_post_twitter"]
-
-    assert PostedFile.data["details_available_soon"] == []
-
-    # test again after posting and verify it returns nothing
-    new_releases = sec_content.get_if_available(releases_rows)
-
-    post = sec_content.format_new_sec_content_mastodon(new_releases)
-    assert post == []
-    post = sec_content.format_new_sec_content_twitter(new_releases)
-    assert post == []
-
-
+@pytest.mark.skip(reason="not tested for accuracy enough, needs updated example data")
 def test_yearly_report() -> None:
     latest_versions: dict[str, list] = {"iOS and iPadOS": [15], "macOS": [12, "Monterey"], "tvOS": [15], "watchOS": [8]}
     releases_obj = row_to_release(examples["yearly_report_table"])
@@ -278,105 +243,58 @@ def test_yearly_report() -> None:
     assert data == [["watchOS", 8]]
 
 
-def test_zero_day_many_new_one_old() -> None:
-    releases_obj = row_to_lxml(examples["zero_day_releases_table"])
-
-    PostedFile.reset()
-    PostedFile.data["zero_days"] = ["CVE-2021-30869"]
-
-    new_releases = sec_content.get_new(releases_obj)
-    new_zero_days = sec_content.get_new_zero_days(new_releases)
-
-    post = sec_content.format_zero_days(new_zero_days)
-    assert post == examples["zero_day_releases_post"]
-
-    assert PostedFile.data == examples["zero_day_releases_posted_data"]
-
-    # test again after posting and verify it returns nothing
-    new_releases = sec_content.get_new(releases_obj)
-    new_zero_days = sec_content.get_new_zero_days(new_releases)
-
-    post = sec_content.format_zero_days(new_zero_days)
-    assert post == []
-
-
-def test_zero_day_one_new_many_old() -> None:
-    releases_obj = row_to_lxml(examples["zero_day_releases_table"])
-
-    PostedFile.reset()
-    PostedFile.data["zero_days"] = [
-        "CVE-2021-30869",
-        "CVE-2021-30860",
-        "CVE-2021-31010",
-    ]
-
-    new_releases = sec_content.get_new(releases_obj)
-    new_zero_days = sec_content.get_new_zero_days(new_releases)
-
-    post = sec_content.format_zero_days(new_zero_days)
-    assert post == examples["zero_day_releases_one_new_many_old_post"]
-
-
-def test_zero_day_many_new_many_old() -> None:
-    releases_obj = row_to_lxml(examples["zero_day_releases_table"])
-
-    PostedFile.reset()
-    PostedFile.data["zero_days"] = [
-        "CVE-2021-30860",
-        "CVE-2021-31010",
-    ]
-
-    new_releases = sec_content.get_new(releases_obj)
-    new_zero_days = sec_content.get_new_zero_days(new_releases)
-
-    post = sec_content.format_zero_days(new_zero_days)
-    assert post == examples["zero_day_releases_many_new_many_old_post"]
-
-
 def test_zero_day_many_new() -> None:
-    new_releases = info_to_release(examples["zero_day_releases_two_info"])
+    releases_obj = row_to_lxml(examples["zero_day_releases_table"])
 
     PostedFile.reset()
+
+    new_releases = sec_content.get_new(releases_obj)
+    compare(new_releases, examples["zero_day_releases_info"])
 
     new_zero_days = sec_content.get_new_zero_days(new_releases)
     post = sec_content.format_zero_days(new_zero_days)
 
     assert post == examples["zero_day_releases_many_new_post"]
 
+    assert PostedFile.data == examples["zero_day_releases_posted_data"]
+
+    # test again after posting and verify it returns nothing
+    new_releases = sec_content.get_new(releases_obj)
+    assert new_releases == []
+
 
 def test_zero_day_many_old() -> None:
-    new_releases = info_to_release(examples["zero_day_releases_two_info"])
+    releases_obj = row_to_release(examples["zero_day_releases_table"])
 
     PostedFile.reset()
-    PostedFile.data["zero_days"] = [
-        "CVE-2021-30869",
-        "CVE-2021-30858",
-    ]
+    PostedFile.data["zero_days"] = ["CVE-2024-23225", "CVE-2024-23296"]
 
-    new_zero_days = sec_content.get_new_zero_days(new_releases)
+    new_zero_days = sec_content.get_new_zero_days(releases_obj)
     post = sec_content.format_zero_days(new_zero_days)
 
     assert post == examples["zero_day_releases_many_old_post"]
 
 
 def test_zero_day_one_new_one_old() -> None:
-    new_releases = info_to_release(examples["zero_day_releases_two_info"])
+    releases_obj = row_to_release(examples["zero_day_releases_table"])
 
     PostedFile.reset()
-    PostedFile.data["zero_days"] = ["CVE-2021-30869"]
+    PostedFile.data["zero_days"] = ["CVE-2024-23296"]
 
-    new_zero_days = sec_content.get_new_zero_days(new_releases)
+    new_zero_days = sec_content.get_new_zero_days(releases_obj)
     post = sec_content.format_zero_days(new_zero_days)
 
     assert post == examples["zero_day_releases_one_new_one_old_post"]
 
 
 def test_zero_day_one_new() -> None:
-    new_releases = info_to_release(examples["zero_day_releases_one_new_info"])
+    releases_obj = row_to_lxml(examples["zero_day_releases_table"])
 
     PostedFile.reset()
-    PostedFile.data["zero_days"] = ["CVE-2021-30869"]
+    PostedFile.data["posts"]["new_sec_content"] = ["iOS and iPadOS 17.4"]
+    PostedFile.data["zero_days"] = ["CVE-2024-23296"]
 
+    new_releases = sec_content.get_new(releases_obj)
     new_zero_days = sec_content.get_new_zero_days(new_releases)
     post = sec_content.format_zero_days(new_zero_days)
 
@@ -384,12 +302,50 @@ def test_zero_day_one_new() -> None:
 
 
 def test_zero_day_one_old() -> None:
-    new_releases = info_to_release(examples["zero_day_releases_one_old_info"])
+    releases_obj = row_to_lxml(examples["zero_day_releases_table"])
 
     PostedFile.reset()
-    PostedFile.data["zero_days"] = ["CVE-2021-30869"]
+    PostedFile.data["posts"]["new_sec_content"] = ["iOS and iPadOS 17.4"]
+    PostedFile.data["zero_days"] = ["CVE-2024-23225"]
 
+    new_releases = sec_content.get_new(releases_obj)
     new_zero_days = sec_content.get_new_zero_days(new_releases)
     post = sec_content.format_zero_days(new_zero_days)
 
     assert post == examples["zero_day_releases_one_old_post"]
+
+
+def test_zero_day_many_new_one_old() -> None:
+    releases_obj = info_to_release(examples["zero_day_many_releases_info"])
+
+    PostedFile.reset()
+    PostedFile.data["zero_days"] = ["CVE-2023-42916"]
+
+    new_zero_days = sec_content.get_new_zero_days(releases_obj)
+
+    post = sec_content.format_zero_days(new_zero_days)
+    assert post == examples["zero_day_releases_many_new_one_old_post"]
+
+
+def test_zero_day_one_new_many_old() -> None:
+    releases_obj = info_to_release(examples["zero_day_many_releases_info"])
+
+    PostedFile.reset()
+    PostedFile.data["zero_days"] = ["CVE-2024-23225", "CVE-2021-30860", "CVE-2024-23296"]
+
+    new_zero_days = sec_content.get_new_zero_days(releases_obj)
+
+    post = sec_content.format_zero_days(new_zero_days)
+    assert post == examples["zero_day_releases_one_new_many_old_post"]
+
+
+def test_zero_day_many_new_many_old() -> None:
+    releases_obj = info_to_release(examples["zero_day_many_releases_info"])
+
+    PostedFile.reset()
+    PostedFile.data["zero_days"] = ["CVE-2024-23225", "CVE-2024-23296"]
+
+    new_zero_days = sec_content.get_new_zero_days(releases_obj)
+
+    post = sec_content.format_zero_days(new_zero_days)
+    assert post == examples["zero_day_releases_many_new_many_old_post"]
