@@ -595,24 +595,32 @@
             "<td>\n<p>watchOS 10.6 (details available soon)</p>\n</td>",
             "<td>\n<p>Apple Watch Series 4 and later</p>\n</td>",
             "<td>\n<p>29 Jul 2024</p>\n</td>"
+        ],
+        [
+            "<td>iOS 17.4.1 and iPadOS 17.4.1<br><span class=\"note\">Details coming soon</span></td>",
+            "<td>iPhone XS and later, iPad Pro 12.9-inch 2nd generation and later, iPad Pro 10.5-inch, iPad Pro 11-inch 1st generation and later, iPad Air 3rd generation and later, iPad 6th generation and later, and iPad mini 5th generation and later</td>",
+            "<td>21 Mar 2024</td>"
         ]
     ],
     "new_sec_content_details_soon_post_mastodon": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "⌚ watchOS 10.6 - no details yet\n",
         "📺 tvOS 16.3.2 - no details yet\n",
+        "📱 iOS and iPadOS 17.4.1 - no details yet\n",
         "📱 iOS and iPadOS 17 - no details yet\n"
     ],
     "new_sec_content_details_soon_post_twitter": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "⌚ watchOS 10.6 - no details yet\n",
         "📺 tvOS 16.3.2 - no details yet\n",
+        "📱 iOS and iPadOS 17.4.1 - no details yet\n",
         "📱 iOS and iPadOS 17 - no details yet\n",
         "https://support.apple.com/kb/HT201222"
     ],
     "new_sec_content_details_soon_posted_data": {
         "zero_days": [],
         "details_available_soon": [
+            "iOS and iPadOS 17.4.1",
             "watchOS 10.6",
             "iOS and iPadOS 17",
             "tvOS 16.3.2"
@@ -620,6 +628,7 @@
         "posts": {
             "new_releases": [],
             "new_sec_content": [
+                "iOS and iPadOS 17.4.1",
                 "watchOS 10.6",
                 "iOS and iPadOS 17",
                 "tvOS 16.3.2"
@@ -644,18 +653,25 @@
             "<td>\n<p><a href=\"/en-us/120916\" class=\"gb-anchor\">watchOS 10.6</a></p>\n</td>",
             "<td>\n<p>Apple Watch Series 4 and later</p>\n</td>",
             "<td>\n<p>29 Jul 2024</p>\n</td>"
+        ],
+        [
+            "<td>\n<p><a href=\"/en-us/120890\" class=\"gb-anchor\">iOS 17.4.1 and iPadOS 17.4.1</a></p>\n</td>",
+            "<td>\n<p>iPhone XS and later, iPad Pro 12.9-inch 2nd generation and later, iPad Pro 10.5-inch, iPad Pro 11-inch 1st generation and later, iPad Air 3rd generation and later, iPad 6th generation and later, and iPad mini 5th generation and later</p>\n</td>",
+            "<td>\n<p>21 Mar 2024</p>\n</td>"
         ]
     ],
     "new_sec_content_details_available_post_mastodon": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "📱 iOS and iPadOS 17 - 68 bugs fixed\nhttps://support.apple.com/kb/HT213938\n",
         "⌚ watchOS 10.6 - 29 bugs fixed\nhttps://support.apple.com/en-us/120916\n",
+        "📱 iOS and iPadOS 17.4.1 - 2 bugs fixed\nhttps://support.apple.com/en-us/120890\n",
         "📺 tvOS 16.3.2 - 1 bug fixed\nhttps://support.apple.com/kb/HT213632\n"
     ],
     "new_sec_content_details_available_post_twitter": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "📱 iOS and iPadOS 17 - 68 bugs fixed\n",
         "⌚ watchOS 10.6 - 29 bugs fixed\n",
+        "📱 iOS and iPadOS 17.4.1 - 2 bugs fixed\n",
         "📺 tvOS 16.3.2 - 1 bug fixed\n",
         "https://support.apple.com/kb/HT201222"
     ],
@@ -665,6 +681,7 @@
         "posts": {
             "new_releases": [],
             "new_sec_content": [
+                "iOS and iPadOS 17.4.1",
                 "watchOS 10.6",
                 "iOS and iPadOS 17",
                 "tvOS 16.3.2"

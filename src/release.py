@@ -132,7 +132,7 @@ class Release:
         name = name.replace("\n", "").strip()
 
         # "no details yet" releases might have this bracket alongside of their name
-        name = re.sub(r"(?i)\(details available soon\.?\)", "", name).strip()
+        name = re.sub(r"(?i)\(?details (available|coming) soon\.?\)?", "", name).strip()
 
         # "iOS 15.3 and iPadOS 15.3" -> "iOS and iPadOS 15.3"
         if "iOS" in name and "iPadOS" in name:
