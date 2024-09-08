@@ -9,11 +9,11 @@ from helpers.posted_file import PostedFile
 from release import Release
 
 
-def _request_sec_page() -> str:
-    return requests.get("https://support.apple.com/en-us/100100", timeout=60).text
+def request_sec_page(url: str = "https://support.apple.com/en-us/100100") -> str:
+    return requests.get(url, timeout=60).text
 
 
-def retrieve_page(html: str = _request_sec_page()) -> list[list[lxml.html.HtmlElement]]:
+def retrieve_page(html: str = request_sec_page()) -> list[list[lxml.html.HtmlElement]]:
     main_page = lxml.html.document_fromstring(html)
 
     table = main_page.xpath("//table/tbody")[0].findall("tr")

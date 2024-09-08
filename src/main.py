@@ -32,7 +32,10 @@ def main():
         post(sec_content.format_zero_days(zero_day_releases))
 
     if get_date.is_midnight():
-        changed_releases = sec_content.get_entry_changes(all_release_rows)
+        # the latest url contains items only 2024+, add at least ones from 2022 and 2023
+        all_release_rows_old = sec_content.retrieve_page(sec_content.request_sec_page("https://support.apple.com/en-us/121012"))
+
+        changed_releases = sec_content.get_entry_changes(all_release_rows + all_release_rows_old)
         if changed_releases:
             post(
                 sec_content.format_entry_changes_mastodon(changed_releases),
