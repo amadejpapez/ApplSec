@@ -11,11 +11,7 @@
         "CVE-2024-23225",
         "CVE-2024-23296"
     ],
-    "details_available_soon": [
-        "visionOS 1.1.1 Details coming soon",
-        "iOS and iPadOS 16.7.7 Details coming soon",
-        "iOS and iPadOS 17.4.1 Details coming soon"
-    ],
+    "details_available_soon": [],
     "posts": {
         "new_releases": [
             "watchOS 11 beta 7 (22R5348a)",
@@ -43,13 +39,7 @@
             "iOS and iPadOS 16.7.10",
             "iOS and iPadOS 17.6.1",
             "tvOS 17.6.1",
-            "watchOS 10.6.1",
-            "macOS Ventura 13.6.9This update has no published CVE entries.",
-            "macOS Sonoma 14.6.1This update has no published CVE entries.",
-            "iOS and iPadOS 16.7.10This update has no published CVE entries.",
-            "iOS and iPadOS 17.6.1This update has no published CVE entries.",
-            "tvOS 17.6.1This update has no published CVE entries.",
-            "watchOS 10.6.1This update has no published CVE entries."
+            "watchOS 10.6.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 17.4.1",
