@@ -30,7 +30,8 @@ def get_new(all_release_rows: list[list[lxml.html.HtmlElement]]) -> list[Release
     new_sec_content = []
 
     for row in all_release_rows:
-        if Release.parse_name(row) in PostedFile.data["posts"]["new_sec_content"]:
+        name = Release.parse_name(row)
+        if name in PostedFile.data["posts"]["new_sec_content"]:
             break
 
         new_sec_content.append(Release.parse_from_table(row))
@@ -63,10 +64,13 @@ def get_if_available(all_release_rows: list[list[lxml.html.HtmlElement]]) -> lis
         if checked == must_check:
             break
 
-        release_obj = Release.parse_from_table(row)
+        release_name = Release.parse_name(row)
+        release_security_link = Release.parse_security_content_link(row)
 
-        if release_obj.name in PostedFile.data["details_available_soon"]:
-            if release_obj.security_content_link != "":
+        if release_name in PostedFile.data["details_available_soon"]:
+            if release_security_link != "":
+                release_obj = Release.parse_from_table(row)
+
                 new_sec_content.append(release_obj)
                 PostedFile.data["details_available_soon"].remove(release_obj.name)
 
