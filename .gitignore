@@ -1,6 +1,8 @@
 __pycache__
 .mypy_cache
 .pytest_cache
+
 .vscode
+.idea
 
 posted_data.json
