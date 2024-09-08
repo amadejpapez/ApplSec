@@ -175,12 +175,20 @@ def format_ios_release(releases: list[Release]) -> list[str]:
     release = releases[0]
 
     sec_content_html = requests.get(release.security_content_link, timeout=60).text
-    sec_content_html = sec_content_html.split("Additional recognition", 1)[0]
+    modules_html = Release.get_html_entries(sec_content_html)
 
-    search_modules = collections.Counter(re.findall(r"(?<=<strong>).*?(?=<\/strong>)", sec_content_html))
-    search_modules += collections.Counter(re.findall(r"(?<=<b>).*?(?=<\/b>)", sec_content_html))
-    search_modules += collections.Counter(re.findall(r"(?<=<h3 class=\"gb-header\">).*?(?=<\/h3>)", sec_content_html))
-    modules = collections.OrderedDict(sorted(search_modules.items(), reverse=True, key=lambda x: x[1]))
+    modules: dict[str, int] = {}
+
+    for entry in modules_html:
+        module_name = Release.get_html_entry_title(entry)
+        cve_count = len(re.findall(r"(?i)CVE-[0-9]{4}-[0-9]+", entry))
+
+        if module_name not in modules:
+            modules[module_name] = cve_count
+        else:
+            modules[module_name] += cve_count
+
+    modules = collections.OrderedDict(sorted(modules.items(), reverse=True, key=lambda x: x[1]))
 
     post_text = [f"⚒️ FIXED IN {release.name} ⚒️\n\n"]
     num_bugs = 0

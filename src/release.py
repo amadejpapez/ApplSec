@@ -221,9 +221,9 @@ class Release:
             # if there isn't any zero days, end early
             return zero_days
 
-        entries = re.findall(r"(?i)(?<=<strong>).*?(?=<strong>|<\/div>)", sec_content_html)
-        entries += re.findall(r"(?i)(?<=<b>).*?(?=<b>|<div id=\"disclaimer\")", sec_content_html)
-        entries += re.findall(r"(?i)(?<=<h3 class=\"gb-header\">).*?(?=<h3|<div id=\"disclaimer\")", sec_content_html)
+        sec_content_html = sec_content_html.replace("\n", " ")
+
+        entries = Release.get_html_entries(sec_content_html)
 
         for entry in entries:
             if (
@@ -231,10 +231,27 @@ class Release:
                 or "actively exploited" in entry
                 or "may have been exploited" in entry
             ):
-                cve = re.findall(r"(?i)CVE-[0-9]{4}-[0-9]+", entry)[0]
-                zero_days[cve] = re.findall(r"(?i).+?(?=<\/strong>|<\/b>|<\/h3>)", entry)[0]
+                name = Release.get_html_entry_title(entry)
+                cves = re.findall(r"(?i)CVE-[0-9]{4}-[0-9]+", entry)
+                for cve in cves:
+                    zero_days[cve] = name
 
         return zero_days
+
+    @staticmethod
+    def get_html_entries(sec_content_html: str) -> list[str]:
+        sec_content_html = sec_content_html.split("Additional recognition", 1)[0]
+        sec_content_html = sec_content_html.replace("\n", " ")
+
+        entries = re.findall(r"(?i)(?<=<strong>).*?(?=<strong>|</div>)", sec_content_html)
+        entries += re.findall(r"(?i)(?<=<b>).*?(?=<b>|<h2)", sec_content_html)
+        entries += re.findall(r"(?i)(?<=<h3 class=\"gb-header\">).*?(?=<h3|<h2)", sec_content_html)
+
+        return entries
+
+    @staticmethod
+    def get_html_entry_title(entry: str) -> str:
+        return re.findall(r"(?i).+?(?=</strong>|</b>|</h3>)", entry)[0]
 
     @staticmethod
     def from_rss_release(xml_item: lxml.etree._Element) -> Release:

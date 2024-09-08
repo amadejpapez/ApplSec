@@ -759,11 +759,11 @@
     },
     "ios_modules_post": [
         "⚒️ FIXED IN iOS and iPadOS 17.6 ⚒️\n\n",
-        "- 6 bugs in WebKit\n",
-        "- 4 bugs in ImageIO\n",
-        "- 4 bugs in Shortcuts\n",
+        "- 8 bugs in WebKit\n",
+        "- 6 bugs in Shortcuts\n",
+        "- 5 bugs in ImageIO\n",
         "- 3 bugs in Siri\n",
-        "and 18 other vulnerabilities fixed\n",
+        "and 13 other vulnerabilities fixed\n",
         "https://support.apple.com/en-us/120909\n"
     ],
     "ios_modules_no_other_table": [
