@@ -92,32 +92,19 @@ class Release:
 
         if security_content_link:
             try:
-                if "Rapid Security Response" in name:
-                    title = "About Rapid Security Response"
-                else:
-                    title = "About Apple security updates"
-
                 sec_content_page_html = requests.get(security_content_link, timeout=60).text
 
-                sec_content_page = (
-                    sec_content_page_html.split(title, 1)[1]
-                    .split("Published Date", 1)[0]
-                    .replace("&nbsp;", " ")
-                )
+                sec_content_page = sec_content_page_html.replace("&nbsp;", " ")
                 sec_content_page = " ".join(sec_content_page.split())
-
-                sec_content_page_html = sec_content_page_html.replace("\n", "").replace("&nbsp;", " ")
 
             except Exception as e:
                 print(f"ERROR: security content parsing failed for\n{name}\n" + str(e) + "\n")
                 security_content_link = ""
-                sec_content_page_html = ""
                 sec_content_page = ""
         else:
-            sec_content_page_html = ""
             sec_content_page = ""
 
-        zero_days_tmp = Release.parse_zero_days(sec_content_page_html)
+        zero_days_tmp = Release.parse_zero_days(sec_content_page)
 
         return Release(
             name,
