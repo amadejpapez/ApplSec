@@ -31,20 +31,26 @@
             "Xcode 16 RC (16A242)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 16.7.9",
-            "iOS and iPadOS 17.6",
             "Safari 17.6",
             "macOS Ventura 13.6.9",
             "macOS Sonoma 14.6.1",
             "iOS and iPadOS 16.7.10",
             "iOS and iPadOS 17.6.1",
             "tvOS 17.6.1",
-            "watchOS 10.6.1"
+            "watchOS 10.6.1",
+            "macOS Ventura 13.7",
+            "macOS Sonoma 14.7",
+            "iOS and iPadOS 17.7",
+            "visionOS 2",
+            "watchOS 11",
+            "tvOS 18",
+            "macOS Sequoia 15",
+            "iOS and iPadOS 18"
         ],
         "ios_modules": [
-            "iOS and iPadOS 17.4.1",
             "iOS and iPadOS 17.5",
-            "iOS and iPadOS 17.6"
+            "iOS and iPadOS 17.6",
+            "iOS and iPadOS 18"
         ],
         "zero_days": {},
         "yearly_report": []
