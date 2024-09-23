@@ -14,12 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "iOS 18.1 beta 3 (22B5034e)",
-            "visionOS 2 beta 9 (22N5319a)",
-            "iPadOS 17.7 RC (21H16)",
-            "iOS 17.7 RC (21H16)",
-            "visionOS 2 RC (22N320)",
-            "watchOS 11 RC (22R349)",
             "tvOS 18 RC (22J357)",
             "macOS 15 RC (24A335)",
             "iPadOS 18 RC (22A3354)",
@@ -28,7 +22,13 @@
             "macOS 15.1 beta 4 (24B5046f)",
             "iPadOS 18.1 beta 4 (22B5045g)",
             "iOS 18.1 beta 4 (22B5045g | 22B5045h)",
-            "Xcode 16.1 beta 2 (16B5014f)"
+            "Xcode 16.1 beta 2 (16B5014f)",
+            "visionOS 2.1 beta 2 (22N5553d)",
+            "watchOS 11.1 beta 2 (22R5554e)",
+            "tvOS 18.1 beta 2(22J5552d)",
+            "macOS 15.1 beta 5 (24B5055e)",
+            "iPadOS 18.1 beta 5 (22B5054e)",
+            "iOS 18.1 beta 5 (22B5054e)"
         ],
         "new_sec_content": [
             "Safari 17.6",
