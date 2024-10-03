@@ -31,10 +31,6 @@
             "tvOS 18.1 beta 3(22J5557d)"
         ],
         "new_sec_content": [
-            "Safari 17.6",
-            "macOS Ventura 13.6.9",
-            "macOS Sonoma 14.6.1",
-            "iOS and iPadOS 16.7.10",
             "iOS and iPadOS 17.6.1",
             "tvOS 17.6.1",
             "watchOS 10.6.1",
@@ -45,12 +41,16 @@
             "watchOS 11",
             "tvOS 18",
             "macOS Sequoia 15",
-            "iOS and iPadOS 18"
+            "iOS and iPadOS 18",
+            "visionOS 2.0.1",
+            "watchOS 11.0.1",
+            "macOS Sequoia 15.0.1",
+            "iOS and iPadOS 18.0.1"
         ],
         "ios_modules": [
-            "iOS and iPadOS 17.5",
             "iOS and iPadOS 17.6",
-            "iOS and iPadOS 18"
+            "iOS and iPadOS 18",
+            "iOS and iPadOS 18.0.1"
         ],
         "zero_days": {},
         "yearly_report": []
