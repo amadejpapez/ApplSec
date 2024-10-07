@@ -14,7 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "visionOS 2.1 beta 2 (22N5553d)",
             "watchOS 11.1 beta 2 (22R5554e)",
             "tvOS 18.1 beta 2(22J5552d)",
             "macOS 15.1 beta 5 (24B5055e)",
@@ -28,7 +27,8 @@
             "tvOS 18.1 beta 4 (22J5567a)",
             "macOS 15.1 beta 6 (24B5070a)",
             "iPadOS 18.1 beta 6 (22B5069a)",
-            "iOS 18.1 beta 6 (22B5069a)"
+            "iOS 18.1 beta 6 (22B5069a)",
+            "Xcode 16.1 beta 3 (16B5029d)"
         ],
         "new_sec_content": [
             "tvOS 17.6.1",
