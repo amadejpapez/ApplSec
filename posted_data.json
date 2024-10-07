@@ -31,7 +31,6 @@
             "tvOS 18.1 beta 3(22J5557d)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 17.6.1",
             "tvOS 17.6.1",
             "watchOS 10.6.1",
             "macOS Ventura 13.7",
@@ -45,7 +44,8 @@
             "visionOS 2.0.1",
             "watchOS 11.0.1",
             "macOS Sequoia 15.0.1",
-            "iOS and iPadOS 18.0.1"
+            "iOS and iPadOS 18.0.1",
+            "Apple TV 1.5.0.152 for Windows"
         ],
         "ios_modules": [
             "iOS and iPadOS 17.6",
