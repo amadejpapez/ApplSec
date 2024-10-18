@@ -14,7 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "visionOS 2.1 beta 3 (22N5558e)",
             "watchOS 11.1 beta 3 (22R5559b)",
             "tvOS 18.1 beta 3(22J5557d)",
             "visionOS 2.1 beta 4 (22N5567a)",
@@ -28,7 +27,8 @@
             "watchOS 11.1 beta 5 (22R5575a)",
             "tvOS 18.1 beta 5 (22J5573a)",
             "iPadOS 18.1 beta 7 (22B5075a)",
-            "iOS 18.1 beta 7 (22B5075a)"
+            "iOS 18.1 beta 7 (22B5075a)",
+            "visionOS 2.1 beta 6 (22N5573b)"
         ],
         "new_sec_content": [
             "tvOS 17.6.1",
