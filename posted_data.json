@@ -14,7 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "macOS 15.1 beta 6 (24B5070a)",
             "iPadOS 18.1 beta 6 (22B5069a)",
             "iOS 18.1 beta 6 (22B5069a)",
             "Xcode 16.1 beta 3 (16B5029d)",
@@ -28,7 +27,8 @@
             "tvOS 18.1 RC (22J578)",
             "macOS 15.1 RC (24B82)",
             "iPadOS 18.1 RC (22B82)",
-            "iOS 18.1 RC (22B82)"
+            "iOS 18.1 RC (22B82)",
+            "Xcode 16.1 RC(16B40)"
         ],
         "new_sec_content": [
             "tvOS 17.6.1",
