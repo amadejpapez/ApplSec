@@ -14,8 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "iOS 18.2 beta (22C5109p)",
-            "Xcode 16.2 beta (16B5100e)",
             "macOS 15.1 RC 2 (24B83)",
             "watchOS 11.2 beta (22S5077d)",
             "visionOS 2.2 beta (22N5778f)",
@@ -28,7 +26,9 @@
             "tvOS 18.2 beta 2 (22K5138e)",
             "macOS 15.2 beta 3 (24C5079e)",
             "iPadOS 18.2 beta 3 (22C5131e)",
-            "iOS 18.2 beta 3 (22C5131e)"
+            "iOS 18.2 beta 3 (22C5131e)",
+            "visionOS 2.2 beta 3 (22N5794a)",
+            "tvOS 18.2 beta 3 (22K5148a)"
         ],
         "new_sec_content": [
             "iOS and iPadOS 18",
