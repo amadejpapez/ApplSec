@@ -31,7 +31,6 @@
             "tvOS 18.2 beta 3 (22K5148a)"
         ],
         "new_sec_content": [
-            "macOS Sequoia 15.0.1",
             "iOS and iPadOS 18.0.1",
             "Apple TV 1.5.0.152 for Windows",
             "visionOS 2.1",
@@ -45,7 +44,8 @@
             "Safari 18.1",
             "macOS Sequoia 15.1.1",
             "iOS and iPadOS 17.7.2",
-            "iOS and iPadOS 18.1.1"
+            "iOS and iPadOS 18.1.1",
+            "visionOS 2.1.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 18",
@@ -55,7 +55,8 @@
         "zero_days": {
             "iOS and iPadOS 17.7.2": 2,
             "iOS and iPadOS 18.1.1": 2,
-            "macOS Sequoia 15.1.1": 2
+            "macOS Sequoia 15.1.1": 2,
+            "visionOS 2.1.1": 2
         },
         "yearly_report": []
     }
