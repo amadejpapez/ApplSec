@@ -14,7 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "iPadOS 18.2 beta 2 (22C5125e)",
             "iOS 18.2 beta 2 (22C5125e)",
             "Xcode 16.2 beta 2 (16C5013f)",
             "watchOS 11.2 beta 2 (22S5083e)",
@@ -28,7 +27,8 @@
             "macOS 15.2 beta 4 (24C5089c)",
             "iPadOS 18.2 beta 4 (22C5142a)",
             "iOS 18.2 beta 4 (22C5142a)",
-            "Xcode 16.2 beta 3 (16C5023f)"
+            "Xcode 16.2 beta 3 (16C5023f)",
+            "visionOS 2.2 beta 4 (22N5800a)"
         ],
         "new_sec_content": [
             "Apple TV 1.5.0.152 for Windows",
