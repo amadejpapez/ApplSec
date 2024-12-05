@@ -14,13 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "iOS 18.2 beta 2 (22C5125e)",
-            "Xcode 16.2 beta 2 (16C5013f)",
-            "watchOS 11.2 beta 2 (22S5083e)",
-            "tvOS 18.2 beta 2 (22K5138e)",
-            "macOS 15.2 beta 3 (24C5079e)",
-            "iPadOS 18.2 beta 3 (22C5131e)",
-            "iOS 18.2 beta 3 (22C5131e)",
             "visionOS 2.2 beta 3 (22N5794a)",
             "tvOS 18.2 beta 3 (22K5148a)",
             "watchOS 11.2 beta 3 (22S5094a)",
@@ -28,7 +21,14 @@
             "iPadOS 18.2 beta 4 (22C5142a)",
             "iOS 18.2 beta 4 (22C5142a)",
             "Xcode 16.2 beta 3 (16C5023f)",
-            "visionOS 2.2 beta 4 (22N5800a)"
+            "visionOS 2.2 beta 4 (22N5800a)",
+            "visionOS 2.2 RC (22N840)",
+            "watchOS 11.2 RC (22S99)",
+            "tvOS 18.2 RC (22K154)",
+            "macOS 15.2 RC (24C98)",
+            "iPadOS 17.7.3 RC (21H312)",
+            "iPadOS 18.2 RC (22C150)",
+            "iOS 18.2 RC (22C150)"
         ],
         "new_sec_content": [
             "Apple TV 1.5.0.152 for Windows",
