@@ -1,3 +1,4 @@
+import datetime
 import os
 import sys
 
@@ -24,6 +25,9 @@ TWITTER_API_TEST = tweepy.Client(
 
 MASTODON_KEY = "Bearer " + os.environ.get("MASTODON_ACCESS_TOKEN", "")
 MASTODON_KEY_TEST = "Bearer " + os.environ.get("MASTODON_ACCESS_TOKEN_TEST", "")
+
+BLUESKY_HANDLE = os.environ.get("BLUESKY_HANDLE", "")
+BLUESKY_PASSWORD = os.environ.get("BLUESKY_PASSWORD", "")
 
 
 def arrange_post(results: list[str], MAX_CHAR: int) -> list[str]:
@@ -108,6 +112,74 @@ def toot(results: list[str], API_KEY: str) -> None:
         post_ids.append(response.json()["id"])
 
 
+def postBluesky(results: list[str]) -> None:
+    """Handle posting to Bluesky."""
+    MAX_CHAR = 300
+    API_URL = "https://bsky.social/"
+
+    loginResponse = requests.post(
+        API_URL + "xrpc/com.atproto.server.createSession",
+        json={"identifier": BLUESKY_HANDLE, "password": BLUESKY_PASSWORD},
+        timeout=60,
+    )
+
+    if loginResponse.status_code != 200:
+        raise Exception("Failed to create bluesky session")
+
+    access_token = loginResponse.json()["accessJwt"]
+
+    results.append("\n\n#apple #infosec")
+
+    posts_list = arrange_post(results, MAX_CHAR)
+
+    post_ids: list[dict] = []
+
+    for text in posts_list:
+        if posts_list.index(text) == 0:
+            # individual post or start of a thread
+            response = requests.post(
+                API_URL + "xrpc/com.atproto.repo.createRecord",
+                headers={"Authorization": "Bearer " + access_token},
+                json={
+                    "repo": BLUESKY_HANDLE,
+                    "collection": "app.bsky.feed.post",
+                    "record": {
+                        "text": text,
+                        "createdAt": datetime.datetime.now(datetime.timezone.utc).isoformat()
+                    }},
+                timeout=60,
+            )
+        else:
+            # other posts in a thread
+            response = requests.post(
+                API_URL + "xrpc/com.atproto.repo.createRecord",
+                headers={"Authorization": "Bearer " + access_token},
+                json={
+                    "repo": BLUESKY_HANDLE,
+                    "collection": "app.bsky.feed.post",
+                    "record": {
+                        "text": text,
+                        "createdAt": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                        "reply": {
+                            "root": {
+                                "uri": post_ids[0]["uri"],
+                                "cid": post_ids[0]["cid"],
+                            },
+                            "parent": {
+                                "uri": post_ids[-1]["uri"],
+                                "cid": post_ids[-1]["cid"],
+                            },
+                        }
+                    }},
+                timeout=60,
+            )
+
+        if response.status_code != 200:
+            raise Exception("Failed to create bluesky post")
+
+        post_ids.append({"cid": response.json()["cid"], "uri": response.json()["uri"]})
+
+
 def post(results_mastodon: list[str], results_twitter: list[str] = [], post_to_test_acc: bool = False) -> None:
     if not results_mastodon and not results_twitter:
         return
@@ -130,6 +202,13 @@ def post(results_mastodon: list[str], results_twitter: list[str] = [], post_to_t
             tweet(list(results_twitter), TWITTER_API_TEST)
         else:
             tweet(list(results_twitter), TWITTER_API)
+    except Exception as e:
+        print("ERROR: Twitter failed to post\n" + str(results_twitter) + "\n" + str(e) + "\n")
+        # sys.exit(1)
+
+    try:
+        if not post_to_test_acc:
+            postBluesky(list(results_twitter))
     except Exception as e:
         print("ERROR: Twitter failed to post\n" + str(results_twitter) + "\n" + str(e) + "\n")
         # sys.exit(1)
