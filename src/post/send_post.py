@@ -1,5 +1,6 @@
 import datetime
 import os
+import re
 import sys
 
 import requests
@@ -145,7 +146,8 @@ def postBluesky(results: list[str]) -> None:
                     "collection": "app.bsky.feed.post",
                     "record": {
                         "text": text,
-                        "createdAt": datetime.datetime.now(datetime.timezone.utc).isoformat()
+                        "createdAt": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                        "facets": getBlueskyFacets(text)
                     }},
                 timeout=60,
             )
@@ -169,7 +171,8 @@ def postBluesky(results: list[str]) -> None:
                                 "uri": post_ids[-1]["uri"],
                                 "cid": post_ids[-1]["cid"],
                             },
-                        }
+                        },
+                        "facets": getBlueskyFacets(text)
                     }},
                 timeout=60,
             )
@@ -214,3 +217,41 @@ def post(results_mastodon: list[str], results_twitter: list[str] = [], post_to_t
         # sys.exit(1)
 
     PostedFile.save()
+
+
+def getBlueskyFacets(text: str) -> list:
+    facets = []
+
+    links = re.finditer(r"https?[^\s\n]*", text)
+
+    for link in links:
+        facets.append({
+            "index": {
+                "byteStart": len(text[:link.start()].encode("utf-8")),
+                "byteEnd": len(text[:link.end()].encode("utf-8")),
+            },
+            "features": [
+                {
+                    "$type": "app.bsky.richtext.facet#link",
+                    "uri": link.group(0)
+                }
+            ]
+        })
+
+    hashtags = re.finditer(r"#[^\s\n]*", text)
+
+    for tag in hashtags:
+        facets.append({
+            "index": {
+                "byteStart": len(text[:tag.start()].encode("utf-8")),
+                "byteEnd": len(text[:tag.end()].encode("utf-8")),
+            },
+            "features": [
+                {
+                    "$type": "app.bsky.richtext.facet#tag",
+                    "tag": tag.group(0)[1:]
+                }
+            ]
+        })
+
+    return facets
