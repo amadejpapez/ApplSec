@@ -45,10 +45,9 @@ The bot is often updated as new ideas appear and to keep up with any changes to 
 
 ## ✨ Acknowledgements
 
-- __[Tweepy](https://github.com/tweepy/tweepy)__, for communication with Twitter API
-- __[requests](https://github.com/psf/requests)__, for communication with Mastodon API and for requests to Apple's website
+- __[requests](https://github.com/psf/requests)__, for communication with Twitter/Mastodon/Bluesky API and for requests to Apple's website
 - __[lxml](https://github.com/lxml/lxml)__, for easier HTML processing
-- __GitHub Actions__, for running the bot hourly
+- __GitHub Actions__, for running the bot
 
 <br>
 

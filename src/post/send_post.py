@@ -4,28 +4,22 @@ import re
 import sys
 
 import requests
-import tweepy
 
 from helpers.posted_file import PostedFile
+from requests_oauthlib import OAuth1
 
-TWITTER_API = tweepy.Client(
-    consumer_key=os.environ.get("TWITTER_API_KEY"),
-    consumer_secret=os.environ.get("TWITTER_API_KEY_SECRET"),
-    access_token=os.environ.get("TWITTER_ACCESS_TOKEN"),
-    access_token_secret=os.environ.get("TWITTER_ACCESS_TOKEN_SECRET"),
-    return_type=type(dict),
-)
+TWITTER_API_KEY = os.environ.get("TWITTER_API_KEY", "")
+TWITTER_API_KEY_SECRET = os.environ.get("TWITTER_API_KEY_SECRET", "")
+TWITTER_ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN", "")
+TWITTER_ACCESS_TOKEN_SECRET = os.environ.get("TWITTER_ACCESS_TOKEN_SECRET", "")
 
-TWITTER_API_TEST = tweepy.Client(
-    consumer_key=os.environ.get("TWITTER_API_KEY_TEST"),
-    consumer_secret=os.environ.get("TWITTER_API_KEY_SECRET_TEST"),
-    access_token=os.environ.get("TWITTER_ACCESS_TOKEN_TEST"),
-    access_token_secret=os.environ.get("TWITTER_ACCESS_TOKEN_SECRET_TEST"),
-    return_type=type(dict),
-)
+TWITTER_API_KEY_TEST = os.environ.get("TWITTER_API_KEY_TEST", "")
+TWITTER_API_KEY_SECRET_TEST = os.environ.get("TWITTER_API_KEY_SECRET_TEST", "")
+TWITTER_ACCESS_TOKEN_TEST = os.environ.get("TWITTER_ACCESS_TOKEN_TEST", "")
+TWITTER_ACCESS_TOKEN_SECRET_TEST = os.environ.get("TWITTER_ACCESS_TOKEN_SECRET_TEST", "")
 
-MASTODON_KEY = "Bearer " + os.environ.get("MASTODON_ACCESS_TOKEN", "")
-MASTODON_KEY_TEST = "Bearer " + os.environ.get("MASTODON_ACCESS_TOKEN_TEST", "")
+MASTODON_KEY = os.environ.get("MASTODON_ACCESS_TOKEN", "")
+MASTODON_KEY_TEST = os.environ.get("MASTODON_ACCESS_TOKEN_TEST", "")
 
 BLUESKY_HANDLE = os.environ.get("BLUESKY_HANDLE", "")
 BLUESKY_PASSWORD = os.environ.get("BLUESKY_PASSWORD", "")
@@ -54,34 +48,64 @@ def arrange_post(results: list[str], MAX_CHAR: int) -> list[str]:
     return arranged
 
 
-def tweet(results: list[str], API: tweepy.Client) -> None:
+def tweet(results: list[str], use_test_account: bool) -> None:
     """Handle posting to Twitter."""
     MAX_CHAR = 270
+    API_URL = "https://api.twitter.com"
 
     posts_list = arrange_post(results, MAX_CHAR)
 
     post_ids: list[str] = []
 
+    oauth = None
+    if not use_test_account:
+        oauth = OAuth1(
+            client_key=TWITTER_API_KEY,
+            client_secret=TWITTER_API_KEY_SECRET,
+            resource_owner_key=TWITTER_ACCESS_TOKEN,
+            resource_owner_secret=TWITTER_ACCESS_TOKEN_SECRET,
+        )
+    else:
+        oauth = OAuth1(
+            client_key=TWITTER_API_KEY_TEST,
+            client_secret=TWITTER_API_KEY_SECRET_TEST,
+            resource_owner_key=TWITTER_ACCESS_TOKEN_TEST,
+            resource_owner_secret=TWITTER_ACCESS_TOKEN_SECRET_TEST,
+        )
+
     for text in posts_list:
         if posts_list.index(text) == 0:
             # individual post or start of a thread
-            response = API.create_tweet(
-                text=text,
+            response = requests.post(
+                url=API_URL + "/2/tweets",
+                json={
+                    "text": text,
+                },
+                auth=oauth,
             )
         else:
             # other posts in a thread
-            response = API.create_tweet(
-                in_reply_to_tweet_id=post_ids[-1],
-                text=text,
+            response = requests.post(
+                url=API_URL + "/2/tweets",
+                json={
+                    "text": text,
+                    "reply": {
+                        "in_reply_to_tweet_id": post_ids[-1],
+                    }
+                },
+                auth=oauth,
             )
 
-        post_ids.append(getattr(response, "data")["id"])
+        if response.status_code != 201:
+            raise Exception(f"Received status is {response.status_code}\nError:{response.text}")
+
+        post_ids.append(response.json()["data"]["id"])
 
 
-def toot(results: list[str], API_KEY: str) -> None:
+def toot(results: list[str], use_test_account: bool) -> None:
     """Handle posting to Mastodon."""
     MAX_CHAR = 11_000
-    API_URL = "https://infosec.exchange/api/v1/statuses"
+    API_URL = "https://infosec.exchange/api"
 
     results.append("\n\n#apple #cybersecurity #infosec #security #ios")
 
@@ -89,43 +113,51 @@ def toot(results: list[str], API_KEY: str) -> None:
 
     post_ids: list[str] = []
 
+    api_key = MASTODON_KEY_TEST if use_test_account else MASTODON_KEY
+
     for text in posts_list:
         if posts_list.index(text) == 0:
             # individual post or start of a thread
             response = requests.post(
-                API_URL,
+                url=API_URL + "/v1/statuses",
                 json={"status": text},
-                headers={"Authorization": API_KEY},
+                headers={"Authorization": "Bearer " + api_key},
                 timeout=60,
             )
         else:
             # other posts in a thread
             response = requests.post(
-                API_URL,
+                url=API_URL + "/v1/statuses",
                 json={
                     "status": text,
                     "in_reply_to_id": post_ids[-1],
                 },
-                headers={"Authorization": API_KEY},
+                headers={"Authorization": "Bearer " + api_key},
                 timeout=60,
             )
+
+        if response.status_code != 200:
+            raise Exception(f"Received status is {response.status_code}\nError:{response.text}")
 
         post_ids.append(response.json()["id"])
 
 
-def postBluesky(results: list[str]) -> None:
+def postBluesky(results: list[str], use_test_account: bool) -> None:
     """Handle posting to Bluesky."""
     MAX_CHAR = 300
     API_URL = "https://bsky.social/"
 
+    if use_test_account:
+        return
+
     loginResponse = requests.post(
-        API_URL + "xrpc/com.atproto.server.createSession",
+        url=API_URL + "xrpc/com.atproto.server.createSession",
         json={"identifier": BLUESKY_HANDLE, "password": BLUESKY_PASSWORD},
         timeout=60,
     )
 
     if loginResponse.status_code != 200:
-        raise Exception("Failed to create bluesky session")
+        raise Exception(f"Failed to login. Received status is {loginResponse.status_code}\nError:{loginResponse.text}")
 
     access_token = loginResponse.json()["accessJwt"]
 
@@ -139,7 +171,7 @@ def postBluesky(results: list[str]) -> None:
         if posts_list.index(text) == 0:
             # individual post or start of a thread
             response = requests.post(
-                API_URL + "xrpc/com.atproto.repo.createRecord",
+                url=API_URL + "xrpc/com.atproto.repo.createRecord",
                 headers={"Authorization": "Bearer " + access_token},
                 json={
                     "repo": BLUESKY_HANDLE,
@@ -154,7 +186,7 @@ def postBluesky(results: list[str]) -> None:
         else:
             # other posts in a thread
             response = requests.post(
-                API_URL + "xrpc/com.atproto.repo.createRecord",
+                url=API_URL + "xrpc/com.atproto.repo.createRecord",
                 headers={"Authorization": "Bearer " + access_token},
                 json={
                     "repo": BLUESKY_HANDLE,
@@ -178,12 +210,12 @@ def postBluesky(results: list[str]) -> None:
             )
 
         if response.status_code != 200:
-            raise Exception("Failed to create bluesky post")
+            raise Exception(f"Received status is {response.status_code}\nError:{response.text}")
 
         post_ids.append({"cid": response.json()["cid"], "uri": response.json()["uri"]})
 
 
-def post(results_mastodon: list[str], results_twitter: list[str] = [], post_to_test_acc: bool = False) -> None:
+def post(results_mastodon: list[str], results_twitter: list[str] = [], use_test_account: bool = False) -> None:
     if not results_mastodon and not results_twitter:
         return
 
@@ -192,28 +224,21 @@ def post(results_mastodon: list[str], results_twitter: list[str] = [], post_to_t
         results_twitter = results_mastodon
 
     try:
-        if post_to_test_acc:
-            toot(list(results_mastodon), MASTODON_KEY_TEST)
-        else:
-            toot(list(results_mastodon), MASTODON_KEY)
+        toot(list(results_mastodon), use_test_account)
     except Exception as e:
         print("ERROR: Mastodon failed to post\n" + str(results_mastodon) + "\n" + str(e) + "\n")
         sys.exit(1)
 
     try:
-        if post_to_test_acc:
-            tweet(list(results_twitter), TWITTER_API_TEST)
-        else:
-            tweet(list(results_twitter), TWITTER_API)
+        tweet(list(results_twitter), use_test_account)
     except Exception as e:
         print("ERROR: Twitter failed to post\n" + str(results_twitter) + "\n" + str(e) + "\n")
         # sys.exit(1)
 
     try:
-        if not post_to_test_acc:
-            postBluesky(list(results_twitter))
+        postBluesky(list(results_twitter), use_test_account)
     except Exception as e:
-        print("ERROR: Twitter failed to post\n" + str(results_twitter) + "\n" + str(e) + "\n")
+        print("ERROR: Bluesky failed to post\n" + str(results_twitter) + "\n" + str(e) + "\n")
         # sys.exit(1)
 
     PostedFile.save()
