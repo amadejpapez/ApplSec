@@ -57,6 +57,9 @@ jobs:
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
 
           MASTODON_ACCESS_TOKEN_TEST: ${{ secrets.MASTODON_ACCESS_TOKEN_TEST }}
+
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
         run: python main/src/main.py
 
       - name: Save posted_data.json
