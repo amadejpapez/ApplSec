@@ -2,8 +2,11 @@ name: ApplSec bot
 
 on:
   schedule:
-    # every full hour
-    - cron: "0 * * * *"
+    # UTC - default and not changeable, https://github.com/orgs/community/discussions/13454
+    # midnight
+    - cron: "0 0 * * *"
+    # every second hour
+    - cron: "0 */2 * * *"
     # between 4 and 8 pm UTC on weekdays run every 15 minutes as that is the time when updates usually get released
     - cron: "*/15 16-20 * * 1-5"
   workflow_dispatch:
