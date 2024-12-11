@@ -140,7 +140,7 @@ def format_new_sec_content_twitter(releases: list[Release]) -> list[str]:
         if releases[0].security_content_link:
             post_text.append(releases[0].security_content_link)
     else:
-        post_text.append("https://support.apple.com/kb/HT201222")
+        post_text.append("https://support.apple.com/en-us/100100")
 
     return post_text
 

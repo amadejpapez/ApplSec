@@ -366,7 +366,7 @@
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "🌐 Safari 17.6 (v. 14610.4.3.1.7 and 15610.4.3.1.7) - 11 bugs fixed\n",
         "🌐 Safari 17.6 - 11 bugs fixed\n",
-        "https://support.apple.com/kb/HT201222"
+        "https://support.apple.com/en-us/100100"
     ],
     "new_sec_content_table": [
         [
@@ -541,7 +541,7 @@
         "🖥️ Security Update 2022-001 Catalina - 5 bugs fixed\n",
         "⌚ watchOS 10.6.1 - no CVE entries\n",
         "💻 macOS Big Sur 11.5.2 - no CVE entries\n",
-        "https://support.apple.com/kb/HT201222"
+        "https://support.apple.com/en-us/100100"
     ],
     "new_sec_content_posted_data": {
         "zero_days": [],
@@ -615,7 +615,7 @@
         "📺 tvOS 16.3.2 - no details yet\n",
         "📱 iOS and iPadOS 17.4.1 - no details yet\n",
         "📱 iOS and iPadOS 17 - no details yet\n",
-        "https://support.apple.com/kb/HT201222"
+        "https://support.apple.com/en-us/100100"
     ],
     "new_sec_content_details_soon_posted_data": {
         "zero_days": [],
@@ -673,7 +673,7 @@
         "⌚ watchOS 10.6 - 31 bugs fixed\n",
         "📱 iOS and iPadOS 17.4.1 - 2 bugs fixed\n",
         "📺 tvOS 16.3.2 - 1 bug fixed\n",
-        "https://support.apple.com/kb/HT201222"
+        "https://support.apple.com/en-us/100100"
     ],
     "new_sec_content_details_available_posted_data": {
         "zero_days": [],
