@@ -31,13 +31,6 @@
             "iOS 18.2 RC 2 (22C151)"
         ],
         "new_sec_content": [
-            "Apple TV 1.5.0.152 for Windows",
-            "visionOS 2.1",
-            "tvOS 18.1",
-            "watchOS 11.1",
-            "macOS Ventura 13.7.1",
-            "macOS Sonoma 14.7.1",
-            "macOS Sequoia 15.1",
             "iOS and iPadOS 17.7.1",
             "iOS and iPadOS 18.1",
             "Safari 18.1",
@@ -45,12 +38,19 @@
             "iOS and iPadOS 17.7.2",
             "iOS and iPadOS 18.1.1",
             "visionOS 2.1.1",
-            "Safari 18.1.1"
+            "Safari 18.1.1",
+            "tvOS 18.2",
+            "watchOS 11.2",
+            "macOS Ventura 13.7.2",
+            "macOS Sonoma 14.7.2",
+            "macOS Sequoia 15.2",
+            "iPadOS 17.7.3",
+            "iOS and iPadOS 18.2"
         ],
         "ios_modules": [
-            "iOS and iPadOS 18",
             "iOS and iPadOS 18.0.1",
-            "iOS and iPadOS 18.1"
+            "iOS and iPadOS 18.1",
+            "iOS and iPadOS 18.2"
         ],
         "zero_days": {
             "iOS and iPadOS 17.7.2": 2,
