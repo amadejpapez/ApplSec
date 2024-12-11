@@ -29,10 +29,14 @@ def get_new(all_release_rows: list[list[lxml.html.HtmlElement]]) -> list[Release
     """Return new security content listings that have not been posted yet."""
     new_sec_content = []
 
-    for row in all_release_rows:
+    for i, row in enumerate(all_release_rows):
         name = Release.parse_name(row)
+
         if name in PostedFile.data["posts"]["new_sec_content"]:
-            break
+            # handle if Apple adds new release but not at the top
+            if i >= 19:
+                break
+            continue
 
         new_sec_content.append(Release.parse_from_table(row))
 
