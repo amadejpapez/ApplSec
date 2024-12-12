@@ -57,13 +57,7 @@
             "iOS and iPadOS 18.1",
             "iOS and iPadOS 18.2"
         ],
-        "zero_days": {
-            "iOS and iPadOS 17.7.2": 2,
-            "iOS and iPadOS 18.1.1": 2,
-            "macOS Sequoia 15.1.1": 2,
-            "visionOS 2.1.1": 2,
-            "Safari 18.1.1": 2
-        },
+        "zero_days": {},
         "yearly_report": []
     }
 }
