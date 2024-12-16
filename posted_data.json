@@ -14,7 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "Xcode 16.2 beta 3 (16C5023f)",
             "visionOS 2.2 beta 4 (22N5800a)",
             "visionOS 2.2 RC (22N840)",
             "watchOS 11.2 RC (22S99)",
@@ -28,7 +27,13 @@
             "tvOS 18.2 RC 2 (22K155)",
             "macOS 15.2 RC 2 (24C100)",
             "iPadOS 18.2 RC 2 (22C151)",
-            "iOS 18.2 RC 2 (22C151)"
+            "iOS 18.2 RC 2 (22C151)",
+            "watchOS 11.3 beta (22S5534d)",
+            "visionOS 2.3 beta (22N5875e)",
+            "tvOS 18.3 beta (22K5534e)",
+            "macOS 15.3 beta (24D5034)",
+            "iPadOS 18.3 beta (22D5034e)",
+            "iOS 18.3 beta (22D5034e)"
         ],
         "new_sec_content": [
             "macOS Ventura 13.7.1",
