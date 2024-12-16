@@ -1,5 +1,34 @@
 # Changelog
 
+## [15.4] - 2024-12-16
+
+### Added
+
+- BlueSky support, now available at [applsec.bsky.social](https://bsky.app/profile/applsec.bsky.social) (9746647, 18b6b40, 1496a6e)
+- visionOS emoji (2e8268e)
+
+### Changed
+
+- update Apple Security Content page URL as Apple started redirecting from [https://support.apple.com/en-us/HT201222](https://support.apple.com/en-us/HT201222) to [https://support.apple.com/en-us/100100](https://support.apple.com/en-us/100100) (d9c7fb9, 2db3134)
+- remove Releases page URL from beta posts (fddb8b9)
+
+### Fixed
+
+- update zero-day detection, Apple sometimes drops "actively" and just says "may have been exploited in the wild" (fd5b26a)
+- update "no details yet" detection, Apple sometimes says "details coming soon" instead of "details available soon" (654d794)
+- after Apple redesigned the Apple Security Content pages in the previous releases, this time (early September) it made more changes, requiring multiple fixes as the HTML tags, URL formats and more was changed (fc1a40a, 9aa5b48, d7b8875, 10ba2ac)
+- update entry changes check to visit an additional page as Apple moved 2022 and 2023 releases to a separate page while leaving the main page only with 2024 releases (491f216)
+- fix counting of CVEs per module and zero-days as it only counted text and titles, ignoring that modules (or zero-days) can have multiple CVEs listed below (20ca4f2)
+- run bot in Cupertino timezone, this way entry changes detection runs on midnight Cupertino time and not Europe time which is during the day there and might cause it to miss changes (7aa5ff2)
+- update new release detection as Apple might have posted new releases and then added visionOS release after but not at the top but at the bottom of the new releases (18e96b5, 175aa40)
+
+### Code
+
+- make manual requests to the Twitter API, remove [tweepy](https://github.com/tweepy/tweepy) package as it no longer seems actively maintained and does not support Python 3.13 (60e5943)
+- bump GitHub Action runs and tests from Python 3.11 to latest 3.13 (3b23f53)
+- run the bot less often at times when there are usually no changes (14a6f46)
+- multiple request and speed optimizations (eca724b, b87b5ca)
+
 ## [15.3] - 2023-12-26
 
 ### Added
