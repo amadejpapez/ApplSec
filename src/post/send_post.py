@@ -45,6 +45,10 @@ def arrange_post(results: list[str], MAX_CHAR: int) -> list[str]:
         else:
             arranged.append(item)
 
+    for i, item in enumerate(arranged):
+        if item.endswith("\n"):
+            arranged[i] = item[:-1]
+
     return arranged
 
 
