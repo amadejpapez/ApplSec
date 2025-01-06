@@ -36,7 +36,6 @@
             "iOS 18.3 beta (22D5034e)"
         ],
         "new_sec_content": [
-            "macOS Ventura 13.7.1",
             "macOS Sonoma 14.7.1",
             "macOS Sequoia 15.1",
             "iOS and iPadOS 17.7.1",
@@ -55,7 +54,8 @@
             "iPadOS 17.7.3",
             "iOS and iPadOS 18.2",
             "visionOS 2.2",
-            "Safari 18.2"
+            "Safari 18.2",
+            "iOS and iPadOS 18.2.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 18.0.1",
