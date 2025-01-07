@@ -14,12 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "visionOS 2.2 beta 4 (22N5800a)",
-            "visionOS 2.2 RC (22N840)",
-            "watchOS 11.2 RC (22S99)",
-            "tvOS 18.2 RC (22K154)",
-            "macOS 15.2 RC (24C98)",
-            "iPadOS 17.7.3 RC (21H312)",
             "iPadOS 18.2 RC (22C150)",
             "iOS 18.2 RC (22C150)",
             "Xcode 16.2 RC (16C5031c)",
@@ -33,7 +27,13 @@
             "tvOS 18.3 beta (22K5534e)",
             "macOS 15.3 beta (24D5034)",
             "iPadOS 18.3 beta (22D5034e)",
-            "iOS 18.3 beta (22D5034e)"
+            "iOS 18.3 beta (22D5034e)",
+            "watchOS 11.3 beta 2 (22S5540e)",
+            "visionOS 2.3 beta 2 (22N5881d)",
+            "tvOS 18.3 beta 2 (22K5540e)",
+            "macOS 15.3 beta 2 (24D5040f)",
+            "iPadOS 18.3 beta 2 (22D5040d)",
+            "iOS 18.3 beta 2 (22D5040d)"
         ],
         "new_sec_content": [
             "macOS Sonoma 14.7.1",
