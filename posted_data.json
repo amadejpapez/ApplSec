@@ -14,13 +14,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "tvOS 18.2 RC 2 (22K155)",
-            "macOS 15.2 RC 2 (24C100)",
-            "iPadOS 18.2 RC 2 (22C151)",
-            "iOS 18.2 RC 2 (22C151)",
-            "watchOS 11.3 beta (22S5534d)",
-            "visionOS 2.3 beta (22N5875e)",
-            "tvOS 18.3 beta (22K5534e)",
             "macOS 15.3 beta (24D5034)",
             "iPadOS 18.3 beta (22D5034e)",
             "iOS 18.3 beta (22D5034e)",
@@ -33,7 +26,14 @@
             "visionOS 2.3 beta 3 (22N5894a)",
             "macOS 15.3 beta 3 (24D5055b)",
             "iPadOS 18.3 beta 3 (22D5055b)",
-            "iOS 18.3 beta 3 (22D5055b)"
+            "iOS 18.3 beta 3 (22D5055b)",
+            "watchOS 11.3 RC (22S553)",
+            "visionOS 2.3 RC (22N896)",
+            "tvOS 18.3 RC (22K557)",
+            "macOS 15.3 RC (24D60)",
+            "iPadOS 17.7.4 RC (21H414)",
+            "iPadOS 18.3 RC (22D60)",
+            "iOS 18.3 RC (22D60)"
         ],
         "new_sec_content": [
             "macOS Sequoia 15.1",
