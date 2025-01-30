@@ -37,7 +37,6 @@
             "iOS 18.3 RC (22D60)"
         ],
         "new_sec_content": [
-            "macOS Sequoia 15.2",
             "iPadOS 17.7.3",
             "iOS and iPadOS 18.2",
             "visionOS 2.2",
@@ -56,7 +55,8 @@
             "GarageBand 10.4.12",
             "tvOS 18.2",
             "watchOS 11.2",
-            "macOS Ventura 13.7.2"
+            "macOS Ventura 13.7.2",
+            "macOS Sonoma 14.7.2"
         ],
         "ios_modules": [
             "iOS and iPadOS 18.1",
