@@ -59,7 +59,7 @@ class PostedFile:
         while len(new_data["posts"]["new_releases"]) > 20:
             new_data["posts"]["new_releases"].pop(0)
 
-        while len(new_data["posts"]["new_sec_content"]) > 20:
+        while len(new_data["posts"]["new_sec_content"]) > 30:
             new_data["posts"]["new_sec_content"].pop(0)
 
         while len(new_data["posts"]["ios_modules"]) > 3:

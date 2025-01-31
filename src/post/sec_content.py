@@ -34,6 +34,7 @@ def get_new(all_release_rows: list[list[lxml.html.HtmlElement]]) -> list[Release
 
         if name in PostedFile.data["posts"]["new_sec_content"]:
             # handle if Apple adds new release but not at the top
+            # i should be less than the number of saved items in case of reordering
             if i >= 19:
                 break
             continue
