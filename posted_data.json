@@ -10,7 +10,8 @@
         "CVE-2024-23296",
         "CVE-2024-44308",
         "CVE-2024-44309",
-        "CVE-2025-24085"
+        "CVE-2025-24085",
+        "CVE-2025-24200"
     ],
     "details_available_soon": [],
     "posts": {
@@ -56,14 +57,24 @@
             "macOS Sonoma 14.7.2",
             "macOS Sequoia 15.2",
             "iPadOS 17.7.3",
-            "iOS and iPadOS 18.2"
+            "iOS and iPadOS 18.2",
+            "visionOS 2.3.1",
+            "watchOS 11.3.1",
+            "macOS Ventura 13.7.4",
+            "macOS Sonoma 14.7.4",
+            "macOS Sequoia 15.3.1",
+            "iPadOS 17.7.5",
+            "iOS and iPadOS 18.3.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 18.1",
             "iOS and iPadOS 18.2",
             "iOS and iPadOS 18.3"
         ],
-        "zero_days": {},
+        "zero_days": {
+            "iOS and iPadOS 18.3.1": 1,
+            "iPadOS 17.7.5": 1
+        },
         "yearly_report": []
     }
 }
