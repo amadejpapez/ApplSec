@@ -954,7 +954,7 @@
             "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/120893",
             "release_date": "05 Mar 2024",
-            "num_of_bugs": 39,
+            "num_of_bugs": 41,
             "num_of_zero_days": 2,
             "zero_days": {
                 "CVE-2024-23225": "Kernel",
