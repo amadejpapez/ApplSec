@@ -71,10 +71,7 @@
             "iOS and iPadOS 18.2",
             "iOS and iPadOS 18.3"
         ],
-        "zero_days": {
-            "iOS and iPadOS 18.3.1": 1,
-            "iPadOS 17.7.5": 1
-        },
+        "zero_days": {},
         "yearly_report": []
     }
 }
