@@ -11,7 +11,8 @@
         "CVE-2024-44308",
         "CVE-2024-44309",
         "CVE-2025-24085",
-        "CVE-2025-24200"
+        "CVE-2025-24200",
+        "CVE-2025-24201"
     ],
     "details_available_soon": [],
     "posts": {
@@ -38,7 +39,6 @@
             "iOS 18.4 beta 3 (22E5222f)"
         ],
         "new_sec_content": [
-            "Safari 18.2",
             "iOS and iPadOS 18.2.1",
             "tvOS 18.2.1",
             "Safari 18.3",
@@ -64,14 +64,22 @@
             "macOS Sonoma 14.7.4",
             "macOS Sequoia 15.3.1",
             "iPadOS 17.7.5",
-            "iOS and iPadOS 18.3.1"
+            "iOS and iPadOS 18.3.1",
+            "tvOS 18.3.1",
+            "visionOS 2.3.2",
+            "macOS Sequoia 15.3.2",
+            "iOS and iPadOS 18.3.2"
         ],
         "ios_modules": [
             "iOS and iPadOS 18.1",
             "iOS and iPadOS 18.2",
             "iOS and iPadOS 18.3"
         ],
-        "zero_days": {},
+        "zero_days": {
+            "iOS and iPadOS 18.3.2": 1,
+            "macOS Sequoia 15.3.2": 1,
+            "visionOS 2.3.2": 1
+        },
         "yearly_report": []
     }
 }
