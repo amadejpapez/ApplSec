@@ -17,7 +17,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "Xcode 16.3 beta (16E5104o)",
             "watchOS 11.4 beta 2 (22T5228e)",
             "visionOS 2.4 beta 2 (22O5215f)",
             "tvOS 18.4 beta 2 (22L5234e)",
@@ -36,7 +35,8 @@
             "tvOS 18.4 beta 4 (22L5250a)",
             "macOS 15.4 beta 4 (24E5238a)",
             "iPadOS 18.4 beta 4 (22E5232a)",
-            "iOS 18.4 beta 4 (22E5232a)"
+            "iOS 18.4 beta 4 (22E5232a)",
+            "Xcode 16.3 beta 3 (16E5129f)"
         ],
         "new_sec_content": [
             "tvOS 18.2.1",
