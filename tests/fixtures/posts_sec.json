@@ -339,7 +339,7 @@
             "emoji": "🌐",
             "security_content_link": "https://support.apple.com/en-us/120913",
             "release_date": "29 Jul 2024",
-            "num_of_bugs": 11,
+            "num_of_bugs": 12,
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
@@ -350,7 +350,7 @@
             "emoji": "🌐",
             "security_content_link": "https://support.apple.com/en-us/120913",
             "release_date": "29 Jul 2024",
-            "num_of_bugs": 11,
+            "num_of_bugs": 12,
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
@@ -359,13 +359,13 @@
     },
     "new_sec_content_rows_post_mastodon": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "🌐 Safari 17.6 (v. 14610.4.3.1.7 and 15610.4.3.1.7) - 11 bugs fixed\nhttps://support.apple.com/en-us/120913\n",
-        "🌐 Safari 17.6 - 11 bugs fixed\nhttps://support.apple.com/en-us/120913\n"
+        "🌐 Safari 17.6 (v. 14610.4.3.1.7 and 15610.4.3.1.7) - 12 bugs fixed\nhttps://support.apple.com/en-us/120913\n",
+        "🌐 Safari 17.6 - 12 bugs fixed\nhttps://support.apple.com/en-us/120913\n"
     ],
     "new_sec_content_rows_post_twitter": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "🌐 Safari 17.6 (v. 14610.4.3.1.7 and 15610.4.3.1.7) - 11 bugs fixed\n",
-        "🌐 Safari 17.6 - 11 bugs fixed\n",
+        "🌐 Safari 17.6 (v. 14610.4.3.1.7 and 15610.4.3.1.7) - 12 bugs fixed\n",
+        "🌐 Safari 17.6 - 12 bugs fixed\n",
         "https://support.apple.com/en-us/100100"
     ],
     "new_sec_content_table": [
@@ -421,7 +421,7 @@
             "emoji": "🌐",
             "security_content_link": "https://support.apple.com/en-us/120913",
             "release_date": "29 Jul 2024",
-            "num_of_bugs": 11,
+            "num_of_bugs": 12,
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
@@ -467,7 +467,7 @@
             "emoji": "📺",
             "security_content_link": "https://support.apple.com/en-us/120914",
             "release_date": "29 Jul 2024",
-            "num_of_bugs": 21,
+            "num_of_bugs": 22,
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
@@ -489,7 +489,7 @@
             "emoji": "⌚",
             "security_content_link": "https://support.apple.com/en-us/120916",
             "release_date": "29 Jul 2024",
-            "num_of_bugs": 31,
+            "num_of_bugs": 32,
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
@@ -522,32 +522,32 @@
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "💻 macOS Ventura 13.6.8 - 46 bugs fixed\nhttps://support.apple.com/en-us/120912\n",
         "💻 macOS Monterey 12.7.6 - 42 bugs fixed\nhttps://support.apple.com/en-us/120910\n",
-        "⌚ watchOS 10.6 - 31 bugs fixed\nhttps://support.apple.com/en-us/120916\n",
+        "⌚ watchOS 10.6 - 32 bugs fixed\nhttps://support.apple.com/en-us/120916\n",
         "📱 iOS and iPadOS 16.7.9 - 27 bugs fixed\nhttps://support.apple.com/en-us/120908\n",
-        "📺 tvOS 17.6 - 21 bugs fixed\nhttps://support.apple.com/en-us/120914\n",
-        "🌐 Safari 17.6 - 11 bugs fixed\nhttps://support.apple.com/en-us/120913\n",
+        "📺 tvOS 17.6 - 22 bugs fixed\nhttps://support.apple.com/en-us/120914\n",
+        "🌐 Safari 17.6 - 12 bugs fixed\nhttps://support.apple.com/en-us/120913\n",
         "🖥️ Security Update 2022-001 Catalina - 5 bugs fixed\nhttps://support.apple.com/kb/HT213056\n",
         "⌚ watchOS 10.6.1 - no CVE entries\n",
         "💻 macOS Big Sur 11.5.2 - no CVE entries\n"
     ],
     "new_sec_content_post_mastodon_split": [
-        "🐛 NEW SECURITY CONTENT 🐛\n\n💻 macOS Ventura 13.6.8 - 46 bugs fixed\nhttps://support.apple.com/en-us/120912\n💻 macOS Monterey 12.7.6 - 42 bugs fixed\nhttps://support.apple.com/en-us/120910\n⌚ watchOS 10.6 - 31 bugs fixed\nhttps://support.apple.com/en-us/120916\n📱 iOS and iPadOS 16.7.9 - 27 bugs fixed\nhttps://support.apple.com/en-us/120908\n📺 tvOS 17.6 - 21 bugs fixed\nhttps://support.apple.com/en-us/120914\n🌐 Safari 17.6 - 11 bugs fixed\nhttps://support.apple.com/en-us/120913\n🖥️ Security Update 2022-001 Catalina - 5 bugs fixed\nhttps://support.apple.com/kb/HT213056\n⌚ watchOS 10.6.1 - no CVE entries\n💻 macOS Big Sur 11.5.2 - no CVE entries"
+        "🐛 NEW SECURITY CONTENT 🐛\n\n💻 macOS Ventura 13.6.8 - 46 bugs fixed\nhttps://support.apple.com/en-us/120912\n💻 macOS Monterey 12.7.6 - 42 bugs fixed\nhttps://support.apple.com/en-us/120910\n⌚ watchOS 10.6 - 32 bugs fixed\nhttps://support.apple.com/en-us/120916\n📱 iOS and iPadOS 16.7.9 - 27 bugs fixed\nhttps://support.apple.com/en-us/120908\n📺 tvOS 17.6 - 22 bugs fixed\nhttps://support.apple.com/en-us/120914\n🌐 Safari 17.6 - 12 bugs fixed\nhttps://support.apple.com/en-us/120913\n🖥️ Security Update 2022-001 Catalina - 5 bugs fixed\nhttps://support.apple.com/kb/HT213056\n⌚ watchOS 10.6.1 - no CVE entries\n💻 macOS Big Sur 11.5.2 - no CVE entries"
     ],
     "new_sec_content_post_twitter": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "💻 macOS Ventura 13.6.8 - 46 bugs fixed\n",
         "💻 macOS Monterey 12.7.6 - 42 bugs fixed\n",
-        "⌚ watchOS 10.6 - 31 bugs fixed\n",
+        "⌚ watchOS 10.6 - 32 bugs fixed\n",
         "📱 iOS and iPadOS 16.7.9 - 27 bugs fixed\n",
-        "📺 tvOS 17.6 - 21 bugs fixed\n",
-        "🌐 Safari 17.6 - 11 bugs fixed\n",
+        "📺 tvOS 17.6 - 22 bugs fixed\n",
+        "🌐 Safari 17.6 - 12 bugs fixed\n",
         "🖥️ Security Update 2022-001 Catalina - 5 bugs fixed\n",
         "⌚ watchOS 10.6.1 - no CVE entries\n",
         "💻 macOS Big Sur 11.5.2 - no CVE entries\n",
         "https://support.apple.com/en-us/100100"
     ],
     "new_sec_content_post_twitter_split": [
-        "🐛 NEW SECURITY CONTENT 🐛\n\n💻 macOS Ventura 13.6.8 - 46 bugs fixed\n💻 macOS Monterey 12.7.6 - 42 bugs fixed\n⌚ watchOS 10.6 - 31 bugs fixed\n📱 iOS and iPadOS 16.7.9 - 27 bugs fixed\n📺 tvOS 17.6 - 21 bugs fixed\n🌐 Safari 17.6 - 11 bugs fixed",
+        "🐛 NEW SECURITY CONTENT 🐛\n\n💻 macOS Ventura 13.6.8 - 46 bugs fixed\n💻 macOS Monterey 12.7.6 - 42 bugs fixed\n⌚ watchOS 10.6 - 32 bugs fixed\n📱 iOS and iPadOS 16.7.9 - 27 bugs fixed\n📺 tvOS 17.6 - 22 bugs fixed\n🌐 Safari 17.6 - 12 bugs fixed",
         "🖥️ Security Update 2022-001 Catalina - 5 bugs fixed\n⌚ watchOS 10.6.1 - no CVE entries\n💻 macOS Big Sur 11.5.2 - no CVE entries\nhttps://support.apple.com/en-us/100100"
     ],
     "new_sec_content_posted_data": {
@@ -580,11 +580,11 @@
     ],
     "new_sec_content_one_post_mastodon": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "⌚ watchOS 10.6 - 31 bugs fixed\nhttps://support.apple.com/en-us/120916\n"
+        "⌚ watchOS 10.6 - 32 bugs fixed\nhttps://support.apple.com/en-us/120916\n"
     ],
     "new_sec_content_one_post_twitter": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "⌚ watchOS 10.6 - 31 bugs fixed\n",
+        "⌚ watchOS 10.6 - 32 bugs fixed\n",
         "https://support.apple.com/en-us/120916"
     ],
     "new_sec_content_details_soon_table": [
@@ -670,14 +670,14 @@
     "new_sec_content_details_available_post_mastodon": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "📱 iOS and iPadOS 17 - 68 bugs fixed\nhttps://support.apple.com/kb/HT213938\n",
-        "⌚ watchOS 10.6 - 31 bugs fixed\nhttps://support.apple.com/en-us/120916\n",
+        "⌚ watchOS 10.6 - 32 bugs fixed\nhttps://support.apple.com/en-us/120916\n",
         "📱 iOS and iPadOS 17.4.1 - 2 bugs fixed\nhttps://support.apple.com/en-us/120890\n",
         "📺 tvOS 16.3.2 - 1 bug fixed\nhttps://support.apple.com/kb/HT213632\n"
     ],
     "new_sec_content_details_available_post_twitter": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
         "📱 iOS and iPadOS 17 - 68 bugs fixed\n",
-        "⌚ watchOS 10.6 - 31 bugs fixed\n",
+        "⌚ watchOS 10.6 - 32 bugs fixed\n",
         "📱 iOS and iPadOS 17.4.1 - 2 bugs fixed\n",
         "📺 tvOS 16.3.2 - 1 bug fixed\n",
         "https://support.apple.com/en-us/100100"
@@ -700,16 +700,16 @@
     },
     "new_sec_content_from_html_post": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "💻 macOS Sonoma 14.6 - 76 bugs fixed\nhttps://support.apple.com/en-us/120911\n",
+        "💻 macOS Sonoma 14.6 - 80 bugs fixed\nhttps://support.apple.com/en-us/120911\n",
         "💻 macOS Ventura 13.6.8 - 46 bugs fixed\nhttps://support.apple.com/en-us/120912\n",
         "💻 macOS Monterey 12.7.6 - 42 bugs fixed\nhttps://support.apple.com/en-us/120910\n",
-        "📱 iOS and iPadOS 17.6 - 38 bugs fixed\nhttps://support.apple.com/en-us/120909\n",
-        "⌚ watchOS 10.6 - 31 bugs fixed\nhttps://support.apple.com/en-us/120916\n",
+        "📱 iOS and iPadOS 17.6 - 40 bugs fixed\nhttps://support.apple.com/en-us/120909\n",
+        "⌚ watchOS 10.6 - 32 bugs fixed\nhttps://support.apple.com/en-us/120916\n",
         "📱 iOS and iPadOS 16.7.9 - 27 bugs fixed\nhttps://support.apple.com/en-us/120908\n",
+        "🥽 visionOS 1.3 - 24 bugs fixed\nhttps://support.apple.com/en-us/120915\n",
         "🥽 visionOS 1.2 - 24 bugs fixed\nhttps://support.apple.com/en-us/120906\n",
-        "🥽 visionOS 1.3 - 22 bugs fixed\nhttps://support.apple.com/en-us/120915\n",
-        "📺 tvOS 17.6 - 21 bugs fixed\nhttps://support.apple.com/en-us/120914\n",
-        "🌐 Safari 17.6 - 11 bugs fixed\nhttps://support.apple.com/en-us/120913\n",
+        "📺 tvOS 17.6 - 22 bugs fixed\nhttps://support.apple.com/en-us/120914\n",
+        "🌐 Safari 17.6 - 12 bugs fixed\nhttps://support.apple.com/en-us/120913\n",
         "🛠️ AirPods Firmware Update 6A326, AirPods Firmware Update 6F8, and Beats Firmware Update 6F8 - 1 bug fixed\nhttps://support.apple.com/en-us/120907\n",
         "⌚ watchOS 10.6.1 - no CVE entries\n",
         "📺 tvOS 17.6.1 - no CVE entries\n",
@@ -740,7 +740,7 @@
     ],
     "new_sec_content_rsr_post": [
         "🐛 NEW SECURITY CONTENT 🐛\n\n",
-        "⌚ Rapid Security Response watchOS 10.6 (a) - 31 bugs fixed\nhttps://support.apple.com/en-us/120916\n",
+        "⌚ Rapid Security Response watchOS 10.6 (a) - 32 bugs fixed\nhttps://support.apple.com/en-us/120916\n",
         "💻 Rapid Security Response macOS Ventura 13.4.1 (a) - 1 bug fixed\nhttps://support.apple.com/kb/HT213825\n",
         "📱 Rapid Security Response iOS and iPadOS 16.5.1 (a) - 1 bug fixed\nhttps://support.apple.com/kb/HT213823\n"
     ],
@@ -757,7 +757,7 @@
             "emoji": "📱",
             "security_content_link": "https://support.apple.com/en-us/120909",
             "release_date": "29 Jul 2024",
-            "num_of_bugs": 38,
+            "num_of_bugs": 40,
             "num_of_zero_days": 0,
             "zero_days": {},
             "num_entries_added": 0,
@@ -766,11 +766,11 @@
     },
     "ios_modules_post": [
         "⚒️ FIXED IN iOS and iPadOS 17.6 ⚒️\n\n",
-        "- 10 bugs in WebKit\n",
+        "- 11 bugs in WebKit\n",
         "- 6 bugs in Shortcuts\n",
         "- 5 bugs in ImageIO\n",
         "- 4 bugs in Siri\n",
-        "and 13 other vulnerabilities fixed\n",
+        "and 14 other vulnerabilities fixed\n",
         "https://support.apple.com/en-us/120909\n"
     ],
     "ios_modules_no_other_table": [
