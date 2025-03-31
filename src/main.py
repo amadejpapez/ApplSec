@@ -8,7 +8,7 @@ from post.send_post import post
 
 def main():
     all_release_rows = sec_content.retrieve_page()
-    latest_versions = get_version_info.latest(all_release_rows[:20])
+    latest_versions = get_version_info.latest(all_release_rows)
 
     PostedFile.read()
 
