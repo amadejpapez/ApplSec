@@ -39,15 +39,6 @@
             "iOS 18.4 RC 2 (22E240)"
         ],
         "new_sec_content": [
-            "tvOS 18.2.1",
-            "Safari 18.3",
-            "tvOS 18.3",
-            "watchOS 11.3",
-            "macOS Ventura 13.7.3",
-            "macOS Sonoma 14.7.3",
-            "macOS Sequoia 15.3",
-            "iPadOS 17.7.4",
-            "iOS and iPadOS 18.3",
             "visionOS 2.3",
             "GarageBand 10.4.12",
             "tvOS 18.2",
@@ -68,18 +59,32 @@
             "visionOS 2.3.2",
             "macOS Sequoia 15.3.2",
             "iOS and iPadOS 18.3.2",
-            "Safari 18.3.1"
+            "Safari 18.3.1",
+            "visionOS 2.4",
+            "tvOS 18.4",
+            "macOS Ventura 13.7.5",
+            "macOS Sonoma 14.7.5",
+            "macOS Sequoia 15.4",
+            "iOS and iPadOS 15.8.4",
+            "iOS and iPadOS 16.7.11",
+            "iPadOS 17.7.6",
+            "iOS and iPadOS 18.4"
         ],
         "ios_modules": [
-            "iOS and iPadOS 18.1",
             "iOS and iPadOS 18.2",
-            "iOS and iPadOS 18.3"
+            "iOS and iPadOS 18.3",
+            "iOS and iPadOS 18.4"
         ],
         "zero_days": {
             "iOS and iPadOS 18.3.2": 1,
             "macOS Sequoia 15.3.2": 1,
             "visionOS 2.3.2": 1,
-            "Safari 18.3.1": 1
+            "Safari 18.3.1": 1,
+            "iOS and iPadOS 15.8.4": 2,
+            "iOS and iPadOS 16.7.11": 2,
+            "iPadOS 17.7.6": 1,
+            "macOS Ventura 13.7.5": 1,
+            "macOS Sonoma 14.7.5": 1
         },
         "yearly_report": []
     }
