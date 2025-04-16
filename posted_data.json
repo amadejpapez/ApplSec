@@ -12,7 +12,9 @@
         "CVE-2024-44309",
         "CVE-2025-24085",
         "CVE-2025-24200",
-        "CVE-2025-24201"
+        "CVE-2025-24201",
+        "CVE-2025-31200",
+        "CVE-2025-31201"
     ],
     "details_available_soon": [],
     "posts": {
@@ -39,10 +41,6 @@
             "iOS 18.5 beta 2 (22F5053f)"
         ],
         "new_sec_content": [
-            "watchOS 11.2",
-            "macOS Ventura 13.7.2",
-            "macOS Sonoma 14.7.2",
-            "macOS Sequoia 15.2",
             "iPadOS 17.7.3",
             "iOS and iPadOS 18.2",
             "visionOS 2.3.1",
@@ -68,7 +66,11 @@
             "iOS and iPadOS 18.4",
             "Xcode 16.3",
             "Safari 18.4",
-            "watchOS 11.4"
+            "watchOS 11.4",
+            "visionOS 2.4.1",
+            "tvOS 18.4.1",
+            "macOS Sequoia 15.4.1",
+            "iOS iOS 18.4.1 and iPadOS 18.4.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 18.2",
@@ -84,7 +86,11 @@
             "iOS and iPadOS 16.7.11": 2,
             "iPadOS 17.7.6": 1,
             "macOS Ventura 13.7.5": 1,
-            "macOS Sonoma 14.7.5": 1
+            "macOS Sonoma 14.7.5": 1,
+            "iOS iOS 18.4.1 and iPadOS 18.4.1": 2,
+            "macOS Sequoia 15.4.1": 2,
+            "tvOS 18.4.1": 2,
+            "visionOS 2.4.1": 2
         },
         "yearly_report": []
     }
