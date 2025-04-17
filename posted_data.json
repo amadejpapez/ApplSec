@@ -41,7 +41,6 @@
             "iOS 18.5 beta 2 (22F5053f)"
         ],
         "new_sec_content": [
-            "iPadOS 17.7.3",
             "iOS and iPadOS 18.2",
             "visionOS 2.3.1",
             "watchOS 11.3.1",
@@ -70,7 +69,8 @@
             "visionOS 2.4.1",
             "tvOS 18.4.1",
             "macOS Sequoia 15.4.1",
-            "iOS iOS 18.4.1 and iPadOS 18.4.1"
+            "iOS iOS 18.4.1 and iPadOS 18.4.1",
+            "iOS and iPadOS 18.4.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 18.2",
@@ -90,7 +90,8 @@
             "iOS iOS 18.4.1 and iPadOS 18.4.1": 2,
             "macOS Sequoia 15.4.1": 2,
             "tvOS 18.4.1": 2,
-            "visionOS 2.4.1": 2
+            "visionOS 2.4.1": 2,
+            "iOS and iPadOS 18.4.1": 2
         },
         "yearly_report": []
     }
