@@ -41,8 +41,6 @@
             "Xcode 16.4 beta (16F1t)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 18.2",
-            "visionOS 2.3.1",
             "watchOS 11.3.1",
             "macOS Ventura 13.7.4",
             "macOS Sonoma 14.7.4",
@@ -70,7 +68,9 @@
             "tvOS 18.4.1",
             "macOS Sequoia 15.4.1",
             "iOS iOS 18.4.1 and iPadOS 18.4.1",
-            "iOS and iPadOS 18.4.1"
+            "iOS and iPadOS 18.4.1",
+            "AirPlay audio SDK 2.7.1 and AirPlay video SDK 3.6.0.126",
+            "CarPlay Communication Plug-in R18.1 Updates"
         ],
         "ios_modules": [
             "iOS and iPadOS 18.2",
