@@ -41,7 +41,6 @@
             "iOS 18.5 RC (22F75)"
         ],
         "new_sec_content": [
-            "macOS Sequoia 15.3.2",
             "iOS and iPadOS 18.3.2",
             "Safari 18.3.1",
             "visionOS 2.4",
@@ -70,7 +69,8 @@
             "macOS Sonoma 14.7.6",
             "macOS Sequoia 15.5",
             "iPadOS 17.7.7",
-            "iOS and iPadOS 18.5"
+            "iOS and iPadOS 18.5",
+            "Safari 18.5"
         ],
         "ios_modules": [
             "iOS and iPadOS 18.3",
