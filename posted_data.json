@@ -19,7 +19,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "watchOS 11.5 beta 3 (22T5559d)",
             "visionOS 2.5 beta 3 (22O5459c)",
             "tvOS 18.5 beta 3 (22L5559d)",
             "macOS 15.5 beta 3 (24F5053j)",
@@ -38,7 +37,8 @@
             "macOS 15.5 RC (24F74)",
             "iOS 17.7.7 RC (21H433)",
             "iPadOS 18.5 RC (22F75)",
-            "iOS 18.5 RC (22F75)"
+            "iOS 18.5 RC (22F75)",
+            "Xcode 16.4 RC (16F6)"
         ],
         "new_sec_content": [
             "iOS and iPadOS 18.3.2",
