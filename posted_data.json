@@ -41,7 +41,6 @@
             "Xcode 16.4 RC (16F6)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 18.3.2",
             "Safari 18.3.1",
             "visionOS 2.4",
             "tvOS 18.4",
@@ -70,7 +69,8 @@
             "macOS Sequoia 15.5",
             "iPadOS 17.7.7",
             "iOS and iPadOS 18.5",
-            "Safari 18.5"
+            "Safari 18.5",
+            "iPadOS 17.7.8"
         ],
         "ios_modules": [
             "iOS and iPadOS 18.3",
