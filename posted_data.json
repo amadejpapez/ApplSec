@@ -19,7 +19,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "tvOS 18.5 beta 4 (22L5566a)",
             "macOS 15.5 beta 4 (24F5068b)",
             "iPadOS 18.5 beta 4 (22F5068a)",
             "iOS 18.5 beta 4 (22F5068a)",
@@ -38,7 +37,8 @@
             "macOS 26 beta (25A5279m)",
             "iPadOS 26 beta (23A5260n)",
             "iOS 26 beta (23A5260n)",
-            "Xcode 26 beta (17A5241e)"
+            "Xcode 26 beta (17A5241e)",
+            "iOS 26 beta (23A5260n | 23A5260u)"
         ],
         "new_sec_content": [
             "Safari 18.3.1",
