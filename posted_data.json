@@ -19,7 +19,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "watchOS 26 beta (23R5280m)",
             "visionOS 26 beta (23M5263m)",
             "tvOS 26 beta (23J5279m)",
             "macOS 26 beta (25A5279m)",
@@ -38,7 +37,8 @@
             "tvOS 26 beta 2 (23J5295e)",
             "macOS 26 beta 2 (25A5295e)",
             "iPadOS 26 beta 2 (23A5276f)",
-            "iOS 26 beta 2 (23A5276f)"
+            "iOS 26 beta 2 (23A5276f)",
+            "Xcode 26 beta 2 (17A5241o)"
         ],
         "new_sec_content": [
             "Safari 18.3.1",
