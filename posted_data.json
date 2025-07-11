@@ -41,7 +41,6 @@
             "Xcode 26 beta 3 (17A5276g)"
         ],
         "new_sec_content": [
-            "Safari 18.3.1",
             "visionOS 2.4",
             "tvOS 18.4",
             "macOS Ventura 13.7.5",
@@ -70,7 +69,8 @@
             "iPadOS 17.7.7",
             "iOS and iPadOS 18.5",
             "Safari 18.5",
-            "iPadOS 17.7.8"
+            "iPadOS 17.7.8",
+            "App Store Connect 3.0"
         ],
         "ios_modules": [
             "iOS and iPadOS 18.3",
