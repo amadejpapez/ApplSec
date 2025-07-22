@@ -19,13 +19,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "watchOS 26 beta 3 (23R5307g)",
-            "visionOS 26 beta 3 (23M5290f)",
-            "macOS 26 beta 3 (25A5306g)",
-            "iPadOS 26 beta 3 (23A5287g)",
-            "iOS 26 beta 3 (23A5287g)",
-            "tvOS 26 beta 3 (23J5306g)",
-            "Xcode 26 beta 3 (17A5276g)",
             "watchOS 11.6 beta 3 (22U5074b)",
             "visionOS 2.6 beta 3 (22O5773b)",
             "tvOS 18.6 beta 3 (22M5074b)",
@@ -38,7 +31,14 @@
             "macOS 15.6 RC (24G84)",
             "iPadOS 17.7.9 RC (21H446)",
             "iPadOS 18.6 RC (22G84)",
-            "iOS 18.6 RC (22G84)"
+            "iOS 18.6 RC (22G84)",
+            "watchOS 26 beta 4 (23R5317g)",
+            "visionOS 26 beta 4 (23M5300g)",
+            "tvOS 26 beta 4 (23J5316g)",
+            "macOS 26 beta 4 (25A5316i)",
+            "iPadOS 26 beta 4 (23A5297i)",
+            "iOS 26 beta 4 (23A5297i)",
+            "Xcode 26 beta 4 (17A5285i)"
         ],
         "new_sec_content": [
             "visionOS 2.4",
