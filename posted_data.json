@@ -19,7 +19,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "watchOS 11.6 RC (22U84)",
             "visionOS 2.6 RC (22O783)",
             "tvOS 18.6 RC (22M84)",
             "macOS 15.6 RC (24G84)",
@@ -38,7 +37,8 @@
             "tvOS 26 beta 5 (23J5327g)",
             "macOS 26 beta 5 (25A5327h)",
             "iPadOS 26 beta 5 (23A5308g)",
-            "iOS 26 beta 5 (23A5308g)"
+            "iOS 26 beta 5 (23A5308g)",
+            "Xcode 26 beta 5 (17A5295f)"
         ],
         "new_sec_content": [
             "Xcode 16.3",
