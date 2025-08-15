@@ -41,7 +41,6 @@
             "iOS 26 beta 6 (23A5318c)"
         ],
         "new_sec_content": [
-            "watchOS 11.4",
             "visionOS 2.4.1",
             "tvOS 18.4.1",
             "macOS Sequoia 15.4.1",
@@ -70,7 +69,8 @@
             "iOS and iPadOS 18.6",
             "Safari 18.6",
             "watchOS 11.6.1",
-            "iOS 18.6.1"
+            "iOS 18.6.1",
+            "Apple Music Classical 2.3 for Android"
         ],
         "ios_modules": [
             "iOS and iPadOS 18.4",
