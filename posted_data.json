@@ -19,7 +19,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "Xcode 26 beta 4 (17A5285i)",
             "watchOS 26 beta 5 (23R5328g)",
             "visionOS 26 beta 5 (23M5311g)",
             "tvOS 26 beta 5 (23J5327g)",
@@ -38,7 +37,8 @@
             "tvOS 26 beta 7 (23J5346a)",
             "macOS 26 beta 7 (25A5346a)",
             "iPadOS 26 beta 7 (23A5326a)",
-            "iOS 26 beta 7 (23A5326a)"
+            "iOS 26 beta 7 (23A5326a)",
+            "Xcode 26 beta 6 (17A5305f)"
         ],
         "new_sec_content": [
             "visionOS 2.4.1",
