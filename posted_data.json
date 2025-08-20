@@ -14,7 +14,8 @@
         "CVE-2025-24200",
         "CVE-2025-24201",
         "CVE-2025-31200",
-        "CVE-2025-31201"
+        "CVE-2025-31201",
+        "CVE-2025-43300"
     ],
     "details_available_soon": [],
     "posts": {
@@ -41,11 +42,6 @@
             "Xcode 26 beta 6 (17A5305f)"
         ],
         "new_sec_content": [
-            "visionOS 2.4.1",
-            "tvOS 18.4.1",
-            "macOS Sequoia 15.4.1",
-            "iOS iOS 18.4.1 and iPadOS 18.4.1",
-            "iOS and iPadOS 18.4.1",
             "AirPlay audio SDK 2.7.1 and AirPlay video SDK 3.6.0.126",
             "CarPlay Communication Plug-in R18.1 Updates",
             "visionOS 2.5",
@@ -70,7 +66,12 @@
             "Safari 18.6",
             "watchOS 11.6.1",
             "iOS 18.6.1",
-            "Apple Music Classical 2.3 for Android"
+            "Apple Music Classical 2.3 for Android",
+            "macOS Ventura 13.7.8",
+            "macOS Sonoma 14.7.8",
+            "macOS Sequoia 15.6.1",
+            "iPadOS 17.7.10",
+            "iOS and iPadOS 18.6.2"
         ],
         "ios_modules": [
             "iOS and iPadOS 18.4",
@@ -92,7 +93,12 @@
             "tvOS 18.4.1": 2,
             "visionOS 2.4.1": 2,
             "iOS and iPadOS 18.4.1": 2,
-            "watchOS 11.5": 1
+            "watchOS 11.5": 1,
+            "iOS and iPadOS 18.6.2": 1,
+            "iPadOS 17.7.10": 1,
+            "macOS Sequoia 15.6.1": 1,
+            "macOS Sonoma 14.7.8": 1,
+            "macOS Ventura 13.7.8": 1
         },
         "yearly_report": []
     }
