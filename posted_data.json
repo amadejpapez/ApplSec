@@ -20,12 +20,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "watchOS 26 beta 5 (23R5328g)",
-            "visionOS 26 beta 5 (23M5311g)",
-            "tvOS 26 beta 5 (23J5327g)",
-            "macOS 26 beta 5 (25A5327h)",
-            "iPadOS 26 beta 5 (23A5308g)",
-            "iOS 26 beta 5 (23A5308g)",
             "Xcode 26 beta 5 (17A5295f)",
             "watchOS 26 beta 6 (23R5340a)",
             "visionOS 26 beta 6 (23M5322b)",
@@ -39,7 +33,13 @@
             "macOS 26 beta 7 (25A5346a)",
             "iPadOS 26 beta 7 (23A5326a)",
             "iOS 26 beta 7 (23A5326a)",
-            "Xcode 26 beta 6 (17A5305f)"
+            "Xcode 26 beta 6 (17A5305f)",
+            "watchOS 26 beta 8 (23R5350a)",
+            "visionOS 26 beta 8 (23M5332a)",
+            "tvOS 26 beta 8 (23J5348a)",
+            "macOS 26 beta 8 (25A5349a)",
+            "iPadOS 26 beta 8 (23A5330a)",
+            "iOS 26 beta 8 (23A5330a)"
         ],
         "new_sec_content": [
             "AirPlay audio SDK 2.7.1 and AirPlay video SDK 3.6.0.126",
