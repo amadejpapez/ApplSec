@@ -20,7 +20,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "Xcode 26 beta 5 (17A5295f)",
             "watchOS 26 beta 6 (23R5340a)",
             "visionOS 26 beta 6 (23M5322b)",
             "tvOS 26 beta 6 (23J5339a)",
@@ -39,7 +38,8 @@
             "tvOS 26 beta 8 (23J5348a)",
             "macOS 26 beta 8 (25A5349a)",
             "iPadOS 26 beta 8 (23A5330a)",
-            "iOS 26 beta 8 (23A5330a)"
+            "iOS 26 beta 8 (23A5330a)",
+            "Xcode 26 beta 7 (17A5305k)"
         ],
         "new_sec_content": [
             "AirPlay audio SDK 2.7.1 and AirPlay video SDK 3.6.0.126",
