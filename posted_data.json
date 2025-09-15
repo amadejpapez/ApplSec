@@ -42,7 +42,6 @@
             "Xcode 26 RC (17A321)"
         ],
         "new_sec_content": [
-            "Safari 18.5",
             "iPadOS 17.7.8",
             "App Store Connect 3.0",
             "visionOS 2.6",
@@ -71,7 +70,8 @@
             "iOS and iPadOS 15.8.5",
             "iOS and iPadOS 16.7.12",
             "iOS and iPadOS 18.7",
-            "iOS and iPadOS 26"
+            "iOS and iPadOS 26",
+            "Safari 26"
         ],
         "ios_modules": [
             "iOS and iPadOS 18.5",
