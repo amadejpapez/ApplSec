@@ -42,16 +42,6 @@
             "Xcode 26 RC (17A321)"
         ],
         "new_sec_content": [
-            "AirPlay audio SDK 2.7.1 and AirPlay video SDK 3.6.0.126",
-            "CarPlay Communication Plug-in R18.1 Updates",
-            "visionOS 2.5",
-            "tvOS 18.5",
-            "watchOS 11.5",
-            "macOS Ventura 13.7.6",
-            "macOS Sonoma 14.7.6",
-            "macOS Sequoia 15.5",
-            "iPadOS 17.7.7",
-            "iOS and iPadOS 18.5",
             "Safari 18.5",
             "iPadOS 17.7.8",
             "App Store Connect 3.0",
@@ -71,12 +61,22 @@
             "macOS Sonoma 14.7.8",
             "macOS Sequoia 15.6.1",
             "iPadOS 17.7.10",
-            "iOS and iPadOS 18.6.2"
+            "iOS and iPadOS 18.6.2",
+            "visionOS 26",
+            "watchOS 26",
+            "tvOS 26",
+            "macOS Sonoma 14.8",
+            "macOS Sequoia 15.7",
+            "macOS Tahoe 26",
+            "iOS and iPadOS 15.8.5",
+            "iOS and iPadOS 16.7.12",
+            "iOS and iPadOS 18.7",
+            "iOS and iPadOS 26"
         ],
         "ios_modules": [
-            "iOS and iPadOS 18.4",
             "iOS and iPadOS 18.5",
-            "iOS and iPadOS 18.6"
+            "iOS and iPadOS 18.6",
+            "iOS and iPadOS 26"
         ],
         "zero_days": {
             "iOS and iPadOS 18.3.2": 1,
@@ -98,7 +98,9 @@
             "iPadOS 17.7.10": 1,
             "macOS Sequoia 15.6.1": 1,
             "macOS Sonoma 14.7.8": 1,
-            "macOS Ventura 13.7.8": 1
+            "macOS Ventura 13.7.8": 1,
+            "iOS and iPadOS 15.8.5": 1,
+            "iOS and iPadOS 16.7.12": 1
         },
         "yearly_report": []
     }
