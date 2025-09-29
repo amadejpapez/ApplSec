@@ -42,14 +42,6 @@
             "Xcode 26.1 beta (17B5025f)"
         ],
         "new_sec_content": [
-            "visionOS 2.6",
-            "tvOS 18.6",
-            "watchOS 11.6",
-            "macOS Ventura 13.7.7",
-            "macOS Sonoma 14.7.7",
-            "macOS Sequoia 15.6",
-            "iPadOS 17.7.9",
-            "iOS and iPadOS 18.6",
             "Safari 18.6",
             "watchOS 11.6.1",
             "iOS 18.6.1",
@@ -71,12 +63,20 @@
             "iOS and iPadOS 26",
             "Safari 26",
             "Xcode 26",
-            "watchOS 26.0.1"
+            "watchOS 26.0.1",
+            "tvOS 26.0.1",
+            "watchOS 26.0.2",
+            "visionOS 26.0.1",
+            "macOS Sonoma 14.8.1",
+            "macOS Sequoia 15.7.1",
+            "macOS Tahoe 26.0.1",
+            "iOS and iPadOS 18.7.1",
+            "iOS and iPadOS 26.0.1"
         ],
         "ios_modules": [
-            "iOS and iPadOS 18.5",
             "iOS and iPadOS 18.6",
-            "iOS and iPadOS 26"
+            "iOS and iPadOS 26",
+            "iOS and iPadOS 26.0.1"
         ],
         "zero_days": {
             "iOS and iPadOS 18.3.2": 1,
