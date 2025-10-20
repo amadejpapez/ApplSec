@@ -20,12 +20,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "watchOS 26.1 beta (23S5002i)",
-            "visionOS 26.1 beta (23N5013j)",
-            "tvOS 26.1 beta (23J5543j)",
-            "macOS 26.1 beta (25B5042k)",
-            "iPadOS 26.1 beta (23B5044l)",
-            "iOS 26.1 beta (23B5044l)",
             "Xcode 26.1 beta (17B5025f)",
             "watchOS 26.1 beta 2 (23S5017d)",
             "visionOS 26.1 beta 2 (23N5028e)",
@@ -39,7 +33,13 @@
             "tvOS 26.1 beta 3 (23J5563d)",
             "macOS 26.1 beta 3 (25B5062e)",
             "iPadOS 26.1 beta 3 (23B5064e)",
-            "iOS 26.1 beta 3 (23B5064e)"
+            "iOS 26.1 beta 3 (23B5064e)",
+            "watchOS 26.1 beta 4 (23S5031a)",
+            "visionOS 26.1 beta 4 (23N5042a)",
+            "tvOS 26.1 beta 4 (23J5571a)",
+            "macOS 26.1 beta 4 (25B5072a)",
+            "iPadOS 26.1 beta 4 (23B5073a)",
+            "iOS 26.1 beta 4 (23B5073a)"
         ],
         "new_sec_content": [
             "Safari 18.6",
