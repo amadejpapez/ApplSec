@@ -20,7 +20,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "visionOS 26.1 beta 3 (23N5033d)",
             "tvOS 26.1 beta 3 (23J5563d)",
             "macOS 26.1 beta 3 (25B5062e)",
             "iPadOS 26.1 beta 3 (23B5064e)",
@@ -39,7 +38,8 @@
             "tvOS 26.1 RC (23J580)",
             "macOS 26.1 RC (25B77)",
             "iPadOS 26.1 RC (23B82)",
-            "iOS 26.1 RC (23B82)"
+            "iOS 26.1 RC (23B82)",
+            "Xcode 26.1 RC (17B54)"
         ],
         "new_sec_content": [
             "Safari 18.6",
