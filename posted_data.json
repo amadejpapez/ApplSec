@@ -42,13 +42,6 @@
             "Xcode 26.1 RC (17B54)"
         ],
         "new_sec_content": [
-            "Safari 18.6",
-            "watchOS 11.6.1",
-            "iOS 18.6.1",
-            "Apple Music Classical 2.3 for Android",
-            "macOS Ventura 13.7.8",
-            "macOS Sonoma 14.7.8",
-            "macOS Sequoia 15.6.1",
             "iPadOS 17.7.10",
             "iOS and iPadOS 18.6.2",
             "visionOS 26",
@@ -71,12 +64,19 @@
             "macOS Sequoia 15.7.1",
             "macOS Tahoe 26.0.1",
             "iOS and iPadOS 18.7.1",
-            "iOS and iPadOS 26.0.1"
+            "iOS and iPadOS 26.0.1",
+            "visionOS 26.1",
+            "watchOS 26.1",
+            "tvOS 26.1",
+            "macOS Sonoma 14.8.2",
+            "macOS Sequoia 15.7.2",
+            "macOS Tahoe 26.1",
+            "iOS and iPadOS 26.1"
         ],
         "ios_modules": [
-            "iOS and iPadOS 18.6",
             "iOS and iPadOS 26",
-            "iOS and iPadOS 26.0.1"
+            "iOS and iPadOS 26.0.1",
+            "iOS and iPadOS 26.1"
         ],
         "zero_days": {
             "iOS and iPadOS 18.3.2": 1,
