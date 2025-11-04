@@ -42,8 +42,6 @@
             "Xcode 26.1 RC (17B54)"
         ],
         "new_sec_content": [
-            "iPadOS 17.7.10",
-            "iOS and iPadOS 18.6.2",
             "visionOS 26",
             "watchOS 26",
             "tvOS 26",
@@ -71,7 +69,9 @@
             "macOS Sonoma 14.8.2",
             "macOS Sequoia 15.7.2",
             "macOS Tahoe 26.1",
-            "iOS and iPadOS 26.1"
+            "iOS and iPadOS 26.1",
+            "Xcode 26.1",
+            "Safari 26.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 26",
