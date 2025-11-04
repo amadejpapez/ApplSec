@@ -78,30 +78,7 @@
             "iOS and iPadOS 26.0.1",
             "iOS and iPadOS 26.1"
         ],
-        "zero_days": {
-            "iOS and iPadOS 18.3.2": 1,
-            "macOS Sequoia 15.3.2": 1,
-            "visionOS 2.3.2": 1,
-            "Safari 18.3.1": 1,
-            "iOS and iPadOS 15.8.4": 2,
-            "iOS and iPadOS 16.7.11": 2,
-            "iPadOS 17.7.6": 1,
-            "macOS Ventura 13.7.5": 1,
-            "macOS Sonoma 14.7.5": 1,
-            "iOS iOS 18.4.1 and iPadOS 18.4.1": 2,
-            "macOS Sequoia 15.4.1": 2,
-            "tvOS 18.4.1": 2,
-            "visionOS 2.4.1": 2,
-            "iOS and iPadOS 18.4.1": 2,
-            "watchOS 11.5": 1,
-            "iOS and iPadOS 18.6.2": 1,
-            "iPadOS 17.7.10": 1,
-            "macOS Sequoia 15.6.1": 1,
-            "macOS Sonoma 14.7.8": 1,
-            "macOS Ventura 13.7.8": 1,
-            "iOS and iPadOS 15.8.5": 1,
-            "iOS and iPadOS 16.7.12": 1
-        },
+        "zero_days": {},
         "yearly_report": []
     }
 }
