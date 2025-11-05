@@ -42,7 +42,6 @@
             "Xcode 26.2 beta (17C5013i)"
         ],
         "new_sec_content": [
-            "visionOS 26",
             "watchOS 26",
             "tvOS 26",
             "macOS Sonoma 14.8",
@@ -71,7 +70,8 @@
             "macOS Tahoe 26.1",
             "iOS and iPadOS 26.1",
             "Xcode 26.1",
-            "Safari 26.1"
+            "Safari 26.1",
+            "iOS and iPadOS 18.7.2"
         ],
         "ios_modules": [
             "iOS and iPadOS 26",
