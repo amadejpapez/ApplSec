@@ -20,7 +20,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "tvOS 26.1 beta 4 (23J5571a)",
             "macOS 26.1 beta 4 (25B5072a)",
             "iPadOS 26.1 beta 4 (23B5073a)",
             "iOS 26.1 beta 4 (23B5073a)",
@@ -39,7 +38,8 @@
             "tvOS 26.2 beta (23K5029e)",
             "iPadOS 26.2 beta (23C5027f)",
             "iOS 26.2 beta (23C5027f)",
-            "Xcode 26.2 beta (17C5013i)"
+            "Xcode 26.2 beta (17C5013i)",
+            "macOS 26.2 beta (25C5031i)"
         ],
         "new_sec_content": [
             "watchOS 26",
