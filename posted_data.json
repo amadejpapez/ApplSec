@@ -42,7 +42,6 @@
             "iOS 26.2 beta 2 (23C5033g)"
         ],
         "new_sec_content": [
-            "watchOS 26",
             "tvOS 26",
             "macOS Sonoma 14.8",
             "macOS Sequoia 15.7",
@@ -71,7 +70,8 @@
             "iOS and iPadOS 26.1",
             "Xcode 26.1",
             "Safari 26.1",
-            "iOS and iPadOS 18.7.2"
+            "iOS and iPadOS 18.7.2",
+            "Compressor 4.11.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 26",
