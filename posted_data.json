@@ -20,11 +20,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "watchOS 26.1 RC (23S36)",
-            "visionOS 26.1 RC (23N48)",
-            "tvOS 26.1 RC (23J580)",
-            "macOS 26.1 RC (25B77)",
-            "iPadOS 26.1 RC (23B82)",
             "iOS 26.1 RC (23B82)",
             "Xcode 26.1 RC (17B54)",
             "watchOS 26.2 beta (23S5280e)",
@@ -39,7 +34,12 @@
             "tvOS 26.2 beta 2 (23K5035d)",
             "macOS 26.2 beta 2 (25C5037g)",
             "iPadOS 26.2 beta 2 (23C5033g)",
-            "iOS 26.2 beta 2 (23C5033g)"
+            "iOS 26.2 beta 2 (23C5033g)",
+            "watchOS 26.2 beta 3 (23S5297b)",
+            "tvOS 26.2 beta 3 (23K5046a)",
+            "macOS 26.2 beta 3 (25C5048a)",
+            "iPadOS 26.2 beta 3 (23C5044b)",
+            "iOS 26.2 beta 3 (23C5044b)"
         ],
         "new_sec_content": [
             "tvOS 26",
