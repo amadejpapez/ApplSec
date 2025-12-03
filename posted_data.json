@@ -20,13 +20,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "visionOS 26.2 beta (23N5279e)",
-            "tvOS 26.2 beta (23K5029e)",
-            "iPadOS 26.2 beta (23C5027f)",
-            "iOS 26.2 beta (23C5027f)",
-            "Xcode 26.2 beta (17C5013i)",
-            "macOS 26.2 beta (25C5031i)",
-            "watchOS 26.2 beta 2 (23S5286d)",
             "visionOS 26.2 beta 2 (23N5285d)",
             "tvOS 26.2 beta 2 (23K5035d)",
             "macOS 26.2 beta 2 (25C5037g)",
@@ -39,7 +32,14 @@
             "iOS 26.2 beta 3 (23C5044b)",
             "Icon Composer for Xcode 26.2 beta 2",
             "Xcode 26.2 beta 2 (17C5038g)",
-            "visionOS 26.2 beta 3 (23N5296b)"
+            "visionOS 26.2 beta 3 (23N5296b)",
+            "watchOS 26.2 RC (23S303)",
+            "visionOS 26.2 RC (23N301)",
+            "tvOS 26.2 RC (23K51)",
+            "macOS 26.2 RC (25C56)",
+            "iPadOS 26.2 RC (23C52)",
+            "iOS 26.2 RC (23C52)",
+            "Xcode 26.2 RC (17C48)"
         ],
         "new_sec_content": [
             "tvOS 26",
