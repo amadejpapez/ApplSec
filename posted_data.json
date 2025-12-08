@@ -20,7 +20,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "tvOS 26.2 beta 2 (23K5035d)",
             "macOS 26.2 beta 2 (25C5037g)",
             "iPadOS 26.2 beta 2 (23C5033g)",
             "iOS 26.2 beta 2 (23C5033g)",
@@ -39,7 +38,8 @@
             "iPadOS 26.2 RC (23C52)",
             "iOS 26.2 RC (23C52)",
             "Xcode 26.2 RC (17C48)",
-            "tvOS 26.2 RC 2 (23K53)"
+            "tvOS 26.2 RC 2 (23K53)",
+            "iOS 26.2 RC 2 (23C54)"
         ],
         "new_sec_content": [
             "tvOS 26",
