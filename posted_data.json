@@ -15,7 +15,9 @@
         "CVE-2025-24201",
         "CVE-2025-31200",
         "CVE-2025-31201",
-        "CVE-2025-43300"
+        "CVE-2025-43300",
+        "CVE-2025-14174",
+        "CVE-2025-43529"
     ],
     "details_available_soon": [],
     "posts": {
@@ -42,14 +44,6 @@
             "iOS 26.2 RC 2 (23C54)"
         ],
         "new_sec_content": [
-            "tvOS 26",
-            "macOS Sonoma 14.8",
-            "macOS Sequoia 15.7",
-            "macOS Tahoe 26",
-            "iOS and iPadOS 15.8.5",
-            "iOS and iPadOS 16.7.12",
-            "iOS and iPadOS 18.7",
-            "iOS and iPadOS 26",
             "Safari 26",
             "Xcode 26",
             "watchOS 26.0.1",
@@ -71,14 +65,29 @@
             "Xcode 26.1",
             "Safari 26.1",
             "iOS and iPadOS 18.7.2",
-            "Compressor 4.11.1"
+            "Compressor 4.11.1",
+            "visionOS 26.2",
+            "watchOS 26.2",
+            "tvOS 26.2",
+            "macOS Sonoma 14.8.3",
+            "macOS Sequoia 15.7.3",
+            "macOS Tahoe 26.2",
+            "iOS and iPadOS 18.7.3",
+            "iOS and iPadOS 26.2"
         ],
         "ios_modules": [
-            "iOS and iPadOS 26",
             "iOS and iPadOS 26.0.1",
-            "iOS and iPadOS 26.1"
+            "iOS and iPadOS 26.1",
+            "iOS and iPadOS 26.2"
         ],
-        "zero_days": {},
+        "zero_days": {
+            "tvOS 26.2": 2,
+            "watchOS 26.2": 2,
+            "visionOS 26.2": 2,
+            "iOS and iPadOS 18.7.3": 2,
+            "iOS and iPadOS 26.2": 2,
+            "macOS Tahoe 26.2": 2
+        },
         "yearly_report": []
     }
 }
