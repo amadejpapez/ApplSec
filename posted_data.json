@@ -44,7 +44,6 @@
             "iOS 26.2 RC 2 (23C54)"
         ],
         "new_sec_content": [
-            "Safari 26",
             "Xcode 26",
             "watchOS 26.0.1",
             "tvOS 26.0.1",
@@ -73,7 +72,8 @@
             "macOS Sequoia 15.7.3",
             "macOS Tahoe 26.2",
             "iOS and iPadOS 18.7.3",
-            "iOS and iPadOS 26.2"
+            "iOS and iPadOS 26.2",
+            "Safari 26.2"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.0.1",
@@ -86,7 +86,8 @@
             "visionOS 26.2": 2,
             "iOS and iPadOS 18.7.3": 2,
             "iOS and iPadOS 26.2": 2,
-            "macOS Tahoe 26.2": 2
+            "macOS Tahoe 26.2": 2,
+            "Safari 26.2": 2
         },
         "yearly_report": []
     }
