@@ -17,12 +17,12 @@ jobs:
 
     steps:
       - name: Checkout main
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: main
 
       - name: Checkout posted_data_json
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: posted_data_json
           path: branch
