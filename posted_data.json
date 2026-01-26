@@ -44,12 +44,6 @@
             "iOS 26.3 beta 2 (23D5103d)"
         ],
         "new_sec_content": [
-            "Xcode 26",
-            "watchOS 26.0.1",
-            "tvOS 26.0.1",
-            "watchOS 26.0.2",
-            "visionOS 26.0.1",
-            "macOS Sonoma 14.8.1",
             "macOS Sequoia 15.7.1",
             "macOS Tahoe 26.0.1",
             "iOS and iPadOS 18.7.1",
@@ -73,7 +67,13 @@
             "macOS Tahoe 26.2",
             "iOS and iPadOS 18.7.3",
             "iOS and iPadOS 26.2",
-            "Safari 26.2"
+            "Safari 26.2",
+            "watchOS 26.2.1",
+            "iOS and iPadOS 12.5.8",
+            "iOS and iPadOS 15.8.6",
+            "iOS and iPadOS 16.7.13",
+            "iOS and iPadOS 18.7.4",
+            "iOS and iPadOS 26.2.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.0.1",
