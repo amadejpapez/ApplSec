@@ -44,8 +44,6 @@
             "iOS 26.3 beta 3 (23D5114d)"
         ],
         "new_sec_content": [
-            "macOS Sequoia 15.7.1",
-            "macOS Tahoe 26.0.1",
             "iOS and iPadOS 18.7.1",
             "iOS and iPadOS 26.0.1",
             "visionOS 26.1",
@@ -73,7 +71,9 @@
             "iOS and iPadOS 15.8.6",
             "iOS and iPadOS 16.7.13",
             "iOS and iPadOS 18.7.4",
-            "iOS and iPadOS 26.2.1"
+            "iOS and iPadOS 26.2.1",
+            "Pages 15.1",
+            "Keynote 15.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.0.1",
