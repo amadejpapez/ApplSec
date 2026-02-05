@@ -22,7 +22,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "iOS 26.3 beta (23D5089e)",
             "watchOS 26.3 beta 2 (23S5600d)",
             "visionOS 26.3 beta 2 (23N5602d)",
             "tvOS 26.3 beta 2 (23K5600b)",
@@ -41,7 +40,8 @@
             "tvOS 26.3 RC (23K619)",
             "macOS 26.3 RC (25D122)",
             "iPadOS 26.3 RC (23D125)",
-            "26.3 iOS RC (23D125)"
+            "26.3 iOS RC (23D125)",
+            "iOS 26.3 RC (23D125)"
         ],
         "new_sec_content": [
             "macOS Sequoia 15.7.2",
