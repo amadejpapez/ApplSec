@@ -44,7 +44,6 @@
             "iOS 26.3 RC (23D125)"
         ],
         "new_sec_content": [
-            "macOS Sequoia 15.7.2",
             "macOS Tahoe 26.1",
             "iOS and iPadOS 26.1",
             "Xcode 26.1",
@@ -73,7 +72,8 @@
             "watchOS 10.6.2",
             "Security Update 2026-001 Catalina",
             "macOS Big Sur 11.7.11",
-            "iOS and iPadOS 16.7.14"
+            "iOS and iPadOS 16.7.14",
+            "watchOS 11.6.2"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.0.1",
