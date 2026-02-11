@@ -45,7 +45,6 @@
             "iOS 26.3 RC (23D125)"
         ],
         "new_sec_content": [
-            "tvOS 26.2",
             "macOS Sonoma 14.8.3",
             "macOS Sequoia 15.7.3",
             "macOS Tahoe 26.2",
@@ -74,7 +73,8 @@
             "macOS Sequoia 15.7.4",
             "macOS Tahoe 26.3",
             "iOS and iPadOS 18.7.5",
-            "iOS and iPadOS 26.3"
+            "iOS and iPadOS 26.3",
+            "Safari 26.3"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.1",
