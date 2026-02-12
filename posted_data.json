@@ -81,13 +81,7 @@
             "iOS and iPadOS 26.2",
             "iOS and iPadOS 26.3"
         ],
-        "zero_days": {
-            "tvOS 26.3": 3,
-            "watchOS 26.3": 3,
-            "visionOS 26.3": 3,
-            "iOS and iPadOS 26.3": 3,
-            "macOS Tahoe 26.3": 3
-        },
+        "zero_days": {},
         "yearly_report": []
     }
 }
