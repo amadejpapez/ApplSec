@@ -23,13 +23,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "watchOS 26.3 beta 2 (23S5600d)",
-            "visionOS 26.3 beta 2 (23N5602d)",
-            "tvOS 26.3 beta 2 (23K5600b)",
-            "macOS 26.3 beta 2 (25D5101c)",
-            "iPadOS 26.3 beta2 (23D5103d)",
-            "iOS 26.3 beta 2 (23D5103d)",
-            "watchOS 26.3 beta 3 (23S5611c)",
             "visionOS 26.3 beta 3 (23N5613b)",
             "tvOS 26.3 beta 3 (23K5611c)",
             "macOS 26.3 beta 3 (25D5112c)",
@@ -42,7 +35,14 @@
             "macOS 26.3 RC (25D122)",
             "iPadOS 26.3 RC (23D125)",
             "26.3 iOS RC (23D125)",
-            "iOS 26.3 RC (23D125)"
+            "iOS 26.3 RC (23D125)",
+            "watchOS 26.4 beta (23T5209m)",
+            "visionOS 26.4 beta (23O5209m)",
+            "tvOS 26.4 beta (23L5208m)",
+            "macOS 26.4 beta (25E5207k)",
+            "iPadOS 26.4 beta (23E5207q)",
+            "iOS 26.4 beta (23E5207q)",
+            "Xcode 26.4 beta (17E5159k)"
         ],
         "new_sec_content": [
             "macOS Sonoma 14.8.3",
