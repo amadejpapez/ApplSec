@@ -23,7 +23,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "visionOS 26.3 beta 3 (23N5613b)",
             "tvOS 26.3 beta 3 (23K5611c)",
             "macOS 26.3 beta 3 (25D5112c)",
             "iPadOS 26.3 beta 3 (23D5114d)",
@@ -42,7 +41,8 @@
             "macOS 26.4 beta (25E5207k)",
             "iPadOS 26.4 beta (23E5207q)",
             "iOS 26.4 beta (23E5207q)",
-            "Xcode 26.4 beta (17E5159k)"
+            "Xcode 26.4 beta (17E5159k)",
+            "Xcode 26.3 Release Candidate 2 (17C528)"
         ],
         "new_sec_content": [
             "macOS Sonoma 14.8.3",
