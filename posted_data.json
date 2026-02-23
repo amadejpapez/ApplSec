@@ -23,7 +23,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "visionOS 26.3 RC (23N619)",
             "tvOS 26.3 RC (23K619)",
             "macOS 26.3 RC (25D122)",
             "iPadOS 26.3 RC (23D125)",
@@ -42,7 +41,8 @@
             "tvOS 26.4 beta 2 (23L5219e)",
             "macOS 26.4 beta 2 (25E5218f)",
             "iPadOS 26.4 beta 2 (23E5218e)",
-            "iOS 26.4 beta 2 (23E5218e)"
+            "iOS 26.4 beta 2 (23E5218e)",
+            "Xcode 26.4 beta 2 (17E5170d)"
         ],
         "new_sec_content": [
             "macOS Sonoma 14.8.3",
