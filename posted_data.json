@@ -45,7 +45,6 @@
             "Xcode 26.4 beta 2 (17E5170d)"
         ],
         "new_sec_content": [
-            "macOS Sonoma 14.8.3",
             "macOS Sequoia 15.7.3",
             "macOS Tahoe 26.2",
             "iOS and iPadOS 18.7.3",
@@ -74,7 +73,8 @@
             "macOS Tahoe 26.3",
             "iOS and iPadOS 18.7.5",
             "iOS and iPadOS 26.3",
-            "Safari 26.3"
+            "Safari 26.3",
+            "visionOS 26.3.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.1",
