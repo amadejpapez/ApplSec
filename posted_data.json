@@ -23,11 +23,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "tvOS 26.3 RC (23K619)",
-            "macOS 26.3 RC (25D122)",
-            "iPadOS 26.3 RC (23D125)",
-            "26.3 iOS RC (23D125)",
-            "iOS 26.3 RC (23D125)",
             "watchOS 26.4 beta (23T5209m)",
             "visionOS 26.4 beta (23O5209m)",
             "tvOS 26.4 beta (23L5208m)",
@@ -42,7 +37,12 @@
             "macOS 26.4 beta 2 (25E5218f)",
             "iPadOS 26.4 beta 2 (23E5218e)",
             "iOS 26.4 beta 2 (23E5218e)",
-            "Xcode 26.4 beta 2 (17E5170d)"
+            "Xcode 26.4 beta 2 (17E5170d)",
+            "watchOS 26.4 beta 3 (23T5226e)",
+            "visionOS 26.4 beta 3 (23O5225f)",
+            "tvOS 26.4 beta 3 (23L5224d)",
+            "iPadOS 26.4 beta 3 (23E5223f)",
+            "iOS 26.4 beta 3 (23E5223f)"
         ],
         "new_sec_content": [
             "macOS Sequoia 15.7.3",
