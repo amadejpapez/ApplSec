@@ -45,9 +45,6 @@
             "macOS 26.4 beta 3 (25E5223i)"
         ],
         "new_sec_content": [
-            "macOS Sequoia 15.7.3",
-            "macOS Tahoe 26.2",
-            "iOS and iPadOS 18.7.3",
             "iOS and iPadOS 26.2",
             "Safari 26.2",
             "watchOS 26.2.1",
@@ -74,7 +71,10 @@
             "iOS and iPadOS 18.7.5",
             "iOS and iPadOS 26.3",
             "Safari 26.3",
-            "visionOS 26.3.1"
+            "visionOS 26.3.1",
+            "macOS Tahoe 26.3.1",
+            "iOS 18.7.6",
+            "iOS and iPadOS 26.3.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.1",
