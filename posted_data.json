@@ -23,7 +23,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "tvOS 26.4 beta 2 (23L5219e)",
             "macOS 26.4 beta 2 (25E5218f)",
             "iPadOS 26.4 beta 2 (23E5218e)",
             "iOS 26.4 beta 2 (23E5218e)",
@@ -42,7 +41,8 @@
             "tvOS 26.4 beta 4 (23L5234a)",
             "macOS 26.4 beta 4 (25E5233c)",
             "iPadOS 26.4 beta 4 (23E5234a)",
-            "iOS 26.4 beta 4 (23E5234a)"
+            "iOS 26.4 beta 4 (23E5234a)",
+            "Xcode 26.4 beta 3 (17E5179g)"
         ],
         "new_sec_content": [
             "iOS and iPadOS 26.2",
