@@ -45,7 +45,6 @@
             "Xcode 26.4 beta 3 (17E5179g)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 26.2",
             "Safari 26.2",
             "watchOS 26.2.1",
             "iOS and iPadOS 12.5.8",
@@ -74,7 +73,8 @@
             "visionOS 26.3.1",
             "macOS Tahoe 26.3.1",
             "iOS 18.7.6",
-            "iOS and iPadOS 26.3.1"
+            "iOS and iPadOS 26.3.1",
+            "macOS Tahoe 26.3.2"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.1",
