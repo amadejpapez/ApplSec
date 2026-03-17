@@ -45,7 +45,6 @@
             "Xcode 26.4 beta 3 (17E5179g)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 12.5.8",
             "iOS and iPadOS 15.8.6",
             "iOS and iPadOS 16.7.13",
             "iOS and iPadOS 18.7.4",
@@ -74,7 +73,8 @@
             "iOS and iPadOS 26.3.1",
             "macOS Tahoe 26.3.2",
             "iOS and iPadOS 15.8.7",
-            "iOS and iPadOS 16.7.15"
+            "iOS and iPadOS 16.7.15",
+            "Background Security Improvements for iOS, iPadOS, and macOS"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.1",
