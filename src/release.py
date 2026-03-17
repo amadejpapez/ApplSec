@@ -136,9 +136,11 @@ class Release:
 
         # "iOS 15.3 and iPadOS 15.3" -> "iOS and iPadOS 15.3"
         if "iOS" in name and "iPadOS" in name:
-            ver = re.findall(r"iOS (.+?) (?:and|&) iPadOS", name)[0]
-            if re.findall(rf"iOS {re.escape(ver)} (?:and|&) iPadOS {re.escape(ver)}", name):
-                name = name.replace(re.findall(rf"iOS {re.escape(ver)} (?:and|&)", name)[0], "iOS and")
+            ver = re.findall(r"iOS (.+?) (?:and|&) iPadOS", name)
+            if (len(ver) > 0):
+                verStr = ver[0]
+                if re.findall(rf"iOS {re.escape(verStr)} (?:and|&) iPadOS {re.escape(verStr)}", name):
+                    name = name.replace(re.findall(rf"iOS {re.escape(verStr)} (?:and|&)", name)[0], "iOS and")
 
         if "macOS" in name and "Update" in name:
             # for releases "macOS Big Sur 11.2.1, macOS Catalina 10.15.7 Supplemental Update,..."
