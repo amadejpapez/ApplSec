@@ -23,14 +23,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "macOS 26.4 beta 2 (25E5218f)",
-            "iPadOS 26.4 beta 2 (23E5218e)",
-            "iOS 26.4 beta 2 (23E5218e)",
-            "Xcode 26.4 beta 2 (17E5170d)",
-            "watchOS 26.4 beta 3 (23T5226e)",
-            "visionOS 26.4 beta 3 (23O5225f)",
-            "tvOS 26.4 beta 3 (23L5224d)",
-            "iPadOS 26.4 beta 3 (23E5223f)",
             "iOS 26.4 beta 3 (23E5223f)",
             "macOS 26.4 beta 3 (25E5223i)",
             "watchOS 26.4 beta 3 v.2 (23T5226i)",
@@ -42,7 +34,15 @@
             "macOS 26.4 beta 4 (25E5233c)",
             "iPadOS 26.4 beta 4 (23E5234a)",
             "iOS 26.4 beta 4 (23E5234a)",
-            "Xcode 26.4 beta 3 (17E5179g)"
+            "Xcode 26.4 beta 3 (17E5179g)",
+            "iPadOS 18.7.7 RC (22H333)",
+            "iOS 18.7.7 RC (22H333)",
+            "watchOS 26.4 RC (23T239)",
+            "visionOS 26.4 RC (23O244)",
+            "tvOS 26.4 RC (23L240)",
+            "macOS 26.4 RC (25E243)",
+            "iPadOS 26.4 RC (23E244)",
+            "iOS 26.4 RC (23E244)"
         ],
         "new_sec_content": [
             "iOS and iPadOS 15.8.6",
