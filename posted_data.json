@@ -23,7 +23,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "iOS 26.4 beta 3 (23E5223f)",
             "macOS 26.4 beta 3 (25E5223i)",
             "watchOS 26.4 beta 3 v.2 (23T5226i)",
             "iPadOS 26.4 beta 3 v.2 (23E5223k)",
@@ -42,7 +41,8 @@
             "tvOS 26.4 RC (23L240)",
             "macOS 26.4 RC (25E243)",
             "iPadOS 26.4 RC (23E244)",
-            "iOS 26.4 RC (23E244)"
+            "iOS 26.4 RC (23E244)",
+            "Xcode 26.4 Release Candidate (17E192)"
         ],
         "new_sec_content": [
             "iOS and iPadOS 15.8.6",
