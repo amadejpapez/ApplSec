@@ -45,7 +45,6 @@
             "Xcode 26.4 Release Candidate (17E192)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 16.7.14",
             "watchOS 11.6.2",
             "visionOS 26.3",
             "watchOS 26.3",
@@ -74,7 +73,8 @@
             "macOS Tahoe 26.4",
             "iOS and iPadOS 18.7.7",
             "iOS and iPadOS 26.4",
-            "Xcode 26.4"
+            "Xcode 26.4",
+            "Safari 26.4"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.2",
