@@ -45,16 +45,6 @@
             "Xcode 26.4 Release Candidate (17E192)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 15.8.6",
-            "iOS and iPadOS 16.7.13",
-            "iOS and iPadOS 18.7.4",
-            "iOS and iPadOS 26.2.1",
-            "Pages 15.1",
-            "Keynote 15.1",
-            "watchOS 6.3.1",
-            "watchOS 9.6.4",
-            "watchOS 10.6.2",
-            "Security Update 2026-001 Catalina",
             "macOS Big Sur 11.7.11",
             "iOS and iPadOS 16.7.14",
             "watchOS 11.6.2",
@@ -74,12 +64,22 @@
             "macOS Tahoe 26.3.2",
             "iOS and iPadOS 15.8.7",
             "iOS and iPadOS 16.7.15",
-            "Background Security Improvements for iOS, iPadOS, and macOS"
+            "Background Security Improvements for iOS, iPadOS, and macOS",
+            "visionOS 26.4",
+            "watchOS 26.4",
+            "watchOS 8.8.2",
+            "watchOS 5.3.10",
+            "tvOS 26.4",
+            "macOS Sonoma 14.8.5",
+            "macOS Sequoia 15.7.5",
+            "macOS Tahoe 26.4",
+            "iOS and iPadOS 18.7.7",
+            "iOS and iPadOS 26.4"
         ],
         "ios_modules": [
-            "iOS and iPadOS 26.1",
             "iOS and iPadOS 26.2",
-            "iOS and iPadOS 26.3"
+            "iOS and iPadOS 26.3",
+            "iOS and iPadOS 26.4"
         ],
         "zero_days": {},
         "yearly_report": []
