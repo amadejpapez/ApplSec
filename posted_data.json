@@ -23,8 +23,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "macOS 26.4 beta 4 (25E5233c)",
-            "iPadOS 26.4 beta 4 (23E5234a)",
             "iOS 26.4 beta 4 (23E5234a)",
             "Xcode 26.4 beta 3 (17E5179g)",
             "iPadOS 18.7.7 RC (22H333)",
@@ -42,7 +40,9 @@
             "macOS 26.5 beta (25F5042g)",
             "iPadOS 26.5 beta (23F5043g)",
             "iOS 26.5 beta (23F5043g)",
-            "Xcode 26.5 beta (17F5012f)"
+            "Xcode 26.5 beta (17F5012f)",
+            "iPadOS 26.5 beta 1 (v2) (23F5043k)",
+            "iOS 26.5 beta 1 (v2) (23F5043k)"
         ],
         "new_sec_content": [
             "watchOS 11.6.2",
