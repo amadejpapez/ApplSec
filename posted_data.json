@@ -23,7 +23,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "tvOS 26.4 RC (23L240)",
             "macOS 26.4 RC (25E243)",
             "iPadOS 26.4 RC (23E244)",
             "iOS 26.4 RC (23E244)",
@@ -42,7 +41,8 @@
             "tvOS 26.5 beta 2 (23L5455c)",
             "macOS 26.5 beta 2 (25F5053d)",
             "iPadOS 26.5 beta 2 (23F5054d)",
-            "iOS 26.5 beta 2 (23F5054d)"
+            "iOS 26.5 beta 2 (23F5054d)",
+            "Xcode 26.5 beta 2 (17F5022i)"
         ],
         "new_sec_content": [
             "watchOS 26.3",
