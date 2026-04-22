@@ -45,8 +45,6 @@
             "iOS 26.5 beta 3 (23F5059e)"
         ],
         "new_sec_content": [
-            "watchOS 26.3",
-            "tvOS 26.3",
             "macOS Sonoma 14.8.4",
             "macOS Sequoia 15.7.4",
             "macOS Tahoe 26.3",
@@ -74,12 +72,14 @@
             "Xcode 26.4",
             "Safari 26.4",
             "iOS and iPadOS 26.4.1",
-            "macOS Tahoe 26.4.1"
+            "macOS Tahoe 26.4.1",
+            "iOS and iPadOS 18.7.8",
+            "iOS and iPadOS 26.4.2"
         ],
         "ios_modules": [
-            "iOS and iPadOS 26.2",
             "iOS and iPadOS 26.3",
-            "iOS and iPadOS 26.4"
+            "iOS and iPadOS 26.4",
+            "iOS and iPadOS 26.4.2"
         ],
         "zero_days": {},
         "yearly_report": []
