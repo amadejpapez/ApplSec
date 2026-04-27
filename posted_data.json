@@ -23,13 +23,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "tvOS 26.5 beta (23L5443g)",
-            "macOS 26.5 beta (25F5042g)",
-            "iPadOS 26.5 beta (23F5043g)",
-            "iOS 26.5 beta (23F5043g)",
-            "Xcode 26.5 beta (17F5012f)",
-            "iPadOS 26.5 beta 1 (v2) (23F5043k)",
-            "iOS 26.5 beta 1 (v2) (23F5043k)",
             "watchOS 26.5 beta 2 (23T5553d)",
             "visionOS 26.5 beta 2 (23O5453d)",
             "tvOS 26.5 beta 2 (23L5455c)",
@@ -42,7 +35,14 @@
             "tvOS 26.5 beta 3 (23L5460d)",
             "macOS 26.5 beta 3 (25F5058e)",
             "iPadOS 26.5 beta 3 (23F5059e)",
-            "iOS 26.5 beta 3 (23F5059e)"
+            "iOS 26.5 beta 3 (23F5059e)",
+            "watchOS 26.5 beta 4 (23T5568a)",
+            "visionOS 26.5 beta 4 (23O5468a)",
+            "tvOS 26.5 beta 4 (23L5469a)",
+            "macOS 26.5 beta 4 (25F5068a)",
+            "iPadOS 26.5 beta 4 (23F5069b)",
+            "iOS 26.5 beta 4 (23F5069b)",
+            "Xcode 26.5 beta 3 (17F5032f)"
         ],
         "new_sec_content": [
             "macOS Sonoma 14.8.4",
