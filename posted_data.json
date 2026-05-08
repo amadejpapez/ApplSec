@@ -23,8 +23,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "watchOS 26.5 beta 3 (23T5558e)",
-            "visionOS 26.5 beta 3 (23O5458e)",
             "tvOS 26.5 beta 3 (23L5460d)",
             "macOS 26.5 beta 3 (25F5058e)",
             "iPadOS 26.5 beta 3 (23F5059e)",
@@ -42,7 +40,9 @@
             "macOS 26.5 RC (25F71)",
             "iPadOS 26.5 RC (23F75)",
             "iOS 26.5 RC (23F75)",
-            "Xcode 26.5 RC (17F42)"
+            "Xcode 26.5 RC (17F42)",
+            "iPadOS 26.5 RC 2 (23F77)",
+            "iOS 26.5 RC 2 (23F77)"
         ],
         "new_sec_content": [
             "macOS Sonoma 14.8.4",
