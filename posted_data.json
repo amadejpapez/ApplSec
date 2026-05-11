@@ -45,17 +45,6 @@
             "iOS 26.5 RC 2 (23F77)"
         ],
         "new_sec_content": [
-            "macOS Sonoma 14.8.4",
-            "macOS Sequoia 15.7.4",
-            "macOS Tahoe 26.3",
-            "iOS and iPadOS 18.7.5",
-            "iOS and iPadOS 26.3",
-            "Safari 26.3",
-            "visionOS 26.3.1",
-            "macOS Tahoe 26.3.1",
-            "iOS 18.7.6",
-            "iOS and iPadOS 26.3.1",
-            "macOS Tahoe 26.3.2",
             "iOS and iPadOS 15.8.7",
             "iOS and iPadOS 16.7.15",
             "Background Security Improvements for iOS, iPadOS, and macOS",
@@ -74,12 +63,23 @@
             "iOS and iPadOS 26.4.1",
             "macOS Tahoe 26.4.1",
             "iOS and iPadOS 18.7.8",
-            "iOS and iPadOS 26.4.2"
+            "iOS and iPadOS 26.4.2",
+            "visionOS 26.5",
+            "watchOS 26.5",
+            "tvOS 26.5",
+            "macOS Sonoma 14.8.7",
+            "macOS Sequoia 15.7.7",
+            "macOS Tahoe 26.5",
+            "iOS and iPadOS 15.8.8",
+            "iOS and iPadOS 16.7.16",
+            "iPadOS 17.7.11",
+            "iOS and iPadOS 18.7.9",
+            "iOS and iPadOS 26.5"
         ],
         "ios_modules": [
-            "iOS and iPadOS 26.3",
             "iOS and iPadOS 26.4",
-            "iOS and iPadOS 26.4.2"
+            "iOS and iPadOS 26.4.2",
+            "iOS and iPadOS 26.5"
         ],
         "zero_days": {},
         "yearly_report": []
