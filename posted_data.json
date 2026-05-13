@@ -45,7 +45,6 @@
             "iOS 26.5 RC 2 (23F77)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 15.8.7",
             "iOS and iPadOS 16.7.15",
             "Background Security Improvements for iOS, iPadOS, and macOS",
             "visionOS 26.4",
@@ -74,7 +73,8 @@
             "iOS and iPadOS 16.7.16",
             "iPadOS 17.7.11",
             "iOS and iPadOS 18.7.9",
-            "iOS and iPadOS 26.5"
+            "iOS and iPadOS 26.5",
+            "Safari 26.5"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.4",
