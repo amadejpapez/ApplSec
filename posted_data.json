@@ -45,8 +45,6 @@
             "iOS 26.6 beta (23G5028e)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 16.7.15",
-            "Background Security Improvements for iOS, iPadOS, and macOS",
             "visionOS 26.4",
             "watchOS 26.4",
             "watchOS 8.8.2",
@@ -74,7 +72,9 @@
             "iPadOS 17.7.11",
             "iOS and iPadOS 18.7.9",
             "iOS and iPadOS 26.5",
-            "Safari 26.5"
+            "Safari 26.5",
+            "macOS Tahoe 26.5.1",
+            "iOS 26.5.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.4",
