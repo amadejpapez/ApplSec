@@ -45,7 +45,6 @@
             "iOS 26.6 beta 2 (23G5043d)"
         ],
         "new_sec_content": [
-            "visionOS 26.4",
             "watchOS 26.4",
             "watchOS 8.8.2",
             "watchOS 5.3.10",
@@ -74,7 +73,8 @@
             "iOS and iPadOS 26.5",
             "Safari 26.5",
             "macOS Tahoe 26.5.1",
-            "iOS 26.5.1"
+            "iOS 26.5.1",
+            "Beats Firmware Update 1B211"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.4",
