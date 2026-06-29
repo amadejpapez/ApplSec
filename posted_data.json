@@ -45,7 +45,6 @@
             "iOS 26.6 beta 3 (23G5052d)"
         ],
         "new_sec_content": [
-            "watchOS 5.3.10",
             "tvOS 26.4",
             "macOS Sonoma 14.8.5",
             "macOS Sequoia 15.7.5",
@@ -74,7 +73,8 @@
             "iOS 26.5.1",
             "Beats Firmware Update 1B211",
             "macOS Tahoe 26.5.2",
-            "iOS and iPadOS 26.5.2"
+            "iOS and iPadOS 26.5.2",
+            "Safari 26.5.2"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.4.2",
