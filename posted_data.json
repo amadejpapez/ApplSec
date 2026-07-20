@@ -23,9 +23,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "iPadOS 27.0 beta 3 (24A5380h)",
-            "iOS 27.0 beta 3 (24A5380h)",
-            "watchOS 26.6 beta 5 (23U5062b)",
             "visionOS 26.6 beta 5 (23O5765a)",
             "tvOS 26.6 beta 5 (23L5766a)",
             "macOS 26.6 beta 5 (25G5065a)",
@@ -42,7 +39,10 @@
             "tvOS 27.0 beta 4 (24J5325d)",
             "macOS 27.0 beta 4 (26A5388g)",
             "iPadOS 27.0 beta 4 (24A5390f)",
-            "iOS 27.0 beta 4 (24A5390f)"
+            "iOS 27.0 beta 4 (24A5390f)",
+            "watchOS 27.0 beta 4 (24R5325h)",
+            "visionOS 27.0 beta 4 (24M5326g)",
+            "Xcode 27 beta 4 (27A5228h)"
         ],
         "new_sec_content": [
             "tvOS 26.4",
