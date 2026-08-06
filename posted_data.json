@@ -45,9 +45,6 @@
             "Xcode 27 beta 4 (27A5228h)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 26.4.1",
-            "macOS Tahoe 26.4.1",
-            "iOS and iPadOS 18.7.8",
             "iOS and iPadOS 26.4.2",
             "visionOS 26.5",
             "watchOS 26.5",
@@ -74,7 +71,10 @@
             "macOS Sequoia 15.7.8",
             "macOS Tahoe 26.6",
             "iOS and iPadOS 26.6",
-            "Safari 26.6"
+            "Safari 26.6",
+            "macOS Sonoma 14.8.9",
+            "macOS Sequoia 15.7.9",
+            "macOS Tahoe 26.6.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.5",
