@@ -45,10 +45,6 @@
             "iOS 27.0 beta 6 (24A5418b)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 26.4.2",
-            "visionOS 26.5",
-            "watchOS 26.5",
-            "tvOS 26.5",
             "macOS Sonoma 14.8.7",
             "macOS Sequoia 15.7.7",
             "macOS Tahoe 26.5",
@@ -74,12 +70,16 @@
             "Safari 26.6",
             "macOS Sonoma 14.8.9",
             "macOS Sequoia 15.7.9",
-            "macOS Tahoe 26.6.1"
+            "macOS Tahoe 26.6.1",
+            "visionOS 26.6.1",
+            "macOS Tahoe 26.6.2",
+            "iOS and iPadOS 18.7.10",
+            "iOS and iPadOS 26.6.1"
         ],
         "ios_modules": [
-            "iOS and iPadOS 26.5",
             "iOS and iPadOS 26.5.2",
-            "iOS and iPadOS 26.6"
+            "iOS and iPadOS 26.6",
+            "iOS and iPadOS 26.6.1"
         ],
         "zero_days": {},
         "yearly_report": []
