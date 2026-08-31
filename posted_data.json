@@ -23,12 +23,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "watchOS 27.0 beta 5 (24R5347a)",
-            "visionOS 27.0 beta 5 (24M5348b)",
-            "tvOS 27.0 beta 5 (24J5346a)",
-            "macOS 27.0 beta 5 (26A5406e)",
-            "iPadOS 27.0 beta 5 (24A5408d)",
-            "iOS 27.0 beta 5 (24A5408d)",
             "Xcode 27 beta 5 (27A5237l)",
             "watchOS 27.0 beta 6 (24R5353a)",
             "visionOS 27.0 beta 6 (24M5355a)",
@@ -42,7 +36,13 @@
             "macOS 27.0 beta 7 (26A5421a)",
             "iPadOS 27.0 beta 7 (24A5424a)",
             "iOS 27.0 beta 7 (24A5424a)",
-            "Xcode 27 beta 6 (27A5252f)"
+            "Xcode 27 beta 6 (27A5252f)",
+            "watchOS 27.0 beta 8 (24R5360a)",
+            "visionOS 27.0 beta 8 (24M5361a)",
+            "tvOS 27.0 beta 8 (24J5360a)",
+            "macOS 27.0 beta 8 (26A5425a)",
+            "iPadOS 27.0 beta 8 (24A5430a)",
+            "iOS 27.0 beta 8 (24A5430a)"
         ],
         "new_sec_content": [
             "macOS Sequoia 15.7.7",
