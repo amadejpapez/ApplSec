@@ -23,7 +23,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "watchOS 27.0 beta 8 (24R5360a)",
             "visionOS 27.0 beta 8 (24M5361a)",
             "tvOS 27.0 beta 8 (24J5360a)",
             "macOS 27.0 beta 8 (26A5425a)",
@@ -42,7 +41,8 @@
             "macOS 27.2 beta (26B5086k)",
             "iPadOS 27.2 beta (24B5084k)",
             "iOS 27.2 beta (24B5084k)",
-            "Xcode 27.2 beta (27B5019j)"
+            "Xcode 27.2 beta (27B5019j)",
+            "Xcode 27.1 beta (27A9269)"
         ],
         "new_sec_content": [
             "macOS Tahoe 26.5.2",
