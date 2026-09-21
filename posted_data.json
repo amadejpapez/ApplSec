@@ -23,12 +23,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "visionOS 27.0 beta 8 (24M5361a)",
-            "tvOS 27.0 beta 8 (24J5360a)",
-            "macOS 27.0 beta 8 (26A5425a)",
-            "iPadOS 27.0 beta 8 (24A5430a)",
-            "iOS 27.0 beta 8 (24A5430a)",
-            "watchOS 27.0 RC (24R363)",
             "visionOS 27.0 RC (24M362)",
             "tvOS 27.0 RC (24J360)",
             "macOS 27.0 RC (26A428)",
@@ -42,7 +36,13 @@
             "iPadOS 27.2 beta (24B5084k)",
             "iOS 27.2 beta (24B5084k)",
             "Xcode 27.2 beta (27B5019j)",
-            "Xcode 27.1 beta (27A9269)"
+            "Xcode 27.1 beta (27A9269)",
+            "watchOS 27.2 beta 2 (24S5091f)",
+            "visionOS 27.2 beta 2 (24N5093f)",
+            "tvOS 27.2 beta 2 (24K5093g)",
+            "macOS 27.2 beta 2 (26B5091g)",
+            "iPadOS 27.2 beta 2 (24B5089g)",
+            "iOS 27.2 beta 2 (24B5089g)"
         ],
         "new_sec_content": [
             "macOS Tahoe 26.5.2",
