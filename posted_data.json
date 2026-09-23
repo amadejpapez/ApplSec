@@ -45,7 +45,6 @@
             "iOS 27.2 beta 2 (24B5089g)"
         ],
         "new_sec_content": [
-            "macOS Tahoe 26.5.2",
             "iOS and iPadOS 26.5.2",
             "Safari 26.5.2",
             "visionOS 26.6",
@@ -74,7 +73,8 @@
             "macOS Tahoe 26.7",
             "macOS Golden Gate 27",
             "iOS and iPadOS 26.7",
-            "iOS and iPadOS 27"
+            "iOS and iPadOS 27",
+            "watchOS 27.0.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.6",
