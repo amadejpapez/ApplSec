@@ -18,12 +18,12 @@
         "CVE-2025-43300",
         "CVE-2025-14174",
         "CVE-2025-43529",
-        "CVE-2026-20700"
+        "CVE-2026-20700",
+        "CVE-2026-86950"
     ],
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "visionOS 27.0 RC (24M362)",
             "tvOS 27.0 RC (24J360)",
             "macOS 27.0 RC (26A428)",
             "iPadOS 27.0 RC (24A435)",
@@ -42,15 +42,10 @@
             "tvOS 27.2 beta 2 (24K5093g)",
             "macOS 27.2 beta 2 (26B5091g)",
             "iPadOS 27.2 beta 2 (24B5089g)",
-            "iOS 27.2 beta 2 (24B5089g)"
+            "iOS 27.2 beta 2 (24B5089g)",
+            "Xcode 27.2 beta 2 (27B5028f)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 26.5.2",
-            "Safari 26.5.2",
-            "visionOS 26.6",
-            "watchOS 26.6",
-            "tvOS 26.6",
-            "macOS Sonoma 14.8.8",
             "macOS Sequoia 15.7.8",
             "macOS Tahoe 26.6",
             "iOS and iPadOS 26.6",
@@ -74,14 +69,24 @@
             "macOS Golden Gate 27",
             "iOS and iPadOS 26.7",
             "iOS and iPadOS 27",
-            "watchOS 27.0.1"
+            "watchOS 27.0.1",
+            "visionOS 27.0.1",
+            "macOS Sequoia 15.8.1",
+            "macOS Tahoe 26.7.1",
+            "macOS Golden Gate 27.0.1",
+            "iOS and iPadOS 26.7.1",
+            "iOS and iPadOS 27.0.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.6",
             "iOS and iPadOS 26.6.1",
             "iOS and iPadOS 27"
         ],
-        "zero_days": {},
+        "zero_days": {
+            "iOS and iPadOS 26.7.1": 1,
+            "macOS Sequoia 15.8.1": 1,
+            "macOS Tahoe 26.7.1": 1
+        },
         "yearly_report": []
     }
 }
