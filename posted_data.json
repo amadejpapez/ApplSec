@@ -24,11 +24,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "tvOS 27.2 beta (24K5088l)",
-            "macOS 27.2 beta (26B5086k)",
-            "iPadOS 27.2 beta (24B5084k)",
-            "iOS 27.2 beta (24B5084k)",
-            "Xcode 27.2 beta (27B5019j)",
             "Xcode 27.1 beta (27A9269)",
             "watchOS 27.2 beta 2 (24S5091f)",
             "visionOS 27.2 beta 2 (24N5093f)",
@@ -43,7 +38,12 @@
             "tvOS 27.2 beta 3 (24K5103f)",
             "macOS 27.2 beta 3 (26B5101f)",
             "iPadOS 27.2 beta 3 (24B5099f)",
-            "iOS 27.2 beta 3 (24B5099f)"
+            "iOS 27.2 beta 3 (24B5099f)",
+            "watchOS 27.2 beta 4 (24S5112a)",
+            "visionOS 27.2 beta 4 (24N5114a)",
+            "macOS 27.2 beta 4 (26B5112a)",
+            "iPadOS 27.2 beta 4 (24B5110a)",
+            "iOS 27.2 beta 4 (24B5110a)"
         ],
         "new_sec_content": [
             "macOS Sequoia 15.7.8",
