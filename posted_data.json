@@ -24,7 +24,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "Xcode 27.1 beta (27A9269)",
             "watchOS 27.2 beta 2 (24S5091f)",
             "visionOS 27.2 beta 2 (24N5093f)",
             "tvOS 27.2 beta 2 (24K5093g)",
@@ -43,7 +42,8 @@
             "visionOS 27.2 beta 4 (24N5114a)",
             "macOS 27.2 beta 4 (26B5112a)",
             "iPadOS 27.2 beta 4 (24B5110a)",
-            "iOS 27.2 beta 4 (24B5110a)"
+            "iOS 27.2 beta 4 (24B5110a)",
+            "Xcode 27.2 beta 3 (27B5038j)"
         ],
         "new_sec_content": [
             "macOS Sequoia 15.7.8",
