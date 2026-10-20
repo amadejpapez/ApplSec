@@ -82,11 +82,7 @@
             "iOS and iPadOS 26.6.1",
             "iOS and iPadOS 27"
         ],
-        "zero_days": {
-            "iOS and iPadOS 26.7.1": 1,
-            "macOS Sequoia 15.8.1": 1,
-            "macOS Tahoe 26.7.1": 1
-        },
+        "zero_days": {},
         "yearly_report": []
     }
 }
