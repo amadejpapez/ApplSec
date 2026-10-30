@@ -46,7 +46,6 @@
             "Xcode 27.2 RC (27B48)"
         ],
         "new_sec_content": [
-            "iOS and iPadOS 26.6.2",
             "Xcode 27",
             "Safari 27",
             "visionOS 27",
@@ -75,7 +74,8 @@
             "macOS Golden Gate 27.2",
             "iOS and iPadOS 18.7.11",
             "iOS and iPadOS 26.7.2",
-            "iOS and iPadOS 27.2"
+            "iOS and iPadOS 27.2",
+            "Xcode 27.2"
         ],
         "ios_modules": [
             "iOS and iPadOS 26.6.1",
