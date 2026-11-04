@@ -24,13 +24,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "Xcode 27.1 RC (27A9275)",
-            "watchOS 27.2 beta 3 (24S5101f)",
-            "visionOS 27.2 beta 3 (24N5103f)",
-            "tvOS 27.2 beta 3 (24K5103f)",
-            "macOS 27.2 beta 3 (26B5101f)",
-            "iPadOS 27.2 beta 3 (24B5099f)",
-            "iOS 27.2 beta 3 (24B5099f)",
             "watchOS 27.2 beta 4 (24S5112a)",
             "visionOS 27.2 beta 4 (24N5114a)",
             "macOS 27.2 beta 4 (26B5112a)",
@@ -43,7 +36,14 @@
             "macOS 27.2 RC (26B118)",
             "iPadOS 27.2 RC (24B115)",
             "iOS 27.2 RC (24B115)",
-            "Xcode 27.2 RC (27B48)"
+            "Xcode 27.2 RC (27B48)",
+            "watchOS 27.3 beta (24S5284h)",
+            "visionOS 27.3 beta (24N5286r)",
+            "tvOS 27.3 beta (24K5286g)",
+            "macOS 27.3 beta (26C5035r)",
+            "iPadOS 27.3 beta (24C5037i)",
+            "iOS 27.3 beta (24C5037i)",
+            "Xcode 27.3 beta (27C5020n)"
         ],
         "new_sec_content": [
             "Xcode 27",
