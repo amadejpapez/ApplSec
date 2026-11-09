@@ -2,18 +2,17 @@ name: ApplSec bot
 
 on:
   schedule:
-    # UTC - default and not changeable, https://github.com/orgs/community/discussions/13454
-    # midnight
-    - cron: "0 0 * * *"
-    # every second hour
-    - cron: "0 */2 * * *"
-    # between 4 and 8 pm UTC on weekdays run every 15 minutes as that is the time when updates usually get released
-    - cron: "*/15 16-20 * * 1-5"
+    # every hour
+    - cron: "0 * * * *"
+    # 18:00–22:00 on weekdays run every 15 minutes as that is the time when updates usually get released
+    - cron: "TZ=Europe/Ljubljana */15 18-21 * * 1-5"
   workflow_dispatch:
 
 jobs:
   setup:
     runs-on: ubuntu-latest
+    env:
+      TZ: America/Los_Angeles
 
     steps:
       - name: Checkout main
@@ -41,9 +40,8 @@ jobs:
         run: |
           pip install -r main/requirements.txt
 
-      - name: Set Timezone to America/Los_Angeles
-        run: |
-          sudo timedatectl set-timezone "America/Los_Angeles"
+      - name: Check timezone
+        run: date
 
       - name: Run ApplSec bot
         env:
