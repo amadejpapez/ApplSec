@@ -3,26 +3,35 @@ name: pytest
 on:
   push
 
+env:
+  IMAGE: nikolaik/python-nodejs:python3.15-nodejs26
+
 jobs:
-  tests:
-    name: Python 3.13
+  run:
+    name: Tests
 
     runs-on: ubuntu-latest
+    container:
+      image: ${{ env.IMAGE }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Set up Python
-        uses: actions/setup-python@v7
+      - name: Cache venv
+        id: venv-cache
+        uses: actions/cache@v6
         with:
-          python-version: "3.13"
+          path: venv
+          key: venv-test-${{ env.IMAGE }}-${{ hashFiles('requirements.txt', 'test-requirements.txt') }}
 
       - name: Install dependencies
+        if: steps.venv-cache.outputs.cache-hit != 'true'
         run: |
-          pip install -r requirements.txt
-          pip install -r test-requirements.txt
+          python -m venv venv
+          venv/bin/pip install -r requirements.txt
+          venv/bin/pip install -r test-requirements.txt
 
       - name: Run pytest
         run: |
-          python -m pytest -vv
+          venv/bin/python -m pytest -vv

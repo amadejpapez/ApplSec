@@ -2,15 +2,26 @@ name: ApplSec bot
 
 on:
   schedule:
-    # every hour
-    - cron: "0 * * * *"
-    # 18:00–22:00 on weekdays run every 15 minutes as that is the time when updates usually get released
+    # weekends: every hour
+    - cron: "TZ=Europe/Ljubljana 0 * * * 0,6"
+    # weekdays 18:00 to 22:00: run every 15 minutes as that is the time when updates usually get released
     - cron: "TZ=Europe/Ljubljana */15 18-21 * * 1-5"
+    # weekdays outside the release window: every hour
+    - cron: "TZ=Europe/Ljubljana 0 0-17,22-23 * * 1-5"
   workflow_dispatch:
 
+concurrency:
+  group: applsec-bot
+  cancel-in-progress: false
+
+env:
+  IMAGE: nikolaik/python-nodejs:python3.15-nodejs26
+
 jobs:
-  setup:
+  run:
     runs-on: ubuntu-latest
+    container:
+      image: ${{ env.IMAGE }}
     env:
       TZ: America/Los_Angeles
 
@@ -30,15 +41,18 @@ jobs:
         run: |
           cp branch/posted_data.json main/src/
 
-      - name: Set up Python
-        uses: actions/setup-python@v7
+      - name: Cache venv
+        id: venv-cache
+        uses: actions/cache@v6
         with:
-          python-version: "3.13"
-          cache: "pip"
+          path: venv
+          key: venv-${{ env.IMAGE }}-${{ hashFiles('main/requirements.txt') }}
 
       - name: Install dependencies
+        if: steps.venv-cache.outputs.cache-hit != 'true'
         run: |
-          pip install -r main/requirements.txt
+          python -m venv venv
+          venv/bin/pip install -r main/requirements.txt
 
       - name: Check timezone
         run: date
@@ -62,18 +76,19 @@ jobs:
           BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
           BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
         run: |
-          python main/src/main.py
+          venv/bin/python main/src/main.py
 
       - name: Save posted_data.json
         if: always()
+        working-directory: branch
         run: |
-          cd branch/
           cp ../main/src/posted_data.json .
 
           if [[ $(git status --porcelain) ]]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config user.name "forgejo-actions"
+            git config user.email "noreply@forgejo.org"
 
             git add .
-            git diff --staged --quiet || git commit -m "$(date +'%Y-%m-%d %I:%M:%S %p %z')" && git push
+            git commit -m "$(date +'%Y-%m-%d %I:%M:%S %p %z')"
+            git push
           fi
