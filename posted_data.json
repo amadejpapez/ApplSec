@@ -24,8 +24,6 @@
     "details_available_soon": [],
     "posts": {
         "new_releases": [
-            "visionOS 27.2 RC (24N118)",
-            "tvOS 27.2 RC (24K120)",
             "macOS 27.2 RC (26B118)",
             "iPadOS 27.2 RC (24B115)",
             "iOS 27.2 RC (24B115)",
@@ -43,7 +41,9 @@
             "macOS 27.3 beta 2 (26C5047e)",
             "iPadOS 27.3 beta 2 (24C5049d)",
             "iOS 27.3 beta 2 (24C5049d)",
-            "Xcode 27.3 beta 2 (27C5035i)"
+            "Xcode 27.3 beta 2 (27C5035i)",
+            "iPadOS 27.3 beta 2 v2 (24C5049f)",
+            "iOS 27.3 beta 2 v2 (24C5049f)"
         ],
         "new_sec_content": [
             "macOS Sequoia 15.8.1",
