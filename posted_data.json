@@ -46,7 +46,6 @@
             "Xcode 27.3 beta 2 (27C5035i)"
         ],
         "new_sec_content": [
-            "visionOS 27.0.1",
             "macOS Sequoia 15.8.1",
             "macOS Tahoe 26.7.1",
             "macOS Golden Gate 27.0.1",
@@ -75,7 +74,8 @@
             "iOS and iPadOS 26.7.3",
             "iOS and iPadOS 27.2.1",
             "HomeView Software Version 27.2",
-            "tvOS 27.2.1"
+            "tvOS 27.2.1",
+            "HomeView Software Version 27.2.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 27",
