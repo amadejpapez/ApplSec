@@ -1,4 +1,6 @@
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 # Apple's CDN seems to answer uncached pages with 429 when the request has a non-browser User-Agent
 session = requests.Session()
@@ -9,3 +11,15 @@ session.headers.update(
         "Accept-Language": "en-US,en;q=0.9",
     }
 )
+
+# Do 3 retries on errors we can recover from
+retries = Retry(
+    total=3,
+    connect=1,
+    backoff_factor=2,
+    status_forcelist=(429, 500, 502, 503, 504),
+    allowed_methods=("GET",),
+    retry_after_max=30,
+)
+adapter = HTTPAdapter(max_retries=retries)
+session.mount("https://", adapter)

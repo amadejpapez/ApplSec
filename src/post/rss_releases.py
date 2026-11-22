@@ -8,15 +8,23 @@ from release import Release
 
 
 def _request_rss_feed() -> str:
-    return session.get("https://developer.apple.com/news/releases/rss/releases.rss", timeout=60).text
+    response = session.get("https://developer.apple.com/news/releases/rss/releases.rss", timeout=60)
+    response.raise_for_status()
+    return response.text
 
 
-def retrieve_rss(rss: str = _request_rss_feed()) -> lxml.etree._Element:
+def retrieve_rss(rss: str | None = None) -> lxml.etree._Element:
+    if rss is None:
+        rss = _request_rss_feed()
+
     return lxml.etree.fromstring(rss.encode("utf-8"), None)
 
 
-def get_new(xml_tree: lxml.etree._Element = retrieve_rss()) -> list[Release]:
+def get_new(xml_tree: lxml.etree._Element | None = None) -> list[Release]:
     """Return new (beta) releases from RSS that have not been posted yet."""
+    if xml_tree is None:
+        xml_tree = retrieve_rss()
+
     new_releases = []
 
     for el in xml_tree.xpath("//item"):

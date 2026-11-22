@@ -16,7 +16,10 @@ def request_sec_page(url: str = "https://support.apple.com/en-us/100100") -> str
     return response.text
 
 
-def retrieve_page(html: str = request_sec_page()) -> list[list[lxml.html.HtmlElement]]:
+def retrieve_page(html: str | None = None) -> list[list[lxml.html.HtmlElement]]:
+    if html is None:
+        html = request_sec_page()
+
     main_page = lxml.html.document_fromstring(html)
 
     table = main_page.xpath("//table/tbody")[0].findall("tr")
@@ -186,7 +189,9 @@ def format_ios_release(releases: list[Release]) -> list[str]:
 
     release = releases[0]
 
-    sec_content_html = session.get(release.security_content_link, timeout=60).text
+    response = session.get(release.security_content_link, timeout=60)
+    response.raise_for_status()
+    sec_content_html = response.text
     modules_html = Release.get_html_entries(sec_content_html)
 
     modules: dict[str, int] = {}

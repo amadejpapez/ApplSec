@@ -92,7 +92,9 @@ class Release:
 
         if security_content_link:
             try:
-                sec_content_page_html = session.get(security_content_link, timeout=60).text
+                response = session.get(security_content_link, timeout=60)
+                response.raise_for_status()
+                sec_content_page_html = response.text
 
                 sec_content_page = sec_content_page_html.replace("&nbsp;", " ")
                 sec_content_page = " ".join(sec_content_page.split())
