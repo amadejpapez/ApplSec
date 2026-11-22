@@ -2,15 +2,18 @@ import collections
 import re
 
 import lxml.html
-import requests
 
 import helpers.get_version_info as get_version_info
 from helpers.posted_file import PostedFile
+from helpers.session import session
 from release import Release
 
 
 def request_sec_page(url: str = "https://support.apple.com/en-us/100100") -> str:
-    return requests.get(url, timeout=60).text
+    response = session.get(url, timeout=60)
+    # Fail on error (non 2xx) statuses
+    response.raise_for_status()
+    return response.text
 
 
 def retrieve_page(html: str = request_sec_page()) -> list[list[lxml.html.HtmlElement]]:
@@ -183,7 +186,7 @@ def format_ios_release(releases: list[Release]) -> list[str]:
 
     release = releases[0]
 
-    sec_content_html = requests.get(release.security_content_link, timeout=60).text
+    sec_content_html = session.get(release.security_content_link, timeout=60).text
     modules_html = Release.get_html_entries(sec_content_html)
 
     modules: dict[str, int] = {}

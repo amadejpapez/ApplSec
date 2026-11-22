@@ -1,14 +1,14 @@
 import lxml.etree
 import lxml.html
-import requests
 
 import helpers.get_date as get_date
 from helpers.posted_file import PostedFile
+from helpers.session import session
 from release import Release
 
 
 def _request_rss_feed() -> str:
-    return requests.get("https://developer.apple.com/news/releases/rss/releases.rss", timeout=60).text
+    return session.get("https://developer.apple.com/news/releases/rss/releases.rss", timeout=60).text
 
 
 def retrieve_rss(rss: str = _request_rss_feed()) -> lxml.etree._Element:

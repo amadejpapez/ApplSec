@@ -25,9 +25,9 @@ import re
 
 import lxml.etree
 import lxml.html
-import requests
 
 import helpers.get_date as get_date
+from helpers.session import session
 
 
 class Release:
@@ -92,7 +92,7 @@ class Release:
 
         if security_content_link:
             try:
-                sec_content_page_html = requests.get(security_content_link, timeout=60).text
+                sec_content_page_html = session.get(security_content_link, timeout=60).text
 
                 sec_content_page = sec_content_page_html.replace("&nbsp;", " ")
                 sec_content_page = " ".join(sec_content_page.split())
