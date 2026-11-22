@@ -2,6 +2,8 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
+# Do not use this session on post calls to social media
+
 # Apple's CDN seems to answer uncached pages with 429 when the request has a non-browser User-Agent
 session = requests.Session()
 session.headers.update(
@@ -18,7 +20,7 @@ retries = Retry(
     connect=1,
     backoff_factor=2,
     status_forcelist=(429, 500, 502, 503, 504),
-    allowed_methods=("GET",),
+    allowed_methods=("GET", "POST"),
     retry_after_max=30,
 )
 adapter = HTTPAdapter(max_retries=retries)

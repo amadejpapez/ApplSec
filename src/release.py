@@ -23,7 +23,6 @@ from __future__ import annotations
 
 import re
 
-import lxml.etree
 import lxml.html
 
 import helpers.get_date as get_date
@@ -256,24 +255,3 @@ class Release:
     @staticmethod
     def get_html_entry_title(entry: str) -> str:
         return re.findall(r"(?i).+?(?=</strong>|</b>|</h3>)", entry)[0]
-
-    @staticmethod
-    def from_rss_release(xml_item: lxml.etree._Element) -> Release:
-        """
-        Input format is of type lxml.etree._Element from Apple Releases page.
-        Example item from Apple Releases RSS feed:
-        -----
-        <item xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
-            <title>iPadOS 15.7.3 (19H307)</title>
-            <link>https://developer.apple.com/news/releases/?id=01232023a</link>
-            <guid>https://developer.apple.com/news/releases/?id=01232023a</guid>
-            <description>View downloads</description>
-            <pubDate>Mon, 23 Jan 2023 09:00:00 PST</pubDate>
-            <content:encoded>&lt;p&gt;&lt;a href=/download class=more&gt;View downloads&lt;/a&gt;&lt;/p&gt;</content:encoded>
-        </item>
-        -----
-        """
-
-        name = xml_item.xpath("title")[0].text
-
-        return Release(name, Release.parse_emoji(name), xml_item.xpath("link")[0].text, "", "", {}, 0, 0, 0, 0)

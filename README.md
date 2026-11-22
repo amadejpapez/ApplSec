@@ -29,7 +29,7 @@ The bot starts by checking the [Apple Security Updates](https://support.apple.co
 
 If Apple says "no details yet", it will save the release internally and post that information is not available yet. It will continue to check any pending releases and make the post when security content is available with the information it contains.
 
-To stay up to date with beta cycles, the bot is checking the RSS feed of the [Apple Developer Releases](https://developer.apple.com/news/releases) page.
+To stay up to date with beta cycles, the bot is checking Pallas (`gdmf.apple.com`), the server Apple devices check for updates, as it has new builds instantly. We previously used the [Apple Developer Releases](https://developer.apple.com/news/releases) RSS page but it is updated often an hour or even more later.
 
 Once the new releases are gathered, it arranges their data into a post or a thread as needed and sends it to the respective social media API.
 

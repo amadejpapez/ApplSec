@@ -14,7 +14,7 @@ def test_posted_data_create() -> None:
     if os.path.exists(FILE_LOC):
         os.remove(FILE_LOC)
 
-    # verify that it fails because "new_releases" is empty
+    # verify that it fails because "new_sec_content" is empty
     with pytest.raises(AssertionError):
         PostedFile.read()
 
@@ -29,7 +29,7 @@ def test_posted_data_invalid_file() -> None:
     with open(FILE_LOC, "r", encoding="utf-8") as json_file:
         assert json_file.read() == "{"
 
-    # verify that it fails because "new_releases" is empty
+    # verify that it fails because "new_sec_content" is empty
     with pytest.raises(AssertionError):
         PostedFile.read()
 

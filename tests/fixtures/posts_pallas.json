@@ -1,0 +1,39 @@
+{
+    "assets": [
+        ["iOS", {"OSVersion": "9.9.27.3", "Build": "24C5037i", "SUDocumentationID": "iOS273Beta1", "RestoreVersionInfo": {"IsSeed": true}}],
+        ["iPadOS", {"OSVersion": "9.9.27.3", "Build": "24C5037i", "SUDocumentationID": "iPadOS273Beta1", "RestoreVersionInfo": {"IsSeed": true}}],
+        ["macOS", {"OSVersion": "27.3", "Build": "26C5035r", "SUDocumentationID": "macOS273Beta1", "RestoreVersionInfo": {"IsSeed": true}}],
+        ["tvOS", {"OSVersion": "27.3", "Build": "24K5286g", "SUDocumentationID": "PreRelease", "RestoreVersionInfo": {"IsSeed": true}}],
+        ["iOS", {"OSVersion": "9.9.26.7.2", "Build": "23H128", "SUDocumentationID": "iOS2672Short"}],
+        ["macOS", {"OSVersion": "26.7.3", "Build": "25G416", "SUDocumentationID": "macOS2673RC"}],
+        ["visionOS", {"OSVersion": "26.6.1", "Build": "23O780", "SUDocumentationID": "visionOS2661Long"}]
+    ],
+    "final_builds": ["23H128", "23O780", "24B119"],
+    "beta_releases_posted": {
+        "iOS": [
+            {"version": "27.3", "type": "beta", "beta": 1, "build": "24C5037i"}
+        ],
+        "iPadOS": [
+            {"version": "27.3", "type": "beta", "beta": 1, "build": "24C5037i"}
+        ],
+        "macOS": [
+            {"version": "27.3", "type": "beta", "beta": 1, "build": "26C5035r"},
+            {"version": "26.7.3", "type": "RC", "build": "25G416"}
+        ],
+        "tvOS": [
+            {"version": "27.3", "type": "beta", "build": "24K5286g"}
+        ]
+    },
+    "beta_releases_post": [
+        "🧪 NEW BETA RELEASES 🧪\n\n",
+        "📱 iOS 27.3 beta 1 (24C5037i)\n",
+        "📱 iPadOS 27.3 beta 1 (24C5037i)\n",
+        "💻 macOS 26.7.3 RC (25G416)\n",
+        "💻 macOS 27.3 beta 1 (26C5035r)\n",
+        "📺 tvOS 27.3 beta (24K5286g)\n"
+    ],
+    "beta_releases_one_post": [
+        "🧪 NEW BETA RELEASE 🧪\n\n",
+        "📱 iOS 27.3 beta 1 (24C5037i)\n"
+    ]
+}

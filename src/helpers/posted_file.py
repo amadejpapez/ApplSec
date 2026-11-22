@@ -3,6 +3,7 @@ Save and read data in src/posted_data.json
 
 File is used to store:
     - what was posted today
+    - releases posted from Pallas per OS
     - 10 last zero-day CVEs, for "new" and "additional" patch text
     - releases for which Apple says "no details yet"
 """
@@ -22,7 +23,7 @@ class PostedFile:
         "zero_days": [],
         "details_available_soon": [],
         "posts": {
-            "new_releases": [],
+            "beta_releases": {},
             "new_sec_content": [],
             "ios_modules": [],
             "zero_days": {},
@@ -56,8 +57,8 @@ class PostedFile:
 
     @staticmethod
     def _clear_old_data(new_data: dict) -> dict:
-        while len(new_data["posts"]["new_releases"]) > 20:
-            new_data["posts"]["new_releases"].pop(0)
+        for posted in new_data["posts"]["beta_releases"].values():
+            del posted[:-20]
 
         while len(new_data["posts"]["new_sec_content"]) > 30:
             new_data["posts"]["new_sec_content"].pop(0)

@@ -21,20 +21,6 @@ def is_midnight() -> bool:
     return datetime.datetime.now().hour == 0
 
 
-def format_one() -> str:
-    """
-    Return date in a format: 08 Jan 2022
-    Used on the main security page for security content release date
-    and in Developer RSS for new releases.
-    """
-
-    tmp_date = check_date()
-
-    date_format = f"{tmp_date.day:02d} {tmp_date.strftime('%b')} {tmp_date.year}"
-
-    return date_format
-
-
 def format_two() -> str:
     """
     Return date in a format: January 2, 2022
