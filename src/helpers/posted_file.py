@@ -40,7 +40,8 @@ class PostedFile:
         try:
             with open(PostedFile._LOC, "r", encoding="utf-8") as json_file:
                 PostedFile.data = json.load(json_file)
-        except Exception:
+        except FileNotFoundError:
+            # Only create a new file if missing, an invalid one must fail instead of being emptied
             PostedFile.data = copy.deepcopy(PostedFile.FILE_STRUCTURE)
             PostedFile.save()
 

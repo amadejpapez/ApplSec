@@ -362,7 +362,8 @@ def get_entry_changes(all_release_rows: list[list[lxml.html.HtmlElement]]) -> li
     changed_releases = []
 
     for row in all_release_rows:
-        release = Release.parse_from_table(row)
+        # Checks hundreds of pages, so one failing should not skip changes of all others
+        release = Release.parse_from_table(row, skip_failed_fetch=True)
 
         if release.num_entries_added > 0 or release.num_entries_updated > 0:
             changed_releases.append(release)

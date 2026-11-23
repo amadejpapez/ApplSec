@@ -4,6 +4,7 @@ from freezegun import freeze_time
 from helpers_test import compare, info_to_release, read_examples, row_to_lxml, row_to_release
 
 import helpers.get_version_info as get_version_info
+import helpers.run_errors as run_errors
 import post.sec_content as sec_content
 from helpers.posted_file import PostedFile
 from release import Release
@@ -349,3 +350,30 @@ def test_zero_day_many_new_many_old() -> None:
 
     post = sec_content.format_zero_days(new_zero_days)
     assert post == examples["zero_day_releases_many_new_many_old_post"]
+
+
+def _failing_get(*args, **kwargs):
+    raise ConnectionError("security content page down")
+
+
+def test_release_failed_fetch_raises(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Verify that a failed security content fetch raises, so the release is not posted with wrong data and marked as posted."""
+    PostedFile.reset()
+    PostedFile.data["posts"]["new_sec_content"] = ["placeholder"]
+    monkeypatch.setattr("release.session.get", _failing_get)
+
+    with pytest.raises(ConnectionError):
+        sec_content.get_new(row_to_lxml(examples["last_one_year_table"][6:7]))
+
+    assert PostedFile.data["posts"]["new_sec_content"] == ["placeholder"]
+
+
+def test_entry_changes_failed_fetch_skipped(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Verify that a failed fetch in the entry changes check is skipped and collected as a run error."""
+    monkeypatch.setattr("release.session.get", _failing_get)
+    rows = row_to_lxml(examples["last_one_year_table"][6:8])
+
+    assert sec_content.get_entry_changes(rows) == []
+    # skipped, but the run should still fail at the end
+    assert len(run_errors.errors) == 2
+    run_errors.errors.clear()

@@ -2,6 +2,7 @@ import copy
 
 from helpers_test import read_examples
 
+import helpers.run_errors as run_errors
 import post.pallas_stable_releases as pallas_stable_releases
 from helpers.posted_file import PostedFile
 from post.pallas_stable_releases import StableRelease
@@ -78,3 +79,6 @@ def test_pallas_stable_releases_malformed() -> None:
     assert "24B156" in {release.build for release in stable_releases}
     assert "iPadOS" not in latest_versions
     assert latest_versions["iOS"]["27"] == "27.2.1"
+    # skipped, but the run should still fail at the end
+    assert len(run_errors.errors) == 1
+    run_errors.errors.clear()

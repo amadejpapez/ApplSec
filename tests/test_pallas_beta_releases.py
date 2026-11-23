@@ -2,6 +2,7 @@ import copy
 
 from helpers_test import read_examples
 
+import helpers.run_errors as run_errors
 import post.pallas_beta_releases as pallas_beta_releases
 import post.pallas_stable_releases as pallas_stable_releases
 from helpers.posted_file import PostedFile
@@ -123,6 +124,9 @@ def test_pallas_beta_releases_malformed_asset() -> None:
     beta_releases = pallas_beta_releases.get_new(malformed + beta_assets[:1], stable_releases)
 
     assert [release.name for release in beta_releases] == ["iOS 27.3 beta 1 (24C5037i)"]
+    # skipped, but the run should still fail at the end
+    assert len(run_errors.errors) == 2
+    run_errors.errors.clear()
 
 
 def test_pallas_beta_releases_stable_only_in_asset_sets() -> None:

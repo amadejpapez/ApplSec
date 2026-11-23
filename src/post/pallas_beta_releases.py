@@ -10,6 +10,7 @@ import re
 from dataclasses import dataclass
 
 import helpers.pallas as pallas
+import helpers.run_errors as run_errors
 from helpers.posted_file import PostedFile
 from helpers.session import session
 from post.pallas_stable_releases import StableRelease
@@ -133,6 +134,7 @@ def get_beta_updates() -> list[tuple[str, dict]]:
                 beta_assets += [(target.name, asset) for asset in _get_offered_beta_updates_for_device(target, audience)]
             except Exception as e:
                 print(f"ERROR: Pallas request failed for {target.name} ({audience})\n" + repr(e) + "\n")
+                run_errors.errors.append(e)
 
     return beta_assets
 
@@ -164,6 +166,7 @@ def get_new(beta_assets: list[tuple[str, dict]], stable_releases: list[StableRel
             build = asset["Build"]
         except (KeyError, AttributeError) as e:
             print(f"ERROR: Pallas asset for {os_name} is missing its version or build, skipping it\n" + repr(e) + "\n")
+            run_errors.errors.append(e)
             continue
 
         # If not marked as public seed -> is beta

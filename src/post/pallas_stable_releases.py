@@ -8,6 +8,7 @@ import re
 from dataclasses import dataclass
 
 import helpers.pallas as pallas
+import helpers.run_errors as run_errors
 from helpers.posted_file import PostedFile
 from helpers.session import session
 from release import Release
@@ -92,6 +93,7 @@ def _parse_stable_releases(pmv: dict) -> list[StableRelease]:
             for entry in entries:
                 if not entry.get("Build"):
                     print(f"ERROR: Pallas stable release is missing its build, skipping it\n{entry}\n")
+                    run_errors.errors.append(ValueError(f"Pallas stable release is missing its build: {entry}"))
                     continue
 
                 try:
@@ -100,6 +102,7 @@ def _parse_stable_releases(pmv: dict) -> list[StableRelease]:
                     os_names = _get_os_names_for_release(pmv_key, entry, version)
                 except (KeyError, TypeError, AttributeError) as e:
                     print(f"ERROR: Pallas stable release {entry['Build']} is missing its version or devices\n" + repr(e) + "\n")
+                    run_errors.errors.append(e)
                     version, os_names = None, set()
 
                 releases.append(StableRelease(entry["Build"], version, os_names, public))

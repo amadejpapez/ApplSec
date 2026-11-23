@@ -1,7 +1,6 @@
 import datetime
 import os
 import re
-import sys
 
 import requests
 
@@ -231,7 +230,7 @@ def post(results_mastodon: list[str], results_twitter: list[str] = [], use_test_
         toot(list(results_mastodon), use_test_account)
     except Exception as e:
         print("ERROR: Mastodon failed to post\n" + str(results_mastodon) + "\n" + str(e) + "\n")
-        sys.exit(1)
+        raise
 
     try:
         tweet(list(results_twitter), use_test_account)

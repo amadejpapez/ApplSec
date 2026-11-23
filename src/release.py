@@ -26,6 +26,7 @@ import re
 import lxml.html
 
 import helpers.get_date as get_date
+import helpers.run_errors as run_errors
 from helpers.session import session
 
 
@@ -73,7 +74,7 @@ class Release:
         return f"{self.num_entries_updated} updated"
 
     @staticmethod
-    def parse_from_table(row: list[lxml.html.HtmlElement]) -> Release:
+    def parse_from_table(row: list[lxml.html.HtmlElement], skip_failed_fetch: bool = False) -> Release:
         """
         Input format is the release row from the Apple Security Content page.
         All 3 elements are of type lxml.html.HtmlElement. This is an example of their contents:
@@ -84,6 +85,9 @@ class Release:
             "26 Jan 2022"
         ]
         -----
+
+        A failed security content fetch raises, as posting it would show wrong data and mark it as posted.
+        With skip_failed_fetch it is collected as a run error and parsed without security content instead.
         """
 
         name = Release.parse_name(row)
@@ -99,7 +103,11 @@ class Release:
                 sec_content_page = " ".join(sec_content_page.split())
 
             except Exception as e:
-                print(f"ERROR: security content parsing failed for\n{name}\n" + str(e) + "\n")
+                print(f"ERROR: security content parsing failed for\n{name}\n" + repr(e) + "\n")
+                if not skip_failed_fetch:
+                    raise
+
+                run_errors.errors.append(e)
                 security_content_link = ""
                 sec_content_page = ""
         else:
