@@ -13,7 +13,7 @@ examples = read_examples("posts_pallas")
 def test_pallas_stable_download() -> None:
     """Verify successful download, including Apple's certificate, and that all OSes are returned."""
     stable_releases = pallas_stable_releases.get_stable_releases()
-    os_names = {"iOS", "iPadOS", "macOS", "tvOS", "watchOS", "visionOS", "HomePod Software"}
+    os_names = {"iOS", "iPadOS", "macOS", "tvOS", "watchOS", "visionOS", "HomePod Software", "HomeView Software"}
 
     assert set(pallas_stable_releases.get_latest_versions(stable_releases)) == os_names
 

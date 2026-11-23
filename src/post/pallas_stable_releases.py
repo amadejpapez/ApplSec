@@ -32,6 +32,7 @@ _PMV_IOS_DEVICE_FAMILIES = {
     "AppleTV": "tvOS",
     "Watch": "watchOS",
     "AudioAccessory": "HomePod Software",
+    "HomeAccessory": "HomeView Software",
 }
 _PMV_OS_KEYS = ["macOS", "visionOS"]
 
