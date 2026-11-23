@@ -16,6 +16,7 @@ import json
 import os
 
 import helpers.get_date as get_date
+import helpers.pallas as pallas
 
 
 class PostedFile:
@@ -52,7 +53,7 @@ class PostedFile:
     @staticmethod
     def save() -> None:
         with open(PostedFile._LOC, "w", encoding="utf-8") as json_file:
-            json.dump(PostedFile._clear_old_data(PostedFile.data), json_file, indent=4)
+            json.dump(PostedFile._sort_releases(PostedFile._clear_old_data(PostedFile.data)), json_file, indent=4)
 
     @staticmethod
     def reset() -> None:
@@ -72,5 +73,22 @@ class PostedFile:
         if get_date.is_midnight():
             new_data["posts"]["zero_days"] = {}
             new_data["posts"]["yearly_report"] = []
+
+        return new_data
+
+    @staticmethod
+    def _sort_releases(new_data: dict) -> dict:
+        """Sort Pallas releases by OS name and version."""
+
+        for key in ["beta_releases", "stable_releases"]:
+            # Missing in a file, saving must not fail because of it
+            if key not in new_data["posts"]:
+                continue
+
+            releases = new_data["posts"][key]
+            new_data["posts"][key] = {
+                os_name: dict(sorted(releases[os_name].items(), key=lambda item: pallas.split_version_into_key(item[0]), reverse=True))
+                for os_name in sorted(releases, key=str.lower)
+            }
 
         return new_data

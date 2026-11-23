@@ -36,11 +36,6 @@ _PMV_IOS_DEVICE_FAMILIES = {
 _PMV_OS_KEYS = ["macOS", "visionOS"]
 
 
-def _split_version_into_key(version: str) -> tuple[int, ...]:
-    """Return version key for sorting: "27.2.1" -> (27, 2, 1)."""
-    return tuple(int(part) for part in version.split(".") if part.isdigit())
-
-
 def _get_os_names_for_release(pmv_key: str, entry: dict, version: str) -> set[str]:
     """
     Return set of OS names for a release.
@@ -56,7 +51,7 @@ def _get_os_names_for_release(pmv_key: str, entry: dict, version: str) -> set[st
         return set()
 
     os_names = set()
-    before_ipados = _split_version_into_key(version) < (13,)
+    before_ipados = pallas.split_version_into_key(version) < (13,)
 
     for device in entry["SupportedDevices"]:
         # "iPhone18,1" -> "iPhone"
@@ -127,7 +122,7 @@ def get_latest_versions(stable_releases: list[StableRelease]) -> dict[str, dict[
             latest = versions.setdefault(os_name, {})
             major_number = release.version.split(".")[0]
 
-            if major_number not in latest or _split_version_into_key(release.version) > _split_version_into_key(latest[major_number]):
+            if major_number not in latest or pallas.split_version_into_key(release.version) > pallas.split_version_into_key(latest[major_number]):
                 latest[major_number] = release.version
 
     return versions
@@ -141,7 +136,7 @@ def get_new(latest_versions: dict[str, dict[str, str]]) -> list[Release]:
         posted = PostedFile.data["posts"]["stable_releases"].setdefault(os_name, {})
 
         for major, version in latest.items():
-            if major not in posted or _split_version_into_key(version) > _split_version_into_key(posted[major]):
+            if major not in posted or pallas.split_version_into_key(version) > pallas.split_version_into_key(posted[major]):
                 posted[major] = version
                 new_releases.append(Release.from_name(f"{os_name} {version}"))
 
