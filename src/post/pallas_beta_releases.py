@@ -13,6 +13,7 @@ import helpers.pallas as pallas
 import helpers.run_errors as run_errors
 from helpers.posted_file import PostedFile
 from helpers.session import session
+import post.pallas_stable_releases as pallas_stable_releases
 from post.pallas_stable_releases import StableRelease
 from release import Release
 
@@ -20,75 +21,95 @@ from release import Release
 _ASSET_TYPE = "com.apple.MobileAsset.SoftwareUpdate"
 _ASSET_TYPE_MAC = "com.apple.MobileAsset.MacSoftwareUpdate"
 
-# Version the device reports to be on, Apple only offers newer releases. The same iOS
-# build is intentionally sent for all OSes, it still returns betas for current and next major versions
-_PRODUCT_VERSION = "26.0"
-_BUILD_VERSION = "23A341"
-
 
 @dataclass(frozen=True)
 class DeviceTarget:
     name: str
     product_type: str
     hw_model: str
+    # Version the device reports to be on. Apple only offers newer releases, and betas of an older major
+    # only to a device on it, so report the oldest major. Newer majors are still offered from their channels.
+    product_version: str
+    build_version: str
     beta_audiences: list[str]
     asset_type: str = _ASSET_TYPE
 
 
 # Devices we request betas for, we only get betas for these devices
-# Prefer devices that are not the newest, as a device released with a new major version does not get betas of the previous one
+# Use devices that run the oldest major and still get the newest one, as a device released with a newer major
+# cannot report the older one, and one dropped from a newer major does not get its betas
 _DEVICE_TARGETS: list[DeviceTarget] = [
     DeviceTarget(
         name="iOS",
-        product_type="iPhone18,1",  # iPhone 17 Pro (2025)
-        hw_model="V53AP",
+        product_type="iPhone17,1",  # iPhone 16 Pro (2024)
+        hw_model="D93AP",
+        product_version="18.0",
+        build_version="22A3354",
         beta_audiences=[
             "a5f921db-50af-448c-8f7e-3f093ca2c954",  # 27
             "da1941f6-9822-4347-b771-fb09c3509052",  # 26
+            "9953ae7e-ec38-48d6-9d3c-5c1a15a536dc",  # 18.x
         ],
     ),
     DeviceTarget(
         name="iPadOS",
-        product_type="iPad17,1",  # iPad Pro 11" M5 (2025)
-        hw_model="J817AP",
+        product_type="iPad16,3",  # iPad Pro 11" M4 (2024)
+        hw_model="J717AP",
+        product_version="18.0",
+        build_version="22A3354",
         beta_audiences=[
             "a5f921db-50af-448c-8f7e-3f093ca2c954",  # 27
             "da1941f6-9822-4347-b771-fb09c3509052",  # 26
+            "9953ae7e-ec38-48d6-9d3c-5c1a15a536dc",  # 18.x
         ],
     ),
     DeviceTarget(
         name="macOS",
-        product_type="Mac17,2",  # MacBook Pro 14" M5 (2025)
-        hw_model="J704AP",
+        product_type="Mac15,3",  # MacBook Pro 14" M3 (2023)
+        hw_model="J504AP",
+        product_version="15.0",
+        build_version="24A335",
         asset_type=_ASSET_TYPE_MAC,
         beta_audiences=[
             "621ba5ab-54b6-4a71-891a-425ac0ce4551",  # 27
             "832afda4-7283-41da-a95b-75f4a151e473",  # 26
+            "98df7800-8378-4469-93bf-5912da21a1e1",  # 15
         ],
     ),
     DeviceTarget(
         name="tvOS",
         product_type="AppleTV14,1",  # Apple TV 4K 3rd generation (2022)
         hw_model="J255AP",
+        product_version="18.0",
+        build_version="22J357",
         beta_audiences=[
             "6ca2978e-e976-48b5-9b85-cba646d5dea8",  # 27
+            "69cc7bd5-9ff2-4f5e-8b4f-30955542a81d",  # 26
+            "98847ed4-1c37-445c-9e7b-5b95d29281f2",  # 18
         ],
     ),
     DeviceTarget(
         name="watchOS",
-        product_type="Watch7,17",  # Apple Watch Series 11 (2025)
-        hw_model="N227sAP",
+        product_type="Watch7,1",  # Apple Watch Series 9 (2023)
+        hw_model="N207sAP",
+        product_version="11.0",
+        build_version="22R349",
         beta_audiences=[
             "973a069a-8d0c-4247-8239-9493f14ee56e",  # 27
+            "e73d2741-8003-45cd-b909-86b9840f2ea2",  # 26
+            "23d7265b-1000-47cf-8d0a-07144942db9e",  # 11
         ],
     ),
     DeviceTarget(
         name="visionOS",
-        product_type="RealityDevice17,1",  # Apple Vision Pro M5 (2025)
-        hw_model="N301aAP",
+        product_type="RealityDevice14,1",  # Apple Vision Pro (2024)
+        hw_model="N301AP",
+        product_version="2.0",
+        build_version="22N320",
         beta_audiences=[
             "3796f01d-bf07-45c2-8df6-ad7300055ed9",  # 27
             "6cc62786-ab10-4911-bbc3-ebb7815972f6",  # 26
+            "0bef3239-79ad-4d2a-99c3-2c05df2becf8",  # 2
         ],
     ),
 ]
@@ -112,8 +133,8 @@ def _get_offered_beta_updates_for_device(device_target: DeviceTarget, audience: 
             "AssetAudience": audience,
             "ProductType": device_target.product_type,
             "HWModelStr": device_target.hw_model,
-            "ProductVersion": _PRODUCT_VERSION,
-            "BuildVersion": _BUILD_VERSION,
+            "ProductVersion": device_target.product_version,
+            "BuildVersion": device_target.build_version,
             "CompatibilityVersion": 20,
         },
         verify=pallas.APPLE_ROOT_CA,
@@ -154,9 +175,27 @@ def _parse_beta_number(asset: dict) -> int | None:
     return int(beta_number.group(1)) if beta_number else None
 
 
+def _is_older_than_stable(latest_versions: dict[str, dict[str, str]], os_name: str, version: str) -> bool:
+    """
+    Return True if a version is not newer than the latest stable of its major.
+    Apple keep serving old betas and stable releases long after, which are not in stable releases from PMV anymore.
+    """
+    latest = latest_versions.get(os_name)
+    if not latest:
+        return False
+
+    major = version.split(".")[0]
+    if major in latest:
+        return pallas.split_version_into_key(version) <= pallas.split_version_into_key(latest[major])
+
+    # A major older than the newest released one that is not released anymore, like tvOS 18 when only 26 and 27 are
+    return int(major) < max(int(latest_major) for latest_major in latest)
+
+
 def get_new(beta_assets: list[tuple[str, dict]], stable_releases: list[StableRelease]) -> list[Release]:
     """Return new beta and RC releases that have not been posted yet."""
     stable_build_numbers = {release.build for release in stable_releases}
+    latest_stable_versions = pallas_stable_releases.get_latest_versions(stable_releases)
     latest_returned: dict[tuple[str, str], dict] = {}
 
     for os_name, asset in beta_assets:
@@ -164,9 +203,13 @@ def get_new(beta_assets: list[tuple[str, dict]], stable_releases: list[StableRel
             # "9.9.27.3" -> "27.3" and "27.0" -> "27"
             version = asset["OSVersion"].removeprefix("9.9.").removesuffix(".0")
             build = asset["Build"]
-        except (KeyError, AttributeError) as e:
+            older_than_stable = _is_older_than_stable(latest_stable_versions, os_name, version)
+        except (KeyError, AttributeError, ValueError) as e:
             print(f"ERROR: Pallas asset for {os_name} is missing its version or build, skipping it\n" + repr(e) + "\n")
             run_errors.errors.append(e)
+            continue
+
+        if older_than_stable:
             continue
 
         # If not marked as public seed -> is beta
@@ -175,7 +218,7 @@ def get_new(beta_assets: list[tuple[str, dict]], stable_releases: list[StableRel
             release_type, beta_number = "beta", _parse_beta_number(asset)
         elif not stable_build_numbers or build in stable_build_numbers:
             # Beta channels also contain stable releases and RCs do not have the beta flag, so anything not in stable release from PVM is considered an RC.
-            # If build is in stable builds skip it. Also skip if stable builds failed and is empty.
+            # If build is in stable builds skip it. Also skip if there are no stable builds to compare with.
             continue
         else:
             # Not in stable builds and not marked as a beta, assume it is RC

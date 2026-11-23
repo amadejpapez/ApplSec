@@ -135,3 +135,30 @@ def test_pallas_beta_releases_stable_only_in_asset_sets() -> None:
     pmv_releases = pallas_stable_releases._parse_stable_releases(examples["pmv"])
 
     assert pallas_beta_releases.get_new([("iOS", {"OSVersion": "9.9.27.2", "Build": "24B100"})], pmv_releases) == []
+
+
+def test_pallas_beta_releases_older_than_stable() -> None:
+    """Verify that betas and RCs not newer than the latest stable of their major, or of a major no longer released, are skipped."""
+    PostedFile.reset()
+    stable_releases = [
+        StableRelease("22H124", "18.7.12", {"iOS"}, public=True),
+        StableRelease("24B156", "27.2.1", {"iOS"}, public=True),
+        StableRelease("24H300", "15.8.3", {"macOS"}, public=True),
+        StableRelease("26B131", "27.2.1", {"macOS"}, public=True),
+        StableRelease("23J400", "26.6.1", {"tvOS"}, public=True),
+        StableRelease("24K157", "27.2.1", {"tvOS"}, public=True),
+    ]
+
+    assets = [
+        # old betas and stable releases older beta channels still serve
+        ("iOS", {"OSVersion": "9.9.18.1", "Build": "22B83", "SUDocumentationID": "iOS181Short"}),
+        ("macOS", {"OSVersion": "15.2", "Build": "24C5057p", "SUDocumentationID": "macOS152Beta1", "RestoreVersionInfo": {"IsSeed": True}}),
+        ("tvOS", {"OSVersion": "18.6", "Build": "22M84", "SUDocumentationID": "PreRelease"}),
+        # newer than stable of the same major, or a new major
+        ("macOS", {"OSVersion": "15.8.4", "Build": "24H319", "SUDocumentationID": "macOS1584RC"}),
+        ("iOS", {"OSVersion": "9.9.28.0", "Build": "25A5279m", "SUDocumentationID": "iOS28Beta1", "RestoreVersionInfo": {"IsSeed": True}}),
+    ]
+
+    beta_releases = pallas_beta_releases.get_new(assets, stable_releases)
+
+    assert [release.name for release in beta_releases] == ["macOS 15.8.4 RC (24H319)", "iOS 28 beta 1 (25A5279m)"]

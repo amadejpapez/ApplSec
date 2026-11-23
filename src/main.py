@@ -26,8 +26,8 @@ def main():
         stable_releases = None
         collect_failed_run(e)
 
-    # Post stable releases from Pallas
     if stable_releases is not None:
+        # Post stable releases from Pallas
         try:
             new_stable_releases = pallas_stable_releases.get_new(pallas_stable_releases.get_latest_versions(stable_releases))
             if new_stable_releases:
@@ -35,13 +35,13 @@ def main():
         except Exception as e:
             collect_failed_run(e)
 
-    # Post beta releases from Pallas, does not necessarily need stable releases
-    try:
-        new_beta_releases = pallas_beta_releases.get_new(pallas_beta_releases.get_beta_updates(), stable_releases or [])
-        if new_beta_releases:
-            post(pallas_beta_releases.format_releases(new_beta_releases))
-    except Exception as e:
-        collect_failed_run(e)
+        # Post beta releases from Pallas, needs stable releases to tell RCs and old releases apart from new ones
+        try:
+            new_beta_releases = pallas_beta_releases.get_new(pallas_beta_releases.get_beta_updates(), stable_releases)
+            if new_beta_releases:
+                post(pallas_beta_releases.format_releases(new_beta_releases))
+        except Exception as e:
+            collect_failed_run(e)
 
     # Get all security content rows
     try:
