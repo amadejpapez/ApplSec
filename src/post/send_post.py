@@ -51,6 +51,12 @@ def arrange_post(results: list[str], MAX_CHAR: int) -> list[str]:
     return arranged
 
 
+def remove_links(results: list[str]) -> list[str]:
+    removed = [re.sub(r"https?://\S+\n?", "", item) for item in results]
+
+    return [item for item in removed if item]
+
+
 def tweet(results: list[str], use_test_account: bool) -> None:
     """Handle posting to Twitter."""
     MAX_CHAR = 270
@@ -225,6 +231,9 @@ def post(results_mastodon: list[str], results_twitter: list[str] = [], use_test_
     # if results_twitter is not submitted, do the same post on Twitter as on Mastodon
     if not results_twitter:
         results_twitter = results_mastodon
+
+    # Remove links as posts with links cost much more on Twitter API
+    results_twitter = remove_links(results_twitter)
 
     try:
         toot(list(results_mastodon), use_test_account)
