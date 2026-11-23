@@ -121,6 +121,11 @@ class Release:
         )
 
     @staticmethod
+    def from_name(name: str) -> Release:
+        """Return a release known only by its name, as from Pallas, which has no security content."""
+        return Release(name, Release.parse_emoji(name), "", "", "", {}, 0, 0, 0, 0)
+
+    @staticmethod
     def parse_name(release_row: list[lxml.html.HtmlElement]) -> str:
         name = release_row[0].text_content().replace("\xa0", " ")
 
@@ -158,6 +163,7 @@ class Release:
             "Apple Music": "🎵",
             "Apple TV": "📺",
             "GarageBand": "🎵",
+            "HomePod": "🔊",
             "iCloud": "☁️",
             "iOS": "📱",
             "iPadOS": "📱",

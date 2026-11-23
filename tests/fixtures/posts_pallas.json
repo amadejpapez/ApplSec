@@ -1,5 +1,5 @@
 {
-    "assets": [
+    "beta_assets": [
         ["iOS", {"OSVersion": "9.9.27.3", "Build": "24C5037i", "SUDocumentationID": "iOS273Beta1", "RestoreVersionInfo": {"IsSeed": true}}],
         ["iPadOS", {"OSVersion": "9.9.27.3", "Build": "24C5037i", "SUDocumentationID": "iPadOS273Beta1", "RestoreVersionInfo": {"IsSeed": true}}],
         ["macOS", {"OSVersion": "27.3", "Build": "26C5035r", "SUDocumentationID": "macOS273Beta1", "RestoreVersionInfo": {"IsSeed": true}}],
@@ -8,22 +8,60 @@
         ["macOS", {"OSVersion": "26.7.3", "Build": "25G416", "SUDocumentationID": "macOS2673RC"}],
         ["visionOS", {"OSVersion": "26.6.1", "Build": "23O780", "SUDocumentationID": "visionOS2661Long"}]
     ],
-    "final_builds": ["23H128", "23O780", "24B119"],
+    "stable_builds": ["23H128", "23O780", "24B119"],
     "beta_releases_posted": {
-        "iOS": [
-            {"version": "27.3", "type": "beta", "beta": 1, "build": "24C5037i"}
-        ],
-        "iPadOS": [
-            {"version": "27.3", "type": "beta", "beta": 1, "build": "24C5037i"}
-        ],
-        "macOS": [
-            {"version": "27.3", "type": "beta", "beta": 1, "build": "26C5035r"},
-            {"version": "26.7.3", "type": "RC", "build": "25G416"}
-        ],
-        "tvOS": [
-            {"version": "27.3", "type": "beta", "build": "24K5286g"}
-        ]
+        "iOS": {
+            "27.3": {"type": "beta", "beta": 1, "build": "24C5037i"}
+        },
+        "iPadOS": {
+            "27.3": {"type": "beta", "beta": 1, "build": "24C5037i"}
+        },
+        "macOS": {
+            "27.3": {"type": "beta", "beta": 1, "build": "26C5035r"},
+            "26.7.3": {"type": "RC", "build": "25G416"}
+        },
+        "tvOS": {
+            "27.3": {"type": "beta", "build": "24K5286g"}
+        }
     },
+    "pmv": {
+        "PublicAssetSets": {
+            "iOS": [
+                {"ProductVersion": "27.2.1", "Build": "24B156", "SupportedDevices": ["iPhone18,1", "iPad17,1"]},
+                {"ProductVersion": "27.2.1", "Build": "24B6156", "SupportedDevices": ["iPhone19,2"]},
+                {"ProductVersion": "26.7.3", "Build": "23H131", "SupportedDevices": ["iPhone15,2"]},
+                {"ProductVersion": "12.5.8", "Build": "16H88", "SupportedDevices": ["iPad4,1"]},
+                {"ProductVersion": "27.2.1", "Build": "24K157", "SupportedDevices": ["AppleTV14,1", "AudioAccessory6,1"]},
+                {"ProductVersion": "27.2.1", "Build": "24S132", "SupportedDevices": ["Watch7,17"]},
+                {"ProductVersion": "27.2.1", "Build": "24V553", "SupportedDevices": ["HomeAccessory1,1"]},
+                {"ProductVersion": "15.8.8", "Build": "19H422", "SupportedDevices": ["iPod9,1"]}
+            ],
+            "macOS": [
+                {"ProductVersion": "27.2.1", "Build": "26B131", "SupportedDevices": ["J704AP"]},
+                {"ProductVersion": "27.2.1", "Build": "26B7131", "SupportedDevices": ["J804AP"]}
+            ],
+            "visionOS": [
+                {"ProductVersion": "27.0", "Build": "24M362", "SupportedDevices": ["RealityDevice17,1"]}
+            ]
+        },
+        "AssetSets": {
+            "iOS": [
+                {"ProductVersion": "27.2", "Build": "24B100", "SupportedDevices": ["iPhone18,1"]}
+            ]
+        }
+    },
+    "stable_releases_post": [
+        "🎉 NEW STABLE RELEASES 🎉\n\n",
+        "🔊 HomePod Software 27.2.1\n",
+        "📱 iOS 12.5.8\n",
+        "📱 iOS 26.7.3\n",
+        "📱 iOS 27.2.1\n",
+        "📱 iPadOS 27.2.1\n",
+        "💻 macOS 27.2.1\n",
+        "📺 tvOS 27.2.1\n",
+        "🥽 visionOS 27\n",
+        "⌚ watchOS 27.2.1\n"
+    ],
     "beta_releases_post": [
         "🧪 NEW BETA RELEASES 🧪\n\n",
         "📱 iOS 27.3 beta 1 (24C5037i)\n",

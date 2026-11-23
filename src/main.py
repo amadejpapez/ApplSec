@@ -1,6 +1,7 @@
 import helpers.get_date as get_date
 import helpers.get_version_info as get_version_info
-import post.pallas_releases as pallas_releases
+import post.pallas_beta_releases as pallas_beta_releases
+import post.pallas_stable_releases as pallas_stable_releases
 import post.sec_content as sec_content
 from helpers.posted_file import PostedFile
 from post.send_post import post
@@ -27,9 +28,14 @@ def main():
     if zero_day_releases:
         post(sec_content.format_zero_days(zero_day_releases))
 
-    beta_releases = pallas_releases.get_new(*pallas_releases.retrieve_assets())
-    if beta_releases:
-        post(pallas_releases.format_releases(beta_releases))
+    stable_releases = pallas_stable_releases.get_stable_releases()
+    new_stable_releases = pallas_stable_releases.get_new(pallas_stable_releases.get_latest_versions(stable_releases))
+    if new_stable_releases:
+        post(pallas_stable_releases.format_releases(new_stable_releases))
+
+    new_beta_releases = pallas_beta_releases.get_new(pallas_beta_releases.get_beta_updates(), stable_releases)
+    if new_beta_releases:
+        post(pallas_beta_releases.format_releases(new_beta_releases))
 
     if get_date.is_midnight():
         # the latest url contains items only 2024+, add at least ones from 2022 and 2023

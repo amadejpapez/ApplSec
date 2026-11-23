@@ -555,6 +555,7 @@
         "details_available_soon": [],
         "posts": {
             "beta_releases": {},
+            "stable_releases": {},
             "new_sec_content": [
                 "watchOS 10.6.1",
                 "macOS Big Sur 11.5.2",
@@ -634,6 +635,7 @@
         ],
         "posts": {
             "beta_releases": {},
+            "stable_releases": {},
             "new_sec_content": [
                 "iOS and iPadOS 17.4.1",
                 "watchOS 10.6",
@@ -687,6 +689,7 @@
         "details_available_soon": [],
         "posts": {
             "beta_releases": {},
+            "stable_releases": {},
             "new_sec_content": [
                 "iOS and iPadOS 17.4.1",
                 "watchOS 10.6",
@@ -985,6 +988,7 @@
         "details_available_soon": [],
         "posts": {
             "beta_releases": {},
+            "stable_releases": {},
             "new_sec_content": [
                 "iOS and iPadOS 17.4",
                 "iOS and iPadOS 16.7.6"

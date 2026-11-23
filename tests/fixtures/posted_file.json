@@ -6,14 +6,18 @@
         "details_available_soon": [],
         "posts": {
             "beta_releases": {
-                "iOS": [
-                    {
-                        "version": "16.6",
+                "iOS": {
+                    "16.6": {
                         "type": "beta",
                         "beta": 2,
                         "build": "20G5037d"
                     }
-                ]
+                }
+            },
+            "stable_releases": {
+                "iOS": {
+                    "16": "16.5.1"
+                }
             },
             "new_sec_content": [
                 "Safari 16.3"
