@@ -36,6 +36,13 @@ def test_release_class_parsing() -> None:
         assert Release.parse_name([lxml.html.document_fromstring(releases[i][0])]) == releases_obj[i].name
 
 
+def test_release_name_software_version() -> None:
+    """Verify "software version" is shortened to "software"."""
+    row = [lxml.html.fragment_fromstring('<td><a href="https://support.apple.com/x">HomeView software version 1.2</a></td>')]
+    assert Release.parse_name(row) == "HomeView software 1.2"
+    assert Release.parse_emoji("HomeView software 1.2") == "🏠"
+
+
 def test_release_class_safari() -> None:
     """Verify parsing on weirdly named Safari releases."""
     PostedFile.reset()

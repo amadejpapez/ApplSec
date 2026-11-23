@@ -148,6 +148,9 @@ class Release:
         # "no details yet" releases might have this bracket alongside of their name
         name = re.sub(r"(?i)\(?details (available|coming) soon\.?\)?", "", name).strip()
 
+        # "HomeView software version 1.2" -> "HomeView software 1.2"
+        name = re.sub(r"(?i)(software) version\b", r"\1", name)
+
         # "iOS 15.3 and iPadOS 15.3" -> "iOS and iPadOS 15.3"
         if "iOS" in name and "iPadOS" in name:
             ver = re.findall(r"iOS (.+?) (?:and|&) iPadOS", name)
@@ -172,6 +175,7 @@ class Release:
             "Apple TV": "📺",
             "GarageBand": "🎵",
             "HomePod": "🔊",
+            "HomeView": "🏠",
             "iCloud": "☁️",
             "iOS": "📱",
             "iPadOS": "📱",
