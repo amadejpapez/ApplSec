@@ -67,3 +67,8 @@ def info_to_release(release_info: dict) -> list[Release]:
         )
 
     return releases_class
+
+
+def failing_get(*args, **kwargs):
+    """Replacement for session.get that always fails, to test failed fetches."""
+    raise ConnectionError("security content page down")
