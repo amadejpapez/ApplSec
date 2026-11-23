@@ -23,28 +23,107 @@
     ],
     "details_available_soon": [],
     "posts": {
-        "new_releases": [
-            "macOS 27.2 RC (26B118)",
-            "iPadOS 27.2 RC (24B115)",
-            "iOS 27.2 RC (24B115)",
-            "Xcode 27.2 RC (27B48)",
-            "watchOS 27.3 beta (24S5284h)",
-            "visionOS 27.3 beta (24N5286r)",
-            "tvOS 27.3 beta (24K5286g)",
-            "macOS 27.3 beta (26C5035r)",
-            "iPadOS 27.3 beta (24C5037i)",
-            "iOS 27.3 beta (24C5037i)",
-            "Xcode 27.3 beta (27C5020n)",
-            "watchOS 27.3 beta 2 (24S5296d)",
-            "visionOS 27.3 beta 2 (24N5298d)",
-            "tvOS 27.3 beta 2 (24K5298d)",
-            "macOS 27.3 beta 2 (26C5047e)",
-            "iPadOS 27.3 beta 2 (24C5049d)",
-            "iOS 27.3 beta 2 (24C5049d)",
-            "Xcode 27.3 beta 2 (27C5035i)",
-            "iPadOS 27.3 beta 2 v2 (24C5049f)",
-            "iOS 27.3 beta 2 v2 (24C5049f)"
-        ],
+        "beta_releases": {
+            "iOS": {
+                "27.3": {
+                    "type": "beta",
+                    "beta": 2,
+                    "build": "24C5049f"
+                }
+            },
+            "iPadOS": {
+                "27.3": {
+                    "type": "beta",
+                    "beta": 2,
+                    "build": "24C5049f"
+                }
+            },
+            "macOS": {
+                "27.3": {
+                    "type": "beta",
+                    "beta": 2,
+                    "build": "26C5047e"
+                },
+                "26.7.4": {
+                    "type": "RC",
+                    "build": "25G422"
+                },
+                "15.8.4": {
+                    "type": "RC",
+                    "build": "24H319"
+                }
+            },
+            "tvOS": {
+                "27.3": {
+                    "type": "beta",
+                    "build": "24K5298d"
+                }
+            },
+            "visionOS": {
+                "27.3": {
+                    "type": "beta",
+                    "beta": 2,
+                    "build": "24N5298d"
+                }
+            },
+            "watchOS": {
+                "27.3": {
+                    "type": "beta",
+                    "beta": 2,
+                    "build": "24S5296d"
+                }
+            }
+        },
+        "stable_releases": {
+            "HomePod Software": {
+                "27": "27.2.1"
+            },
+            "HomeView Software": {
+                "27": "27.2.1"
+            },
+            "iOS": {
+                "27": "27.2.1",
+                "26": "26.7.3",
+                "18": "18.7.12",
+                "16": "16.7.16",
+                "15": "15.8.8",
+                "12": "12.5.8"
+            },
+            "iPadOS": {
+                "27": "27.2.1",
+                "26": "26.7.3",
+                "18": "18.7.12",
+                "17": "17.7.11",
+                "16": "16.7.16",
+                "15": "15.8.8"
+            },
+            "macOS": {
+                "27": "27.2.1",
+                "26": "26.7.3",
+                "15": "15.8.3",
+                "14": "14.8.9",
+                "13": "13.7.8",
+                "12": "12.7.6",
+                "11": "11.7.11"
+            },
+            "tvOS": {
+                "27": "27.2.1",
+                "26": "26.6.1"
+            },
+            "visionOS": {
+                "27": "27.2.1"
+            },
+            "watchOS": {
+                "27": "27.2.1",
+                "26": "26.6.1",
+                "11": "11.6.2",
+                "10": "10.6.2",
+                "9": "9.6.4",
+                "8": "8.8.2",
+                "6": "6.3.1",
+                "5": "5.3.10"
+            }
+        },
         "new_sec_content": [
             "macOS Sequoia 15.8.1",
             "macOS Tahoe 26.7.1",
@@ -73,9 +152,9 @@
             "iOS and iPadOS 18.7.12",
             "iOS and iPadOS 26.7.3",
             "iOS and iPadOS 27.2.1",
-            "HomeView Software Version 27.2",
+            "HomeView Software 27.2",
             "tvOS 27.2.1",
-            "HomeView Software Version 27.2.1"
+            "HomeView Software 27.2.1"
         ],
         "ios_modules": [
             "iOS and iPadOS 27",
