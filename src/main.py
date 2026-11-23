@@ -26,14 +26,16 @@ def main():
     # Get stable releases from Pallas
     try:
         stable_releases = pallas_stable_releases.get_stable_releases()
+        latest_stable_versions = pallas_stable_releases.get_latest_versions(stable_releases)
     except Exception as e:
         stable_releases = None
+        latest_stable_versions = None
         collect_failed_run(e)
 
-    if stable_releases is not None:
+    if stable_releases is not None and latest_stable_versions is not None:
         # Post stable releases from Pallas
         try:
-            new_stable_releases = pallas_stable_releases.get_new(pallas_stable_releases.get_latest_versions(stable_releases))
+            new_stable_releases = pallas_stable_releases.get_new(latest_stable_versions)
             if new_stable_releases:
                 post(pallas_stable_releases.format_releases(new_stable_releases))
         except Exception as e:
@@ -41,7 +43,7 @@ def main():
 
         # Post beta releases from Pallas, needs stable releases to tell RCs and old releases apart from new ones
         try:
-            new_beta_releases = pallas_beta_releases.get_new(pallas_beta_releases.get_beta_updates(), stable_releases)
+            new_beta_releases = pallas_beta_releases.get_new(pallas_beta_releases.get_beta_updates(), stable_releases, latest_stable_versions)
             if new_beta_releases:
                 post(pallas_beta_releases.format_releases(new_beta_releases))
         except Exception as e:

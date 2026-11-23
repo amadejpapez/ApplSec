@@ -12,6 +12,7 @@ examples = read_examples("posts_pallas")
 
 beta_assets = examples["beta_assets"]
 stable_releases = [StableRelease(build, None, set(), public=True) for build in examples["stable_builds"]]
+latest_stable_versions = pallas_stable_releases.get_latest_versions(stable_releases)
 
 
 def test_pallas_beta_download() -> None:
@@ -30,7 +31,7 @@ def test_pallas_beta_releases() -> None:
     """Verify names of betas and RCs, while stable releases from beta channels are skipped."""
     PostedFile.reset()
 
-    beta_releases = pallas_beta_releases.get_new(beta_assets, stable_releases)
+    beta_releases = pallas_beta_releases.get_new(beta_assets, stable_releases, latest_stable_versions)
 
     post = pallas_beta_releases.format_releases(beta_releases)
     assert post == examples["beta_releases_post"]
@@ -38,7 +39,7 @@ def test_pallas_beta_releases() -> None:
     assert PostedFile.data["posts"]["beta_releases"] == examples["beta_releases_posted"]
 
     # test again after posting and verify it returns nothing
-    beta_releases = pallas_beta_releases.get_new(beta_assets, stable_releases)
+    beta_releases = pallas_beta_releases.get_new(beta_assets, stable_releases, latest_stable_versions)
 
     post = pallas_beta_releases.format_releases(beta_releases)
     assert post == []
@@ -51,7 +52,7 @@ def test_pallas_beta_releases_only_one() -> None:
     PostedFile.data["posts"]["beta_releases"] = copy.deepcopy(examples["beta_releases_posted"])
     del PostedFile.data["posts"]["beta_releases"]["iOS"]
 
-    beta_releases = pallas_beta_releases.get_new(beta_assets, stable_releases)
+    beta_releases = pallas_beta_releases.get_new(beta_assets, stable_releases, latest_stable_versions)
 
     post = pallas_beta_releases.format_releases(beta_releases)
     assert post == examples["beta_releases_one_post"]
@@ -68,13 +69,13 @@ def test_pallas_beta_releases_only_later() -> None:
     }
 
     # older betas returned again
-    assert pallas_beta_releases.get_new(beta_assets[:1] + [("tvOS", tvos_beta)], stable_releases) == []
+    assert pallas_beta_releases.get_new(beta_assets[:1] + [("tvOS", tvos_beta)], stable_releases, latest_stable_versions) == []
 
     # a later build of the same version, as tvOS has no beta number, and then an RC
-    beta_releases = pallas_beta_releases.get_new([("tvOS", tvos_beta | {"Build": "24K5306b"})], stable_releases)
+    beta_releases = pallas_beta_releases.get_new([("tvOS", tvos_beta | {"Build": "24K5306b"})], stable_releases, latest_stable_versions)
     assert [release.name for release in beta_releases] == ["tvOS 27.3 beta (24K5306b)"]
 
-    beta_releases = pallas_beta_releases.get_new([("tvOS", tvos_beta | {"Build": "24K40", "RestoreVersionInfo": {}})], stable_releases)
+    beta_releases = pallas_beta_releases.get_new([("tvOS", tvos_beta | {"Build": "24K40", "RestoreVersionInfo": {}})], stable_releases, latest_stable_versions)
     assert [release.name for release in beta_releases] == ["tvOS 27.3 RC (24K40)"]
 
     assert PostedFile.data["posts"]["beta_releases"]["tvOS"] == {"27.3": {"type": "RC", "build": "24K40"}}
@@ -88,7 +89,7 @@ def test_pallas_beta_releases_latest_in_run() -> None:
     for run in [[beta_2, beta_3], [beta_3, beta_2]]:
         PostedFile.reset()
 
-        beta_releases = pallas_beta_releases.get_new(run, stable_releases)
+        beta_releases = pallas_beta_releases.get_new(run, stable_releases, latest_stable_versions)
 
         assert [release.name for release in beta_releases] == ["iOS 27.3 beta 3 (24C5057a)"]
 
@@ -100,7 +101,7 @@ def test_pallas_beta_releases_two_beta_cycles() -> None:
     posted_27_4 = {"type": "beta", "beta": 1, "build": "24E5207f"}
     PostedFile.data["posts"]["beta_releases"] = {"iOS": {"27.4": posted_27_4}}
 
-    beta_releases = pallas_beta_releases.get_new(beta_assets[:1], stable_releases)
+    beta_releases = pallas_beta_releases.get_new(beta_assets[:1], stable_releases, latest_stable_versions)
 
     assert [release.name for release in beta_releases] == ["iOS 27.3 beta 1 (24C5037i)"]
     assert PostedFile.data["posts"]["beta_releases"]["iOS"] == {"27.4": posted_27_4} | examples["beta_releases_posted"]["iOS"]
@@ -110,7 +111,7 @@ def test_pallas_beta_releases_stable_builds_unknown() -> None:
     """Verify that with stable releases unknown betas are returned, but nothing is treated as an RC."""
     PostedFile.reset()
 
-    beta_releases = pallas_beta_releases.get_new(beta_assets, [])
+    beta_releases = pallas_beta_releases.get_new(beta_assets, [], {})
 
     assert "macOS 26.7.3 RC (25G416)" not in [release.name for release in beta_releases]
     assert "iOS 27.3 beta 1 (24C5037i)" in [release.name for release in beta_releases]
@@ -121,7 +122,7 @@ def test_pallas_beta_releases_malformed_asset() -> None:
     PostedFile.reset()
 
     malformed = [["iOS", {"Build": "24C5037i"}], ["tvOS", {"OSVersion": "27.3"}]]
-    beta_releases = pallas_beta_releases.get_new(malformed + beta_assets[:1], stable_releases)
+    beta_releases = pallas_beta_releases.get_new(malformed + beta_assets[:1], stable_releases, latest_stable_versions)
 
     assert [release.name for release in beta_releases] == ["iOS 27.3 beta 1 (24C5037i)"]
     # skipped, but the run should still fail at the end
@@ -134,7 +135,7 @@ def test_pallas_beta_releases_stable_only_in_asset_sets() -> None:
     PostedFile.reset()
     pmv_releases = pallas_stable_releases._parse_stable_releases(examples["pmv"])
 
-    assert pallas_beta_releases.get_new([("iOS", {"OSVersion": "9.9.27.2", "Build": "24B100"})], pmv_releases) == []
+    assert pallas_beta_releases.get_new([("iOS", {"OSVersion": "9.9.27.2", "Build": "24B100"})], pmv_releases, pallas_stable_releases.get_latest_versions(pmv_releases)) == []
 
 
 def test_pallas_beta_releases_older_than_stable() -> None:
@@ -148,6 +149,7 @@ def test_pallas_beta_releases_older_than_stable() -> None:
         StableRelease("23J400", "26.6.1", {"tvOS"}, public=True),
         StableRelease("24K157", "27.2.1", {"tvOS"}, public=True),
     ]
+    latest_stable_versions = pallas_stable_releases.get_latest_versions(stable_releases)
 
     assets = [
         # old betas and stable releases older beta channels still serve
@@ -159,6 +161,6 @@ def test_pallas_beta_releases_older_than_stable() -> None:
         ("iOS", {"OSVersion": "9.9.28.0", "Build": "25A5279m", "SUDocumentationID": "iOS28Beta1", "RestoreVersionInfo": {"IsSeed": True}}),
     ]
 
-    beta_releases = pallas_beta_releases.get_new(assets, stable_releases)
+    beta_releases = pallas_beta_releases.get_new(assets, stable_releases, latest_stable_versions)
 
     assert [release.name for release in beta_releases] == ["macOS 15.8.4 RC (24H319)", "iOS 28 beta 1 (25A5279m)"]

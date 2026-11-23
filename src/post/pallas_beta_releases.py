@@ -13,7 +13,6 @@ import helpers.pallas as pallas
 import helpers.run_errors as run_errors
 from helpers.posted_file import PostedFile
 from helpers.session import session
-import post.pallas_stable_releases as pallas_stable_releases
 from post.pallas_stable_releases import StableRelease
 from release import Release
 
@@ -192,10 +191,9 @@ def _is_older_than_stable(latest_versions: dict[str, dict[str, str]], os_name: s
     return int(major) < max(int(latest_major) for latest_major in latest)
 
 
-def get_new(beta_assets: list[tuple[str, dict]], stable_releases: list[StableRelease]) -> list[Release]:
+def get_new(beta_assets: list[tuple[str, dict]], stable_releases: list[StableRelease], latest_stable_versions: dict[str, dict[str, str]]) -> list[Release]:
     """Return new beta and RC releases that have not been posted yet."""
     stable_build_numbers = {release.build for release in stable_releases}
-    latest_stable_versions = pallas_stable_releases.get_latest_versions(stable_releases)
     latest_returned: dict[tuple[str, str], dict] = {}
 
     for os_name, asset in beta_assets:
