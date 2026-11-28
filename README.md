@@ -45,7 +45,7 @@ The bot is frequently updated as new ideas appear and to keep up with any change
 
 - __[requests](https://github.com/psf/requests)__, for communication with Twitter/Mastodon/Bluesky API and for requests to Apple's website
 - __[lxml](https://github.com/lxml/lxml)__, for simplified HTML processing
-- __GitHub Actions__, for running the bot ❤️
+- __Forgejo Actions__ on a self-hosted Forgejo instance for running the bot ❤️
 
 <br>
 
